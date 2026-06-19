@@ -3,9 +3,16 @@
 import { useEffect, useRef } from "react";
 
 const tools = [
-  "Make.com", "n8n", "WhatsApp API",
-  "Next.js", "GSAP", "Vercel",
-  "Google OAuth", "AI Image Gen",
+  // AI
+  "Claude AI", "Claude Code", "ChatGPT", "Gemini",
+  // Automation
+  "Make.com", "n8n", "WhatsApp API", "Zapier",
+  // Dev
+  "Next.js", "TypeScript", "GSAP", "Vercel", "GitHub", "PostgreSQL",
+  // Design & Content
+  "Canva", "Figma",
+  // Productivity & CRM
+  "Notion", "Google Workspace", "Slack",
 ];
 
 export default function About() {
