@@ -44,7 +44,7 @@ export default function ROICalculator() {
         </h2>
       </div>
 
-      <div style={{
+      <div className="roi-card" style={{
         maxWidth: 640,
         margin: "0 auto",
         background: "var(--surface)",

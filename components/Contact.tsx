@@ -50,7 +50,7 @@ export default function Contact() {
           ספרי לי על העסק שלך ומה את רוצה לשפר. אענה תוך 24 שעות עם רעיון ראשוני.
         </p>
 
-        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+        <div className="contact-cta-row" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
           <a href="https://wa.me/972504744815" className="btn-grad" style={{ fontSize: "0.85rem" }}>
             📱 כתבי לי בוואטסאפ
           </a>

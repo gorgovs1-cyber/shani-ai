@@ -22,8 +22,8 @@ export default function Nav() {
   return (
     <>
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-        padding: "1rem 1.5rem",
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 10001,
+        padding: "0.875rem 1.25rem",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         transition: "background 0.4s ease, backdrop-filter 0.4s ease",
         background: scrolled || menuOpen ? "rgba(6,6,8,0.95)" : "transparent",
@@ -61,26 +61,28 @@ export default function Nav() {
           style={{
             display: "none",
             flexDirection: "column", gap: "5px",
-            background: "none", border: "none", cursor: "pointer", padding: "4px",
+            background: "none", border: "none", cursor: "pointer",
+            padding: "8px", margin: "-8px",
+            WebkitTapHighlightColor: "transparent",
           }}
         >
           <span style={{
-            display: "block", width: 22, height: 2,
+            display: "block", width: 24, height: 2,
             background: "var(--white)", borderRadius: 2,
             transition: "transform 0.3s ease, opacity 0.3s ease",
-            transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
+            transform: menuOpen ? "rotate(45deg) translate(5px, 7px)" : "none",
           }} />
           <span style={{
-            display: "block", width: 22, height: 2,
+            display: "block", width: 24, height: 2,
             background: "var(--white)", borderRadius: 2,
             opacity: menuOpen ? 0 : 1,
             transition: "opacity 0.3s ease",
           }} />
           <span style={{
-            display: "block", width: 22, height: 2,
+            display: "block", width: 24, height: 2,
             background: "var(--white)", borderRadius: 2,
             transition: "transform 0.3s ease",
-            transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
+            transform: menuOpen ? "rotate(-45deg) translate(5px, -7px)" : "none",
           }} />
         </button>
       </nav>
@@ -88,8 +90,8 @@ export default function Nav() {
       {/* Mobile menu overlay */}
       {menuOpen && (
         <div style={{
-          position: "fixed", inset: 0, zIndex: 999,
-          background: "rgba(6,6,8,0.97)",
+          position: "fixed", inset: 0, zIndex: 10000,
+          background: "rgba(6,6,8,0.98)",
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center",
           gap: "2.5rem",

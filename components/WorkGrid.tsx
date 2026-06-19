@@ -199,6 +199,7 @@ export default function WorkGrid() {
     >
       {/* Header */}
       <div
+        className="work-header"
         style={{
           display: "flex",
           justifyContent: "space-between",

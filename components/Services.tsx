@@ -169,7 +169,7 @@ export default function Services() {
                   animation: "fadeSlideDown 0.3s ease forwards",
                 }}>
                   <div /> {/* spacer for number column */}
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }}>
+                  <div className="svc-expanded-detail" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }}>
                     <p style={{
                       fontSize: "0.95rem",
                       color: "var(--muted)",
@@ -178,7 +178,7 @@ export default function Services() {
                     }}>
                       {s.desc}
                     </p>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
+                    <div className="svc-expanded-tags" style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-start" }}>
                       {s.tags.map(tag => (
                         <span key={tag} style={{
                           fontSize: "0.7rem",

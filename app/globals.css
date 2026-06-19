@@ -233,7 +233,7 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 900;
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   background-size: 200px 200px;
@@ -281,12 +281,29 @@ body::after {
   to { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 600px) {
+  /* Collapse number column and hide time/toggle on mobile header row */
   .svc-row > div:first-child {
-    grid-template-columns: 2rem 1fr !important;
-    gap: 1rem !important;
+    grid-template-columns: 2rem 1fr auto !important;
+    gap: 0.75rem !important;
   }
-  .svc-row > div:first-child > div:last-child {
+  /* Hide the time label, keep only the toggle */
+  .svc-row > div:first-child > div:last-child > div:first-child {
     display: none !important;
+  }
+  /* Tighten gap between time+toggle */
+  .svc-row > div:first-child > div:last-child {
+    gap: 0 !important;
+  }
+  /* Expanded detail: stack desc and tags vertically */
+  .svc-expanded-detail {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+  /* Tags row: horizontal wrap instead of column */
+  .svc-expanded-tags {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
   }
 }
 
@@ -339,6 +356,54 @@ html.lenis { height: auto; }
 @media (max-width: 640px) {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
+}
+
+/* ─── FOOTER MOBILE ─── */
+@media (max-width: 600px) {
+  footer {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 2rem 1.25rem !important;
+  }
+}
+
+/* ─── WORK GRID HEADER MOBILE ─── */
+@media (max-width: 600px) {
+  .work-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* ─── HERO CTA MOBILE ─── */
+@media (max-width: 600px) {
+  .hero-cta a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* ─── ROI CALCULATOR MOBILE ─── */
+@media (max-width: 600px) {
+  .roi-section .roi-card {
+    padding: 1.5rem !important;
+  }
+}
+
+/* ─── CONTACT MOBILE ─── */
+@media (max-width: 600px) {
+  .contact-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .contact-cta-row .btn-grad,
+  .contact-cta-row .btn-ghost {
+    text-align: center !important;
+    width: 100% !important;
+  }
 }
 
 /* ─── WORK PAGE ─── */
