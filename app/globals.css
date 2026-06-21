@@ -430,6 +430,9 @@ html.lenis { height: auto; }
 /* ─── WORK PAGE ─── */
 .work-row-link { transition: background 0.25s ease; }
 .work-row-link:hover { background: var(--signal-soft); }
+@media (max-width: 760px) {
+  .project-content { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+}
 
 /* ─── AUTOMATION TREE ─── */
 .at-root { width: 100%; max-width: 520px; animation: at-fade 1.2s ease forwards; }

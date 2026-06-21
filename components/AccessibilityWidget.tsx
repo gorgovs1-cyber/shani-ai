@@ -93,9 +93,9 @@ export default function AccessibilityWidget() {
             left: 0, right: 0,
             top: guideY - 20,
             height: 40,
-            background: "rgba(139,92,246,0.12)",
-            borderTop: "1px solid rgba(139,92,246,0.3)",
-            borderBottom: "1px solid rgba(139,92,246,0.3)",
+            background: "rgba(255,106,61,0.12)",
+            borderTop: "1px solid rgba(255,106,61,0.3)",
+            borderBottom: "1px solid rgba(255,106,61,0.3)",
             pointerEvents: "none",
             zIndex: 99990,
           }}
@@ -110,7 +110,7 @@ export default function AccessibilityWidget() {
           top: -100,
           left: "50%",
           transform: "translateX(-50%)",
-          background: "#8B5CF6",
+          background: "var(--signal)",
           color: "#fff",
           padding: "0.75rem 1.5rem",
           borderRadius: 8,
@@ -126,7 +126,7 @@ export default function AccessibilityWidget() {
         דלג לתוכן הראשי
       </a>
 
-      {/* Toggle button */}
+      {/* Toggle button — bottom-right, opposite the WhatsApp button */}
       <button
         onClick={() => setOpen(o => !o)}
         aria-label="פתח תפריט נגישות"
@@ -134,20 +134,20 @@ export default function AccessibilityWidget() {
         aria-controls="a11y-panel"
         style={{
           position: "fixed",
-          bottom: "6rem",
-          left: "1.25rem",
+          bottom: "2rem",
+          right: "1.25rem",
           width: 48,
           height: 48,
           borderRadius: "50%",
-          background: isActive ? "#8B5CF6" : "#13131c",
-          border: `2px solid ${isActive ? "#8B5CF6" : "rgba(139,92,246,0.4)"}`,
+          background: isActive ? "var(--signal)" : "var(--graphite)",
+          border: `2px solid ${isActive ? "var(--signal)" : "rgba(255,106,61,0.4)"}`,
           color: "#fff",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           cursor: "none",
           zIndex: 9991,
-          boxShadow: isActive ? "0 0 20px rgba(139,92,246,0.5)" : "0 4px 20px rgba(0,0,0,0.4)",
+          boxShadow: isActive ? "0 0 20px rgba(255,106,61,0.5)" : "0 4px 20px rgba(0,0,0,0.4)",
           transition: "all 0.3s ease",
         }}
       >
@@ -172,15 +172,15 @@ export default function AccessibilityWidget() {
           dir="rtl"
           style={{
             position: "fixed",
-            bottom: "10rem",
-            left: "1.25rem",
+            bottom: "6rem",
+            right: "1.25rem",
             width: 272,
-            background: "#0e0e14",
-            border: "1px solid rgba(139,92,246,0.3)",
+            background: "var(--ink-2)",
+            border: "1px solid rgba(255,106,61,0.3)",
             borderRadius: 16,
             padding: "1.25rem",
             zIndex: 9992,
-            boxShadow: "0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(139,92,246,0.1)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,106,61,0.1)",
             animation: "a11y-slide 0.2s ease forwards",
           }}
         >
@@ -189,16 +189,16 @@ export default function AccessibilityWidget() {
             display: "flex", alignItems: "center", justifyContent: "space-between",
             marginBottom: "1.25rem",
             paddingBottom: "0.75rem",
-            borderBottom: "1px solid #1e1e2e",
+            borderBottom: "1px solid var(--border)",
           }}>
-            <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#F4F4FF", letterSpacing: "0.05em" }}>
+            <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--cream)", letterSpacing: "0.05em" }}>
               הגדרות נגישות
             </span>
             <button
               onClick={resetAll}
               style={{
-                fontSize: "0.65rem", color: "#8A8AA8", background: "none",
-                border: "1px solid #2a2a3e", borderRadius: 4,
+                fontSize: "0.65rem", color: "var(--mist)", background: "none",
+                border: "1px solid var(--border-2)", borderRadius: 4,
                 padding: "0.2rem 0.55rem", cursor: "none",
               }}
               aria-label="אפס את כל הגדרות הנגישות"
@@ -209,7 +209,7 @@ export default function AccessibilityWidget() {
 
           {/* Font size */}
           <div style={{ marginBottom: "1rem" }}>
-            <div style={{ fontSize: "0.7rem", color: "#8A8AA8", marginBottom: "0.5rem", letterSpacing: "0.05em" }}>
+            <div style={{ fontSize: "0.7rem", color: "var(--mist)", marginBottom: "0.5rem", letterSpacing: "0.05em" }}>
               גודל טקסט
             </div>
             <div style={{ display: "flex", gap: "0.5rem" }}>
@@ -223,9 +223,9 @@ export default function AccessibilityWidget() {
                     flex: 1,
                     padding: "0.4rem 0.3rem",
                     borderRadius: 8,
-                    border: `1px solid ${s.fontSize === i ? "#8B5CF6" : "#2a2a3e"}`,
-                    background: s.fontSize === i ? "rgba(139,92,246,0.15)" : "transparent",
-                    color: s.fontSize === i ? "#8B5CF6" : "#8A8AA8",
+                    border: `1px solid ${s.fontSize === i ? "var(--signal)" : "var(--border-2)"}`,
+                    background: s.fontSize === i ? "rgba(255,106,61,0.15)" : "transparent",
+                    color: s.fontSize === i ? "var(--signal)" : "var(--mist)",
                     fontSize: `${0.62 + i * 0.07}rem`,
                     fontWeight: 600,
                     cursor: "none",
@@ -262,9 +262,9 @@ export default function AccessibilityWidget() {
                     justifyContent: "space-between",
                     padding: "0.55rem 0.75rem",
                     borderRadius: 8,
-                    border: `1px solid ${active ? "rgba(139,92,246,0.4)" : "#1e1e2e"}`,
-                    background: active ? "rgba(139,92,246,0.1)" : "transparent",
-                    color: active ? "#F4F4FF" : "#8A8AA8",
+                    border: `1px solid ${active ? "rgba(255,106,61,0.4)" : "var(--border)"}`,
+                    background: active ? "rgba(255,106,61,0.1)" : "transparent",
+                    color: active ? "var(--cream)" : "var(--mist)",
                     fontSize: "0.78rem",
                     cursor: "none",
                     transition: "all 0.2s",
@@ -275,7 +275,7 @@ export default function AccessibilityWidget() {
                   <div style={{
                     width: 22, height: 13,
                     borderRadius: 7,
-                    background: active ? "#8B5CF6" : "#2a2a3e",
+                    background: active ? "var(--signal)" : "var(--border-2)",
                     position: "relative",
                     flexShrink: 0,
                     transition: "background 0.25s",
@@ -302,14 +302,14 @@ export default function AccessibilityWidget() {
           <div style={{
             marginTop: "1rem",
             paddingTop: "0.75rem",
-            borderTop: "1px solid #1e1e2e",
+            borderTop: "1px solid var(--border)",
             textAlign: "center",
           }}>
             <a
               href="/accessibility"
               style={{
                 fontSize: "0.65rem",
-                color: "#8A8AA8",
+                color: "var(--mist)",
                 textDecoration: "underline",
                 textUnderlineOffset: "3px",
               }}

@@ -20,29 +20,29 @@ export default function NextProjectLink({
         transition: "background 0.3s ease",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.background = "rgba(0,229,255,0.02)";
+        (e.currentTarget as HTMLElement).style.background = "var(--signal-soft)";
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.background = "transparent";
       }}
     >
       <div>
-        <div className="label" style={{ color: "var(--dim)", marginBottom: "0.5rem" }}>
-          Next Project
+        <div className="label" style={{ color: "var(--mist)", marginBottom: "0.5rem" }}>
+          הפרויקט הבא
         </div>
         <span
           style={{
-            fontFamily: "var(--font-syne)",
+            fontFamily: "var(--font-display)",
             fontSize: "clamp(1.2rem, 3vw, 2.5rem)",
             fontWeight: 700,
-            color: "var(--white)",
+            color: "var(--cream)",
             letterSpacing: "-0.02em",
           }}
         >
           {title}
         </span>
       </div>
-      <span style={{ color: "var(--cyan)", fontSize: "2rem" }}>→</span>
+      <span style={{ color: "var(--signal)", fontSize: "2rem" }}>←</span>
     </Link>
   );
 }
