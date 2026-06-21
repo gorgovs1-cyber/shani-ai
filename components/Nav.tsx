@@ -127,13 +127,19 @@ function LangToggle({ lang, setLang, label }: { lang: Lang; setLang: (l: Lang) =
     <div
       role="group"
       aria-label={label}
+      title={label}
       style={{
         display: "inline-flex", alignItems: "center",
-        border: "1px solid var(--border-2)", borderRadius: 999,
-        padding: 2, gap: 2, background: "var(--ink-2)",
+        border: "1px solid var(--signal-line)", borderRadius: 999,
+        padding: "2px 2px 2px 8px", gap: 3, background: "var(--ink-2)",
         fontFamily: "var(--font-mono)",
       }}
     >
+      {/* Globe icon — signals "language" at a glance */}
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ marginInlineEnd: 2 }}>
+        <circle cx="12" cy="12" r="9" stroke="var(--signal)" strokeWidth="1.6" />
+        <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" stroke="var(--signal)" strokeWidth="1.4" />
+      </svg>
       {opts.map((o) => {
         const active = lang === o;
         return (

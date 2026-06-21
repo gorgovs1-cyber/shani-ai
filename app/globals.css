@@ -383,7 +383,7 @@ html.lenis { height: auto; }
 }
 
 /* ─── NAV ─── */
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
 }
