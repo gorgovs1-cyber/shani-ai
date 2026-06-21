@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Inter, Heebo, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import LenisProvider from "@/components/LenisProvider";
@@ -7,9 +7,16 @@ import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import LanguageProvider from "@/components/LanguageProvider";
 
+// Latin headings + body
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const syne = Syne({ subsets: ["latin"], variable: "--font-syne", display: "swap" });
+// Hebrew headings + body
+const heebo = Heebo({ subsets: ["hebrew", "latin"], variable: "--font-heebo", display: "swap", weight: ["400", "500", "700", "800", "900"] });
+// Latin emphasis word (italic)
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap", style: ["italic", "normal"], weight: ["500", "600", "700"] });
+// System / tags / dates / boot screen (both languages)
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "500", "700"] });
 
 export const metadata: Metadata = {
   title: "Shani AI Creator — אתרים עם AI, אוטומציות וייעוץ לעסקים בישראל",
@@ -39,18 +46,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="he" dir="rtl" className={`${inter.variable} ${syne.variable}`}>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${inter.variable} ${heebo.variable} ${playfair.variable} ${mono.variable}`}
+    >
       <body>
-        <SplashScreen />
-        <div id="cursor-dot" aria-hidden="true" />
-        <div id="cursor-ring" aria-hidden="true" />
-        <LenisProvider>
-          <Nav />
-          <main id="main-content">{children}</main>
-        </LenisProvider>
-        <AccessibilityWidget />
-        <CustomCursor />
-        <FloatingWhatsApp />
+        <LanguageProvider>
+          <SplashScreen />
+          <div id="cursor-dot" aria-hidden="true" />
+          <div id="cursor-ring" aria-hidden="true" />
+          <LenisProvider>
+            <Nav />
+            <main id="main-content">{children}</main>
+          </LenisProvider>
+          <AccessibilityWidget />
+          <CustomCursor />
+          <FloatingWhatsApp />
+        </LanguageProvider>
       </body>
     </html>
   );

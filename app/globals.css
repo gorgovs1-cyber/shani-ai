@@ -2,54 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── SHANI AI CREATOR — GLOBAL STYLES ─── */
+/* ─── SHANI AI — DESIGN SYSTEM (ink / cream / signal) ─── */
 
 :root {
-  --black:       #060608;
-  --surface:     #0e0e14;
-  --surface-2:   #13131c;
-  --border:      #1e1e2e;
-  --border-2:    #2a2a3e;
+  /* ── Core palette ── */
+  --ink:        #0b0d10;   /* dark background */
+  --cream:      #f3efe6;   /* light text on dark */
+  --signal:     #ff6a3d;   /* single accent — fire-orange, never red */
+  --graphite:   #1c1f24;   /* cards on dark */
+  --mist:       #9aa1ab;   /* secondary text */
 
-  /* Gradient accent palette */
-  --purple:      #8B5CF6;
-  --purple-dim:  #6D28D9;
-  --cyan:        #06B6D4;
-  --pink:        #EC4899;
-  --amber:       #F59E0B;
+  /* ── Derived ── */
+  --ink-2:      #101317;
+  --signal-dim: #e0512a;
+  --signal-soft: rgba(255, 106, 61, 0.12);
+  --signal-line: rgba(255, 106, 61, 0.30);
+  --border:     #23262d;
+  --border-2:   #2f333c;
+  --glow:       rgba(255, 106, 61, 0.14);
 
-  /* Gradient combos */
-  --grad-main:   linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
-  --grad-warm:   linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
-  --grad-text:   linear-gradient(90deg, #8B5CF6 0%, #06B6D4 60%, #8B5CF6 100%);
+  /* ── Backward-compat aliases (older sections inherit the new palette) ── */
+  --black:      var(--ink);
+  --surface:    var(--graphite);
+  --surface-2:  #23272e;
+  --white:      var(--cream);
+  --muted:      var(--mist);
+  --dim:        #2a2e36;
+  --purple:     var(--signal);
+  --purple-dim: var(--signal-dim);
+  --cyan:       var(--signal);
+  --pink:       var(--signal);
+  --amber:      var(--signal);
+  --glow-purple: var(--glow);
+  --glow-cyan:  rgba(255, 106, 61, 0.10);
 
-  /* Glow */
-  --glow-purple: rgba(139, 92, 246, 0.15);
-  --glow-cyan:   rgba(6, 182, 212, 0.12);
+  /* ── Accent compositions (single-accent, no rainbow) ── */
+  --grad-main:  linear-gradient(135deg, #ff7d54 0%, #ff5a28 100%);
+  --grad-warm:  linear-gradient(135deg, #ff8a5f 0%, #ff5a28 100%);
+  --grad-text:  linear-gradient(90deg, #ff8358 0%, #ff5a28 60%, #ff8358 100%);
 
-  --white:  #F4F4FF;
-  --muted:  #8A8AA8;
-  --dim:    #2e2e45;
-
-  --font-display: var(--font-syne);
+  /* ── Fonts (language-aware; overridden for Hebrew below) ── */
+  --font-display: var(--font-inter);
   --font-body:    var(--font-inter);
+  --font-emph:    var(--font-playfair);
+  --font-system:  var(--font-mono);
+  /* legacy alias */
+  --font-syne:    var(--font-display);
+}
+
+/* Hebrew uses Heebo for both display and body; English keeps Inter. */
+html[lang="he"] {
+  --font-display: var(--font-heebo);
+  --font-body:    var(--font-heebo);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  background: var(--black);
-  color: var(--white);
+  background: var(--ink);
+  color: var(--cream);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-body { background: var(--black); overflow-x: hidden; }
+body { background: var(--ink); overflow-x: hidden; }
 
 /* ─── TYPOGRAPHY ─── */
 .display-xl {
-  font-family: var(--font-syne);
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 5rem);
   font-weight: 800;
   line-height: 1.05;
@@ -57,7 +78,7 @@ body { background: var(--black); overflow-x: hidden; }
 }
 
 .display-lg {
-  font-family: var(--font-syne);
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 4.5rem);
   font-weight: 700;
   line-height: 1.05;
@@ -65,11 +86,15 @@ body { background: var(--black); overflow-x: hidden; }
 }
 
 .display-md {
-  font-family: var(--font-syne);
+  font-family: var(--font-display);
   font-size: clamp(1.3rem, 2.5vw, 2.5rem);
   font-weight: 600;
   letter-spacing: -0.02em;
 }
+
+/* Hebrew display weights a touch heavier for optical balance */
+html[lang="he"] .display-xl { font-weight: 800; letter-spacing: -0.02em; }
+html[lang="he"] .display-lg { font-weight: 700; letter-spacing: -0.015em; }
 
 .label {
   font-size: 0.68rem;
@@ -77,6 +102,8 @@ body { background: var(--black); overflow-x: hidden; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
+/* Hebrew has no uppercase + tracking looks odd — relax it */
+html[lang="he"] .label { letter-spacing: 0.06em; text-transform: none; }
 
 .body-lg {
   font-size: 1.125rem;
@@ -84,7 +111,16 @@ body { background: var(--black); overflow-x: hidden; }
   color: var(--muted);
 }
 
-/* ─── GRADIENT TEXT ─── */
+/* Monospace system text — same font both languages */
+.mono { font-family: var(--font-system); }
+
+/* ─── EMPHASIS WORD (language-specific) ───
+   Hebrew: weight 900 + signal (italic is unnatural in Hebrew).
+   English: Playfair Display italic + signal (natural Latin contrast). */
+.em-he { font-family: var(--font-heebo); font-weight: 900; color: var(--signal); }
+.em-en { font-family: var(--font-emph); font-style: italic; font-weight: 600; color: var(--signal); }
+
+/* ─── GRADIENT / SIGNAL TEXT ─── */
 .grad-text {
   background: var(--grad-text);
   background-size: 200% auto;
@@ -93,6 +129,7 @@ body { background: var(--black); overflow-x: hidden; }
   background-clip: text;
   animation: shimmer 4s linear infinite;
 }
+.signal-text { color: var(--signal); }
 
 @keyframes shimmer {
   0%   { background-position: 0% center; }
@@ -113,14 +150,14 @@ body { background: var(--black); overflow-x: hidden; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at top left, var(--glow-purple), transparent 60%);
+  background: radial-gradient(ellipse at top left, var(--glow), transparent 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
 .glow-card:hover {
-  border-color: rgba(139, 92, 246, 0.4);
+  border-color: var(--signal-line);
   transform: translateY(-4px);
 }
 .glow-card:hover::before { opacity: 1; }
@@ -135,49 +172,50 @@ body { background: var(--black); overflow-x: hidden; }
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   border: 1px solid var(--border-2);
   color: var(--muted);
   background: var(--surface-2);
 }
 
-/* ─── GRADIENT BORDER BUTTON ─── */
+/* ─── BUTTONS ─── */
 .btn-grad {
   position: relative;
   padding: 0.85rem 2rem;
-  background: var(--grad-main);
-  color: white;
+  background: var(--signal);
+  color: #150a05;
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.25s ease, transform 0.2s ease;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
   font-family: var(--font-body);
   display: inline-block;
 }
-.btn-grad:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-grad:hover {
+  background: var(--signal-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px var(--glow);
+}
 
 .btn-ghost {
   padding: 0.85rem 2rem;
   background: transparent;
-  color: var(--white);
+  color: var(--cream);
   font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--border-2);
   cursor: pointer;
   transition: border-color 0.25s ease, color 0.25s ease;
   font-family: var(--font-body);
   display: inline-block;
 }
-.btn-ghost:hover { border-color: var(--purple); color: var(--purple); }
+.btn-ghost:hover { border-color: var(--signal); color: var(--signal); }
 
 /* ─── SECTION ─── */
 .section-padding {
@@ -186,20 +224,19 @@ body { background: var(--black); overflow-x: hidden; }
 
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb {
-  background: var(--purple);
+  background: var(--signal);
   border-radius: 2px;
 }
 
 /* ─── SELECTION ─── */
 ::selection {
-  background: rgba(139, 92, 246, 0.25);
-  color: var(--white);
+  background: rgba(255, 106, 61, 0.25);
+  color: var(--cream);
 }
 
 /* ─── CUSTOM CURSOR ─── */
-/* Applied only after JS adds .custom-cursor class — native cursor shows until then */
 html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after { cursor: none !important; }
 
 #cursor-dot {
@@ -208,7 +245,7 @@ html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after 
   top: 0; left: 0;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--white);
+  background: var(--cream);
   transform: translate(-50%, -50%);
   transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
   z-index: 99999;
@@ -221,7 +258,7 @@ html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after 
   top: 0; left: 0;
   width: 32px; height: 32px;
   border-radius: 50%;
-  border: 1px solid rgba(139, 92, 246, 0.5);
+  border: 1px solid var(--signal-line);
   transform: translate(-50%, -50%);
   transition: left 0.12s ease, top 0.12s ease, width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.2s ease;
   z-index: 99998;
@@ -253,8 +290,7 @@ body::after {
   html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after { cursor: auto !important; }
 }
 
-/* ─── HERO ENTRY ANIMATIONS (CSS-only, no JS dependency) ─── */
-/* fill-mode: both → applies 'from' state during delay AND 'to' state after end */
+/* ─── HERO ENTRY ANIMATIONS (CSS-only) ─── */
 @keyframes hero-fade-up {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -269,37 +305,31 @@ body::after {
 .hero-cta  { animation: hero-fade-up 0.55s ease 0.72s both; }
 .hero-stat { animation: hero-fade-up 0.5s  ease 0.88s both; }
 
-/* ─── HERO RESPONSIVE (moved from Hero.tsx to avoid hydration mismatch) ─── */
 @media (max-width: 768px) {
   .hero-flow-col { display: none !important; }
   .hero-grid { grid-template-columns: 1fr !important; }
 }
 
-/* ─── SERVICES ANIMATION (moved from Services.tsx) ─── */
+/* ─── SERVICES ANIMATION ─── */
 @keyframes fadeSlideDown {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 600px) {
-  /* Collapse number column and hide time/toggle on mobile header row */
   .svc-row > div:first-child {
     grid-template-columns: 2rem 1fr auto !important;
     gap: 0.75rem !important;
   }
-  /* Hide the time label, keep only the toggle */
   .svc-row > div:first-child > div:last-child > div:first-child {
     display: none !important;
   }
-  /* Tighten gap between time+toggle */
   .svc-row > div:first-child > div:last-child {
     gap: 0 !important;
   }
-  /* Expanded detail: stack desc and tags vertically */
   .svc-expanded-detail {
     grid-template-columns: 1fr !important;
     gap: 1.25rem !important;
   }
-  /* Tags row: horizontal wrap instead of column */
   .svc-expanded-tags {
     flex-direction: row !important;
     flex-wrap: wrap !important;
@@ -324,7 +354,7 @@ html.lenis { height: auto; }
   100% { transform: translateX(-50%); }
 }
 
-/* ─── ACCESSIBILITY WIDGET (moved from AccessibilityWidget.tsx) ─── */
+/* ─── ACCESSIBILITY WIDGET ─── */
 @keyframes a11y-slide {
   from { opacity:0; transform:translateY(8px); }
   to   { opacity:1; transform:translateY(0); }
@@ -347,12 +377,12 @@ html.lenis { height: auto; }
 .a11y-cursor #cursor-dot, .a11y-cursor #cursor-ring { display: none !important; }
 .a11y-spacing * { letter-spacing: 0.12em !important; word-spacing: 0.25em !important; }
 :focus-visible {
-  outline: 3px solid #8B5CF6 !important;
+  outline: 3px solid var(--signal) !important;
   outline-offset: 3px !important;
   border-radius: 4px !important;
 }
 
-/* ─── NAV MOBILE ─── */
+/* ─── NAV ─── */
 @media (max-width: 640px) {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
@@ -408,36 +438,29 @@ html.lenis { height: auto; }
 
 /* ─── WORK PAGE ─── */
 .work-row-link { transition: background 0.25s ease; }
-.work-row-link:hover { background: rgba(0,229,255,0.02); }
+.work-row-link:hover { background: var(--signal-soft); }
 
-/* ─── AUTOMATION TREE (moved from AutomationTree.tsx) ─── */
+/* ─── AUTOMATION TREE ─── */
 .at-root { width: 100%; max-width: 520px; animation: at-fade 1.2s ease forwards; }
 @keyframes at-fade { from { opacity:0; transform:scale(.94); } to { opacity:1; transform:scale(1); } }
 
-/* ─── PROCESS (moved from Process.tsx) ─── */
+/* ─── PROCESS ─── */
 @media (max-width: 768px) {
   .process-connector { display: none; }
 }
 
-/* ─── SPLASH SCREEN (moved from SplashScreen.tsx) ─── */
-@keyframes splash-pulse {
-  0%,100% { transform: scale(1); opacity: 0.7; }
-  50%      { transform: scale(1.15); opacity: 1; }
+/* ─── BOOT SCREEN ─── */
+.boot-caret {
+  display: inline-block;
+  width: 0.6ch;
+  background: var(--signal);
+  color: transparent;
+  animation: boot-caret 1s steps(1) infinite;
+  margin-inline-start: 2px;
 }
-@keyframes splash-rise {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes splash-spin {
-  to { transform: rotate(360deg); }
-}
-@keyframes splash-spin-rev {
-  to { transform: rotate(-360deg); }
-}
-@keyframes splash-dot-pulse {
-  0%,100% { r: 6; opacity: 0.9; }
-  50%      { r: 9; opacity: 1; }
-}
+@keyframes boot-caret { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+@keyframes boot-fadeout { to { opacity: 0; visibility: hidden; } }
 
 /* ─── NOISE OVERLAY ─── */
 .noise::after {

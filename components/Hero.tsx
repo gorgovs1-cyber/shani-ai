@@ -1,99 +1,94 @@
 "use client";
 
-import AutomationTree from "@/components/AutomationTree";
+import { useLang } from "@/components/LanguageProvider";
 
 export default function Hero() {
+  const { t, lang } = useLang();
+  const emClass = lang === "he" ? "em-he" : "em-en";
+
   return (
     <section style={{
       minHeight: "100vh",
       display: "flex", flexDirection: "column", justifyContent: "center",
-      padding: "6rem clamp(1.5rem, 5vw, 4rem) 3rem",
+      padding: "9rem clamp(1.5rem, 6vw, 5rem) 4rem",
       position: "relative", overflow: "hidden",
     }}>
-      {/* Ambient blobs */}
-      <div style={{
+      {/* Atmospheric background — single-accent ambient field + faint grid */}
+      <div aria-hidden="true" style={{
         position: "absolute", inset: 0, pointerEvents: "none",
         background: `
-          radial-gradient(ellipse 70% 50% at 15% 50%, rgba(139,92,246,0.08) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 40% at 85% 20%, rgba(6,182,212,0.06) 0%, transparent 55%),
-          radial-gradient(ellipse 40% 40% at 70% 80%, rgba(236,72,153,0.04) 0%, transparent 50%)
+          radial-gradient(ellipse 60% 55% at 20% 35%, rgba(255,106,61,0.12) 0%, transparent 60%),
+          radial-gradient(ellipse 45% 45% at 85% 75%, rgba(255,106,61,0.06) 0%, transparent 55%)
         `,
       }} />
+      <div aria-hidden="true" style={{
+        position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5,
+        maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%)",
+        WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%)",
+        backgroundImage: `
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
+        backgroundSize: "64px 64px",
+      }} />
 
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "4rem",
-        alignItems: "center",
-        width: "100%",
-      }} className="hero-grid">
-        {/* Right — text content */}
-        <div>
-          {/* Eyebrow — pill badge */}
-          <div className="hero-line" style={{ marginBottom: "2rem" }}>
-            <span className="pill" style={{ color: "var(--cyan)", borderColor: "rgba(6,182,212,0.3)", background: "rgba(6,182,212,0.08)" }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--cyan)", display: "inline-block" }} />
-              זמינה לפרויקטים חדשים
-            </span>
-          </div>
-
-          {/* Headline */}
-          <div className="hero-line display-xl" style={{ color: "var(--white)" }}>
-            אני הופכת עסקים
-          </div>
-          <div className="hero-line display-xl grad-text">
-            מבולגנים למערכות
-          </div>
-          <div className="hero-line display-xl" style={{ color: "var(--white)" }}>
-            שעובדות לבד.
-          </div>
-
-          {/* Sub */}
-          <p className="hero-sub body-lg" style={{ maxWidth: 520, marginTop: "2rem" }}>
-            אתרים, אוטומציות וכלי AI שחוסכים לעסק שלך{" "}
-            <span style={{ color: "var(--white)", fontWeight: 600 }}>5 עד 20 שעות בשבוע.</span>
-          </p>
-
-          {/* CTAs */}
-          <div className="hero-cta" style={{ display: "flex", gap: "1rem", marginTop: "2.5rem", flexWrap: "wrap", flexDirection: "column", alignItems: "flex-start" }}>
-            <a href="https://wa.me/972504744815" className="btn-grad" style={{ padding: "1rem 2.5rem", fontSize: "0.95rem" }}>
-              בדיקת AI לעסק ללא עלות
-            </a>
-            <a href="#work" className="btn-ghost">
-              ראי את העבודות
-            </a>
-            <p style={{ fontSize: "0.72rem", color: "var(--muted)", marginTop: "0.75rem" }}>ממוצע תגובה 48 שעות · ישראל</p>
-          </div>
-
-          {/* Trust bar */}
-          <div className="hero-stat" style={{
-            display: "flex", flexWrap: "wrap", gap: "1.5rem",
-            marginTop: "2.5rem",
+      <div style={{ width: "100%", maxWidth: 1100, marginInline: "auto", position: "relative" }}>
+        {/* Eyebrow */}
+        <div className="hero-line" style={{ marginBottom: "1.75rem" }}>
+          <span className="pill" style={{
+            color: "var(--signal)",
+            borderColor: "var(--signal-line)",
+            background: "var(--signal-soft)",
           }}>
-            {[
-              "10+ שנות ניסיון עסקי",
-              "5 פרויקטי AI בנויים",
-              "תגובה ממוצעת 48 שעות",
-              "מבוססת בישראל",
-            ].map((item) => (
-              <span key={item} style={{
-                fontSize: "0.78rem", color: "var(--muted)",
-                display: "flex", alignItems: "center", gap: "0.4rem",
-              }}>
-                <span style={{ color: "var(--cyan)", fontWeight: 700 }}>✓</span>
-                {item}
-              </span>
-            ))}
-          </div>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--signal)", display: "inline-block" }} />
+            {t.hero.badge}
+          </span>
         </div>
 
-        {/* Left — automation network */}
-        <div className="hero-line hero-flow-col">
-          <AutomationTree />
+        {/* Headline */}
+        {t.hero.title.map((tok, i) => (
+          <div key={i} className="hero-line display-xl" style={{ color: "var(--cream)", maxWidth: 900 }}>
+            {tok.em ? <span className={emClass}>{tok.text}</span> : tok.text}
+          </div>
+        ))}
+
+        {/* Sub */}
+        <p className="hero-sub body-lg" style={{ maxWidth: 540, marginTop: "1.75rem", color: "var(--mist)" }}>
+          {t.hero.subPre}
+          <span style={{ color: "var(--cream)", fontWeight: 700 }}>{t.hero.subStrong}</span>
+        </p>
+
+        {/* CTAs */}
+        <div className="hero-cta" style={{
+          display: "flex", gap: "1rem", marginTop: "2.25rem",
+          flexWrap: "wrap", alignItems: "center",
+        }}>
+          <a href="https://wa.me/972504744815" className="btn-grad" style={{ padding: "1rem 2.25rem", fontSize: "0.95rem", borderRadius: 12 }}>
+            {t.hero.ctaPrimary}
+          </a>
+          <a href="#work" className="btn-ghost" style={{ borderRadius: 12 }}>
+            {t.hero.ctaSecondary}
+          </a>
+        </div>
+        <p style={{ fontSize: "0.72rem", color: "var(--mist)", marginTop: "1rem", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
+          {t.hero.responseLine}
+        </p>
+
+        {/* Trust bar */}
+        <div className="hero-stat" style={{
+          display: "flex", flexWrap: "wrap", gap: "1.25rem 1.75rem",
+          marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid var(--border)",
+        }}>
+          {t.hero.trust.map((item) => (
+            <span key={item} style={{
+              fontSize: "0.8rem", color: "var(--mist)",
+              display: "flex", alignItems: "center", gap: "0.45rem",
+            }}>
+              <span style={{ color: "var(--signal)", fontWeight: 700 }}>✓</span>
+              {item}
+            </span>
+          ))}
         </div>
       </div>
-
-      {/* Responsive CSS moved to globals.css */}
     </section>
   );
 }
