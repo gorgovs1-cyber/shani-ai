@@ -34,13 +34,13 @@ export default function CustomCursor() {
     const onEnterLink = () => {
       ring.style.width = "52px";
       ring.style.height = "52px";
-      ring.style.borderColor = "var(--purple)";
+      ring.style.borderColor = "var(--signal)";
     };
 
     const onLeaveLink = () => {
       ring.style.width = "32px";
       ring.style.height = "32px";
-      ring.style.borderColor = "rgba(139, 92, 246, 0.5)";
+      ring.style.borderColor = "var(--signal-line)";
     };
 
     // When mouse leaves the browser window: hide elements + restore native cursor
