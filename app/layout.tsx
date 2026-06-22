@@ -6,7 +6,6 @@ import LenisProvider from "@/components/LenisProvider";
 import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
-import AccessibilityWidget from "@/components/AccessibilityWidget";
 import LanguageProvider from "@/components/LanguageProvider";
 
 // Latin headings + body
@@ -60,7 +59,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Nav />
             <main id="main-content">{children}</main>
           </LenisProvider>
-          <AccessibilityWidget />
           <CustomCursor />
           <FloatingWhatsApp />
         </LanguageProvider>
