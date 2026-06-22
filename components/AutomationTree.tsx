@@ -25,13 +25,13 @@ const ICONS: Record<string, string> = {
 const _pts = { wa: pt(0), em: pt(60), crm: pt(120), cal: pt(180), inv: pt(240), lead: pt(300) };
 
 const NODES = [
-  { id: "root", x: CX,             y: CY,             label: "העסק שלך", color: "#8B5CF6", r: 28, icon: "circuit" },
-  { id: "wa",   x: _pts.wa.x,      y: _pts.wa.y,      label: "WhatsApp",  color: "#06B6D4", r: 21, icon: "chat"     },
-  { id: "em",   x: _pts.em.x,      y: _pts.em.y,      label: "Email",     color: "#EC4899", r: 21, icon: "mail"     },
-  { id: "crm",  x: _pts.crm.x,     y: _pts.crm.y,     label: "CRM",       color: "#8B5CF6", r: 21, icon: "user"     },
-  { id: "cal",  x: _pts.cal.x,     y: _pts.cal.y,     label: "יומן",      color: "#06B6D4", r: 21, icon: "calendar" },
-  { id: "inv",  x: _pts.inv.x,     y: _pts.inv.y,     label: "חשבונית",   color: "#10B981", r: 21, icon: "doc"      },
-  { id: "lead", x: _pts.lead.x,    y: _pts.lead.y,    label: "לקוחות",    color: "#EC4899", r: 21, icon: "group"    },
+  { id: "root", x: CX,             y: CY,             label: "העסק שלך", color: "#ff6a3d", r: 28, icon: "circuit" },
+  { id: "wa",   x: _pts.wa.x,      y: _pts.wa.y,      label: "WhatsApp",  color: "#ff6a3d", r: 21, icon: "chat"     },
+  { id: "em",   x: _pts.em.x,      y: _pts.em.y,      label: "Email",     color: "#ff6a3d", r: 21, icon: "mail"     },
+  { id: "crm",  x: _pts.crm.x,     y: _pts.crm.y,     label: "CRM",       color: "#ff6a3d", r: 21, icon: "user"     },
+  { id: "cal",  x: _pts.cal.x,     y: _pts.cal.y,     label: "יומן",      color: "#ff6a3d", r: 21, icon: "calendar" },
+  { id: "inv",  x: _pts.inv.x,     y: _pts.inv.y,     label: "חשבונית",   color: "#ff6a3d", r: 21, icon: "doc"      },
+  { id: "lead", x: _pts.lead.x,    y: _pts.lead.y,    label: "לקוחות",    color: "#ff6a3d", r: 21, icon: "group"    },
 ];
 
 const OUTER = NODES.slice(1); // all except root

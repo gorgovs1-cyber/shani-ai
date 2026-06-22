@@ -25,19 +25,16 @@ portfolio/identity site). Repo: `gorgovs1-cyber/shani-ai`. Deploy = push to `mai
   everywhere; tools reduced to 4 (Claude Code, Make.com, n8n, Next.js). Accessibility floating widget REMOVED.
 
 ## REMAINING — do these, in order, build+push after each
-1. **Testimonials section (BIGGEST gap).** New `components/Testimonials.tsx`: carousel, large quote marks,
-   name + role/business. Bilingual via i18n. **No real quotes exist** — create 2 clearly-marked placeholders:
-   text exactly `[להחליף בציטוט אמיתי מלקוחה]` so Shani can't miss them. Insert in `app/page.tsx` right after
-   `<TrustedBy/>` or before `<FAQ/>`. Signal-accent quote marks.
-2. **Phase 3 — Blog "מחשבות אחרונות".** Data file `lib/posts.ts` (date, readTime, tags, title, excerpt, slug,
-   bilingual). Section component on home (date · read-time · tags layout) + `/blog` list + `/blog/[slug]`.
-   Draft 3 posts (titles, intros only — mark as drafts): (a) "למה רוב בעלי עסקים לא צריכים אתר — הם צריכים מערכת",
-   (b) "3 אוטומציות וואטסאפ שכל עסק קטן בישראל צריך", (c) "מה 10 שנים כעצמאית לימדו אותי לפני שעברתי ל-AI".
-   Thread her angle (came from business, not hi-tech) through them.
-3. **Bilingual polish of remaining sections** still Hebrew-only: Services, Process, FAQ, Contact, Footer,
-   CTAStrip, About. Add i18n strings (he+en) and wire `useLang()` so EN toggle fully works site-wide.
-4. **Final QA pass:** grep for leftover off-palette colors (`139,92,246` purple, `0,229,255`/`06B6D4` cyan,
-   `Syne`, "Shifted Tech" branding) and fix. Verify mobile (<640) layout. Confirm `npm run build` clean. Push.
+1. [x] DONE — Testimonials (`components/Testimonials.tsx`): bilingual carousel, 2 placeholders, in `app/page.tsx` after WorkGrid.
+2. [x] DONE — Blog Phase 3: `lib/posts.ts`, `components/BlogSection.tsx`, `/blog` + `/blog/[slug]`, 3 draft posts.
+3. **TODO — Bilingual polish of sections still Hebrew-only:** Services, Process, FAQ, Contact, Footer,
+   CTAStrip, About. For each: move user-facing Hebrew strings into `lib/i18n.ts` (add matching `en`), wire
+   `useLang()`, verify the EN toggle renders English + flips LTR. Also add a "blog" link to `nav.links` (he+en).
+   Do ONE component per run (commit+push each) to keep changes small.
+4. **TODO — Final QA after bilingual polish:** re-grep `139,92,246`/`0,229,255`/`06B6D4`/`8B5CF6`/"Shifted Tech";
+   verify mobile (<640px) for testimonials + blog; clean `npm run build`; push. Then mark project COMPLETE here.
 
-When all done, the site should be fully bilingual, single-accent, with portfolio + testimonials + blog.
-Leave a short summary commit. Shani reviews in the morning.
+Color QA already done once: AutomationTree, Contact orb, CTAStrip unified to signal. `var(--font-syne)` still
+appears in a few files but aliases to `--font-display` in globals.css, so it renders correctly — low priority.
+
+When all done, the site is fully bilingual, single-accent, with portfolio + testimonials + blog. Leave a short summary commit.

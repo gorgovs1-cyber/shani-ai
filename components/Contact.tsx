@@ -33,7 +33,7 @@ export default function Contact() {
         {/* Gradient orb */}
         <div style={{
           width: 80, height: 80, borderRadius: "50%",
-          background: "linear-gradient(135deg, #8B5CF6, #06B6D4)",
+          background: "linear-gradient(135deg, #ff8a5d, #ff6a3d)",
           margin: "0 auto 2rem",
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: "2rem",

@@ -11,7 +11,7 @@ export default function CTAStrip({ text = "רוצה לדעת מה AI יכול ל
       justifyContent: "space-between",
       gap: "2rem",
       flexWrap: "wrap",
-      background: "rgba(139,92,246,0.04)",
+      background: "rgba(255,106,61,0.04)",
     }} dir="rtl">
       <p style={{
         fontFamily: "var(--font-syne)",
