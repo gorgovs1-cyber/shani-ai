@@ -3,6 +3,7 @@ import ROICalculator from "@/components/ROICalculator";
 import TrustedBy     from "@/components/TrustedBy";
 import WorkGrid      from "@/components/WorkGrid";
 import Testimonials  from "@/components/Testimonials";
+import BlogSection   from "@/components/BlogSection";
 import Services      from "@/components/Services";
 import Process       from "@/components/Process";
 import FAQ           from "@/components/FAQ";
@@ -24,6 +25,7 @@ export default function Home() {
       <CTAStrip />
       <FAQ />
       <About />
+      <BlogSection />
       <CTAStrip text="מוכנה להתחיל? בואי נדבר." />
       <Contact />
       <Footer />

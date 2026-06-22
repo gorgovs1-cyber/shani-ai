@@ -76,6 +76,14 @@ export const dict = {
         { quote: "[להחליף בציטוט אמיתי מלקוחה]", name: "שם הלקוח/ה", role: "תפקיד / שם העסק" },
       ],
     },
+    blog: {
+      label: "מחשבות אחרונות",
+      title: "מהשטח — על עסקים, AI ומה שביניהם",
+      viewAll: "כל הפוסטים",
+      readMore: "קראי עוד",
+      minRead: "דק׳ קריאה",
+      draft: "טיוטה",
+    },
     boot: {
       skip: "לחצי לדילוג",
     },
@@ -147,6 +155,14 @@ export const dict = {
         { quote: "[Replace with a real client testimonial]", name: "Client name", role: "Role / business" },
         { quote: "[Replace with a real client testimonial]", name: "Client name", role: "Role / business" },
       ],
+    },
+    blog: {
+      label: "Latest thoughts",
+      title: "From the field — on business, AI and the space between",
+      viewAll: "All posts",
+      readMore: "Read more",
+      minRead: "min read",
+      draft: "Draft",
     },
     boot: {
       skip: "Tap to skip",
