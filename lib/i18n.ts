@@ -68,6 +68,14 @@ export const dict = {
       discuss: "בואי נדבר על פרויקט דומה",
       next: "הפרויקט הבא",
     },
+    testimonials: {
+      label: "עדויות",
+      title: "מה לקוחות אומרים",
+      items: [
+        { quote: "[להחליף בציטוט אמיתי מלקוחה]", name: "שם הלקוח/ה", role: "תפקיד / שם העסק" },
+        { quote: "[להחליף בציטוט אמיתי מלקוחה]", name: "שם הלקוח/ה", role: "תפקיד / שם העסק" },
+      ],
+    },
     boot: {
       skip: "לחצי לדילוג",
     },
@@ -131,6 +139,14 @@ export const dict = {
       viewProject: "View project",
       discuss: "Let's talk about a similar project",
       next: "Next project",
+    },
+    testimonials: {
+      label: "Testimonials",
+      title: "What clients say",
+      items: [
+        { quote: "[Replace with a real client testimonial]", name: "Client name", role: "Role / business" },
+        { quote: "[Replace with a real client testimonial]", name: "Client name", role: "Role / business" },
+      ],
     },
     boot: {
       skip: "Tap to skip",

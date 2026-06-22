@@ -2,6 +2,7 @@ import Hero          from "@/components/Hero";
 import ROICalculator from "@/components/ROICalculator";
 import TrustedBy     from "@/components/TrustedBy";
 import WorkGrid      from "@/components/WorkGrid";
+import Testimonials  from "@/components/Testimonials";
 import Services      from "@/components/Services";
 import Process       from "@/components/Process";
 import FAQ           from "@/components/FAQ";
@@ -17,6 +18,7 @@ export default function Home() {
       <ROICalculator />
       <TrustedBy />
       <WorkGrid />
+      <Testimonials />
       <Services />
       <Process />
       <CTAStrip />
