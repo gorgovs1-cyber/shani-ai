@@ -58,24 +58,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "air-jordan",
-    title: "AIR JORDAN",
-    client: "Air Jordan",
-    category: "Cinematic Frontend",
-    categoryHe: "פרונטאנד קולנועי",
-    year: "2024",
-    tagline: "קולקציית נעליים פרימיום ללא חוויה פרימיום.",
-    taglineEn: "A premium sneaker collection without a premium experience.",
-    description:
-      "בעיה: דף מוצר שלא שיקף את ערך הקולקציה. פתרון: video scrubbing עם soundscape ועיצוב mobile-first. תוצאה: חוויית קנייה שמרגישה כמו כניסה לחנות יוקרה.",
-    descriptionEn:
-      "Problem: a product page that didn't reflect the collection's value. Solution: video scrubbing with a soundscape and a mobile-first design. Result: a shopping experience that feels like stepping into a luxury store.",
-    tech: ["GSAP", "Video Scrubbing", "Lenis", "Responsive", "Motion Design"],
-    accent: SIGNAL,
-    thumbnail: "/projects/jordan-thumb.jpg",
-    featured: true,
-  },
-  {
     slug: "lilach-hazan",
     title: "Lilach Hazan",
     client: "Lilach Hazan",
