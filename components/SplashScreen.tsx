@@ -31,7 +31,6 @@ const CHARS = LINES.map((segs) => {
   return arr;
 });
 
-const SESSION_KEY = "shani-booted";
 const CHAR_MS = 20;     // per-character typing speed
 const LINE_PAUSE = 240; // pause between lines
 const END_HOLD = 650;   // hold after last line before fade
@@ -41,25 +40,29 @@ export default function SplashScreen() {
   const [phase, setPhase] = useState<"boot" | "fadeout" | "gone">("boot");
   const [line, setLine] = useState(0);
   const [count, setCount] = useState(0); // chars typed in current line
+  const [reduced, setReduced] = useState(false);
   const skipped = useRef(false);
 
-  // Decide whether to show at all (client-only state).
+  // Plays on every full page load. It lives in the root layout, so it does NOT
+  // replay on internal (SPA) navigation — no sessionStorage gate needed.
+  // For reduced-motion users we still show the boot, but statically (all lines
+  // revealed at once, no typewriter), then fade — so it's never a blank skip.
   useEffect(() => {
-    const reduced =
+    const isReduced =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const alreadyBooted =
-      typeof window !== "undefined" && sessionStorage.getItem(SESSION_KEY);
-
-    if (reduced || alreadyBooted) {
-      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
-      setPhase("gone");
+    if (isReduced) {
+      setReduced(true);
+      setLine(LINES.length);              // reveal all lines at once
+      const end = setTimeout(() => finish(), 1300);
+      return () => clearTimeout(end);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Typewriter driver.
+  // Typewriter driver (skipped for reduced-motion).
   useEffect(() => {
-    if (phase !== "boot") return;
+    if (phase !== "boot" || reduced) return;
     if (line >= LINES.length) {
       const end = setTimeout(() => finish(), END_HOLD);
       return () => clearTimeout(end);
@@ -72,12 +75,11 @@ export default function SplashScreen() {
     const id = setTimeout(() => { setLine((l) => l + 1); setCount(0); }, LINE_PAUSE);
     return () => clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, line, count]);
+  }, [phase, line, count, reduced]);
 
   function finish() {
     if (skipped.current) return;
     skipped.current = true;
-    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
     setPhase("fadeout");
     setTimeout(() => setPhase("gone"), 600);
   }
