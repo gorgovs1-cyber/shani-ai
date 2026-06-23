@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --acc:#f2622e; --acc2:#ff8a52;
+    --page:#f4eee4; --card:#fffdf8; --ink:#1b1712; --muted2:#8a7f6e; --line:rgba(27,23,18,0.12);
+    --dark:#141009; --dpanel:#1d160e; --dtext:#f4ede1; --dmuted:#b1a48f; --dline:rgba(244,237,225,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;background:#f4eee4;}
+  ::selection{background:var(--acc);color:#fff;}
+  @keyframes scl-fadeup{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  @keyframes scl-splashout{to{opacity:0;visibility:hidden}}
+  @keyframes scl-marq{to{transform:translateX(-50%)}}
+  @keyframes scl-termline{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @keyframes scl-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes scl-auto{0%,9%{transform:translateY(0)}90%,100%{transform:translateY(-620px)}}
+  @keyframes scl-float{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-26px)}}
+  @keyframes scl-spin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="font-family:'Heebo',sans-serif;background:var(--page);color:var(--ink);overflow-x:hidden;position:relative;min-height:100vh;" dir="{{ dir }}">
+
+  <!-- FLOATING BACKGROUND -->
+  <div style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;">
+    <div style="position:absolute;top:-10%;inset-inline-end:-8%;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle, color-mix(in oklch, var(--acc) 14%, transparent), transparent 64%);filter:blur(34px);animation:scl-float 16s ease-in-out infinite;"></div>
+    <div style="position:absolute;bottom:-12%;inset-inline-start:-10%;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle, color-mix(in oklch, var(--acc) 9%, transparent), transparent 66%);filter:blur(40px);animation:scl-float 20s ease-in-out infinite reverse;"></div>
+  </div>
+
+  <!-- TERMINAL SPLASH -->
+  <div style="position:fixed;inset:0;z-index:9999;background:#0a0806;display:flex;align-items:center;justify-content:center;padding:24px;pointer-events:none;animation:scl-splashout .6s ease 3.2s forwards;">
+    <div style="position:relative;width:min(540px,92vw);background:#100c08;border:1px solid var(--dline);border-radius:16px;box-shadow:0 50px 120px -40px rgba(0,0,0,.8);overflow:hidden;" dir="ltr">
+      <div style="display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--dline);background:rgba(255,255,255,0.02);">
+        <span style="width:11px;height:11px;border-radius:50%;background:#ff5f56;"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#ffbd2e;"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#27c93f;"></span>
+        <span style="margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dmuted);letter-spacing:.04em;">shani@studio — zsh</span>
+        <svg viewBox="0 0 100 100" fill="none" style="width:22px;height:22px;margin-left:auto;color:var(--acc);animation:scl-spin 9s linear infinite;"><path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><circle cx="50" cy="50" r="7" fill="currentColor"/></svg>
+      </div>
+      <div style="padding:20px 22px 24px;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:2;color:var(--dtext);">
+        <div style="opacity:0;animation:scl-termline .25s ease .15s forwards;"><span style="color:var(--acc);">$</span> shani build --product</div>
+        <div style="opacity:0;animation:scl-termline .25s ease .6s forwards;color:var(--dmuted);">▸ initializing workspace…</div>
+        <div style="opacity:0;animation:scl-termline .25s ease 1.05s forwards;"><span style="color:#27c93f;">✓</span> design system loaded</div>
+        <div style="opacity:0;animation:scl-termline .25s ease 1.5s forwards;"><span style="color:#27c93f;">✓</span> crafting interfaces</div>
+        <div style="opacity:0;animation:scl-termline .25s ease 1.95s forwards;color:var(--dmuted);">▸ deploying to production…</div>
+        <div style="opacity:0;animation:scl-termline .25s ease 2.4s forwards;"><span style="color:#27c93f;">✓</span> build complete in 8.2s</div>
+        <div style="opacity:0;animation:scl-termline .25s ease 2.85s forwards;"><span style="color:var(--acc);">→</span> launching shani.ai <span style="color:var(--acc);">✦</span><span style="display:inline-block;width:9px;height:16px;background:var(--acc);margin-left:6px;vertical-align:-2px;animation:scl-blink 1s steps(1) infinite;"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div style="position:sticky;top:18px;z-index:200;display:flex;justify-content:center;padding:0 24px;pointer-events:none;">
+    <nav style="pointer-events:auto;width:100%;max-width:1200px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:rgba(20,16,9,0.86);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--dline);border-radius:999px;padding:10px 14px 10px 20px;box-shadow:0 20px 50px -24px rgba(20,16,9,.5);">
+      <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
+        <svg viewBox="0 0 100 100" fill="none" style="width:34px;height:34px;color:var(--acc);filter:drop-shadow(0 0 10px color-mix(in oklch, var(--acc) 55%, transparent));"><path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><path d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round" opacity="0.5"/><circle cx="50" cy="50" r="6.5" fill="currentColor"/></svg>
+        <span style="display:flex;flex-direction:column;line-height:1;gap:3px;">
+          <span style="color:var(--dtext);font-weight:800;font-size:16px;letter-spacing:-0.01em;">Shani Gorgov</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.26em;color:var(--dmuted);">WEB & AI PRODUCT BUILDER</span>
+        </span>
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="#work" style="color:var(--dmuted);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .2s;" style-hover="color:var(--dtext)">{{ t.navWork }}</a>
+        <a href="#build" style="color:var(--dmuted);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .2s;" style-hover="color:var(--dtext)">{{ t.navBuild }}</a>
+        <a href="#about" style="color:var(--dmuted);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .2s;" style-hover="color:var(--dtext)">{{ t.navAbout }}</a>
+        <a href="#process" style="color:var(--dmuted);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .2s;" style-hover="color:var(--dtext)">{{ t.navProcess }}</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="display:flex;align-items:center;background:rgba(244,237,225,0.07);border:1px solid var(--dline);border-radius:999px;padding:3px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">
+          <button onClick="{{ setEn }}" style="{{ enBtnStyle }}">EN</button>
+          <button onClick="{{ setHe }}" style="{{ heBtnStyle }}">עב</button>
+        </div>
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:11px 19px;border-radius:999px;transition:transform .2s,box-shadow .2s;" style-hover="transform:translateY(-1px);box-shadow:0 12px 26px -10px var(--acc)">{{ t.navCta }}</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO (dark panel on light) -->
+  <header id="top" style="position:relative;z-index:1;padding:26px 24px 0;">
+    <div style="max-width:1320px;margin:0 auto;position:relative;background:var(--dark);border-radius:30px;overflow:hidden;border:1px solid var(--dline);box-shadow:0 50px 120px -50px rgba(20,16,9,.55);">
+      <div style="position:absolute;top:-120px;inset-inline-start:-80px;width:520px;height:520px;background:radial-gradient(circle, color-mix(in oklch, var(--acc) 42%, transparent), transparent 65%);filter:blur(20px);"></div>
+      <div style="position:absolute;inset:0;background-image:linear-gradient(var(--dline) 1px,transparent 1px),linear-gradient(90deg,var(--dline) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(circle at 70% 30%,#000,transparent 78%);-webkit-mask-image:radial-gradient(circle at 70% 30%,#000,transparent 78%);"></div>
+      <div style="position:relative;display:grid;grid-template-columns:1.12fr 0.88fr;gap:44px;padding:clamp(44px,5vw,80px);align-items:center;">
+        <div style="animation:scl-fadeup 1s ease 3.3s both;">
+          <div style="display:inline-flex;align-items:center;gap:9px;background:color-mix(in oklch, var(--acc) 16%, transparent);border:1px solid color-mix(in oklch, var(--acc) 40%, transparent);color:var(--acc2);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:28px;font-family:'JetBrains Mono',monospace;letter-spacing:.02em;">
+            <span style="width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc);"></span>
+            {{ t.role }}
+          </div>
+          <h1 style="margin:0;color:var(--dtext);font-weight:800;font-size:clamp(40px,5.2vw,76px);line-height:1.02;letter-spacing:-0.035em;text-wrap:balance;">{{ t.heroTitle }}</h1>
+          <p style="margin:30px 0 0;color:var(--dmuted);font-size:clamp(17px,1.5vw,21px);line-height:1.62;max-width:44ch;font-weight:400;">{{ t.heroSub }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:40px;">
+            <a href="#work" style="display:inline-flex;align-items:center;gap:9px;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:17px 30px;border-radius:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 18px 40px -16px var(--acc);" style-hover="transform:translateY(-2px);box-shadow:0 26px 52px -16px var(--acc)">{{ t.heroCta1 }}</a>
+            <a href="#contact" style="display:inline-flex;align-items:center;gap:9px;background:rgba(244,237,225,0.05);color:var(--dtext);text-decoration:none;font-weight:600;font-size:16px;padding:17px 28px;border-radius:14px;border:1px solid var(--dline);transition:border-color .2s,background .2s;" style-hover="border-color:var(--dmuted);background:rgba(244,237,225,0.09)">{{ t.heroCta2 }}</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;margin-top:42px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.03em;color:var(--dmuted);flex-wrap:wrap;">
+            <span>{{ t.meta1 }}</span><span style="opacity:.4;">/</span><span>{{ t.meta2 }}</span><span style="opacity:.4;">/</span><span>{{ t.meta3 }}</span>
+          </div>
+        </div>
+        <div ref="{{ portraitRef }}" style="position:relative;animation:scl-fadeup 1s ease 3.45s both;">
+          <div style="position:absolute;inset:-6% 8% 8% -6%;background:linear-gradient(140deg,var(--acc),transparent 70%);border-radius:26px;filter:blur(10px);opacity:.5;"></div>
+          <div style="position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--dline);box-shadow:0 30px 70px -30px rgba(0,0,0,.6);">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shani-hero-portrait" shape="rounded" radius="0" fit="cover" placeholder="גררי לכאן תמונת דיוקן" style="display:block;width:100%;aspect-ratio:4/5;background:#241b12;" hint-size="100%,100%"></x-import>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(20,16,9,0.5), transparent 38%);pointer-events:none;"></div>
+          </div>
+          <div style="position:absolute;bottom:18px;inset-inline:18px;display:flex;align-items:center;justify-content:space-between;background:rgba(20,16,9,0.72);backdrop-filter:blur(10px);border:1px solid var(--dline);border-radius:14px;padding:13px 16px;">
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="color:var(--dtext);font-weight:700;font-size:15px;">{{ t.name }}</span>
+              <span style="color:var(--dmuted);font-size:12.5px;">{{ t.role }}</span>
+            </div>
+            <svg viewBox="0 0 100 100" fill="none" style="width:30px;height:30px;color:var(--acc);"><path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><circle cx="50" cy="50" r="7" fill="currentColor"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="position:relative;z-index:1;overflow:hidden;padding:34px 0 16px;border-bottom:1px solid var(--line);margin-top:8px;">
+    <div style="display:flex;width:max-content;animation:scl-marq 30s linear infinite;" dir="ltr">
+      <div style="display:flex;align-items:center;gap:40px;padding-left:40px;font-family:'JetBrains Mono',monospace;font-size:13.5px;letter-spacing:.05em;color:var(--muted2);white-space:nowrap;">
+        <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="5"><span>{{ m }}</span><span style="color:var(--acc);">✦</span></sc-for>
+      </div>
+      <div aria-hidden="true" style="display:flex;align-items:center;gap:40px;padding-left:40px;font-family:'JetBrains Mono',monospace;font-size:13.5px;letter-spacing:.05em;color:var(--muted2);white-space:nowrap;">
+        <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="5"><span>{{ m }}</span><span style="color:var(--acc);">✦</span></sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK INTRO -->
+  <section id="work" data-screen-label="פרויקטים" data-reveal style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) 24px clamp(28px,4vw,44px);">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:var(--acc);margin-bottom:16px;">{{ t.workKicker }}</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+      <h2 style="margin:0;font-weight:800;font-size:clamp(34px,4.4vw,58px);line-height:1.04;letter-spacing:-0.03em;">{{ t.workTitle }}</h2>
+      <p style="margin:0;color:var(--muted2);font-size:17px;line-height:1.6;max-width:36ch;">{{ t.workSub }}</p>
+    </div>
+  </section>
+
+  <!-- PINNED HORIZONTAL PROJECTS (dark) -->
+  <section ref="{{ pinRef }}" data-screen-label="גלריית פרויקטים" style="position:relative;z-index:1;height:100vh;">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:var(--dark);display:flex;flex-direction:column;justify-content:center;">
+      <div style="position:absolute;top:0;inset-inline-end:-120px;width:560px;height:560px;background:radial-gradient(circle, color-mix(in oklch, var(--acc) 30%, transparent), transparent 65%);filter:blur(30px);"></div>
+      <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:0 clamp(24px,5vw,72px);margin-bottom:34px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:var(--acc);margin-bottom:12px;">{{ t.galleryKicker }}</div>
+          <h2 style="margin:0;color:var(--dtext);font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.04;letter-spacing:-0.03em;">{{ t.galleryTitle }}</h2>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dmuted);display:flex;align-items:center;gap:10px;">{{ t.scrollHint }}<span style="color:var(--acc);">{{ t.scrollArrow }}</span></div>
+      </div>
+      <div ref="{{ trackRef }}" style="display:flex;gap:26px;padding:0 clamp(24px,5vw,72px);direction:ltr;will-change:transform;">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+          <div style="flex:none;width:380px;background:var(--dpanel);border:1px solid var(--dline);border-radius:24px;overflow:hidden;transition:border-color .3s;" style-hover="border-color:color-mix(in oklch, var(--acc) 45%, var(--dline))" dir="{{ dir }}">
+            <div style="position:relative;height:240px;overflow:hidden;background:#0d0a06;">
+              <sc-if value="{{ p.hasUrl }}" hint-placeholder-val="{{ true }}">
+                <div style="position:absolute;top:0;left:0;width:1280px;transform:scale(0.297);transform-origin:top left;">
+                  <iframe src="{{ p.url }}" loading="lazy" title="{{ p.title }}" style="width:1280px;height:1500px;border:0;pointer-events:none;background:#0d0a06;animation:scl-auto 9s ease-in-out infinite alternate;"></iframe>
+                </div>
+              </sc-if>
+              <sc-if value="{{ p.noUrl }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%, color-mix(in oklch, var(--acc) 22%, transparent), transparent 60%), #100c08;">
+                  <span style="font-weight:800;font-size:64px;color:color-mix(in oklch, var(--acc) 70%, var(--dtext));opacity:.9;">{{ p.mono }}</span>
+                </div>
+              </sc-if>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(13,10,6,0.82), transparent 44%);pointer-events:none;"></div>
+              <span style="position:absolute;top:14px;inset-inline-start:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(12,10,8,0.72);backdrop-filter:blur(8px);border:1px solid var(--dline);color:var(--acc2);font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;">{{ p.kind }}</span>
+              <sc-if value="{{ p.hasUrl }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ p.url }}" target="_blank" rel="noopener" style="position:absolute;bottom:14px;inset-inline-end:14px;display:inline-flex;align-items:center;gap:7px;background:rgba(12,10,8,0.78);backdrop-filter:blur(8px);border:1px solid var(--dline);color:var(--dtext);text-decoration:none;font-size:12.5px;font-weight:700;padding:9px 15px;border-radius:999px;transition:background .2s;" style-hover="background:var(--acc)">{{ t.enter }} <span>{{ t.enterArrow }}</span></a>
+              </sc-if>
+            </div>
+            <div style="padding:24px 26px 28px;">
+              <h3 style="margin:0 0 9px;color:var(--dtext);font-weight:800;font-size:23px;letter-spacing:-0.01em;">{{ p.title }}</h3>
+              <p style="margin:0 0 18px;color:var(--dmuted);font-size:15px;line-height:1.6;">{{ p.desc }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ p.tags }}" as="tag" hint-placeholder-count="3">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.03em;color:var(--acc2);border:1px solid color-mix(in oklch, var(--acc) 30%, var(--dline));padding:5px 11px;border-radius:999px;">{{ tag }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT I BUILD -->
+  <section id="build" data-screen-label="מה אני בונה" data-reveal style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) 24px 0;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:46px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:var(--acc);margin-bottom:16px;">{{ t.buildKicker }}</div>
+        <h2 style="margin:0;font-weight:800;font-size:clamp(34px,4.4vw,58px);line-height:1.04;letter-spacing:-0.03em;max-width:18ch;">{{ t.buildTitle }}</h2>
+      </div>
+      <p style="margin:0;color:var(--muted2);font-size:17px;line-height:1.6;max-width:30ch;">{{ t.buildSub }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="3">
+        <div style="position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px 30px;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s;" style-hover="transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(27,23,18,.28);border-color:color-mix(in oklch, var(--acc) 45%, var(--line))">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--acc);margin-bottom:50px;">{{ s.no }}</div>
+          <h3 style="margin:0 0 12px;font-weight:800;font-size:24px;letter-spacing:-0.01em;">{{ s.title }}</h3>
+          <p style="margin:0;color:var(--muted2);font-size:16px;line-height:1.62;">{{ s.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" data-screen-label="עליי" data-reveal style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) 24px 0;">
+    <div style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:48px;align-items:start;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:var(--acc);margin-bottom:16px;">{{ t.aboutKicker }}</div>
+        <h2 style="margin:0;font-weight:800;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.03em;">{{ t.aboutTitle }}</h2>
+        <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;">
+          <div style="background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;min-width:120px;">
+            <div style="font-weight:900;font-size:30px;color:var(--acc);">10+</div>
+            <div style="color:var(--muted2);font-size:13px;margin-top:4px;">{{ t.stat1 }}</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;min-width:120px;">
+            <div style="font-weight:900;font-size:30px;color:var(--acc);">24h</div>
+            <div style="color:var(--muted2);font-size:13px;margin-top:4px;">{{ t.stat2 }}</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <sc-for list="{{ aboutParas }}" as="para" hint-placeholder-count="3">
+          <p style="margin:0;color:var(--ink);font-size:clamp(18px,1.7vw,23px);line-height:1.66;font-weight:400;text-wrap:pretty;">{{ para }}</p>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" data-screen-label="תהליך" data-reveal style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) 24px 0;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.2em;color:var(--acc);margin-bottom:16px;">{{ t.processKicker }}</div>
+    <h2 style="margin:0 0 12px;font-weight:800;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-0.03em;">{{ t.processTitle }}</h2>
+    <p style="margin:0 0 50px;color:var(--muted2);font-size:17px;line-height:1.6;max-width:44ch;">{{ t.processSub }}</p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px;">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+        <div style="position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;transition:transform .3s,box-shadow .3s,border-color .3s;" style-hover="transform:translateY(-5px);box-shadow:0 24px 50px -30px rgba(27,23,18,.26);border-color:color-mix(in oklch, var(--acc) 40%, var(--line))">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+            <span style="width:34px;height:34px;border-radius:10px;background:color-mix(in oklch, var(--acc) 16%, transparent);color:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;">{{ st.n }}</span>
+          </div>
+          <h3 style="margin:0 0 8px;font-weight:800;font-size:18px;">{{ st.title }}</h3>
+          <p style="margin:0;color:var(--muted2);font-size:14px;line-height:1.5;">{{ st.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CONTACT (dark) -->
+  <section id="contact" data-screen-label="צור קשר" data-reveal style="position:relative;z-index:1;padding:clamp(72px,9vw,128px) 24px;">
+    <div style="max-width:1320px;margin:0 auto;position:relative;background:var(--dark);border-radius:32px;overflow:hidden;border:1px solid var(--dline);padding:clamp(56px,8vw,104px) clamp(28px,5vw,72px);text-align:center;">
+      <div style="position:absolute;bottom:-180px;left:50%;transform:translateX(-50%);width:760px;height:560px;background:radial-gradient(circle, color-mix(in oklch, var(--acc) 36%, transparent), transparent 60%);filter:blur(30px);"></div>
+      <div style="position:relative;">
+        <svg viewBox="0 0 100 100" fill="none" style="width:58px;height:58px;color:var(--acc);margin-bottom:24px;filter:drop-shadow(0 0 16px color-mix(in oklch, var(--acc) 55%, transparent));"><path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><path d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round" opacity="0.5"/><circle cx="50" cy="50" r="6.5" fill="currentColor"/></svg>
+        <h2 style="margin:0 auto;color:var(--dtext);font-weight:800;font-size:clamp(34px,5.4vw,72px);line-height:1.03;letter-spacing:-0.03em;max-width:16ch;">{{ t.contactTitle }}</h2>
+        <p style="margin:24px auto 0;color:var(--dmuted);font-size:clamp(17px,1.6vw,21px);line-height:1.6;max-width:42ch;">{{ t.contactSub }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px;">
+          <a href="#" style="display:inline-flex;align-items:center;gap:9px;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:18px 36px;border-radius:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 18px 40px -16px var(--acc);" style-hover="transform:translateY(-2px);box-shadow:0 26px 52px -16px var(--acc)">{{ t.contactCta1 }}</a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:9px;background:rgba(244,237,225,0.05);color:var(--dtext);text-decoration:none;font-weight:600;font-size:17px;padding:18px 30px;border-radius:14px;border:1px solid var(--dline);" style-hover="border-color:var(--dmuted)">{{ t.contactCta2 }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 24px 56px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:32px;">
+    <div style="display:flex;align-items:center;gap:11px;">
+      <svg viewBox="0 0 100 100" fill="none" style="width:28px;height:28px;color:var(--acc);"><path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/><circle cx="50" cy="50" r="7" fill="currentColor"/></svg>
+      <span style="font-weight:800;font-size:16px;">Shani Gorgov</span>
+    </div>
+    <div style="display:flex;gap:26px;font-size:14.5px;color:var(--muted2);">
+      <a href="#" style="color:var(--muted2);text-decoration:none;" style-hover="color:var(--ink)">Instagram</a>
+      <a href="#" style="color:var(--muted2);text-decoration:none;" style-hover="color:var(--ink)">WhatsApp</a>
+      <a href="#" style="color:var(--muted2);text-decoration:none;" style-hover="color:var(--ink)">LinkedIn</a>
+    </div>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted2);">© 2026 · {{ t.footer }}</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;orangeTone&quot;: {&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;classic&quot;,&quot;tangerine&quot;,&quot;amber&quot;,&quot;coral&quot;],&quot;default&quot;:&quot;classic&quot;,&quot;tsType&quot;:&quot;string&quot;}
+}">
+class Component extends DCLogic {
+  constructor(p){
+    super(p);
+    this.state = { lang: 'he' };
+    this.rootRef = React.createRef();
+    this.pinRef = React.createRef();
+    this.trackRef = React.createRef();
+    this.portraitRef = React.createRef();
+    this.onScroll = this.onScroll.bind(this);
+    this.setEn = () => this.setState({lang:'en'});
+    this.setHe = () => this.setState({lang:'he'});
+  }
+  tones(){ return {classic:'#f2622e', tangerine:'#ff6a2b', amber:'#e8842f', coral:'#f15a3c'}; }
+  tones2(){ return {classic:'#ff8a52', tangerine:'#ff8a52', amber:'#f7a24e', coral:'#ff7a5e'}; }
+  apply(){
+    const r=this.rootRef.current; if(!r) return;
+    const t=this.tones(), t2=this.tones2();
+    const tone=this.props.orangeTone||'classic';
+    r.style.setProperty('--acc', t[tone]||t.classic);
+    r.style.setProperty('--acc2', t2[tone]||t2.classic);
+  }
+  setupReveals(){
+    const root=this.rootRef.current; if(!root) return;
+    if(!this._io){
+      this._io=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; this._io.unobserve(e.target); } });
+      },{threshold:0.1, rootMargin:'0px 0px -7% 0px'});
+    }
+    root.querySelectorAll('[data-reveal]').forEach(el=>{
+      if(el.dataset.revealInit) return;
+      el.dataset.revealInit='1';
+      el.style.opacity='0';
+      el.style.transform='translateY(28px)';
+      el.style.transition='opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)';
+      this._io.observe(el);
+    });
+  }
+  layout(){
+    const sec=this.pinRef.current, track=this.trackRef.current;
+    if(!sec||!track) return;
+    const pad=parseFloat(getComputedStyle(track).paddingLeft)||0;
+    const dist=Math.max(track.scrollWidth-window.innerWidth+pad,0);
+    this._dist=dist;
+    sec.style.height=(window.innerHeight+dist)+'px';
+  }
+  onScroll(){
+    const sec=this.pinRef.current, track=this.trackRef.current;
+    if(sec&&track){
+      const rect=sec.getBoundingClientRect();
+      const total=sec.offsetHeight-window.innerHeight;
+      if(total>0){
+        const prog=Math.min(Math.max(-rect.top/total,0),1);
+        const dist=this._dist!=null?this._dist:Math.max(track.scrollWidth-window.innerWidth+64,0);
+        const sign=(this.state.lang==='he')?1:-1;
+        track.style.transform='translateX('+(sign*prog*dist)+'px)';
+      } else {
+        track.style.transform='translateX(0px)';
+      }
+    }
+    const pr=this.portraitRef.current;
+    if(pr){ pr.style.transform='translateY('+(Math.min(window.scrollY,600)*0.05)+'px)'; }
+  }
+  componentDidMount(){
+    this.apply();
+    this.setupReveals();
+    this.layout();
+    window.addEventListener('scroll',this.onScroll,{passive:true});
+    window.addEventListener('resize',this._onResize=()=>{this.layout();this.onScroll();});
+    this.onScroll();
+    setTimeout(()=>{this.layout();this.onScroll();},400);
+  }
+  componentDidUpdate(){ this.apply(); this.setupReveals(); this.layout(); this.onScroll(); }
+  componentWillUnmount(){
+    window.removeEventListener('scroll',this.onScroll);
+    if(this._onResize) window.removeEventListener('resize',this._onResize);
+    if(this._io) this._io.disconnect();
+  }
+  dict(){
+    const he={
+      dir:'rtl',
+      navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navCta:'בואו נדבר',
+      role:'Web & AI Product Builder', name:'שני גורגוב',
+      heroTitle:'בונה אתרים, דפי נחיתה ומוצרים דיגיטליים.',
+      heroSub:'אני בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI, עם דגש על עיצוב, חוויית משתמש וחשיבה מוצרית.',
+      heroCta1:'לצפייה בפרויקטים', heroCta2:'בואו נדבר',
+      meta1:'ישראל', meta2:'תגובה תוך 24 שעות', meta3:'פיתוח מבוסס AI',
+      workKicker:'01 — עבודות', workTitle:'פרויקטים נבחרים', workSub:'מוצרים דיגיטליים, אתרים ואפליקציות שבניתי.',
+      galleryKicker:'מבט מקרוב', galleryTitle:'גללו כדי לראות כל פרויקט חי.', scrollHint:'המשיכו לגלול', scrollArrow:'←',
+      enter:'כניסה לאתר', enterArrow:'←',
+      buildKicker:'02 — מה אני בונה', buildTitle:'שלושה דברים, ברמת מוצר.',
+      buildSub:'מיקוד נקי במה שאני עושה הכי טוב.',
+      aboutKicker:'03 — עליי', aboutTitle:'קצת עליי',
+      stat1:'שנות ניסיון', stat2:'זמן תגובה',
+      processKicker:'04 — איך אני עובדת', processTitle:'מרעיון למוצר אמיתי.',
+      processSub:'תהליך ברור בחמישה שלבים — את מעורבת לאורך כל הדרך.',
+      contactTitle:'בואו נבנה משהו מעולה',
+      contactSub:'יש לכם רעיון לאתר, דף נחיתה או מוצר דיגיטלי? בואו נדבר.',
+      contactCta1:'דברו איתי בוואטסאפ', contactCta2:'שלחו לי מייל',
+      footer:'נבנה באהבה בישראל',
+      marquee:['פיתוח מבוסס AI','אתרים','דפי נחיתה','אפליקציות Web','חשיבה מוצרית','מבוססת בישראל'],
+      aboutParas:[
+        'אני מאמינה שטכנולוגיה צריכה להיות שימושית, יפה ונגישה.',
+        'בעזרת כלי פיתוח מודרניים ותהליכי עבודה מבוססי AI, אני הופכת רעיונות למוצרים דיגיטליים אמיתיים.',
+        'המיקוד שלי הוא בניית אתרים, דפי נחיתה ואפליקציות Web שנראים מצוין ופותרים בעיות אמיתיות.'
+      ],
+      services:[
+        {no:'01', title:'אתרים', desc:'אתרים עסקיים ואישיים מודרניים, מהירים ורספונסיביים.'},
+        {no:'02', title:'דפי נחיתה', desc:'עמודי שיווק ממוקדי המרה לקמפיינים, שירותים ומוצרים.'},
+        {no:'03', title:'אפליקציות Web', desc:'מוצרים דיגיטליים ופלטפורמות Web מותאמות אישית.'}
+      ],
+      projects:[
+        {title:'My Money', kind:'מוצר אישי', mono:'M', hasUrl:true, noUrl:false, url:'https://my-money-app-tau.vercel.app/',
+         desc:'פלטפורמה לניהול פיננסי שעוצבה עבור עצמאיות ובעלות עסקים קטנים.', tags:['Web App','Finance','AI']},
+        {title:'Lilach Hazan', kind:'פרויקט לקוח', mono:'L', hasUrl:true, noUrl:false, url:'https://www.lilachhazan.com/',
+         desc:'אתר עסקי מקצועי שבניתי עבור לילך חזן.', tags:['Website','Client Work']},
+        {title:'Rox', kind:'פרויקט קונספט', mono:'R', hasUrl:true, noUrl:false, url:'https://rox-watches.vercel.app/',
+         desc:'חוויית איקומרס למותג שעוני יוקרה.', tags:['Ecommerce','Concept']},
+        {title:'Solis', kind:'פרויקט קונספט', mono:'S', hasUrl:true, noUrl:false, url:'https://solis-orange.vercel.app/',
+         desc:'חוויית מותג למשקה פרימיום.', tags:['Brand Experience','Concept']}
+      ],
+      steps:[
+        {n:'01', title:'גילוי', desc:'מבינים את העסק, הקהל והמטרה.'},
+        {n:'02', title:'אסטרטגיה', desc:'מגדירים מה בונים ובאיזה סדר.'},
+        {n:'03', title:'עיצוב', desc:'בונים שפה ויזואלית וחוויית משתמש.'},
+        {n:'04', title:'בנייה', desc:'מפתחים את המוצר מקצה לקצה ב-AI.'},
+        {n:'05', title:'שיגור', desc:'עולים לאוויר, מודדים ומשפרים.'}
+      ]
+    };
+    const en={
+      dir:'ltr',
+      navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navCta:"Let's talk",
+      role:'Web & AI Product Builder', name:'Shani Gorgov',
+      heroTitle:'I build websites, landing pages & digital products.',
+      heroSub:'I build modern websites, landing pages and digital products powered by thoughtful design and AI-assisted development.',
+      heroCta1:'View Projects', heroCta2:"Let's Talk",
+      meta1:'Israel', meta2:'Replies within 24h', meta3:'AI-assisted development',
+      workKicker:'01 — Work', workTitle:'Featured Projects', workSub:'Digital products, websites and apps I have built.',
+      galleryKicker:'Up close', galleryTitle:'Scroll to see each project live.', scrollHint:'Keep scrolling', scrollArrow:'→',
+      enter:'Visit site', enterArrow:'→',
+      buildKicker:'02 — What I build', buildTitle:'Three things, at product quality.',
+      buildSub:'A clean focus on what I do best.',
+      aboutKicker:'03 — About', aboutTitle:'About',
+      stat1:'years of experience', stat2:'response time',
+      processKicker:'04 — How I work', processTitle:'From idea to a real product.',
+      processSub:'A clear five-step process — you stay involved the whole way.',
+      contactTitle:"Let's Build Something Great",
+      contactSub:'Have an idea for a website, landing page or digital product? Let’s talk.',
+      contactCta1:'Message me on WhatsApp', contactCta2:'Send me an email',
+      footer:'Made with care in Israel',
+      marquee:['AI-assisted development','Websites','Landing pages','Web applications','Product thinking','Based in Israel'],
+      aboutParas:[
+        'I believe technology should be useful, beautiful and accessible.',
+        'Using modern development tools and AI-powered workflows, I help turn ideas into real digital products.',
+        'My focus is building websites, landing pages and web applications that look great and solve real problems.'
+      ],
+      services:[
+        {no:'01', title:'Websites', desc:'Modern business and personal websites — fast and responsive.'},
+        {no:'02', title:'Landing Pages', desc:'Conversion-focused marketing pages for campaigns and products.'},
+        {no:'03', title:'Web Applications', desc:'Custom digital products and web platforms.'}
+      ],
+      projects:[
+        {title:'My Money', kind:'Personal Product', mono:'M', hasUrl:true, noUrl:false, url:'https://my-money-app-tau.vercel.app/',
+         desc:'A financial management platform designed for self-employed women and small business owners.', tags:['Web App','Finance','AI']},
+        {title:'Lilach Hazan', kind:'Client Project', mono:'L', hasUrl:true, noUrl:false, url:'https://www.lilachhazan.com/',
+         desc:'A professional business website I built for Lilach Hazan.', tags:['Website','Client Work']},
+        {title:'Rox', kind:'Concept Project', mono:'R', hasUrl:true, noUrl:false, url:'https://rox-watches.vercel.app/',
+         desc:'A luxury watch ecommerce experience.', tags:['Ecommerce','Concept']},
+        {title:'Solis', kind:'Concept Project', mono:'S', hasUrl:true, noUrl:false, url:'https://solis-orange.vercel.app/',
+         desc:'A premium beverage brand experience.', tags:['Brand Experience','Concept']}
+      ],
+      steps:[
+        {n:'01', title:'Discovery', desc:'Understand the business, audience and goal.'},
+        {n:'02', title:'Strategy', desc:'Define what to build and in what order.'},
+        {n:'03', title:'Design', desc:'Craft the visual language and UX.'},
+        {n:'04', title:'Build', desc:'Develop the product end to end with AI.'},
+        {n:'05', title:'Launch', desc:'Go live, measure and improve.'}
+      ]
+    };
+    return this.state.lang==='he'?he:en;
+  }
+  renderVals(){
+    const t=this.dict();
+    const isHe=this.state.lang==='he';
+    const base='cursor:pointer;border:0;border-radius:999px;padding:7px 13px;transition:all .2s;font-family:inherit;font-size:12px;font-weight:700;';
+    const on='background:var(--acc);color:#fff;';
+    const off='background:transparent;color:var(--dmuted);';
+    return {
+      rootRef:this.rootRef, pinRef:this.pinRef, trackRef:this.trackRef, portraitRef:this.portraitRef,
+      dir:t.dir, t, setEn:this.setEn, setHe:this.setHe,
+      enBtnStyle:base+(isHe?off:on), heBtnStyle:base+(isHe?on:off),
+      marquee:t.marquee, aboutParas:t.aboutParas, services:t.services, projects:t.projects, steps:t.steps
+    };
+  }
+}
+</script>
+</body>
+</html>

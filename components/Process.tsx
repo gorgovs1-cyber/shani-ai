@@ -1,204 +1,147 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-const steps = [
-  {
-    number: "01",
-    title: "AI Audit",
-    description: "שיחת מיפוי ממוקדת. מבינים ביחד איפה העסק שלך מבזבז זמן ומה אפשר להפוך לאוטומטי. יוצאת עם מסמך אסטרטגיה ותכנית מימוש ברורה.",
-    tags: ["Discovery Session", "מסמך אסטרטגיה", "ROI ברור"],
-    color: "var(--cyan)",
-  },
-  {
-    number: "02",
-    title: "תכנון מדויק",
-    description: "מגדירות ביחד מה בונים ובאיזה סדר. כל כלי, כל חיבור, כל אוטומציה — ממופות לפני שמתחילים. אין הפתעות אחרי.",
-    tags: ["לו\"ז ברור", "בחירת כלים", "Make.com / n8n"],
-    color: "var(--purple)",
-  },
-  {
-    number: "03",
-    title: "בנייה מואצת",
-    description: "בונה בסיוע AI עם הכלים הכי מתקדמים בשוק. אתר Next.js עם GSAP, אוטומציות Make.com ו-n8n, חיבורים ל-WhatsApp API, CRM ומייל — הכל מחובר ועובד.",
-    tags: ["Next.js", "Make.com", "n8n", "WhatsApp API", "GSAP"],
-    color: "var(--pink)",
-  },
-  {
-    number: "04",
-    title: "השקה ותמיכה",
-    description: "מעבירה הכל, מלמדת אותך להשתמש, ונשארת זמינה 30 יום אחרי ההשקה. אם משהו לא עובד — אני כאן.",
-    tags: ["Vercel Deploy", "הדרכה", "תמיכה 30 יום"],
-    color: "var(--purple)",
-  },
-];
+import { useLang } from "@/components/LanguageProvider";
+import { dict } from "@/lib/translations";
 
 export default function Process() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    let ctx: any;
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-      ctx = gsap.context(() => {
-        gsap.from(".process-header", {
-          y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: ".process-header", start: "top 85%" },
-        });
-        gsap.from(".process-step", {
-          y: 40, opacity: 0, duration: 0.7, ease: "power3.out", stagger: 0.15,
-          scrollTrigger: { trigger: ".process-steps", start: "top 80%" },
-        });
-      }, ref);
-    };
-    init();
-    return () => ctx?.revert();
-  }, []);
+  const { lang } = useLang();
+  const t = dict[lang];
 
   return (
     <section
-      ref={ref}
       id="process"
-      className="section-padding"
-      style={{ borderTop: "1px solid var(--border)" }}
-      dir="rtl"
+      style={{
+        position: "relative",
+        zIndex: 1,
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "clamp(72px,9vw,128px) 24px 0",
+        opacity: 0,
+        transform: "translateY(28px)",
+        transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
+      }}
+      ref={(el) => {
+        if (!el) return;
+        const io = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "none";
+            io.disconnect();
+          }
+        }, { threshold: 0.1 });
+        io.observe(el);
+      }}
     >
-      {/* Header */}
       <div
-        className="process-header"
-        style={{ textAlign: "center", marginBottom: "4rem" }}
-      >
-        <div className="label" style={{ color: "var(--purple)", marginBottom: "1rem" }}>
-          איך עובדים ביחד
-        </div>
-        <h2 className="display-md" style={{ color: "var(--white)" }}>
-          פשוט, מהיר, ובלי הפתעות.
-        </h2>
-      </div>
-
-      {/* Steps */}
-      <div
-        className="process-steps"
         style={{
-          position: "relative",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
-          gap: "2rem",
+          fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+          fontSize: 13,
+          letterSpacing: ".2em",
+          color: "var(--acc)",
+          marginBottom: 16,
         }}
       >
-        {/* Connecting line — desktop only */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: "2.25rem",
-            right: "calc(12.5% + 1rem)",
-            left: "calc(12.5% + 1rem)",
-            height: "1px",
-            background:
-              "linear-gradient(90deg, var(--purple), var(--cyan), var(--pink), var(--purple))",
-            opacity: 0.3,
-            pointerEvents: "none",
-          }}
-          className="process-connector"
-        />
+        {t.processKicker}
+      </div>
+      <h2
+        style={{
+          margin: "0 0 12px",
+          fontWeight: 800,
+          fontSize: "clamp(34px,4.4vw,56px)",
+          lineHeight: 1.04,
+          letterSpacing: "-0.03em",
+          fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+        }}
+      >
+        {t.processTitle}
+      </h2>
+      <p
+        style={{
+          margin: "0 0 50px",
+          color: "var(--muted2)",
+          fontSize: 17,
+          lineHeight: 1.6,
+          maxWidth: "44ch",
+          fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+        }}
+      >
+        {t.processSub}
+      </p>
 
-        {steps.map((step) => (
+      {/* 5-col grid */}
+      <div
+        className="process-grid"
+        style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 18 }}
+      >
+        {t.steps.map((step) => (
           <div
-            key={step.number}
-            className="process-step"
+            key={step.n}
             style={{
               position: "relative",
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: 16,
-              padding: "2rem 1.5rem",
-              textAlign: "center",
-              transition: "border-color 0.3s",
+              background: "var(--card)",
+              border: "1px solid var(--line)",
+              borderRadius: 18,
+              padding: "26px 22px",
+              transition: "transform .3s, box-shadow .3s, border-color .3s",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.borderColor = step.color;
+              const el = e.currentTarget as HTMLElement;
+              el.style.transform = "translateY(-5px)";
+              el.style.boxShadow = "0 24px 50px -30px rgba(27,23,18,.26)";
+              el.style.borderColor = "color-mix(in oklch, var(--acc) 40%, var(--line))";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border)";
+              const el = e.currentTarget as HTMLElement;
+              el.style.transform = "";
+              el.style.boxShadow = "";
+              el.style.borderColor = "var(--line)";
             }}
           >
-            {/* Step number */}
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 48,
-                height: 48,
-                borderRadius: "50%",
-                background: `${step.color}22`,
-                border: `2px solid ${step.color}`,
-                marginBottom: "1.25rem",
-              }}
-            >
+            {/* Number badge */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
               <span
                 style={{
-                  fontWeight: 800,
-                  fontSize: "0.9rem",
-                  color: step.color,
-                  fontVariantNumeric: "tabular-nums",
+                  width: 34,
+                  height: 34,
+                  borderRadius: 10,
+                  background: "color-mix(in oklch, var(--acc) 16%, transparent)",
+                  color: "var(--acc)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  flexShrink: 0,
                 }}
               >
-                {step.number}
+                {step.n}
               </span>
             </div>
-
-            {/* Title */}
             <h3
-              dir="ltr"
               style={{
-                fontSize: "1.05rem",
-                fontWeight: 700,
-                color: "var(--white)",
-                marginBottom: "0.75rem",
+                margin: "0 0 8px",
+                fontWeight: 800,
+                fontSize: 18,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
             >
               {step.title}
             </h3>
-
-            {/* Description */}
             <p
               style={{
-                fontSize: "0.875rem",
-                color: "var(--muted)",
-                lineHeight: 1.7,
                 margin: 0,
+                color: "var(--muted2)",
+                fontSize: 14,
+                lineHeight: 1.5,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
             >
-              {step.description}
+              {step.desc}
             </p>
-
-            {/* Tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "1rem", justifyContent: "center" }}>
-              {step.tags.map((tag) => (
-                <span key={tag} style={{
-                  fontSize: "0.62rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  padding: "0.2rem 0.55rem",
-                  border: `1px solid ${step.color}44`,
-                  color: step.color,
-                  borderRadius: 4,
-                  whiteSpace: "nowrap",
-                }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
         ))}
       </div>
-
-      {/* Styles moved to globals.css */}
     </section>
   );
 }

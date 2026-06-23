@@ -1,94 +1,331 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useLang } from "@/components/LanguageProvider";
+import { dict } from "@/lib/translations";
 
 export default function Hero() {
-  const { t, lang } = useLang();
-  const emClass = lang === "he" ? "em-he" : "em-en";
+  const { lang } = useLang();
+  const t = dict[lang];
+  const portraitRef = useRef<HTMLDivElement>(null);
+
+  // Parallax on hero portrait
+  useEffect(() => {
+    const onScroll = () => {
+      if (!portraitRef.current) return;
+      const y = Math.min(window.scrollY, 600) * 0.05;
+      portraitRef.current.style.transform = `translateY(${y}px)`;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <section style={{
-      minHeight: "100vh",
-      display: "flex", flexDirection: "column", justifyContent: "center",
-      padding: "9rem clamp(1.5rem, 6vw, 5rem) 4rem",
-      position: "relative", overflow: "hidden",
-    }}>
-      {/* Atmospheric background — single-accent ambient field + faint grid */}
-      <div aria-hidden="true" style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: `
-          radial-gradient(ellipse 60% 55% at 20% 35%, rgba(255,106,61,0.12) 0%, transparent 60%),
-          radial-gradient(ellipse 45% 45% at 85% 75%, rgba(255,106,61,0.06) 0%, transparent 55%)
-        `,
-      }} />
-      <div aria-hidden="true" style={{
-        position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5,
-        maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%)",
-        WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%)",
-        backgroundImage: `
-          linear-gradient(var(--border) 1px, transparent 1px),
-          linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
-        backgroundSize: "64px 64px",
-      }} />
+    <header
+      id="top"
+      style={{
+        position: "relative",
+        zIndex: 1,
+        padding: "26px 24px 0",
+      }}
+    >
+      {/* Dark panel */}
+      <div
+        style={{
+          maxWidth: 1320,
+          margin: "0 auto",
+          position: "relative",
+          background: "var(--dark)",
+          borderRadius: 30,
+          overflow: "hidden",
+          border: "1px solid var(--dline)",
+          boxShadow: "0 50px 120px -50px rgba(20,16,9,.55)",
+        }}
+      >
+        {/* Orange glow */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: -120,
+            insetInlineStart: -80,
+            width: 520,
+            height: 520,
+            background: "radial-gradient(circle, color-mix(in oklch, var(--acc) 42%, transparent), transparent 65%)",
+            filter: "blur(20px)",
+            pointerEvents: "none",
+          }}
+        />
+        {/* Grid overlay */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "linear-gradient(var(--dline) 1px, transparent 1px), linear-gradient(90deg, var(--dline) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage: "radial-gradient(circle at 70% 30%, #000, transparent 78%)",
+            WebkitMaskImage: "radial-gradient(circle at 70% 30%, #000, transparent 78%)",
+            pointerEvents: "none",
+          }}
+        />
 
-      <div style={{ width: "100%", maxWidth: 1100, marginInline: "auto", position: "relative" }}>
-        {/* Eyebrow */}
-        <div className="hero-line" style={{ marginBottom: "1.75rem" }}>
-          <span className="pill" style={{
-            color: "var(--signal)",
-            borderColor: "var(--signal-line)",
-            background: "var(--signal-soft)",
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--signal)", display: "inline-block" }} />
-            {t.hero.badge}
-          </span>
-        </div>
+        {/* 2-col grid */}
+        <div
+          className="hero-grid"
+          style={{
+            position: "relative",
+            display: "grid",
+            gridTemplateColumns: "1.12fr 0.88fr",
+            gap: 44,
+            padding: "clamp(44px,5vw,80px)",
+            alignItems: "center",
+          }}
+        >
+          {/* Left: content */}
+          <div style={{ animation: "scl-fadeup 1s ease 3.3s both" }}>
+            {/* Role badge */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 9,
+                background: "color-mix(in oklch, var(--acc) 16%, transparent)",
+                border: "1px solid color-mix(in oklch, var(--acc) 40%, transparent)",
+                color: "var(--acc2)",
+                padding: "8px 16px",
+                borderRadius: 999,
+                fontSize: 13,
+                fontWeight: 600,
+                marginBottom: 28,
+                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                letterSpacing: ".02em",
+              }}
+            >
+              <span
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: "50%",
+                  background: "var(--acc)",
+                  boxShadow: "0 0 10px var(--acc)",
+                  display: "inline-block",
+                }}
+              />
+              {t.role}
+            </div>
 
-        {/* Headline */}
-        {t.hero.title.map((tok, i) => (
-          <div key={i} className="hero-line display-xl" style={{ color: "var(--cream)", maxWidth: 900 }}>
-            {tok.em ? <span className={emClass}>{tok.text}</span> : tok.text}
+            {/* H1 */}
+            <h1
+              style={{
+                margin: 0,
+                color: "var(--dtext)",
+                fontWeight: 800,
+                fontSize: "clamp(40px, 5.2vw, 76px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.035em",
+                textWrap: "balance" as any,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+            >
+              {t.heroTitle}
+            </h1>
+
+            {/* Sub */}
+            <p
+              style={{
+                margin: "30px 0 0",
+                color: "var(--dmuted)",
+                fontSize: "clamp(17px, 1.5vw, 21px)",
+                lineHeight: 1.62,
+                maxWidth: "44ch",
+                fontWeight: 400,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+            >
+              {t.heroSub}
+            </p>
+
+            {/* CTAs */}
+            <div
+              style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 40 }}
+            >
+              <a
+                href="#work"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 9,
+                  background: "var(--acc)",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontWeight: 700,
+                  fontSize: 16,
+                  padding: "17px 30px",
+                  borderRadius: 14,
+                  transition: "transform .2s, box-shadow .2s",
+                  boxShadow: "0 18px 40px -16px var(--acc)",
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 26px 52px -16px var(--acc)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 18px 40px -16px var(--acc)";
+                }}
+              >
+                {t.heroCta1}
+              </a>
+              <a
+                href="#contact"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 9,
+                  background: "rgba(244,237,225,0.05)",
+                  color: "var(--dtext)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                  fontSize: 16,
+                  padding: "17px 28px",
+                  borderRadius: 14,
+                  border: "1px solid var(--dline)",
+                  transition: "border-color .2s, background .2s",
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--dmuted)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.09)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--dline)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.05)";
+                }}
+              >
+                {t.heroCta2}
+              </a>
+            </div>
+
+            {/* Meta row */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 18,
+                marginTop: 42,
+                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                fontSize: 12,
+                letterSpacing: ".03em",
+                color: "var(--dmuted)",
+                flexWrap: "wrap",
+              }}
+            >
+              <span>{t.meta1}</span>
+              <span style={{ opacity: 0.4 }}>/</span>
+              <span>{t.meta2}</span>
+              <span style={{ opacity: 0.4 }}>/</span>
+              <span>{t.meta3}</span>
+            </div>
           </div>
-        ))}
 
-        {/* Sub */}
-        <p className="hero-sub body-lg" style={{ maxWidth: 540, marginTop: "1.75rem", color: "var(--mist)" }}>
-          {t.hero.subPre}
-          <span style={{ color: "var(--cream)", fontWeight: 700 }}>{t.hero.subStrong}</span>
-        </p>
+          {/* Right: portrait card */}
+          <div
+            ref={portraitRef}
+            className="portrait"
+            style={{ position: "relative", animation: "scl-fadeup 1s ease 3.45s both" }}
+          >
+            {/* Glow behind card */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: "-6% 8% 8% -6%",
+                background: "linear-gradient(140deg, var(--acc), transparent 70%)",
+                borderRadius: 26,
+                filter: "blur(10px)",
+                opacity: 0.5,
+                pointerEvents: "none",
+              }}
+            />
+            {/* Card */}
+            <div
+              style={{
+                position: "relative",
+                borderRadius: 22,
+                overflow: "hidden",
+                border: "1px solid var(--dline)",
+                boxShadow: "0 30px 70px -30px rgba(0,0,0,.6)",
+              }}
+            >
+              {/* Portrait placeholder — replace with <Image> when photo is ready */}
+              <div
+                aria-label="Hero portrait placeholder"
+                style={{
+                  width: "100%",
+                  aspectRatio: "4/5",
+                  background: "linear-gradient(160deg, #241b12 0%, #100c08 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {/* Placeholder hexagon */}
+                <svg
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  aria-hidden="true"
+                  style={{ width: 64, height: 64, color: "var(--acc)", opacity: 0.3 }}
+                >
+                  <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
+                  <circle cx="50" cy="50" r="6.5" fill="currentColor" />
+                </svg>
+              </div>
+              {/* Bottom scrim */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(to top, rgba(20,16,9,0.5), transparent 38%)",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
 
-        {/* CTAs */}
-        <div className="hero-cta" style={{
-          display: "flex", gap: "1rem", marginTop: "2.25rem",
-          flexWrap: "wrap", alignItems: "center",
-        }}>
-          <a href="https://wa.me/972504744815" className="btn-grad" style={{ padding: "1rem 2.25rem", fontSize: "0.95rem", borderRadius: 12 }}>
-            {t.hero.ctaPrimary}
-          </a>
-          <a href="#work" className="btn-ghost" style={{ borderRadius: 12 }}>
-            {t.hero.ctaSecondary}
-          </a>
-        </div>
-        <p style={{ fontSize: "0.72rem", color: "var(--mist)", marginTop: "1rem", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
-          {t.hero.responseLine}
-        </p>
-
-        {/* Trust bar */}
-        <div className="hero-stat" style={{
-          display: "flex", flexWrap: "wrap", gap: "1.25rem 1.75rem",
-          marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid var(--border)",
-        }}>
-          {t.hero.trust.map((item) => (
-            <span key={item} style={{
-              fontSize: "0.8rem", color: "var(--mist)",
-              display: "flex", alignItems: "center", gap: "0.45rem",
-            }}>
-              <span style={{ color: "var(--signal)", fontWeight: 700 }}>✓</span>
-              {item}
-            </span>
-          ))}
+            {/* Name chip */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 18,
+                insetInline: 18,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                background: "rgba(20,16,9,0.72)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                border: "1px solid var(--dline)",
+                borderRadius: 14,
+                padding: "13px 16px",
+              }}
+            >
+              <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <span style={{ color: "var(--dtext)", fontWeight: 700, fontSize: 15, fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}>
+                  Shani Gorgov
+                </span>
+                <span style={{ color: "var(--dmuted)", fontSize: 12.5, fontFamily: "'JetBrains Mono', var(--font-mono), monospace" }}>
+                  {t.role}
+                </span>
+              </div>
+              <svg viewBox="0 0 100 100" fill="none" aria-hidden="true" style={{ width: 30, height: 30, color: "var(--acc)" }}>
+                <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
+                <circle cx="50" cy="50" r="7" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 }

@@ -1,67 +1,180 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLang } from "@/components/LanguageProvider";
+import { dict } from "@/lib/translations";
 
 export default function Contact() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    let ctx: any;
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-      ctx = gsap.context(() => {
-        gsap.from(".contact-inner", {
-          y: 40, opacity: 0, duration: 0.9, ease: "power3.out",
-          scrollTrigger: { trigger: ".contact-inner", start: "top 80%" },
-        });
-      }, ref);
-    };
-    init();
-    return () => ctx?.revert();
-  }, []);
+  const { lang } = useLang();
+  const t = dict[lang];
 
   return (
-    <section ref={ref} id="contact" className="section-padding" style={{
-      borderTop: "1px solid var(--border)",
-      background: "var(--surface)",
-    }}>
-      <div className="contact-inner" style={{
-        maxWidth: 640, margin: "0 auto", textAlign: "center",
-      }}>
-        {/* Gradient orb */}
-        <div style={{
-          width: 80, height: 80, borderRadius: "50%",
-          background: "linear-gradient(135deg, #ff8a5d, #ff6a3d)",
-          margin: "0 auto 2rem",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: "2rem",
-        }}>💬</div>
+    <section
+      id="contact"
+      style={{
+        position: "relative",
+        zIndex: 1,
+        padding: "clamp(72px,9vw,128px) 24px",
+        opacity: 0,
+        transform: "translateY(28px)",
+        transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
+      }}
+      ref={(el) => {
+        if (!el) return;
+        const io = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "none";
+            io.disconnect();
+          }
+        }, { threshold: 0.1 });
+        io.observe(el);
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1320,
+          margin: "0 auto",
+          position: "relative",
+          background: "var(--dark)",
+          borderRadius: 32,
+          overflow: "hidden",
+          border: "1px solid var(--dline)",
+          padding: "clamp(56px,8vw,104px) clamp(28px,5vw,72px)",
+          textAlign: "center",
+        }}
+      >
+        {/* Bottom radial glow */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: -180,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: 760,
+            height: 560,
+            background: "radial-gradient(circle, color-mix(in oklch, var(--acc) 36%, transparent), transparent 60%)",
+            filter: "blur(30px)",
+            pointerEvents: "none",
+          }}
+        />
 
-        <div className="label" style={{ color: "var(--purple)", marginBottom: "1rem" }}>בואי נדבר</div>
+        <div style={{ position: "relative" }}>
+          {/* Hexagon logo */}
+          <svg
+            viewBox="0 0 100 100"
+            fill="none"
+            aria-hidden="true"
+            style={{
+              width: 58,
+              height: 58,
+              color: "var(--acc)",
+              marginBottom: 24,
+              filter: "drop-shadow(0 0 16px color-mix(in oklch, var(--acc) 55%, transparent))",
+            }}
+          >
+            <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
+            <path d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" opacity="0.5" />
+            <circle cx="50" cy="50" r="6.5" fill="currentColor" />
+          </svg>
 
-        <h2 className="display-lg" style={{ color: "var(--white)", marginBottom: "1.25rem" }}>
-          יש לך פרויקט?<br />
-          <span className="grad-text">בואי נבנה אותו.</span>
-        </h2>
+          <h2
+            style={{
+              margin: "0 auto",
+              color: "var(--dtext)",
+              fontWeight: 800,
+              fontSize: "clamp(34px,5.4vw,72px)",
+              lineHeight: 1.03,
+              letterSpacing: "-0.03em",
+              maxWidth: "16ch",
+              fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+            }}
+          >
+            {t.contactTitle}
+          </h2>
 
-        <p className="body-lg" style={{ marginBottom: "2.5rem" }}>
-          ספרי לי על העסק שלך ומה את רוצה לשפר. אענה תוך 24 שעות עם רעיון ראשוני.
-        </p>
+          <p
+            style={{
+              margin: "24px auto 0",
+              color: "var(--dmuted)",
+              fontSize: "clamp(17px,1.6vw,21px)",
+              lineHeight: 1.6,
+              maxWidth: "42ch",
+              fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+            }}
+          >
+            {t.contactSub}
+          </p>
 
-        <div className="contact-cta-row" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="https://wa.me/972504744815" className="btn-grad" style={{ fontSize: "0.85rem" }}>
-            📱 כתבי לי בוואטסאפ
-          </a>
-          <a href="mailto:gorgovs1@gmail.com" className="btn-ghost" style={{ fontSize: "0.85rem" }}>
-            ✉️ שלחי מייל
-          </a>
+          {/* CTA buttons */}
+          <div
+            className="contact-cta-row"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 14,
+              justifyContent: "center",
+              marginTop: 40,
+            }}
+          >
+            <a
+              href="https://wa.me/972504744815"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 9,
+                background: "var(--acc)",
+                color: "#fff",
+                textDecoration: "none",
+                fontWeight: 700,
+                fontSize: 17,
+                padding: "18px 36px",
+                borderRadius: 14,
+                transition: "transform .2s, box-shadow .2s",
+                boxShadow: "0 18px 40px -16px var(--acc)",
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.transform = "translateY(-2px)";
+                el.style.boxShadow = "0 26px 52px -16px var(--acc)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.transform = "";
+                el.style.boxShadow = "0 18px 40px -16px var(--acc)";
+              }}
+            >
+              {t.contactCta1}
+            </a>
+            <a
+              href="mailto:gorgovs1@gmail.com"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 9,
+                background: "rgba(244,237,225,0.05)",
+                color: "var(--dtext)",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: 17,
+                padding: "18px 30px",
+                borderRadius: 14,
+                border: "1px solid var(--dline)",
+                transition: "border-color .2s",
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--dmuted)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--dline)";
+              }}
+            >
+              {t.contactCta2}
+            </a>
+          </div>
         </div>
-
-        <p style={{ marginTop: "1.5rem", fontSize: "0.78rem", color: "var(--muted)" }}>
-          gorgovs1@gmail.com · ישראל
-        </p>
       </div>
     </section>
   );

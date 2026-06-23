@@ -1,85 +1,40 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useLang } from "@/components/LanguageProvider";
+import { useEffect, useState } from "react";
 
-/* ─── BOOT SCREEN ───
-   Simulates the AI scanning a messy business and building a system.
-   - Shows once per session (sessionStorage flag)
-   - Skippable by click/tap at any moment
-   - Respects prefers-reduced-motion (jumps straight to hero)
-   - Fades smoothly into nav + hero on completion                       */
-
-type Seg = { t: string; sig?: boolean };
-const LINES: Seg[][] = [
-  [{ t: "> " }, { t: "ANALYZING BUSINESS..." }],
-  [
-    { t: "> MAPPING MANUAL TASKS... " },
-    { t: "[WHATSAPP]", sig: true }, { t: " " },
-    { t: "[EXCEL]", sig: true }, { t: " " },
-    { t: "[CALENDAR]", sig: true },
-  ],
-  [{ t: "> CALCULATING WASTED HOURS... " }, { t: "14/WEEK", sig: true }],
-  [{ t: "> BUILDING AUTOMATION LAYER... " }, { t: "[OK]", sig: true }],
-  [{ t: "> " }, { t: "SYSTEM READY", sig: true }],
-];
-
-// Flatten each line into per-character color flags for the typewriter.
-const CHARS = LINES.map((segs) => {
-  const arr: { ch: string; sig: boolean }[] = [];
-  for (const s of segs) for (const ch of s.t) arr.push({ ch, sig: !!s.sig });
-  return arr;
-});
-
-const CHAR_MS = 20;     // per-character typing speed
-const LINE_PAUSE = 240; // pause between lines
-const END_HOLD = 650;   // hold after last line before fade
+const SESSION_KEY = "shani-splash-seen";
 
 export default function SplashScreen() {
-  const { t } = useLang();
-  const [phase, setPhase] = useState<"boot" | "fadeout" | "gone">("boot");
-  const [line, setLine] = useState(0);
-  const [count, setCount] = useState(0); // chars typed in current line
-  const [reduced, setReduced] = useState(false);
-  const skipped = useRef(false);
+  const [phase, setPhase] = useState<"show" | "fadeout" | "gone">("show");
 
-  // Plays on every full page load. It lives in the root layout, so it does NOT
-  // replay on internal (SPA) navigation — no sessionStorage gate needed.
-  // For reduced-motion users we still show the boot, but statically (all lines
-  // revealed at once, no typewriter), then fade — so it's never a blank skip.
   useEffect(() => {
-    const isReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (isReduced) {
-      setReduced(true);
-      setLine(LINES.length);              // reveal all lines at once
-      const end = setTimeout(() => finish(), 1300);
-      return () => clearTimeout(end);
+    // Skip if already seen this session or if reduced motion
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const alreadySeen = sessionStorage.getItem(SESSION_KEY);
+    if (reduced || alreadySeen) {
+      setPhase("gone");
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // Auto-dismiss via CSS animation at 3.2s + .6s fade = 3.8s total
+    const fadeTimer = setTimeout(() => {
+      setPhase("fadeout");
+    }, 3200);
+
+    const goneTimer = setTimeout(() => {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      setPhase("gone");
+    }, 3800);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(goneTimer);
+    };
   }, []);
 
-  // Typewriter driver (skipped for reduced-motion).
-  useEffect(() => {
-    if (phase !== "boot" || reduced) return;
-    if (line >= LINES.length) {
-      const end = setTimeout(() => finish(), END_HOLD);
-      return () => clearTimeout(end);
-    }
-    if (count < CHARS[line].length) {
-      const id = setTimeout(() => setCount((c) => c + 1), CHAR_MS);
-      return () => clearTimeout(id);
-    }
-    // Line complete → advance after a pause.
-    const id = setTimeout(() => { setLine((l) => l + 1); setCount(0); }, LINE_PAUSE);
-    return () => clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, line, count, reduced]);
-
-  function finish() {
-    if (skipped.current) return;
-    skipped.current = true;
+  function skip() {
+    if (phase === "gone") return;
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch {}
     setPhase("fadeout");
     setTimeout(() => setPhase("gone"), 600);
   }
@@ -88,74 +43,118 @@ export default function SplashScreen() {
 
   return (
     <div
-      onClick={finish}
       role="presentation"
       aria-hidden="true"
+      onClick={skip}
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 99999,
-        background: "var(--ink)",
+        zIndex: 9999,
+        background: "#0a0806",
         display: "flex",
-        flexDirection: "column",
+        alignItems: "center",
         justifyContent: "center",
-        padding: "clamp(1.5rem, 6vw, 5rem)",
+        padding: "24px",
         cursor: "pointer",
         opacity: phase === "fadeout" ? 0 : 1,
-        transition: "opacity 0.6s ease",
+        visibility: phase === "fadeout" ? "hidden" : "visible",
+        transition: "opacity 0.6s ease, visibility 0.6s ease",
         pointerEvents: phase === "fadeout" ? "none" : "all",
-        fontFamily: "var(--font-mono)",
       }}
     >
-      {/* ambient signal glow */}
-      <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 60% 50% at 30% 40%, rgba(255,106,61,0.07), transparent 70%)",
-      }} />
+      {/* Terminal window — always LTR */}
+      <div
+        dir="ltr"
+        style={{
+          position: "relative",
+          width: "min(540px, 92vw)",
+          background: "#100c08",
+          border: "1px solid rgba(244,237,225,0.12)",
+          borderRadius: 16,
+          boxShadow: "0 50px 120px -40px rgba(0,0,0,.8)",
+          overflow: "hidden",
+        }}
+      >
+        {/* Title bar */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "13px 16px",
+          borderBottom: "1px solid rgba(244,237,225,0.12)",
+          background: "rgba(255,255,255,0.02)",
+        }}>
+          <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#ff5f56", display: "inline-block" }} />
+          <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#ffbd2e", display: "inline-block" }} />
+          <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#27c93f", display: "inline-block" }} />
+          <span style={{
+            marginLeft: 10,
+            fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+            fontSize: 11,
+            color: "var(--dmuted, #b1a48f)",
+            letterSpacing: ".04em",
+          }}>
+            shani@studio — zsh
+          </span>
+          {/* Spinning hexagon */}
+          <svg
+            viewBox="0 0 100 100"
+            fill="none"
+            aria-hidden="true"
+            style={{
+              width: 22, height: 22,
+              marginLeft: "auto",
+              color: "var(--acc, #f2622e)",
+              animation: "scl-spin 9s linear infinite",
+            }}
+          >
+            <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
+            <circle cx="50" cy="50" r="7" fill="currentColor" />
+          </svg>
+        </div>
 
-      {/* header label */}
-      <div style={{
-        fontSize: "0.7rem", letterSpacing: "0.25em",
-        color: "var(--mist)", opacity: 0.6, marginBottom: "1.75rem",
-      }}>
-        SHANI_AI // BOOT SEQUENCE
-      </div>
-
-      {/* terminal lines */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem", direction: "ltr", textAlign: "left" }}>
-        {LINES.map((_, i) => {
-          if (i > line) return null;
-          const isActive = i === line;
-          const chars = isActive ? CHARS[i].slice(0, count) : CHARS[i];
-          return (
-            <div key={i} style={{
-              fontSize: "clamp(0.8rem, 2.2vw, 1.05rem)",
-              lineHeight: 1.5,
-              color: "var(--mist)",
-              whiteSpace: "pre-wrap",
-            }}>
-              {chars.map((c, j) => (
-                <span key={j} style={c.sig ? { color: "var(--signal)", fontWeight: 500 } : undefined}>
-                  {c.ch}
-                </span>
-              ))}
-              {isActive && <span className="boot-caret">|</span>}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* skip hint */}
-      <div style={{
-        position: "absolute",
-        bottom: "clamp(1.5rem, 5vw, 3rem)",
-        insetInlineStart: "clamp(1.5rem, 6vw, 5rem)",
-        fontSize: "0.68rem",
-        letterSpacing: "0.18em",
-        color: "var(--mist)",
-        opacity: 0.45,
-      }}>
-        {t.boot.skip} →
+        {/* Terminal lines */}
+        <div style={{ padding: "20px 22px 24px", fontFamily: "'JetBrains Mono', var(--font-mono), monospace", fontSize: 13.5, lineHeight: 2, color: "var(--dtext, #f4ede1)" }}>
+          {/* Line 1 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease .15s forwards" }}>
+            <span style={{ color: "var(--acc, #f2622e)" }}>$</span> shani build --product
+          </div>
+          {/* Line 2 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease .6s forwards", color: "var(--dmuted, #b1a48f)" }}>
+            ▸ initializing workspace…
+          </div>
+          {/* Line 3 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.05s forwards" }}>
+            <span style={{ color: "#27c93f" }}>✓</span> design system loaded
+          </div>
+          {/* Line 4 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.5s forwards" }}>
+            <span style={{ color: "#27c93f" }}>✓</span> crafting interfaces
+          </div>
+          {/* Line 5 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.95s forwards", color: "var(--dmuted, #b1a48f)" }}>
+            ▸ deploying to production…
+          </div>
+          {/* Line 6 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease 2.4s forwards" }}>
+            <span style={{ color: "#27c93f" }}>✓</span> build complete in 8.2s
+          </div>
+          {/* Line 7 */}
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease 2.85s forwards" }}>
+            <span style={{ color: "var(--acc, #f2622e)" }}>→</span>{" "}
+            launching shani.ai{" "}
+            <span style={{ color: "var(--acc, #f2622e)" }}>✦</span>
+            <span style={{
+              display: "inline-block",
+              width: 9,
+              height: 16,
+              background: "var(--acc, #f2622e)",
+              marginLeft: 6,
+              verticalAlign: "-2px",
+              animation: "scl-blink 1s steps(1) infinite",
+            }} />
+          </div>
+        </div>
       </div>
     </div>
   );

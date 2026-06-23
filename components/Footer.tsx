@@ -1,35 +1,92 @@
 "use client";
 
+import { useLang } from "@/components/LanguageProvider";
+import { dict } from "@/lib/translations";
+
 export default function Footer() {
+  const { lang } = useLang();
+  const t = dict[lang];
+
   return (
-    <footer style={{
-      borderTop: "1px solid var(--border)",
-      padding: "2rem clamp(1.5rem, 5vw, 4rem)",
-      display: "flex", justifyContent: "space-between", alignItems: "center",
-      flexWrap: "wrap", gap: "1rem",
-    }}>
-      <span style={{
-        fontFamily: "var(--font-syne)", fontSize: "0.9rem",
-        fontWeight: 700, color: "var(--white)",
-      }}>
-        Shani<span style={{ color: "var(--purple)" }}> AI</span> Creator
-      </span>
-
-      <span style={{ fontSize: "0.72rem", color: "var(--muted)" }}>
-        © {new Date().getFullYear()} Shani Gorgov. כל הזכויות שמורות.
-      </span>
-
-      <div style={{ display: "flex", gap: "1.5rem" }}>
-        {["Instagram", "LinkedIn", "WhatsApp"].map(s => (
-          <a key={s} href="#" style={{
-            fontSize: "0.72rem", color: "var(--muted)", textDecoration: "none",
-            transition: "color 0.2s ease",
+    <footer
+      style={{
+        position: "relative",
+        zIndex: 1,
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "32px 24px 56px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 24,
+        flexWrap: "wrap",
+        borderTop: "1px solid var(--line)",
+      }}
+    >
+      {/* Logo + name */}
+      <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+        <svg
+          viewBox="0 0 100 100"
+          fill="none"
+          aria-hidden="true"
+          style={{ width: 28, height: 28, color: "var(--acc)", flexShrink: 0 }}
+        >
+          <path
+            d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z"
+            stroke="currentColor"
+            strokeWidth="6"
+            strokeLinejoin="round"
+          />
+          <circle cx="50" cy="50" r="7" fill="currentColor" />
+        </svg>
+        <span
+          style={{
+            fontWeight: 800,
+            fontSize: 16,
+            color: "var(--ink)",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
           }}
-            onMouseEnter={e => (e.currentTarget.style.color = "var(--purple)")}
-            onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
-          >{s}</a>
-        ))}
+        >
+          Shani Gorgov
+        </span>
       </div>
+
+      {/* Social links */}
+      <nav aria-label="Social links" style={{ display: "flex", gap: 26, fontSize: 14.5, color: "var(--muted2)" }}>
+        {[
+          { label: "Instagram", href: "https://www.instagram.com/shani.gorgov/" },
+          { label: "WhatsApp", href: "https://wa.me/972504744815" },
+          { label: "LinkedIn", href: "https://www.linkedin.com/in/shani-gorgov/" },
+        ].map(({ label, href }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "var(--muted2)",
+              textDecoration: "none",
+              transition: "color .2s",
+              fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      {/* Copyright */}
+      <span
+        style={{
+          fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+          fontSize: 12,
+          color: "var(--muted2)",
+        }}
+      >
+        &copy; {new Date().getFullYear()} &middot; {t.footer}
+      </span>
     </footer>
   );
 }

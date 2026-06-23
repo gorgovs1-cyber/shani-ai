@@ -1,141 +1,155 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
-// Reduced to 4 core tools — reads as expertise, not "everything I tried".
-const tools = ["Claude Code", "Make.com", "n8n", "Next.js"];
+import { useLang } from "@/components/LanguageProvider";
+import { dict } from "@/lib/translations";
 
 export default function About() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    let ctx: any;
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-      ctx = gsap.context(() => {
-        gsap.from(".about-content", {
-          y: 40, opacity: 0, duration: 0.9, ease: "power3.out",
-          scrollTrigger: { trigger: ".about-content", start: "top 85%" },
-        });
-      }, ref);
-    };
-    init();
-    return () => ctx?.revert();
-  }, []);
+  const { lang } = useLang();
+  const t = dict[lang];
 
   return (
-    <section ref={ref} id="about" className="section-padding" style={{ borderTop: "1px solid var(--border)" }} dir="rtl">
-      <div className="about-content" style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
-        gap: "5rem",
-        alignItems: "start",
-      }}>
-
-        {/* Story */}
+    <section
+      id="about"
+      style={{
+        position: "relative",
+        zIndex: 1,
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "clamp(72px,9vw,128px) 24px 0",
+        opacity: 0,
+        transform: "translateY(28px)",
+        transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
+      }}
+      ref={(el) => {
+        if (!el) return;
+        const io = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "none";
+            io.disconnect();
+          }
+        }, { threshold: 0.1 });
+        io.observe(el);
+      }}
+    >
+      <div
+        className="about-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "0.8fr 1.2fr",
+          gap: 48,
+          alignItems: "start",
+        }}
+      >
+        {/* Left: kicker, title, stats */}
         <div>
-          <div className="label" style={{ color: "var(--cyan)", marginBottom: "1rem" }}>עליי</div>
-          <h2 className="display-md" style={{ color: "var(--white)", marginBottom: "2rem" }}>
-            אני לא באה מעולם ההייטק.<br />אני באה מעולם העסקים.
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+              fontSize: 13,
+              letterSpacing: ".2em",
+              color: "var(--acc)",
+              marginBottom: 16,
+            }}
+          >
+            {t.aboutKicker}
+          </div>
+          <h2
+            style={{
+              margin: 0,
+              fontWeight: 800,
+              fontSize: "clamp(34px,4.4vw,56px)",
+              lineHeight: 1.04,
+              letterSpacing: "-0.03em",
+              fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+            }}
+          >
+            {t.aboutTitle}
           </h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-            <p className="body-lg">
-              במשך שנים ניהלתי עסק משלי, ולכן אני מכירה מקרוב את התחושה שאין מספיק שעות ביום, שהכול עובר דרך הראש שלך ושכל משימה קטנה גוזלת זמן ואנרגיה.
-            </p>
-            <p className="body-lg">
-              כשהתחלתי לעבוד עם AI הבנתי שאפשר לבנות לעצמאים ולעסקים קטנים את הכלים שפעם היו זמינים רק לחברות גדולות.
-            </p>
-            <p className="body-lg">
-              מאז אני בונה אתרים, אוטומציות ומערכות שעוזרות לעסקים לעבוד בצורה פשוטה, מסודרת ויעילה יותר.
-            </p>
-          </div>
-
-          <div style={{
-            marginTop: "2rem",
-            padding: "1.25rem 1.5rem",
-            background: "rgba(255,106,61,0.06)",
-            border: "1px solid rgba(255,106,61,0.15)",
-            borderRadius: 12,
-          }}>
-            <div style={{ fontSize: "0.85rem", color: "var(--muted)", lineHeight: 1.7 }}>
-              הכי נוח לכתוב לי בוואטסאפ — אענה תוך 24 שעות.
-            </div>
-          </div>
-        </div>
-
-        {/* Right */}
-        <div>
-
-          {/* Photo — circular, centered */}
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: "2rem" }}>
-            <div style={{
-              width: 200,
-              height: 200,
-              borderRadius: "50%",
-              overflow: "hidden",
-              flexShrink: 0,
-              border: "2px solid rgba(255,106,61,0.45)",
-              boxShadow: "0 0 40px rgba(255,106,61,0.18), 0 0 0 6px rgba(255,106,61,0.07)",
-              background: "var(--surface)",
-            }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/shani.jpg"
-                alt="שני גורגוב"
-                width={200}
-                height={200}
+          {/* Stat cards */}
+          <div style={{ marginTop: 30, display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <div
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--line)",
+                borderRadius: 16,
+                padding: "18px 22px",
+                minWidth: 120,
+              }}
+            >
+              <div
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center 12%",
-                  display: "block",
+                  fontWeight: 900,
+                  fontSize: 30,
+                  color: "var(--acc)",
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                 }}
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-              />
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2.5rem",
-          }}>
-            {[
-              { n: "10+", label: "שנות ניסיון עסקי" },
-              { n: "20+", label: "שעות נחסכות בשבוע ללקוח" },
-              { n: "24h", label: "זמן תגובה" },
-              { n: "1",   label: "אדם. בלי צוות ובלי ביורוקרטיה" },
-            ].map(({ n, label }) => (
-              <div key={label} style={{
-                padding: "1.25rem",
-                border: "1px solid var(--border)",
-                borderRadius: 12,
-              }}>
-                <div style={{
-                  fontFamily: "var(--font-syne)",
-                  fontSize: "2rem",
-                  fontWeight: 800,
-                  color: "var(--white)",
-                  lineHeight: 1,
-                  marginBottom: "0.4rem",
-                }}>{n}</div>
-                <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>{label}</div>
+              >
+                10+
               </div>
-            ))}
-          </div>
-
-          {/* Tools — reduced */}
-          <div className="label" style={{ color: "var(--muted)", marginBottom: "1rem" }}>כלים שאני עובדת איתם</div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-            {tools.map((t) => (
-              <span key={t} className="pill" style={{ fontSize: "0.7rem" }}>{t}</span>
-            ))}
+              <div
+                style={{
+                  color: "var(--muted2)",
+                  fontSize: 13,
+                  marginTop: 4,
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+              >
+                {t.stat1}
+              </div>
+            </div>
+            <div
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--line)",
+                borderRadius: 16,
+                padding: "18px 22px",
+                minWidth: 120,
+              }}
+            >
+              <div
+                style={{
+                  fontWeight: 900,
+                  fontSize: 30,
+                  color: "var(--acc)",
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+              >
+                24h
+              </div>
+              <div
+                style={{
+                  color: "var(--muted2)",
+                  fontSize: 13,
+                  marginTop: 4,
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+              >
+                {t.stat2}
+              </div>
+            </div>
           </div>
         </div>
 
+        {/* Right: paragraphs */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          {t.aboutParas.map((para, i) => (
+            <p
+              key={i}
+              style={{
+                margin: 0,
+                color: "var(--ink)",
+                fontSize: "clamp(18px,1.7vw,23px)",
+                lineHeight: 1.66,
+                fontWeight: 400,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+            >
+              {para}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   );
