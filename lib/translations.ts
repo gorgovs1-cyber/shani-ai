@@ -10,7 +10,7 @@ export const dict = {
     workKicker:'01 — עבודות', workTitle:'פרויקטים נבחרים', workSub:'מוצרים דיגיטליים, אתרים ואפליקציות שבניתי.',
     galleryKicker:'מבט מקרוב', galleryTitle:'גללו כדי לראות כל פרויקט חי.', scrollHint:'המשיכו לגלול', scrollArrow:'←',
     buildKicker:'02 — מה אני בונה', buildTitle:'שלושה דברים, ברמת מוצר.', buildSub:'מיקוד נקי במה שאני עושה הכי טוב.',
-    aboutKicker:'03 — עליי', aboutTitle:'קצת עליי', stat1:'שנות ניסיון', stat2:'זמן תגובה',
+    aboutKicker:'03 — עליי', aboutTitle:'קצת עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
     processKicker:'04 — איך אני עובדת', processTitle:'מרעיון למוצר אמיתי.', processSub:'תהליך ברור בחמישה שלבים — את מעורבת לאורך כל הדרך.',
     contactTitle:'בואו נבנה משהו מעולה',
     contactSub:'יש לכם רעיון לאתר, דף נחיתה או מוצר דיגיטלי? בואו נדבר.',
@@ -18,9 +18,9 @@ export const dict = {
     footer:'נבנה באהבה בישראל',
     marqueeItems:['פיתוח מבוסס AI','אתרים','דפי נחיתה','אפליקציות Web','חשיבה מוצרית','מבוססת בישראל'],
     aboutParas:[
-      'אני מאמינה שטכנולוגיה צריכה להיות שימושית, יפה ונגישה.',
-      'בעזרת כלי פיתוח מודרניים ותהליכי עבודה מבוססי AI, אני הופכת רעיונות למוצרים דיגיטליים אמיתיים.',
-      'המיקוד שלי הוא בניית אתרים, דפי נחיתה ואפליקציות Web שנראים מצוין ופותרים בעיות אמיתיות.'
+      '10 שנים ניהלתי עסק משלי — אז אני יודעת בדיוק מה לקוח צריך, מה מוכר ומה לא, ואיפה האתר צריך לעשות את העבודה.',
+      'היום אני מביאה את הניסיון הזה לכל פרויקט: לא רק אתר יפה — אלא כלי שמביא תוצאות אמיתיות לעסק.',
+      'בעזרת AI ופיתוח מודרני, אני בונה מהר, בדיוק ובמחיר שמתאים לעסקים קטנים ובינוניים.'
     ],
     services:[
       {no:'01', title:'אתרים', desc:'אתרים עסקיים ואישיים מודרניים, מהירים ורספונסיביים.'},
@@ -52,7 +52,7 @@ export const dict = {
     workKicker:'01 — Work', workTitle:'Featured Projects', workSub:'Digital products, websites and apps I have built.',
     galleryKicker:'Up close', galleryTitle:'Scroll to see each project live.', scrollHint:'Keep scrolling', scrollArrow:'→',
     buildKicker:'02 — What I build', buildTitle:'Three things, at product quality.', buildSub:'A clean focus on what I do best.',
-    aboutKicker:'03 — About', aboutTitle:'About', stat1:'years of experience', stat2:'response time',
+    aboutKicker:'03 — About', aboutTitle:'About', stat1:'years in business', stat2:'response time',
     processKicker:'04 — How I work', processTitle:'From idea to a real product.', processSub:'A clear five-step process — you stay involved the whole way.',
     contactTitle:"Let's Build Something Great",
     contactSub:"Have an idea for a website, landing page or digital product? Let's talk.",
@@ -60,9 +60,9 @@ export const dict = {
     footer:'Made with care in Israel',
     marqueeItems:['AI-assisted development','Websites','Landing pages','Web applications','Product thinking','Based in Israel'],
     aboutParas:[
-      'I believe technology should be useful, beautiful and accessible.',
-      'Using modern development tools and AI-powered workflows, I help turn ideas into real digital products.',
-      'My focus is building websites, landing pages and web applications that look great and solve real problems.'
+      'I ran my own business for 10 years — so I know exactly what clients need, what sells, and where a website has to do the work.',
+      'I bring that experience to every project: not just a beautiful site, but a tool that delivers real results for the business.',
+      'Using AI and modern development, I build fast, precisely, and at a price that works for small and mid-size businesses.'
     ],
     services:[
       {no:'01', title:'Websites', desc:'Modern business and personal websites — fast and responsive.'},

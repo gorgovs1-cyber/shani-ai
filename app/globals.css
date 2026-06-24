@@ -113,11 +113,10 @@ html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after 
   top: 0; left: 0;
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--acc);
   transform: translate(-50%, -50%);
   transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
   z-index: 99999;
-  mix-blend-mode: multiply;
 }
 
 #cursor-ring {
