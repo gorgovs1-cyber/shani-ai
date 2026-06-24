@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "@/components/Logo";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
@@ -9,12 +9,34 @@ export default function Nav() {
   const { lang, setLang } = useLang();
   const t = dict[lang];
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   // Sync document direction when language changes
   useEffect(() => {
     document.documentElement.dir = t.dir;
     document.documentElement.lang = lang;
   }, [lang, t.dir]);
+
+  // Hide nav on scroll-down, show on scroll-up
+  useEffect(() => {
+    let rafId = 0;
+    const loop = () => {
+      const y = window.scrollY;
+      const diff = y - lastScrollY.current;
+      if (y < 80) {
+        setHidden(false);
+      } else if (diff > 4) {
+        setHidden(true);
+      } else if (diff < -4) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -27,16 +49,20 @@ export default function Nav() {
 
   return (
     <>
-      {/* Floating capsule */}
+      {/* Floating capsule — fixed, hides when scrolling down */}
       <div
         style={{
-          position: "sticky",
+          position: "fixed",
           top: 18,
+          left: 0,
+          right: 0,
           zIndex: 200,
           display: "flex",
           justifyContent: "center",
           padding: "0 24px",
           pointerEvents: "none",
+          transform: hidden ? "translateY(calc(-100% - 28px))" : "translateY(0)",
+          transition: "transform 0.38s cubic-bezier(0.32,0,0.16,1)",
         }}
       >
         <nav
@@ -207,6 +233,9 @@ export default function Nav() {
           </div>
         </nav>
       </div>
+
+      {/* Spacer so content doesn't hide under fixed nav */}
+      <div style={{ height: 76 }} aria-hidden="true" />
 
       {/* Mobile overlay menu */}
       {menuOpen && (

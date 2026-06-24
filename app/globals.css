@@ -229,6 +229,17 @@ html.lenis { height: auto; }
   }
 }
 
+/* ─── IFRAME PREVIEW SCROLL ─── */
+@keyframes preview-scroll {
+  0%, 6%   { transform: scale(0.2969) translateY(0); }
+  78%, 86% { transform: scale(0.2969) translateY(-1500px); }
+  97%, 100% { transform: scale(0.2969) translateY(0); }
+}
+/* Stagger delays so cards don't all scroll in sync */
+.preview-scroll   { animation: preview-scroll 11s ease-in-out infinite; }
+.preview-scroll-1 { animation-delay: -3.7s; }
+.preview-scroll-2 { animation-delay: -7.3s; }
+
 /* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
