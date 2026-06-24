@@ -2,18 +2,18 @@ export type Project = {
   slug: string;
   title: string;
   client: string;
-  category: string;     // EN type tag
-  categoryHe: string;   // HE type tag
+  category: string;
+  categoryHe: string;
   year: string;
-  tagline: string;      // HE
-  taglineEn: string;    // EN
-  description: string;  // HE
-  descriptionEn: string;// EN
+  tagline: string;
+  taglineEn: string;
+  description: string;
+  descriptionEn: string;
   tech: string[];
-  accent: string;       // unified signal accent
-  thumbnail: string;    // path under /public/projects/
-  video?: string;       // optional autoplay clip under /public/
-  liveUrl?: string;     // live demo — fill when available
+  accent: string;
+  thumbnail: string;
+  video?: string;
+  liveUrl?: string;
   featured: boolean;
 };
 
@@ -37,6 +37,7 @@ export const projects: Project[] = [
     accent: SIGNAL,
     thumbnail: "/projects/solis-thumb.jpg",
     video: "/solis.mp4",
+    liveUrl: "https://solis-orange.vercel.app/",
     featured: true,
   },
   {
@@ -55,6 +56,7 @@ export const projects: Project[] = [
     tech: ["GSAP", "ScrollTrigger", "Lenis", "Ambient Audio", "CSS Animation"],
     accent: SIGNAL,
     thumbnail: "/projects/rox-thumb.jpg",
+    liveUrl: "https://rox-watches.vercel.app/",
     featured: true,
   },
   {
@@ -73,6 +75,7 @@ export const projects: Project[] = [
     tech: ["HTML/CSS/JS", "Responsive", "UI/UX", "CTA Optimization"],
     accent: SIGNAL,
     thumbnail: "/projects/lilach-thumb.jpg",
+    liveUrl: "https://www.lilachhazan.com/",
     featured: false,
   },
   {
@@ -99,6 +102,7 @@ export const projects: Project[] = [
     ],
     accent: SIGNAL,
     thumbnail: "/projects/mymoney-thumb.jpg",
+    liveUrl: "https://my-money-app-tau.vercel.app/",
     featured: true,
   },
 ];

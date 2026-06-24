@@ -8,6 +8,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
 import LanguageProvider from "@/components/LanguageProvider";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import SkipLink from "@/components/SkipLink";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -25,7 +26,8 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Shani Gorgov — Web & AI Product Builder",
-  description: "שני גורגוב — בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI. ישראל.",
+  description:
+    "שני גורגוב — בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI. ישראל.",
   keywords: ["אתרים", "דפי נחיתה", "Web App", "AI", "Next.js", "ישראל", "שני גורגוב"],
   openGraph: {
     title: "Shani Gorgov — Web & AI Product Builder",
@@ -50,7 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="he"
       dir="rtl"
       className={`${heebo.variable} ${mono.variable}`}
-      style={{ fontFamily: "'Heebo', sans-serif" }}
     >
       <body>
         <LanguageProvider>
@@ -58,25 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div id="cursor-dot" aria-hidden="true" />
           <div id="cursor-ring" aria-hidden="true" />
           <LenisProvider>
+            <SkipLink />
             <Nav />
-            <a
-              href="#main-content"
-              style={{
-                position: "fixed",
-                top: "-100px",
-                left: 0,
-                zIndex: 99999,
-                background: "var(--acc)",
-                color: "#fff",
-                padding: "8px 16px",
-                fontWeight: 700,
-                transition: "top 0.2s",
-              }}
-              onFocus={(e) => { e.currentTarget.style.top = "0"; }}
-              onBlur={(e) => { e.currentTarget.style.top = "-100px"; }}
-            >
-              Skip to main content
-            </a>
             <main id="main-content">{children}</main>
           </LenisProvider>
           <AccessibilityWidget />
