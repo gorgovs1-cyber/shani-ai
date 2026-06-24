@@ -20,6 +20,10 @@ export default function LenisProvider({
 
       lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
 
+      // Expose lenis globally so other components (WorkGrid) can subscribe directly
+      (window as any).__lenis = lenis;
+      window.dispatchEvent(new CustomEvent("lenis:ready", { detail: lenis }));
+
       // Keep GSAP ScrollTrigger in sync with Lenis scroll position
       lenis.on("scroll", ScrollTrigger.update);
 
@@ -35,6 +39,7 @@ export default function LenisProvider({
       if (tickerCb) {
         import("gsap").then(({ gsap }) => gsap.ticker.remove(tickerCb!));
       }
+      (window as any).__lenis = null;
       lenis?.destroy();
     };
   }, []);
