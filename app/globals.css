@@ -186,6 +186,9 @@ html.lenis { height: auto; }
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
   .nav-spacer { height: 68px; }
+  .nav-subtitle { display: none !important; }
+  .nav-lang { display: none !important; }
+  .nav-cta { display: none !important; }
 }
 /* iOS Safari: fix fixed nav flicker */
 @supports (-webkit-touch-callout: none) {

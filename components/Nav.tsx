@@ -110,7 +110,7 @@ export default function Nav() {
               }}>
                 Shani Gorgov
               </span>
-              <span style={{
+              <span className="nav-subtitle" style={{
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
                 fontSize: 8.5,
                 letterSpacing: ".26em",
@@ -150,6 +150,7 @@ export default function Nav() {
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {/* Language toggle */}
             <div
+              className="nav-lang"
               role="group"
               aria-label="Language / שפה"
               style={{
@@ -193,6 +194,7 @@ export default function Nav() {
             {/* CTA pill */}
             <a
               href="#contact"
+              className="nav-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
