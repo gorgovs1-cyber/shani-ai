@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 
@@ -24,6 +24,22 @@ export default function WorkGrid() {
   const scrollLeft = useRef(0);
 
   const enterLabel = lang === "he" ? "כניסה לאתר" : "Visit site";
+
+  // Native non-passive wheel listener — React's onWheel is passive (document-level delegation)
+  // so preventDefault() is ignored there. This is the only way to intercept wheel horizontally.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        e.stopPropagation();
+        el.scrollLeft += e.deltaY + e.deltaX;
+      }
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
 
   return (
     <>
@@ -94,7 +110,7 @@ export default function WorkGrid() {
         <div
           ref={trackRef}
           role="list"
-          data-lenis-prevent
+          data-lenis-prevent-wheel
           style={{
             display: "flex", gap: 20,
             overflowX: "auto", overflowY: "hidden",
@@ -107,11 +123,6 @@ export default function WorkGrid() {
             msOverflowStyle: "none",
             scrollbarWidth: "none" as any,
           } as React.CSSProperties}
-          onWheel={(e) => {
-            if (!trackRef.current) return;
-            e.preventDefault();
-            trackRef.current.scrollLeft += e.deltaY + e.deltaX;
-          }}
           onMouseDown={(e) => {
             isDragging.current = true;
             startX.current = e.pageX - (trackRef.current?.offsetLeft ?? 0);

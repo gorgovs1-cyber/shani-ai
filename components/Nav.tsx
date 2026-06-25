@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
@@ -10,7 +10,6 @@ export default function Nav() {
   const t = dict[lang];
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const lastScrollY = useRef(0);
 
   // Sync document direction when language changes
   useEffect(() => {
@@ -18,24 +17,34 @@ export default function Nav() {
     document.documentElement.lang = lang;
   }, [lang, t.dir]);
 
-  // Hide nav on scroll-down, show on scroll-up
+  // Hide nav on scroll-down, show on scroll-up — subscribe to Lenis events
   useEffect(() => {
-    let rafId = 0;
-    const loop = () => {
-      const y = window.scrollY;
-      const diff = y - lastScrollY.current;
-      if (y < 80) {
-        setHidden(false);
-      } else if (diff > 4) {
-        setHidden(true);
-      } else if (diff < -4) {
-        setHidden(false);
-      }
-      lastScrollY.current = y;
-      rafId = requestAnimationFrame(loop);
+    let unsub: (() => void) | null = null;
+
+    const attach = (lenis: any) => {
+      const onScroll = (l: any) => {
+        // Lenis direction: 1 = scrolling UP, -1 = scrolling DOWN
+        const { scroll, direction } = l;
+        if (scroll < 80) setHidden(false);
+        else if (direction === -1) setHidden(true);
+        else if (direction === 1) setHidden(false);
+      };
+      lenis.on("scroll", onScroll);
+      unsub = () => lenis.off("scroll", onScroll);
     };
-    rafId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(rafId);
+
+    if ((window as any).__lenis) {
+      attach((window as any).__lenis);
+    } else {
+      const onReady = (e: Event) => attach((e as CustomEvent).detail);
+      window.addEventListener("lenis:ready", onReady);
+      return () => {
+        window.removeEventListener("lenis:ready", onReady);
+        unsub?.();
+      };
+    }
+
+    return () => { unsub?.(); };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
