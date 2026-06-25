@@ -25,21 +25,26 @@ export default function WorkGrid() {
 
   const enterLabel = lang === "he" ? "כניסה לאתר" : "Visit site";
 
-  // Native non-passive wheel listener — React's onWheel is passive (document-level delegation)
-  // so preventDefault() is ignored there. This is the only way to intercept wheel horizontally.
+  // Capture-phase wheel listener — Lenis registers at window level with capture,
+  // so we must also use capture:true to intercept before Lenis does.
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        e.stopPropagation();
-        el.scrollLeft += e.deltaY + e.deltaX;
-      }
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      el.scrollLeft += e.deltaY + e.deltaX;
     };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
+    el.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    return () => el.removeEventListener("wheel", onWheel, { capture: true });
   }, []);
+
+  const scroll = (dir: "prev" | "next") => {
+    const el = trackRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector("article")?.offsetWidth ?? 400;
+    el.scrollBy({ left: dir === "next" ? cardWidth + 20 : -(cardWidth + 20), behavior: "smooth" });
+  };
 
   return (
     <>
@@ -89,20 +94,40 @@ export default function WorkGrid() {
 
         {/* Header */}
         <div style={{
-          display: "flex", alignItems: "flex-end", justifyContent: "space-between",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
           gap: 20, padding: "clamp(44px,6vw,80px) clamp(24px,5vw,72px) 32px",
           flexWrap: "wrap",
         }}>
-          <div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)" }}>
-              {t.galleryKicker}
-            </div>
+          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)" }}>
+            {t.galleryKicker}
           </div>
-          <div className="gallery-hint" style={{
-            fontFamily: "'JetBrains Mono',monospace", fontSize: 12,
-            color: "var(--dmuted)", display: "flex", alignItems: "center", gap: 8,
-          }}>
-            {t.scrollHint} <span style={{ color: "var(--acc)" }}>{t.scrollArrow}</span>
+          {/* Arrow nav buttons */}
+          <div style={{ display: "flex", gap: 8 }}>
+            {(lang === "he" ? ["next","prev"] : ["prev","next"]).map((dir) => (
+              <button
+                key={dir}
+                onClick={() => scroll(dir as "prev" | "next")}
+                aria-label={dir === "prev" ? "Previous project" : "Next project"}
+                style={{
+                  width: 44, height: 44, borderRadius: "50%",
+                  border: "1px solid var(--dline)",
+                  background: "rgba(244,237,225,0.06)",
+                  color: "var(--dtext)", cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 18, transition: "background .2s, border-color .2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "var(--acc)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--acc)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.06)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--dline)";
+                }}
+              >
+                {dir === "prev" ? "←" : "→"}
+              </button>
+            ))}
           </div>
         </div>
 
