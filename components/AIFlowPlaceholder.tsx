@@ -47,20 +47,20 @@ export default function AIFlowPlaceholder() {
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: 9, letterSpacing: ".22em",
         color: "rgba(242,98,46,0.55)",
-        marginBottom: "clamp(14px,2.5vw,22px)",
+        marginBottom: "clamp(8px,1.5vw,14px)",
         textTransform: "uppercase",
       }}>
         AI WORKFLOW
       </div>
 
       {/* flow */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 260, gap: 0 }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: 210, gap: 0 }}>
         {NODES.map((node, i) => (
           <div key={node.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
 
             {/* connector + animated dot */}
             {i > 0 && (
-              <div style={{ position: "relative", width: 2, height: "clamp(18px,2.5vw,26px)", background: "rgba(242,98,46,0.15)", margin: "0 auto" }}>
+              <div style={{ position: "relative", width: 2, height: "clamp(12px,1.5vw,16px)", background: "rgba(242,98,46,0.15)", margin: "0 auto" }}>
                 <div style={{
                   position: "absolute", left: "50%", top: 0,
                   transform: "translateX(-50%)",
@@ -80,22 +80,22 @@ export default function AIFlowPlaceholder() {
                   ? "rgba(242,98,46,0.12)"
                   : "rgba(244,237,225,0.03)",
                 border: `1px solid ${node.id === "ai" ? "rgba(242,98,46,0.4)" : "rgba(244,237,225,0.07)"}`,
-                borderRadius: 10,
-                padding: "clamp(8px,1.2vw,12px) clamp(10px,1.5vw,16px)",
+                borderRadius: 8,
+                padding: "6px 10px",
                 animation: `nodePulse 3s ease-in-out ${node.delay}s infinite alternate`,
                 position: "relative",
               }}
             >
               {/* icon */}
               <div style={{
-                width: 30, height: 30, borderRadius: 7,
+                width: 24, height: 24, borderRadius: 6,
                 background: node.id === "ai" ? "rgba(242,98,46,0.2)" : "rgba(242,98,46,0.08)",
                 border: "1px solid rgba(242,98,46,0.25)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0,
               }}>
                 {node.id === "ai" ? (
-                  <svg viewBox="0 0 100 100" fill="none" width={16} height={16}
+                  <svg viewBox="0 0 100 100" fill="none" width={13} height={13}
                     style={{ animation: "aiSpin 4s linear infinite" }}>
                     <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z"
                       stroke="#f2622e" strokeWidth="8" strokeLinejoin="round" />
@@ -104,7 +104,7 @@ export default function AIFlowPlaceholder() {
                 ) : (
                   <span style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: node.icon === "</>" ? 9 : 13,
+                    fontSize: node.icon === "</>" ? 8 : 11,
                     color: "#f2622e", lineHeight: 1,
                   }}>{node.icon}</span>
                 )}
@@ -114,7 +114,7 @@ export default function AIFlowPlaceholder() {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{
                   color: node.id === "ai" ? "#f4ede1" : "rgba(244,237,225,0.7)",
-                  fontSize: "clamp(11px,1.1vw,13px)",
+                  fontSize: 11,
                   fontWeight: 700,
                   fontFamily: "'Heebo', sans-serif",
                   lineHeight: 1.2,

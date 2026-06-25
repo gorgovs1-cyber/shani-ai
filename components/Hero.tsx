@@ -122,7 +122,7 @@ export default function Hero() {
                 margin: 0,
                 color: "var(--dtext)",
                 fontWeight: 800,
-                fontSize: "clamp(40px, 5.2vw, 76px)",
+                fontSize: "clamp(32px, 4.2vw, 62px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.035em",
                 textWrap: "balance" as any,
