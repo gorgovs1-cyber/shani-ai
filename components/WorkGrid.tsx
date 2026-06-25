@@ -78,14 +78,9 @@ export default function WorkGrid() {
           flexWrap: "wrap",
         }}>
           <div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 12 }}>
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)" }}>
               {t.galleryKicker}
             </div>
-            <h2 style={{
-              margin: 0, color: "var(--dtext)", fontWeight: 800,
-              fontSize: "clamp(26px,3.2vw,44px)", lineHeight: 1.06,
-              letterSpacing: "-0.03em", fontFamily: "'Heebo',sans-serif",
-            }}>{t.galleryTitle}</h2>
           </div>
           <div className="gallery-hint" style={{
             fontFamily: "'JetBrains Mono',monospace", fontSize: 12,
@@ -99,9 +94,10 @@ export default function WorkGrid() {
         <div
           ref={trackRef}
           role="list"
+          data-lenis-prevent
           style={{
             display: "flex", gap: 20,
-            overflowX: "auto", overflowY: "visible",
+            overflowX: "auto", overflowY: "hidden",
             padding: "4px clamp(24px,5vw,72px) 20px",
             direction: "ltr",
             scrollSnapType: "x mandatory",
@@ -111,6 +107,11 @@ export default function WorkGrid() {
             msOverflowStyle: "none",
             scrollbarWidth: "none" as any,
           } as React.CSSProperties}
+          onWheel={(e) => {
+            if (!trackRef.current) return;
+            e.preventDefault();
+            trackRef.current.scrollLeft += e.deltaY + e.deltaX;
+          }}
           onMouseDown={(e) => {
             isDragging.current = true;
             startX.current = e.pageX - (trackRef.current?.offsetLeft ?? 0);
