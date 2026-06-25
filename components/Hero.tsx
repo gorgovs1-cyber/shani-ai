@@ -273,36 +273,6 @@ export default function Hero() {
               />
             </div>
 
-            {/* Name chip */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 18,
-                insetInline: 18,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                background: "rgba(20,16,9,0.72)",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
-                border: "1px solid var(--dline)",
-                borderRadius: 14,
-                padding: "13px 16px",
-              }}
-            >
-              <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <span style={{ color: "var(--dtext)", fontWeight: 700, fontSize: 15, fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}>
-                  Shani Gorgov
-                </span>
-                <span style={{ color: "var(--dmuted)", fontSize: 12.5, fontFamily: "'JetBrains Mono', var(--font-mono), monospace" }}>
-                  {t.role}
-                </span>
-              </div>
-              <svg viewBox="0 0 100 100" fill="none" aria-hidden="true" style={{ width: 30, height: 30, color: "var(--acc)" }}>
-                <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
-                <circle cx="50" cy="50" r="7" fill="currentColor" />
-              </svg>
-            </div>
           </div>
         </div>
       </div>
