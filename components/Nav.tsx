@@ -235,7 +235,7 @@ export default function Nav() {
       </div>
 
       {/* Spacer so content doesn't hide under fixed nav */}
-      <div style={{ height: 76 }} aria-hidden="true" />
+      <div className="nav-spacer" aria-hidden="true" />
 
       {/* Mobile overlay menu */}
       {menuOpen && (

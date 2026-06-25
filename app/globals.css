@@ -181,14 +181,47 @@ html.lenis { height: auto; }
 }
 
 /* ─── NAV ─── */
+.nav-spacer { height: 76px; }
 @media (max-width: 900px) {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
+  .nav-spacer { height: 68px; }
+}
+/* iOS Safari: fix fixed nav flicker */
+@supports (-webkit-touch-callout: none) {
+  .nav-spacer { height: 80px; }
 }
 
 /* ─── GALLERY HINT ─── */
 @media (max-width: 600px) {
   .gallery-hint { display: none !important; }
+}
+
+/* ─── MOBILE GLOBAL FIXES ─── */
+@media (max-width: 768px) {
+  /* Prevent any horizontal overflow breaking layout */
+  html, body { overflow-x: hidden !important; max-width: 100vw; }
+
+  /* Hero: smaller font, no overflow */
+  .hero-grid { gap: 0 !important; }
+
+  /* Gallery cards: full-width-ish on small screens */
+  [role="list"] article { min-width: 280px !important; }
+
+  /* Services / About / Process: stack */
+  .services-grid { grid-template-columns: 1fr !important; }
+  .about-grid    { grid-template-columns: 1fr !important; }
+  .process-grid  { grid-template-columns: 1fr !important; }
+
+  /* Contact CTA: stack */
+  .contact-cta-row { flex-direction: column !important; align-items: stretch !important; }
+  .contact-cta-row a { text-align: center !important; }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller screens */
+  [role="list"] article { min-width: 260px !important; }
+  .process-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ─── FOOTER MOBILE ─── */
@@ -229,19 +262,19 @@ html.lenis { height: auto; }
   }
 }
 
-/* ─── SITE MOCKUP AUTO-SCROLL ─── */
-@keyframes site-mockup-scroll {
-  0%, 8%   { transform: translateY(0); }
-  75%, 83% { transform: translateY(-420px); }
+/* ─── GALLERY SCREENSHOT SCROLL ─── */
+@keyframes preview-img-scroll {
+  0%, 10%  { transform: translateY(0); }
+  75%, 85% { transform: translateY(calc(-100% + 212px)); }
   97%, 100% { transform: translateY(0); }
 }
-.site-mockup-anim {
-  animation: site-mockup-scroll 9s ease-in-out infinite;
-}
-/* Stagger so cards animate at different phases */
-article:nth-child(2) .site-mockup-anim { animation-delay: -3s; }
-article:nth-child(3) .site-mockup-anim { animation-delay: -6s; }
-article:nth-child(4) .site-mockup-anim { animation-delay: -1.5s; }
+.preview-img-wrap   { animation: preview-img-scroll 10s ease-in-out infinite; }
+.preview-delay-1    { animation-delay: -3.3s; }
+.preview-delay-2    { animation-delay: -6.6s; }
+.preview-delay-3    { animation-delay: -1.7s; }
+
+/* Hide scrollbar inside gallery track */
+[role="list"]::-webkit-scrollbar { display: none; }
 
 /* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
