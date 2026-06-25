@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import AIFlowPlaceholder from "@/components/AIFlowPlaceholder";
 
 export default function Hero() {
   const { lang } = useLang();
@@ -259,29 +260,8 @@ export default function Hero() {
                 boxShadow: "0 30px 70px -30px rgba(0,0,0,.6)",
               }}
             >
-              {/* Portrait placeholder — replace with <Image> when photo is ready */}
-              <div
-                aria-label="Hero portrait placeholder"
-                style={{
-                  width: "100%",
-                  aspectRatio: "4/5",
-                  background: "linear-gradient(160deg, #241b12 0%, #100c08 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {/* Placeholder hexagon */}
-                <svg
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  aria-hidden="true"
-                  style={{ width: 64, height: 64, color: "var(--acc)", opacity: 0.3 }}
-                >
-                  <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
-                  <circle cx="50" cy="50" r="6.5" fill="currentColor" />
-                </svg>
-              </div>
+              {/* AI Flow diagram — replace with <Image> when portrait photo is ready */}
+              <AIFlowPlaceholder />
               {/* Bottom scrim */}
               <div
                 style={{
