@@ -4,22 +4,22 @@ export const dict = {
     navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navCta:'בואו נדבר',
     role:'Web & AI Product Builder',
     heroTitle:'בונה אתרים, דפי נחיתה ומוצרים דיגיטליים.',
-    heroSub:'אני בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI, עם דגש על עיצוב, חוויית משתמש וחשיבה מוצרית.',
+    heroSub:'אני בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI, תוך תשומת לב לעיצוב, חוויית משתמש וחשיבה מוצרית.',
     heroCta1:'לצפייה בפרויקטים', heroCta2:'בואו נדבר',
     meta1:'ישראל', meta2:'תגובה תוך 24 שעות', meta3:'פיתוח מבוסס AI',
     workKicker:'01 — עבודות', workTitle:'פרויקטים נבחרים', workSub:'מוצרים דיגיטליים, אתרים ואפליקציות שבניתי.',
     galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'←',
-    buildKicker:'02 — מה אני בונה', buildTitle:'שלושה דברים, ברמת מוצר.', buildSub:'מיקוד נקי במה שאני עושה הכי טוב.',
-    aboutKicker:'03 — עליי', aboutTitle:'קצת עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
-    processKicker:'04 — איך אני עובדת', processTitle:'מרעיון למוצר אמיתי.', processSub:'תהליך ברור בחמישה שלבים — את מעורבת לאורך כל הדרך.',
+    buildKicker:'02 — מה אני בונה', buildTitle:'שלושה דברים, ברמת מוצר.', buildSub:'שלושה שירותים, ברמה גבוהה.',
+    aboutKicker:'03 — עליי', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
+    processKicker:'04 — איך אני עובדת', processTitle:'מרעיון למוצר.', processSub:'תהליך ברור בחמישה שלבים, את מעורבת לאורך כל הדרך.',
     contactTitle:'בואו נבנה משהו מעולה',
     contactSub:'יש לכם רעיון לאתר, דף נחיתה או מוצר דיגיטלי? בואו נדבר.',
     contactCta1:'דברו איתי בוואטסאפ', contactCta2:'שלחו לי מייל',
     footer:'נבנה באהבה בישראל',
     marqueeItems:['פיתוח מבוסס AI','אתרים','דפי נחיתה','אפליקציות Web','חשיבה מוצרית','מבוססת בישראל'],
     aboutParas:[
-      '10 שנים ניהלתי עסק משלי — אז אני יודעת בדיוק מה לקוח צריך, מה מוכר ומה לא, ואיפה האתר צריך לעשות את העבודה.',
-      'היום אני מביאה את הניסיון הזה לכל פרויקט: לא רק אתר יפה — אלא כלי שמביא תוצאות אמיתיות לעסק.',
+      '10 שנים ניהלתי עסק משלי, אז אני יודעת בדיוק מה לקוח צריך, מה מוכר ומה לא, ואיפה האתר צריך לעשות את העבודה.',
+      'היום אני מביאה את הניסיון הזה לכל פרויקט: לא רק אתר יפה, אלא כלי שמביא תוצאות לעסק.',
       'בעזרת AI ופיתוח מודרני, אני בונה מהר, בדיוק ובמחיר שמתאים לעסקים קטנים ובינוניים.'
     ],
     services:[
@@ -28,7 +28,7 @@ export const dict = {
       {no:'03', title:'אפליקציות Web', desc:'מוצרים דיגיטליים ופלטפורמות Web מותאמות אישית.'}
     ],
     projects:[
-      {title:'My Money', kind:'מוצר אישי', mono:'M', url:'https://my-money-app-tau.vercel.app/', desc:'פלטפורמה לניהול פיננסי שעוצבה עבור עצמאיות ובעלות עסקים קטנים.', tags:['Web App','Finance','AI']},
+      {title:'My Money', kind:'מוצר אישי', mono:'M', url:'https://my-money-app-tau.vercel.app/', desc:'פלטפורמה לניהול פיננסי שבניתי לעצמאיות ובעלות עסקים קטנים.', tags:['Web App','Finance','AI']},
       {title:'Lilach Hazan', kind:'פרויקט לקוח', mono:'L', url:'https://www.lilachhazan.com/', desc:'אתר עסקי מקצועי שבניתי עבור לילך חזן.', tags:['Website','Client Work']},
       {title:'Rox', kind:'פרויקט קונספט', mono:'R', url:'https://rox-watches.vercel.app/', desc:'חוויית איקומרס למותג שעוני יוקרה.', tags:['Ecommerce','Concept']},
       {title:'Solis', kind:'פרויקט קונספט', mono:'S', url:'https://solis-orange.vercel.app/', desc:'חוויית מותג למשקה פרימיום.', tags:['Brand Experience','Concept']}
@@ -53,7 +53,7 @@ export const dict = {
     galleryKicker:'Up close', galleryTitle:'', scrollHint:'Keep scrolling', scrollArrow:'→',
     buildKicker:'02 — What I build', buildTitle:'Three things, at product quality.', buildSub:'A clean focus on what I do best.',
     aboutKicker:'03 — About', aboutTitle:'About', stat1:'years in business', stat2:'response time',
-    processKicker:'04 — How I work', processTitle:'From idea to a real product.', processSub:'A clear five-step process — you stay involved the whole way.',
+    processKicker:'04 — How I work', processTitle:'From idea to a product.', processSub:'A clear five-step process, you stay involved the whole way.',
     contactTitle:"Let's Build Something Great",
     contactSub:"Have an idea for a website, landing page or digital product? Let's talk.",
     contactCta1:'Message me on WhatsApp', contactCta2:'Send me an email',
@@ -61,7 +61,7 @@ export const dict = {
     marqueeItems:['AI-assisted development','Websites','Landing pages','Web applications','Product thinking','Based in Israel'],
     aboutParas:[
       'I ran my own business for 10 years — so I know exactly what clients need, what sells, and where a website has to do the work.',
-      'I bring that experience to every project: not just a beautiful site, but a tool that delivers real results for the business.',
+      'I bring that experience to every project: not just a beautiful site, but a tool that delivers results for the business.',
       'Using AI and modern development, I build fast, precisely, and at a price that works for small and mid-size businesses.'
     ],
     services:[
