@@ -177,7 +177,7 @@ html.lenis { height: auto; }
 /* ─── HERO GRID ─── */
 @media (max-width: 768px) {
   .hero-grid { grid-template-columns: 1fr !important; }
-  .portrait { display: none !important; }
+  .portrait { display: block !important; margin-top: 24px; border-radius: 16px; overflow: hidden; }
 }
 
 /* ─── NAV ─── */
