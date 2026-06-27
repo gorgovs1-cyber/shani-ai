@@ -176,8 +176,13 @@ html.lenis { height: auto; }
 
 /* ─── HERO GRID ─── */
 @media (max-width: 768px) {
-  .hero-grid { grid-template-columns: 1fr !important; }
-  .portrait { display: block !important; margin-top: 24px; border-radius: 16px; overflow: hidden; }
+  .hero-grid { grid-template-columns: 1fr !important; padding: 28px 20px 0 20px !important; gap: 0 !important; }
+  .portrait { display: block !important; margin-top: 16px !important; border-radius: 0 !important; overflow: hidden; }
+  .terminal-boot { display: none !important; }
+  .hero-grid-overlay { display: none !important; }
+  .hero-grid h1 { font-size: clamp(24px, 7vw, 34px) !important; line-height: 1.12 !important; }
+  .hero-grid p { font-size: 15px !important; margin-top: 16px !important; }
+  .hero-meta-row { display: none !important; }
 }
 
 /* ─── NAV ─── */
@@ -286,11 +291,4 @@ html.lenis { height: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-@media (pointer: none), (pointer: coarse) {
-  #cursor-dot, #cursor-ring { display: none; }
-  html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after { cursor: auto !important; }
-}
+    scroll-behavior: auto !imp

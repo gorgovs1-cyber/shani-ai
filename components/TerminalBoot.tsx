@@ -25,6 +25,7 @@ export default function TerminalBoot() {
 
   return (
     <div
+      className="terminal-boot"
       style={{
         fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
         fontSize: 12,

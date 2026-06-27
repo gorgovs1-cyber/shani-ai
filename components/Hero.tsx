@@ -61,6 +61,7 @@ export default function Hero() {
         {/* Grid overlay */}
         <div
           aria-hidden="true"
+          className="hero-grid-overlay"
           style={{
             position: "absolute",
             inset: 0,
@@ -222,6 +223,7 @@ export default function Hero() {
 
             {/* Meta row */}
             <div
+              className="hero-meta-row"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -291,8 +293,4 @@ export default function Hero() {
             </div>
 
           </div>
-        </div>
-      </div>
-    </header>
-  );
-}
+        <
