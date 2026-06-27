@@ -4,14 +4,10 @@ import { useState, useEffect } from "react";
 
 const lines = [
   { text: "> SHANI_AI_CREATOR.init()", accent: true },
-  { text: "> טוענת כלים...", accent: false },
-  { text: "> אתרים קולנועיים    [✓]", accent: false },
-  { text: "> אוטומציות AI       [✓]", accent: false },
-  { text: "> ייעוץ מדויק        [✓]", accent: false },
   { text: "> READY_", accent: true },
 ];
 
-const DELAYS = [0, 600, 1200, 1800, 2400, 3100];
+const DELAYS = [0, 600];
 
 export default function TerminalBoot() {
   const [visible, setVisible] = useState<number[]>([]);
