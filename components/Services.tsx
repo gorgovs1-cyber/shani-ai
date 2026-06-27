@@ -132,7 +132,7 @@ export default function Services() {
                 fontWeight: 700,
                 fontSize: 17,
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                color: "var(--text, #f4ede1)",
+                color: "var(--ink)",
               }}>
                 {(s as any).subtitle}
               </div>

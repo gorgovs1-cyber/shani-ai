@@ -109,7 +109,7 @@ export default function FAQ() {
                 style={{
                   fontWeight: 700,
                   fontSize: 17,
-                  color: "var(--text, #f4ede1)",
+                  color: "var(--ink)",
                   fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                   lineHeight: 1.4,
                 }}
