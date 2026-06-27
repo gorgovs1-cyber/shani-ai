@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import TerminalBoot from "@/components/TerminalBoot";
 
 export default function Hero() {
   const { lang } = useLang();
@@ -85,6 +86,8 @@ export default function Hero() {
         >
           {/* Left: content */}
           <div style={{ animation: "scl-fadeup 1s ease 3.3s both" }}>
+            {/* Terminal boot animation */}
+            <TerminalBoot />
             {/* Role badge */}
             <div
               style={{
