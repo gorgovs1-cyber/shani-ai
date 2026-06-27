@@ -84,7 +84,7 @@ export default function Hero() {
           }}
         >
           {/* Left: content */}
-          <div style={{ animation: "scl-fadeup 1s ease 3.3s both" }}>
+          <div style={{ animation: "scl-fadeup 0.8s ease 0.1s both" }}>
             {/* Role badge */}
             <div
               style={{
@@ -244,7 +244,7 @@ export default function Hero() {
           <div
             ref={portraitRef}
             className="portrait"
-            style={{ position: "relative", animation: "scl-fadeup 1s ease 3.45s both" }}
+            style={{ position: "relative", animation: "scl-fadeup 0.8s ease 0.2s both" }}
           >
             {/* Glow behind card */}
             <div
