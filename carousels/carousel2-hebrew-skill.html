@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קרוסלה 2 — עברית ב-Claude Desktop | Shani AI Creator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+  :root {
+    --orange: #f2622e;
+    --bg: #141009;
+    --text: #f4ede1;
+    --text-dim: #a09890;
+    --slide-size: 540px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0805;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+    direction: rtl;
+  }
+
+  h1 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, var(--slide-size));
+    gap: 20px;
+    max-width: 1680px;
+  }
+
+  .slide {
+    width: var(--slide-size);
+    height: var(--slide-size);
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px;
+    border: 1px solid rgba(242, 98, 46, 0.12);
+  }
+
+  .slide-num {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(242, 98, 46, 0.3);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  .brand {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  /* Corner decorations */
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+  }
+  .corner-tl {
+    top: 20px;
+    right: 20px;
+    border-top: 2px solid var(--orange);
+    border-right: 2px solid var(--orange);
+  }
+  .corner-br {
+    bottom: 20px;
+    left: 20px;
+    border-bottom: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+  }
+
+  /* ── SLIDE 1 ── Hook */
+  .slide-1::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(242,98,46,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hook-question {
+    color: var(--text);
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .hook-question em {
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  .hook-answer {
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  .hook-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(242,98,46,0.4);
+    padding: 8px 14px;
+    color: var(--orange);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CONTENT SLIDES ── */
+  .slide-tag {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slide-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(242,98,46,0.25);
+  }
+
+  .accent-line {
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 20px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .slide-title {
+    color: var(--text);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .slide-title .orange { color: var(--orange); }
+
+  .slide-body {
+    color: var(--text-dim);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* Problem list (red X) */
+  .problem-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .problem-list li {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .problem-list li .x-mark {
+    color: #e04040;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Check/benefit list (orange ✦) */
+  .benefit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .benefit-list li {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .benefit-list li .bullet {
+    color: var(--orange);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Step list */
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 14px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: right;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    background: var(--orange);
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: 0;
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: rgba(242,98,46,0.08);
+    border-right: 3px solid var(--orange);
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+
+  .highlight-box p {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SLIDE 6 ── CTA */
+  .slide-cta {
+    text-align: center;
+    align-items: center;
+  }
+
+  .slide-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(242,98,46,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-headline {
+    color: var(--text);
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-action-box {
+    background: rgba(242,98,46,0.12);
+    border: 1.5px solid var(--orange);
+    padding: 14px 40px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-action-label {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cta-keyword {
+    color: var(--orange);
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .print-label {
+    color: rgba(244,237,225,0.2);
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<h1>קרוסלה 2 — עברית ב-Claude Desktop · 6 שקופיות · @shani.creates.ai</h1>
+
+<div class="carousel-grid">
+
+  <!-- SLIDE 1: Hook -->
+  <div class="slide slide-1">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">01 / 06</div>
+    <div class="hook-question">Claude לא כותב לך <em>עברית</em> כמו שצריך?</div>
+    <div class="hook-answer">בניתי סקיל שפותר את זה.</div>
+    <div class="hook-badge">✦ חינם &nbsp;·&nbsp; 30 שניות להתקנה</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 2: הבעיה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">02 / 06</div>
+    <div class="slide-tag">01 | הבעיה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">ברירת המחדל <span class="orange">שבורה.</span></div>
+    <ul class="problem-list">
+      <li><span class="x-mark">✗</span> מגיב באנגלית גם כשכותבים עברית</li>
+      <li><span class="x-mark">✗</span> RTL לא עובד חלק</li>
+      <li><span class="x-mark">✗</span> הפורמט מתבלבל</li>
+    </ul>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 3: הפתרון -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">03 / 06</div>
+    <div class="slide-tag">02 | הפתרון</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">סקיל <span class="orange">שבניתי.</span></div>
+    <div class="slide-body">Skill אחד שמלמד את Claude לעבוד בעברית מושלמת —</div>
+    <div class="highlight-box">
+      <p>RTL, ניסוח טבעי, תשובות שנשמעות כמו בן אדם.</p>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 4: התקנה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">04 / 06</div>
+    <div class="slide-tag">03 | התקנה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title"><span class="orange">3</span> שלבים.</div>
+    <ul class="step-list">
+      <li>
+        <span class="step-num">1</span>
+        הורידו את הסקיל<br><small style="color:var(--text-dim);">(קישור בתגובה)</small>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        גרירה ל-Claude Desktop
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <span style="color:var(--orange); font-weight:600;">סיימת.</span>
+      </li>
+    </ul>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 5: מה מקבלים -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">05 / 06</div>
+    <div class="slide-tag">04 | מה מקבלים</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">מה זה עושה?</div>
+    <ul class="benefit-list">
+      <li><span class="bullet">✦</span> עברית טבעית בכל תשובה</li>
+      <li><span class="bullet">✦</span> RTL נכון</li>
+      <li><span class="bullet">✦</span> Claude שמבין הקשר ישראלי</li>
+      <li><span class="bullet">✦</span> חוסכת 10 דקות הגדרות בכל שיחה</li>
+    </ul>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 6: CTA -->
+  <div class="slide slide-cta">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">06 / 06</div>
+    <div class="cta-headline">רוצה<br>את הסקיל?</div>
+    <div class="cta-action-box">
+      <div class="cta-action-label">הגיבו בתגובות</div>
+      <div class="cta-keyword">RTL</div>
+    </div>
+    <div class="cta-sub">ואשלח לך אוטומטית 🎁</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+</div>
+
+<p class="print-label">1080×1080px per slide · Instagram Post Square · @shani.creates.ai</p>
+
+</body>
+</html>

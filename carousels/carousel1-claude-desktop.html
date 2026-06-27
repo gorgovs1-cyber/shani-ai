@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קרוסלה 1 — איך מתקינים Claude Desktop | Shani AI Creator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+  :root {
+    --orange: #f2622e;
+    --bg: #141009;
+    --text: #f4ede1;
+    --text-dim: #a09890;
+    --slide-size: 540px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0805;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+    direction: rtl;
+  }
+
+  h1 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, var(--slide-size));
+    gap: 20px;
+    max-width: 1680px;
+  }
+
+  .slide {
+    width: var(--slide-size);
+    height: var(--slide-size);
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px;
+    border: 1px solid rgba(242, 98, 46, 0.12);
+  }
+
+  /* Slide number label */
+  .slide-num {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(242, 98, 46, 0.3);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  /* Brand watermark */
+  .brand {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+  }
+
+  /* ── SLIDE 1 ── Hook */
+  .slide-1 {
+    background: var(--bg);
+  }
+
+  .slide-1::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(242,98,46,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .slide-1::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(242,98,46,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hook-eyebrow {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+
+  .hook-headline {
+    color: var(--orange);
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+
+  .hook-sub {
+    color: var(--text);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .hook-small {
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* Accent line */
+  .accent-line {
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 24px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  /* ── SLIDES 2–6 ── Content */
+  .slide-tag {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slide-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(242,98,46,0.25);
+  }
+
+  .slide-title {
+    color: var(--text);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .slide-title .orange { color: var(--orange); }
+
+  .slide-body {
+    color: var(--text-dim);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  /* List items */
+  .slide-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .slide-list li {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .slide-list li .bullet {
+    color: var(--orange);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── SLIDE 7 ── CTA */
+  .slide-7 {
+    background: var(--bg);
+    text-align: center;
+    align-items: center;
+  }
+
+  .slide-7::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(242,98,46,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 80%, rgba(242,98,46,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .cta-headline {
+    color: var(--text);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-action-box {
+    background: rgba(242,98,46,0.12);
+    border: 1.5px solid var(--orange);
+    padding: 14px 36px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-action-label {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cta-keyword {
+    color: var(--orange);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .cta-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Decorative corner elements */
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+  }
+  .corner-tl {
+    top: 20px;
+    right: 20px;
+    border-top: 2px solid var(--orange);
+    border-right: 2px solid var(--orange);
+  }
+  .corner-br {
+    bottom: 20px;
+    left: 20px;
+    border-bottom: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+  }
+
+  /* Slide 4 highlight box */
+  .highlight-box {
+    background: rgba(242,98,46,0.08);
+    border-right: 3px solid var(--orange);
+    padding: 14px 16px;
+    margin-top: 16px;
+  }
+
+  .highlight-box p {
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Nav hint */
+  .nav-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    padding: 16px 0;
+  }
+  .nav-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(242,98,46,0.3);
+  }
+  .nav-dots span.active {
+    background: var(--orange);
+    width: 20px;
+    border-radius: 3px;
+  }
+
+  .print-label {
+    color: rgba(244,237,225,0.2);
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<h1>קרוסלה 1 — איך מתקינים Claude Desktop · 7 שקופיות · @shani.creates.ai</h1>
+
+<div class="carousel-grid">
+
+  <!-- SLIDE 1: Hook -->
+  <div class="slide slide-1">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">01 / 07</div>
+    <div class="hook-eyebrow">@shani.creates.ai</div>
+    <div class="hook-headline">כולם מדברים על ChatGPT.</div>
+    <div class="hook-sub">Claude Desktop משנה את המשחק.</div>
+    <div class="hook-small">(ואף אחד לא מסביר אותו בעברית)</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 2: מה זה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">02 / 07</div>
+    <div class="slide-tag">01 | מה זה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">לא אתר.<br><span class="orange">תוכנה.</span></div>
+    <div class="slide-body">Claude Desktop רץ אצלך על המחשב. גישה לקבצים שלך, לפרויקטים שלך, לכלים שלך.<br><br>AI שיודע מי את.</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 3: הורדה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">03 / 07</div>
+    <div class="slide-tag">02 | הורדה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title" style="font-size:28px; color: var(--orange);">claude.ai/download</div>
+    <div class="slide-body" style="margin-top:12px;">הורידו לפי מערכת ההפעלה שלך —</div>
+    <div class="highlight-box" style="margin-top:14px;">
+      <p>🍎 <strong>Mac</strong> → .dmg<br>🪟 <strong>Windows</strong> → .exe</p>
+    </div>
+    <div class="slide-body" style="margin-top:16px; color: var(--orange);">חינמי לחלוטין.</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 4: התקנה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">04 / 07</div>
+    <div class="slide-tag">03 | התקנה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">דקה <span class="orange">אחת.</span></div>
+    <div class="slide-body">פתחו את הקובץ שהורדת והתקינו כרגיל.</div>
+    <div class="highlight-box">
+      <p>אין קוד.<br>אין הגדרות מסובכות.<br>ממש כמו כל תוכנה אחרת.</p>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 5: התחברות -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">05 / 07</div>
+    <div class="slide-tag">04 | התחברות</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">התחברו<br>לחשבון Claude</div>
+    <div class="slide-body">אין חשבון? אין בעיה —</div>
+    <div class="highlight-box">
+      <p><span style="color:var(--orange);">claude.ai</span> → הרשמה חינמית<br>תוך דקה בפנים.</p>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 6: למה שווה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">06 / 07</div>
+    <div class="slide-tag">05 | למה שווה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">מה מקבלים?</div>
+    <ul class="slide-list">
+      <li><span class="bullet">✦</span> זוכר את ההקשר שלך</li>
+      <li><span class="bullet">✦</span> גישה לקבצים מקומיים</li>
+      <li><span class="bullet">✦</span> Skills &amp; Plugins</li>
+      <li><span class="bullet">✦</span> עובד בלי דפדפן</li>
+    </ul>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide slide-7">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">07 / 07</div>
+    <div class="cta-headline">רוצה<br>מדריך מלא?</div>
+    <div class="cta-action-box">
+      <div class="cta-action-label">הגיבו בתגובות</div>
+      <div class="cta-keyword">CLAUDE</div>
+    </div>
+    <div class="cta-sub">ואשלח לך אוטומטית 👇</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+</div>
+
+<p class="print-label">1080×1080px per slide · Instagram Post Square · @shani.creates.ai</p>
+
+</body>
+</html>
