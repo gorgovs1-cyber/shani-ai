@@ -3,7 +3,7 @@ export const dict = {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navCta:'בואו נדבר',
     role:'SHANI AI CREATOR',
-    heroTitle:'היי, אני שני. חוסכת לכם זמן ומשדרגת את הנוכחות הדיגיטלית שלכם.',
+    heroTitle:'בונה אתרים, כלי AI ואוטומציות.',
     heroSub:'אתר קולנועי שגורם ללקוחות להישאר. אוטומציות שמריצות את העסק 24/7. ייעוץ AI שמוריד לכם עומסים. מהר ופשוט.',
     heroCta1:'לצפייה בפרויקטים', heroCta2:'בואו נדבר',
     auditCtaPrefix:'לא בטוחים מאיפה להתחיל?', auditCtaLink:'התחילו עם אבחון AI ←',
@@ -54,7 +54,7 @@ export const dict = {
     dir: 'ltr' as const,
     navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navCta:"Let's talk",
     role:'SHANI AI CREATOR',
-    heroTitle:'Hi, I\'m Shani. I save you time and upgrade your digital presence.',
+    heroTitle:'Websites, AI tools, and automations.',
     heroSub:'A cinematic website that keeps clients hooked. Automations that run your business 24/7. AI consulting that removes your workload. Fast and simple.',
     heroCta1:'View Projects', heroCta2:"Let's Talk",
     auditCtaPrefix:'Not sure where to start?', auditCtaLink:'Begin with an AI Audit →',
@@ -105,3 +105,4 @@ export const dict = {
 
 export type Lang = 'he' | 'en';
 export type Dict = typeof dict.he;
+                                                                                         
