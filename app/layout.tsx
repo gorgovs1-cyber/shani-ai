@@ -5,7 +5,6 @@ import Nav from "@/components/Nav";
 import LenisProvider from "@/components/LenisProvider";
 import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import SplashScreen from "@/components/SplashScreen";
 import LanguageProvider from "@/components/LanguageProvider";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 import SkipLink from "@/components/SkipLink";
@@ -76,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <LanguageProvider>
-          <SplashScreen />
           <div id="cursor-dot" aria-hidden="true" />
           <div id="cursor-ring" aria-hidden="true" />
           <LenisProvider>
