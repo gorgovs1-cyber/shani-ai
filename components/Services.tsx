@@ -116,26 +116,60 @@ export default function Services() {
             </div>
             <h3
               style={{
-                margin: "0 0 12px",
+                margin: "0 0 6px",
                 fontWeight: 800,
-                fontSize: 24,
+                fontSize: 22,
                 letterSpacing: "-0.01em",
-                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                color: "var(--acc)",
               }}
             >
               {s.title}
             </h3>
+            {'subtitle' in s && (
+              <div style={{
+                margin: "0 0 14px",
+                fontWeight: 700,
+                fontSize: 17,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                color: "var(--text, #f4ede1)",
+              }}>
+                {(s as any).subtitle}
+              </div>
+            )}
             <p
               style={{
                 margin: 0,
                 color: "var(--muted2)",
-                fontSize: 16,
-                lineHeight: 1.62,
+                fontSize: 15,
+                lineHeight: 1.65,
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                flexGrow: 1,
               }}
             >
               {s.desc}
             </p>
+            <a
+              href={`https://wa.me/972504744815?text=${encodeURIComponent(`היי שני, אני מתעניינת ב${s.title}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                marginTop: 28,
+                color: "var(--acc)",
+                fontSize: 14,
+                fontWeight: 700,
+                textDecoration: "none",
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                borderTop: "1px solid var(--line)",
+                paddingTop: 20,
+                width: "100%",
+              }}
+            >
+              {t.servicesCta} ←
+            </a>
           </div>
         ))}
       </div>

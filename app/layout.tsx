@@ -25,22 +25,22 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shani Gorgov — Web & AI Product Builder",
+  title: "בניית אתרים עסקיים ואוטומציה AI | שני גורגוב — ישראל",
   description:
-    "שני גורגוב — בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI. ישראל.",
-  keywords: ["אתרים", "דפי נחיתה", "Web App", "AI", "Next.js", "ישראל", "שני גורגוב"],
+    "שני גורגוב — אתרים קולנועיים, אוטומציות AI ושיחת מיפוי לעסקים קטנים ובינוניים בישראל. תגובה תוך 24 שעות.",
+  keywords: ["בניית אתרים", "אתרים עסקיים", "דפי נחיתה", "אוטומציה AI", "AI לעסקים", "ישראל", "שני גורגוב", "SHANI AI CREATOR"],
   openGraph: {
-    title: "Shani Gorgov — Web & AI Product Builder",
-    description: "בונה אתרים, דפי נחיתה ומוצרים דיגיטליים מודרניים בעזרת AI.",
-    siteName: "Shani Gorgov",
+    title: "שני גורגוב | SHANI AI CREATOR",
+    description: "אתרים קולנועיים, אוטומציות AI ושיחת מיפוי לעסקים קטנים ובינוניים בישראל.",
+    siteName: "SHANI AI CREATOR",
     type: "website",
     locale: "he_IL",
     url: "https://shani-ai.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shani Gorgov — Web & AI Product Builder",
-    description: "אתרים, דפי נחיתה ומוצרים דיגיטליים. ישראל.",
+    title: "שני גורגוב | SHANI AI CREATOR",
+    description: "אתרים קולנועיים, אוטומציות AI ושיחת מיפוי לעסקים בישראל.",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://shani-ai.vercel.app" },
@@ -54,6 +54,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${heebo.variable} ${mono.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "שני גורגוב | SHANI AI CREATOR",
+              "url": "https://shani-ai.vercel.app",
+              "telephone": "+972504744815",
+              "email": "gorgovs1@gmail.com",
+              "address": { "@type": "PostalAddress", "addressCountry": "IL" },
+              "description": "בניית אתרים עסקיים, אוטומציות AI ושיחת מיפוי לעסקים קטנים ובינוניים בישראל",
+              "priceRange": "₪₪",
+              "knowsLanguage": ["he", "en"],
+              "sameAs": [
+                "https://www.instagram.com/shani.gorgov/",
+                "https://www.linkedin.com/in/shani-gorgov/"
+              ]
+            })
+          }}
+        />
         <LanguageProvider>
           <SplashScreen />
           <div id="cursor-dot" aria-hidden="true" />

@@ -209,6 +209,14 @@ export default function Hero() {
               </a>
             </div>
 
+            {/* AI Audit mini-CTA */}
+            <div style={{ marginTop: 18, fontSize: 14, color: "var(--dmuted)", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}>
+              {t.auditCtaPrefix}{" "}
+              <a href="#contact" style={{ color: "var(--acc)", textDecoration: "underline", textUnderlineOffset: 3, fontWeight: 600 }}>
+                {t.auditCtaLink}
+              </a>
+            </div>
+
             {/* Meta row */}
             <div
               style={{
