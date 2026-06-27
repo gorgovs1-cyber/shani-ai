@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
-import AIFlowPlaceholder from "@/components/AIFlowPlaceholder";
 
 export default function Hero() {
   const { lang } = useLang();
@@ -268,8 +268,14 @@ export default function Hero() {
                 boxShadow: "0 30px 70px -30px rgba(0,0,0,.6)",
               }}
             >
-              {/* AI Flow diagram — replace with <Image> when portrait photo is ready */}
-              <AIFlowPlaceholder />
+              <Image
+                src="/portrait.png"
+                alt="Shani Gorgov — SHANI AI CREATOR"
+                width={1448}
+                height={1086}
+                priority
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
               {/* Bottom scrim */}
               <div
                 style={{
