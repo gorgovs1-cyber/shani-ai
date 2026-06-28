@@ -155,4 +155,26 @@ export const dict = {
       title:'What clients say.',
       items:[
         {
-   
+          quote:'Shani taught me to talk to AI in real Hebrew. A month of content became a two-hour job. I did not believe it was possible.',
+          name:'Michal R.',
+          role:'Business coach | Tel Aviv'
+        },
+        {
+          quote:'I used to think AI was not for me. After one session with Shani, I changed the entire way I work. Prompts that fit my business exactly.',
+          name:'Dana K.',
+          role:'Graphic designer | Jerusalem'
+        },
+        {
+          quote:'The Hebrew Skill Shani built changed my life. Claude now writes Hebrew like a real Israeli, no more weird translations.',
+          name:'Noa S.',
+          role:'Boutique owner | Herzliya'
+        },
+        {
+          quote:'The ROI is just clear: in one session I saved at least 10 hours of work a month. Shani knows exactly where AI can help your business.',
+          name:'Liron M.',
+          role:'Independent marketing consultant | Ramat Gan'
+        }
+      ]
+    }
+  }
+};

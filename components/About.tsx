@@ -148,4 +148,24 @@ export default function About() {
         </div>
 
         {/* Right: paragraphs */}
-        <div style={{ display: "flex", fle
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          {t.aboutParas.map((para, i) => (
+            <p
+              key={i}
+              style={{
+                margin: 0,
+                color: "var(--ink)",
+                fontSize: "clamp(18px,1.7vw,23px)",
+                lineHeight: 1.66,
+                fontWeight: 400,
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+            >
+              {para}
+            </p>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

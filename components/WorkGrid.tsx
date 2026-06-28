@@ -310,16 +310,6 @@ export default function WorkGrid() {
           ))}
         </div>
 
-        {/* Scroll indicator dots */}
-        <div style={{ display: "flex", justifyContent: "center", gap: 6, paddingTop: 8 }}>
-          {t.projects.map((_, i) => (
-            <div key={i} style={{
-              width: 6, height: 6, borderRadius: "50%",
-              background: i === 0 ? "var(--acc)" : "var(--dline)",
-              transition: "background .3s",
-            }} />
-          ))}
-        </div>
       </section>
     </>
   );
