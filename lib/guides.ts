@@ -1,4 +1,4 @@
-// ─── SHANI AI — GUIDES / DOWNLOADS ───
+// ─── SHANI AI, GUIDES / DOWNLOADS ───
 // כל מדריך שמתפרסם כפוסט נוסף גם כאן. כדי להוסיף מדריך חדש:
 //   1. שמרי את קובץ ה-HTML ב-public/guides/<file>.html
 //   2. הוסיפי רשומה אחת למערך למטה.
@@ -24,9 +24,9 @@ export const guides: Guide[] = [
     title: "המדריך לעבודה עם Claude Desktop בעברית",
     titleEn: "The guide to working with Claude Desktop in Hebrew",
     description:
-      "מדריך מלא להתקנה, הגדרה ושימוש יומיומי ב-Claude Desktop — כולל טיפים לכתיבת פרומפטים בעברית.",
+      "מדריך מלא להתקנה, הגדרה ושימוש יומיומי ב-Claude Desktop, כולל טיפים לכתיבת פרומפטים בעברית.",
     descriptionEn:
-      "A complete guide to installing, setting up, and using Claude Desktop daily — including tips for writing prompts in Hebrew.",
+      "A complete guide to installing, setting up, and using Claude Desktop daily, including tips for writing prompts in Hebrew.",
     tag: "מדריך",
     tagEn: "Guide",
   },
@@ -37,9 +37,9 @@ export const guides: Guide[] = [
     title: "5 פרומפטים שחוסכים לעסק שלך 5 שעות בשבוע",
     titleEn: "5 prompts that save your business 5 hours a week",
     description:
-      "חמישה פרומפטים מוכנים להעתקה — כתיבת תוכן, מענה ללקוחות, תמחור ועוד. פשוט להעתיק ולהדביק.",
+      "חמישה פרומפטים מוכנים להעתקה, כתיבת תוכן, מענה ללקוחות, תמחור ועוד. פשוט להעתיק ולהדביק.",
     descriptionEn:
-      "Five ready-to-copy prompts — content writing, customer replies, pricing and more. Just copy and paste.",
+      "Five ready-to-copy prompts, content writing, customer replies, pricing and more. Just copy and paste.",
     tag: "פרומפטים",
     tagEn: "Prompts",
   },
@@ -50,9 +50,9 @@ export const guides: Guide[] = [
     title: "קלנדר תוכן לחודש הראשון",
     titleEn: "First-month content calendar",
     description:
-      "תכנון תוכן מוכן לחודש שלם — רעיונות לפוסטים, רילים וסטוריז לעסק שמתחיל עם AI.",
+      "תכנון תוכן מוכן לחודש שלם, רעיונות לפוסטים, רילים וסטוריז לעסק שמתחיל עם AI.",
     descriptionEn:
-      "A ready-made content plan for a full month — ideas for posts, reels and stories for a business starting with AI.",
+      "A ready-made content plan for a full month, ideas for posts, reels and stories for a business starting with AI.",
     tag: "תכנון",
     tagEn: "Planning",
   },

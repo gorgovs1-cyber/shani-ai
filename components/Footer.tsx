@@ -52,9 +52,10 @@ export default function Footer() {
       </div>
 
       {/* Social links */}
-      <nav aria-label="Social links" style={{ display: "flex", gap: 26, fontSize: 14.5, color: "var(--muted2)" }}>
+      <nav className="footer-nav" aria-label="Social links" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", rowGap: 12, columnGap: 26, fontSize: 14.5, color: "var(--muted2)" }}>
         {[
-          { label: "Instagram", href: "https://www.instagram.com/shani.gorgov/" },
+          { label: "Instagram", href: "https://www.instagram.com/shani.creates.ai/" },
+          { label: "TikTok", href: "https://www.tiktok.com/@shani.creates.ai" },
           { label: "WhatsApp", href: "https://wa.me/972504744815" },
           { label: "LinkedIn", href: "https://www.linkedin.com/in/shani-gorgov/" },
         ].map(({ label, href }) => (

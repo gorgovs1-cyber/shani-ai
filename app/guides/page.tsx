@@ -8,7 +8,7 @@ import { sortedGuides } from "@/lib/guides";
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
 
-// Same Formspree endpoint as the Lead Magnet — every email lands in shani.creates.ai@gmail.com
+// Same Formspree endpoint as the Lead Magnet, every email lands in shani.creates.ai@gmail.com
 const FORM_ENDPOINT = "https://formspree.io/f/mnjkvblg";
 const UNLOCK_KEY = "shani-guides-unlocked";
 
@@ -32,14 +32,14 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "ספריית מדריכים",
     title: "מדריכים להורדה",
     intro:
-      "כל מדריך שאני מעלה כפוסט נשמר כאן להורדה. השאירו מייל פעם אחת — ותקבלו גישה מיידית לכל המדריכים, גם לאלה שיתווספו בעתיד.",
+      "כל מדריך שאני מעלה כפוסט נשמר כאן להורדה. השאירו מייל פעם אחת, ותקבלו גישה מיידית לכל המדריכים, גם לאלה שיתווספו בעתיד.",
     gateTitle: "גישה חינמית לכל המדריכים",
     gateSub: "הזינו את המייל וכל המדריכים ייפתחו מיד. נשלח לכם גם עדכון כשמתווסף מדריך חדש.",
     placeholder: "המייל שלכם",
     button: "פתחו לי את המדריכים",
     sending: "רגע…",
     privacy: "לא נשלח ספאם. אפשר להסיר את עצמכם בכל רגע.",
-    unlocked: "הגישה נפתחה — כל המדריכים זמינים לצפייה ולהורדה.",
+    unlocked: "הגישה נפתחה, כל המדריכים זמינים לצפייה ולהורדה.",
     view: "צפייה / הורדה",
     errorMsg: "משהו השתבש. נסו שוב או כתבו לי ב-WhatsApp.",
   },
@@ -47,14 +47,14 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "Guides library",
     title: "Downloadable guides",
     intro:
-      "Every guide I publish as a post is saved here for download. Leave your email once — and get instant access to all guides, including ones added later.",
+      "Every guide I publish as a post is saved here for download. Leave your email once, and get instant access to all guides, including ones added later.",
     gateTitle: "Free access to all guides",
     gateSub: "Enter your email and every guide unlocks instantly. I'll also let you know when a new one is added.",
     placeholder: "Your email",
     button: "Unlock the guides",
     sending: "One sec…",
     privacy: "No spam. Unsubscribe anytime.",
-    unlocked: "Access unlocked — all guides are available to view and download.",
+    unlocked: "Access unlocked, all guides are available to view and download.",
     view: "View / Download",
     errorMsg: "Something went wrong. Please try again or message me on WhatsApp.",
   },
@@ -259,7 +259,7 @@ export default function GuidesPage() {
                       fontFamily: HEEBO,
                     }}
                   >
-                    🔒 {lang === "he" ? "נעול — השאירו מייל" : "Locked — leave your email"}
+                    🔒 {lang === "he" ? "נעול, השאירו מייל" : "Locked, leave your email"}
                   </span>
                 )}
               </article>

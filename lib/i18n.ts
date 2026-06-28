@@ -1,4 +1,4 @@
-// ─── SHANI AI — BILINGUAL DICTIONARY (HE / EN) ───
+// ─── SHANI AI, BILINGUAL DICTIONARY (HE / EN) ───
 // Phase 1 covers: nav, hero, ROI calculator, trusted-by, boot screen.
 // Later phases (portfolio, blog, services, etc.) extend this dictionary.
 
@@ -30,7 +30,7 @@ export const dict = {
       ] as TitleToken[],
       subPre: "אתרים, אוטומציות וכלי AI שחוסכים לעסק שלך ",
       subStrong: "5 עד 20 שעות בשבוע.",
-      ctaPrimary: "בדיקת AI לעסק — ללא עלות",
+      ctaPrimary: "בדיקת AI לעסק, ללא עלות",
       ctaSecondary: "ראי את העבודות",
       responseLine: "תגובה תוך 24 שעות · ישראל",
       trust: [
@@ -79,7 +79,7 @@ export const dict = {
     },
     blog: {
       label: "מחשבות אחרונות",
-      title: "מהשטח — על עסקים, AI ומה שביניהם",
+      title: "מהשטח, על עסקים, AI ומה שביניהם",
       viewAll: "כל הפוסטים",
       readMore: "קראי עוד",
       minRead: "דק׳ קריאה",
@@ -159,7 +159,7 @@ export const dict = {
     },
     blog: {
       label: "Latest thoughts",
-      title: "From the field — on business, AI and the space between",
+      title: "From the field, on business, AI and the space between",
       viewAll: "All posts",
       readMore: "Read more",
       minRead: "min read",

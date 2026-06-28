@@ -18,21 +18,21 @@ const COPY: Record<"he" | "en", Copy> = {
       "אני מכבדת את הפרטיות שלכם. מסמך זה מסביר איזה מידע נאסף באתר זה, כיצד הוא משמש, ומהן הזכויות שלכם. השימוש באתר מהווה הסכמה למדיניות זו.",
     sections: [
       { heading: "איזה מידע נאסף", items: [
-        "פרטים שתמסרו ביוזמתכם — שם, אימייל וטלפון דרך טפסי יצירת קשר או הורדת חומרים.",
-        "מידע טכני שנאסף אוטומטית — כתובת IP, סוג דפדפן ומכשיר, ועמודים שנצפו, לצורכי סטטיסטיקה ושיפור.",
+        "פרטים שתמסרו ביוזמתכם: שם, אימייל וטלפון דרך טפסי יצירת קשר או הורדת חומרים.",
+        "מידע טכני שנאסף אוטומטית: כתובת IP, סוג דפדפן ומכשיר, ועמודים שנצפו, לצורכי סטטיסטיקה ושיפור.",
         "קובצי Cookies שמסייעים לתפעול האתר ולמדידת ביצועים.",
       ]},
       { heading: "למה המידע משמש", items: [
         "מענה לפניות ויצירת קשר חוזר.",
         "שליחת החומר שביקשתם (כגון מדריך או פרומפטים).",
         "שיפור חוויית האתר וניתוח שימוש.",
-        "דיוור ועדכונים — רק אם נתתם הסכמה.",
+        "דיוור ועדכונים, רק אם נתתם הסכמה.",
         "התאמת פרסום בפלטפורמות חיצוניות.",
       ]},
       { heading: "דיוור ורשימת תפוצה", body:
         "אם השארתם אימייל, ייתכן שאשלח לכם תוכן, טיפים ועדכונים. תוכלו להסיר את עצמכם מהרשימה בכל עת בלחיצה על קישור ההסרה או בפנייה אליי." },
       { heading: "שיתוף מידע עם צד שלישי", body:
-        "איני מוכרת מידע אישי. המידע עשוי להיות מעובד אצל ספקי שירות לצורך תפעול בלבד — אחסון האתר (Vercel), שירותי דיוור, כלי אנליטיקה (כגון Google Analytics) ופלטפורמות פרסום (כגון Meta). ספקים אלה מחויבים לשמור על המידע." },
+        "איני מוכרת מידע אישי. המידע עשוי להיות מעובד אצל ספקי שירות לצורך תפעול בלבד: אחסון האתר (Vercel), שירותי דיוור, כלי אנליטיקה (כגון Google Analytics) ופלטפורמות פרסום (כגון Meta). ספקים אלה מחויבים לשמור על המידע." },
       { heading: "Cookies", body:
         "האתר עשוי לעשות שימוש בקובצי Cookies לשיפור הגלישה ולמדידה. ניתן לחסום או למחוק אותם דרך הגדרות הדפדפן, אך ייתכן שחלק מהתכונות לא יפעלו כרגיל." },
       { heading: "אבטחת מידע", body:
@@ -55,21 +55,21 @@ const COPY: Record<"he" | "en", Copy> = {
       "I respect your privacy. This page explains what information is collected on this site, how it is used, and your rights. Using the site constitutes acceptance of this policy.",
     sections: [
       { heading: "Information collected", items: [
-        "Details you provide voluntarily — name, email and phone via contact or download forms.",
-        "Technical data collected automatically — IP address, browser and device type, and pages viewed, for analytics and improvement.",
+        "Details you provide voluntarily: name, email and phone via contact or download forms.",
+        "Technical data collected automatically: IP address, browser and device type, and pages viewed, for analytics and improvement.",
         "Cookies that help operate the site and measure performance.",
       ]},
       { heading: "How information is used", items: [
         "Responding to inquiries and following up.",
         "Sending the material you requested (e.g. a guide or prompts).",
         "Improving the site experience and analyzing usage.",
-        "Newsletters and updates — only with your consent.",
+        "Newsletters and updates, only with your consent.",
         "Tailoring advertising on external platforms.",
       ]},
       { heading: "Email & mailing list", body:
         "If you leave your email, I may send you content, tips and updates. You can unsubscribe at any time via the unsubscribe link or by contacting me." },
       { heading: "Sharing with third parties", body:
-        "I do not sell personal information. Data may be processed by service providers for operations only — site hosting (Vercel), email services, analytics tools (e.g. Google Analytics) and advertising platforms (e.g. Meta). These providers are bound to protect the data." },
+        "I do not sell personal information. Data may be processed by service providers for operations only: site hosting (Vercel), email services, analytics tools (e.g. Google Analytics) and advertising platforms (e.g. Meta). These providers are bound to protect the data." },
       { heading: "Cookies", body:
         "The site may use cookies to improve browsing and for measurement. You can block or delete them via your browser settings, though some features may not work as usual." },
       { heading: "Data security", body:
