@@ -55,6 +55,7 @@ export default function Nav() {
     { label: t.navAbout,          href: "#about" },
     { label: t.navProcess,        href: "#process" },
     { label: t.navTestimonials,   href: "#testimonials" },
+    { label: lang === "he" ? "מדריכים" : "Guides", href: "/guides" },
   ];
 
   return (

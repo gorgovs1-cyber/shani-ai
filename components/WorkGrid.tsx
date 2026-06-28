@@ -176,7 +176,7 @@ export default function WorkGrid() {
               role="listitem"
               style={{
                 flexShrink: 0,
-                width: "clamp(300px, 76vw, 420px)",
+                width: "clamp(240px, 68vw, 330px)",
                 background: "var(--dpanel)",
                 borderRadius: 22,
                 border: "1px solid var(--dline)",
@@ -196,7 +196,7 @@ export default function WorkGrid() {
             >
               {/* Preview with real screenshot */}
               <div style={{
-                height: 240, position: "relative", overflow: "hidden",
+                height: 165, position: "relative", overflow: "hidden",
                 background: FALLBACK_BG[project.title] ?? "#0a0805",
               }}>
                 {/* Browser chrome */}

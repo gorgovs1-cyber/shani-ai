@@ -41,8 +41,23 @@ export default function About() {
           alignItems: "start",
         }}
       >
-        {/* Left: kicker, title, stats */}
+        {/* Left: photo, kicker, title, stats */}
         <div>
+          <img
+            src="/shani-about.jpg.png"
+            alt={lang === "he" ? "שני גורגוב — Shani AI Creator" : "Shani Gorgov — Shani AI Creator"}
+            loading="lazy"
+            decoding="async"
+            style={{
+              width: "100%",
+              aspectRatio: "4 / 5",
+              objectFit: "cover",
+              borderRadius: 20,
+              border: "1px solid var(--line)",
+              marginBottom: 28,
+              display: "block",
+            }}
+          />
           <div
             style={{
               fontFamily: "'JetBrains Mono', var(--font-mono), monospace",

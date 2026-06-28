@@ -91,6 +91,8 @@ export default function FAQ() {
             <button
               onClick={() => setOpen(open === i ? null : i)}
               aria-expanded={open === i}
+              id={`faq-q-${i}`}
+              aria-controls={`faq-panel-${i}`}
               style={{
                 width: "100%",
                 display: "flex",
@@ -133,6 +135,10 @@ export default function FAQ() {
             </button>
 
             <div
+              id={`faq-panel-${i}`}
+              role="region"
+              aria-labelledby={`faq-q-${i}`}
+              aria-hidden={open !== i}
               style={{
                 overflow: "hidden",
                 maxHeight: open === i ? 400 : 0,

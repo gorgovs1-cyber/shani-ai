@@ -60,23 +60,23 @@ export default function Contact() {
         />
 
         <div style={{ position: "relative" }}>
-          {/* Hexagon logo */}
-          <svg
-            viewBox="0 0 100 100"
-            fill="none"
-            aria-hidden="true"
+          {/* Personal photo */}
+          <img
+            src="/shani-cta.jpg.png"
+            alt={lang === "he" ? "שני גורגוב" : "Shani Gorgov"}
+            loading="lazy"
+            decoding="async"
             style={{
-              width: 58,
-              height: 58,
-              color: "var(--acc)",
+              width: 116,
+              height: 116,
+              objectFit: "cover",
+              objectPosition: "top",
+              borderRadius: "50%",
+              border: "2px solid color-mix(in oklch, var(--acc) 60%, transparent)",
               marginBottom: 24,
-              filter: "drop-shadow(0 0 16px color-mix(in oklch, var(--acc) 55%, transparent))",
+              boxShadow: "0 0 26px color-mix(in oklch, var(--acc) 35%, transparent)",
             }}
-          >
-            <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="currentColor" strokeWidth="6" strokeLinejoin="round" />
-            <path d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" opacity="0.5" />
-            <circle cx="50" cy="50" r="6.5" fill="currentColor" />
-          </svg>
+          />
 
           <h2
             style={{
@@ -148,7 +148,7 @@ export default function Contact() {
               {t.contactCta1}
             </a>
             <a
-              href="mailto:gorgovs1@gmail.com"
+              href="mailto:shani.creates.ai@gmail.com"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

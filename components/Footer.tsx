@@ -75,6 +75,45 @@ export default function Footer() {
             {label}
           </a>
         ))}
+        <a
+          href="/accessibility"
+          style={{
+            color: "var(--muted2)",
+            textDecoration: "none",
+            transition: "color .2s",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+        >
+          {lang === "he" ? "הצהרת נגישות" : "Accessibility"}
+        </a>
+        <a
+          href="/privacy"
+          style={{
+            color: "var(--muted2)",
+            textDecoration: "none",
+            transition: "color .2s",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+        >
+          {lang === "he" ? "מדיניות פרטיות" : "Privacy"}
+        </a>
+        <a
+          href="/terms"
+          style={{
+            color: "var(--muted2)",
+            textDecoration: "none",
+            transition: "color .2s",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+        >
+          {lang === "he" ? "תקנון" : "Terms"}
+        </a>
       </nav>
 
       {/* Copyright */}

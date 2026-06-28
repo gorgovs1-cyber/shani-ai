@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>לוח תוכן — יולי 2025 · @shani.creates.ai</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #141009;
+    --orange: #f2622e;
+    --cream: #f4ede1;
+    --muted: #888;
+    --border: #2a2015;
+    --card: #1a150c;
+  }
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--cream);
+    direction: rtl;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header .brand {
+    font-size: 11px; font-weight: 700; color: var(--orange);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .header h1 {
+    font-size: 42px; font-weight: 900; line-height: 1.1;
+    letter-spacing: -2px;
+  }
+  .header .month { color: var(--orange); }
+  .header .sub {
+    font-size: 13px; color: var(--muted); margin-top: 8px;
+  }
+
+  /* ─── LEGEND ─── */
+  .legend {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center; margin-bottom: 28px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--muted);
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .dot-carousel { background: #f2622e; }
+  .dot-reel { background: #7c3aed; }
+  .dot-story { background: #0ea5e9; }
+  .dot-dm { background: #16a34a; }
+  .dot-rest { background: #888; }
+
+  /* ─── WEEK HEADER ─── */
+  .week-label {
+    font-size: 10px; font-weight: 700; color: var(--orange);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ─── GRID ─── */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .day-col { display: flex; flex-direction: column; gap: 6px; }
+
+  .day-header {
+    text-align: center;
+    font-size: 10px; font-weight: 700; color: var(--muted);
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+  }
+
+  .day-card.today {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 1px var(--orange);
+  }
+
+  .day-card.rest {
+    opacity: 0.4;
+    background: transparent;
+    border-style: dashed;
+    min-height: 60px;
+  }
+
+  .day-num {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    margin-bottom: 2px;
+  }
+
+  .day-today-badge {
+    background: var(--orange); color: white;
+    font-size: 8px; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px;
+    display: inline-block; margin-bottom: 4px;
+  }
+
+  .post-item {
+    border-radius: 5px;
+    padding: 5px 7px;
+    font-size: 10.5px;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .post-item.carousel { background: rgba(242,98,46,0.15); color: #f2622e; border-right: 2px solid #f2622e; }
+  .post-item.reel { background: rgba(124,58,237,0.15); color: #a78bfa; border-right: 2px solid #7c3aed; }
+  .post-item.story { background: rgba(14,165,233,0.15); color: #7dd3fc; border-right: 2px solid #0ea5e9; }
+  .post-item.dm { background: rgba(22,163,74,0.15); color: #86efac; border-right: 2px solid #16a34a; }
+
+  .post-type {
+    font-size: 8px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; opacity: 0.7; margin-bottom: 2px;
+    display: block;
+  }
+
+  /* ─── KPI ROW ─── */
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; margin: 20px 0;
+  }
+  .kpi-cell { text-align: center; }
+  .kpi-num { font-size: 28px; font-weight: 900; color: var(--orange); line-height: 1; }
+  .kpi-label { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  /* ─── CHECKLIST ─── */
+  .checklist-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;
+  }
+  .checklist-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+  }
+  .checklist-card h4 {
+    font-size: 12px; font-weight: 700; color: var(--cream);
+    margin-bottom: 10px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 11.5px; color: var(--muted);
+    margin-bottom: 6px; line-height: 1.5;
+  }
+  .check-box {
+    width: 14px; height: 14px; border: 1px solid var(--border);
+    border-radius: 3px; flex-shrink: 0; margin-top: 1px;
+    cursor: pointer;
+  }
+  .check-box.done { background: var(--orange); border-color: var(--orange); }
+  .check-box.done::after { content: "✓"; color: white; font-size: 9px; display: flex; align-items: center; justify-content: center; height: 100%; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+    font-size: 11px; color: var(--muted);
+  }
+  .footer span { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">@shani.creates.ai · תוכנית תוכן</div>
+  <h1>חודש <span class="month">יולי</span> 2025</h1>
+  <div class="sub">לוח תוכן מלא · אינסטגרם · 4 שבועות · 20 פרסומים</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot dot-carousel"></div>קרוסלה</div>
+  <div class="legend-item"><div class="legend-dot dot-reel"></div>ריל</div>
+  <div class="legend-item"><div class="legend-dot dot-story"></div>סטורי</div>
+  <div class="legend-item"><div class="legend-dot dot-dm"></div>DM Outreach</div>
+  <div class="legend-item"><div class="legend-dot dot-rest"></div>מנוחה</div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi-cell">
+    <div class="kpi-num">20</div>
+    <div class="kpi-label">פוסטים בחודש</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-num">8</div>
+    <div class="kpi-label">קרוסלות</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-num">4</div>
+    <div class="kpi-label">ריילס</div>
+  </div>
+  <div class="kpi-cell">
+    <div class="kpi-num">+200</div>
+    <div class="kpi-label">עוקבים (יעד)</div>
+  </div>
+</div>
+
+<!-- ══════════════ WEEK 1 ══════════════ -->
+<div class="week-label">שבוע 1 — 1–5 יולי · Launch Week 🚀</div>
+<div class="week-grid">
+  <div class="day-col">
+    <div class="day-header">ג׳</div>
+    <div class="day-card today">
+      <div class="day-today-badge">TODAY</div>
+      <div class="day-num">1.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 1: התקנת Claude Desktop</div>
+      <div class="post-item dm"><span class="post-type">DM</span>10 פניות יזומות ראשונות</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ד׳</div>
+    <div class="day-card">
+      <div class="day-num">2.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>Behind the scenes — הכנת תוכן</div>
+      <div class="post-item dm"><span class="post-type">DM</span>Follow-up על פניות ראשונות</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ה׳</div>
+    <div class="day-card">
+      <div class="day-num">3.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 2: עברית ב-Claude Desktop</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ו׳</div>
+    <div class="day-card rest">
+      <div class="day-num">4.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ש׳</div>
+    <div class="day-card rest">
+      <div class="day-num">5.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">א׳</div>
+    <div class="day-card">
+      <div class="day-num">6.7</div>
+      <div class="post-item reel"><span class="post-type">ריל</span>ריל 1: Claude עונה בעברית (15 שניות)</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ב׳</div>
+    <div class="day-card">
+      <div class="day-num">7.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>Poll: כמה זמן מבזבזת על תוכן?</div>
+      <div class="post-item dm"><span class="post-type">DM</span>10 פניות — Round 2</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ WEEK 2 ══════════════ -->
+<div class="week-label">שבוע 2 — 8–14 יולי · Value Week 💎</div>
+<div class="week-grid">
+  <div class="day-col">
+    <div class="day-header">ג׳</div>
+    <div class="day-card">
+      <div class="day-num">8.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 3: 5 פרומפטים שחוסכים 5 שעות</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ד׳</div>
+    <div class="day-card">
+      <div class="day-num">9.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>תשובות לשאלות מהפוסט האחרון</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ה׳</div>
+    <div class="day-card">
+      <div class="day-num">10.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 4: ChatGPT vs Claude</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ו׳</div>
+    <div class="day-card rest">
+      <div class="day-num">11.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ש׳</div>
+    <div class="day-card rest">
+      <div class="day-num">12.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">א׳</div>
+    <div class="day-card">
+      <div class="day-num">13.7</div>
+      <div class="post-item reel"><span class="post-type">ריל</span>ריל 2: 5 פרומפטים ב-60 שניות</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ב׳</div>
+    <div class="day-card">
+      <div class="day-num">14.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>Lead Magnet Push — כתבו "פרומפטים"</div>
+      <div class="post-item dm"><span class="post-type">DM</span>מענה ל-Keywords + Follow-ups</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ WEEK 3 ══════════════ -->
+<div class="week-label">שבוע 3 — 15–21 יולי · Problem/Solution Week 🛠️</div>
+<div class="week-grid">
+  <div class="day-col">
+    <div class="day-header">ג׳</div>
+    <div class="day-card">
+      <div class="day-num">15.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 5: 3 שגיאות AI שכולם עושים</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ד׳</div>
+    <div class="day-card">
+      <div class="day-num">16.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>Case Study: לקוחה שחסכה 5 שעות</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ה׳</div>
+    <div class="day-card">
+      <div class="day-num">17.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 6: איך Claude עוזר לעסק קטן</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ו׳</div>
+    <div class="day-card rest">
+      <div class="day-num">18.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ש׳</div>
+    <div class="day-card rest">
+      <div class="day-num">19.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">א׳</div>
+    <div class="day-card">
+      <div class="day-num">20.7</div>
+      <div class="post-item reel"><span class="post-type">ריל</span>ריל 3: Claude Desktop בדקה</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ב׳</div>
+    <div class="day-card">
+      <div class="day-num">21.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>AMA: שאלו אותי על AI</div>
+      <div class="post-item dm"><span class="post-type">DM</span>10 פניות — Round 3 + בטא לקוחה</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ WEEK 4 ══════════════ -->
+<div class="week-label">שבוע 4 — 22–31 יולי · Engagement Week 🔥</div>
+<div class="week-grid">
+  <div class="day-col">
+    <div class="day-header">ג׳</div>
+    <div class="day-card">
+      <div class="day-num">22.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 7: תיקון עברית בקאנבה</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ד׳</div>
+    <div class="day-card">
+      <div class="day-num">23.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>Poll: מה הכי קשה לכן ב-AI?</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ה׳</div>
+    <div class="day-card">
+      <div class="day-num">24.7</div>
+      <div class="post-item carousel"><span class="post-type">קרוסלה</span>קרוסלה 8: 5 דברים שAI עושה ב-60 שניות</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ו׳</div>
+    <div class="day-card rest">
+      <div class="day-num">25.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ש׳</div>
+    <div class="day-card rest">
+      <div class="day-num">26.7</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">א׳</div>
+    <div class="day-card">
+      <div class="day-num">27.7</div>
+      <div class="post-item reel"><span class="post-type">ריל</span>ריל 4: ChatGPT vs Claude הדגמה חיה</div>
+    </div>
+  </div>
+  <div class="day-col">
+    <div class="day-header">ב׳</div>
+    <div class="day-card">
+      <div class="day-num">28.7</div>
+      <div class="post-item story"><span class="post-type">סטורי</span>סיכום חודש + Preview לאוגוסט</div>
+      <div class="post-item dm"><span class="post-type">DM</span>Follow-up כל הלידים הפתוחים</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CHECKLIST ══════════════ -->
+<div style="margin-top: 32px; border-top: 1px solid var(--border); padding-top: 24px;">
+  <div style="font-size:10px;font-weight:700;color:var(--orange);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">
+    צ'קליסט לפני כל פרסום
+  </div>
+  <div class="checklist-grid">
+    <div class="checklist-card">
+      <h4>קרוסלה / פוסט</h4>
+      <div class="check-item"><div class="check-box"></div>קרוסלה מוכנה בקאנבה (5–7 שקופיות)</div>
+      <div class="check-item"><div class="check-box"></div>כיתוב עם Hook חזק בשורה 1</div>
+      <div class="check-item"><div class="check-box"></div>CTA ברור: "כתבו X בתגובות"</div>
+      <div class="check-item"><div class="check-box"></div>10–15 האשטגים (מהבנק)</div>
+      <div class="check-item"><div class="check-box"></div>שיתוף לסטורי מיד אחרי פרסום</div>
+    </div>
+    <div class="checklist-card">
+      <h4>ריל</h4>
+      <div class="check-item"><div class="check-box"></div>Screen recording מוכן</div>
+      <div class="check-item"><div class="check-box"></div>Hook ב-3 שניות הראשונות</div>
+      <div class="check-item"><div class="check-box"></div>כתוביות מוסיפות (CapCut/InShot)</div>
+      <div class="check-item"><div class="check-box"></div>מוסיקה טרנדית מספריית Instagram</div>
+      <div class="check-item"><div class="check-box"></div>CTA בתגובה ראשונה (Keyword)</div>
+    </div>
+    <div class="checklist-card">
+      <h4>DM Outreach</h4>
+      <div class="check-item"><div class="check-box"></div>עקבתי 24 שעות לפני</div>
+      <div class="check-item"><div class="check-box"></div>לייקתי 2–3 פוסטים</div>
+      <div class="check-item"><div class="check-box"></div>פרט ספציפי על התוכן שלהם</div>
+      <div class="check-item"><div class="check-box"></div>הודעה קצרה (max 3 שורות)</div>
+      <div class="check-item"><div class="check-box"></div>שמרתי ב-Spreadsheet מעקב</div>
+    </div>
+    <div class="checklist-card">
+      <h4>סוף שבוע — ניתוח</h4>
+      <div class="check-item"><div class="check-box"></div>בדקתי Insights של כל פוסט</div>
+      <div class="check-item"><div class="check-box"></div>מי שמרה / שיתפה — פניתי ב-DM</div>
+      <div class="check-item"><div class="check-box"></div>תגובות — עניתי לכולן</div>
+      <div class="check-item"><div class="check-box"></div>מה עבד הכי טוב? לשכפל.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  נבנה על ידי <span>Claude</span> עבור @shani.creates.ai | Shani AI Creator | יוני 2025
+</div>
+
+<script>
+  // Make checkboxes interactive
+  document.querySelectorAll('.check-box').forEach(box => {
+    box.addEventListener('click', () => {
+      box.classList.toggle('done');
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -6,6 +6,8 @@ import LenisProvider from "@/components/LenisProvider";
 import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
+import SkipLink from "@/components/SkipLink";
+import ScrollReveal from "@/components/ScrollReveal";
 import LanguageProvider from "@/components/LanguageProvider";
 
 // Latin headings + body
@@ -52,7 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         <LanguageProvider>
+          <SkipLink />
           <SplashScreen />
+          <ScrollReveal />
           <div id="cursor-dot" aria-hidden="true" />
           <div id="cursor-ring" aria-hidden="true" />
           <LenisProvider>

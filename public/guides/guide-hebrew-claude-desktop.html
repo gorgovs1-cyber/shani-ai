@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריך — עברית ב-Claude Desktop</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: #f0ede8;
+    color: #141009;
+    direction: rtl;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+    .no-print { display: none !important; }
+    @page { margin: 0; size: A4; }
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  .no-print {
+    background: #f2622e;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    margin: 24px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ─── COVER PAGE ─── */
+  .cover {
+    background: #141009;
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .cover-top {
+    padding: 48px 52px 0;
+  }
+
+  .cover-brand {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 80px;
+  }
+
+  .cover-brand span { color: #f2622e; }
+
+  .cover-tag {
+    display: inline-block;
+    background: #f2622e;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .cover-headline {
+    font-size: 52px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+
+  .cover-headline .accent { color: #f2622e; }
+
+  .cover-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 420px;
+  }
+
+  .cover-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 52px;
+  }
+
+  .terminal-mock {
+    background: #1e1a14;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 460px;
+    border: 1px solid rgba(242,98,46,0.2);
+    box-shadow: 0 0 60px rgba(242,98,46,0.1);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot.r { background: #ff5f57; }
+  .terminal-dot.y { background: #febc2e; }
+  .terminal-dot.g { background: #28c840; }
+
+  .terminal-title {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin-right: auto;
+    font-family: monospace;
+  }
+
+  .terminal-line {
+    font-family: 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.9;
+    direction: rtl;
+  }
+
+  .terminal-line .prompt { color: #f2622e; }
+  .terminal-line .cmd { color: rgba(255,255,255,0.9); }
+  .terminal-line .out { color: #7ec8a0; }
+  .terminal-line .out-dim { color: rgba(255,255,255,0.35); }
+  .terminal-line .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: #f2622e;
+    vertical-align: text-bottom;
+    animation: blink 1.1s infinite;
+    margin-right: 2px;
+  }
+
+  @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+  .cover-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 24px 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cover-bottom .author {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .cover-bottom .author span { color: #f2622e; }
+
+  .cover-bottom .page-num {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ─── INNER PAGES ─── */
+  .page-header {
+    background: #141009;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .page-header .ph-brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    opacity: 0.7;
+  }
+
+  .page-header .ph-brand span { color: #f2622e; opacity: 1; }
+
+  .page-header .ph-chapter {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+  }
+
+  .page-content {
+    padding: 36px 48px;
+    flex: 1;
+  }
+
+  .page-footer {
+    border-top: 1px solid #eee;
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .page-footer .pf-note {
+    font-size: 10px;
+    color: #aaa;
+  }
+
+  .page-footer .pf-num {
+    font-size: 10px;
+    color: #ccc;
+    font-weight: 600;
+  }
+
+  /* ─── CONTENT ELEMENTS ─── */
+  .chapter-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #f2622e;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .chapter-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #141009;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+
+  .chapter-sub {
+    font-size: 14px;
+    color: #888;
+    font-weight: 300;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f2622e;
+  }
+
+  .body-text {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  /* ─── STEP BOX ─── */
+  .step-list {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 16px 0;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    counter-increment: step;
+    background: #f2622e;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-body .step-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #141009;
+    margin-bottom: 3px;
+  }
+
+  .step-body .step-desc {
+    font-size: 12.5px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .step-body .step-code {
+    font-family: 'Courier New', monospace;
+    font-size: 11.5px;
+    background: #141009;
+    color: #f2622e;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 6px;
+    display: inline-block;
+    direction: ltr;
+  }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .callout.tip {
+    background: #fef8f5;
+    border-right: 3px solid #f2622e;
+  }
+
+  .callout.warn {
+    background: #fdfaf0;
+    border-right: 3px solid #f0b429;
+  }
+
+  .callout.success {
+    background: #f0faf4;
+    border-right: 3px solid #28c840;
+  }
+
+  .callout .callout-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 1px;
+  }
+
+  .callout .callout-text {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  .callout .callout-text strong {
+    font-weight: 700;
+    color: #141009;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ─── PROMPT CARD ─── */
+  .prompt-card {
+    background: #fafaf8;
+    border: 1px solid #e8e4de;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 12px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prompt-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: #f2622e;
+  }
+
+  .prompt-card .pc-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: #f2622e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .prompt-card .pc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #141009;
+    margin-bottom: 10px;
+  }
+
+  .prompt-card .pc-prompt {
+    font-family: 'Courier New', monospace;
+    font-size: 11.5px;
+    background: #141009;
+    color: #7ec8a0;
+    padding: 10px 14px;
+    border-radius: 6px;
+    line-height: 1.7;
+    direction: rtl;
+    white-space: pre-line;
+  }
+
+  .prompt-card .pc-result {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .prompt-card .pc-result strong { color: #28c840; }
+
+  /* ─── PROBLEM/SOLUTION ─── */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .ps-cell {
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .ps-cell.problem {
+    background: #fff5f5;
+    border: 1px solid #fcc;
+  }
+
+  .ps-cell.solution {
+    background: #f0faf4;
+    border: 1px solid #b7e7c3;
+  }
+
+  .ps-cell .ps-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .ps-cell.problem .ps-label { color: #e53e3e; }
+  .ps-cell.solution .ps-label { color: #276749; }
+
+  .ps-cell ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ps-cell ul li {
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #444;
+    padding-right: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .ps-cell.problem ul li::before {
+    content: "✗";
+    color: #e53e3e;
+    position: absolute;
+    right: 0;
+    font-size: 10px;
+    top: 3px;
+  }
+
+  .ps-cell.solution ul li::before {
+    content: "✓";
+    color: #276749;
+    position: absolute;
+    right: 0;
+    font-size: 10px;
+    top: 3px;
+  }
+
+  /* ─── CTA BOX ─── */
+  .cta-box {
+    background: linear-gradient(135deg, #141009 0%, #2a1f0e 100%);
+    border-radius: 10px;
+    padding: 28px 32px;
+    color: white;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .cta-box .cta-tag {
+    display: inline-block;
+    background: #f2622e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .cta-box h3 {
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .cta-box p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .cta-pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .cta-pill {
+    background: rgba(242,98,46,0.15);
+    border: 1px solid rgba(242,98,46,0.4);
+    color: #f2622e;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  /* ─── FAQ ─── */
+  .faq-item {
+    border-bottom: 1px solid #f0ede8;
+    padding: 14px 0;
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #141009;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .faq-q .q-icon {
+    color: #f2622e;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    font-size: 12.5px;
+    color: #555;
+    line-height: 1.75;
+    padding-right: 18px;
+  }
+
+  /* ─── DIVIDER ─── */
+  .orange-line {
+    height: 3px;
+    background: linear-gradient(90deg, #f2622e, transparent);
+    margin: 20px 0;
+    border-radius: 2px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  להדפסה → Ctrl+P → שמור כ-PDF | כל העמודים מוכנים לפרסום
+</div>
+
+<!-- ══════════════════ PAGE 1 — COVER ══════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-brand">Shani<span>.AI</span> Creator · @shani.creates.ai</div>
+
+    <div class="cover-tag">מדריך חינמי</div>
+    <div class="cover-headline">
+      Claude בעברית<br>
+      <span class="accent">מושלמת.</span>
+    </div>
+    <div class="cover-sub">
+      המדריך המלא להתקנת Skill עברית ב-Claude Desktop — 30 שניות, 0 ₪, ותוצאות מיידיות.
+    </div>
+  </div>
+
+  <div class="cover-visual">
+    <div class="terminal-mock">
+      <div class="terminal-bar">
+        <div class="terminal-dot r"></div>
+        <div class="terminal-dot y"></div>
+        <div class="terminal-dot g"></div>
+        <div class="terminal-title">Claude Desktop — Hebrew Skill</div>
+      </div>
+      <div class="terminal-line"><span class="prompt">אתה: </span><span class="cmd">כתוב סיכום פגישה קצר</span></div>
+      <div class="terminal-line"><span class="out-dim">←  Claude מסכם בעברית...</span></div>
+      <div class="terminal-line">&nbsp;</div>
+      <div class="terminal-line"><span class="out">סיכום פגישה — 12.06.2025</span></div>
+      <div class="terminal-line"><span class="out">נכחו: [שמות]</span></div>
+      <div class="terminal-line"><span class="out">הוחלט: לפרסם 3 פוסטים השבוע</span></div>
+      <div class="terminal-line"><span class="out">משימות: עד יום ה׳ — אתר, לוגו, תוכן</span></div>
+      <div class="terminal-line">&nbsp;</div>
+      <div class="terminal-line"><span class="prompt">אתה: </span><span class="cursor"></span></div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="author">מאת <span>שני גורגוב</span> · Shani AI Creator</div>
+    <div class="page-num">עמוד 1</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 2 — PROBLEM ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span></div>
+    <div class="ph-chapter">פרק 1 · הבעיה</div>
+  </div>
+
+  <div class="page-content">
+    <div class="chapter-label">פרק 1</div>
+    <div class="chapter-title">למה Claude<br>לא עונה בעברית?</div>
+    <div class="chapter-sub">בעיה שכולם מכירות, פתרון שאף אחד לא הסביר בעברית</div>
+
+    <div class="body-text">
+      Claude הוא כנראה כלי ה-AI המתקדם ביותר שיש — כותב טוב, מבין הקשר, לא מאבד חוט. אבל כשמדברות איתו בעברית, משהו נשבר. הוא עונה באנגלית, הפורמט מתהפך, והניסוחים יוצאים גנריים ומלאכותיים.
+    </div>
+
+    <div class="body-text">
+      הסיבה היא לא שClaude "לא יודע" עברית — הוא יודע. הבעיה היא שלא הגדרנו לו <strong>איך</strong> לדבר איתנו.
+    </div>
+
+    <div class="ps-grid">
+      <div class="ps-cell problem">
+        <div class="ps-label">❌ בלי Skill עברית</div>
+        <ul>
+          <li>עונה באנגלית גם כששואלים בעברית</li>
+          <li>RTL לא עובד — הטקסט מתהפך</li>
+          <li>ניסוחים גנריים, לא טבעיים</li>
+          <li>כל שיחה מתחילה מאפס</li>
+          <li>צריכה לכתוב "please answer in Hebrew" בכל פעם</li>
+        </ul>
+      </div>
+      <div class="ps-cell solution">
+        <div class="ps-label">✅ עם Skill עברית</div>
+        <ul>
+          <li>עונה בעברית מהרגע הראשון</li>
+          <li>RTL מושלם, פורמט תקין</li>
+          <li>ניסוחים טבעיים, קצרים וממוקדים</li>
+          <li>זוכר הקשר בין שיחות</li>
+          <li>עובד אוטומטית — בלי הגדרות נוספות</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-text">
+        <strong>מה זה בעצם Skill?</strong>
+        Skill הוא קובץ הגדרות קטן שאומר ל-Claude Desktop איך להתנהג. כמו שמכוונת טלפון לשפה עברית — רק ל-Claude. מותקן פעם אחת, עובד לתמיד.
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-text">
+        <strong>שימי לב:</strong>
+        המדריך הזה מיועד ל-<strong>Claude Desktop</strong> (האפליקציה במחשב), לא ל-claude.ai באתר. אם עדיין לא התקנת את Claude Desktop — מעבר לעמוד הבא להסבר.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-note">@shani.creates.ai · מדריך עברית ב-Claude Desktop</div>
+    <div class="pf-num">2</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 3 — INSTALL CLAUDE DESKTOP ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span></div>
+    <div class="ph-chapter">פרק 2 · התקנת Claude Desktop</div>
+  </div>
+
+  <div class="page-content">
+    <div class="chapter-label">פרק 2</div>
+    <div class="chapter-title">קודם כל —<br>Claude Desktop</div>
+    <div class="chapter-sub">אם כבר מותקן, דלגי לעמוד הבא</div>
+
+    <div class="body-text">
+      Claude Desktop הוא גרסת המחשב של Claude — מהיר יותר, חזק יותר, ומאפשר התקנת Skills. ההתקנה לוקחת 3 דקות.
+    </div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">הורידו את האפליקציה</div>
+          <div class="step-desc">גשי לאתר הרשמי:</div>
+          <div class="step-code">claude.ai/download</div>
+          <div class="step-desc" style="margin-top:6px;">בחרו Mac או Windows לפי המחשב שלכם.</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">התקיני והיכנסו</div>
+          <div class="step-desc">
+            פתחו את קובץ ההתקנה שהורד ← עקבו אחרי ההוראות ← היכנסו עם חשבון Anthropic (אם אין לכם — יש לכם חשבון Claude.ai? זה אותו חשבון).
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">ודאו שאתם על Claude Pro / Max</div>
+          <div class="step-desc">
+            Skills עובדות רק על מנוי בתשלום. Claude Pro עולה $20 לחודש — וחוסכת לכם עשרות שעות עבודה. ROI של 15,000% לפחות 😉
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout success">
+      <div class="callout-icon">✅</div>
+      <div class="callout-text">
+        <strong>כשClaude Desktop פתוח ואת רואה שיחה חדשה — מוכנות לשלב הבא!</strong>
+        ממשיכות לעמוד הבא להתקנת Skill העברית.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-note">@shani.creates.ai · מדריך עברית ב-Claude Desktop</div>
+    <div class="pf-num">3</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 4 — INSTALL SKILL ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span></div>
+    <div class="ph-chapter">פרק 3 · התקנת Skill העברית</div>
+  </div>
+
+  <div class="page-content">
+    <div class="chapter-label">פרק 3 — הלב של המדריך</div>
+    <div class="chapter-title">התקנת Skill<br>העברית — 30 שניות</div>
+    <div class="chapter-sub">3 שלבים. זהו.</div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">הורידו את קובץ ה-Skill</div>
+          <div class="step-desc">
+            הקובץ נקרא <strong>rtl-hebrew.skill</strong> — ניתן להורדה ישירות מהביו שלי באינסטגרם, או לכתוב לי RTL בDM ואשלח אוטומטית.
+          </div>
+          <div class="step-code">@shani.creates.ai → ביו → Skill עברית חינם</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">גררו את הקובץ ל-Claude Desktop</div>
+          <div class="step-desc">
+            פתחו את Claude Desktop ← גררו את קובץ ה-<strong>.skill</strong> לחלון האפליקציה ← תקבלו הודעה "Skill installed successfully".
+          </div>
+          <div class="callout tip" style="margin-top:10px; padding:10px 14px;">
+            <div class="callout-icon" style="font-size:14px;">💡</div>
+            <div class="callout-text" style="font-size:11.5px;">אין אפשרות לגרור? נסו: Settings → Skills → Install from file</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">פתחו שיחה חדשה ותבדקו</div>
+          <div class="step-desc">
+            שלחו את הפרומפט הבא:
+          </div>
+          <div class="step-code">כתבו לי פסקת פתיחה לפוסט אינסטגרם על [נושא]</div>
+          <div class="step-desc" style="margin-top:8px; color:#28c840; font-weight:600;">
+            ✓ Claude אמורה לענות בעברית מושלמת, RTL, בפסקה אחת קצרה וממוקדת.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-text">
+        <strong>עדיין עונה באנגלית?</strong>
+        נסו לסגור ולפתוח מחדש את Claude Desktop. אם עדיין לא עובד — כתבו לי ישירות ב-DM, אעזור לכם.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-note">@shani.creates.ai · מדריך עברית ב-Claude Desktop</div>
+    <div class="pf-num">4</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 5 — 3 PROMPTS ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span></div>
+    <div class="ph-chapter">פרק 4 · 3 פרומפטים להתחלה</div>
+  </div>
+
+  <div class="page-content">
+    <div class="chapter-label">פרק 4</div>
+    <div class="chapter-title">3 פרומפטים<br>שעובדים מיד</div>
+    <div class="chapter-sub">מוכנים לשימוש — העתיקו, הדביקי, שלחו</div>
+
+    <div class="prompt-card">
+      <div class="pc-num">פרומפט 01</div>
+      <div class="pc-title">סיכום פגישה ב-30 שניות</div>
+      <div class="pc-prompt">סכמי לי את הפגישה הזו בעברית:
+[הדבקי כאן — נושא, משתתפים, מה הוחלט, מה הצעד הבא]
+
+פורמט: 3 נקודות, עד 2 שורות כל אחת. קצר ומדויק.</div>
+      <div class="pc-result"><strong>✓ תקבלו:</strong> סיכום מקצועי ב-Hebrew, מובנה ומוכן לשיתוף ב-WhatsApp.</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-num">פרומפט 02</div>
+      <div class="pc-title">מייל מקצועי שמקבל תשובות</div>
+      <div class="pc-prompt">כתבו מייל מקצועי בעברית:
+מטרה: [למשל — לקבוע פגישה / לאשר פרטים / להזכיר תשלום]
+נמען: [לקוחה / ספקית / שותפה עסקית]
+טון: חם ומקצועי, לא פורמלי מדי
+אורך: עד 5 שורות</div>
+      <div class="pc-result"><strong>✓ תקבלו:</strong> מייל שמקבל תשובות — לא מייל שנזרק לתיקיית spam.</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="pc-num">פרומפט 03</div>
+      <div class="pc-title">תוכן חודש לאינסטגרם ב-10 דקות</div>
+      <div class="pc-prompt">בני לי תוכנית תוכן לאינסטגרם לחודש הבא:
+עסק: [תיאור קצר של העסק שלכם]
+קהל: [מי הקהל שלכם]
+מטרה: [עוקבים חדשים / לקוחות / מכירות]
+פרסומים: 3 פוסטים בשבוע
+
+תנו לי כותרת + רעיון קצר לכל פוסט, בעברית.</div>
+      <div class="pc-result"><strong>✓ תקבלו:</strong> 12-13 רעיונות פוסטים מוכנים, מותאמים לעסק שלכם.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-note">@shani.creates.ai · מדריך עברית ב-Claude Desktop</div>
+    <div class="pf-num">5</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 6 — FAQ + CTA ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span></div>
+    <div class="ph-chapter">פרק 5 · שאלות + מה הלאה</div>
+  </div>
+
+  <div class="page-content">
+    <div class="chapter-label">פרק 5</div>
+    <div class="chapter-title">שאלות שכולם<br>שואלות</div>
+    <div class="chapter-sub" style="margin-bottom:16px; padding-bottom:16px;">FAQ + מה הצעד הבא שלכם</div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-icon">ש</span> האם Skill עברית עולה כסף?</div>
+      <div class="faq-a">הקובץ עצמו חינם לגמרי. מה שצריך — מנוי Claude Pro ($20/חודש). בלי מנוי, Skills לא עובדות.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-icon">ש</span> עבד על Mac? על Windows?</div>
+      <div class="faq-a">כן לשניהם. Claude Desktop זמין ל-Mac ו-Windows. אין גרסת Claude Desktop למובייל נכון להיום.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-icon">ש</span> מה ההבדל בין claude.ai ל-Claude Desktop?</div>
+      <div class="faq-a">claude.ai = גרסת הדפדפן, בלי Skills. Claude Desktop = גרסת מחשב, עם Skills, מהיר יותר, ומאפשר אינטגרציות מתקדמות.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-icon">ש</span> כמה זמן Skill עברית בתוקף?</div>
+      <div class="faq-a">לצמיתות — מותקנת פעם אחת ועובדת כל עוד יש לכם Claude Desktop. לא צריך להתקין שוב.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-icon">ש</span> זה מאובטח? Claude רואה את הקובץ שלי?</div>
+      <div class="faq-a">הקובץ .skill הוא קובץ הגדרות טקסטואלי בלבד — לא שומר מידע ולא שולח שום דבר. Anthropic לא רואה את השיחות שלכם ב-Desktop בברירת מחדל.</div>
+    </div>
+
+    <div class="orange-line"></div>
+
+    <div class="cta-box">
+      <div class="cta-tag">הצעד הבא</div>
+      <h3>רוצים עוד מזה?</h3>
+      <p>
+        יש לי עוד 4 Skills שבניתי ספציפית לבעלות עסקים — לכתיבת הצעות מחיר, ניהול לקוחות, יצירת תוכן, ועוד. כולן חינם לעוקבות שלי.
+      </p>
+      <div class="cta-pills">
+        <div class="cta-pill">📩 DM: "SKILLS" באינסטגרם</div>
+        <div class="cta-pill">@shani.creates.ai</div>
+        <div class="cta-pill">🎁 חינם לגמרי</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-note">Shani AI Creator · @shani.creates.ai · 2025 · כל הזכויות שמורות</div>
+    <div class="pf-num">6</div>
+  </div>
+</div>
+
+</body>
+</ht
