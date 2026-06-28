@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Shani AI Creator — שני גורגוב";
+export const alt = "Shani AI Creator";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -46,80 +46,38 @@ export default function OGImage() {
           }}
         />
 
-        {/* Logo hexagon — enlarged */}
-        <svg viewBox="0 0 100 100" width={150} height={150} style={{ marginBottom: 36 }}>
+        {/* Logo hexagon (the diamonds) — bold strokes survive compression */}
+        <svg viewBox="0 0 100 100" width={200} height={200} style={{ marginBottom: 48 }}>
           <path
-            d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z"
+            d="M50 6 L88 28 L88 72 L50 94 L12 72 L12 28 Z"
             stroke="#f2622e"
-            strokeWidth="6"
+            strokeWidth="9"
             strokeLinejoin="round"
             fill="none"
           />
           <path
-            d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z"
+            d="M50 26 L71 38 L71 62 L50 74 L29 62 L29 38 Z"
             stroke="#f2622e"
-            strokeWidth="4"
+            strokeWidth="7"
             strokeLinejoin="round"
             fill="none"
-            opacity="0.5"
+            opacity="0.7"
           />
-          <circle cx="50" cy="50" r="6.5" fill="#f2622e" />
+          <circle cx="50" cy="50" r="8" fill="#f2622e" />
         </svg>
 
-        {/* Name */}
+        {/* Wordmark */}
         <div
           style={{
-            fontSize: 70,
+            fontSize: 58,
             fontWeight: 800,
             color: "#f4ede1",
-            letterSpacing: "-2px",
+            letterSpacing: "0.22em",
             lineHeight: 1,
-            marginBottom: 18,
-          }}
-        >
-          Shani Gorgov
-        </div>
-
-        {/* Role pill */}
-        <div
-          style={{
-            fontSize: 24,
-            color: "#f2622e",
-            background: "rgba(242,98,46,0.12)",
-            border: "1px solid rgba(242,98,46,0.35)",
-            borderRadius: 999,
-            padding: "10px 30px",
-            letterSpacing: "0.18em",
-            marginBottom: 40,
+            paddingLeft: "0.22em",
           }}
         >
           SHANI AI CREATOR
-        </div>
-
-        {/* Tagline */}
-        <div
-          style={{
-            fontSize: 28,
-            color: "#b1a48f",
-            maxWidth: 760,
-            textAlign: "center",
-            lineHeight: 1.5,
-          }}
-        >
-          מכניסה AI לעסק שלכם: ייעוץ, אוטומציות, כלים ואתרים
-        </div>
-
-        {/* Bottom domain */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 36,
-            fontSize: 18,
-            color: "rgba(177,164,143,0.5)",
-            letterSpacing: "0.05em",
-          }}
-        >
-          shani-ai.vercel.app
         </div>
       </div>
     ),
