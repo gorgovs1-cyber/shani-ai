@@ -291,4 +291,11 @@ html.lenis { height: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !imp
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (pointer: none), (pointer: coarse) {
+  #cursor-dot, #cursor-ring { display: none; }
+  html.custom-cursor *, html.custom-cursor *::before, html.custom-cursor *::after { cursor: auto !important; }
+}
