@@ -14,28 +14,43 @@ export default function OGImage() {
           height: 630,
           background: "#141009",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        {/* Bold logomark — flat colors + thick shapes stay crisp after WhatsApp compression */}
-        <svg viewBox="0 0 100 100" width={400} height={400}>
-          {/* Outer hexagon — thick solid outline */}
+        {/* Exact brand logo (matches components/Logo.tsx) on a flat background */}
+        <svg viewBox="0 0 100 100" width={360} height={360} fill="none">
           <path
-            d="M50 5 L89 27.5 L89 72.5 L50 95 L11 72.5 L11 27.5 Z"
+            d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z"
             stroke="#f2622e"
-            strokeWidth="11"
+            strokeWidth="6"
             strokeLinejoin="round"
-            fill="none"
           />
-          {/* Inner diamond — solid fill for maximum sharpness */}
           <path
-            d="M50 27 L71 39 L71 61 L50 73 L29 61 L29 39 Z"
-            fill="#f2622e"
+            d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z"
+            stroke="#f2622e"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            opacity="0.5"
           />
-          {/* Center cutout dot */}
-          <circle cx="50" cy="50" r="8" fill="#141009" />
+          <circle cx="50" cy="50" r="6.5" fill="#f2622e" />
         </svg>
+
+        {/* Wordmark under the logo */}
+        <div
+          style={{
+            marginTop: 28,
+            fontFamily: "sans-serif",
+            fontSize: 34,
+            fontWeight: 700,
+            color: "#f4ede1",
+            letterSpacing: "0.28em",
+            paddingLeft: "0.28em",
+          }}
+        >
+          SHANI AI CREATOR
+        </div>
       </div>
     ),
     { ...size }
