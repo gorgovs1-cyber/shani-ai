@@ -14,71 +14,28 @@ export default function OGImage() {
           height: 630,
           background: "#141009",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "sans-serif",
-          position: "relative",
-          overflow: "hidden",
         }}
       >
-        {/* Background glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: -120,
-            right: -120,
-            width: 620,
-            height: 620,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(242,98,46,0.28) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: -160,
-            left: -120,
-            width: 520,
-            height: 520,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(242,98,46,0.14) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* Logo hexagon (the diamonds) — bold strokes survive compression */}
-        <svg viewBox="0 0 100 100" width={200} height={200} style={{ marginBottom: 48 }}>
+        {/* Bold logomark — flat colors + thick shapes stay crisp after WhatsApp compression */}
+        <svg viewBox="0 0 100 100" width={400} height={400}>
+          {/* Outer hexagon — thick solid outline */}
           <path
-            d="M50 6 L88 28 L88 72 L50 94 L12 72 L12 28 Z"
+            d="M50 5 L89 27.5 L89 72.5 L50 95 L11 72.5 L11 27.5 Z"
             stroke="#f2622e"
-            strokeWidth="9"
+            strokeWidth="11"
             strokeLinejoin="round"
             fill="none"
           />
+          {/* Inner diamond — solid fill for maximum sharpness */}
           <path
-            d="M50 26 L71 38 L71 62 L50 74 L29 62 L29 38 Z"
-            stroke="#f2622e"
-            strokeWidth="7"
-            strokeLinejoin="round"
-            fill="none"
-            opacity="0.7"
+            d="M50 27 L71 39 L71 61 L50 73 L29 61 L29 39 Z"
+            fill="#f2622e"
           />
-          <circle cx="50" cy="50" r="8" fill="#f2622e" />
+          {/* Center cutout dot */}
+          <circle cx="50" cy="50" r="8" fill="#141009" />
         </svg>
-
-        {/* Wordmark */}
-        <div
-          style={{
-            fontSize: 58,
-            fontWeight: 800,
-            color: "#f4ede1",
-            letterSpacing: "0.22em",
-            lineHeight: 1,
-            paddingLeft: "0.22em",
-          }}
-        >
-          SHANI AI CREATOR
-        </div>
       </div>
     ),
     { ...size }
