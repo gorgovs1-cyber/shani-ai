@@ -20,12 +20,13 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "500", "700"] });
 
 export const metadata: Metadata = {
-  title: "Shani AI Creator — אתרים עם AI, אוטומציות וייעוץ לעסקים בישראל",
-  description: "שני גורגוב — בונה אתרים קולנועיים, אוטומציות חכמות וכלי AI לעסקים. 10+ שנות ניסיון. GSAP, Next.js, Make.com. ישראל.",
+  metadataBase: new URL("https://shani-ai.vercel.app"),
+  title: "Shani AI Creator · ייעוץ AI, אוטומציות, כלים ואתרים לעסקים",
+  description: "שני גורגוב, Shani AI Creator. מכניסה AI לעסק שלכם: מיפוי ואסטרטגיה, אוטומציות חכמות, כלים וסקילים בעברית, ואתרים שמביאים לקוחות. 10+ שנות ניסיון. ישראל.",
   keywords: ["AI", "אוטומציה", "אתרים", "GSAP", "Next.js", "ישראל", "שני גורגוב", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
   openGraph: {
-    title: "Shani AI Creator — אתרים, אוטומציות ו-AI לעסקים",
-    description: "בונה לעסקים כלים דיגיטליים שחוסכים זמן ומרשימים לקוחות — מהר.",
+    title: "Shani AI Creator · AI, אוטומציות ואתרים לעסקים",
+    description: "מכניסה AI לעסק שלכם: ייעוץ, אוטומציות, כלים ואתרים שמביאים לקוחות.",
     siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
