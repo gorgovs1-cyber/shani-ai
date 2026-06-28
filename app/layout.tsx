@@ -31,11 +31,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "he_IL",
     url: "https://shani-ai.vercel.app",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Shani AI Creator" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Shani AI Creator",
     description: "אתרים קולנועיים, אוטומציות חכמות, AI לעסקים. ישראל.",
+    images: ["/og.jpg"],
   },
   robots: {
     index: true,
