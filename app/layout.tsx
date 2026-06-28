@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Heebo, JetBrains_Mono } from "next/font/google";
+import { Inter, Heebo, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import LenisProvider from "@/components/LenisProvider";
@@ -7,43 +7,40 @@ import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
 import LanguageProvider from "@/components/LanguageProvider";
-import AccessibilityWidget from "@/components/AccessibilityWidget";
-import SkipLink from "@/components/SkipLink";
 
-const heebo = Heebo({
-  subsets: ["hebrew", "latin"],
-  variable: "--font-heebo",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-  weight: ["400", "500", "700"],
-});
+// Latin headings + body
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+// Hebrew headings + body
+const heebo = Heebo({ subsets: ["hebrew", "latin"], variable: "--font-heebo", display: "swap", weight: ["400", "500", "700", "800", "900"] });
+// Latin emphasis word (italic)
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap", style: ["italic", "normal"], weight: ["500", "600", "700"] });
+// System / tags / dates / boot screen (both languages)
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "500", "700"] });
 
 export const metadata: Metadata = {
-  title: "בניית אתרים עסקיים ואוטומציה AI | שני גורגוב — ישראל",
-  description:
-    "שני גורגוב — אתרים קולנועיים, אוטומציות AI ושיחת מיפוי לעסקים קטנים ובינוניים בישראל. תגובה תוך 24 שעות.",
-  keywords: ["בניית אתרים", "אתרים עסקיים", "דפי נחיתה", "אוטומציה AI", "AI לעסקים", "ישראל", "שני גורגוב", "SHANI AI CREATOR"],
+  title: "Shani AI Creator — אתרים עם AI, אוטומציות וייעוץ לעסקים בישראל",
+  description: "שני גורגוב — בונה אתרים קולנועיים, אוטומציות חכמות וכלי AI לעסקים. 10+ שנות ניסיון. GSAP, Next.js, Make.com. ישראל.",
+  keywords: ["AI", "אוטומציה", "אתרים", "GSAP", "Next.js", "ישראל", "שני גורגוב", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
   openGraph: {
-    title: "שני גורגוב | SHANI AI CREATOR",
-    description: "אתרים קולנועיים, אוטומציות AI ושיחת מיפוי לעסקים קטנים ובינוניים בישראל.",
-    siteName: "SHANI AI CREATOR",
+    title: "Shani AI Creator — אתרים, אוטומציות ו-AI לעסקים",
+    description: "בונה לעסקים כלים דיגיטליים שחוסכים זמן ומרשימים לקוחות — מהר.",
+    siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
     url: "https://shani-ai.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
-    title: "שני גורגוב | SHANI AI CREATOR",
-    description: "אתרים קולנועיים, אוטומציות AI ושיחת מיפוי לעסקים בישראל.",
+    title: "Shani AI Creator",
+    description: "אתרים קולנועיים, אוטומציות חכמות, AI לעסקים. ישראל.",
   },
-  robots: { index: true, follow: true },
-  alternates: { canonical: "https://shani-ai.vercel.app" },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://shani-ai.vercel.app",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -51,40 +48,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="he"
       dir="rtl"
-      className={`${heebo.variable} ${mono.variable}`}
+      className={`${inter.variable} ${heebo.variable} ${playfair.variable} ${mono.variable}`}
     >
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "שני גורגוב | SHANI AI CREATOR",
-              "url": "https://shani-ai.vercel.app",
-              "telephone": "+972504744815",
-              "email": "gorgovs1@gmail.com",
-              "address": { "@type": "PostalAddress", "addressCountry": "IL" },
-              "description": "בניית אתרים עסקיים, אוטומציות AI ושיחת מיפוי לעסקים קטנים ובינוניים בישראל",
-              "priceRange": "₪₪",
-              "knowsLanguage": ["he", "en"],
-              "sameAs": [
-                "https://www.instagram.com/shani.gorgov/",
-                "https://www.linkedin.com/in/shani-gorgov/"
-              ]
-            })
-          }}
-        />
         <LanguageProvider>
           <SplashScreen />
           <div id="cursor-dot" aria-hidden="true" />
           <div id="cursor-ring" aria-hidden="true" />
           <LenisProvider>
-            <SkipLink />
             <Nav />
             <main id="main-content">{children}</main>
           </LenisProvider>
-          <AccessibilityWidget />
           <CustomCursor />
           <FloatingWhatsApp />
         </LanguageProvider>
