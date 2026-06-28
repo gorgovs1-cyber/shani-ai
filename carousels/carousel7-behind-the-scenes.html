@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קרוסלה 7 — מאחורי הקלעים: איך אני עובדת עם AI | Shani AI Creator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+  :root {
+    --orange: #f2622e;
+    --bg: #141009;
+    --text: #f4ede1;
+    --text-dim: #a09890;
+    --slide-size: 540px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0805;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+    direction: rtl;
+  }
+
+  h1 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, var(--slide-size));
+    gap: 20px;
+    max-width: 1680px;
+  }
+
+  .slide {
+    width: var(--slide-size);
+    height: var(--slide-size);
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px;
+    border: 1px solid rgba(242, 98, 46, 0.12);
+  }
+
+  /* Dark circle decoration (upper right) */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    width: 340px;
+    height: 340px;
+    background: #0d0a06;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Logo — top LEFT */
+  .slide-logo {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    z-index: 2;
+    direction: ltr;
+  }
+  .slide-logo span {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  /* Slide counter — top RIGHT */
+  .slide-num {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    opacity: 0.75;
+    z-index: 2;
+    direction: ltr;
+  }
+
+  /* Brand badge — bottom CENTER */
+  .brand {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.05);
+    padding: 5px 14px;
+    border-radius: 20px;
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.8;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  /* Corner bracket — bottom LEFT */
+  .corner-br {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 24px;
+    height: 24px;
+    border-bottom: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+    opacity: 0.4;
+    z-index: 2;
+  }
+
+  /* All content inside slide is above the circle */
+  .slide > *:not(.slide-logo):not(.slide-num):not(.brand):not(.corner-br) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SLIDE 1 ── Hook */
+  .slide-1::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(242,98,46,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hook-eyebrow {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+
+  .hook-headline {
+    color: var(--orange);
+    font-size: 50px;
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 18px;
+  }
+
+  .hook-sub {
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 22px;
+  }
+
+  .hook-small {
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* Accent line */
+  .accent-line {
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 22px;
+    margin-left: auto;
+  }
+
+  /* ── SLIDES 2–6 ── Content */
+  .slide-tag {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .slide-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(242,98,46,0.25);
+  }
+
+  .slide-title {
+    color: var(--text);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 18px;
+  }
+  .slide-title .orange { color: var(--orange); }
+
+  .slide-body {
+    color: var(--text-dim);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: rgba(242,98,46,0.07);
+    border-right: 3px solid var(--orange);
+    padding: 13px 15px;
+    margin-top: 16px;
+  }
+  .highlight-box p {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Step number badge */
+  .step-badge {
+    position: absolute;
+    bottom: 48px;
+    left: 52px;
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(242,98,46,0.12);
+    line-height: 1;
+    z-index: 0;
+    direction: ltr;
+  }
+
+  /* List */
+  .slide-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .slide-list li {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 400;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .slide-list li .bullet {
+    color: var(--orange);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── SLIDE 7 ── CTA */
+  .slide-cta {
+    text-align: center;
+    align-items: center;
+  }
+  .slide-cta::before {
+    background: radial-gradient(ellipse at 50% 20%, rgba(242,98,46,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 80%, rgba(242,98,46,0.07) 0%, transparent 50%);
+  }
+
+  .cta-headline {
+    color: var(--text);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 26px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-headline em { color: var(--orange); font-style: normal; }
+
+  .cta-action-box {
+    background: rgba(242,98,46,0.12);
+    border: 1.5px solid var(--orange);
+    padding: 14px 36px;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-action-label {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .cta-keyword {
+    color: var(--orange);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+  .cta-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .print-label {
+    color: rgba(244,237,225,0.2);
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<h1>קרוסלה 7 — מאחורי הקלעים: איך אני עובדת עם AI · 7 שקופיות · @shani.creates.ai</h1>
+
+<div class="carousel-grid">
+
+  <!-- SLIDE 1: Hook -->
+  <div class="slide slide-1">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">01 / 07</div>
+    <div class="hook-eyebrow">מאחורי הקלעים</div>
+    <div class="hook-headline">איך אני<br>באמת עובדת.</div>
+    <div class="hook-sub">5 שלבים מרעיון<br>למוצר מוגמר — עם AI.</div>
+    <div class="hook-small">(הצצה אמיתית לתהליך שלי)</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 2: Overview -->
+  <div class="slide">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">02 / 07</div>
+    <div class="slide-tag">לפני שמתחילים</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">AI הוא לא קסם.<br><span class="orange">הוא תהליך.</span></div>
+    <div class="slide-body">הרבה חושבים ש-AI עושה הכל לבד.<br>האמת? יש שיטה.<br><br>הנה 5 השלבים שאני עוברת בכל פרויקט:</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 3: Step 1 -->
+  <div class="slide">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">03 / 07</div>
+    <div class="slide-tag">שלב 01 | הבנה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">מקשיבה.<br><span class="orange">לפני שבונה.</span></div>
+    <div class="slide-body">כל פרויקט מתחיל בשיחה — מה הכאב, מי הקהל, מה המטרה. בלי זה, AI בונה את הדבר הלא נכון מהר מאוד.</div>
+    <div class="highlight-box">
+      <p>שאלות נכונות → תוצאה מדויקת</p>
+    </div>
+    <div class="step-badge">01</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 4: Step 2 -->
+  <div class="slide">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">04 / 07</div>
+    <div class="slide-tag">שלב 02 | פרומפט</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">מכוונת את<br><span class="orange">המכונה.</span></div>
+    <div class="slide-body">פה הקסם האמיתי קורה. פרומפט מדויק עם הקשר, טון וכיוון — זה ההבדל בין "בסדר" ל"וואו".</div>
+    <div class="highlight-box">
+      <p>הקשר + טון + דוגמה → תוצאה מקצועית</p>
+    </div>
+    <div class="step-badge">02</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 5: Steps 3 & 4 -->
+  <div class="slide">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">05 / 07</div>
+    <div class="slide-tag">שלב 03 + 04 | עידון</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">שלב 03 ו<span class="orange">-04</span></div>
+    <ul class="slide-list">
+      <li><span class="bullet">✦</span> <strong>03</strong> מתקנת ומחדדת — שכבה אחרי שכבה, עד שזה מרגיש נכון</li>
+      <li><span class="bullet">✦</span> <strong>04</strong> מוסיפה את הנגיעה האנושית — מה ש-AI לבד אף פעם לא תופס</li>
+    </ul>
+    <div class="step-badge">03</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 6: Step 5 -->
+  <div class="slide">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">06 / 07</div>
+    <div class="slide-tag">שלב 05 | מסירה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">מוסרת מוצר.<br><span class="orange">לא רק קובץ.</span></div>
+    <ul class="slide-list">
+      <li><span class="bullet">✦</span> תוצר מלוטש ומוכן לשימוש</li>
+      <li><span class="bullet">✦</span> הסבר פשוט איך להפעיל</li>
+      <li><span class="bullet">✦</span> ליווי אחרי המסירה</li>
+    </ul>
+    <div class="step-badge">05</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide slide-cta">
+    <div class="slide-logo">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1.5L24 7.75V20.25L13 26.5L2 20.25V7.75L13 1.5Z" stroke="#f2622e" stroke-width="1.5" fill="none"/>
+        <path d="M13 1.5L13 26.5" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M2 7.75L24 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <path d="M24 7.75L2 20.25" stroke="#f2622e" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="13" cy="14" r="2.5" fill="#f2622e"/>
+      </svg>
+      <span>SHANI AI CREATOR</span>
+    </div>
+    <div class="slide-num">07 / 07</div>
+    <div class="cta-headline">יש לכם פרויקט<br>בראש? <em>✨</em></div>
+    <div class="cta-action-box">
+      <div class="cta-action-label">שלחו לי בהודעה</div>
+      <div class="cta-keyword">פרויקט</div>
+    </div>
+    <div class="cta-sub">ונראה איך AI יכול לקצר לכם את הדרך 👇</div>
+    <div class="corner-br"></div>
+    <div class="brand">@shani.creates.ai</div>
+  </div>
+
+</div>
+
+<p class="print-label">1080×1080px per slide · Instagram Post Square · @shani.creates.ai</p>
+
+</body>
+</html>

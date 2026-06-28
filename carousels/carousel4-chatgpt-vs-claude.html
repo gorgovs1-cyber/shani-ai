@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קרוסלה 4 — ChatGPT vs Claude | Shani AI Creator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+  :root {
+    --orange: #f2622e;
+    --bg: #141009;
+    --text: #f4ede1;
+    --text-dim: #a09890;
+    --green: #3ecf8e;
+    --blue: #5b9cf6;
+    --slide-size: 540px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0805;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+    direction: rtl;
+  }
+
+  h1 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, var(--slide-size));
+    gap: 20px;
+    max-width: 1680px;
+  }
+
+  .slide {
+    width: var(--slide-size);
+    height: var(--slide-size);
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px;
+    border: 1px solid rgba(242, 98, 46, 0.12);
+  }
+
+  .slide-num {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(242, 98, 46, 0.3);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  .brand {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+  }
+  .corner-tl { top: 20px; right: 20px; border-top: 2px solid var(--orange); border-right: 2px solid var(--orange); }
+  .corner-br { bottom: 20px; left: 20px; border-bottom: 2px solid var(--orange); border-left: 2px solid var(--orange); }
+
+  /* SLIDE 1: Hook */
+  .slide-1::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(242,98,46,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .vs-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .vs-box {
+    padding: 10px 20px;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+  }
+
+  .vs-box.gpt { background: rgba(16,163,127,0.15); color: #10a37f; border: 1px solid rgba(16,163,127,0.3); }
+  .vs-box.claude { background: rgba(242,98,46,0.12); color: var(--orange); border: 1px solid rgba(242,98,46,0.3); }
+  .vs-separator { color: var(--text-dim); font-size: 28px; font-weight: 900; }
+
+  .hook-headline { color: var(--text); font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 16px; text-align: center; }
+  .hook-headline em { color: var(--orange); font-style: normal; }
+  .hook-sub { color: var(--text-dim); font-size: 15px; text-align: center; line-height: 1.6; margin-bottom: 20px; }
+  .hook-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(242,98,46,0.4); padding: 8px 14px; color: var(--orange); font-size: 13px; font-weight: 500; align-self: center; }
+
+  .slide-tag { color: var(--orange); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .slide-tag::after { content: ''; flex: 1; height: 1px; background: rgba(242,98,46,0.25); }
+  .accent-line { width: 40px; height: 3px; background: var(--orange); margin-bottom: 20px; margin-left: auto; }
+  .slide-title { color: var(--text); font-size: 30px; font-weight: 800; line-height: 1.25; margin-bottom: 20px; }
+  .slide-title .orange { color: var(--orange); }
+
+  /* Comparison columns */
+  .compare-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .col-header {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .col-header.gpt { background: rgba(16,163,127,0.12); color: #10a37f; border: 1px solid rgba(16,163,127,0.2); }
+  .col-header.claude { background: rgba(242,98,46,0.1); color: var(--orange); border: 1px solid rgba(242,98,46,0.2); }
+
+  .compare-item {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .compare-item .dot { font-size: 10px; margin-top: 4px; flex-shrink: 0; }
+  .dot-gpt { color: #10a37f; }
+  .dot-claude { color: var(--orange); }
+
+  /* Benefit list */
+  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .benefit-list li { color: var(--text); font-size: 14px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .benefit-list li .bullet { color: var(--orange); flex-shrink: 0; }
+
+  /* Use case table */
+  .use-case-list { display: flex; flex-direction: column; gap: 10px; }
+  .use-case-row { display: flex; gap: 0; border: 1px solid rgba(255,255,255,0.06); overflow: hidden; }
+  .use-case-task { flex: 1.2; background: rgba(255,255,255,0.03); color: var(--text-dim); font-size: 12px; padding: 9px 12px; display: flex; align-items: center; }
+  .use-case-winner { flex: 1; font-size: 12px; font-weight: 700; padding: 9px 12px; display: flex; align-items: center; justify-content: center; }
+  .winner-gpt { background: rgba(16,163,127,0.1); color: #10a37f; }
+  .winner-claude { background: rgba(242,98,46,0.1); color: var(--orange); }
+  .winner-tie { background: rgba(255,255,255,0.04); color: var(--text-dim); }
+
+  /* Verdict box */
+  .verdict-box { background: rgba(242,98,46,0.08); border-right: 3px solid var(--orange); padding: 16px 18px; }
+  .verdict-box p { color: var(--text); font-size: 14px; line-height: 1.7; }
+  .verdict-box strong { color: var(--orange); }
+
+  /* CTA */
+  .slide-cta { text-align: center; align-items: center; }
+  .slide-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(242,98,46,0.18) 0%, transparent 65%); pointer-events: none; }
+  .cta-headline { color: var(--text); font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 22px; position: relative; z-index: 1; }
+  .cta-headline em { color: var(--orange); font-style: normal; }
+  .cta-action-box { background: rgba(242,98,46,0.12); border: 1.5px solid var(--orange); padding: 14px 36px; margin-bottom: 14px; position: relative; z-index: 1; }
+  .cta-action-label { color: var(--text-dim); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
+  .cta-keyword { color: var(--orange); font-size: 26px; font-weight: 900; letter-spacing: 0.08em; }
+  .cta-sub { color: var(--text-dim); font-size: 13px; position: relative; z-index: 1; }
+
+  .print-label { color: rgba(244,237,225,0.2); font-size: 10px; text-align: center; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<h1>קרוסלה 4 — ChatGPT vs Claude: מה ההבדל? · 7 שקופיות · @shani.creates.ai</h1>
+
+<div class="carousel-grid">
+
+  <!-- SLIDE 1: Hook -->
+  <div class="slide slide-1" style="align-items:center;">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">01 / 07</div>
+    <div class="vs-container">
+      <div class="vs-box gpt">ChatGPT</div>
+      <div class="vs-separator">VS</div>
+      <div class="vs-box claude">Claude</div>
+    </div>
+    <div class="hook-headline">מה <em>באמת</em> ההבדל<br>ולמה זה משנה לך?</div>
+    <div class="hook-sub">שאלה שמקבלת תשובות מבלבלות.<br>הנה ההסבר הפשוט שחיפשת.</div>
+    <div class="hook-badge">✦ שמרו — שתפו</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 2: מה משותף -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">02 / 07</div>
+    <div class="slide-tag">01 | קודם כל</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">שניהם <span class="orange">מדהימים.</span></div>
+    <ul class="benefit-list">
+      <li><span class="bullet">✦</span> מסוגלים לכתוב, לנתח, לפתח קוד, לתרגם</li>
+      <li><span class="bullet">✦</span> עונים על שאלות ברמת מומחים</li>
+      <li><span class="bullet">✦</span> מדברים עברית (ברמות שונות)</li>
+      <li><span class="bullet">✦</span> נגישים דרך הדפדפן ואפליקציה</li>
+    </ul>
+    <div style="margin-top:16px; color:var(--text-dim); font-size:13px; line-height:1.6;">ההבדל הוא לא "מי טוב" — אלא <span style="color:var(--orange); font-weight:600;">מה מתאים לכם.</span></div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 3: ChatGPT חוזקות -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">03 / 07</div>
+    <div class="slide-tag">02 | ChatGPT</div>
+    <div class="accent-line"></div>
+    <div class="slide-title" style="color:#10a37f;">ChatGPT<br><span style="color:var(--text);">מצטיין ב—</span></div>
+    <ul class="benefit-list">
+      <li><span class="bullet" style="color:#10a37f;">✦</span> חיפוש ברשת (GPT-4o עם browsing)</li>
+      <li><span class="bullet" style="color:#10a37f;">✦</span> יצירת תמונות עם DALL·E</li>
+      <li><span class="bullet" style="color:#10a37f;">✦</span> אינטגרציות ופלאגינים רבים</li>
+      <li><span class="bullet" style="color:#10a37f;">✦</span> ממשק מוכר ופשוט לחדשים</li>
+      <li><span class="bullet" style="color:#10a37f;">✦</span> GPTs — בוטים מוכנים לכל תחום</li>
+    </ul>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 4: Claude חוזקות -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">04 / 07</div>
+    <div class="slide-tag">03 | Claude</div>
+    <div class="accent-line"></div>
+    <div class="slide-title" style="color:var(--orange);">Claude<br><span style="color:var(--text);">מצטיין ב—</span></div>
+    <ul class="benefit-list">
+      <li><span class="bullet">✦</span> כתיבה עמוקה ומורכבת (טקסטים ארוכים)</li>
+      <li><span class="bullet">✦</span> קוד — הסברים + כתיבה ברמה גבוהה</li>
+      <li><span class="bullet">✦</span> עברית טבעית ונכונה יותר</li>
+      <li><span class="bullet">✦</span> הקשר ארוך — זוכר שיחה ארוכה</li>
+      <li><span class="bullet">✦</span> Skills ו-Desktop — אוטומציות מתקדמות</li>
+    </ul>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 5: טבלת שימושים -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">05 / 07</div>
+    <div class="slide-tag">04 | לפי משימה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title" style="font-size:24px;">מה לבחור<br><span class="orange">לפי מה שצריך</span></div>
+    <div class="use-case-list" style="margin-top:4px;">
+      <div class="use-case-row">
+        <div class="use-case-task">כתיבת תוכן ארוך</div>
+        <div class="use-case-winner winner-claude">Claude ✦</div>
+      </div>
+      <div class="use-case-row">
+        <div class="use-case-task">חיפוש מידע עכשווי</div>
+        <div class="use-case-winner winner-gpt">ChatGPT</div>
+      </div>
+      <div class="use-case-row">
+        <div class="use-case-task">כתיבת קוד + הסבר</div>
+        <div class="use-case-winner winner-claude">Claude ✦</div>
+      </div>
+      <div class="use-case-row">
+        <div class="use-case-task">יצירת תמונות</div>
+        <div class="use-case-winner winner-gpt">ChatGPT</div>
+      </div>
+      <div class="use-case-row">
+        <div class="use-case-task">עברית טבעית</div>
+        <div class="use-case-winner winner-claude">Claude ✦</div>
+      </div>
+      <div class="use-case-row">
+        <div class="use-case-task">אוטומציות Desktop</div>
+        <div class="use-case-winner winner-claude">Claude ✦</div>
+      </div>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 6: המלצה -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">06 / 07</div>
+    <div class="slide-tag">05 | המסקנה</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">אל תבחרו.<br><span class="orange">השתמשו בשניהם.</span></div>
+    <div class="verdict-box">
+      <p><strong>ChatGPT</strong> — לחיפוש, תמונות, ו-GPTs מוכנים.<br><br>
+      <strong>Claude</strong> — לכתיבה, קוד, עברית, ואוטומציות.<br><br>
+      הפרו של ה-AI משתמש ב<strong>שניהם</strong> — כל אחד למה שהוא הכי טוב בו.</p>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide slide-cta">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">07 / 07</div>
+    <div class="cta-headline">רוצים ללמוד<br>להשתמש ב<em>Claude</em><br>כמו מקצועניים?</div>
+    <div class="cta-action-box">
+      <div class="cta-action-label">כתבו בתגובות</div>
+      <div class="cta-keyword">Claude</div>
+    </div>
+    <div class="cta-sub">ואשלח לכם את המדריך המלא חינם 🎁</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+</div>
+
+<p class="print-label">1080×1080px per slide · Instagram Post Square · @shani.creates.ai</p>
+
+</body>
+</html>

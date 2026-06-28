@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הצעת מחיר | Shani AI Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #f2622e;
+    --orange-light: #fff3ef;
+    --dark: #141009;
+    --text: #1a1410;
+    --text-mid: #5a4f47;
+    --text-dim: #9a8f87;
+    --border: #e8ddd6;
+    --bg: #faf8f6;
+    --green: #2a8a50;
+    --green-light: #f0faf5;
+  }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    direction: rtl;
+    background: #f0ede8;
+    color: var(--text);
+    padding: 32px 16px;
+  }
+
+  /* ============ PAGE WRAPPER ============ */
+  .page {
+    background: white;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.12);
+  }
+
+  /* ============ HEADER BAND ============ */
+  .header-band {
+    background: var(--dark);
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .brand-initials {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--orange);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .brand-name {
+    color: rgba(244,237,225,0.6);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    text-align: left;
+  }
+
+  .header-doc-type {
+    color: rgba(244,237,225,0.4);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .header-doc-title {
+    color: #f4ede1;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* ============ ORANGE STRIPE ============ */
+  .orange-stripe {
+    height: 4px;
+    background: linear-gradient(to left, var(--orange), #ff8a5e);
+  }
+
+  /* ============ BODY ============ */
+  .body {
+    padding: 40px 48px;
+  }
+
+  /* Client details row */
+  .client-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .field-group { display: flex; flex-direction: column; gap: 4px; }
+
+  .field-label {
+    color: var(--text-dim);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .field-value {
+    color: var(--dark);
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 6px;
+    min-height: 28px;
+    /* ↓ editable placeholder style */
+  }
+
+  .field-value.placeholder {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  /* ============ INTRO ============ */
+  .intro-text {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 32px;
+    padding: var(--p-intro, 0);
+  }
+
+  .intro-text strong { color: var(--dark); font-weight: 700; }
+
+  /* ============ SERVICES ============ */
+  .services-title {
+    color: var(--text-dim);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .service-card {
+    border: 1.5px solid var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .service-card.featured {
+    border-color: var(--orange);
+    position: relative;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--orange);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+  }
+
+  .service-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .service-card.featured .service-header {
+    padding-top: 32px;
+  }
+
+  .service-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  .service-tagline {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .service-price-block {
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  .service-price {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    direction: ltr;
+  }
+
+  .service-price-unit {
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  .service-body {
+    padding: 0 24px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  .service-card.featured .service-body {
+    border-top-color: rgba(242,98,46,0.2);
+  }
+
+  .service-includes {
+    list-style: none;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .service-includes li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .service-includes li .check {
+    color: var(--orange);
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .service-card.featured .service-includes li .check {
+    color: var(--orange);
+  }
+
+  /* ============ TOTAL ROW ============ */
+  .total-row {
+    background: var(--dark);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 32px;
+  }
+
+  .total-label {
+    color: rgba(244,237,225,0.6);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .total-amount {
+    color: var(--orange);
+    font-size: 28px;
+    font-weight: 900;
+    direction: ltr;
+  }
+
+  .total-note {
+    color: rgba(244,237,225,0.35);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* ============ WHY ME ============ */
+  .why-section {
+    background: var(--bg);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+
+  .why-title {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .why-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .why-point {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .why-point .bullet {
+    color: var(--orange);
+    font-size: 10px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ============ NEXT STEPS ============ */
+  .next-steps {
+    margin-bottom: 32px;
+  }
+
+  .steps-title {
+    color: var(--text-dim);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .steps-row {
+    display: flex;
+    gap: 0;
+  }
+
+  .step-item {
+    flex: 1;
+    text-align: center;
+    padding: 16px 8px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .step-item:not(:last-child) {
+    border-left: none;
+  }
+
+  .step-item .step-num {
+    background: var(--orange);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 auto 10px;
+  }
+
+  .step-item .step-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer-band {
+    background: var(--bg);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid var(--orange);
+  }
+
+  .footer-contact {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  .footer-contact strong { color: var(--dark); }
+
+  .footer-valid {
+    text-align: left;
+  }
+
+  .footer-valid .valid-label {
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .footer-valid .valid-date {
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* Signature area */
+  .sig-area {
+    padding: 28px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .sig-block { }
+
+  .sig-line {
+    border-bottom: 1.5px solid var(--border);
+    height: 44px;
+    margin-bottom: 8px;
+  }
+
+  .sig-label {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ PRINT ============ */
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; max-width: 100%; }
+  }
+
+  /* ============ EDITABLE HINT ============ */
+  .edit-hint {
+    background: rgba(242,98,46,0.06);
+    border: 1px dashed rgba(242,98,46,0.4);
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--orange);
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  @media print {
+    .edit-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="edit-hint">
+  🖊 תבנית לעריכה — מלאי את השדות המסומנים, שמרי, ולחצי Ctrl+P לייצוא PDF
+</div>
+
+<div class="page">
+  <!-- HEADER -->
+  <div class="header-band">
+    <div class="brand-logo">
+      <div class="brand-initials">SA</div>
+      <div class="brand-name">Shani AI Creator</div>
+    </div>
+    <div class="header-meta">
+      <div class="header-doc-type">מסמך</div>
+      <div class="header-doc-title">הצעת מחיר</div>
+    </div>
+  </div>
+  <div class="orange-stripe"></div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- CLIENT DETAILS -->
+    <div class="client-row">
+      <div class="field-group">
+        <div class="field-label">מוגש עבור</div>
+        <div class="field-value">________________</div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">תאריך</div>
+        <div class="field-value">________________</div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">מייל / טלפון לקוח</div>
+        <div class="field-value">________________</div>
+      </div>
+      <div class="field-group">
+        <div class="field-label">בתוקף עד</div>
+        <div class="field-value">________________</div>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <p class="intro-text">
+      שלום <strong>________________</strong>,<br><br>
+      תודה על הפנייה! שמחתי לדבר אתכם ולהבין את הצרכים שלכם.
+      בהתאם לשיחה שלנו, הכנתי לכם הצעה מותאמת אישית.
+      <!--  ← רשמי כאן משפט שמראה שהבנת את הצורך הספציפי שלהם  -->
+    </p>
+
+    <!-- SERVICES -->
+    <div class="services-title">השירותים המוצעים</div>
+
+    <!-- SERVICE 1 -->
+    <div class="service-card">
+      <div class="service-header">
+        <div>
+          <div class="service-name">שיחת ייעוץ AI אישית</div>
+          <div class="service-tagline">שעה אחת שמשנה את הדרך שבה אתם עובדים עם AI</div>
+        </div>
+        <div class="service-price-block">
+          <div class="service-price">₪550</div>
+          <div class="service-price-unit">לפגישה</div>
+        </div>
+      </div>
+      <div class="service-body">
+        <ul class="service-includes">
+          <li><span class="check">✦</span> אבחון של הכלים שאתם משתמשים בהם היום</li>
+          <li><span class="check">✦</span> זיהוי 3 משימות שאפשר לאוטומט עכשיו</li>
+          <li><span class="check">✦</span> Skill אישי שאני בונה עבורכם לפי העסק שלכם</li>
+          <li><span class="check">✦</span> סיכום מפגישה + רשימת פעולות ל-30 הימים הבאים</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SERVICE 2 — FEATURED -->
+    <div class="service-card featured">
+      <div class="featured-badge">מומלץ</div>
+      <div class="service-header">
+        <div>
+          <div class="service-name">חבילת תוכן AI חודשית</div>
+          <div class="service-tagline">נכין יחד את כל התוכן לחודש — עם AI שעובד בקול שלכם</div>
+        </div>
+        <div class="service-price-block">
+          <div class="service-price">₪1,200</div>
+          <div class="service-price-unit">לחודש</div>
+        </div>
+      </div>
+      <div class="service-body">
+        <ul class="service-includes">
+          <li><span class="check">✦</span> 12 רעיונות תוכן מותאמים לעסק שלכם</li>
+          <li><span class="check">✦</span> 4 קרוסלות מוכנות לפרסום (עיצוב + כיתובים)</li>
+          <li><span class="check">✦</span> 4 כיתובים לפוסטים + hashtags</li>
+          <li><span class="check">✦</span> 2 רעיונות לריילס עם סקריפטים</li>
+          <li><span class="check">✦</span> Prompt Kit אישי שתשתמשו בו לבד בין המפגשים</li>
+          <li><span class="check">✦</span> שיחה חודשית לסקירה ותכנון</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SERVICE 3 -->
+    <div class="service-card">
+      <div class="service-header">
+        <div>
+          <div class="service-name">ליווי AI לעסק — 3 חודשים</div>
+          <div class="service-tagline">מ-0 לשגרת AI מלאה — תוכן, מיילים, מסמכים ועוד</div>
+        </div>
+        <div class="service-price-block">
+          <div class="service-price">₪2,800</div>
+          <div class="service-price-unit">לחודש</div>
+        </div>
+      </div>
+      <div class="service-body">
+        <ul class="service-includes">
+          <li><span class="check">✦</span> כל מה שבחבילה החודשית</li>
+          <li><span class="check">✦</span> בניית מערכת AI מלאה לעסק שלכם (Skills, Templates, Workflows)</li>
+          <li><span class="check">✦</span> ליווי שבועי — 30 דקות על שאלות ואתגרים שוטפים</li>
+          <li><span class="check">✦</span> מענה ב-WhatsApp בתוך 24 שעות</li>
+          <li><span class="check">✦</span> אימון קצר לצוות / שותפ/ה אם רלוונטי</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TOTAL -->
+    <div class="total-row">
+      <div>
+        <div class="total-label">סה"כ הצעה זו</div>
+        <div class="total-note">כולל מע"מ / ללא מע"מ — לציין</div>
+      </div>
+      <div style="text-align:left;">
+        <div class="total-amount">₪ ________</div>
+      </div>
+    </div>
+
+    <!-- WHY ME -->
+    <div class="why-section">
+      <div class="why-title">למה לעבוד איתי</div>
+      <div class="why-points">
+        <div class="why-point">
+          <span class="bullet">✦</span>
+          <span>מתמחה ב-AI לעברית — כל הכלים מותאמים לשוק הישראלי</span>
+        </div>
+        <div class="why-point">
+          <span class="bullet">✦</span>
+          <span>לא מוכרת כלים — מלמדת אתכם לעבוד בכוחות עצמכם</span>
+        </div>
+        <div class="why-point">
+          <span class="bullet">✦</span>
+          <span>תוצאות שנמדדות בשעות שחוסכות לכם כל שבוע</span>
+        </div>
+        <div class="why-point">
+          <span class="bullet">✦</span>
+          <span>כל מה שנבנה נשאר אצלכם — לא נעלם כשהליווי נגמר</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="next-steps">
+      <div class="steps-title">הצעדים הבאים</div>
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">אישור ההצעה<br>בהודעה אליי</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">תשלום<br>מקדמה 50%</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">תיאום פגישה<br>ראשונה</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">מתחילים<br>לעבוד 🚀</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer-band">
+    <div class="footer-contact">
+      <strong>שני גורגוב</strong> · Shani AI Creator<br>
+      @shani.creates.ai · gorgovs1@gmail.com
+    </div>
+    <div class="footer-valid">
+      <div class="valid-label">הצעה בתוקף עד</div>
+      <div class="valid-date">________________</div>
+    </div>
+  </div>
+
+  <!-- SIGNATURES -->
+  <div class="sig-area">
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-label">חתימת הלקוח/ת ואישור</div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-line"></div>
+      <div class="sig-label">שני גורגוב | Shani AI Creator</div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>

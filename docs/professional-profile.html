@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Profile — שני גורגוב | Shani AI Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: #f0ede8;
+    color: #141009;
+    direction: rtl;
+  }
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+    .no-print { display: none !important; }
+    @page { margin: 0; size: A4; }
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+  .no-print {
+    background: #f2622e; color: white; text-align: center;
+    padding: 10px; font-size: 13px; font-weight: 600;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .page {
+    width: 210mm; min-height: 297mm;
+    background: white; margin: 24px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  /* ─── PAGE 1: COVER ─── */
+  .cover {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    min-height: 297mm;
+  }
+  .cover-left {
+    background: #141009;
+    padding: 52px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-right {
+    background: #f2622e;
+    padding: 52px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .cover-logo {
+    font-size: 16px; font-weight: 900; color: white;
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .cover-logo span { color: #f2622e; }
+  .cover-headline {
+    font-size: 46px; font-weight: 900; color: white;
+    line-height: 1.1; letter-spacing: -2px;
+  }
+  .cover-headline .orange { color: #f2622e; }
+  .cover-sub {
+    font-size: 14px; color: rgba(255,255,255,0.55);
+    line-height: 1.7; max-width: 360px;
+    font-weight: 300;
+  }
+  .cover-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+  }
+  .cover-right-label {
+    font-size: 10px; font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .cover-right-value {
+    font-size: 14px; font-weight: 600; color: white;
+    line-height: 1.6;
+  }
+  .cover-right-block { display: flex; flex-direction: column; }
+
+  /* ─── INNER PAGES ─── */
+  .page-header {
+    background: #141009; padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ph-brand { font-size: 13px; font-weight: 700; color: white; opacity: 0.7; }
+  .ph-brand span { color: #f2622e; opacity: 1; }
+  .ph-section { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+  .page-content { padding: 36px 48px; }
+  .page-footer {
+    border-top: 1px solid #eee; padding: 14px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .pf-note { font-size: 10px; color: #aaa; }
+  .pf-num { font-size: 10px; color: #ccc; font-weight: 600; }
+
+  /* ─── SECTION TITLES ─── */
+  .section-label {
+    font-size: 10px; font-weight: 700; color: #f2622e;
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 26px; font-weight: 900; color: #141009;
+    line-height: 1.15; letter-spacing: -1px; margin-bottom: 8px;
+  }
+  .section-divider {
+    height: 3px; background: linear-gradient(90deg, #f2622e, transparent);
+    border-radius: 2px; margin-bottom: 20px;
+  }
+  .body-text {
+    font-size: 13.5px; line-height: 1.85; color: #444; margin-bottom: 14px;
+  }
+
+  /* ─── SERVICE CARDS ─── */
+  .service-grid { display: flex; flex-direction: column; gap: 14px; }
+  .service-card {
+    background: #fafaf8; border: 1px solid #e8e4de;
+    border-radius: 10px; padding: 20px 22px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 12px; align-items: start;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute;
+    top: 0; right: 0; width: 4px; height: 100%;
+    background: #f2622e;
+  }
+  .service-card.featured {
+    background: linear-gradient(135deg, #141009, #1e1710);
+    border-color: #f2622e;
+  }
+  .service-card.featured::before { background: #f2622e; }
+  .svc-no {
+    font-size: 10px; font-weight: 700; color: #f2622e;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .svc-name {
+    font-size: 15px; font-weight: 700; color: #141009; margin-bottom: 6px;
+  }
+  .service-card.featured .svc-name { color: white; }
+  .svc-desc {
+    font-size: 12px; color: #666; line-height: 1.6;
+  }
+  .service-card.featured .svc-desc { color: rgba(255,255,255,0.6); }
+  .svc-price-block { text-align: left; }
+  .svc-price {
+    font-size: 26px; font-weight: 900; color: #f2622e;
+    line-height: 1; white-space: nowrap;
+  }
+  .svc-per {
+    font-size: 10px; color: #aaa; margin-top: 3px;
+  }
+  .service-card.featured .svc-per { color: rgba(255,255,255,0.4); }
+  .svc-includes {
+    margin-top: 10px; list-style: none; grid-column: 1 / -1;
+  }
+  .svc-includes li {
+    font-size: 11.5px; color: #555; line-height: 1.7;
+    padding-right: 14px; position: relative;
+  }
+  .svc-includes li::before {
+    content: "✦"; color: #f2622e;
+    position: absolute; right: 0; font-size: 8px; top: 4px;
+  }
+  .service-card.featured .svc-includes li { color: rgba(255,255,255,0.7); }
+  .featured-badge {
+    background: #f2622e; color: white;
+    font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+    display: inline-block; margin-bottom: 6px;
+  }
+
+  /* ─── SKILLS GRID ─── */
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;
+  }
+  .skill-cell {
+    background: #fafaf8; border: 1px solid #e8e4de;
+    border-radius: 8px; padding: 14px 16px;
+  }
+  .skill-cell .sk-category {
+    font-size: 10px; font-weight: 700; color: #f2622e;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .skill-cell .sk-tags {
+    display: flex; flex-wrap: wrap; gap: 4px;
+  }
+  .sk-tag {
+    background: #141009; color: white;
+    font-size: 10.5px; font-weight: 500;
+    padding: 3px 8px; border-radius: 20px;
+  }
+
+  /* ─── STATS ─── */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    margin: 16px 0;
+  }
+  .stat-cell {
+    background: #141009; border-radius: 8px;
+    padding: 16px; text-align: center;
+  }
+  .stat-num {
+    font-size: 32px; font-weight: 900; color: #f2622e; line-height: 1;
+  }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+
+  /* ─── TARGET ─── */
+  .target-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+  .target-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: #fafaf8; border: 1px solid #e8e4de;
+    border-radius: 8px; padding: 12px 16px;
+  }
+  .target-icon {
+    font-size: 18px; flex-shrink: 0; line-height: 1;
+  }
+  .target-body { font-size: 12.5px; color: #444; line-height: 1.6; }
+  .target-body strong { color: #141009; font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* ─── CTA BOX ─── */
+  .cta-box {
+    background: linear-gradient(135deg, #141009, #1e1710);
+    border-radius: 10px; padding: 24px 28px;
+    color: white; text-align: center; margin-top: 16px;
+  }
+  .cta-box h3 { font-size: 20px; font-weight: 900; color: white; margin-bottom: 8px; }
+  .cta-box p { font-size: 12.5px; color: rgba(255,255,255,0.6); margin-bottom: 14px; line-height: 1.7; }
+  .cta-channels {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+  }
+  .cta-channel {
+    background: rgba(242,98,46,0.15); border: 1px solid rgba(242,98,46,0.4);
+    color: #f2622e; font-size: 11.5px; font-weight: 600;
+    padding: 7px 16px; border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  להדפסה: Ctrl+P → שמור כ-PDF
+</div>
+
+<!-- ══════════════════ PAGE 1 — COVER ══════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-left">
+      <div>
+        <div class="cover-logo">Shani<span>.</span>AI Creator</div>
+      </div>
+
+      <div>
+        <div class="cover-headline">
+          שני<br>גורגוב.<br>
+          <span class="orange">Shani AI<br>Creator.</span>
+        </div>
+        <div class="cover-sub" style="margin-top: 20px;">
+          מומחית AI לעסקים בישראל. עוזרת ליזמים, עצמאיים ואנשי מקצוע לחסוך שעות בשבוע עם Claude Desktop, פרומפטים מותאמים אישית, ואוטומציות שעובדות 24/7.
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        עדכון: יוני 2025 · gorgovs1@gmail.com · @shani.creates.ai
+      </div>
+    </div>
+
+    <div class="cover-right">
+      <div class="cover-right-block">
+        <div class="cover-right-label">תחום</div>
+        <div class="cover-right-value">AI Consulting<br>לעסקים בעברית</div>
+      </div>
+      <div class="cover-right-block">
+        <div class="cover-right-label">קהל יעד</div>
+        <div class="cover-right-value">עצמאיים<br>עסקים קטנים<br>יוצרי תוכן<br>מעצבים</div>
+      </div>
+      <div class="cover-right-block">
+        <div class="cover-right-label">כלים</div>
+        <div class="cover-right-value">Claude Desktop<br>Canva AI<br>ManyChat<br>Next.js</div>
+      </div>
+      <div class="cover-right-block">
+        <div class="cover-right-label">מיקום</div>
+        <div class="cover-right-value">ישראל — Zoom<br>+ פנים אל פנים</div>
+      </div>
+      <div class="cover-right-block">
+        <div class="cover-right-label">אינסטגרם</div>
+        <div class="cover-right-value">@shani.creates.ai</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 2 — ABOUT ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span> Creator</div>
+    <div class="ph-section">פרופיל מקצועי</div>
+  </div>
+  <div class="page-content">
+    <div class="section-label">על שני</div>
+    <div class="section-title">10 שנות ניסיון עסקי.<br>פגישות AI שמשנות תהליכים.</div>
+    <div class="section-divider"></div>
+
+    <div class="body-text">
+      ניהלתי עסק משלי למשך 10 שנים ולמדתי בדיוק מה עסק קטן צריך — ומה הוא לא צריך. כשגיליתי את Claude Desktop, הבנתי שיש פה כלי שיכול לשנות את יכולת העבודה של כל עצמאית ובעלת עסק קטן בישראל.
+    </div>
+    <div class="body-text">
+      הבעיה: כולם מדברים על AI באנגלית. אני בניתי מערכות שעובדות בעברית — Skills, פרומפטים, תהליכים — שמאפשרות לי ולקוחות להוציא חודש של תוכן בשעתיים, לנהל לקוחות בלי ספרדשיטים, ולכתוב הצעות מחיר תוך דקות.
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-cell">
+        <div class="stat-num">10</div>
+        <div class="stat-label">שנות ניסיון עסקי</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Skills מותאמות שבניתי</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">5h</div>
+        <div class="stat-label">חסכון שבועי ממוצע ללקוחה</div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <strong>המתודולוגיה שלי:</strong> לא לומדים "AI כללי" — לומדים AI לעסק שלכם. כל שיחה מסתיימת עם פרומפטים מוכנים לשימוש, ספציפיים לנישה ולסגנון שלכם. אין תיאוריה מיותרת — רק כלים שעובדים.
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <div class="sk-category">כלי AI</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Claude Desktop</span>
+          <span class="sk-tag">Skills</span>
+          <span class="sk-tag">ChatGPT</span>
+          <span class="sk-tag">Midjourney</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="sk-category">תוכן ועיצוב</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Canva AI</span>
+          <span class="sk-tag">Instagram</span>
+          <span class="sk-tag">ManyChat</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="sk-category">פיתוח ואוטומציה</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Next.js</span>
+          <span class="sk-tag">Vercel</span>
+          <span class="sk-tag">n8n</span>
+          <span class="sk-tag">Zapier</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <div class="sk-category">שפות ועברית</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Hebrew RTL</span>
+          <span class="sk-tag">Prompt Engineering</span>
+          <span class="sk-tag">Claude Skills</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-note">@shani.creates.ai · Shani AI Creator</div>
+    <div class="pf-num">2</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 3 — SERVICES & PRICING ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span> Creator</div>
+    <div class="ph-section">שירותים ותמחור</div>
+  </div>
+  <div class="page-content">
+    <div class="section-label">שירותים</div>
+    <div class="section-title">3 שירותים.<br>מחיר ברור.</div>
+    <div class="section-divider"></div>
+
+    <div class="service-grid">
+
+      <div class="service-card">
+        <div>
+          <div class="svc-no">שירות 01</div>
+          <div class="svc-name">שיחת ייעוץ AI אישית</div>
+          <div class="svc-desc">פגישה אחת בת 60–90 דקות בZoom או פנים אל פנים. מיפוי + הדגמה חיה + פרומפטים מותאמים.</div>
+          <ul class="svc-includes">
+            <li>מיפוי צרכי AI לעסק שלכם</li>
+            <li>2 פרומפטים מותאמים אישית</li>
+            <li>סיכום כתוב + המלצות תוך 24 שעות</li>
+          </ul>
+        </div>
+        <div class="svc-price-block">
+          <div class="svc-price">₪550</div>
+          <div class="svc-per">לפגישה</div>
+        </div>
+      </div>
+
+      <div class="service-card featured">
+        <div>
+          <div class="featured-badge">הכי פופולרי</div>
+          <div class="svc-no">שירות 02</div>
+          <div class="svc-name">חבילת תוכן AI חודשית</div>
+          <div class="svc-desc">ליווי שוטף לבניית תהליכי AI לתוכן ולניהול עסק. 2 שיחות בחודש + תמיכה שוטפת.</div>
+          <ul class="svc-includes">
+            <li>2 שיחות עבודה חודשיות (45 דק׳ כ"א)</li>
+            <li>תכנית תוכן חודשית מותאמת</li>
+            <li>10 פרומפטים מוכנים לשימוש</li>
+            <li>תמיכה ב-WhatsApp (עד 24 שעות)</li>
+          </ul>
+        </div>
+        <div class="svc-price-block">
+          <div class="svc-price">₪1,200</div>
+          <div class="svc-per" style="color:rgba(255,255,255,0.4)">לחודש</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="svc-no">שירות 03</div>
+          <div class="svc-name">ליווי AI לעסק — 3 חודשים</div>
+          <div class="svc-desc">בניית תהליכי AI מותאמים לעסק, אוטומציות, Canva Workflow, וליווי אישי אינטנסיבי.</div>
+          <ul class="svc-includes">
+            <li>4 שיחות עבודה בחודש (60 דק׳ כ"א)</li>
+            <li>בניית Skills + Automation מותאמים</li>
+            <li>אינטגרציית Canva AI + ManyChat</li>
+            <li>ליווי אישי שוטף + דוח התקדמות חודשי</li>
+          </ul>
+        </div>
+        <div class="svc-price-block">
+          <div class="svc-price">₪2,800</div>
+          <div class="svc-per">לחודש × 3</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:16px; background:#fafaf8; border:1px solid #e8e4de; border-radius:8px; padding:12px 16px; font-size:11.5px; color:#666; line-height:1.7;">
+      <strong style="color:#141009;">תמחור עדכני (יוני 2025).</strong>
+      המחיר הסופי נקבע לאחר שיחת היכרות. הנחה של 5% לתשלום מלא מראש בחבילות 3 חודשים.
+      כל המחירים כוללים מע"מ.
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-note">@shani.creates.ai · שירותים ותמחור · יוני 2025</div>
+    <div class="pf-num">3</div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAGE 4 — IDEAL CLIENTS + CTA ══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="ph-brand">Shani<span>.AI</span> Creator</div>
+    <div class="ph-section">קהל יעד + יצירת קשר</div>
+  </div>
+  <div class="page-content">
+    <div class="section-label">למי זה מתאים</div>
+    <div class="section-title">הלקוחות האידיאליים<br>של שני.</div>
+    <div class="section-divider"></div>
+
+    <div class="target-list">
+      <div class="target-item">
+        <div class="target-icon">💼</div>
+        <div class="target-body">
+          <strong>עצמאיים ובעלי עסקים קטנים</strong>
+          מנהלים את הכל לבד — תוכן, לקוחות, כספים. AI יכול לחסוך 5–10 שעות בשבוע בלי לשנות את הקול האישי.
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-icon">🎨</div>
+        <div class="target-body">
+          <strong>מעצבים גרפיים</strong>
+          עובדים עם הרבה לקוחות ועם Canva. פרומפטים מותאמים לנישה + Skill עברית = Workflow מהיר פי 3.
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-icon">📱</div>
+        <div class="target-body">
+          <strong>יוצרי תוכן ומאמנים עסקיים</strong>
+          צריכים לייצר תוכן רציף לאינסטגרם. עם Claude אפשר לייצר חודש תוכן ב-2 שעות בלי לאבד את הקול האותנטי.
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-icon">🏪</div>
+        <div class="target-body">
+          <strong>עסקים מקומיים וחנויות</strong>
+          מסעדות, חנויות בוטיק, סטודיואים — עסקים שרוצים נוכחות דיגיטלית חזקה בלי להעסיק מנהל תוכן.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin: 20px 0 14px;">
+      <div class="section-label">מה לא מתאים</div>
+      <div style="font-size:12.5px; color:#666; line-height:1.8; background:#fafaf8; border:1px solid #e8e4de; border-radius:8px; padding:14px 16px;">
+        ❌ חברות גדולות עם מחלקות IT ו-Legal שצריכות Enterprise SLAs<br>
+        ❌ מי שמחפשת "קורס AI" מקוון בלי ליווי אישי<br>
+        ❌ מי שרוצה שמישהי תנהל לה את הסושיאל (לא מנהלת תוכן — מלמדת איך לעשות לבד)
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3>מוכנה להתחיל? 🎯</h3>
+      <p>שיחת היכרות חינמית של 20 דקות — מבינים ביחד אם ואיך AI יכול לעזור לעסק שלכם. ללא התחייבות, ללא מכירות אגרסיביות.</p>
+      <div class="cta-channels">
+        <div class="cta-channel">📩 DM באינסטגרם: @shani.creates.ai</div>
+        <div class="cta-channel">✉️ gorgovs1@gmail.com</div>
+        <div class="cta-channel">💬 WhatsApp: זמין בביו</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-note">Shani AI Creator · gorgovs1@gmail.com · @shani.creates.ai · 2025</div>
+    <div class="pf-num">4</div>
+  </div>
+</div>
+
+</body>
+</html>

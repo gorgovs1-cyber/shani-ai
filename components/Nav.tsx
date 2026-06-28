@@ -50,10 +50,11 @@ export default function Nav() {
   const closeMenu = () => setMenuOpen(false);
 
   const navLinks = [
-    { label: t.navWork,    href: "#work" },
-    { label: t.navBuild,   href: "#build" },
-    { label: t.navAbout,   href: "#about" },
-    { label: t.navProcess, href: "#process" },
+    { label: t.navWork,           href: "#work" },
+    { label: t.navBuild,          href: "#build" },
+    { label: t.navAbout,          href: "#about" },
+    { label: t.navProcess,        href: "#process" },
+    { label: t.navTestimonials,   href: "#testimonials" },
   ];
 
   return (
@@ -116,7 +117,7 @@ export default function Nav() {
                 letterSpacing: ".26em",
                 color: "var(--dmuted)",
               }}>
-                WEB &amp; AI PRODUCT BUILDER
+                SHANI AI CREATOR
               </span>
             </span>
           </a>

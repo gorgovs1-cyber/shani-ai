@@ -1,7 +1,7 @@
 export const dict = {
   he: {
     dir: 'rtl' as const,
-    navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navCta:'בואו נדבר',
+    navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navTestimonials:'המלצות', navGuides:'מדריכים', navCta:'בואו נדבר',
     role:'SHANI AI CREATOR',
     heroTitle:'בונה אתרים, כלי AI ואוטומציות.',
     heroSub:'אתר קולנועי שגורם ללקוחות להישאר. אוטומציות שמריצות את העסק 24/7. ייעוץ AI שמוריד לכם עומסים. מהר ופשוט.',
@@ -48,11 +48,40 @@ export const dict = {
       {n:'03', title:'עיצוב', desc:'בונים שפה ויזואלית וחוויית משתמש.'},
       {n:'04', title:'בנייה מואצת', desc:'מפתחים בשיטות עבודה מתקדמות ובסיוע AI, מה שמאפשר לנו לספק מוצר מושלם, קוד נקי ותנועה חלקה תוך ימים ספורים.'},
       {n:'05', title:'שיגור', desc:'עולים לאוויר, מודדים ומשפרים.'}
-    ]
+    ],
+    trusted:{ label:'עבדתי עם' },
+    ctaStrip:'לא בטוחים מאיפה להתחיל? שיחת מיפוי ראשונה — ללא עלות.',
+    ctaStripBtn:'דברי איתי בוואטסאפ ←',
+    testimonials:{
+      label:'06 — המלצות',
+      title:'מה לקוחות אומרות.',
+      items:[
+        {
+          quote:'שני לימדה אותי לדבר עם AI בעברית אמיתית. חודש של תוכן הפך להיות עניין של שעתיים. לא האמנתי שזה אפשרי.',
+          name:'מיכל ר.',
+          role:'מאמנת עסקית | תל אביב'
+        },
+        {
+          quote:'הייתי חושבת ש-AI זה לא בשבילי. אחרי שיחה אחת עם שני — שיניתי את כל הדרך שאני עובדת. פרומפטים שמתאימים בדיוק לעסק שלי.',
+          name:'דנה כ.',
+          role:'מעצבת גרפית | ירושלים'
+        },
+        {
+          quote:'ה-Skill לעברית שבנתה שני שינה את חיי. Claude עכשיו כותב לי עברית כמו ישראלי אמיתי — לא עוד תרגומים מוזרים.',
+          name:'נועה ש.',
+          role:'בעלת חנות בוטיק | הרצליה'
+        },
+        {
+          quote:'ה-ROI פשוט ברור: בשיחה אחת חסכתי לפחות 10 שעות עבודה בחודש. שני יודעת לזהות בדיוק איפה AI יכול לעזור לעסק שלך.',
+          name:'לירון מ.',
+          role:'יועצת שיווק עצמאית | רמת גן'
+        }
+      ]
+    }
   },
   en: {
     dir: 'ltr' as const,
-    navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navCta:"Let's talk",
+    navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navTestimonials:'Reviews', navGuides:'Guides', navCta:"Let's talk",
     role:'SHANI AI CREATOR',
     heroTitle:'Websites, AI tools, and automations.',
     heroSub:'A cinematic website that keeps clients hooked. Automations that run your business 24/7. AI consulting that removes your workload. Fast and simple.',
@@ -99,7 +128,36 @@ export const dict = {
       {n:'03', title:'Design', desc:'Craft the visual language and UX.'},
       {n:'04', title:'Accelerated Build', desc:'We develop using advanced methods and AI assistance, delivering a polished product with clean code and smooth motion in days, not weeks.'},
       {n:'05', title:'Launch', desc:'Go live, measure and improve.'}
-    ]
+    ],
+    trusted:{ label:'Worked with' },
+    ctaStrip:'Not sure where to start? First mapping session — free.',
+    ctaStripBtn:'Chat on WhatsApp →',
+    testimonials:{
+      label:'06 — Reviews',
+      title:'What clients say.',
+      items:[
+        {
+          quote:'Shani taught me to speak to AI in real Hebrew. A month of content became a two-hour task. I couldn\'t believe it was possible.',
+          name:'Michal R.',
+          role:'Business Coach | Tel Aviv'
+        },
+        {
+          quote:'I thought AI wasn\'t for me. After one session with Shani I changed my entire workflow. Prompts that fit my business exactly.',
+          name:'Dana K.',
+          role:'Graphic Designer | Jerusalem'
+        },
+        {
+          quote:'The Hebrew Skill Shani built changed my life. Claude now writes Hebrew like a real Israeli — no more weird translations.',
+          name:'Noa S.',
+          role:'Boutique Shop Owner | Herzliya'
+        },
+        {
+          quote:'The ROI is clear: in one session I saved at least 10 hours of work per month. Shani knows exactly where AI can help your business.',
+          name:'Liron M.',
+          role:'Independent Marketing Consultant | Ramat Gan'
+        }
+      ]
+    }
   }
 } as const;
 

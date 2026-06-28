@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קרוסלה 3 — 5 פרומפטים שחוסכים 5 שעות | Shani AI Creator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap');
+
+  :root {
+    --orange: #f2622e;
+    --bg: #141009;
+    --text: #f4ede1;
+    --text-dim: #a09890;
+    --slide-size: 540px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0805;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+    direction: rtl;
+  }
+
+  h1 {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, var(--slide-size));
+    gap: 20px;
+    max-width: 1680px;
+  }
+
+  .slide {
+    width: var(--slide-size);
+    height: var(--slide-size);
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 52px;
+    border: 1px solid rgba(242, 98, 46, 0.12);
+  }
+
+  .slide-num {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(242, 98, 46, 0.3);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  .brand {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0.4;
+  }
+  .corner-tl {
+    top: 20px;
+    right: 20px;
+    border-top: 2px solid var(--orange);
+    border-right: 2px solid var(--orange);
+  }
+  .corner-br {
+    bottom: 20px;
+    left: 20px;
+    border-bottom: 2px solid var(--orange);
+    border-left: 2px solid var(--orange);
+  }
+
+  /* ── SLIDE 1 ── Hook */
+  .slide-1::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(242,98,46,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hook-number {
+    color: var(--orange);
+    font-size: 90px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+    opacity: 0.9;
+  }
+
+  .hook-headline {
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 18px;
+  }
+
+  .hook-headline em {
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  .hook-sub {
+    color: var(--text-dim);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .hook-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(242,98,46,0.4);
+    padding: 8px 14px;
+    color: var(--orange);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CONTENT SLIDES ── */
+  .slide-tag {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .slide-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(242,98,46,0.25);
+  }
+
+  .accent-line {
+    width: 40px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 20px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .slide-title {
+    color: var(--text);
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .slide-title .orange { color: var(--orange); }
+
+  /* Prompt card */
+  .prompt-card {
+    background: rgba(242,98,46,0.06);
+    border: 1px solid rgba(242,98,46,0.2);
+    border-right: 3px solid var(--orange);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .prompt-label {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .prompt-text {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    direction: rtl;
+  }
+
+  .prompt-text code {
+    color: var(--orange);
+    font-family: monospace;
+    font-size: 13px;
+  }
+
+  .time-save {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .time-badge {
+    background: rgba(242,98,46,0.15);
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .time-desc {
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+
+  /* Benefit list */
+  .benefit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .benefit-list li {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .benefit-list li .bullet {
+    color: var(--orange);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Mini prompt list for slide 7 */
+  .mini-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mini-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .mini-num {
+    width: 22px;
+    height: 22px;
+    background: var(--orange);
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 11px;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  /* ── SLIDE 7 ── CTA */
+  .slide-cta {
+    text-align: center;
+    align-items: center;
+  }
+
+  .slide-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(242,98,46,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-headline {
+    color: var(--text);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-headline em {
+    color: var(--orange);
+    font-style: normal;
+  }
+
+  .cta-action-box {
+    background: rgba(242,98,46,0.12);
+    border: 1.5px solid var(--orange);
+    padding: 14px 40px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-action-label {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .cta-keyword {
+    color: var(--orange);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .print-label {
+    color: rgba(244,237,225,0.2);
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<h1>קרוסלה 3 — 5 פרומפטים שחוסכים 5 שעות · 7 שקופיות · @shani.creates.ai</h1>
+
+<div class="carousel-grid">
+
+  <!-- SLIDE 1: Hook -->
+  <div class="slide slide-1">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">01 / 07</div>
+    <div class="hook-number">5</div>
+    <div class="hook-headline">פרומפטים שחוסכים<br><em>5 שעות</em> בשבוע</div>
+    <div class="hook-sub">אין קסם. רק ניסוחים מדויקים שעובדים.</div>
+    <div class="hook-badge">✦ שמרו את הפוסט הזה</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 2: פרומפט 1 -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">02 / 07</div>
+    <div class="slide-tag">פרומפט 01</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">סיכום פגישה<br><span class="orange">תוך 30 שניות</span></div>
+    <div class="prompt-card">
+      <div class="prompt-label">העתיקו ← שלחו</div>
+      <div class="prompt-text">
+        "סכמי את הפגישה הזו ב-5 נקודות. לכל נקודה: מה הוחלט, מי אחראי, מה הדדליין. פורמט: RTL עברית, ללא ניפוח."
+      </div>
+    </div>
+    <div class="time-save">
+      <div class="time-badge">חוסך 45 דקות</div>
+      <div class="time-desc">בכל פגישה</div>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 3: פרומפט 2 -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">03 / 07</div>
+    <div class="slide-tag">פרומפט 02</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">מייל שמקבל<br><span class="orange">תשובות</span></div>
+    <div class="prompt-card">
+      <div class="prompt-label">העתיקו ← שלחו</div>
+      <div class="prompt-text">
+        "כתבי מייל מקצועי בעברית. מטרה: [מה אני רוצה]. טון: ישיר, לא מתחנחן. מקסימום 5 שורות. סיום: שאלה אחת ספציפית."
+      </div>
+    </div>
+    <div class="time-save">
+      <div class="time-badge">חוסך 20 דקות</div>
+      <div class="time-desc">לכל מייל קשה</div>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 4: פרומפט 3 -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">04 / 07</div>
+    <div class="slide-tag">פרומפט 03</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">תוכן חודש<br><span class="orange">ב-10 דקות</span></div>
+    <div class="prompt-card">
+      <div class="prompt-label">העתיקו ← שלחו</div>
+      <div class="prompt-text">
+        "אני [מה אני עושה]. קהל יעד: [מי הם]. צרו לי 12 רעיונות לפוסטים לחודש הקרוב. לכל אחד: כותרת + הוק פותח + CTA. עברית, ישיר."
+      </div>
+    </div>
+    <div class="time-save">
+      <div class="time-badge">חוסך שעתיים</div>
+      <div class="time-desc">מחשיבה לתוצאה</div>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 5: פרומפט 4 -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">05 / 07</div>
+    <div class="slide-tag">פרומפט 04</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">הצעת מחיר<br><span class="orange">שמשכנעת</span></div>
+    <div class="prompt-card">
+      <div class="prompt-label">העתיקו ← שלחו</div>
+      <div class="prompt-text">
+        "כתבי הצעת מחיר ל[שירות]. לקוח: [תיאור]. מחיר: [סכום]. הדגישי: תוצאה, לא תהליך. סיום: הנעה לפעולה ברורה."
+      </div>
+    </div>
+    <div class="time-save">
+      <div class="time-badge">חוסך שעה</div>
+      <div class="time-desc">לכל הצעה</div>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 6: פרומפט 5 -->
+  <div class="slide">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">06 / 07</div>
+    <div class="slide-tag">פרומפט 05</div>
+    <div class="accent-line"></div>
+    <div class="slide-title">תגובה ללקוח<br><span class="orange">קשה</span></div>
+    <div class="prompt-card">
+      <div class="prompt-label">העתיקו ← שלחו</div>
+      <div class="prompt-text">
+        "הלקוח כתב: [הודעה]. כתבי תגובה שמכירה בתסכול, שומרת על הגבולות שלי, ומציעה פתרון. טון: חם אבל מקצועי."
+      </div>
+    </div>
+    <div class="time-save">
+      <div class="time-badge">חוסך עצבים</div>
+      <div class="time-desc">וזמן חשיבה</div>
+    </div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide slide-cta">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <div class="slide-num">07 / 07</div>
+    <div class="cta-headline">שמרו<br>את הפוסט —<br><em>תשתמשו בו</em></div>
+    <div class="cta-action-box">
+      <div class="cta-action-label">רוצים את כל 5 הפרומפטים בקובץ?</div>
+      <div class="cta-keyword">פרומפטים</div>
+    </div>
+    <div class="cta-sub">כתבו בתגובות ואשלח לכם PDF חינם 🎁</div>
+    <div class="brand">shani.creates.ai</div>
+  </div>
+
+</div>
+
+<p class="print-label">1080×1080px per slide · Instagram Post Square · @shani.creates.ai</p>
+
+</body>
+</html>

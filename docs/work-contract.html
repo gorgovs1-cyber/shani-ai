@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>חוזה עבודה — Shani AI Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: #f5f3ef;
+    color: #141009;
+    direction: rtl;
+  }
+
+  /* ─── PRINT STYLES ─── */
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .no-print { display: none !important; }
+    .divider { page-break-inside: avoid; }
+    @page { margin: 0; size: A4; }
+  }
+
+  /* ─── EDIT HINT ─── */
+  .edit-bar {
+    background: #f2622e;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .edit-bar span { opacity: 0.85; font-weight: 400; margin-right: 6px; }
+
+  /* ─── PAGE ─── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    margin: 24px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ─── TOP STRIPE ─── */
+  .top-stripe {
+    background: #141009;
+    height: 8px;
+    width: 100%;
+  }
+
+  /* ─── HEADER ─── */
+  .doc-header {
+    padding: 36px 48px 28px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand-block .logo {
+    font-size: 28px;
+    font-weight: 900;
+    color: #141009;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .brand-block .logo span {
+    color: #f2622e;
+  }
+
+  .brand-block .tagline {
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .doc-meta {
+    text-align: left;
+  }
+
+  .doc-meta .doc-type {
+    font-size: 11px;
+    font-weight: 700;
+    color: #f2622e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .doc-meta h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #141009;
+    line-height: 1.2;
+  }
+
+  .doc-meta .version-badge {
+    display: inline-block;
+    background: #141009;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ─── CONTRACT VERSION LABEL ─── */
+  .contract-version-bar {
+    background: #141009;
+    color: white;
+    padding: 10px 48px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .contract-version-bar .v-label {
+    color: #f2622e;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .contract-version-bar .v-desc {
+    opacity: 0.7;
+    font-size: 11px;
+  }
+
+  /* ─── PARTIES BOX ─── */
+  .parties-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #e8e4de;
+    margin: 28px 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e8e4de;
+  }
+
+  .party-cell {
+    background: white;
+    padding: 20px 24px;
+  }
+
+  .party-cell .party-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #f2622e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .party-cell .field-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .party-cell .field-label {
+    font-size: 11px;
+    color: #888;
+    min-width: 55px;
+    flex-shrink: 0;
+  }
+
+  .party-cell .field-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #141009;
+    border-bottom: 1px dashed #ccc;
+    flex: 1;
+    padding-bottom: 1px;
+    min-height: 20px;
+  }
+
+  .party-cell .field-value.editable {
+    color: #f2622e;
+  }
+
+  /* ─── CONTRACT BODY ─── */
+  .contract-body {
+    padding: 0 48px 36px;
+  }
+
+  .section {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #141009;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #f2622e;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-num {
+    background: #f2622e;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section p {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .section ul li {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #333;
+    padding-right: 16px;
+    position: relative;
+  }
+
+  .section ul li::before {
+    content: "✦";
+    color: #f2622e;
+    position: absolute;
+    right: 0;
+    font-size: 9px;
+    top: 4px;
+  }
+
+  /* ─── SERVICE BOX ─── */
+  .service-highlight {
+    background: #fafaf8;
+    border: 1px solid #e8e4de;
+    border-right: 3px solid #f2622e;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+
+  .service-highlight .svc-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #141009;
+    margin-bottom: 4px;
+  }
+
+  .service-highlight .svc-price {
+    font-size: 22px;
+    font-weight: 900;
+    color: #f2622e;
+    line-height: 1;
+  }
+
+  .service-highlight .svc-detail {
+    font-size: 11.5px;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* ─── PAYMENT GRID ─── */
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .payment-cell {
+    background: #fafaf8;
+    border: 1px solid #e8e4de;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .payment-cell .pc-label {
+    font-size: 10px;
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .payment-cell .pc-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #141009;
+  }
+
+  /* ─── SIGNATURE BLOCK ─── */
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  .sig-cell {
+    text-align: center;
+  }
+
+  .sig-cell .sig-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #141009;
+    margin-bottom: 40px;
+  }
+
+  .sig-cell .sig-line {
+    border-top: 1px solid #333;
+    padding-top: 6px;
+    font-size: 10px;
+    color: #888;
+  }
+
+  .sig-cell .sig-date-line {
+    border-top: 1px dashed #ccc;
+    padding-top: 4px;
+    font-size: 10px;
+    color: #aaa;
+    margin-top: 10px;
+  }
+
+  /* ─── FOOTER ─── */
+  .doc-footer {
+    border-top: 1px solid #eee;
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .doc-footer .footer-brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: #141009;
+  }
+
+  .doc-footer .footer-brand span {
+    color: #f2622e;
+  }
+
+  .doc-footer .footer-note {
+    font-size: 10px;
+    color: #aaa;
+  }
+
+  /* ─── SEPARATOR BETWEEN CONTRACTS ─── */
+  .contract-separator {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 2px;
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, #141009 0%, #2a2015 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+
+  .highlight-box p {
+    color: rgba(255,255,255,0.85) !important;
+    font-size: 12px !important;
+  }
+
+  .highlight-box strong {
+    color: #f2622e;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="edit-bar no-print">
+  ✏️ <span>כל שדה עם קו מקווקו ניתן לעריכה ישירה בדפדפן.</span>
+  להדפסה/שמירה כ-PDF: Ctrl+P ← שמור כ-PDF
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CONTRACT VERSION A — גרסה קצרה לשיחת ייעוץ               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="page">
+  <div class="top-stripe"></div>
+
+  <div class="doc-header">
+    <div class="brand-block">
+      <div class="logo">Shani<span>.</span>AI</div>
+      <div class="tagline">@shani.creates.ai · AI Creator & Consultant</div>
+    </div>
+    <div class="doc-meta">
+      <div class="doc-type">מסמך רשמי</div>
+      <h1>הסכם שירות — ייעוץ AI</h1>
+      <div class="version-badge">גרסה א׳ — שיחת ייעוץ חד-פעמית</div>
+    </div>
+  </div>
+
+  <div class="contract-version-bar">
+    <span class="v-label">גרסה א׳</span>
+    <span>|</span>
+    <span>שיחת ייעוץ AI אישית</span>
+    <span class="v-desc">· מתאימה לפגישה אחת, תשלום מיידי</span>
+  </div>
+
+  <!-- PARTIES -->
+  <div class="parties-grid">
+    <div class="party-cell">
+      <div class="party-label">נותנת השירות</div>
+      <div class="field-row">
+        <span class="field-label">שם:</span>
+        <span class="field-value">שני גורגוב</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">עסק:</span>
+        <span class="field-value">Shani AI Creator</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">אינסטגרם:</span>
+        <span class="field-value">@shani.creates.ai</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">טלפון:</span>
+        <span class="field-value editable" contenteditable="true">_____________</span>
+      </div>
+    </div>
+    <div class="party-cell">
+      <div class="party-label">מקבלת השירות</div>
+      <div class="field-row">
+        <span class="field-label">שם:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">עסק:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">טלפון:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">אימייל:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contract-body">
+
+    <!-- 1. SERVICE -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">1</span>
+        השירות
+      </div>
+      <div class="service-highlight">
+        <div class="svc-name">שיחת ייעוץ AI אישית — פגישה אחת</div>
+        <div class="svc-price">₪550</div>
+        <div class="svc-detail">
+          פגישה אחת בת 60–90 דקות, ב-Zoom או פנים-אל-פנים.<br>
+          הפגישה כוללת: מיפוי צרכי AI לעסק, הדגמה חיה, ו-2 פרומפטים מותאמים אישית.<br>
+          לאחר הפגישה: סיכום כתוב + המלצות ישלחו תוך 24 שעות.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PAYMENT -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">2</span>
+        תנאי תשלום
+      </div>
+      <div class="payment-grid">
+        <div class="payment-cell">
+          <div class="pc-label">סכום</div>
+          <div class="pc-value">₪550 כולל מע"מ</div>
+        </div>
+        <div class="payment-cell">
+          <div class="pc-label">מועד תשלום</div>
+          <div class="pc-value">עד 24 שעות לפני הפגישה</div>
+        </div>
+        <div class="payment-cell">
+          <div class="pc-label">אמצעי תשלום</div>
+          <div class="pc-value">ביט / Paybox / העברה בנקאית</div>
+        </div>
+        <div class="payment-cell">
+          <div class="pc-label">מועד הפגישה</div>
+          <div class="pc-value editable" contenteditable="true">___/___/______  שעה: ___:___</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CANCELLATION -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">3</span>
+        ביטול ושינוי מועד
+      </div>
+      <ul>
+        <li>ביטול עד 48 שעות לפני הפגישה — החזר מלא.</li>
+        <li>ביטול בין 24–48 שעות לפני — זיכוי לפגישה עתידית.</li>
+        <li>ביטול פחות מ-24 שעות לפני — לא מוחזר.</li>
+        <li>שני מאפשרת דחייה אחת ללא עלות.</li>
+      </ul>
+    </div>
+
+    <!-- 4. TERMS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">4</span>
+        הסכמות כלליות
+      </div>
+      <ul>
+        <li>החומרים שיועברו בפגישה הם לשימוש אישי בלבד.</li>
+        <li>אין להפיץ, למכור, או לשתף את הפרומפטים והמתודולוגיה ללא אישור בכתב.</li>
+        <li>שני אינה אחראית לתוצאות עסקיות ספציפיות הנובעות מהייעוץ.</li>
+        <li>הפגישה עשויה להיות מוקלטת לצרכי תיעוד פנימי בלבד, בהסכמה מראש.</li>
+      </ul>
+    </div>
+
+    <!-- SIGNATURES -->
+    <div class="section" style="margin-top: 32px;">
+      <div class="section-title">
+        <span class="section-num">5</span>
+        חתימות
+      </div>
+      <p style="font-size:11px; color:#888; margin-bottom:16px;">החתימה מאשרת הסכמה לכל תנאי מסמך זה.</p>
+      <div class="sig-grid">
+        <div class="sig-cell">
+          <div class="sig-name">שני גורגוב — נותנת השירות</div>
+          <div class="sig-line">חתימה</div>
+          <div class="sig-date-line">תאריך: ___/___/______</div>
+        </div>
+        <div class="sig-cell">
+          <div class="sig-name">מקבלת השירות</div>
+          <div class="sig-line">חתימה</div>
+          <div class="sig-date-line">תאריך: ___/___/______</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="doc-footer">
+    <div class="footer-brand">Shani<span>.AI</span> Creator</div>
+    <div class="footer-note">הסכם שירות גרסה א׳ · שיחת ייעוץ חד-פעמית · @shani.creates.ai</div>
+  </div>
+</div>
+
+<div class="contract-separator no-print">⸻ · · · גרסה ב׳ מתחילה בהמשך · · · ⸻</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CONTRACT VERSION B — גרסה מלאה לחבילה חודשית/3 חודשים   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="page">
+  <div class="top-stripe"></div>
+
+  <div class="doc-header">
+    <div class="brand-block">
+      <div class="logo">Shani<span>.</span>AI</div>
+      <div class="tagline">@shani.creates.ai · AI Creator & Consultant</div>
+    </div>
+    <div class="doc-meta">
+      <div class="doc-type">מסמך רשמי</div>
+      <h1>הסכם שירות — ליווי AI</h1>
+      <div class="version-badge">גרסה ב׳ — חבילה חודשית / ליווי 3 חודשים</div>
+    </div>
+  </div>
+
+  <div class="contract-version-bar">
+    <span class="v-label">גרסה ב׳</span>
+    <span>|</span>
+    <span>חבילת תוכן / ליווי AI לעסק</span>
+    <span class="v-desc">· מתאימה לחבילה חודשית ₪1,200 או ליווי 3 חודשים ₪2,800</span>
+  </div>
+
+  <!-- PARTIES -->
+  <div class="parties-grid">
+    <div class="party-cell">
+      <div class="party-label">נותנת השירות</div>
+      <div class="field-row">
+        <span class="field-label">שם:</span>
+        <span class="field-value">שני גורגוב</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">עסק:</span>
+        <span class="field-value">Shani AI Creator</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">אינסטגרם:</span>
+        <span class="field-value">@shani.creates.ai</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">טלפון:</span>
+        <span class="field-value editable" contenteditable="true">_____________</span>
+      </div>
+    </div>
+    <div class="party-cell">
+      <div class="party-label">מקבלת השירות</div>
+      <div class="field-row">
+        <span class="field-label">שם:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">עסק:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">טלפון:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">אימייל:</span>
+        <span class="field-value editable" contenteditable="true">_______________________</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contract-body">
+
+    <!-- 1. PACKAGE CHOICE -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">1</span>
+        החבילה הנבחרת
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:4px;">
+
+        <div class="service-highlight" style="cursor:pointer;" onclick="this.style.borderColor=this.style.borderColor==='#f2622e'?'#e8e4de':'#f2622e'">
+          <div style="font-size:10px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">סמני ✓ לבחירה</div>
+          <div class="svc-name">חבילת תוכן AI חודשית</div>
+          <div class="svc-price">₪1,200 / חודש</div>
+          <div class="svc-detail">
+            ✦ 2 שיחות עבודה בחודש (45 דק׳ כ"א)<br>
+            ✦ תכנית תוכן חודשית מותאמת<br>
+            ✦ 10 פרומפטים מוכנים לשימוש<br>
+            ✦ תמיכה ב-WhatsApp (שעה–יום)
+          </div>
+        </div>
+
+        <div class="service-highlight" style="cursor:pointer;" onclick="this.style.borderColor=this.style.borderColor==='#f2622e'?'#e8e4de':'#f2622e'">
+          <div style="font-size:10px;font-weight:700;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">סמני ✓ לבחירה</div>
+          <div class="svc-name">ליווי AI לעסק — 3 חודשים</div>
+          <div class="svc-price">₪2,800 / חודש</div>
+          <div class="svc-detail">
+            ✦ 4 שיחות עבודה בחודש (60 דק׳ כ"א)<br>
+            ✦ בניית תהליכי AI מותאמים לעסק<br>
+            ✦ Automation + Skills + Canva<br>
+            ✦ תמיכה שוטפת + ליווי אישי
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:12px; background:#fafaf8; border:1px solid #e8e4de; border-radius:6px; padding:14px 16px;">
+        <div style="font-size:10px;color:#888;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">פרטי ההתקשרות</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-size:10px;color:#aaa;margin-bottom:2px;">תאריך התחלה</div>
+            <div style="font-size:13px;font-weight:600;" class="editable" contenteditable="true">___/___/______</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#aaa;margin-bottom:2px;">תאריך סיום</div>
+            <div style="font-size:13px;font-weight:600;" class="editable" contenteditable="true">___/___/______</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#aaa;margin-bottom:2px;">מחיר חודשי מוסכם</div>
+            <div style="font-size:13px;font-weight:700;color:#f2622e;" class="editable" contenteditable="true">₪_______</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PAYMENT TERMS -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">2</span>
+        תנאי תשלום
+      </div>
+      <ul>
+        <li>התשלום החודשי מועבר ב-1 לכל חודש שירות.</li>
+        <li>חבילת ליווי 3 חודשים — אפשרות לתשלום מלא מראש עם הנחה של 5%.</li>
+        <li>אמצעי תשלום מאושרים: ביט, Paybox, העברה בנקאית.</li>
+        <li>איחור בתשלום מעל 7 ימים יעכב את מתן השירות.</li>
+      </ul>
+    </div>
+
+    <!-- 3. DELIVERABLES -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">3</span>
+        מה כלול בשירות
+      </div>
+      <ul>
+        <li>שיחות עבודה בהתאם לחבילה הנבחרת (Zoom / WhatsApp Video).</li>
+        <li>חומרים כתובים: פרומפטים, תבניות, תוכניות תוכן — מועברים ב-Google Drive משותף.</li>
+        <li>תמיכה ב-WhatsApp בשעות עסקים (א׳–ה׳, 9:00–18:00) בזמן תגובה של עד 24 שעות.</li>
+        <li><strong>לא כלול:</strong> ייצור תוכן בפועל (צילום, מונטאז'), ניהול ערוצי הסושיאל של הלקוחה.</li>
+      </ul>
+    </div>
+
+    <!-- 4. CANCELLATION -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">4</span>
+        ביטול וסיום
+      </div>
+      <ul>
+        <li>הודעת ביטול נדרשת 14 יום מראש בכתב (WhatsApp / אימייל).</li>
+        <li>ביטול באמצע חודש — יחויב חודש מלא.</li>
+        <li>ליווי 3 חודשים: ביטול לאחר חודש ראשון — החזר יחסי בניכוי 10% דמי ביטול.</li>
+        <li>שני שומרת את הזכות להפסיק שירות במקרה של הפרה מהותית של תנאים אלה.</li>
+      </ul>
+    </div>
+
+    <!-- 5. CONFIDENTIALITY -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">5</span>
+        סודיות וקניין רוחני
+      </div>
+      <ul>
+        <li>החומרים המועברים (פרומפטים, תבניות, מתודולוגיה) הם קניינה הרוחני של שני גורגוב.</li>
+        <li>מותר: שימוש אישי לצרכי העסק שלה. אסור: שיתוף, מכירה, הפצה לצדדים שלישיים.</li>
+        <li>שני מחויבת לשמור על סודיות מידע עסקי של הלקוחה.</li>
+        <li>שתי הצדדות לא ישתפו מידע על שיתוף הפעולה ללא הסכמה הדדית.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SIGNATURES -->
+  <div style="padding: 0 48px 36px;">
+    <div class="section">
+      <div class="section-title">
+        <span class="section-num">6</span>
+        חתימות
+      </div>
+      <div class="highlight-box" style="margin-bottom:16px;">
+        <p>החתימה מהווה אישור לקריאת וקבלת כל תנאי ההסכם, כולל תנאי התשלום, מדיניות הביטול, ותנאי הסודיות.</p>
+      </div>
+      <div class="sig-grid">
+        <div class="sig-cell">
+          <div class="sig-name">שני גורגוב<br><span style="font-size:10px;font-weight:400;color:#888;">Shani AI Creator</span></div>
+          <div class="sig-line">חתימה</div>
+          <div class="sig-date-line">תאריך: ___/___/______</div>
+        </div>
+        <div class="sig-cell">
+          <div class="sig-name">מקבלת השירות<br><span style="font-size:10px;font-weight:400;color:#888;" class="editable" contenteditable="true">_____________</span></div>
+          <div class="sig-line">חתימה</div>
+          <div class="sig-date-line">תאריך: ___/___/______</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="footer-brand">Shani<span>.AI</span> Creator</div>
+    <div class="footer-note">הסכם שירות גרסה ב׳ · חבילה חודשית / ליווי 3 חודשים · @shani.creates.ai</div>
+  </div>
+</div>
+
+</body>
+</html>

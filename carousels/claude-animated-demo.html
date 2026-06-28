@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Animated Demo — @shani.creates.ai</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Heebo', sans-serif;
+  }
+
+  .phone-frame {
+    width: 390px;
+    height: 844px;
+    background: #141009;
+    border-radius: 44px;
+    border: 2px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  /* Status bar */
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px 8px;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* App chrome */
+  .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .claude-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: #f2622e;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+  }
+
+  .logo-text {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .new-chat-btn {
+    color: rgba(255,255,255,0.4);
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* Chat area */
+  .chat-area {
+    height: 580px;
+    overflow: hidden;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+  }
+
+  /* User message */
+  .user-msg {
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .user-msg.show { opacity: 1; transform: translateY(0); }
+
+  .user-bubble {
+    background: #f2622e;
+    color: white;
+    border-radius: 18px 18px 4px 18px;
+    padding: 10px 14px;
+    max-width: 75%;
+    font-size: 14px;
+    line-height: 1.5;
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Claude message */
+  .claude-msg {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .claude-msg.show { opacity: 1; transform: translateY(0); }
+
+  .claude-avatar {
+    width: 28px;
+    height: 28px;
+    background: #f2622e;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 900;
+    color: white;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .claude-bubble {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px 18px 18px 18px;
+    padding: 12px 14px;
+    max-width: 80%;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.88);
+    direction: rtl;
+    text-align: right;
+  }
+
+  .claude-bubble .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background: #f2622e;
+    animation: blink 0.7s step-end infinite;
+    vertical-align: text-bottom;
+    margin-right: 2px;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* Typing indicator */
+  .typing-indicator {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .typing-indicator.show { opacity: 1; }
+
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 10px 14px;
+  }
+
+  .typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: typing-dot 1.2s ease-in-out infinite;
+  }
+
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing-dot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.3; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+  /* Input area */
+  .input-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px 20px;
+    background: #141009;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 10px 14px;
+  }
+
+  .input-text {
+    flex: 1;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    direction: rtl;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .input-text.typing {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .send-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(242,98,46,0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background 0.3s;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .send-btn.active { background: #f2622e; color: white; }
+
+  /* Mouse cursor */
+  .cursor {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+
+  .cursor svg { width: 100%; height: 100%; }
+
+  /* Click ripple */
+  .click-ripple {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #f2622e;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  .click-ripple.animate {
+    animation: ripple 0.4s ease-out forwards;
+  }
+
+  @keyframes ripple { to { transform: scale(2); opacity: 0; } }
+
+  /* Highlight pulse on send btn */
+  @keyframes pulse-send { 0% { box-shadow: 0 0 0 0 rgba(242,98,46,0.4); } 100% { box-shadow: 0 0 0 12px rgba(242,98,46,0); } }
+  .send-btn.pulse { animation: pulse-send 0.4s ease-out; }
+
+  /* Brand tag */
+  .brand-tag {
+    position: absolute;
+    bottom: 86px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(242,98,46,0.6);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  /* Result highlight box */
+  .result-box {
+    background: rgba(242,98,46,0.08);
+    border: 1px solid rgba(242,98,46,0.2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M4 2L20 12L11 13L7 21L4 2Z" fill="white" stroke="#111" stroke-width="1"/>
+  </svg>
+</div>
+<div class="click-ripple" id="ripple"></div>
+
+<div class="phone-frame">
+  <!-- Status bar -->
+  <div class="status-bar">
+    <span>9:41</span>
+    <span>●●●</span>
+  </div>
+
+  <!-- App header -->
+  <div class="app-header">
+    <div class="claude-logo">
+      <div class="logo-icon">C</div>
+      <div class="logo-text">Claude</div>
+    </div>
+    <div class="new-chat-btn">✎</div>
+  </div>
+
+  <!-- Chat -->
+  <div class="chat-area">
+    <!-- User message 1 -->
+    <div class="user-msg" id="msg-user-1">
+      <div class="user-bubble">
+        כתבו לי פוסט לאינסטגרם על שירותי ה-AI שלי, לעצמאיים ובעלי עסקים, טון ישיר ומעורר השראה
+      </div>
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="typing-indicator" id="typing-1">
+      <div class="claude-avatar">C</div>
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Claude response 1 -->
+    <div class="claude-msg" id="msg-claude-1">
+      <div class="claude-avatar">C</div>
+      <div class="claude-bubble" id="claude-text-1">
+        <span id="typed-text-1"></span><span class="typing-cursor" id="cursor-1"></span>
+      </div>
+    </div>
+
+    <!-- User message 2 -->
+    <div class="user-msg" id="msg-user-2">
+      <div class="user-bubble">
+        מעולה! עכשיו 3 גרסאות קצרות לסטורי
+      </div>
+    </div>
+
+    <!-- Typing 2 -->
+    <div class="typing-indicator" id="typing-2">
+      <div class="claude-avatar">C</div>
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Claude response 2 -->
+    <div class="claude-msg" id="msg-claude-2">
+      <div class="claude-avatar">C</div>
+      <div class="claude-bubble" id="claude-text-2">
+        <span id="typed-text-2"></span><span class="typing-cursor" id="cursor-2"></span>
+        <div class="result-box" id="result-box" style="display:none;">
+          ✦ 3 גרסאות נוצרו ✦<br>מוכנות לסטורי באינסטגרם
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-tag">shani.creates.ai</div>
+  </div>
+
+  <!-- Input area -->
+  <div class="input-area">
+    <div class="input-row">
+      <div class="input-text" id="input-field">כתבו לי הודעה...</div>
+      <div class="send-btn" id="send-btn">↑</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Cursor ──────────────────────────────────────────────
+  const cursor = document.getElementById('cursor');
+  const ripple = document.getElementById('ripple');
+
+  // Phone position
+  const phone = document.querySelector('.phone-frame');
+
+  function getPhoneCenter() {
+    const r = phone.getBoundingClientRect();
+    return { x: r.left + r.width/2, y: r.top + r.height/2 };
+  }
+
+  let cx = window.innerWidth * 0.85, cy = window.innerHeight * 0.2;
+  cursor.style.left = cx + 'px';
+  cursor.style.top = cy + 'px';
+
+  function moveCursor(tx, ty, dur, cb) {
+    const sx = cx, sy = cy;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / dur, 1);
+      const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+      cx = sx + (tx - sx) * ease;
+      cy = sy + (ty - sy) * ease;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      if (t < 1) requestAnimationFrame(step);
+      else if (cb) cb();
+    }
+    requestAnimationFrame(step);
+  }
+
+  function clickAt(x, y, cb) {
+    ripple.style.left = (x - 20) + 'px';
+    ripple.style.top = (y - 20) + 'px';
+    ripple.classList.remove('animate');
+    void ripple.offsetWidth;
+    ripple.classList.add('animate');
+    cursor.style.transform = 'scale(0.8)';
+    setTimeout(() => { cursor.style.transform = 'scale(1)'; if (cb) cb(); }, 150);
+  }
+
+  // ── Type text ───────────────────────────────────────────
+  function typeText(el, text, speed, cb) {
+    let i = 0;
+    function next() {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        setTimeout(next, speed + Math.random() * 20);
+      } else if (cb) cb();
+    }
+    next();
+  }
+
+  // ── Show/hide elements ──────────────────────────────────
+  function show(id) { document.getElementById(id).classList.add('show'); }
+  function hide(id) { document.getElementById(id).classList.remove('show'); }
+
+  // ── Audio (click sound) ─────────────────────────────────
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  let audioCtx;
+
+  function playClick() {
+    if (!audioCtx) audioCtx = new AudioContext();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.1);
+  }
+
+  function playKeyClick() {
+    if (!audioCtx) audioCtx = new AudioContext();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.04);
+  }
+
+  function playSend() {
+    if (!audioCtx) audioCtx = new AudioContext();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(900, audioCtx.currentTime + 0.12);
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.15);
+  }
+
+  // ── Main sequence ───────────────────────────────────────
+  const inputField = document.getElementById('input-field');
+  const sendBtn = document.getElementById('send-btn');
+
+  const MSG1 = 'כתבו לי פוסט לאינסטגרם על שירותי ה-AI שלי, לעצמאיים ובעלי עסקים, טון ישיר ומעורר השראה';
+  const RESPONSE1 = '🔥 שנו את הדרך שאתם עובדים.\n\nאם עוד יושבים שעות על מיילים, תוכן ומסמכים — הגיע הזמן שתכירו את Claude.\n\nאני עוזרת לעצמאיים ובעלי עסקים לחסוך 5+ שעות בשבוע עם AI שבאמת עובד בעברית.\n\n💬 DM "AI" ואסביר איך';
+
+  const MSG2 = 'מעולה! עכשיו 3 גרסאות קצרות לסטורי';
+  const RESPONSE2 = '✓ 3 גרסאות סטורי מוכנות!';
+
+  const inputBox = phone.querySelector('.input-row');
+  const inputRect_getter = () => inputBox.getBoundingClientRect();
+  const sendRect_getter = () => sendBtn.getBoundingClientRect();
+
+  let step = 0;
+
+  function runSequence() {
+    const ph = phone.getBoundingClientRect();
+
+    // Step 1: Move cursor to input field
+    const ir = inputBox.getBoundingClientRect();
+    moveCursor(ir.left + ir.width*0.6, ir.top + ir.height/2, 900, () => {
+      setTimeout(() => {
+        // Click on input
+        clickAt(cx, cy, () => {
+          playClick();
+          inputField.classList.add('typing');
+          inputField.textContent = '';
+
+          // Type message 1
+          let i = 0;
+          function typeMsg() {
+            if (i < MSG1.length) {
+              inputField.textContent += MSG1[i++];
+              if (i % 3 === 0) playKeyClick();
+              setTimeout(typeMsg, 28 + Math.random() * 15);
+            } else {
+              // Activate send button
+              sendBtn.classList.add('active');
+              setTimeout(() => {
+                // Move to send button
+                const sr = sendBtn.getBoundingClientRect();
+                moveCursor(sr.left + sr.width/2, sr.top + sr.height/2, 500, () => {
+                  setTimeout(() => {
+                    clickAt(cx, cy, () => {
+                      playSend();
+                      sendBtn.classList.add('pulse');
+                      // Send message
+                      inputField.textContent = 'כתבו לי הודעה...';
+                      inputField.classList.remove('typing');
+                      sendBtn.classList.remove('active');
+                      setTimeout(() => sendBtn.classList.remove('pulse'), 400);
+
+                      // Show user message 1
+                      setTimeout(() => {
+                        show('msg-user-1');
+                        // Show typing indicator
+                        setTimeout(() => {
+                          show('typing-1');
+                          // After 2s, hide typing and show response
+                          setTimeout(() => {
+                            hide('typing-1');
+                            show('msg-claude-1');
+                            const textEl = document.getElementById('typed-text-1');
+                            const cursorEl = document.getElementById('cursor-1');
+                            typeText(textEl, RESPONSE1, 22, () => {
+                              cursorEl.style.display = 'none';
+
+                              // Phase 2 — type message 2
+                              setTimeout(() => {
+                                moveCursor(ir.left + ir.width*0.5, ir.top + ir.height/2, 700, () => {
+                                  clickAt(cx, cy, () => {
+                                    playClick();
+                                    inputField.classList.add('typing');
+                                    inputField.textContent = '';
+                                    let j = 0;
+                                    function typeMsg2() {
+                                      if (j < MSG2.length) {
+                                        inputField.textContent += MSG2[j++];
+                                        if (j % 3 === 0) playKeyClick();
+                                        setTimeout(typeMsg2, 35);
+                                      } else {
+                                        sendBtn.classList.add('active');
+                                        const sr2 = sendBtn.getBoundingClientRect();
+                                        moveCursor(sr2.left + sr2.width/2, sr2.top + sr2.height/2, 500, () => {
+                                          clickAt(cx, cy, () => {
+                                            playSend();
+                                            sendBtn.classList.add('pulse');
+                                            inputField.textContent = 'כתבו לי הודעה...';
+                                            inputField.classList.remove('typing');
+                                            sendBtn.classList.remove('active');
+                                            setTimeout(() => sendBtn.classList.remove('pulse'), 400);
+                                            setTimeout(() => {
+                                              show('msg-user-2');
+                                              setTimeout(() => {
+                                                show('typing-2');
+                                                setTimeout(() => {
+                                                  hide('typing-2');
+                                                  show('msg-claude-2');
+                                                  const textEl2 = document.getElementById('typed-text-2');
+                                                  const cursorEl2 = document.getElementById('cursor-2');
+                                                  typeText(textEl2, RESPONSE2, 30, () => {
+                                                    cursorEl2.style.display = 'none';
+                                                    document.getElementById('result-box').style.display = 'block';
+                                                    // Restart after 4s
+                                                    setTimeout(() => location.reload(), 5000);
+                                                  });
+                                                }, 2200);
+                                              }, 400);
+                                            }, 300);
+                                          });
+                                        });
+                                      }
+                                    }
+                                    typeMsg2();
+                                  });
+                                });
+                              }, 1500);
+                            });
+                          }, 2000);
+                        }, 600);
+                      }, 300);
+                    });
+                  }, 300);
+                });
+              }, 600);
+            }
+          }
+          typeMsg();
+        });
+      }, 400);
+    });
+  }
+
+  // Start on user interaction (required for AudioContext)
+  document.addEventListener('click', () => {
+    if (step === 0) { step = 1; setTimeout(runSequence, 500); }
+  }, { once: true });
+
+  // Also auto-start after 2s for screen recording
+  setTimeout(() => {
+    if (step === 0) { step = 1; runSequence(); }
+  }, 2000);
+</script>
+
+</body>
+</html>
