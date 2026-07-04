@@ -57,7 +57,7 @@ export default function Footer() {
           { label: "Instagram", href: "https://www.instagram.com/shani.creates.ai/" },
           { label: "TikTok", href: "https://www.tiktok.com/@shani.creates.ai" },
           { label: "WhatsApp", href: "https://wa.me/972504744815" },
-          { label: "LinkedIn", href: "https://www.linkedin.com/in/shani-gorgov/" },
+          { label: "LinkedIn", href: "https://www.linkedin.com/in/shani-ai/" },
         ].map(({ label, href }) => (
           <a
             key={label}
