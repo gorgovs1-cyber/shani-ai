@@ -440,6 +440,26 @@
     letter-spacing: 0.1em;
   }
 
+  /* ===== SETUP + RETAINER + ONGOING (added) ===== */
+  .price-setup { color: var(--text-dim); font-size: 11px; margin-top: 4px; direction: ltr; text-align: left; }
+  .price-setup b { color: var(--dark); }
+  .total-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 8px; margin-bottom: 16px; }
+  .total-cell { background: var(--dark); padding: 18px 22px; }
+  .total-cell.retainer { background: #1f1810; }
+  .total-cell .tc-label { color: rgba(244,237,225,0.55); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; }
+  .total-cell .tc-amount { color: var(--orange); font-size: 23px; font-weight: 900; direction: ltr; margin-top: 6px; }
+  .total-cell .tc-note { color: rgba(244,237,225,0.35); font-size: 10px; margin-top: 4px; }
+  .model-note { font-size: 12.5px; color: var(--text-dim); line-height: 1.7; margin-bottom: 28px; }
+  .ongoing-section { border: 1.5px solid var(--border); background: #fffdfb; padding: 20px 24px; margin-bottom: 32px; }
+  .ongoing-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .ongoing-head .oh-title { color: var(--dark); font-size: 15px; font-weight: 800; }
+  .ongoing-sub { color: var(--text-mid); font-size: 12.5px; line-height: 1.65; margin-bottom: 14px; }
+  .ongoing-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .ongoing-table th, .ongoing-table td { border: 1px solid var(--border); padding: 8px 12px; text-align: right; }
+  .ongoing-table th { background: var(--orange-light); color: var(--dark); font-weight: 700; font-size: 11px; letter-spacing: 0.05em; }
+  .ongoing-table td:last-child { direction: ltr; text-align: left; white-space: nowrap; font-weight: 600; }
+  .ongoing-note { background: var(--orange-light); border-right: 3px solid var(--orange); padding: 10px 14px; font-size: 12.5px; color: var(--text-mid); line-height: 1.65; margin-top: 12px; }
+
   /* ============ PRINT ============ */
   @media print {
     body { background: white; padding: 0; }
@@ -586,14 +606,43 @@
       </div>
     </div>
 
-    <!-- TOTAL -->
-    <div class="total-row">
-      <div>
-        <div class="total-label">סה"כ הצעה זו</div>
-        <div class="total-note">כולל מע"מ / ללא מע"מ — לציין</div>
+    <!-- TOTAL — הקמה חד-פעמית מול ריטיינר חודשי -->
+    <div class="total-grid">
+      <div class="total-cell">
+        <div class="tc-label">דמי הקמה · חד-פעמי</div>
+        <div class="tc-amount">₪ ________</div>
+        <div class="tc-note">תשלום פעם אחת — על הבנייה וההקמה</div>
       </div>
-      <div style="text-align:left;">
-        <div class="total-amount">₪ ________</div>
+      <div class="total-cell retainer">
+        <div class="tc-label">ריטיינר · חודשי</div>
+        <div class="tc-amount">₪ ________ / חודש</div>
+        <div class="tc-note">תחזוקה, עדכונים וליווי שוטף</div>
+      </div>
+    </div>
+    <p class="model-note">
+      * המחירים אינם כוללים מע"מ אלא אם צוין אחרת. <strong>דמי ההקמה</strong> משולמים פעם אחת עם תחילת העבודה; <strong>הריטיינר החודשי</strong> מתחדש כל חודש וניתן לביטול בהתראה של 30 יום. פרויקט חד-פעמי (למשל אתר בלבד) — דמי הקמה בלבד, ללא ריטיינר.
+    </p>
+
+    <!-- ONGOING COSTS — client's responsibility -->
+    <div class="ongoing-section">
+      <div class="ongoing-head">
+        <span style="font-size:16px">💡</span>
+        <span class="oh-title">עלויות כלים שוטפות · באחריות הלקוח</span>
+      </div>
+      <p class="ongoing-sub">
+        חלק מהמערכות רצות על שירותים חיצוניים (אחסון, אוטומציה, AI ועוד). העלויות האלה מחויבות ישירות לחשבונות שבבעלותכם — כך שהמערכת נשארת <strong>שלכם לגמרי</strong>, גם אם נפרדות דרכינו. להלן אומדן חודשי משוער (משתנה לפי היקף השימוש):
+      </p>
+      <table class="ongoing-table">
+        <tr><th>כלי / שירות</th><th>למה זה משמש</th><th>עלות חודשית משוערת</th></tr>
+        <tr><td>אחסון אתר (Vercel וכד')</td><td>האתר עצמו באוויר</td><td>₪0–75</td></tr>
+        <tr><td>דומיין (.com / .co.il)</td><td>כתובת האתר</td><td>~₪5 (₪60/שנה)</td></tr>
+        <tr><td>אוטומציה (n8n / Make)</td><td>הזרימות האוטומטיות</td><td>₪0–90</td></tr>
+        <tr><td>AI (Claude API)</td><td>מנוע התוכן / המענה החכם</td><td>₪20–150</td></tr>
+        <tr><td>מענה אוטומטי (ManyChat)</td><td>DM אוטומטי באינסטגרם</td><td>₪0–75</td></tr>
+        <tr><td>מייל מהמערכת (Resend וכד')</td><td>מיילים אוטומטיים ללקוחות</td><td>₪0–70</td></tr>
+      </table>
+      <div class="ongoing-note">
+        📌 האומדנים לצורך שקיפות בלבד — הם <strong>לא</strong> חלק מהתשלום אליי. לרוב העסקים הקטנים ההוצאה נכנסת למסגרת החינמית או נמוכה מאוד. אני אעזור לכם להקים כל חשבון ואסביר בדיוק איך לשלוט בהוצאה.
       </div>
     </div>
 

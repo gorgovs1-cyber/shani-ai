@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>אבחון AI ושיווק לעסק · Shani AI Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--orange:#F2622E;--orange-soft:#fff3ef;--dark:#141009;--bg:#0c0c11;--card:#17151c;--text:#f4ede1;--muted:#a49a90;--border:#2a2630}
+  body{font-family:'Heebo',sans-serif;direction:rtl;background:var(--bg);color:var(--text);line-height:1.6;padding:0 0 80px}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px}
+  header{background:var(--dark);text-align:center;padding:56px 24px 48px;position:relative;overflow:hidden}
+  header::before{content:'';position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:520px;height:360px;background:radial-gradient(circle,rgba(242,98,46,.28),transparent 65%)}
+  .hex{position:relative;z-index:1;margin-bottom:20px}
+  .brand{position:relative;z-index:1;color:rgba(242,98,46,.9);font-size:12px;font-weight:700;letter-spacing:.28em;margin-bottom:18px}
+  h1{position:relative;z-index:1;font-size:34px;font-weight:800;line-height:1.2;margin-bottom:14px}
+  h1 span{color:var(--orange)}
+  .sub{position:relative;z-index:1;color:rgba(244,237,225,.65);font-size:16px;max-width:520px;margin:0 auto}
+  .time{position:relative;z-index:1;display:inline-block;margin-top:18px;color:var(--orange);font-size:13px;font-weight:700;border:1px solid rgba(242,98,46,.5);border-radius:999px;padding:6px 16px}
+  .sec{margin-top:34px}
+  .sec-tag{color:var(--orange);font-size:12px;font-weight:700;letter-spacing:.2em;margin-bottom:6px}
+  .sec-title{font-size:20px;font-weight:800;margin-bottom:18px}
+  .q{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+  .q label.main{display:block;font-size:16.5px;font-weight:700;margin-bottom:12px}
+  .q .hint{color:var(--muted);font-size:13px;font-weight:400}
+  input[type=text],textarea{width:100%;background:#0e0d13;border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:15px;padding:12px 14px;resize:vertical}
+  textarea{min-height:70px}
+  input:focus,textarea:focus{outline:none;border-color:var(--orange)}
+  .opts{display:flex;flex-wrap:wrap;gap:10px}
+  .opt{display:flex;align-items:center;gap:8px;background:#0e0d13;border:1px solid var(--border);border-radius:999px;padding:9px 16px;cursor:pointer;font-size:14px;user-select:none;transition:.15s}
+  .opt:hover{border-color:rgba(242,98,46,.6)}
+  .opt input{accent-color:var(--orange);width:16px;height:16px}
+  .opt.sel{background:rgba(242,98,46,.14);border-color:var(--orange)}
+  .submit{display:block;width:100%;background:var(--orange);color:#141009;font-family:inherit;font-size:18px;font-weight:800;border:none;border-radius:999px;padding:18px;margin-top:32px;cursor:pointer}
+  .submit:hover{filter:brightness(1.05)}
+  .note{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<header>
+  <svg class="hex" width="66" height="66" viewBox="0 0 100 100"><polygon points="50,7 87,28.5 87,71.5 50,93 13,71.5 13,28.5" fill="none" stroke="#F2622E" stroke-width="6"/><polygon points="50,27 70,39 70,61 50,73 30,61 30,39" fill="none" stroke="#F2622E" stroke-width="4"/><circle cx="50" cy="50" r="6.5" fill="#F2622E"/></svg>
+  <div class="brand">SHANI AI CREATOR</div>
+  <h1>אבחון <span>AI, אוטומציה ושיווק</span> לעסק</h1>
+  <p class="sub">2–3 דקות שיחסכו לנו שיחה שלמה. אמפה איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו — בלי לנחש.</p>
+  <div class="time">⏱ כ-3 דקות</div>
+</header>
+
+<div class="wrap">
+  <form id="f">
+
+  <div class="sec">
+    <div class="sec-tag">01 · העסק</div>
+    <div class="sec-title">קצת עליכם</div>
+    <div class="q"><label class="main">מה העסק שלכם עושה, במשפט אחד?</label><input type="text" data-q="העסק"></div>
+    <div class="q"><label class="main">מה הכי חשוב לכם להשיג ב-3 החודשים הקרובים?</label>
+      <div class="opts" data-multi="מטרה">
+        <label class="opt"><input type="checkbox" value="יותר לקוחות">יותר לקוחות</label>
+        <label class="opt"><input type="checkbox" value="פחות עומס">פחות עומס</label>
+        <label class="opt"><input type="checkbox" value="סדר בעסק">סדר בעסק</label>
+        <label class="opt"><input type="checkbox" value="יותר מכירות">יותר מכירות</label>
+        <label class="opt"><input type="checkbox" value="שיווק ומיתוג">שיווק ומיתוג</label>
+        <label class="opt"><input type="checkbox" value="אתר חדש">אתר חדש</label>
+        <label class="opt"><input type="checkbox" value="מענה מהיר ללקוחות">מענה מהיר ללקוחות</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag">02 · איפה בורח הזמן</div>
+    <div class="sec-title">היום-יום שלכם</div>
+    <div class="q"><label class="main">תארו יום עבודה טיפוסי, בשתי-שלוש שורות. <span class="hint">ממה הוא מורכב, מהבוקר עד הסוף?</span></label><textarea data-q="יום עבודה"></textarea></div>
+    <div class="q"><label class="main">איזו משימה חוזרת על עצמה כל יום/שבוע והכי מעייפת אתכם?</label><input type="text" data-q="משימה חוזרת"></div>
+    <div class="q"><label class="main">מה הייתם הכי רוצים ש"יקרה לבד" בעסק?</label><input type="text" data-q="שיקרה לבד"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag">03 · לקוחות ומענה</div>
+    <div class="sec-title">איך עובד מול לקוחות</div>
+    <div class="q"><label class="main">מאיפה מגיעים אליכם רוב הלקוחות?</label>
+      <div class="opts" data-multi="מקור לקוחות">
+        <label class="opt"><input type="checkbox" value="אינסטגרם">אינסטגרם</label>
+        <label class="opt"><input type="checkbox" value="וואטסאפ">וואטסאפ</label>
+        <label class="opt"><input type="checkbox" value="פייסבוק">פייסבוק</label>
+        <label class="opt"><input type="checkbox" value="אתר">אתר</label>
+        <label class="opt"><input type="checkbox" value="המלצות">המלצות</label>
+        <label class="opt"><input type="checkbox" value="טיקטוק">טיקטוק</label>
+        <label class="opt"><input type="checkbox" value="גוגל">גוגל</label>
+      </div>
+    </div>
+    <div class="q"><label class="main">מה קורה אחרי שלקוח משאיר פנייה?</label>
+      <div class="opts" data-multi="אחרי פנייה">
+        <label class="opt"><input type="checkbox" value="עונים ידנית">עונים ידנית</label>
+        <label class="opt"><input type="checkbox" value="שולחים מחירון">שולחים מחירון</label>
+        <label class="opt"><input type="checkbox" value="קובעים שיחה">קובעים שיחה</label>
+        <label class="opt"><input type="checkbox" value="נשמר באקסל">נשמר באקסל</label>
+        <label class="opt"><input type="checkbox" value="לפעמים נופל בין הכיסאות">לפעמים נופל בין הכיסאות</label>
+      </div>
+    </div>
+    <div class="q"><label class="main">אילו שאלות לקוחות שואלים אתכם שוב ושוב?</label><input type="text" data-q="שאלות חוזרות"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag">04 · כלים, אתר ושיווק</div>
+    <div class="sec-title">מה יש לכם היום</div>
+    <div class="q"><label class="main">באילו כלים אתם משתמשים היום?</label>
+      <div class="opts" data-multi="כלים">
+        <label class="opt"><input type="checkbox" value="וואטסאפ ביזנס">וואטסאפ ביזנס</label>
+        <label class="opt"><input type="checkbox" value="אינסטגרם">אינסטגרם</label>
+        <label class="opt"><input type="checkbox" value="גוגל יומן">גוגל יומן</label>
+        <label class="opt"><input type="checkbox" value="Sheets/Excel">Sheets/Excel</label>
+        <label class="opt"><input type="checkbox" value="CRM">CRM</label>
+        <label class="opt"><input type="checkbox" value="מערכת תורים">מערכת תורים</label>
+        <label class="opt"><input type="checkbox" value="חשבוניות">חשבוניות</label>
+        <label class="opt"><input type="checkbox" value="קנבה">קנבה</label>
+        <label class="opt"><input type="checkbox" value="מייל">מייל</label>
+        <label class="opt"><input type="checkbox" value="אתר">אתר</label>
+      </div>
+      <input type="text" data-q="כלים נוספים" placeholder="כלים נוספים? כתבו כאן..." style="margin-top:12px">
+    </div>
+    <div class="q"><label class="main">מצב האתר / הנוכחות הדיגיטלית שלכם?</label>
+      <div class="opts" data-single="אתר">
+        <label class="opt"><input type="radio" name="site" value="אין אתר">אין אתר</label>
+        <label class="opt"><input type="radio" name="site" value="יש אתר אבל לא מביא לקוחות">יש אבל לא מביא לקוחות</label>
+        <label class="opt"><input type="radio" name="site" value="יש אתר טוב">יש אתר טוב</label>
+        <label class="opt"><input type="radio" name="site" value="דף נחיתה בלבד">דף נחיתה בלבד</label>
+      </div>
+      <input type="text" data-q="קישור לאתר" placeholder="יש לכם אתר? הדביקו קישור כאן..." style="margin-top:12px">
+    </div>
+    <div class="q"><label class="main">במה אתם הכי מרגישים שחסר לכם?</label>
+      <div class="opts" data-multi="חסר">
+        <label class="opt"><input type="checkbox" value="מענה ללקוחות">מענה ללקוחות</label>
+        <label class="opt"><input type="checkbox" value="סדר וארגון">סדר וארגון</label>
+        <label class="opt"><input type="checkbox" value="תוכן ושיווק">תוכן ושיווק</label>
+        <label class="opt"><input type="checkbox" value="אתר">אתר</label>
+        <label class="opt"><input type="checkbox" value="מיתוג ועיצוב">מיתוג ועיצוב</label>
+        <label class="opt"><input type="checkbox" value="אוטומציה">אוטומציה</label>
+        <label class="opt"><input type="checkbox" value="אסטרטגיה">אסטרטגיה</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-tag">05 · לסיום</div>
+    <div class="sec-title">כמה פרטים אחרונים</div>
+    <div class="q"><label class="main">אם הייתם יכולים לפתור בעיה אחת עכשיו — מה היא?</label><input type="text" data-q="הבעיה הכי חשובה"></div>
+    <div class="q"><label class="main">כמה דחוף לכם?</label>
+      <div class="opts" data-single="דחיפות">
+        <label class="opt"><input type="radio" name="urg" value="לא דחוף">לא דחוף</label>
+        <label class="opt"><input type="radio" name="urg" value="בחודש הקרוב">בחודש הקרוב</label>
+        <label class="opt"><input type="radio" name="urg" value="כמה שיותר מהר">כמה שיותר מהר</label>
+      </div>
+    </div>
+    <div class="q"><label class="main">שם מלא</label><input type="text" data-q="שם"></div>
+    <div class="q"><label class="main">אימייל <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="text" data-q="אימייל"></div>
+    <div class="q"><label class="main">וואטסאפ + אינסטגרם/אתר</label><input type="text" data-q="קשר נוסף"></div>
+  </div>
+
+  <button type="button" class="submit" onclick="send()">שלחו את האבחון ←</button>
+  <p class="note">2–3 דקות שיחסכו לנו שיחה שלמה. אחזור אליכם עם תכנית והצעה מותאמת.</p>
+  </form>
+  <div id="thanks" style="display:none;text-align:center;padding:50px 14px">
+    <div style="height:96px;display:flex;justify-content:center;align-items:center">
+      <svg width="170" height="96" viewBox="0 0 170 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- מסלול נקודות -->
+        <path id="flightPath" d="M22 82 Q72 82 96 46 T150 14"
+              stroke="#F2622E" stroke-width="2.6" stroke-linecap="round"
+              stroke-dasharray="1 9" opacity="0.5">
+          <animate attributeName="stroke-dashoffset" from="60" to="0" dur="2.6s" repeatCount="indefinite"/>
+        </path>
+        <!-- נקודת יעד -->
+        <circle cx="150" cy="14" r="3.4" fill="#F2622E">
+          <animate attributeName="opacity" values="0.3;1;0.3" dur="1.3s" repeatCount="indefinite"/>
+        </circle>
+        <!-- מעטפה עפה -->
+        <g>
+          <rect x="-14" y="-10" width="28" height="20" rx="3" fill="#17151c" stroke="#F2622E" stroke-width="2.2"/>
+          <path d="M-14 -8.5 L0 2.5 L14 -8.5" fill="none" stroke="#F2622E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto"
+                         keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.2 1">
+            <mpath href="#flightPath"/>
+          </animateMotion>
+          <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.12;0.5;0.85;1" dur="2.6s" repeatCount="indefinite"/>
+        </g>
+      </svg>
+    </div>
+    <h2 style="color:#F2622E;font-size:28px;margin:12px 0">תודה! קיבלתי את האבחון</h2>
+    <p style="color:#a49a90;font-size:16px;line-height:1.7">התכנית שלכם בבדיקה. אני עוברת על מה הכי נכון לבנות לעסק שלכם — ואחזור אליכם בקרוב עם תכנית ברורה והצעת מחיר.<br><br>רוצים לדבר עכשיו? <a href="https://wa.me/972504744815" style="color:#F2622E">וואטסאפ ישיר ←</a></p>
+  </div>
+  <div class="foot">© Shani AI Creator · אבחון עסקי חכם</div>
+</div>
+
+<script>
+  // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק — נשלח לוואטסאפ. ▼▼▼
+  var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
+  var WA = "972504744815";
+  document.querySelectorAll('.opt').forEach(fun

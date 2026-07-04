@@ -20,7 +20,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "500", "700"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shani-ai.vercel.app"),
+  metadataBase: new URL("https://shani-ai.com"),
   title: "Shani AI Creator · ייעוץ AI, אוטומציות, כלים ואתרים לעסקים",
   description: "שני גורגוב, Shani AI Creator. מכניסה AI לעסק שלכם: מיפוי ואסטרטגיה, אוטומציות חכמות, כלים וסקילים בעברית, ואתרים שמביאים לקוחות. 10+ שנות ניסיון. ישראל.",
   keywords: ["AI", "אוטומציה", "אתרים", "GSAP", "Next.js", "ישראל", "שני גורגוב", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
-    url: "https://shani-ai.vercel.app",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Shani AI Creator" }],
+    url: "https://shani-ai.com",
+    images: [{ url: "/og.jpg", width: 1080, height: 1080, alt: "Shani AI Creator" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://shani-ai.vercel.app",
+    canonical: "https://shani-ai.com",
   },
 };
 

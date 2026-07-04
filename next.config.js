@@ -6,6 +6,11 @@ const nextConfig = {
   images: {
     domains: [],
   },
+  async rewrites() {
+    return [
+      { source: '/audit', destination: '/audit.html' },
+    ];
+  },
 }
 
 module.exports = nextConfig

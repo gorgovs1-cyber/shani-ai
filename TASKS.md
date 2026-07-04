@@ -13,7 +13,7 @@
 - [ ] פתיחת חשבון TikTok: @shani.ai.creator
 - [ ] ביו מוכן (בקובץ shani_content_plan.docx)
 - [ ] תמונת פרופיל — אחת מהתמונות ה-AI שנוצרו
-- [ ] Link in bio → shani-ai.vercel.app
+- [ ] Link in bio → shani-ai.com
 - [ ] 5 Story Highlights מוכנות: AI Tips | Projects | About | Services | FAQ
 
 ### TASK-02 | ריל ראשון — LIVE
@@ -95,7 +95,7 @@
 ## ✅ הושלם
 
 - [x] שם + זהות מותג — Shani AI Creator
-- [x] אתר Next.js + Vercel (shani-ai.vercel.app)
+- [x] אתר Next.js + Vercel (shani-ai.com)
 - [x] Hero: תמונה + אנימציית טרמינל + mobile fixes
 - [x] FAQ: תיקון טקסט גלוי
 - [x] Services: תיקון subtitle גלוי

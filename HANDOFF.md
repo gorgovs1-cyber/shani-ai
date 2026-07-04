@@ -1,6 +1,6 @@
 # SHANI AI — Build Handoff (for the 2AM continuation agent)
 
-You are continuing a premium bilingual redesign of **shani-ai.vercel.app** (Shani Gorgov's
+You are continuing a premium bilingual redesign of **shani-ai.com** (Shani Gorgov's
 portfolio/identity site). Repo: `gorgovs1-cyber/shani-ai`. Deploy = push to `main` → Vercel auto-deploys.
 **Always `npm run build` and confirm it passes BEFORE every `git push`.** Commit in small logical chunks.
 

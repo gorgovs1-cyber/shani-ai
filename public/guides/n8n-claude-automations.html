@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אוטומציות n8n מפרומפט אחד עם Claude | Shani AI Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --orange:#f2622e; --orange-light:#fff3ef; --dark:#141009;
+    --text:#1a1410; --text-mid:#5a4f47; --text-dim:#9a8f87;
+    --border:#e8ddd6; --bg:#faf8f6;
+  }
+  body{ font-family:'Heebo',sans-serif; direction:rtl; background:var(--bg); color:var(--text); max-width:794px; margin:0 auto; }
+
+  .cover{ background:var(--dark); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px 50px; text-align:center; position:relative; overflow:hidden; page-break-after:always; }
+  .cover::before{ content:''; position:absolute; top:-120px; right:-120px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(242,98,46,0.25) 0%,transparent 70%); }
+  .cover::after{ content:''; position:absolute; bottom:-80px; left:-80px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(242,98,46,0.15) 0%,transparent 70%); }
+  .cover-brand{ color:rgba(242,98,46,0.85); font-size:12px; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:44px; position:relative; z-index:1; }
+  .cover-kicker{ color:var(--orange); font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.2em; margin-bottom:20px; position:relative; z-index:1; }
+  .cover-title{ color:#f4ede1; font-size:44px; font-weight:800; line-height:1.18; margin-bottom:20px; position:relative; z-index:1; max-width:600px; }
+  .cover-title span{ color:var(--orange); }
+  .cover-subtitle{ color:rgba(244,237,225,0.6); font-size:17px; line-height:1.7; margin-bottom:48px; position:relative; z-index:1; max-width:500px; }
+  .cover-divider{ width:60px; height:3px; background:var(--orange); margin:0 auto 48px; position:relative; z-index:1; }
+  .cover-footer{ color:rgba(244,237,225,0.35); font-size:11px; letter-spacing:0.15em; position:relative; z-index:1; }
+
+  .page{ background:white; padding:56px 50px; }
+  .section-tag{ display:inline-flex; align-items:center; gap:8px; color:var(--orange); font-size:11px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; margin-bottom:22px; }
+  .section-tag::before{ content:''; width:30px; height:2px; background:var(--orange); }
+  h2.headline{ font-size:30px; font-weight:800; line-height:1.3; color:var(--dark); margin-bottom:22px; }
+  h3.sub{ font-size:21px; font-weight:800; color:var(--dark); margin:34px 0 12px; }
+  p.text{ font-size:16px; color:var(--text-mid); line-height:1.85; margin-bottom:16px; }
+  p.text strong{ color:var(--dark); font-weight:700; }
+
+  .callout{ background:var(--orange-light); border-right:4px solid var(--orange); padding:22px 26px; margin:28px 0; border-radius:6px; }
+  .callout h4{ color:var(--orange); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:12px; }
+  .callout p{ font-size:15px; color:var(--text); line-height:1.7; }
+
+  .steps{ list-style:none; display:flex; flex-direction:column; gap:18px; margin:28px 0; }
+  .steps li{ display:flex; gap:16px; }
+  .steps .n{ background:var(--orange); color:#fff; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; flex-shrink:0; }
+  .steps .body{ font-size:16px; color:var(--text); line-height:1.7; padding-top:3px; }
+  .steps .body strong{ color:var(--dark); }
+
+  .code{ background:var(--dark); color:#f4ede1; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.7; padding:22px 24px; border-radius:10px; margin:18px 0; white-space:pre-wrap; direction:ltr; text-align:left; overflow-x:auto; }
+  .code .c{ color:#b1a48f; }
+
+  ul.bullets{ list-style:none; display:flex; flex-direction:column; gap:10px; margin:14px 0 20px; }
+  ul.bullets li{ position:relative; padding-right:22px; font-size:15.5px; color:var(--text-mid); line-height:1.7; }
+  ul.bullets li::before{ content:'◆'; position:absolute; right:0; top:1px; color:var(--orange); font-size:11px; }
+
+  .divider{ height:1px; background:var(--border); margin:40px 0; }
+
+  .cta{ background:var(--dark); border-radius:16px; padding:40px; text-align:center; margin-top:40px; position:relative; overflow:hidden; }
+  .cta::before{ content:''; position:absolute; bottom:-100px; left:50%; transform:translateX(-50%); width:400px; height:300px; background:radial-gradient(circle,rgba(242,98,46,0.3) 0%,transparent 65%); }
+  .cta h3{ color:#f4ede1; font-size:24px; font-weight:800; margin-bottom:12px; position:relative; z-index:1; }
+  .cta p{ color:rgba(244,237,225,0.65); font-size:15px; line-height:1.7; margin-bottom:8px; position:relative; z-index:1; }
+  .cta a{ color:var(--orange); font-weight:700; text-decoration:none; position:relative; z-index:1; }
+  .foot{ text-align:center; color:var(--text-dim); font-size:12px; padding:30px; font-family:'JetBrains Mono',monospace; }
+</style>
+</head>
+<body>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-brand">Shani AI Creator</div>
+    <div class="cover-kicker">// המדריך המעשי</div>
+    <h1 class="cover-title">לבנות <span>אוטומציה שלמה</span> מפרומפט אחד עם Claude</h1>
+    <p class="cover-subtitle">איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש — בלי קוד, מתיאור בשפה רגילה.</p>
+    <div class="cover-divider"></div>
+    <div class="cover-footer">@shani.creates.ai · shani.creates.ai@gmail.com</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="page">
+    <div class="section-tag">מה הולכים לעשות</div>
+    <h2 class="headline">פרומפט אחד. אוטומציה שלמה. בלי שורת קוד.</h2>
+    <p class="text">n8n הוא כלי לבניית אוטומציות שמחבר בין האפליקציות שלכם — טפסים, מיילים, גיליונות, CRM — כך שהם עובדים לבד. הבעיה: בנייה ידנית של תהליך לוקחת זמן ודורשת ידע טכני.</p>
+    <p class="text">הפתרון שתלמדו כאן: מקימים <strong>פרויקט ב-Claude</strong> שמכיר את המבנה הפנימי של n8n, ומאותו רגע פשוט מתארים בעברית מה אתם רוצים שיקרה — ו-Claude מחזיר לכם קובץ אוטומציה מוכן, שמדביקים ישר ל-n8n ומריצים.</p>
+    <div class="callout">
+      <h4>הסוד שגורם לזה לעבוד</h4>
+      <p>צריך להאכיל את Claude בהקשר הנכון מראש (דוגמאות אמיתיות של אוטומציות), אחרת הוא ימציא רכיבים שלא קיימים. ההקמה החד-פעמית הזו היא כל ההבדל בין "כיף לראות" ל"באמת עובד".</p>
+    </div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="page">
+    <div class="section-tag">ההקמה — פעם אחת בלבד</div>
+    <h2 class="headline">5 שלבים שמקימים את המנוע</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><span class="body"><strong>צרו פרויקט חדש ב-Claude</strong> וקראו לו "אוטומציות n8n". פרויקט שומר את ההוראות והקבצים בכל שיחה בתוכו — מקימים פעם אחת ונהנים תמיד.</span></li>
+      <li><span class="n">2</span><span class="body"><strong>הדביקו את הוראות הפרויקט.</strong> לחצו על אייקון העריכה (העיפרון) למעלה, והדביקו את ההוראות מהעמוד הבא בשדה ההנחיות המותאמות.</span></li>
+      <li><span class="n">3</span><span class="body"><strong>העלו 3 עד 5 דוגמאות אמיתיות.</strong> קחו קובצי JSON של אוטומציות מספריית התבניות החינמית של n8n (n8n.io/workflows) — פתחו כל תבנית, העתיקו את ה-JSON, והוסיפו לפרויקט. כך Claude לומד את המבנה המדויק.</span></li>
+      <li><span class="n">4</span><span class="body"><strong>בחרו מודל.</strong> הגדירו את הפרויקט לעבוד עם Sonnet (הגרסה העדכנית) — מהיר ומצוין לייצור JSON נקי.</span></li>
+      <li><span class="n">5</span><span class="body"><strong>תארו מה אתם רוצים</strong> במשפט פשוט. Claude יציג את התוכנית, יסמן מה דורש חיבור/מפתח API, וייצר את הקובץ המלא. מעתיקים, ו-ב-n8n פותחים אוטומציה חדשה ← תפריט שלוש הנקודות ← Import from Clipboard.</span></li>
+    </ol>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="page">
+    <div class="section-tag">הוראות הפרויקט</div>
+    <h2 class="headline">זה מה שמדביקים ב-Claude</h2>
+    <p class="text">הדביקו את הטקסט הבא כהנחיות הפרויקט. הוא באנגלית בכוונה — כך Claude מדייק יותר במבנה הטכני של n8n. (התוצאות שתקבלו יכולות להיות בעברית.)</p>
+    <div class="code">You are an expert n8n workflow engineer. Your job is to turn a plain-language request into a valid, importable n8n workflow JSON file.
+
+<span class="c">// Before building:</span>
+- Treat the uploaded sample workflows as the source of truth for n8n's JSON structure: nodes, parameters, connections, positions.
+- When unsure how a node works, reference the official n8n docs and the n8n GitHub repo (github.com/n8n-io/n8n). Never invent node types or parameters.
+
+<span class="c">// When I describe a workflow:</span>
+1. Briefly restate what it will do and list the nodes in order.
+2. Flag anything that needs credentials or an API key.
+3. Output the complete workflow as one valid JSON object I can paste into n8n.
+
+<span class="c">// JSON rules:</span>
+- Use real, current n8n node types only.
+- Give every node a unique name, sensible parameters, and a position.
+- Wire the connections so the flow runs end to end.
+- Leave credential fields empty; never hardcode secrets.
+- Output only the JSON in a code block, no commentary inside it.</div>
+  </div>
+
+  <!-- LEAD EXAMPLE (from reel) -->
+  <div class="page">
+    <div class="section-tag">דוגמה מהריל</div>
+    <h2 class="headline">אוטומציית לידים — משפט אחד, מערכת שלמה</h2>
+    <p class="text">רוצים שכל ליד חדש מהאתר יישמר לבד ותקבלו התראה מיד? זה כל מה שכותבים ל-Claude:</p>
+    <div class="callout"><h4>הפרומפט</h4><p>"כל ליד חדש שנכנס מטופס האתר — הוסף אותו לגיליון Google עם שם, מייל וטלפון, ושלח לי התראה בוואטסאפ."</p></div>
+    <p class="text">Claude מחזיר אוטומציה מוכנה עם שלושה שלבים שרצים לבד:</p>
+    <ul class="steps">
+      <li><span class="n">1</span><span class="body"><strong>Webhook</strong> — קולט את הפרטים מטופס האתר (שם, מייל, טלפון).</span></li>
+      <li><span class="n">2</span><span class="body"><strong>Google Sheets</strong> — מוסיף שורה חדשה לגיליון הלידים, אוטומטית.</span></li>
+      <li><span class="n">3</span><span class="body"><strong>WhatsApp</strong> — שולח לכם התראה על הליד החדש, מיד.</span></li>
+    </ul>
+    <div class="callout"><h4>התוצאה</h4><p>לקוח משאיר פרטים ← נשמר אצלכם בגיליון ← ומגיעה אליכם הודעה בוואטסאפ. בלי להקליד כלום, 24/7.</p></div>
+  </div>
+
+  <!-- EXAMPLES -->
+  <div class="page">
+    <div class="section-tag">דוגמאות להתחיל איתן</div>
+    <h2 class="headline">פרומפטים שאפשר להעתיק</h2>
+    <p class="text">פשוט כותבים ל-Claude משפט אחד. הנה כמה לדוגמה (התאימו לעסק שלכם):</p>
+    <ul class="bullets">
+      <li>"כל ליד חדש שנכנס מטופס האתר — הוסף לגיליון Google עם שם, מייל וטלפון, ושלח לי התראה."</li>
+      <li>"שמור כל מייל חדש ב-Gmail לתוך גיליון, עם השולח, הנושא והתאריך."</li>
+      <li>"כל שורה חדשה בגיליון הלידים — שלח הודעת Slack לערוץ המכירות."</li>
+      <li>"משכו נתונים מ-API מסוים כל בוקר ושמרו את התוצאות ב-Airtable."</li>
+      <li>"קלוט פניות מהאתר, הוסף אותן ל-CRM וצור משימת מעקב."</li>
+    </ul>
+    <div class="callout">
+      <h4>איך לבנות אוטומציה אמינה</h4>
+      <p>אחרי הייבוא: פתחו כל רכיב פעם אחת כדי ש-n8n יטען את ההגדרות. אם רכיב לא מזוהה — בדקו את הסוג מול תבנית עדכנית. הריצו פעם אחת לבדיקה לפני שסומכים על זה, והצמידו נתוני דוגמה לטריגר כדי לא להפעיל פעולות אמיתיות תוך כדי בדיקה.</p>
+    </div>
+  </div>
+
+  <!-- SELL -->
+  <div class="page">
+    <div class="section-tag">מהרעיון לכסף</div>
+    <h2 class="headline">איך הופכים את זה לשירות</h2>
+    <p class="text">האוטומציות יוצאות מוכנות-ללקוח, אז אפשר לארוז אותן כשירות. בנו אוטומציה שפותרת בעיה אחת ספציפית לנישה — למשל קליטת לידים למרפאות שיניים, או בקשות ביקורת למסעדות. הקליטו הדגמה קצרה, וגבו דמי הקמה + תחזוקה חודשית קטנה.</p>
+    <p class="text">הבנייה לוקחת דקות — אז הזמן האמיתי שלכם הולך ל<strong>מציאת הלקוח</strong>, לא לחיווט הרכיבים.</p>
+    <div class="callout">
+      <h4>טיפ שמצטבר</h4>
+      <p>כל אוטומציה שעבדה — שמרו אותה בחזרה לפרויקט כדוגמה חדשה. ככל שיש ל-Claude יותר דוגמאות אמיתיות ללמוד מהן, כך הבנייה הבאה תהיה מדויקת יותר.</p>
+    </div>
+
+    <div class="cta">
+      <h3>רוצים שאקים לכם את זה?</h3>
+      <p>אני בונה אוטומציות AI מותאמות לעסק — מהמיפוי ועד שזה רץ לבד.</p>
+      <p>דברו איתי: <a href="https://wa.me/972504744815">WhatsApp</a> · <a href="https://www.instagram.com/shani.creates.ai/">@shani.creates.ai</a></p>
+    </div>
+  </div>
+
+  <div class="foot">© 2026 · Shani AI Creator · נבנה באהבה בישראל</div>
+
+</body>
+</html>

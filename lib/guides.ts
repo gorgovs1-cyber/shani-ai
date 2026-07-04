@@ -18,6 +18,32 @@ export type Guide = {
 
 export const guides: Guide[] = [
   {
+    slug: "brand-website-ai",
+    file: "build-brand-website.html",
+    date: "2026-07-01",
+    title: "לבנות אתר מותג בגלילה קולנועית עם AI",
+    titleEn: "Build a cinematic brand website with AI",
+    description:
+      "השיטה לבניית אתר תדמית יוקרתי בקובץ אחד עם Claude — בלי קוד. כולל המפרט המדויק לבנייה.",
+    descriptionEn:
+      "The method for building a luxury single-file brand website with Claude — no code. Includes the exact build spec.",
+    tag: "אתרים",
+    tagEn: "Websites",
+  },
+  {
+    slug: "n8n-claude-automations",
+    file: "n8n-claude-automations.html",
+    date: "2026-06-30",
+    title: "לבנות אוטומציות n8n מפרומפט אחד עם Claude",
+    titleEn: "Ship n8n automations from one prompt with Claude",
+    description:
+      "איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש — בלי קוד, מתיאור בשפה רגילה. כולל ההוראות המדויקות ודוגמאות.",
+    descriptionEn:
+      "Set up a Claude Project that turns a single sentence into a working n8n automation — no code. Includes the exact instructions and examples.",
+    tag: "אוטומציות",
+    tagEn: "Automations",
+  },
+  {
     slug: "claude-desktop-hebrew",
     file: "guide-hebrew-claude-desktop.html",
     date: "2026-06-28",

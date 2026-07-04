@@ -21,6 +21,25 @@ const SIGNAL = "#ff6a3d";
 
 export const projects: Project[] = [
   {
+    slug: "ai-lead-machine",
+    title: "AI Lead Machine",
+    client: "Shani AI Creator",
+    category: "AI Automation",
+    categoryHe: "אוטומציית AI",
+    year: "2026",
+    tagline: "עסקים שמפספסים לידים כי אין מי שיענה בזמן.",
+    taglineEn: "Businesses losing leads because no one answers in time.",
+    description:
+      "בעיה: פניות נופלות בין הכיסאות ולקוחות אבודים. פתרון: מכונת לידים מקצה לקצה — טופס אבחון חכם ← אוטומציית n8n ← CRM בגוגל שיטס ← מיילים ממותגים ← מנוע Claude שכותב תכנית והצעת מחיר מלאה לכל ליד, אוטומטית. תוצאה: כל פנייה מקבלת מענה ותכנית תוך שניות, 24/7, בלי מגע יד.",
+    descriptionEn:
+      "Problem: inquiries fall through the cracks and leads are lost. Solution: an end-to-end lead machine — a smart intake form → n8n automation → Google Sheets CRM → branded emails → a Claude engine that writes a full plan and proposal for every lead, automatically. Result: every inquiry gets a response and a plan within seconds, 24/7, hands-free.",
+    tech: ["n8n", "Claude API", "Google Sheets", "Gmail API", "Webhooks", "HTML/CSS"],
+    accent: SIGNAL,
+    thumbnail: "/projects/lead-machine-thumb.jpg",
+    liveUrl: "https://shani-ai.com",
+    featured: true,
+  },
+  {
     slug: "solis",
     title: "SOLIS",
     client: "Solis",
