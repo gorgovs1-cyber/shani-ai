@@ -207,12 +207,38 @@ export default function Hero() {
               >
                 {t.heroCta2}
               </a>
+              <a
+                href="/audit"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 9,
+                  background: "color-mix(in oklch, var(--acc) 14%, transparent)",
+                  color: "var(--acc2)",
+                  textDecoration: "none",
+                  fontWeight: 700,
+                  fontSize: 16,
+                  padding: "17px 26px",
+                  borderRadius: 14,
+                  border: "1px solid color-mix(in oklch, var(--acc) 45%, transparent)",
+                  transition: "background .2s, border-color .2s",
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "color-mix(in oklch, var(--acc) 22%, transparent)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "color-mix(in oklch, var(--acc) 14%, transparent)";
+                }}
+              >
+                {lang === "he" ? "אבחון AI חינם" : "Free AI Audit"}
+              </a>
             </div>
 
             {/* AI Audit mini-CTA */}
             <div style={{ marginTop: 18, fontSize: 14, color: "var(--dmuted)", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}>
               {t.auditCtaPrefix}{" "}
-              <a href="#contact" style={{ color: "var(--acc)", textDecoration: "underline", textUnderlineOffset: 3, fontWeight: 600 }}>
+              <a href="/audit" style={{ color: "var(--acc)", textDecoration: "underline", textUnderlineOffset: 3, fontWeight: 600 }}>
                 {t.auditCtaLink}
               </a>
             </div>
