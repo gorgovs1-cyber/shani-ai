@@ -8,6 +8,7 @@ const SCREENSHOT = (url: string) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1280`;
 
 const FALLBACK_BG: Record<string, string> = {
+  "AI Lead Machine": "#141009",
   "My Money":     "#0b1628",
   "Lilach Hazan": "#faf8f5",
   "Rox":          "#080a0c",

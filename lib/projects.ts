@@ -40,6 +40,24 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "ai-content-engine",
+    title: "AI Content Engine",
+    client: "Shani AI Creator",
+    category: "AI Automation",
+    categoryHe: "אוטומציית AI",
+    year: "2026",
+    tagline: "יצירת תוכן עקבי אוכלת שעות בכל שבוע.",
+    taglineEn: "Consistent content creation eats hours every week.",
+    description:
+      "בעיה: תוכן עקבי לרשתות דורש שעות בכל שבוע, והעקביות נשברת ברגע שהעומס עולה. פתרון: סוכן Claude שקורא מסמך מותג קבוע — קול, צבעים, פורמטים ולוח פרסום — ומנסח שבוע שלם של תוכן: רילים, קרוסלות וסטוריז, מוכנים לעריכה קצרה ופרסום. תוצאה: מעבר משעות מול דף ריק לבחירה מתוך בנק תוכן מוכן, עם קול מותג אחיד לאורך זמן.",
+    descriptionEn:
+      "Problem: consistent social content takes hours every week, and consistency breaks the moment the workload rises. Solution: a Claude agent that reads a fixed brand document — voice, colors, formats and publishing calendar — and drafts a full week of content: reels, carousels and stories, ready for a quick edit and publish. Result: from hours in front of a blank page to picking from a ready content bank, with a consistent brand voice over time.",
+    tech: ["Claude API", "Scheduled Agents", "n8n", "Brand System", "Content Ops"],
+    accent: SIGNAL,
+    thumbnail: "/projects/content-engine-thumb.jpg",
+    featured: true,
+  },
+  {
     slug: "solis",
     title: "SOLIS",
     client: "Solis",

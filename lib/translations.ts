@@ -29,6 +29,7 @@ export const dict = {
       {no:'03', title:'Cinematic Website', subtitle:'אתר שמביא לקוחות, לא רק נראה טוב', desc:'כשצריך נוכחות דיגיטלית, אני בונה אתר חכם ומהיר עם אנימציות קולנועיות, שממצב את המותג שלכם ברמה של החברות הגדולות והופך מבקרים ללקוחות.'}
     ],
     projects:[
+      {title:'AI Lead Machine', kind:'אוטומציה', mono:'A', url:'https://shani-ai.com/audit', desc:'מכונת לידים מקצה לקצה: טופס אבחון חכם, אוטומציית n8n, CRM ומנוע Claude שכותב תכנית והצעת מחיר לכל פנייה. מענה תוך שניות, 24/7.', tags:['Automation','n8n','Claude']},
       {title:'My Money', kind:'מוצר אישי', mono:'M', url:'https://my-money-app-shani7.vercel.app/', desc:'פלטפורמה לניהול פיננסי שבניתי לעצמאיות ובעלות עסקים קטנים.', tags:['Web App','Finance','AI']},
       {title:'Lilach Hazan', kind:'פרויקט לקוח', mono:'L', url:'https://www.lilachhazan.com/', desc:'אתר עסקי מקצועי שבניתי עבור לילך חזן.', tags:['Website','Client Work']},
       {title:'Rox', kind:'פרויקט הדגמה', mono:'R', url:'https://meridian-watch-eight.vercel.app/', desc:'חוויית איקומרס למותג שעוני יוקרה.', tags:['Ecommerce','Design']},
@@ -118,6 +119,7 @@ export const dict = {
       {no:'03', title:'Cinematic Website', subtitle:'A website that brings clients in, not just looks good', desc:'When you need a digital presence, I build a smart, fast website with cinematic animations that positions your brand alongside the big players and turns visitors into clients.'}
     ],
     projects:[
+      {title:'AI Lead Machine', kind:'Automation', mono:'A', url:'https://shani-ai.com/audit', desc:'An end-to-end lead machine: a smart intake form, an n8n automation, a CRM, and a Claude engine that writes a plan and a proposal for every inquiry. A response within seconds, 24/7.', tags:['Automation','n8n','Claude']},
       {title:'My Money', kind:'Personal Product', mono:'M', url:'https://my-money-app-shani7.vercel.app/', desc:'A financial management platform designed for self-employed women and small business owners.', tags:['Web App','Finance','AI']},
       {title:'Lilach Hazan', kind:'Client Project', mono:'L', url:'https://www.lilachhazan.com/', desc:'A professional business website I built for Lilach Hazan.', tags:['Website','Client Work']},
       {title:'Rox', kind:'Demo Project', mono:'R', url:'https://meridian-watch-eight.vercel.app/', desc:'A luxury watch ecommerce experience.', tags:['Ecommerce','Design']},
