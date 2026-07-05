@@ -75,7 +75,7 @@ export const projects: Project[] = [
     tech: ["GSAP", "ScrollTrigger", "Lenis", "Ambient Audio", "CSS Animation"],
     accent: SIGNAL,
     thumbnail: "/projects/rox-thumb.jpg",
-    liveUrl: "https://rox-watches.vercel.app/",
+    liveUrl: "https://meridian-watch-eight.vercel.app/",
     featured: true,
   },
   {
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     ],
     accent: SIGNAL,
     thumbnail: "/projects/mymoney-thumb.jpg",
-    liveUrl: "https://my-money-app-tau.vercel.app/",
+    liveUrl: "https://my-money-app-shani7.vercel.app/",
     featured: true,
   },
 ];
