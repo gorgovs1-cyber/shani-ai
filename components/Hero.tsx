@@ -147,15 +147,18 @@ export default function Hero() {
               {t.heroSub}
             </p>
 
-            {/* CTAs */}
+            {/* CTAs — primary: free AI audit (lead funnel), secondary: view work */}
             <div
+              className="hero-cta-row"
               style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 40 }}
             >
+              {/* Primary: Free AI Audit */}
               <a
-                href="#work"
+                href="/audit"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   gap: 9,
                   background: "var(--acc)",
                   color: "#fff",
@@ -177,13 +180,15 @@ export default function Hero() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 18px 40px -16px var(--acc)";
                 }}
               >
-                {t.heroCta1}
+                {lang === "he" ? "אבחון AI חינם" : "Free AI Audit"}
               </a>
+              {/* Secondary: View projects */}
               <a
-                href="#contact"
+                href="#work"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   gap: 9,
                   background: "rgba(244,237,225,0.05)",
                   color: "var(--dtext)",
@@ -205,41 +210,7 @@ export default function Hero() {
                   (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.05)";
                 }}
               >
-                {t.heroCta2}
-              </a>
-              <a
-                href="/audit"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 9,
-                  background: "color-mix(in oklch, var(--acc) 14%, transparent)",
-                  color: "var(--acc2)",
-                  textDecoration: "none",
-                  fontWeight: 700,
-                  fontSize: 16,
-                  padding: "17px 26px",
-                  borderRadius: 14,
-                  border: "1px solid color-mix(in oklch, var(--acc) 45%, transparent)",
-                  transition: "background .2s, border-color .2s",
-                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "color-mix(in oklch, var(--acc) 22%, transparent)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "color-mix(in oklch, var(--acc) 14%, transparent)";
-                }}
-              >
-                {lang === "he" ? "אבחון AI חינם" : "Free AI Audit"}
-              </a>
-            </div>
-
-            {/* AI Audit mini-CTA */}
-            <div style={{ marginTop: 18, fontSize: 14, color: "var(--dmuted)", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}>
-              {t.auditCtaPrefix}{" "}
-              <a href="/audit" style={{ color: "var(--acc)", textDecoration: "underline", textUnderlineOffset: 3, fontWeight: 600 }}>
-                {t.auditCtaLink}
+                {t.heroCta1}
               </a>
             </div>
 
