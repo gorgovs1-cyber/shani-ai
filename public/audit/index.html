@@ -153,7 +153,7 @@
       </div>
     </div>
     <div class="q"><label class="main">שם מלא</label><input type="text" data-q="שם"></div>
-    <div class="q"><label class="main">אימייל <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="text" data-q="אימייל"></div>
+    <div class="q"><label class="main">אימייל <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="email" data-q="אימייל"></div>
     <div class="q"><label class="main">וואטסאפ + אינסטגרם/אתר</label><input type="text" data-q="קשר נוסף"></div>
   </div>
 
@@ -217,6 +217,15 @@
     done();
   }
   function send(){
+    var emailEl=document.querySelector('[data-q="אימייל"]');
+    var email=(emailEl.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+      emailEl.style.border='2px solid #e5484d';
+      emailEl.focus();
+      emailEl.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    emailEl.style.border='';
     var d=collect();
     if(WEBHOOK_URL){
       fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
