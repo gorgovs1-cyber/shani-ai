@@ -195,4 +195,35 @@
   // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק — נשלח לוואטסאפ. ▼▼▼
   var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
   var WA = "972504744815";
-  document.querySelectorAll('.opt').forEach(fun
+  document.querySelectorAll('.opt').forEach(function(o){
+    var inp=o.querySelector('input');
+    inp.addEventListener('change',function(){
+      if(inp.type==='radio'){o.closest('.opts').querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel')});}
+      o.classList.toggle('sel', inp.checked);
+    });
+  });
+  function collect(){
+    var d={};
+    document.querySelectorAll('[data-q]').forEach(function(el){ if(el.value.trim()) d[el.dataset.q]=el.value.trim(); });
+    document.querySelectorAll('[data-multi]').forEach(function(g){ var v=[...g.querySelectorAll('input:checked')].map(function(i){return i.value}); if(v.length) d[g.dataset.multi]=v.join(", "); });
+    document.querySelectorAll('[data-single]').forEach(function(g){ var c=g.querySelector('input:checked'); if(c) d[g.dataset.single]=c.value; });
+    return d;
+  }
+  function done(){ document.getElementById('f').style.display='none'; document.getElementById('thanks').style.display='block'; window.scrollTo(0,0); }
+  function waFallback(d){
+    var L=["היי שני! מילאתי את האבחון",""];
+    for(var k in d) L.push("• "+k+": "+d[k]);
+    window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n")),"_blank");
+    done();
+  }
+  function send(){
+    var d=collect();
+    if(WEBHOOK_URL){
+      fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
+        .then(function(r){ if(r.ok){done();} else {waFallback(d);} })
+        .catch(function(){waFallback(d)});
+    } else { waFallback(d); }
+  }
+</script>
+</body>
+</html>
