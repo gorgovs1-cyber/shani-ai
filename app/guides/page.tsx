@@ -259,7 +259,12 @@ export default function GuidesPage() {
                       fontFamily: HEEBO,
                     }}
                   >
-                    🔒 {lang === "he" ? "נעול, השאירו מייל" : "Locked, leave your email"}
+                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
+                      <rect x="1" y="6.5" width="12" height="8.5" rx="2" stroke="currentColor" strokeWidth="1.6" />
+                      <path d="M3.8 6.5V4.6a3.2 3.2 0 0 1 6.4 0v1.9" stroke="currentColor" strokeWidth="1.6" />
+                      <circle cx="7" cy="10.7" r="1.2" fill="currentColor" />
+                    </svg>
+                    {lang === "he" ? "נעול, השאירו מייל" : "Locked, leave your email"}
                   </span>
                 )}
               </article>
