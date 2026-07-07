@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Logo from "@/components/Logo";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
@@ -49,11 +50,17 @@ export default function Nav() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  // On the homepage use in-page anchors (smooth scroll); on any other page
+  // link back to the homepage section so nav works everywhere (e.g. /guides).
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const anchor = (hash: string) => (isHome ? hash : `/${hash}`);
+
   const navLinks = [
-    { label: t.navWork,           href: "#work" },
-    { label: t.navBuild,          href: "#build" },
-    { label: t.navAbout,          href: "#about" },
-    { label: t.navProcess,        href: "#process" },
+    { label: t.navWork,           href: anchor("#work") },
+    { label: t.navBuild,          href: anchor("#build") },
+    { label: t.navAbout,          href: anchor("#about") },
+    { label: t.navProcess,        href: anchor("#process") },
     { label: lang === "he" ? "מדריכים" : "Guides", href: "/guides" },
   ];
 
@@ -96,7 +103,7 @@ export default function Nav() {
         >
           {/* Left: Logo + name */}
           <a
-            href="#top"
+            href={isHome ? "#top" : "/"}
             style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none" }}
             aria-label="Shani Gorgov — home"
           >
@@ -194,7 +201,7 @@ export default function Nav() {
 
             {/* CTA pill */}
             <a
-              href="#contact"
+              href={anchor("#contact")}
               className="nav-cta"
               style={{
                 display: "inline-flex",
@@ -285,7 +292,7 @@ export default function Nav() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={anchor("#contact")}
             onClick={closeMenu}
             style={{
               display: "inline-flex",
