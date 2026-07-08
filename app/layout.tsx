@@ -9,6 +9,7 @@ import SplashScreen from "@/components/SplashScreen";
 import SkipLink from "@/components/SkipLink";
 import ScrollReveal from "@/components/ScrollReveal";
 import LanguageProvider from "@/components/LanguageProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 // Latin headings + body
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CustomCursor />
           <FloatingWhatsApp />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
