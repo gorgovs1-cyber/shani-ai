@@ -57,11 +57,12 @@ export default function Nav() {
   const anchor = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const navLinks = [
-    { label: t.navWork,           href: anchor("#work") },
-    { label: t.navBuild,          href: anchor("#build") },
-    { label: t.navAbout,          href: anchor("#about") },
-    { label: t.navProcess,        href: anchor("#process") },
-    { label: lang === "he" ? "מדריכים" : "Guides", href: "/guides" },
+    { label: t.navWork,        href: anchor("#work") },
+    { label: t.navWebsites,    href: "/websites" },
+    { label: t.navAutomations, href: "/automations" },
+    { label: t.navConsulting,  href: "/ai-consulting" },
+    { label: t.navPricing,     href: "/pricing" },
+    { label: t.navGuides,      href: "/guides" },
   ];
 
   return (
@@ -132,7 +133,7 @@ export default function Nav() {
           {/* Center: Desktop nav links */}
           <div
             className="nav-desktop"
-            style={{ display: "flex", alignItems: "center", gap: 28 }}
+            style={{ display: "flex", alignItems: "center", gap: 20 }}
           >
             {navLinks.map((l) => (
               <a

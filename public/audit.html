@@ -195,4 +195,40 @@
   // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק — נשלח לוואטסאפ. ▼▼▼
   var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
   var WA = "972504744815";
+
+  // ▼▼▼ מדידה: הדביקי כאן את המזהים (זהים ל-NEXT_PUBLIC_GA4_ID / NEXT_PUBLIC_META_PIXEL_ID). ריק = לא נטען כלום. ▼▼▼
+  var GA4_ID = "";          // לדוגמה: "G-XXXXXXXXXX"
+  var META_PIXEL_ID = "";   // לדוגמה: "123456789012345"
+  var leadFired = false;
+  (function(){
+    if (GA4_ID) {
+      var s=document.createElement('script'); s.async=true;
+      s.src="https://www.googletagmanager.com/gtag/js?id="+GA4_ID;
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){dataLayer.push(arguments);};
+      gtag('js', new Date()); gtag('config', GA4_ID);
+    }
+    if (META_PIXEL_ID) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', META_PIXEL_ID); fbq('track', 'PageView');
+    }
+  })();
+  function fireLead(){
+    if (leadFired) return; leadFired = true;
+    try { if (typeof gtag === 'function') gtag('event','generate_lead',{currency:'ILS',source:'audit-form'}); } catch(e){}
+    try { if (typeof fbq === 'function') fbq('track','Lead',{source:'audit-form'}); } catch(e){}
+  }
+  // עוטף את done() כדי לירות את אירוע הליד בסיום הטופס, בלי לגעת בלוגיקה הקיימת
+  window.addEventListener('DOMContentLoaded', function(){
+    if (typeof window.done === 'function') {
+      var _origDone = window.done;
+      window.done = function(){ fireLead(); return _origDone.apply(this, arguments); };
+    }
+  });
+
   document.querySelectorAll('.opt').forEach(fun

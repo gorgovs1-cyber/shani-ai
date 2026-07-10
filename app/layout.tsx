@@ -10,6 +10,7 @@ import SkipLink from "@/components/SkipLink";
 import ScrollReveal from "@/components/ScrollReveal";
 import LanguageProvider from "@/components/LanguageProvider";
 import { Analytics } from "@vercel/analytics/react";
+import AnalyticsScripts from "@/components/AnalyticsScripts";
 
 // Latin headings + body
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -57,6 +58,46 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${heebo.variable} ${playfair.variable} ${mono.variable}`}
     >
       <body>
+        {/* Schema.org — ProfessionalService (local SEO) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Shani AI Creator",
+              alternateName: "שני גורגוב · Shani AI Creator",
+              description:
+                "ייעוץ AI, אוטומציות, כלים וסקילים בעברית ואתרים קולנועיים לעסקים. מיפוי, אסטרטגיה ובנייה מקצה לקצה.",
+              url: "https://shani-ai.com",
+              telephone: "+972-50-4744815",
+              email: "shani.creates.ai@gmail.com",
+              image: "https://shani-ai.com/og.jpg",
+              logo: "https://shani-ai.com/logo.svg",
+              priceRange: "₪₪₪",
+              areaServed: [
+                { "@type": "City", name: "תל אביב" },
+                { "@type": "City", name: "רמת גן" },
+                { "@type": "City", name: "הרצליה" },
+                { "@type": "City", name: "ירושלים" },
+                { "@type": "City", name: "חיפה" },
+                { "@type": "City", name: "באר שבע" },
+                { "@type": "Country", name: "ישראל" },
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "IL",
+                addressRegion: "גוש דן",
+              },
+              knowsLanguage: ["he", "en"],
+              sameAs: [
+                "https://www.instagram.com/shani.creates.ai/",
+                "https://www.tiktok.com/@shani.creates.ai",
+                "https://www.linkedin.com/in/shani-ai/",
+              ],
+            }),
+          }}
+        />
         <LanguageProvider>
           <SkipLink />
           <SplashScreen />
@@ -71,6 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FloatingWhatsApp />
         </LanguageProvider>
         <Analytics />
+        <AnalyticsScripts />
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Process from "@/components/Process";
 import LeadMagnet from "@/components/LeadMagnet";
 import CTAStrip from "@/components/CTAStrip";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -21,6 +22,7 @@ export default function Home() {
       <Process />
       <LeadMagnet />
       <CTAStrip />
+      <TestimonialsSection />
       <FAQ />
       <Contact />
       <Footer />

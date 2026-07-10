@@ -66,7 +66,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           {/* CTA */}
           <a href="https://wa.me/972504744815" className="btn-grad" style={{ display: "inline-block", marginTop: "3rem", padding: "0.85rem 2rem" }}>
-            יש לך עסק שצריך מערכת? בואי נדבר ←
+            יש לך עסק שצריך מערכת? בואו נדבר ←
           </a>
         </div>
 

@@ -2,6 +2,8 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navTestimonials:'המלצות', navGuides:'מדריכים', navCta:'בואו נדבר',
+    navPricing:'מחירים', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ AI', navServices:'שירותים',
+    footerSeo:'בונה אתרים, אוטומציות וכלי AI לעסקים בתל אביב, רמת גן, הרצליה, ירושלים, חיפה, באר שבע והשרון — ואונליין בכל הארץ.',
     role:'SHANI AI CREATOR',
     heroTitle:'מכניסה AI לעסק שלכם, בלי כאב ראש.',
     heroSub:'אני ממפה איפה AI יחסוך לכם הכי הרבה זמן, בונה לכם אוטומציות שעובדות 24/7, כלים וסקילים בעברית שמתאימים בדיוק לעסק, וגם אתרים שמביאים לקוחות. פחות עומס, יותר תוצאות.',
@@ -35,13 +37,14 @@ export const dict = {
       {title:'Rox', kind:'פרויקט הדגמה', mono:'R', url:'https://meridian-watch-eight.vercel.app/', desc:'חוויית איקומרס למותג שעוני יוקרה.', tags:['Ecommerce','Design']},
       {title:'Solis', kind:'פרויקט הדגמה', mono:'S', url:'https://solis-orange.vercel.app/', desc:'חוויית מותג למשקה פרימיום.', tags:['Brand Experience','Design']}
     ],
-    faqKicker:'05 · שאלות נפוצות', faqTitle:'כל מה שרציתם לדעת.',
+    faqKicker:'07 · שאלות נפוצות', faqTitle:'כל מה שרציתם לדעת.',
     faqItems:[
-      {q:'איך AI יכול לעזור דווקא לעסק שלי?', a:'כמעט כל עסק מבזבז שעות על משימות חוזרות: כתיבת תוכן, מענה ללקוחות, ניהול לידים, סדר בדאטה. ב-AI Audit אנחנו ממפים בדיוק איפה זה קורה אצלכם ובונים תוכנית להטמיע כלים ואוטומציות שיחזירו לכם את הזמן הזה.'},
-      {q:'מה זה אוטומציה ולמה העסק שלי צריך אותה?', a:'אוטומציה היא חיבור בין הכלים שלכם: טפסי פנייה, CRM, לוח שנה, מיילים, כך שהם מדברים ביניהם לבד. במקום לבצע משימות ידנית, המערכת עושה אותן אוטומטית, מונעת טעויות אנוש ועובדת גם כשאתם ישנים.'},
-      {q:'מה זה סקיל בעברית ולמה זה משנה?', a:'רוב כלי ה-AI חושבים באנגלית ומתרגמים, ולכן יוצא תוכן עברי שנשמע מוזר. אני בונה סקילים וכלים שמלמדים את ה-AI לכתוב ולחשוב בעברית אמיתית, בדיוק בשפה ובטון של העסק שלכם, כך שמה שיוצא מוכן לשימוש ונשמע כמוכם.'},
-      {q:'לא בטוחים מאיפה להתחיל?', a:'מתחילים עם AI Audit, שיחה ממוקדת שבסיומה תקבלו תוכנית עבודה ברורה: מה להטמיע, באיזה סדר, ואילו כלים ואוטומציות יחסכו לכם הכי הרבה זמן.'},
-      {q:'אני גם בונה אתרים, כמה זמן זה לוקח?', a:'בהחלט, אתר הוא אחד השירותים. אתר עסקי לוקח שבוע עד שבועיים, ופרויקטים מורכבים עם אנימציות ופיתוח מיוחד עד 4 שבועות. אני בונה בעזרת AI ופיתוח מודרני, כך שהאתר יוצא מהר, חכם ומחובר לכלים שלכם.'}
+      {q:'כמה עולה לבנות אתר או אוטומציה לעסק?', a:'דף נחיתה קולנועי מתחיל ב-₪2,400, אתר תדמית מלא מ-₪6,500, ומערכת AI שלמה מ-₪12,000. אוטומציה בודדת מ-₪1,500 ובוט וואטסאפ מ-₪1,200. יש גם מנוי חודשי מ-₪390. כל המחירים לפני מע"מ, ובדף המחירים יש פירוט מלא. לא בטוחים מה מתאים? האבחון החינמי ימליץ.'},
+      {q:'כמה זמן לוקח לבנות?', a:'דף נחיתה מוכן תוך 7 עד 10 ימים, אתר תדמית תוך שבועיים עד שלושה, ופרויקטים מורכבים עד 4 שבועות. אני עובדת בפיתוח מבוסס-AI, כך שהמסירה מהירה משמעותית מהתעשייה בלי להתפשר על האיכות. לכל חבילה זמן מסירה מוגדר מראש.'},
+      {q:'מה אם לא אהיה מרוצה מהתוצאה?', a:'העבודה מלווה אתכם לאורך כל הדרך: מגדירים ביחד את הכיוון, ואני מציגה גרסאות לאישור בכל שלב, כך שאין הפתעות בסוף. כל חבילה כוללת סבבי שינויים, ואם צריך עוד, אפשר להוסיף. המטרה שלי היא שתצאו עם נכס שאתם גאים בו, לא רק "לסמן וי".'},
+      {q:'למה אתר אצלך יותר יקר מוויקס או אלמנטור?', a:'כי זה לא אותו מוצר. תבנית וויקס נראית כמו עוד תבנית, נטענת לאט ומוגבלת ב-SEO. אני בונה קוד קאסטום Next.js, מהיר, עם Lighthouse גבוה, SEO אמיתי, אנימציות קולנועיות, ובעלות מלאה שלכם על הקוד, בלי דמי מנוי כפויים. ומעל הכל, אני מחברת אוטומציות ו-AI שאף תבנית לא נותנת. משלמים יותר, מקבלים נכס שמחזיר את עצמו.'},
+      {q:'האם יש התחייבות לטווח ארוך?', a:'בפרויקט חד-פעמי אין שום התחייבות מתמשכת, מסיימים ואתם חופשיים עם הקוד שלכם. מנוי Shani Care הוא חודשי בלבד, עם ביטול בהתראה של 30 יום. אתם בשליטה מלאה.'},
+      {q:'לא בטוחים מאיפה להתחיל?', a:'מתחילים עם אבחון AI חינם, שיחה ממוקדת שבסיומה תקבלו תוכנית עבודה ברורה: מה להטמיע, באיזה סדר, ואילו כלים ואוטומציות יחסכו לכם הכי הרבה זמן, בלי התחייבות.'}
     ],
     steps:[
       {n:'01', title:'גילוי', desc:'מבינים את העסק, הקהל והמטרה.'},
@@ -92,6 +95,8 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navTestimonials:'Reviews', navGuides:'Guides', navCta:"Let's talk",
+    navPricing:'Pricing', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'AI Consulting', navServices:'Services',
+    footerSeo:'Building websites, automations and AI tools for businesses in Tel Aviv, Ramat Gan, Herzliya, Jerusalem, Haifa, Beer Sheva and the Sharon — and online across Israel.',
     role:'SHANI AI CREATOR',
     heroTitle:'Bring AI into your business, without the headache.',
     heroSub:'I map where AI will save you the most time, build automations that run 24/7, create custom AI tools and Hebrew Skills that fit your business exactly, and yes, websites that bring clients in. Less workload, more results.',
@@ -125,13 +130,14 @@ export const dict = {
       {title:'Rox', kind:'Demo Project', mono:'R', url:'https://meridian-watch-eight.vercel.app/', desc:'A luxury watch ecommerce experience.', tags:['Ecommerce','Design']},
       {title:'Solis', kind:'Demo Project', mono:'S', url:'https://solis-orange.vercel.app/', desc:'A premium beverage brand experience.', tags:['Brand Experience','Design']}
     ],
-    faqKicker:'05 · FAQ', faqTitle:'Everything you need to know.',
+    faqKicker:'07 · FAQ', faqTitle:'Everything you need to know.',
     faqItems:[
-      {q:'How can AI actually help my specific business?', a:'Almost every business burns hours on repetitive tasks: writing content, answering clients, managing leads, cleaning up data. In an AI Audit we map exactly where that happens for you and build a plan to implement tools and automations that hand those hours back.'},
-      {q:'What is automation and why does my business need it?', a:'Automation connects your tools: contact forms, CRM, calendar, email, so they talk to each other automatically. Instead of doing tasks manually, the system does them for you, prevents human error, and keeps working while you sleep.'},
-      {q:'What is a Hebrew Skill and why does it matter?', a:"Most AI tools think in English and translate, so the Hebrew they produce sounds off. I build Skills and tools that teach AI to write and think in real Hebrew, in your business's exact voice and tone, so what comes out is ready to use and sounds like you."},
-      {q:'Not sure where to start?', a:'Start with an AI Audit, a focused session that ends with a clear action plan: what to implement, in what order, and which tools and automations will save you the most time.'},
-      {q:'You build websites too, how long does that take?', a:'Absolutely, a website is one of the services. A business website takes one to two weeks, and complex projects with custom animations up to four. I build with AI and modern development, so your site ships fast, smart, and connected to your tools.'}
+      {q:'How much does a website or automation cost?', a:'A cinematic landing page starts at ₪2,400, a full brand website from ₪6,500, and a complete AI system from ₪12,000. A single automation from ₪1,500 and a WhatsApp bot from ₪1,200. There\'s also a monthly membership from ₪390. All prices exclude VAT, and the pricing page breaks it down in full. Not sure what fits? The free audit will recommend.'},
+      {q:'How long does it take to build?', a:'A landing page is ready in 7 to 10 days, a brand website in two to three weeks, and complex projects up to four. I work with AI-assisted development, so delivery is significantly faster than the industry without compromising quality. Every package has a delivery time set upfront.'},
+      {q:"What if I'm not happy with the result?", a:'The work involves you the whole way: we define the direction together and I present versions for approval at every stage, so there are no surprises at the end. Every package includes revision rounds, and more can be added if needed. My goal is for you to walk away with an asset you\'re proud of, not just a box ticked.'},
+      {q:'Why is a site with you pricier than Wix or Elementor?', a:"Because it isn't the same product. A Wix template looks like another template, loads slowly and is limited on SEO. I build custom Next.js code, fast, with a high Lighthouse score, real SEO, cinematic animation, and full ownership of the code, with no forced subscription. Above all, I wire in automations and AI no template can give you. You pay more, you get an asset that pays for itself."},
+      {q:'Is there a long-term commitment?', a:'A one-off project has no ongoing commitment, we finish and you\'re free with your code. The Shani Care membership is monthly only, cancellable with 30 days\' notice. You stay in full control.'},
+      {q:'Not sure where to start?', a:'Start with a free AI Audit, a focused session that ends with a clear action plan: what to implement, in what order, and which tools and automations will save you the most time, no commitment.'}
     ],
     steps:[
       {n:'01', title:'Discovery', desc:'Understand the business, audience and goal.'},

@@ -23,6 +23,20 @@ export default function Footer() {
         borderTop: "1px solid var(--line)",
       }}
     >
+      {/* Local SEO paragraph */}
+      <p
+        style={{
+          flexBasis: "100%",
+          margin: "0 0 12px",
+          color: "var(--muted2)",
+          fontSize: 13.5,
+          lineHeight: 1.7,
+          maxWidth: "72ch",
+          fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+        }}
+      >
+        {t.footerSeo}
+      </p>
       {/* Logo + name */}
       <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
         <svg
@@ -50,6 +64,27 @@ export default function Footer() {
           Shani Gorgov
         </span>
       </div>
+
+      {/* Site pages */}
+      <nav className="footer-nav" aria-label={lang === "he" ? "מפת אתר" : "Site map"} style={{ display: "flex", flexBasis: "100%", flexWrap: "wrap", rowGap: 12, columnGap: 26, fontSize: 14.5, color: "var(--muted2)", marginBottom: 4 }}>
+        {[
+          { label: t.navWebsites,    href: "/websites" },
+          { label: t.navAutomations, href: "/automations" },
+          { label: t.navConsulting,  href: "/ai-consulting" },
+          { label: t.navPricing,     href: "/pricing" },
+          { label: t.navGuides,      href: "/guides" },
+        ].map(({ label, href }) => (
+          <a
+            key={href}
+            href={href}
+            style={{ color: "var(--muted2)", textDecoration: "none", transition: "color .2s", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
 
       {/* Social links */}
       <nav className="footer-nav" aria-label="Social links" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", rowGap: 12, columnGap: 26, fontSize: 14.5, color: "var(--muted2)" }}>

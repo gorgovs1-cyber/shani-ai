@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT בתוך האקסל | Shani AI Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #f2622e;
+    --orange-light: #fff3ef;
+    --dark: #141009;
+    --text: #1a1410;
+    --text-mid: #5a4f47;
+    --text-dim: #9a8f87;
+    --border: #e8ddd6;
+    --bg: #faf8f6;
+  }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    direction: rtl;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 794px;
+    margin: 0 auto;
+  }
+
+  /* ============ COVER PAGE ============ */
+  .cover {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,98,46,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,98,46,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-brand {
+    color: rgba(242,98,46,0.8);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-num {
+    font-size: 96px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+  }
+
+  .cover-title {
+    color: #f4ede1;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-title span {
+    color: var(--orange);
+  }
+
+  .cover-subtitle {
+    color: rgba(244,237,225,0.55);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--orange);
+    margin: 0 auto 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-promise {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+  }
+
+  .cover-promise-item {
+    border: 1px solid rgba(242,98,46,0.3);
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .cover-promise-item .num {
+    color: var(--orange);
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .cover-promise-item .label {
+    color: rgba(244,237,225,0.7);
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .cover-footer {
+    color: rgba(244,237,225,0.3);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ INTRO PAGE ============ */
+  .intro-page {
+    background: white;
+    padding: 60px 50px;
+    min-height: 100vh;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background: var(--orange);
+  }
+
+  .intro-headline {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--dark);
+    margin-bottom: 24px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .intro-text strong {
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  .how-to-use {
+    background: var(--orange-light);
+    border-right: 4px solid var(--orange);
+    padding: 24px 28px;
+    margin: 36px 0;
+  }
+
+  .how-to-use h3 {
+    color: var(--orange);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .how-to-use ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .how-to-use ol li {
+    display: flex;
+    gap: 14px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .how-to-use ol li .step-num {
+    background: var(--orange);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .toc {
+    margin-top: 40px;
+  }
+
+  .toc h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-item .toc-num {
+    color: var(--orange);
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px;
+    flex-shrink: 0;
+  }
+
+  .toc-item .toc-title {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  .toc-item .toc-time {
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  .intro-signature {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+  }
+
+  .sig-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-size: 18px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .sig-text {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .sig-text strong {
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  /* ============ PROMPT PAGES ============ */
+  .prompt-page {
+    background: white;
+    padding: 60px 50px;
+    min-height: 100vh;
+    page-break-after: always;
+  }
+
+  .prompt-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .prompt-big-num {
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    opacity: 0.15;
+    position: absolute;
+    top: 50px;
+    left: 44px;
+    pointer-events: none;
+  }
+
+  .prompt-header-content {
+    flex: 1;
+  }
+
+  .prompt-tag {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .prompt-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .prompt-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .prompt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--orange-light);
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+  }
+
+  .prompt-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .section-why {
+    background: var(--bg);
+    padding: 20px 22px;
+    margin-bottom: 24px;
+  }
+
+  .section-why .section-title { color: var(--text-dim); }
+
+  .section-why p {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .prompt-box {
+    background: var(--dark);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .prompt-box .section-title {
+    color: rgba(242,98,46,0.7);
+    margin-bottom: 16px;
+  }
+
+  .prompt-text {
+    color: #f4ede1;
+    font-size: 15px;
+    line-height: 2;
+    white-space: pre-wrap;
+    font-family: 'Heebo', monospace;
+  }
+
+  .prompt-var {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .copy-hint {
+    position: absolute;
+    bottom: 14px;
+    left: 20px;
+    color: rgba(244,237,225,0.25);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .result-box {
+    background: #f0faf5;
+    border: 1px solid #b8e8cc;
+    padding: 20px 22px;
+    margin-bottom: 24px;
+  }
+
+  .result-box .section-title { color: #2a8a50; }
+
+  .result-box p {
+    font-size: 14px;
+    color: #1a5a35;
+    line-height: 1.7;
+  }
+
+  .tips-box {
+    background: var(--orange-light);
+    border-right: 3px solid var(--orange);
+    padding: 18px 20px;
+  }
+
+  .tips-box .section-title { color: var(--orange); }
+
+  .tips-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tips-box ul li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .tips-box ul li::before {
+    content: '✦';
+    color: var(--orange);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+
+  /* ============ CLOSING PAGE ============ */
+  .closing-page {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing-page::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,98,46,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .closing-badge {
+    border: 1px solid rgba(242,98,46,0.4);
+    padding: 10px 22px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-headline {
+    color: #f4ede1;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-headline span {
+    color: var(--orange);
+  }
+
+  .closing-text {
+    color: rgba(244,237,225,0.55);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+  }
+
+  .action-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(242,98,46,0.2);
+    padding: 16px 24px;
+    width: 100%;
+    text-align: right;
+  }
+
+  .action-text {
+    flex: 1;
+  }
+
+  .action-label {
+    color: rgba(244,237,225,0.5);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .action-value {
+    color: #f4ede1;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .closing-footer {
+    color: rgba(244,237,225,0.25);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media print {
+    body { max-width: 100%; margin: 0; }
+    .cover, .intro-page, .prompt-page, .closing-page {
+      page-break-after: always;
+      min-height: 297mm;
+      width: 210mm;
+      padding: 20mm 18mm;
+    }
+    .cover-num { font-size: 80px; }
+    .cover-title { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-brand">Shani AI Creator · @shani.creates.ai</div>
+  <div class="cover-num">≡</div>
+  <div class="cover-title">ChatGPT<br>בתוך <span>האקסל</span></div>
+  <div class="cover-divider"></div>
+  <div class="cover-subtitle">מדריך התקנה ושימוש מלא בעברית. מתקינים תוסף אחד, ומבקשים מהגיליון מה שצריך במילים רגילות, בלי נוסחאות ובלי קוד.</div>
+  <div class="cover-promise">
+    <div class="cover-promise-item"><span class="num">0₪</span><span class="label">להתחיל</span></div>
+    <div class="cover-promise-item"><span class="num">תוסף אחד</span><span class="label">התקנה חד פעמית</span></div>
+    <div class="cover-promise-item"><span class="num">5</span><span class="label">שימושים לעסק</span></div>
+  </div>
+  <div class="cover-footer">Shani AI Creator · שני גורגוב · 2026</div>
+</div>
+
+<div class="intro-page">
+  <div class="section-tag">לפני שמתחילים</div>
+  <div class="intro-headline">כל עסק קטן חי באקסל.<br>עכשיו יש לו עוזר בתוך הגיליון.</div>
+  <p class="intro-text">OpenAI הוציאה תוסף רשמי שמכניס את ChatGPT ישירות לתוך אקסל וגוגל שיטס. הוא יושב בצד של הגיליון, קורא את הנתונים שלכם, ועושה עליהם עבודה: בונה טבלאות, מנקה כפילויות, מסביר נוסחאות שנשברו, ומריץ תרחישים.</p>
+  <p class="intro-text"><strong>הכל בשיחה רגילה.</strong><br>לא מחפשים נוסחה, לא לומדים פונקציות. כותבים בעברית מה שרוצים, והוא עושה את זה על הגיליון עצמו. עסק שמנהל הצעות מחיר, מלאי או תזרים באקסל מקבל כאן שינוי אמיתי בזמן.</p>
+  <div class="how-to-use">
+    <h3>איך להשתמש בקובץ הזה</h3>
+    <ol>
+      <li><span class="step-num">1</span><span>מתקינים את התוסף פעם אחת, לפי ההוראות בעמוד הבא.</span></li>
+      <li><span class="step-num">2</span><span>מעתיקים את הטקסט הכהה (הפרומפט המוכן) לצ'אט של התוסף בתוך הגיליון.</span></li>
+      <li><span class="step-num">3</span><span>ממלאים את <strong>הכיתוב הכתום</strong>, אלה הפרטים של הגיליון שלכם.</span></li>
+      <li><span class="step-num">4</span><span>עוברים על התוצאה לפני שסוגרים חודש או שולחים ללקוח.</span></li>
+    </ol>
+  </div>
+  <div class="toc"><h3>מה מחכה לך</h3><div class="toc-item"><span class="toc-num">00</span><span class="toc-title">התקנה, באקסל ובגוגל שיטס</span><span class="toc-time">חד פעמי</span></div><div class="toc-item"><span class="toc-num">01</span><span class="toc-title">בונים תקציב חודשי עם גרפים</span><span class="toc-time">פרומפט מוכן</span></div><div class="toc-item"><span class="toc-num">02</span><span class="toc-title">מנקים כפילויות וטעויות</span><span class="toc-time">פרומפט מוכן</span></div><div class="toc-item"><span class="toc-num">03</span><span class="toc-title">מסבירים למה נוסחה נשברת</span><span class="toc-time">פרומפט מוכן</span></div><div class="toc-item"><span class="toc-num">04</span><span class="toc-title">מריצים תרחיש מה אם</span><span class="toc-time">פרומפט מוכן</span></div><div class="toc-item"><span class="toc-num">05</span><span class="toc-title">הופכים נתונים לסיכום</span><span class="toc-time">פרומפט מוכן</span></div></div>
+  <div class="intro-signature">
+    <div class="sig-avatar">SA</div>
+    <div class="sig-text"><strong>שני גורגוב</strong> · Shani AI Creator<br>מלמדת עסקים קטנים לעבוד עם AI בעברית.<br><span style="color:var(--orange)">@shani.creates.ai</span></div>
+  </div>
+</div>
+
+<div class="prompt-page">
+  <div class="section-tag">שלב 00 · התקנה</div>
+  <div class="intro-headline" style="margin-bottom:28px;">מתקינים פעם אחת</div>
+  <div class="section-why"><div class="section-title" style="color:var(--orange)">מה צריך לפני</div><p>חשבון ChatGPT, גם חינמי. התוסף פתוח לחשבונות Free, Go, Plus, Pro, וגם Business, Enterprise ו-Edu. בחשבון חינמי יש שימוש מוגבל, מספיק כדי להתחיל ולראות אם זה עובד לכם.</p></div>
+  <div class="section-why"><div class="section-title" style="color:var(--orange)">באקסל</div><p>פותחים אקסל, בשולחן העבודה או בדפדפן. הולכים ל-Home ואז Add-ins, מחפשים ChatGPT, ומוסיפים. אחרי ההתקנה נפתח בצד ימין סייד-בר של התוסף. מתחברים עם חשבון ה-ChatGPT שלכם, וזהו.</p></div>
+  <div class="section-why"><div class="section-title" style="color:var(--orange)">בגוגל שיטס</div><p>פותחים גיליון בדפדפן. בתפריט העליון לוחצים Extensions, אחר כך Add-ons ואז Get add-ons. ב-Google Workspace Marketplace מחפשים ChatGPT, בוחרים את התוסף הרשמי של OpenAI, ולוחצים Install. אחרי אישור ההרשאות התוסף נפתח בצד.</p></div>
+  <div class="tips-box"><div class="section-title">טיפ</div><ul><li>אם אתם לא רואים את התוסף אחרי ההתקנה, סוגרים ופותחים מחדש את הגיליון.</li><li>עובדים על עותק של הקובץ בפעמים הראשונות, עד שאתם סומכים על התוצאות.</li></ul></div>
+</div>
+
+<div class="prompt-page" style="position:relative;">
+  <div class="prompt-big-num">01</div>
+  <div class="prompt-header">
+    <div class="prompt-icon" style="color:var(--orange);font-size:26px;font-weight:900;">01</div>
+    <div class="prompt-header-content">
+      <div class="prompt-tag">פרומפט 01 / 05</div>
+      <div class="prompt-title">תקציב חודשי עם גרפים</div>
+      <div class="prompt-meta"><span class="prompt-badge">מגיליון ריק</span></div>
+    </div>
+  </div>
+  <div class="section-why"><div class="section-title" style="color:var(--text-dim)">מה זה נותן</div><p>במקום לבנות טבלת תקציב עמודה עמודה, מתארים מה צריך והתוסף בונה גיליון מסודר עם נוסחאות וגרף, מוכן לעריכה.</p></div>
+  <div class="prompt-box"><div class="section-title">הפרומפט</div><div class="prompt-text">בנה לי גיליון תקציב חודשי לעסק.
+
+עמודות: קטגוריה, הוצאה מתוכננת, הוצאה בפועל, הפרש.
+קטגוריות: <span class="prompt-var">[למשל שכירות, ספקים, שיווק, שכר, כלים]</span>
+הוסף שורת סיכום שמחשבת סך הכל בכל עמודה, ותא שמראה כמה נשאר מול תקציב של <span class="prompt-var">[הסכום]</span>.
+הוסף גרף עמודות שמשווה מתוכנן מול בפועל לפי קטגוריה.
+עברית מלאה, מספרים בשקלים.</div><div class="copy-hint">העתיקו לצ'אט של התוסף</div></div>
+  <div class="tips-box"><div class="section-title">טיפ</div><ul><li>אחרי שהוא בונה, אפשר לבקש שינוי בשפה רגילה: 'תוסיף עמודת אחוז ניצול' או 'תצבע באדום קטגוריה שחרגה'.</li></ul></div>
+</div>
+
+<div class="prompt-page" style="position:relative;">
+  <div class="prompt-big-num">02</div>
+  <div class="prompt-header">
+    <div class="prompt-icon" style="color:var(--orange);font-size:26px;font-weight:900;">02</div>
+    <div class="prompt-header-content">
+      <div class="prompt-tag">פרומפט 02 / 05</div>
+      <div class="prompt-title">ניקוי כפילויות וטעויות</div>
+      <div class="prompt-meta"><span class="prompt-badge">על גיליון קיים</span></div>
+    </div>
+  </div>
+  <div class="section-why"><div class="section-title" style="color:var(--text-dim)">מה זה נותן</div><p>רשימת לקוחות או מלאי שנבנתה לאורך זמן מלאה כפילויות ורווחים. במקום לעבור שורה שורה, התוסף מנקה ומסדר.</p></div>
+  <div class="prompt-box"><div class="section-title">הפרומפט</div><div class="prompt-text">עבור על הטבלה בגיליון <span class="prompt-var">[שם הגיליון או הטווח, למשל גיליון1]</span> ותנקה אותה.
+
+מה לעשות:
+- אתר שורות כפולות לפי עמודת <span class="prompt-var">[למשל שם / טלפון / מזהה]</span> וסמן אותן.
+- אחד רישום של אותו פריט שנכתב בכמה צורות.
+- סמן תאים ריקים בשדות חובה.
+לפני שאתה משנה, תן לי רשימה קצרה של מה שמצאת, ואשר לפני מחיקה.</div><div class="copy-hint">העתיקו לצ'אט של התוסף</div></div>
+  <div class="tips-box"><div class="section-title">טיפ</div><ul><li>לבקש ממנו קודם לסמן ולדווח, ורק אחרי שאתם עוברים על הרשימה לתת לו למחוק. ככה לא נמחק לכם משהו בטעות.</li></ul></div>
+</div>
+
+<div class="prompt-page" style="position:relative;">
+  <div class="prompt-big-num">03</div>
+  <div class="prompt-header">
+    <div class="prompt-icon" style="color:var(--orange);font-size:26px;font-weight:900;">03</div>
+    <div class="prompt-header-content">
+      <div class="prompt-tag">פרומפט 03 / 05</div>
+      <div class="prompt-title">למה הנוסחה נשברת</div>
+      <div class="prompt-meta"><span class="prompt-badge">פותר תקלות</span></div>
+    </div>
+  </div>
+  <div class="section-why"><div class="section-title" style="color:var(--text-dim)">מה זה נותן</div><p>תא שמראה שגיאה ואתם לא מבינים למה. במקום לחפש בגוגל, התוסף מסתכל על הנוסחה שלכם, מסביר מה נשבר, ומציע תיקון.</p></div>
+  <div class="prompt-box"><div class="section-title">הפרומפט</div><div class="prompt-text">התא <span class="prompt-var">[למשל B145]</span> מראה שגיאה.
+
+תסביר לי בפשטות למה הנוסחה שם לא עובדת, ומה צריך לתקן.
+תן לי את הנוסחה המתוקנת מוכנה להדבקה, ובשורה אחת מה השתנה.
+בלי ז'רגון, עברית רגילה.</div><div class="copy-hint">העתיקו לצ'אט של התוסף</div></div>
+  <div class="tips-box"><div class="section-title">טיפ</div><ul><li>אפשר גם ההפך: לבחור תא ולשאול 'מה הנוסחה הזאת עושה', כשירשתם קובץ שמישהו אחר בנה.</li></ul></div>
+</div>
+
+<div class="prompt-page" style="position:relative;">
+  <div class="prompt-big-num">04</div>
+  <div class="prompt-header">
+    <div class="prompt-icon" style="color:var(--orange);font-size:26px;font-weight:900;">04</div>
+    <div class="prompt-header-content">
+      <div class="prompt-tag">פרומפט 04 / 05</div>
+      <div class="prompt-title">תרחיש מה אם</div>
+      <div class="prompt-meta"><span class="prompt-badge">קבלת החלטות</span></div>
+    </div>
+  </div>
+  <div class="section-why"><div class="section-title" style="color:var(--text-dim)">מה זה נותן</div><p>לפני שמעלים מחיר או לוקחים הוצאה חדשה, אפשר לראות את ההשפעה על המספרים בלי לשבור את הגיליון הקיים.</p></div>
+  <div class="prompt-box"><div class="section-title">הפרומפט</div><div class="prompt-text">על בסיס הנתונים בגיליון, בדוק לי תרחיש.
+
+השאלה: מה קורה לרווח החודשי אם <span class="prompt-var">[למשל מעלים מחיר ב-10 אחוז / מוסיפים הוצאה של 1500 בחודש / מאבדים לקוח אחד]</span>.
+תן לי טבלה שמשווה מצב נוכחי מול התרחיש, ושורה אחת עם המסקנה.
+אל תשנה את הנתונים המקוריים, תעבוד בגיליון חדש או בצד.</div><div class="copy-hint">העתיקו לצ'אט של התוסף</div></div>
+  <div class="tips-box"><div class="section-title">טיפ</div><ul><li>מבקשים ממנו לעבוד בצד או בגיליון חדש, כדי שהנתונים האמיתיים נשארים נקיים.</li></ul></div>
+</div>
+
+<div class="prompt-page" style="position:relative;">
+  <div class="prompt-big-num">05</div>
+  <div class="prompt-header">
+    <div class="prompt-icon" style="color:var(--orange);font-size:26px;font-weight:900;">05</div>
+    <div class="prompt-header-content">
+      <div class="prompt-tag">פרומפט 05 / 05</div>
+      <div class="prompt-title">מנתונים לסיכום</div>
+      <div class="prompt-meta"><span class="prompt-badge">דוח מהיר</span></div>
+    </div>
+  </div>
+  <div class="section-why"><div class="section-title" style="color:var(--text-dim)">מה זה נותן</div><p>יש לכם גיליון מכירות או פניות, וצריך משפט ברור ללקוח או לעצמכם. התוסף קורא את הנתונים ומחזיר סיכום בעברית.</p></div>
+  <div class="prompt-box"><div class="section-title">הפרומפט</div><div class="prompt-text">קרא את הנתונים בגיליון <span class="prompt-var">[שם הגיליון]</span> ותכתוב לי סיכום קצר.
+
+מה חשוב לי לדעת: <span class="prompt-var">[למשל סך מכירות החודש, המוצר הכי נמכר, מגמה מול חודש קודם]</span>
+תן לי שלוש עד ארבע שורות בעברית פשוטה, מספרים מדויקים, בלי ניפוח.
+אם משהו חסר בנתונים כדי לענות, תגיד לי מה.</div><div class="copy-hint">העתיקו לצ'אט של התוסף</div></div>
+  <div class="tips-box"><div class="section-title">טיפ</div><ul><li>את הסיכום אפשר להדביק ישר לוואטסאפ או למייל ללקוח.</li></ul></div>
+</div>
+
+<div class="prompt-page">
+  <div class="section-tag">לפני שסומכים על זה</div>
+  <div class="intro-headline" style="margin-bottom:28px;">חמישה כללים שישמרו עליכם</div>
+  <div class="tips-box" style="margin-bottom:16px;"><div class="section-title">עוברים על התוצאה</div><p style="font-size:14px;color:var(--text);line-height:1.6;">גם עוזר חכם טועה. לפני שסוגרים חודש או שולחים מספר ללקוח, בודקים את הסכומים בעיניים. OpenAI עצמם ממליצים לבדוק פלטים לפני שמסתמכים עליהם.</p></div>
+  <div class="tips-box" style="margin-bottom:16px;"><div class="section-title">עובדים על עותק</div><p style="font-size:14px;color:var(--text);line-height:1.6;">בהתחלה שומרים עותק של הקובץ ונותנים לתוסף לעבוד עליו. ככה שום שינוי לא פוגע במקור.</p></div>
+  <div class="tips-box" style="margin-bottom:16px;"><div class="section-title">מבקשים לאשר לפני מחיקה</div><p style="font-size:14px;color:var(--text);line-height:1.6;">בכל פעולה שמוחקת או משנה נתונים, מבקשים ממנו קודם לדווח מה הוא עומד לעשות, ורק אז מאשרים.</p></div>
+  <div class="tips-box" style="margin-bottom:16px;"><div class="section-title">שמים לב לנתונים רגישים</div><p style="font-size:14px;color:var(--text);line-height:1.6;">אם הגיליון מכיל פרטי לקוחות או מספרים רגישים, כדאי להכיר את מדיניות הפרטיות של הכלי לפני שמריצים עליו הכל.</p></div>
+  <div class="tips-box" style="margin-bottom:16px;"><div class="section-title">חשבון חינמי מוגבל</div><p style="font-size:14px;color:var(--text);line-height:1.6;">בחינם יש כמות שימוש מוגבלת. אם אתם משתמשים בזה כל יום ומרגישים שנגמר מהר, זה הרגע לשקול מנוי.</p></div>
+</div>
+
+<div class="closing-page">
+  <div class="closing-badge">הצעד הבא</div>
+  <div class="closing-headline">פתחו גיליון אחד,<br>ותבקשו <span>משהו.</span></div>
+  <div class="closing-text">אל תחכו לפרויקט הגדול. קחו גיליון קיים, התקינו את התוסף, ובקשו ממנו לנקות אותו או לבנות לכם תקציב. תוך חמש דקות תבינו למה זה משנה. אם משהו נתקע, כתבו לי. אני עונה.</div>
+  <div class="closing-actions">
+    <div class="action-item"><div class="action-text"><div class="action-label">עקבו כדי לקבל עוד מדריכים</div><div class="action-value">@shani.creates.ai</div></div></div>
+    <div class="action-item"><div class="action-text"><div class="action-label">וואטסאפ, לכל שאלה</div><div class="action-value">050-4744815</div></div></div>
+    <div class="action-item"><div class="action-text"><div class="action-label">אתר ומדריכים נוספים</div><div class="action-value">shani-ai.com</div></div></div>
+  </div>
+  <div class="closing-footer">© 2026 Shani AI Creator · שני גורגוב · @shani.creates.ai</div>
+</div>
+</body>
+</html>

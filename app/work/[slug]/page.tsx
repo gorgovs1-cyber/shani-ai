@@ -119,7 +119,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               className="btn-grad"
               style={{ display: "block", textAlign: "center", marginTop: "1.5rem", padding: "0.85rem" }}
             >
-              {project.liveUrl ? "צפה בפרויקט ←" : "בואי נדבר על פרויקט דומה ←"}
+              {project.liveUrl ? "צפה בפרויקט ←" : "בואו נדבר על פרויקט דומה ←"}
             </a>
           </div>
         </section>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>דוח ביצועים · Shani AI Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --ink:#0D0B0A; --card:#171311; --card2:#1F1916; --line:#2E2621;
+    --orange:#F0602C; --amber:#FF9650; --cream:#F5EFE6; --muted:#9A9089;
+    --green:#5FB98B; --red:#E0714E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(120% 90% at 85% 0%, #1a1512 0%, #0D0B0A 55%);color:var(--cream);
+    font-family:'Heebo',sans-serif;min-height:100vh;padding:32px 20px 60px;line-height:1.5}
+  .wrap{max-width:1120px;margin:0 auto}
+  .mono{font-family:'JetBrains Mono',monospace}
+  header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+    padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .hex{width:34px;height:34px;filter:drop-shadow(0 0 9px rgba(240,96,44,.5))}
+  .brand h1{font-size:20px;font-weight:800;letter-spacing:.2px}
+  .brand p{font-size:13px;color:var(--muted);font-weight:500}
+  .updated{text-align:left;font-size:12px;color:var(--muted)}
+  .updated b{color:var(--amber);font-weight:700}
+  .banner{background:linear-gradient(90deg,rgba(240,96,44,.14),rgba(240,96,44,.04));
+    border:1px solid rgba(240,96,44,.35);border-radius:12px;padding:12px 16px;margin:18px 0 26px;
+    font-size:13.5px;color:var(--amber)}
+  .banner.hidden{display:none}
+  .section-title{font-size:15px;font-weight:800;color:var(--cream);margin:34px 0 16px;
+    display:flex;align-items:center;gap:10px}
+  .section-title span{color:var(--orange)}
+  .section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;
+    position:relative;overflow:hidden}
+  .kpi::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--orange)}
+  .kpi .label{font-size:12.5px;color:var(--muted);font-weight:500;margin-bottom:8px}
+  .kpi .val{font-size:30px;font-weight:900;letter-spacing:-.5px}
+  .kpi .delta{font-size:12px;font-weight:700;margin-top:6px}
+  .up{color:var(--green)} .down{color:var(--red)} .flat{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .panel h3{font-size:14px;font-weight:700;margin-bottom:14px;color:var(--cream)}
+  .chart-box{position:relative;height:230px}
+  table{width:100%;border-collapse:collapse;margin-top:4px;font-size:13.5px}
+  th,td{text-align:right;padding:12px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:700;font-size:12px}
+  td{color:var(--cream);font-weight:500}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;
+    background:rgba(240,96,44,.14);color:var(--amber)}
+  .num{font-family:'JetBrains Mono',monospace;font-weight:500}
+  .best td{background:rgba(95,185,139,.06)}
+  .grid2b{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  @media(max-width:820px){.grid2b{grid-template-columns:1fr}}
+  .list li{list-style:none;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;
+    display:flex;gap:10px;align-items:flex-start}
+  .list li:last-child{border-bottom:none}
+  .dot{width:8px;height:8px;border-radius:50%;margin-top:7px;flex:none}
+  .g .dot{background:var(--green)} .r .dot{background:var(--red)}
+  .sugg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:16px}
+  .sugg ol{margin:0;padding-inline-start:22px}
+  .sugg li{padding:8px 0;font-size:14.5px;border-bottom:1px solid var(--line)}
+  .sugg li:last-child{border-bottom:none}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;font-size:12px;color:var(--muted);flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg class="hex" viewBox="0 0 100 100" fill="none" aria-label="Shani Gorgov logo"><path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z" stroke="#F0602C" stroke-width="6" stroke-linejoin="round"/><path d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z" stroke="#F0602C" stroke-width="4" stroke-linejoin="round" opacity="0.5"/><circle cx="50" cy="50" r="6.5" fill="#F0602C"/></svg>
+      <div>
+        <h1>דוח ביצועים</h1>
+        <p>Shani AI Creator · אינסטגרם + אתר</p>
+      </div>
+    </div>
+    <div class="updated">עודכן לאחרונה<br><b id="upd">טוען...</b></div>
+  </header>
+
+  <div class="banner" id="banner">טוען נתונים מהמערכת...</div>
+
+  <div class="section-title"><span>◆</span> אינסטגרם · @shani.creates.ai</div>
+  <div class="kpis" id="igKpis"></div>
+  <div class="grid2">
+    <div class="panel"><h3>חשיפה לאורך 7 הימים האחרונים</h3><div class="chart-box"><canvas id="viewsChart"></canvas></div></div>
+    <div class="panel"><h3>מעורבות לפי סוג פעולה</h3><div class="chart-box"><canvas id="engChart"></canvas></div></div>
+  </div>
+  <div class="panel" style="margin-top:16px">
+    <h3>הפוסטים האחרונים</h3>
+    <table><thead><tr><th>פוסט</th><th>סוג</th><th>צפיות</th><th>שמירות</th><th>שיתופים</th><th>תגובות</th><th>חשיפה</th></tr></thead>
+    <tbody id="igPosts"></tbody></table>
+  </div>
+
+  <div class="section-title"><span>◆</span> אתר · shani-ai.com</div>
+  <div class="kpis" id="siteKpis"></div>
+  <div class="grid2">
+    <div class="panel"><h3>מבקרים לאורך השבוע</h3><div class="chart-box"><canvas id="siteChart"></canvas></div></div>
+    <div class="panel"><h3>מקורות תנועה</h3><div class="chart-box"><canvas id="srcChart"></canvas></div></div>
+  </div>
+  <div class="panel" style="margin-top:16px">
+    <h3>העמודים המובילים</h3>
+    <table><thead><tr><th>עמוד</th><th>צפיות</th><th>מבקרים</th></tr></thead>
+    <tbody id="sitePages"></tbody></table>
+  </div>
+
+  <div class="section-title"><span>◆</span> מה עבד ומה לא</div>
+  <div class="grid2b">
+    <div class="panel"><h3 style="color:var(--green)">עבד</h3><ul class="list" id="worked"></ul></div>
+    <div class="panel"><h3 style="color:var(--red)">לחזק</h3><ul class="list" id="strengthen"></ul></div>
+  </div>
+
+  <div class="section-title"><span>◆</span> הצעות להמשך</div>
+  <div class="sugg"><ol id="suggestions"></ol></div>
+
+  <footer>
+    <span class="mono">shani-ai.com</span>
+    <span>מתעדכן אוטומטית כל בוקר · Shani AI Creator</span>
+  </footer>
+</div>
+
+<script>
+const O='#F0602C', A='#FF9650', M='#9A9089', L='#2E2621';
+Chart.defaults.color=M; Chart.defaults.font.family='Heebo';
+const grid={color:L,drawBorder:false};
+const nolegend={legend:{display:false}};
+const fmt = n => (n===null||n===undefined) ? '—' : Number(n).toLocaleString('he-IL');
+
+function kpi(label, val, deltaText, cls){
+  const has = !(val===null||val===undefined);
+  return `<div class="kpi"><div class="label">${label}</div><div class="val">${fmt(val)}</div>`+
+    `<div class="delta ${has?cls:'flat'}">${has?deltaText:'ממתין'}</div></div>`;
+}
+
+async function load(){
+  let snap;
+  try{
+    const r = await fetch('/api/dashboard',{cache:'no-store'});
+    if(!r.ok) throw new Error('no data');
+    snap = (await r.json()).snapshot;
+  }catch(e){
+    document.getElementById('banner').textContent = 'עדיין אין נתונים. ברגע שהריצה הראשונה של הסוכן תסתיים, הדף יתמלא לבד.';
+    document.getElementById('upd').textContent = 'ממתין לריצה ראשונה';
+    return;
+  }
+
+  const ig = snap.instagram, site = snap.website, nar = snap.narrative;
+  document.getElementById('upd').textContent = new Date(snap.captured_at).toLocaleDateString('he-IL',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('banner').classList.add('hidden');
+
+  // IG KPIs
+  document.getElementById('igKpis').innerHTML =
+    kpi('צפיות', ig.views, '▲ 7 ימים אחרונים','up') +
+    kpi('חשיפה', ig.reach, '▲ 7 ימים אחרונים','up') +
+    kpi('אינטראקציות', ig.interactions, '▲ מעורבות','up') +
+    kpi('שמירות', ig.saves, '▲ saves','up') +
+    kpi('שיתופים', ig.shares, '▲ shares','up') +
+    kpi('תגובות', ig.comments, '▲ תגובות','up');
+
+  // IG posts
+  document.getElementById('igPosts').innerHTML = (ig.top_posts||[]).map((p,i)=>
+    `<tr class="${i===0?'best':''}"><td>${p.title||'—'}</td><td><span class="tag">${p.type||'פוסט'}</span></td>`+
+    `<td class="num">${fmt(p.views)}</td><td class="num">${fmt(p.saves)}</td><td class="num">${fmt(p.shares)}</td>`+
+    `<td class="num">${fmt(p.comments)}</td><td class="num">${fmt(p.reach)}</td></tr>`).join('') ||
+    '<tr><td colspan="7" style="color:var(--muted)">אין פוסטים בחלון הזה</td></tr>';
+
+  // Site KPIs
+  document.getElementById('siteKpis').innerHTML =
+    kpi('מבקרים (7 ימים)', site.visitors, '▲ 7 ימים','up') +
+    kpi('צפיות דף', site.pageviews, '▲ 7 ימים','up') +
+    kpi('שיעור נטישה', site.bounce_rate, 'נטישה','flat') +
+    kpi('פניות (וואטסאפ/טופס)', null, '','flat');
+
+  // Site pages
+  document.getElementById('sitePages').innerHTML = (site.top_pages||[]).map((p,i)=>
+    `<tr class="${i===0?'best':''}"><td>${p.path||'/'}</td><td class="num">${fmt(p.pageviews)}</td><td class="num">${fmt(p.visitors)}</td></tr>`).join('') ||
+    '<tr><td colspan="3" style="color:var(--muted)">אין עדיין תנועה</td></tr>';
+
+  // Narrative
+  const li = (t,cls)=>`<li class="${cls}"><span class="dot"></span><div>${t}</div></li>`;
+  document.getElementById('worked').innerHTML = (nar?.worked||[]).map(t=>li(t,'g')).join('') || li('ממתין לניתוח הסוכן היומי','g');
+  document.getElementById('strengthen').innerHTML = (nar?.strengthen||[]).map(t=>li(t,'r')).join('') || li('ממתין לניתוח הסוכן היומי','r');
+  document.getElementById('suggestions').innerHTML = (nar?.suggestions||[]).map(t=>`<li>${t}</li>`).join('') || '<li>ממתין לניתוח הסוכן היומי</li>';
+
+  // Charts
+  const dr = ig.daily_reach||[];
+  new Chart(viewsChart,{type:'line',data:{labels:dr.map(d=>d.date.slice(5)),
+    datasets:[{data:dr.map(d=>d.reach),borderColor:O,backgroundColor:'rgba(240,96,44,.12)',fill:true,tension:.4,pointBackgroundColor:O,pointRadius:3,borderWidth:2.5}]},
+    options:{maintainAspectRatio:false,plugins:nolegend,scales:{y:{grid,beginAtZero:true},x:{grid:{display:false}}}}});
+
+  new Chart(engChart,{type:'bar',data:{labels:['צפיות','חשיפה','אינטראקציות','תגובות'],
+    datasets:[{data:[ig.views||0,ig.reach||0,ig.interactions||0,ig.comments||0],backgroundColor:[O,A,'#c9743f',M],borderRadius:8,barThickness:34}]},
+    options:{maintainAspectRatio:false,plugins:nolegend,scales:{y:{grid,beginAtZero:true},x:{grid:{display:false}}}}});
+
+  const sd = site.daily||[];
+  new Chart(siteChart,{type:'line',data:{labels:sd.map(d=>d.date.slice(5)),
+    datasets:[{data:sd.map(d=>d.visitors),borderColor:O,backgroundColor:'rgba(240,96,44,.12)',fill:true,tension:.4,pointBackgroundColor:O,pointRadius:3,borderWidth:2.5}]},
+    options:{maintainAspectRatio:false,plugins:nolegend,scales:{y:{grid,beginAtZero:true},x:{grid:{display:false}}}}});
+
+  const src = site.sources||[];
+  new Chart(srcChart,{type:'doughnut',data:{labels:src.map(s=>s.name),
+    datasets:[{data:src.map(s=>s.visitors),backgroundColor:[O,A,'#c9743f','#5a4a41','#7a5a48'],borderColor:'#171311',borderWidth:3}]},
+    options:{maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14}}}}});
+}
+load();
+</script>
+</body>
+</html>

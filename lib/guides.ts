@@ -18,6 +18,58 @@ export type Guide = {
 
 export const guides: Guide[] = [
   {
+    slug: "claude-canva-designs",
+    file: "claude-canva-designs.html",
+    date: "2026-07-10",
+    title: "קלוד מעצב לכם את הפוסטים: חיבור Canva לקלוד",
+    titleEn: "Let Claude design your posts: the Canva connector",
+    description:
+      "מחברים את Canva לקלוד, וכותבים משפט אחד. קלוד מחזיר פוסט או קרוסלה מעוצבים וקישור לעריכה בקנבה. כולל שלושה פרומפטים מוכנים.",
+    descriptionEn:
+      "Connect Canva to Claude and write one sentence. Claude returns a designed post or carousel plus an edit link in Canva. Includes three ready-to-copy prompts.",
+    tag: "עיצוב",
+    tagEn: "Design",
+  },
+  {
+    slug: "chatgpt-in-excel",
+    file: "chatgpt-in-excel.html",
+    date: "2026-07-10",
+    title: "ChatGPT בתוך האקסל",
+    titleEn: "ChatGPT inside Excel and Google Sheets",
+    description:
+      "מדריך התקנה ושימוש מלא בעברית לתוסף הרשמי שמכניס את ChatGPT לתוך אקסל וגוגל שיטס. חמישה פרומפטים מוכנים לעסק קטן: תקציב, ניקוי נתונים, תיקון נוסחאות ועוד.",
+    descriptionEn:
+      "A full Hebrew install-and-use guide for the official add-in that brings ChatGPT into Excel and Google Sheets. Five ready prompts for small business: budgets, data cleanup, formula fixes and more.",
+    tag: "מדריך",
+    tagEn: "Guide",
+  },
+  {
+    slug: "claude-watch-videos",
+    file: "claude-watch-videos.html",
+    date: "2026-07-10",
+    title: "לתת ל-Claude לצפות בסרטוני וידאו",
+    titleEn: "Let Claude watch videos",
+    description:
+      "התקנה מלאה של הסקיל /watch — Claude מוריד, צופה ומנתח ריילסים מאינסטגרם, טיקטוק ויוטיוב. מושלם לפירוק ריילסים של מתחרים.",
+    descriptionEn:
+      "Full install of the /watch skill — Claude downloads, watches and analyzes reels from Instagram, TikTok and YouTube. Perfect for breaking down competitors' reels.",
+    tag: "מדריך",
+    tagEn: "Guide",
+  },
+  {
+    slug: "claude-to-income",
+    file: "claude-to-income.html",
+    date: "2026-07-05",
+    title: "איך הופכים שורת קוד בקלוד להכנסה",
+    titleEn: "How to turn a line of Claude code into income",
+    description:
+      "התהליך המלא לבניית אתרים ושירותי AI לעסקים קטנים ולמכור אותם. 6 פרומפטים מוכנים להעתקה.",
+    descriptionEn:
+      "The full process for building AI websites and services for small businesses and selling them. 6 ready-to-copy prompts.",
+    tag: "הכנסה",
+    tagEn: "Income",
+  },
+  {
     slug: "brand-website-ai",
     file: "build-brand-website.html",
     date: "2026-07-01",
