@@ -28,7 +28,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
     sub: "תוצאות אמיתיות מעסקים אמיתיים. (עדויות לדוגמה — יוחלפו בעדויות אמיתיות עם תמונה.)",
     items: [
       {
-        name: "שם הלקוחה",       // PLACEHOLDER
+        name: "שם מלא",          // PLACEHOLDER
         city: "תל אביב",          // PLACEHOLDER
         result: "חסכה 10 שעות בחודש",  // PLACEHOLDER
         quote:
@@ -36,7 +36,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
         photo: "", // "/testimonials/xxx.jpg"
       },
       {
-        name: "שם הלקוחה",       // PLACEHOLDER
+        name: "שם מלא",          // PLACEHOLDER
         city: "ירושלים",         // PLACEHOLDER
         result: "חודש תוכן בשעתיים", // PLACEHOLDER
         quote:
@@ -44,7 +44,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
         photo: "",
       },
       {
-        name: "שם הלקוחה",       // PLACEHOLDER
+        name: "שם מלא",          // PLACEHOLDER
         city: "חיפה",            // PLACEHOLDER
         result: "אתר חדש ב-14 יום", // PLACEHOLDER
         quote:

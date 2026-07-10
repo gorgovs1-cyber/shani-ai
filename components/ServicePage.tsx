@@ -33,6 +33,7 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
   const { lang } = useLang();
   const c = copyByLang[lang];
   const dir = c.dir;
+  const auditLabel = lang === "he" ? "להתחיל באבחון AI חינם ←" : "Start a free AI Audit →";
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -49,8 +50,8 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
           {c.lead}
         </p>
         <div style={{ display: "flex", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
-          <a href={wa(c.primaryWaMsg)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
-            {c.primaryCta}
+          <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
+            {auditLabel}
           </a>
           <a href="/pricing" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
             {c.secondaryCta}
@@ -118,11 +119,11 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
             {c.closingSub}
           </p>
           <div style={{ display: "flex", gap: 14, marginTop: 26, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href={wa(c.closingWaMsg)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
-              {c.closingCta}
+            <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
+              {auditLabel}
             </a>
-            <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--dtext)", border: "1.5px solid var(--dline)", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
-              {c.auditLine}
+            <a href={wa(c.closingWaMsg)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--dtext)", border: "1.5px solid var(--dline)", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
+              {c.closingCta}
             </a>
           </div>
         </section>
