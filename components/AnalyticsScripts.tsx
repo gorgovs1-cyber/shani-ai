@@ -17,8 +17,8 @@ import Script from "next/script";
  *   trackLead({ source: "audit-form" });
  */
 
-const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID;
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || "G-35YVB7955E";
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1506427107624542";
 
 // Shared helper — fires the lead event on both GA4 and Meta Pixel if present.
 export function trackLead(params: Record<string, unknown> = {}) {
