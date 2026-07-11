@@ -32,6 +32,7 @@ type Copy = {
   kicker: string;
   title: string;
   intro: string;
+  launchBadge: string;
   trust: string[];
   vatNote: string;
   packages: Pkg[];
@@ -61,14 +62,15 @@ const COPY: Record<"he" | "en", Copy> = {
     title: "מחירים שקופים, בלי הפתעות.",
     intro:
       "פרימיום שמחזיר את עצמו, עם נקודת כניסה נוחה. בוחרים חבילה, או מתחילים במנוי חודשי. לא בטוחים מה מתאים? האבחון החינמי ימליץ.",
+    launchBadge: "מחירי השקה · מוגבל ל-5 הפרויקטים הראשונים · בתמורה לעדות והצגה בתיק העבודות",
     trust: ["תגובה תוך 24 שעות", "הקוד שלך, בבעלותך", "10+ שנות ניסיון"],
     vatNote: "כל המחירים לפני מע\"מ · 50% מקדמה בתחילת הפרויקט",
     packages: [
       {
         no: "01",
         title: "דף נחיתה קולנועי",
-        price: "₪2,400",
-        was: "₪3,200",
+        price: "₪890",
+        was: "₪2,400",
         who: "קמפיין, השקה, או שירות אחד ממוקד המרה.",
         features: [
           "דף יחיד Next.js + אנימציות GSAP",
@@ -79,13 +81,13 @@ const COPY: Record<"he" | "en", Copy> = {
           "מסירה תוך 7–10 ימים",
           "חודש תמיכה",
         ],
-        waMsg: "היי שני, מעניין אותי דף הנחיתה הקולנועי (₪2,400)",
+        waMsg: "היי שני, מעניין אותי דף הנחיתה הקולנועי (₪890)",
       },
       {
         no: "02",
         title: "אתר תדמית קולנועי",
-        price: "החל מ-₪6,500",
-        was: "₪8,500",
+        price: "החל מ-₪1,900",
+        was: "₪6,500",
         from: true,
         featured: true,
         badge: "הכי פופולרי",
@@ -99,12 +101,13 @@ const COPY: Record<"he" | "en", Copy> = {
           "מסירה תוך 14–21 יום",
           "3 חודשי תמיכה",
         ],
-        waMsg: "היי שני, מעניין אותי אתר התדמית הקולנועי (החל מ-₪6,500)",
+        waMsg: "היי שני, מעניין אותי אתר התדמית הקולנועי (החל מ-₪1,900)",
       },
       {
         no: "03",
         title: "מערכת AI מלאה",
-        price: "החל מ-₪12,000",
+        price: "החל מ-₪3,900",
+        was: "₪12,000",
         from: true,
         who: "עסק שרוצה אתר + מכונת לידים כמו שלי (shani-ai.com/audit כהדגמה חיה).",
         features: [
@@ -115,7 +118,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "סקיל בעברית בטון של העסק",
           "הדרכה מלאה + 3 חודשי תמיכה",
         ],
-        waMsg: "היי שני, מעניין אותי מערכת ה-AI המלאה (החל מ-₪12,000)",
+        waMsg: "היי שני, מעניין אותי מערכת ה-AI המלאה (החל מ-₪3,900)",
       },
     ],
     ctaBtn: "דברו איתי בוואטסאפ",
@@ -127,17 +130,17 @@ const COPY: Record<"he" | "en", Copy> = {
     subTiers: [
       {
         name: "בסיס",
-        price: "₪390 / חודש",
+        price: "₪250 / חודש",
         desc: "אחסון ודומיין מנוהלים, עדכוני תוכן (2 בקשות בחודש), גיבויים וניטור.",
       },
       {
         name: "צמיחה",
-        price: "₪690 / חודש",
+        price: "₪450 / חודש",
         desc: "כל מה שבבסיס + אוטומציה פעילה אחת (לידים/מיילים), דוח חודשי, 4 בקשות.",
       },
       {
         name: "AI מלא",
-        price: "₪990 / חודש",
+        price: "₪650 / חודש",
         desc: "כל מה שבצמיחה + סוכן AI / בוט וואטסאפ פעיל, שיפור שוטף של הסקילים, עדיפות במענה.",
       },
     ],
@@ -146,14 +149,14 @@ const COPY: Record<"he" | "en", Copy> = {
     subWaMsg: "היי שני, מעניין אותי מנוי Shani Care",
     addOnsTitle: "תוספות",
     addOns: [
-      { label: "בוט וואטסאפ", price: "₪1,200 הקמה", note: "או כלול במנוי AI מלא" },
-      { label: "אוטומציה בודדת (n8n)", price: "החל מ-₪1,500" },
-      { label: "סוכן AI מותאם + סקיל בעברית", price: "החל מ-₪4,500" },
-      { label: "AI Audit עצמאי (מיפוי + תכנית עבודה)", price: "₪950", note: "מתקזז במלואו בהזמנת פרויקט" },
-      { label: "עמוד נוסף", price: "₪450" },
-      { label: "סבב שינויים נוסף", price: "₪450" },
-      { label: "מאמר בלוג SEO", price: "₪400" },
-      { label: "גרסה באנגלית לאתר", price: "החל מ-₪1,200" },
+      { label: "בוט וואטסאפ", price: "₪700 הקמה", note: "או כלול במנוי AI מלא" },
+      { label: "אוטומציה בודדת (n8n)", price: "החל מ-₪900" },
+      { label: "סוכן AI מותאם + סקיל בעברית", price: "החל מ-₪2,900" },
+      { label: "AI Audit עצמאי (מיפוי + תכנית עבודה)", price: "₪450", note: "מתקזז במלואו בהזמנת פרויקט" },
+      { label: "עמוד נוסף", price: "₪250" },
+      { label: "סבב שינויים נוסף", price: "₪250" },
+      { label: "מאמר בלוג SEO", price: "₪250" },
+      { label: "גרסה באנגלית לאתר", price: "החל מ-₪700" },
     ],
     auditBoxTitle: "לא בטוחים מה מתאים?",
     auditBoxSub:
@@ -164,7 +167,7 @@ const COPY: Record<"he" | "en", Copy> = {
     faqItems: [
       {
         q: "כמה עולה לבנות אתר לעסק?",
-        a: "תלוי במורכבות. דף נחיתה ממוקד המרה מתחיל ב-₪2,400, אתר תדמית מלא (עד 5 עמודים) מ-₪6,500, ומערכת AI שלמה עם מכונת לידים מ-₪12,000. כל המחירים לפני מע\"מ, עם 50% מקדמה. לא בטוחים? האבחון החינמי ימליץ מה מתאים לכם.",
+        a: "תלוי במורכבות. במחירי השקה: דף נחיתה ממוקד המרה מ-₪890, אתר תדמית מלא (עד 5 עמודים) מ-₪1,900, ומערכת AI שלמה עם מכונת לידים מ-₪3,900. כל המחירים לפני מע\"מ, עם 50% מקדמה. לא בטוחים? האבחון החינמי ימליץ מה מתאים לכם.",
       },
       {
         q: "אפשר לשלם בתשלומים?",
@@ -176,7 +179,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "מה קורה אחרי המסירה?",
-        a: "כל חבילה כוללת תקופת תמיכה (חודש עד 3 חודשים לפי החבילה). אחרי זה אפשר להישאר במנוי Shani Care מ-₪390 לחודש, שמכסה אחסון, עדכונים, גיבויים וניטור, כדי שהאתר יישאר חי ומעודכן.",
+        a: "כל חבילה כוללת תקופת תמיכה (חודש עד 3 חודשים לפי החבילה). אחרי זה אפשר להישאר במנוי Shani Care מ-₪250 לחודש, שמכסה אחסון, עדכונים, גיבויים וניטור, כדי שהאתר יישאר חי ומעודכן.",
       },
       {
         q: "למה אתר אצלך עולה יותר מוויקס או אלמנטור?",
@@ -194,14 +197,15 @@ const COPY: Record<"he" | "en", Copy> = {
     title: "Transparent pricing, no surprises.",
     intro:
       "Premium that pays for itself, with an easy entry point. Pick a package, or start with a monthly plan. Not sure what fits? The free audit will recommend.",
+    launchBadge: "Launch pricing · limited to the first 5 projects · in exchange for a testimonial and portfolio rights",
     trust: ["Replies within 24h", "You own the code", "10+ years of experience"],
     vatNote: "All prices exclude VAT · 50% deposit to start",
     packages: [
       {
         no: "01",
         title: "Cinematic Landing Page",
-        price: "₪2,400",
-        was: "₪3,200",
+        price: "₪890",
+        was: "₪2,400",
         who: "A campaign, a launch, or one conversion-focused service.",
         features: [
           "Single-page Next.js + GSAP animations",
@@ -212,13 +216,13 @@ const COPY: Record<"he" | "en", Copy> = {
           "Delivery in 7–10 days",
           "One month of support",
         ],
-        waMsg: "Hi Shani, I'm interested in the Cinematic Landing Page (₪2,400)",
+        waMsg: "Hi Shani, I'm interested in the Cinematic Landing Page (₪890)",
       },
       {
         no: "02",
         title: "Cinematic Brand Website",
-        price: "From ₪6,500",
-        was: "₪8,500",
+        price: "From ₪1,900",
+        was: "₪6,500",
         from: true,
         featured: true,
         badge: "Most popular",
@@ -232,12 +236,13 @@ const COPY: Record<"he" | "en", Copy> = {
           "Delivery in 14–21 days",
           "3 months of support",
         ],
-        waMsg: "Hi Shani, I'm interested in the Cinematic Brand Website (from ₪6,500)",
+        waMsg: "Hi Shani, I'm interested in the Cinematic Brand Website (from ₪1,900)",
       },
       {
         no: "03",
         title: "Full AI System",
-        price: "From ₪12,000",
+        price: "From ₪3,900",
+        was: "₪12,000",
         from: true,
         who: "A business that wants a site + a lead machine like mine (shani-ai.com/audit, live demo).",
         features: [
@@ -248,7 +253,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "A Hebrew Skill in your business's voice",
           "Full training + 3 months of support",
         ],
-        waMsg: "Hi Shani, I'm interested in the Full AI System (from ₪12,000)",
+        waMsg: "Hi Shani, I'm interested in the Full AI System (from ₪3,900)",
       },
     ],
     ctaBtn: "Chat on WhatsApp",
@@ -260,17 +265,17 @@ const COPY: Record<"he" | "en", Copy> = {
     subTiers: [
       {
         name: "Base",
-        price: "₪390 / mo",
+        price: "₪250 / mo",
         desc: "Managed hosting & domain, content updates (2 requests/mo), backups and monitoring.",
       },
       {
         name: "Growth",
-        price: "₪690 / mo",
+        price: "₪450 / mo",
         desc: "Everything in Base + one active automation (leads/emails), a monthly report, 4 requests.",
       },
       {
         name: "Full AI",
-        price: "₪990 / mo",
+        price: "₪650 / mo",
         desc: "Everything in Growth + an active AI agent / WhatsApp bot, ongoing Skill improvement, priority replies.",
       },
     ],
@@ -279,14 +284,14 @@ const COPY: Record<"he" | "en", Copy> = {
     subWaMsg: "Hi Shani, I'm interested in the Shani Care membership",
     addOnsTitle: "Add-ons",
     addOns: [
-      { label: "WhatsApp bot", price: "₪1,200 setup", note: "or included in Full AI plan" },
-      { label: "Single automation (n8n)", price: "from ₪1,500" },
-      { label: "Custom AI agent + Hebrew Skill", price: "from ₪4,500" },
-      { label: "Standalone AI Audit (mapping + plan)", price: "₪950", note: "fully credited toward a project" },
-      { label: "Extra page", price: "₪450" },
-      { label: "Extra revision round", price: "₪450" },
-      { label: "SEO blog article", price: "₪400" },
-      { label: "English version of the site", price: "from ₪1,200" },
+      { label: "WhatsApp bot", price: "₪700 setup", note: "or included in Full AI plan" },
+      { label: "Single automation (n8n)", price: "from ₪900" },
+      { label: "Custom AI agent + Hebrew Skill", price: "from ₪2,900" },
+      { label: "Standalone AI Audit (mapping + plan)", price: "₪450", note: "fully credited toward a project" },
+      { label: "Extra page", price: "₪250" },
+      { label: "Extra revision round", price: "₪250" },
+      { label: "SEO blog article", price: "₪250" },
+      { label: "English version of the site", price: "from ₪700" },
     ],
     auditBoxTitle: "Not sure what fits?",
     auditBoxSub:
@@ -297,7 +302,7 @@ const COPY: Record<"he" | "en", Copy> = {
     faqItems: [
       {
         q: "How much does a business website cost?",
-        a: "It depends on complexity. A conversion-focused landing page starts at ₪2,400, a full brand website (up to 5 pages) from ₪6,500, and a complete AI system with a lead machine from ₪12,000. All prices exclude VAT, with a 50% deposit. Not sure? The free audit will recommend what fits.",
+        a: "It depends on complexity. At launch pricing: a conversion-focused landing page from ₪890, a full brand website (up to 5 pages) from ₪1,900, and a complete AI system with a lead machine from ₪3,900. All prices exclude VAT, with a 50% deposit. Not sure? The free audit will recommend what fits.",
       },
       {
         q: "Can I pay in installments?",
@@ -309,7 +314,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "What happens after delivery?",
-        a: "Every package includes a support window (one to three months depending on the package). After that you can stay on a Shani Care membership from ₪390/mo, covering hosting, updates, backups and monitoring, so your site stays alive and current.",
+        a: "Every package includes a support window (one to three months depending on the package). After that you can stay on a Shani Care membership from ₪250/mo, covering hosting, updates, backups and monitoring, so your site stays alive and current.",
       },
       {
         q: "Why does a site with you cost more than Wix or Elementor?",
@@ -350,6 +355,12 @@ export default function PricingPage() {
               <span style={{ color: "var(--acc)" }}>✓</span> {item}
             </span>
           ))}
+        </div>
+
+        {/* Launch pricing banner */}
+        <div style={{ marginTop: 22, background: "rgba(242,98,46,0.08)", border: "1px solid color-mix(in oklch, var(--acc) 32%, var(--line))", borderRadius: 14, padding: "14px 20px", color: "var(--ink)", fontSize: 14.5, fontWeight: 600, fontFamily: HEEBO, display: "flex", alignItems: "center", gap: 10 }}>
+          <span style={{ color: "var(--acc)", fontSize: 16 }}>★</span>
+          {c.launchBadge}
         </div>
 
         {/* Package cards */}

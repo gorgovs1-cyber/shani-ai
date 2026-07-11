@@ -30,11 +30,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "אוטומציה לוואטסאפ לעסק, איך זה עובד?",
-        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. בוט וואטסאפ חכם עולה מ-₪1,200 להקמה, או כלול במנוי Shani Care AI מלא.",
+        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. בוט וואטסאפ חכם עולה מ-₪700 להקמה, או כלול במנוי Shani Care AI מלא.",
       },
       {
         h: "כמה עולה אוטומציה לעסק?",
-        p: "אוטומציה בודדת (למשל לכידת לידים או מענה אוטומטי) מתחילה ב-₪1,500, בוט וואטסאפ מ-₪1,200, וסוכן AI מותאם עם סקיל בעברית מ-₪4,500 (לפני מע\"מ). אם רוצים שהאוטומציה תמשיך לרוץ ולהשתפר, מנוי Shani Care מ-₪690 לחודש כולל אוטומציה פעילה ותחזוקה שוטפת.",
+        p: "במחירי השקה, אוטומציה בודדת (למשל לכידת לידים או מענה אוטומטי) מתחילה ב-₪900, בוט וואטסאפ מ-₪700, וסוכן AI מותאם עם סקיל בעברית מ-₪2,900 (לפני מע\"מ). אם רוצים שהאוטומציה תמשיך לרוץ ולהשתפר, מנוי Shani Care מ-₪450 לחודש כולל אוטומציה פעילה ותחזוקה שוטפת.",
       },
       {
         h: "מכונת הלידים שלי, הדגמה חיה",
@@ -94,11 +94,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "WhatsApp automation for business, how does it work?",
-        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A smart WhatsApp bot starts at ₪1,200 to set up, or is included in the Shani Care Full AI plan.",
+        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A smart WhatsApp bot starts at ₪700 to set up, or is included in the Shani Care Full AI plan.",
       },
       {
         h: "How much does business automation cost?",
-        p: "A single automation (say lead capture or auto-replies) starts at ₪1,500, a WhatsApp bot from ₪1,200, and a custom AI agent with a Hebrew Skill from ₪4,500 (excl. VAT). If you want the automation to keep running and improving, a Shani Care membership from ₪690/mo includes an active automation and ongoing maintenance.",
+        p: "At launch pricing, a single automation (say lead capture or auto-replies) starts at ₪900, a WhatsApp bot from ₪700, and a custom AI agent with a Hebrew Skill from ₪2,900 (excl. VAT). If you want the automation to keep running and improving, a Shani Care membership from ₪450/mo includes an active automation and ongoing maintenance.",
       },
       {
         h: "My lead machine, a live demo",

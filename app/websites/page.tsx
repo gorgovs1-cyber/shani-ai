@@ -26,7 +26,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "כמה עולה לבנות אתר לעסק?",
-        p: "דף נחיתה קולנועי ממוקד המרה מתחיל ב-₪2,400, ואתר תדמית מלא של עד 5 עמודים מ-₪6,500 (כל המחירים לפני מע\"מ). המחיר תלוי בכמות העמודים, במורכבות האנימציות ובחיבורים למערכות. בדף המחירים יש פירוט מלא של כל חבילה ומה היא כוללת, ואם לא בטוחים מה מתאים, האבחון החינמי ימליץ.",
+        p: "במחירי השקה, דף נחיתה קולנועי ממוקד המרה מתחיל ב-₪890, ואתר תדמית מלא של עד 5 עמודים מ-₪1,900 (כל המחירים לפני מע\"מ). המחיר תלוי בכמות העמודים, במורכבות האנימציות ובחיבורים למערכות. בדף המחירים יש פירוט מלא של כל חבילה ומה היא כוללת, ואם לא בטוחים מה מתאים, האבחון החינמי ימליץ.",
       },
       {
         h: "למה אתר בקוד עדיף על וויקס או אלמנטור?",
@@ -57,7 +57,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "האתר יהיה בעברית ובאנגלית?",
-        a: "האתר נבנה מלכתחילה לעברית עם RTL מלא. גרסה באנגלית היא תוספת (החל מ-₪1,200) שאפשר להוסיף בהקמה או בהמשך.",
+        a: "האתר נבנה מלכתחילה לעברית עם RTL מלא. גרסה באנגלית היא תוספת (החל מ-₪700) שאפשר להוסיף בהקמה או בהמשך.",
       },
     ],
     closingTitle: "מוכנים לאתר שבאמת עובד?",
@@ -90,7 +90,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "How much does a business website cost?",
-        p: "A conversion-focused cinematic landing page starts at ₪2,400, and a full brand site of up to 5 pages from ₪6,500 (all prices exclude VAT). Price depends on the number of pages, animation complexity and system integrations. The pricing page breaks down each package in full, and if you're not sure what fits, the free audit will recommend.",
+        p: "At launch pricing, a conversion-focused cinematic landing page starts at ₪890, and a full brand site of up to 5 pages from ₪1,900 (all prices exclude VAT). Price depends on the number of pages, animation complexity and system integrations. The pricing page breaks down each package in full, and if you're not sure what fits, the free audit will recommend.",
       },
       {
         h: "Why is coded better than Wix or Elementor?",
@@ -121,7 +121,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "Will the site be in Hebrew and English?",
-        a: "The site is built Hebrew-first with full RTL. An English version is an add-on (from ₪1,200) you can include at build time or add later.",
+        a: "The site is built Hebrew-first with full RTL. An English version is an add-on (from ₪700) you can include at build time or add later.",
       },
     ],
     closingTitle: "Ready for a site that actually works?",

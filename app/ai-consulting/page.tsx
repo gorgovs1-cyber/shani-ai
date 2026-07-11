@@ -30,7 +30,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "איך מתחילים? אבחון AI",
-        p: "מתחילים בשיחת אבחון ממוקדת. אנחנו יושבים, ממפים את כל התהליכים שלכם ומזהים איפה בדיוק בורח הזמן. בסוף אתם יוצאים עם תכנית עבודה ברורה. יש אבחון חינמי דרך הטופס באתר, ואבחון מעמיק (מיפוי + תכנית עבודה מלאה) ב-₪950, שמתקזז במלואו אם תזמינו פרויקט.",
+        p: "מתחילים בשיחת אבחון ממוקדת. אנחנו יושבים, ממפים את כל התהליכים שלכם ומזהים איפה בדיוק בורח הזמן. בסוף אתם יוצאים עם תכנית עבודה ברורה. יש אבחון חינמי דרך הטופס באתר, ואבחון מעמיק (מיפוי + תכנית עבודה מלאה) ב-₪450, שמתקזז במלואו אם תזמינו פרויקט.",
       },
       {
         h: "מה זה סקיל בעברית ולמה זה משנה?",
@@ -49,7 +49,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "כמה עולה ייעוץ AI?",
-        a: "אבחון בסיסי דרך הטופס באתר הוא חינם. אבחון מעמיק עם מיפוי ותכנית עבודה מלאה עולה ₪950 (ומתקזז אם מזמינים פרויקט). ליווי הטמעה מלא מתומחר לפי היקף, ונסגור אותו יחד אחרי שנבין מה בדיוק צריך.",
+        a: "אבחון בסיסי דרך הטופס באתר הוא חינם. אבחון מעמיק עם מיפוי ותכנית עבודה מלאה עולה ₪450 (ומתקזז אם מזמינים פרויקט). ליווי הטמעה מלא מתומחר לפי היקף, ונסגור אותו יחד אחרי שנבין מה בדיוק צריך.",
       },
       {
         q: "כמה זמן לוקח לראות תוצאות?",
@@ -94,7 +94,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "How do you start? An AI audit",
-        p: "You start with a focused audit session. We sit down, map all your processes and pinpoint where time leaks. You leave with a clear action plan. There's a free audit via the site's form, and a deep audit (mapping + a full action plan) for ₪950, fully credited if you commission a project.",
+        p: "You start with a focused audit session. We sit down, map all your processes and pinpoint where time leaks. You leave with a clear action plan. There's a free audit via the site's form, and a deep audit (mapping + a full action plan) for ₪450, fully credited if you commission a project.",
       },
       {
         h: "What is a Hebrew Skill and why does it matter?",
@@ -113,7 +113,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "How much does AI consulting cost?",
-        a: "A basic audit via the site's form is free. A deep audit with mapping and a full action plan is ₪950 (credited if you commission a project). Full rollout guidance is priced by scope, and we'll set it together once we understand what's needed.",
+        a: "A basic audit via the site's form is free. A deep audit with mapping and a full action plan is ₪450 (credited if you commission a project). Full rollout guidance is priced by scope, and we'll set it together once we understand what's needed.",
       },
       {
         q: "How long until I see results?",
