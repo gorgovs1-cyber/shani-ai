@@ -168,6 +168,7 @@
 
   <button type="button" class="submit" onclick="send()">שלחו את האבחון ←</button>
   <p class="note">2–3 דקות שיחסכו לנו שיחה שלמה. אחזור אליכם עם תכנית והצעה מותאמת.</p>
+  <p id="sendErr" style="display:none;color:#e5484d;text-align:center;font-size:13px;margin-top:10px">אירעה שגיאה בשליחה האוטומטית. פותחת עבורכם וואטסאפ כדי שהפנייה לא תלך לאיבוד...</p>
   </form>
   <div id="thanks" style="display:none;text-align:center;padding:50px 14px">
     <div style="height:96px;display:flex;justify-content:center;align-items:center">
@@ -201,8 +202,8 @@
 </div>
 
 <script>
-  // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק — נשלח לוואטסאפ. ▼▼▼
-  var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
+  // Submissions go to /api/audit/intake (server-side), which forwards to n8n.
+  // No webhook URL lives in the client.
   var WA = "972504744815";
 
   // ▼▼▼ מדידה: הדביקי כאן את המזהים. ריק = לא נטען כלום, הדף עובד רגיל. ▼▼▼
@@ -259,7 +260,9 @@
     window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n")),"_blank");
     done();
   }
+  var submitting = false;
   function send(){
+    if (submitting) return;
     var emailEl=document.querySelector('[data-q="אימייל"]');
     var email=(emailEl.value||'').trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
@@ -270,11 +273,25 @@
     }
     emailEl.style.border='';
     var d=collect();
-    if(WEBHOOK_URL){
-      fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
-        .then(function(r){ if(r.ok){done();} else {waFallback(d);} })
-        .catch(function(){waFallback(d)});
-    } else { waFallback(d); }
+    var btn=document.querySelector('.submit');
+    var errEl=document.getElementById('sendErr');
+    submitting = true;
+    if(btn){ btn.disabled=true; btn.style.opacity='0.6'; btn.style.cursor='default'; }
+    if(errEl){ errEl.style.display='none'; }
+    fetch('/api/audit/intake',{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
+      .then(function(r){
+        if(r.ok){ done(); return; }
+        submitting=false;
+        if(btn){ btn.disabled=false; btn.style.opacity=''; btn.style.cursor=''; }
+        if(errEl){ errEl.style.display='block'; }
+        waFallback(d);
+      })
+      .catch(function(){
+        submitting=false;
+        if(btn){ btn.disabled=false; btn.style.opacity=''; btn.style.cursor=''; }
+        if(errEl){ errEl.style.display='block'; }
+        waFallback(d);
+      });
   }
 </script>
 </body>
