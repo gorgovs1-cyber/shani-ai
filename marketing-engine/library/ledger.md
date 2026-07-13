@@ -1,7 +1,7 @@
 # ledger.md — קובץ המצב היחיד
 
 > כל הזדמנות וכל חבילה מופיעות כאן, ורק כאן נקבע הסטטוס.
-> סטטוסים — הזדמנות: `fresh / in-production / used / expired` · חבילה: `draft / approved / published / archived`
+> סטטוסים — הזדמנות: `fresh / in-production / used / expired` · חבילה: `draft / needs-revision / approved / published / archived`
 
 ## הזדמנויות
 
@@ -15,8 +15,10 @@
 | ID | תאריך | נושא | פורמט | סטטוס | מילת מפתח | פורסם |
 |---|---|---|---|---|---|---|
 | — | — | — | — | — | — | — |
-| PKG-20260713-claude-code-agent-view | 2026-07-13 | Claude Code: קישור סוכנים ל-PR + תצוגת סוכנים חכמה יותר | ריל אינסטגרם | draft | סוכן (הצעה בלבד) | לא |
+| PKG-20260713-claude-code-agent-view | 2026-07-13 | Claude Code: קישור סוכנים ל-PR + תצוגת סוכנים חכמה יותר | ריל אינסטגרם | needs-revision | סוכן (הצעה בלבד) | לא |
 
 ## מוסכמות
 - ID הזדמנות: `OPP-YYYYMMDD-מספר` · ID חבילה: `PKG-YYYYMMDD-slug`
 - שורה לא נמחקת לעולם — רק משנה סטטוס (מחיקה = ארכוב)
+- `needs-revision` נוסף ע"י המבקרת (v1.0): חבילה שנבדקה ונמצאו בה ממצאים — ר' review.md בתיקיית
+  החבילה. שונה מ-`draft` (שעדיין לא נבדק כלל).
