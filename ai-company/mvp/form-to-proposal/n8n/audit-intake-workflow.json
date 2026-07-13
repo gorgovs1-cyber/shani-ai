@@ -1,0 +1,339 @@
+{
+  "name": "Audit Intake — Form to Proposal MVP (v1)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "audit-intake/v1",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "6a967e32-74e0-40db-9c57-582802d3086e",
+      "name": "Webhook: Audit Intake v1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "cbd5523a-1d6b-44e8-88c0-85129321dfe8"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const SUPPORTED_PAYLOAD_VERSION = 1;\nconst REQUIRED_ANSWER_FIELDS = ['העסק', 'הבעיה הכי חשובה', 'שם', 'אימייל'];\nconst KNOWN_ANSWER_FIELDS = [\n  'העסק', 'הבעיה הכי חשובה', 'שם', 'אימייל',\n  'מטרה', 'מיקום עבודה', 'יום עבודה', 'משימה חוזרת', 'שיקרה לבד',\n  'מקור לקוחות', 'אחרי פנייה', 'שאלות חוזרות', 'כלים', 'כלים נוספים',\n  'אתר', 'קישור לאתר', 'חסר', 'דחיפות', 'קשר נוסף',\n];\nconst EMAIL_RE = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/;\n\n// This node re-validates deterministically inside n8n. It must not trust the\n// caller (even though /api/audit/intake already validated) and must never\n// invent a field that is not part of the real audit form.\nconst body = ($input.first().json.body) || {};\n\nfunction invalid(reason) {\n  return [{ json: { valid: 'invalid', reason, submissionId: typeof body.submissionId === 'string' ? body.submissionId : null } }];\n}\n\nif (typeof body.submissionId !== 'string' || body.submissionId.trim() === '') {\n  return invalid('missing_submission_id');\n}\nif (typeof body.receivedAt !== 'string' || body.receivedAt.trim() === '' || isNaN(Date.parse(body.receivedAt))) {\n  return invalid('missing_or_unparseable_received_at');\n}\nif (body.source !== 'website-audit') {\n  return invalid('unsupported_source');\n}\nif (body.payloadVersion !== SUPPORTED_PAYLOAD_VERSION) {\n  return invalid('unsupported_payload_version');\n}\n\nconst answers = body.answers;\nif (typeof answers !== 'object' || answers === null || Array.isArray(answers)) {\n  return invalid('missing_answers');\n}\n\n// Reject anything outside the real form schema instead of silently accepting it.\nfor (const key of Object.keys(answers)) {\n  if (!KNOWN_ANSWER_FIELDS.includes(key)) {\n    return invalid('unknown_answer_field');\n  }\n}\n\nfor (const key of REQUIRED_ANSWER_FIELDS) {\n  const value = answers[key];\n  if (typeof value !== 'string' || value.trim() === '') {\n    return invalid('missing_required_field');\n  }\n}\n\nconst email = answers['אימייל'];\nif (!EMAIL_RE.test(email)) {\n  return invalid('invalid_email');\n}\n\n// Normalized, flat row. Values are passed through exactly as received —\n// Hebrew text and internal newlines (multiline answers) are not altered.\nconst row = {\n  valid: 'valid',\n  submissionId: body.submissionId,\n  receivedAt: body.receivedAt,\n  source: body.source,\n  payloadVersion: body.payloadVersion,\n  processingStatus: 'received_pending_analysis',\n};\nfor (const key of KNOWN_ANSWER_FIELDS) {\n  const value = answers[key];\n  row[key] = typeof value === 'string' ? value : '';\n}\n\nreturn [{ json: row }];\n"
+      },
+      "id": "26b5da7a-0885-40cd-9e00-fcb7674e2500",
+      "name": "Validate & Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "69b1790a-ebcb-401c-9f2c-26dd47d3a0ea",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "valid",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "91da0842-f738-4374-a2cf-845aa3b5f1a8",
+      "name": "IF: Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT SPREADSHEET AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT SHEET AFTER IMPORT"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "submissionId",
+              "lookupValue": "={{ $json.submissionId }}"
+            }
+          ]
+        },
+        "combineFilters": "AND",
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "id": "9359764b-492f-470f-9257-47635f1889b4",
+      "name": "Google Sheets: Lookup by submissionId",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        780,
+        -120
+      ],
+      "alwaysOutputData": true,
+      "notesInFlow": false,
+      "notes": "Always Output Data is enabled deliberately: a zero-match lookup must still emit one item so the workflow does not silently stop before responding."
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "// The Lookup node (Google Sheets: Get Row(s), filtered by submissionId) is\n// configured with \"Always Output Data\" so it still emits one item even when\n// zero rows match — without that, n8n would skip this node entirely on a\n// zero-match execution and the workflow would never respond.\n// This node combines that lookup result with the already-validated payload\n// (read directly from the \"Validate & Normalize\" node by name, since the\n// Lookup node's output does not carry the original submission through).\nconst validated = $('Validate & Normalize').first().json;\nconst matches = $input.all().filter((item) => item.json && item.json.submissionId);\nconst isDuplicate = matches.length > 0;\n\nreturn [{\n  json: {\n    ...validated,\n    duplicate: isDuplicate ? 'true' : 'false',\n  },\n}];\n"
+      },
+      "id": "114e0999-5c3a-40da-9bbd-d535d14db922",
+      "name": "Check Duplicate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6ddd9fb9-2965-4069-b6dd-5f11d853c17c",
+              "leftValue": "={{ $json.duplicate }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e87af243-1fc9-4246-9070-fd58ba77967f",
+      "name": "IF: Duplicate?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT SPREADSHEET AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT SHEET AFTER IMPORT"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "d686fc5b-a0fa-482e-a38a-f4178552dc76",
+      "name": "Google Sheets: Append New Submission",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1560,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"submissionId\": $json.submissionId, \"duplicate\": false } }}",
+        "options": {}
+      },
+      "id": "9f06c9e0-a06f-4955-82a0-f87475440da7",
+      "name": "Respond: New Submission Stored",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1820,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"submissionId\": $json.submissionId, \"duplicate\": true } }}",
+        "options": {}
+      },
+      "id": "feda1a2b-2126-4947-918a-1090945f4694",
+      "name": "Respond: Duplicate Submission",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1560,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": false, \"error\": \"invalid_payload\" } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "74c1361a-058e-4e95-818b-767624323788",
+      "name": "Respond: Invalid Payload",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        780,
+        180
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook: Audit Intake v1": {
+      "main": [
+        [
+          {
+            "node": "Validate & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate & Normalize": {
+      "main": [
+        [
+          {
+            "node": "IF: Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Valid?": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets: Lookup by submissionId",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond: Invalid Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets: Lookup by submissionId": {
+      "main": [
+        [
+          {
+            "node": "Check Duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Duplicate": {
+      "main": [
+        [
+          {
+            "node": "IF: Duplicate?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Duplicate?": {
+      "main": [
+        [
+          {
+            "node": "Respond: Duplicate Submission",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets: Append New Submission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets: Append New Submission": {
+      "main": [
+        [
+          {
+            "node": "Respond: New Submission Stored",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
