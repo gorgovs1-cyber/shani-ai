@@ -41,9 +41,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Projects\shifted-tech-ins
 
 ## התנהגות ומגבלות (V1)
 
-- **פריט אחד לריצה**, בלי Claude מקבילים: נעילת קובץ `worker.lock` (מופע שני יוצא מיד; נעילה ישנה מ-75 דק' נחשבת תקועה ומוסרת).
+- **פריט אחד לריצה**, בלי Claude מקבילים: נעילת קובץ `worker.lock` (מופע שני יוצא מיד; נעילה ישנה מ-120 דק' נחשבת תקועה ומוסרת).
 - **תקרה יומית:** 3 חבילות מושלמות ליום קלנדרי.
-- **Timeouts קשיחים:** `/watch` — 15 דק'. Content Desk — 45 דק' (ערך V1 מתועד: תחקיר+יצירה+ביקורת עם אימות מקורות טרי אורכים משמעותית יותר מ-`/watch` לבדו).
+- **Timeouts קשיחים:** `/watch` — 15 דק'. Content Desk — **90 דק'** (ריצת ה-E2E האמיתית הוכיחה שמסלול תקין עם סבב תיקון + ביקורת שנייה עובר 45 דק').
+- **ולידציית שלמות קשיחה לפני סיום (finalization):** חבילה מסומנת ready רק כשכולם עוברים — בדיוק תיקיית חבילה חדשה אחת לריצה · שלושת הקבצים קיימים ולא-ריקים (package.md, content-desk-package.md, review.md) · כל הסעיפים קיימים (Research foundation, Instagram, LinkedIn, Independent review, Review status, Shani status) · `Shani status: pending` במפורש · `Review status` הוא approved / needs-revision / needs-human-review (**needs-revision הוא תוצר תקין לאישור שני, לא כשל worker**) · אין סמני אי-סיום (TODO/PLACEHOLDER וכו') · הקובץ יציב בשתי קריאות בהפרש ≥5 שניות. כל בדיקה נרשמת ללוג החיצוני.
+- **התאוששות מ-timeout:** אם Claude נקטע אחרי שהחבילה כבר שלמה — הוולידציה רצה אחרי הרג התהליך; אם עברה, החבילה מסומנת ready עם `workerFinalization: recovered-complete-package-after-timeout`, בלי העלאת attempts ובלי retry (ה-timeout נרשם כאזהרה). נכשלה — התנהגות הכשל/retry הרגילה.
+- **התאוששות ידנית לפריט קיים:** `node worker.mjs --recover <item-id> --package <שם-תיקיית-החבילה>` — מריץ את אותה ולידציה ומסיים ל-ready בלי להריץ `/watch` או Content Desk.
 - **הרשאות:** `--permission-mode default` + allowedTools צרים בלבד. בלי bypass גורף.
   `/watch`: `Bash,Read,Glob,Grep,WebFetch` (הצירוף שהוכח בבדיקה) · Content Desk: `Task,Skill,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch`.
 - **Retries:** עד 3 ניסיונות, מרווח 30 דק' לפחות (ריצה = ניסיון אחד לכל היותר, אז כשל אימות/עוגיות לא מנוסה שוב באותה ריצה). אחרי כישלון שלישי — `failed\` + דוח שגיאה + דרישת בדיקה ידנית.
@@ -60,5 +63,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Projects\shifted-tech-ins
 ## פתרון תקלות מהיר
 
 - `failed\<id>-error.md` — הדוח המלא (שלב, סוג שגיאה, ניסיונות, פלט מסונן).
+- `logs\<id>-watch-output.log` ו-`logs\<id>-content-desk-output.log` — מלוא ה-stdout/stderr של כל שלב, מסונן מסודות, תמיד נשמר מחוץ ל-Git.
 - כשל עוגיות/התחברות: לוודא חיבור לאינסטגרם ב-Chrome ולהחזיר את ה-JSON מ-`failed\` ל-`pending\` (לאפס `attempts` ל-0).
 - לוג יומי: `logs\worker-YYYYMMDD.log`.

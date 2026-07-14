@@ -25,6 +25,9 @@
  * Add an item:   node worker.mjs --add --url "https://www.instagram.com/reel/XXXX/"
  *                  [--account "@handle"] [--liked "..."] [--topic "..."]
  *                  [--business "..."] [--faceless yes|no]
+ * Recover:       node worker.mjs --recover <item-id> --package <packages-dir-name>
+ *                (strict-validates an existing complete package and finalizes
+ *                 it to ready/ without rerunning /watch or Content Desk)
  * ============================================================ */
 
 import fs from 'node:fs';
@@ -56,13 +59,13 @@ const cfg = {
   repoDir: String(args['repo-dir'] || 'C:\\Projects\\shifted-tech-inspiration-worker'),
   claudeExe: String(args['claude-exe'] || 'claude'),
   watchTimeoutSec: Number(args['watch-timeout-sec'] || 900),   // hard 15 min (spec)
-  // Documented V1 value: research + creation + independent review with fresh
-  // source re-verification routinely exceeds the ~8 min of /watch alone.
-  deskTimeoutSec: Number(args['desk-timeout-sec'] || 2700),    // hard 45 min
+  // Hard 90 min. The real E2E acceptance run proved a legitimate flow
+  // (revision round + second fresh review) exceeds 45 minutes.
+  deskTimeoutSec: Number(args['desk-timeout-sec'] || 5400),
   maxAttempts: Number(args['max-attempts'] || 3),
   retryCooldownMin: Number(args['retry-cooldown-min'] || 30),
   dailyCap: Number(args['daily-cap'] || 3),
-  lockStaleMin: Number(args['lock-stale-min'] || 75),          // watch 15 + desk 45 + buffer
+  lockStaleMin: Number(args['lock-stale-min'] || 120),         // watch 15 + desk 90 + buffer
 };
 
 const DIRS = {};
@@ -180,23 +183,140 @@ function runClaude(prompt, tools, timeoutSec, cwd) {
     child.stderr.on('data', grab);
 
     let timedOut = false;
-    const timer = setTimeout(() => {
+    let settled = false;
+    let timer = null;
+    let fallback = null;
+    const finish = (r) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer); clearTimeout(fallback);
+      resolve(r);
+    };
+    timer = setTimeout(() => {
       timedOut = true;
       try {
         if (isWindows) execSync(`taskkill /PID ${child.pid} /T /F`, { stdio: 'ignore' });
         else process.kill(-child.pid, 'SIGKILL');
       } catch { try { child.kill('SIGKILL'); } catch { /* ignore */ } }
+      // Never hang forever if the killed process fails to emit 'close'.
+      fallback = setTimeout(() => finish({ code: 124, output: `TIMEOUT after ${timeoutSec}s\n${out}`, timedOut: true }), 15000);
     }, timeoutSec * 1000);
 
     child.on('error', (e) => {
-      clearTimeout(timer);
-      resolve({ code: 127, output: `INVOCATION-ERROR: ${e.message}`, timedOut });
+      finish({ code: 127, output: `INVOCATION-ERROR: ${e.message}`, timedOut });
     });
     child.on('close', (code) => {
-      clearTimeout(timer);
-      resolve({ code: timedOut ? 124 : (code === null ? 1 : code), output: timedOut ? `TIMEOUT after ${timeoutSec}s\n${out}` : out, timedOut });
+      finish({ code: timedOut ? 124 : (code === null ? 1 : code), output: timedOut ? `TIMEOUT after ${timeoutSec}s\n${out}` : out, timedOut });
     });
   });
+}
+
+// ------------------------------------------------------------
+// Strict package-completeness validation (finalization fix)
+// A package may be finalized ONLY when every check passes.
+// Every check result is recorded in the external worker log.
+// ------------------------------------------------------------
+function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+const REQUIRED_PKG_FILES = ['package.md', 'content-desk-package.md', 'review.md'];
+const REQUIRED_SECTIONS = [
+  ['Research foundation', /Research foundation/],
+  ['Instagram output/package', /Instagram (output|package)/],
+  ['LinkedIn output/package', /LinkedIn (output|package)/],
+  ['Independent review', /Independent review/],
+  ['Review status', /Review status/],
+  ['Shani status', /Shani status/],
+];
+const UNFINISHED_MARKERS = [/\bTODO\b/, /\bPLACEHOLDER\b/, /content generation still running/i, /incomplete package/i];
+
+async function validatePackage(pkgDir) {
+  const checks = [];
+  const add = (rule, ok, detail = '') => {
+    checks.push({ rule, ok, detail });
+    log(`VALIDATE: ${ok ? 'PASS' : 'FAIL'} - ${rule}${detail ? ` [${detail}]` : ''}`);
+    return ok;
+  };
+
+  // Rule 2: required files exist and are non-empty.
+  let filesOk = true;
+  for (const name of REQUIRED_PKG_FILES) {
+    const p = path.join(pkgDir, name);
+    const ok = fs.existsSync(p) && fs.statSync(p).size > 0;
+    if (!add(`file exists and non-empty: ${name}`, ok)) filesOk = false;
+  }
+  if (!filesOk) { log(`VALIDATE: package ${path.basename(pkgDir)} => INCOMPLETE`); return { ok: false, checks, reviewStatus: 'unknown' }; }
+
+  const cdpPath = path.join(pkgDir, 'content-desk-package.md');
+  const text = fs.readFileSync(cdpPath, 'utf8');
+
+  // Rule 3: required sections.
+  for (const [label, re] of REQUIRED_SECTIONS) add(`section present: ${label}`, re.test(text));
+
+  // Rule 4: Shani status explicitly pending (worker never accepts anything else).
+  add('Shani status is explicitly pending', /Shani status\W{1,10}pending/.test(text));
+
+  // Rule 5: Review status carries one valid value. needs-revision is a VALID
+  // ready-for-Shani state - it is a content verdict, never a worker failure.
+  const rsMatch = /Review status\W{1,12}(approved|needs-revision|needs-human-review)/.exec(text);
+  add('Review status has a valid value', !!rsMatch, rsMatch ? rsMatch[1] : 'none found');
+
+  // Rule 6: no obvious unfinished markers anywhere in the package.
+  let dirty = '';
+  for (const name of REQUIRED_PKG_FILES) {
+    const t = fs.readFileSync(path.join(pkgDir, name), 'utf8');
+    for (const re of UNFINISHED_MARKERS) if (re.test(t)) dirty = `${name} matches ${re}`;
+  }
+  add('no unfinished markers (TODO/PLACEHOLDER/...)', !dirty, dirty);
+
+  // Rule 7: file stability - two reads >= 5 seconds apart, after the Claude
+  // process has already exited or been killed.
+  const s1 = fs.statSync(cdpPath);
+  await sleep(5200);
+  const s2 = fs.statSync(cdpPath);
+  add('content-desk-package.md stable across >=5s (size+mtime)',
+    s1.size === s2.size && s1.mtimeMs === s2.mtimeMs, `${s1.size}b -> ${s2.size}b`);
+
+  const ok = checks.every((c) => c.ok);
+  const reviewStatus = rsMatch ? rsMatch[1] : 'unknown';
+  log(`VALIDATE: package ${path.basename(pkgDir)} => ${ok ? 'COMPLETE' : 'INCOMPLETE'} (Review status: ${reviewStatus})`);
+  return { ok, checks, reviewStatus };
+}
+
+// ------------------------------------------------------------
+// Finalize a validated package to the external ready folder.
+// `recovered` = complete package rescued after a process timeout:
+// content stage counts as completed, attempts are NOT incremented,
+// and the item is NOT retried.
+// ------------------------------------------------------------
+function finalizeReady(item, itemSourcePath, requestPath, packagesDir, pkgName, analysisPath, recovered) {
+  const readyDir = path.join(DIRS.ready, item.id);
+  fs.mkdirSync(readyDir, { recursive: true });
+  fs.cpSync(path.join(packagesDir, pkgName), path.join(readyDir, pkgName), { recursive: true });
+  if (analysisPath && fs.existsSync(analysisPath)) {
+    fs.copyFileSync(analysisPath, path.join(readyDir, path.basename(analysisPath)));
+  }
+  writeText(path.join(readyDir, 'STATUS.md'), [
+    `# Package status - ${item.id}`, '',
+    "- Review status: see 'Independent review' inside content-desk-package.md (set by the Reviewer stage only).",
+    '- Shani status: pending  <-- only Shani may change this. The worker never sets anything else.',
+    '- Nothing has been published, scheduled, or sent. This package is ready for Shani review only.',
+    `- Repo copy: marketing-engine/packages/${pkgName}/ (left uncommitted for Shani review).`,
+    recovered
+      ? '- workerFinalization: recovered-complete-package-after-timeout - the content stage completed fully; only the Claude process exit exceeded the time budget.'
+      : '- workerFinalization: normal',
+    '',
+  ].join('\n'));
+
+  item.status = 'ready';
+  item.completedAt = new Date().toISOString();
+  item.analysisPath = analysisPath;
+  item.packageDir = readyDir;
+  if (recovered) item.workerFinalization = 'recovered-complete-package-after-timeout';
+  writeJson(path.join(readyDir, 'item.json'), item); // attempt history preserved as-is
+  if (itemSourcePath) fs.rmSync(itemSourcePath, { force: true });
+  if (requestPath) fs.rmSync(requestPath, { force: true });
+  log(`READY: ${item.id} -> ${readyDir} (package: ${pkgName}); Shani status: pending${recovered ? ' [recovered-complete-package-after-timeout]' : ''}`);
+  return readyDir;
 }
 
 // ------------------------------------------------------------
@@ -330,6 +450,7 @@ async function main() {
 
   log(`WATCH: starting (timeout ${cfg.watchTimeoutSec}s)`);
   const watch = await runClaude(watchPrompt, 'Bash,Read,Glob,Grep,WebFetch', cfg.watchTimeoutSec, cfg.baseDir);
+  writeText(path.join(DIRS.logs, `${item.id}-watch-output.log`), sanitize(watch.output)); // full stdout+stderr, outside Git
   const watchOk = watch.code === 0 && !watch.timedOut && watch.output.trim().length >= 300;
   if (!watchOk) {
     log(`WATCH: failed (exit=${watch.code} timedOut=${watch.timedOut} len=${watch.output.trim().length})`);
@@ -381,43 +502,75 @@ async function main() {
   const desk = await runClaude(deskPrompt, 'Task,Skill,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch',
     cfg.deskTimeoutSec, cfg.repoDir);
 
+  // Always persist the full (sanitized) Content Desk stdout+stderr outside Git.
+  const deskLogPath = path.join(DIRS.logs, `${item.id}-content-desk-output.log`);
+  writeText(deskLogPath, sanitize(desk.output));
+  log(`DESK: output saved to ${deskLogPath} (exit=${desk.code} timedOut=${desk.timedOut})`);
+
+  if (desk.timedOut) {
+    // Timeout is a WARNING at this point, not a content failure: the process
+    // tree was terminated by runClaude; give killed file handles a moment to
+    // close, then decide based on strict package validation.
+    log(`DESK: WARNING - hard timeout after ${cfg.deskTimeoutSec}s; process tree terminated; checking for a complete package before declaring failure.`);
+    await sleep(3000);
+  }
+
   const newPkgDirs = fs.existsSync(packagesDir)
     ? fs.readdirSync(packagesDir, { withFileTypes: true })
       .filter((d) => d.isDirectory() && !beforePkgs.has(d.name))
       .filter((d) => fs.existsSync(path.join(packagesDir, d.name, 'content-desk-package.md')))
       .map((d) => d.name)
     : [];
-  const deskOk = desk.code === 0 && !desk.timedOut && newPkgDirs.length >= 1;
-  if (!deskOk) {
+
+  // Rule 1: exactly one new package directory may belong to this run.
+  let finalized = false;
+  if ((desk.code === 0 || desk.timedOut) && newPkgDirs.length === 1) {
+    log(`VALIDATE: exactly one new package directory for this run: PASS [${newPkgDirs[0]}]`);
+    const verdict = await validatePackage(path.join(packagesDir, newPkgDirs[0]));
+    if (verdict.ok) {
+      finalizeReady(item, processingPath, requestPath, packagesDir, newPkgDirs[0], analysisPath, desk.timedOut);
+      finalized = true; // recovered items: attempts NOT incremented, no retry
+    }
+  } else {
+    log(`VALIDATE: exactly one new package directory for this run: FAIL [count=${newPkgDirs.length}, exit=${desk.code}]`);
+  }
+
+  if (!finalized) {
     log(`DESK: failed (exit=${desk.code} timedOut=${desk.timedOut} newPackages=${newPkgDirs.length}) - analysis preserved.`);
     fs.rmSync(requestPath, { force: true });
     routeFailure(item, processingPath, 'content-desk', desk.output, analysisPath);
-    return;
   }
+}
 
-  // ---- Step 3: assemble the human-ready package under ready/<id>/ ----
-  const readyDir = path.join(DIRS.ready, item.id);
-  fs.mkdirSync(readyDir, { recursive: true });
-  for (const name of newPkgDirs) {
-    fs.cpSync(path.join(packagesDir, name), path.join(readyDir, name), { recursive: true });
+// ------------------------------------------------------------
+// Recovery mode: finalize an EXISTING complete package for an item
+// stuck in pending/processing after a finalization timeout.
+// Runs the same strict validator. Never runs /watch or Content Desk.
+//   node worker.mjs --recover <item-id> --package <packages-dir-name>
+// ------------------------------------------------------------
+async function recoverItem(id, pkgName) {
+  if (!pkgName) { log('RECOVER: --package <packages-dir-name> is required.'); process.exitCode = 2; return; }
+  const packagesDir = path.join(cfg.repoDir, 'marketing-engine', 'packages');
+  const pkgPath = path.join(packagesDir, pkgName);
+  if (!fs.existsSync(path.join(pkgPath, 'content-desk-package.md'))) {
+    log(`RECOVER: package dir not found or has no content-desk-package.md: ${pkgPath}`); process.exitCode = 2; return;
   }
-  fs.copyFileSync(analysisPath, path.join(readyDir, path.basename(analysisPath)));
-  writeText(path.join(readyDir, 'STATUS.md'), [
-    `# Package status - ${item.id}`, '',
-    "- Review status: see 'Independent review' inside content-desk-package.md (set by the Reviewer stage only).",
-    '- Shani status: pending  <-- only Shani may change this. The worker never sets anything else.',
-    '- Nothing has been published, scheduled, or sent. This package is ready for Shani review only.',
-    `- Repo copy: marketing-engine/packages/${newPkgDirs[0]}/ (left uncommitted for Shani review).`, '',
-  ].join('\n'));
-
-  item.status = 'ready';
-  item.completedAt = new Date().toISOString();
-  item.analysisPath = analysisPath;
-  item.packageDir = readyDir;
-  writeJson(path.join(readyDir, 'item.json'), item);
-  fs.rmSync(processingPath, { force: true });
-  fs.rmSync(requestPath, { force: true });
-  log(`READY: ${item.id} -> ${readyDir} (package: ${newPkgDirs[0]}); Shani status: pending`);
+  let src = '';
+  for (const dir of [DIRS.pending, DIRS.processing]) {
+    const p = path.join(dir, `${id}.json`);
+    if (fs.existsSync(p)) { src = p; break; }
+  }
+  if (!src) { log(`RECOVER: queue item ${id} not found in pending/ or processing/.`); process.exitCode = 2; return; }
+  const item = readItem(src);
+  const analysisPath = path.join(DIRS.analyses, `${id}-analysis.md`);
+  log(`RECOVER: ${id} - strict-validating existing package '${pkgName}' (no /watch, no Content Desk).`);
+  const verdict = await validatePackage(pkgPath);
+  if (!verdict.ok) {
+    log(`RECOVER: strict validation FAILED - item left in place, nothing invented or repaired.`);
+    process.exitCode = 1; return;
+  }
+  finalizeReady(item, src, '', packagesDir, pkgName, analysisPath, true);
+  log(`RECOVER: ${id} recovered after finalization timeout (attempt history preserved: attempts=${item.attempts}).`);
 }
 
 // ------------------------------------------------------------
@@ -441,7 +594,8 @@ try {
       process.exit(0);
     }
   }
-  await main();
+  if (args.recover) await recoverItem(String(args.recover), String(args.package || ''));
+  else await main();
 } finally {
   if (lockFd !== null) {
     try { fs.closeSync(lockFd); } catch { /* ignore */ }
