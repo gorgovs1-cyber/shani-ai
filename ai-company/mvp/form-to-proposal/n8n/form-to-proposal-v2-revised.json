@@ -1,5 +1,5 @@
 {
-  "name": "AI אבחון עסקי – Form to Proposal V2 (revised, sanitized copy)",
+  "name": "AI אבחון עסקי – Form to Proposal V2 (מתוקן, לא פעיל)",
   "nodes": [
     {
       "parameters": {
@@ -8,29 +8,27 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "4bb7f2d4-46a5-4a3e-a27e-b89185d3f449",
+      "id": "ef210458-2928-4fe8-8869-1d45aea0aa44",
       "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -448,
-        112
+        -1392,
+        320
       ],
-      "webhookId": "ddc87f73-a050-4ecf-bff2-7ce4356df2de"
+      "webhookId": "d0ec5ec8-4d17-4a93-bedb-ea76dcf47b08"
     },
     {
       "parameters": {
-        "mode": "runOnceForAllItems",
-        "language": "javaScript",
         "jsCode": "const SUPPORTED_PAYLOAD_VERSION = 1;\nconst REQUIRED_ANSWER_FIELDS = ['העסק', 'הבעיה הכי חשובה', 'שם', 'אימייל'];\nconst KNOWN_ANSWER_FIELDS = [\n  'העסק', 'הבעיה הכי חשובה', 'שם', 'אימייל',\n  'מטרה', 'מיקום עבודה', 'יום עבודה', 'משימה חוזרת', 'שיקרה לבד',\n  'מקור לקוחות', 'אחרי פנייה', 'שאלות חוזרות', 'כלים', 'כלים נוספים',\n  'אתר', 'קישור לאתר', 'חסר', 'דחיפות', 'קשר נוסף',\n];\nconst EMAIL_RE = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/;\n\n// Re-validates deterministically inside n8n before any write or email —\n// must not trust the caller, and must never invent a field that is not\n// part of the real audit form.\nconst body = ($input.first().json.body) || {};\n\nfunction invalid(reason) {\n  return [{ json: { valid: 'invalid', reason, submissionId: typeof body.submissionId === 'string' ? body.submissionId : null } }];\n}\n\nif (typeof body.submissionId !== 'string' || body.submissionId.trim() === '') {\n  return invalid('missing_submission_id');\n}\nif (typeof body.receivedAt !== 'string' || body.receivedAt.trim() === '' || isNaN(Date.parse(body.receivedAt))) {\n  return invalid('missing_or_unparseable_received_at');\n}\nif (body.source !== 'website-audit') {\n  return invalid('unsupported_source');\n}\nif (body.payloadVersion !== SUPPORTED_PAYLOAD_VERSION) {\n  return invalid('unsupported_payload_version');\n}\n\nconst answers = body.answers;\nif (typeof answers !== 'object' || answers === null || Array.isArray(answers)) {\n  return invalid('missing_answers');\n}\n\nfor (const key of Object.keys(answers)) {\n  if (!KNOWN_ANSWER_FIELDS.includes(key)) {\n    return invalid('unknown_answer_field');\n  }\n}\n\nfor (const key of REQUIRED_ANSWER_FIELDS) {\n  const value = answers[key];\n  if (typeof value !== 'string' || value.trim() === '') {\n    return invalid('missing_required_field');\n  }\n}\n\nconst email = answers['אימייל'];\nif (!EMAIL_RE.test(email)) {\n  return invalid('invalid_email');\n}\n\n// Normalized, flat row — every downstream node (Sheets, emails, Claude\n// prompt) reads from this node instead of the old $('Webhook').body root.\nconst row = {\n  valid: 'valid',\n  submissionId: body.submissionId,\n  receivedAt: body.receivedAt,\n  source: body.source,\n  payloadVersion: body.payloadVersion,\n  processingStatus: 'received_pending_analysis',\n};\nfor (const key of KNOWN_ANSWER_FIELDS) {\n  const value = answers[key];\n  row[key] = typeof value === 'string' ? value : '';\n}\n\nreturn [{ json: row }];\n"
       },
-      "id": "ebd34f48-9514-4b89-99ed-d4abf3941a59",
+      "id": "073d15f3-f0b3-4af7-b3d2-4808dc54619d",
       "name": "Validate & Normalize",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -224,
-        112
+        -1168,
+        320
       ]
     },
     {
@@ -57,13 +55,13 @@
         },
         "options": {}
       },
-      "id": "f8d10570-a6a4-4022-974f-7ab5aea60f79",
+      "id": "0945c4ff-2d5b-4b7b-8206-d9eba628dc4f",
       "name": "IF: Valid?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        0,
-        112
+        -944,
+        320
       ]
     },
     {
@@ -74,68 +72,61 @@
           "responseCode": 400
         }
       },
-      "id": "dda68878-c5f7-46a9-91c2-4d976d678717",
+      "id": "302c357c-5e89-4e95-a12e-5145ec803412",
       "name": "Respond: Invalid Payload",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        224,
-        320
+        -720,
+        528
       ]
     },
     {
       "parameters": {
-        "resource": "sheet",
-        "operation": "read",
         "documentId": {
           "__rl": true,
-          "mode": "list",
           "value": "",
+          "mode": "list",
           "cachedResultName": "SELECT SPREADSHEET AFTER IMPORT"
         },
         "sheetName": {
           "__rl": true,
-          "mode": "list",
           "value": "",
+          "mode": "list",
           "cachedResultName": "SELECT SHEET AFTER IMPORT"
         },
         "filtersUI": {
           "values": [
             {
               "lookupColumn": "submissionId",
-              "lookupValue": "={{ $json.submissionId }}"
+              "lookupValue": "={{ $('Validate & Normalize').first().json.submissionId }}"
             }
           ]
         },
-        "combineFilters": "AND",
-        "options": {
-          "returnFirstMatch": true
-        }
+        "options": {}
       },
-      "id": "2b3ce930-7439-408a-bf54-2f56640d0603",
+      "id": "b04a5c2e-2896-4703-af45-461cc1c60735",
       "name": "Google Sheets: Lookup by submissionId",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        224,
-        0
+        -720,
+        208
       ],
       "alwaysOutputData": true,
       "notes": "Always Output Data is deliberate: a zero-match lookup must still emit one item so the workflow does not silently stop before responding."
     },
     {
       "parameters": {
-        "mode": "runOnceForAllItems",
-        "language": "javaScript",
         "jsCode": "// The Lookup node (Google Sheets: Get Row(s), filtered by submissionId) has\n// \"Always Output Data\" enabled so it still emits one item even on zero\n// matches — otherwise n8n would skip everything downstream and the webhook\n// would never respond. This node combines that lookup result with the\n// already-validated payload (read by name from \"Validate & Normalize\").\nconst validated = $('Validate & Normalize').first().json;\nconst matches = $input.all().filter((item) => item.json && item.json.submissionId);\nconst isDuplicate = matches.length > 0;\n\nreturn [{\n  json: {\n    ...validated,\n    duplicate: isDuplicate ? 'true' : 'false',\n  },\n}];\n"
       },
-      "id": "6761e776-d225-4465-bc7d-b24154bf56a4",
+      "id": "db14abda-40ef-451d-b308-e508c14c2626",
       "name": "Check Duplicate",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        448,
-        0
+        -496,
+        208
       ]
     },
     {
@@ -162,13 +153,13 @@
         },
         "options": {}
       },
-      "id": "f0ab2f14-ffd6-4a1d-93aa-c19ba6061beb",
+      "id": "4c230475-48e9-43bb-9820-e7c6fb189fde",
       "name": "IF: Duplicate?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        672,
-        0
+        -272,
+        208
       ]
     },
     {
@@ -177,34 +168,34 @@
         "responseBody": "={{ { \"ok\": true, \"submissionId\": $json.submissionId, \"duplicate\": true } }}",
         "options": {}
       },
-      "id": "4b84d4fd-1954-4a62-95eb-bdcdd74fe361",
+      "id": "09f1aaf6-1d4f-4fd7-a295-77b71c65664e",
       "name": "Respond: Duplicate Submission",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        896,
-        160
+        -48,
+        368
       ]
     },
     {
       "parameters": {
-        "resource": "sheet",
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "mode": "list",
           "value": "",
+          "mode": "list",
           "cachedResultName": "SELECT SPREADSHEET AFTER IMPORT"
         },
         "sheetName": {
           "__rl": true,
-          "mode": "list",
           "value": "",
+          "mode": "list",
           "cachedResultName": "SELECT SHEET AFTER IMPORT"
         },
         "columns": {
           "mappingMode": "autoMapInputData",
           "value": {},
+          "matchingColumns": [],
           "schema": [
             {
               "id": "submissionId",
@@ -222,7 +213,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "source",
@@ -231,7 +222,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "payloadVersion",
@@ -240,7 +231,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "processingStatus",
@@ -249,7 +240,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "העסק",
@@ -258,7 +249,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "הבעיה הכי חשובה",
@@ -267,7 +258,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "שם",
@@ -276,7 +267,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "אימייל",
@@ -285,7 +276,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "מטרה",
@@ -294,7 +285,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "מיקום עבודה",
@@ -303,7 +294,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "יום עבודה",
@@ -312,7 +303,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "משימה חוזרת",
@@ -321,7 +312,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "שיקרה לבד",
@@ -330,7 +321,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "מקור לקוחות",
@@ -339,7 +330,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "אחרי פנייה",
@@ -348,7 +339,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "שאלות חוזרות",
@@ -357,7 +348,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "כלים",
@@ -366,7 +357,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "כלים נוספים",
@@ -375,7 +366,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "אתר",
@@ -384,7 +375,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "קישור לאתר",
@@ -393,7 +384,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "חסר",
@@ -402,7 +393,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "דחיפות",
@@ -411,7 +402,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "קשר נוסף",
@@ -420,19 +411,21 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": false
+              "canBeUsedToMatch": true
             }
-          ]
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
-      "id": "5d647fea-8b58-4b69-89f1-46281795841c",
+      "id": "f0537879-0fac-4c71-baed-b49aee9411a7",
       "name": "Google Sheets (CRM לידים)",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        896,
-        -160
+        -48,
+        48
       ]
     },
     {
@@ -441,13 +434,13 @@
         "responseBody": "={{ { \"ok\": true, \"submissionId\": $json.submissionId, \"duplicate\": false } }}",
         "options": {}
       },
-      "id": "2a61d6ce-a97e-4856-986d-ec5f8ac3499f",
+      "id": "770e4329-7de2-4fbf-ae67-380e9f5a6b0b",
       "name": "Respond: New Submission Stored",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        1120,
-        -320
+        176,
+        -112
       ]
     },
     {
@@ -460,15 +453,15 @@
           "senderName": "Shani AI"
         }
       },
-      "id": "8c4c3bef-8535-4489-80d2-051e456dbd4e",
+      "id": "62657a0f-e703-46bc-a1db-6ede42a94f8f",
       "name": "התראה אלייך",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        1120,
-        -80
+        176,
+        128
       ],
-      "webhookId": "00fb8171-0662-4522-b027-514c0f876425",
+      "webhookId": "39379218-db12-463c-8adf-e3d1fbd4fd2b",
       "onError": "continueRegularOutput"
     },
     {
@@ -480,15 +473,15 @@
           "senderName": "Shani AI"
         }
       },
-      "id": "e8585111-1ae3-4476-9f4e-b3447e9001a0",
+      "id": "73a70f60-e691-455d-818c-69f0d2590ff5",
       "name": "מייל תודה ללקוח",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        1344,
-        -80
+        400,
+        128
       ],
-      "webhookId": "1d9e0b6d-90be-4f60-8e70-954fc01f9534",
+      "webhookId": "642eedc0-2660-41d0-8c99-d6e8d2ab353d",
       "onError": "continueRegularOutput"
     },
     {
@@ -519,13 +512,13 @@
         "jsonBody": "={\n  \"model\": \"claude-sonnet-4-6\",\n  \"max_tokens\": 8000,\n  \"system\": \"אתה מנוע ההצעות של Shani AI Creator, העסק של שני גורגוב: בונה לעסקים קטנים בישראל אוטומציות, כלי AI בעברית, אתרים ושיווק. אתה מקבל תשובות של בעל עסק לשאלון אבחון, חוקר את העסק ברשת, ומחזיר שני תוצרים מופרדים בשורה <!--SPLIT--> בדיוק. הכל נשלח לשני לאישור, שום דבר לא ללקוח.\\n\\nשלב המחקר (חובה, לפני הכתיבה): אם הליד השאיר קישור לאתר או אינסטגרם (שדה קישור לאתר או קשר נוסף), היכנס אליו עם web_fetch וקרא מה יש שם: מה העסק מציג, מה חסר, איך נראית הנוכחות. אם אינסטגרם חסום, חפש את שם העסק ברשת. בנוסף חפש עם web_search את סוג העסק (למשל צלמת אירועים, קוסמטיקאית) כדי להבין אילו כלים ותהליכים מקובלים בתחום. אסוף 3-5 תצפיות קונקרטיות. אם אין קישור ואין ממצאים, ציין זאת בדגלים והמשך לפי הטופס בלבד.\\n\\nהעיקרון המרכזי: הצעה אישית ופר-שירות, לא חבילות. כל המלצה חייבת להתחבר למשהו שהליד כתב או שנמצא במחקר. אם ביקש משהו ספציפי (למשל מערכת לעריכת תמונות), הוא מופיע ראשון בהצעה, גם אם הפתרון הוא הערכה.\\n\\nמחירון העבודה של שני, הרשמי מדף המחירים באתר (מחירי השקה, לפני מעמ, 50 אחוז מקדמה). אלה המחירים היחידים המותרים, חייבים להתאים לדף shani-ai.com/pricing: דף נחיתה קולנועי 890 (מחיר עתידי 2400). אתר תדמית עד 5 עמודים החל מ-1900 (עתידי 6500). מערכת AI מלאה עם מכונת לידים החל מ-3900 (עתידי 12000). מנוי Shani Care חודשי: בסיס 250, צמיחה 450, AI מלא 650. תוספות: בוט וואטסאפ 700 הקמה. אוטומציה בודדת החל מ-900. סוכן AI מותאם עם סקיל בעברית החל מ-2900. אבחון עצמאי מעמיק 450 שמתקזז במלואו בהזמנת פרויקט. עמוד נוסף 250. סבב שינויים נוסף 250. מאמר בלוג 250. גרסה באנגלית החל מ-700. שירות שלא ברשימה מקבל הערכה מסומנת עם דגל. עלויות כלים ורשיונות, כללים מחייבים: (1) לכל כלי שאתה מציע, בדוק עם web_search את המחיר העדכני היום ואת קיומה של תוכנית חינמית. אל תסתמך על ידע ישן. (2) חינם קודם: אם קיימת חלופה חינמית סבירה, הצג אותה כברירת המחדל וציין ממתי משתלם לעבור לתשלום. (3)  תמיד בנפרד מהעבודה, על שם הלקוח, עם שם הכלי ומחיר חודשי בשקלים. דוגמאות: דומיין כ-70 לשנה, אחסון אתר בדרך כלל חינם, n8n ענן כ-80 לחודש, ManyChat כ-60 לחודש, מערכת תורים 0 עד 80 לחודש, API של Claude לפי שימוש (בדרך כלל עשרות שקלים בחודש), כלי עריכת תמונות AI כ-50 עד 150 לחודש. אם אין ודאות, טווח.\\n\\nשפה: עברית פשוטה של שיחה, בשם פרטי. שני היא אישה: כתוב בגוף ראשון נקבה תמיד, בלי יוצא מהכלל (אני מתחילה, אני בונה, אשמח, מעדכנת), כל מונח טכני עם חצי משפט תרגום לתועלת. בלי אימוגים, בלי מקפים ארוכים, בלי סופרלטיבים. הערכות מסומנות הערכה:.\\n\\nפורמט טכני: HTML בלבד, בלי Markdown ובלי גדרות קוד, עיצוב inline: h2 בצבע #F2622E גודל 18px. p בצבע #e8e0d5 עם line-height 1.7. כרטיס שירות: div עם רקע #1a1510, border 1px solid rgba(242,98,46,.35), border-radius 10px, padding 14px 16px, margin 10px 0, ובתוכו שם השירות ב-div בצבע #F2622E משקל 700. בתוך כל כרטיס שתי שורות עלות נפרדות: עבודה (חד-פעמי) וכלים (חודשי, על שמך, עם שמות). השירות שהכי כדאי להתחיל ממנו מקבל border 2px solid #F2622E והערה (נקודת התחלה מומלצת).\\n\\nתוצר 1, פנימי לשני: h2 סיכום הליד. h2 מה מצאתי ברשת (תצפיות קונקרטיות מהאתר או האינסטגרם והמחקר). h2 מה הליד ביקש במילים שלו. h2 שירותים מומלצים (עד 6, ממוינים לפי התאמה למה שביקש). h2 דגלים.\\n\\nאחרי תוצר 1 שורה לבדה: <!--SPLIT-->\\n\\nתוצר 2, הצעה ללקוח בשמו, מוכנה להעברה. כלל ברזל: הלקוח לא מבין טכנולוגיה ולא יודע מה זו אוטומציה, ולכן קצר ופשוט מנצח. עד 350 מילים סך הכל. אסור להשתמש במילים טכניות (לא אוטומציה, לא CRM, לא n8n, לא וובהוק). במקומן תיאור יומיומי: מערכת שעונה ללקוחות במקומך, מערכת שמרכזת את כל הפניות במקום אחד. המבנה המדויק: פתיחה אישית עד 3 שורות (פנייה בשם, מה הבנתי ממך במילים שלך, תצפית אחת מהאתר שלך אם נמצאה). h2 מה אני מציעה לך. עד 4 כרטיסים בלבד, בכל כרטיס בדיוק: שם פשוט בעברית, שורה אחת מה זה עושה בשבילך, שורת עלות הקמה (העבודה שלי), ואם יש כלי בתשלום שורת עלות חודשית על שמך (חינם קודם אם קיים). בלי שום הסבר נוסף בכרטיס. h2 ממה מתחילים: שירות אחד או שניים, משפט אחד למה דווקא הם, וסה\\\"כ הקמה + סה\\\"כ חודשי. h2 איך זה עובד: שלושה צעדים קצרים בלבד: מאשרים עם מקדמה של 50 אחוז, אני בונה ומעדכנת אותך, מקבלים הכל עובד עם הדרכה קצרה ומשלמים את היתרה. משפט אחד על מחירי היכרות ללקוחות ראשונים בתמורה להמלצה. כפתור אחד: a בסגנון display:inline-block;background:#F2622E;color:#141009;font-weight:700;padding:12px 26px;border-radius:8px;text-decoration:none עם href https://wa.me/9725XXXXXXX?text=proposal וטקסט: רוצים להתחיל? כתבו לי אילו שירותים. חתימה: שני גורגוב, Shani AI Creator, shani-ai.com. אחרי תוצר 2 שורה לבדה: <!--SPLIT2--> ואז תוצר 3, מייל בקשת חומרים ללקוח, מוכן לשליחה כשהוא מאשר את ההצעה: פנייה בשם, משפט שמח שיוצאים לדרך, ואז h2 מה אני צריכה ממך כדי להתחיל, ורשימת ul של הפריטים הרלוונטיים בלבד לשירותים שהומלצו: תמונות (כמה ואילו), טקסטים או מחירון קיים, לוגו וצבעים אם יש, גישה לדומיין אם רלוונטי, זמינות לשיחת התנעה קצרה. לכל פריט שורה אחת פשוטה עם דוגמה. סיום: משפט שאפשר לשלוח הכל בוואטסאפ או במייל הזה, ושברגע שהחומרים אצלי אני מתחילה. אותם כללי שפה: נקבה, פשוט, בלי מונחים טכניים, HTML עם עיצוב inline, עד 200 מילים\",\n  \"tools\": [{\"type\":\"web_search_20250305\",\"name\":\"web_search\",\"max_uses\":5},{\"type\":\"web_fetch_20250910\",\"name\":\"web_fetch\",\"max_uses\":5}],\n  \"messages\": [{\"role\":\"user\",\"content\": {{ JSON.stringify('אבחון של ליד:\\n' + JSON.stringify($('Validate & Normalize').first().json)) }} }]\n}",
         "options": {}
       },
-      "id": "b51a8e55-d765-44f8-824b-1251dd5f2b7e",
+      "id": "a6a06240-c370-4969-b217-5e02750d7cf1",
       "name": "מנוע הסוכנים (Claude)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1568,
-        -80
+        624,
+        128
       ]
     },
     {
@@ -537,15 +530,15 @@
           "senderName": "Shani AI"
         }
       },
-      "id": "62bb4432-9435-4e4c-9434-a2fde4def37e",
+      "id": "ad8d9155-9cdc-4e7e-bd88-d7cd20b291d2",
       "name": "התכנית אלייך",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        1792,
-        -80
+        848,
+        128
       ],
-      "webhookId": "58e9ca0c-c5ad-46ff-96b4-e30634338bdf"
+      "webhookId": "8c4caa48-8548-4d33-9b71-f74df4df6b91"
     },
     {
       "parameters": {
@@ -558,15 +551,15 @@
         },
         "options": {}
       },
-      "id": "f750d14c-7694-4d00-be68-54658ada91a2",
+      "id": "6e49a789-8467-4372-8442-b0697154dab6",
       "name": "אישור ההצעה (לחצי לשליחה)",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        1792,
-        160
+        848,
+        368
       ],
-      "webhookId": "90c6ddc0-be80-439d-b336-324c3161da51",
+      "webhookId": "0569b9b0-0ce4-4662-a168-b9483a988e6f",
       "disabled": true
     },
     {
@@ -576,15 +569,15 @@
         "message": "=<div dir=\"rtl\" style=\"font-family:Arial,Helvetica,sans-serif;background:#0c0c11;color:#f4ede1;padding:28px;border-radius:14px;max-width:640px;margin:auto\"><div style=\"color:#F2622E;font-weight:800;letter-spacing:2px;font-size:12px\">SHANI AI CREATOR</div>{{ ($('מנוע הסוכנים (Claude)').first().json.content.filter(c => c.type === 'text').map(c => c.text).join('').split('<!--SPLIT-->')[1] || '').split('<!--SPLIT2-->')[0].replace(/```html/g,'').replace(/```/g,'') }}</div>",
         "options": {}
       },
-      "id": "7b5eda05-e789-4d6c-8576-0b84a052fae9",
+      "id": "7d5dd00c-3e30-4678-af9d-6717ea76b886",
       "name": "שליחת ההצעה ללקוח",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        2016,
-        160
+        1072,
+        368
       ],
-      "webhookId": "7b037241-8a1f-4712-aadb-a41a8246007a",
+      "webhookId": "c95cb1a9-5564-4a78-842e-0a08868d0284",
       "disabled": true
     },
     {
@@ -598,15 +591,15 @@
         },
         "options": {}
       },
-      "id": "5ef9ea8d-85e0-4932-833a-76e1971e73dd",
+      "id": "cfed9f80-9886-4f79-af6d-f53d8c430f05",
       "name": "כפתור: בקשת חומרים (אחרי אישור הלקוח)",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        2240,
-        160
+        1296,
+        368
       ],
-      "webhookId": "1d1fe5bd-ae8c-4df5-a5cb-3b6ee7f1e908",
+      "webhookId": "473d2e22-0a28-4a22-ba55-f59daa46819b",
       "disabled": true
     },
     {
@@ -616,18 +609,19 @@
         "message": "=<div dir=\"rtl\" style=\"font-family:Arial,Helvetica,sans-serif;background:#0c0c11;color:#f4ede1;padding:28px;border-radius:14px;max-width:640px;margin:auto\"><div style=\"color:#F2622E;font-weight:800;letter-spacing:2px;font-size:12px\">SHANI AI CREATOR</div>{{ ($('מנוע הסוכנים (Claude)').first().json.content.filter(c => c.type === 'text').map(c => c.text).join('').split('<!--SPLIT2-->')[1] || '<p>חסר חלק החומרים</p>').replace(/```html/g,'').replace(/```/g,'') }}</div>",
         "options": {}
       },
-      "id": "45578902-7031-4edc-ac40-443f48cfe534",
+      "id": "fdfd27b9-6c3d-4dd7-8227-520ec8e5382e",
       "name": "בקשת חומרים ללקוח",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2,
       "position": [
-        2464,
-        160
+        1520,
+        368
       ],
-      "webhookId": "838dc196-4328-4fc4-bc60-1e6b6022124c",
+      "webhookId": "be0d56de-d6fe-4b33-adbd-a22421eb64c0",
       "disabled": true
     }
   ],
+  "pinData": {},
   "connections": {
     "Webhook": {
       "main": [
@@ -761,9 +755,10 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
-  "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": false
   }
