@@ -62,9 +62,9 @@ const COPY: Record<"he" | "en", Copy> = {
     title: "מחירים שקופים, בלי הפתעות.",
     intro:
       "פרימיום שמחזיר את עצמו, עם נקודת כניסה נוחה. בוחרים חבילה, או מתחילים במנוי חודשי. לא בטוחים מה מתאים? האבחון החינמי ימליץ.",
-    launchBadge: "מחירי השקה · מוגבל ל-5 הפרויקטים הראשונים · בתמורה לעדות והצגה בתיק העבודות",
+    launchBadge: "מחירי השקה עד 1.8 או 5 הפרויקטים הראשונים, המוקדם מביניהם · בתמורה לעדות והצגה בתיק העבודות",
     trust: ["תגובה תוך 24 שעות", "הקוד שלך, בבעלותך", "10+ שנות ניסיון"],
-    vatNote: "כל המחירים לפני מע\"מ · 50% מקדמה בתחילת הפרויקט",
+    vatNote: "כל המחירים לפני מע\"מ · תשלום: 50% מקדמה · 30% באבן דרך · 20% במסירה",
     packages: [
       {
         no: "01",
@@ -116,7 +116,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "אוטומציית n8n + Claude שעונה ומתמחרת לבד",
           "CRM לניהול הלידים",
           "סקיל בעברית בטון של העסק",
-          "הדרכה מלאה + 3 חודשי תמיכה",
+          "הדרכה מלאה + 3 חודשי Shani Care כלולים (שווי ₪1,950)",
         ],
         waMsg: "היי שני, מעניין אותי מערכת ה-AI המלאה (החל מ-₪3,900)",
       },
@@ -144,12 +144,12 @@ const COPY: Record<"he" | "en", Copy> = {
         desc: "כל מה שבצמיחה + סוכן AI / בוט וואטסאפ פעיל, שיפור שוטף של הסקילים, עדיפות במענה.",
       },
     ],
-    subFine: "ביטול בהתראה של 30 יום · מחירים לפני מע\"מ",
+    subFine: "ביטול בהתראה של 30 יום · שנה מראש = 10% הנחה · מחירים לפני מע\"מ",
     subCta: "לפרטים על המנוי",
     subWaMsg: "היי שני, מעניין אותי מנוי Shani Care",
     addOnsTitle: "תוספות",
     addOns: [
-      { label: "בוט וואטסאפ", price: "₪700 הקמה", note: "או כלול במנוי AI מלא" },
+      { label: "בוט וואטסאפ", price: "₪900 הקמה + ₪150 לחודש", note: "כולל תחזוקה ושיפורים שוטפים · או כלול במנוי AI מלא" },
       { label: "אוטומציה בודדת (n8n)", price: "החל מ-₪900" },
       { label: "סוכן AI מותאם + סקיל בעברית", price: "החל מ-₪2,900" },
       { label: "AI Audit עצמאי (מיפוי + תכנית עבודה)", price: "₪450", note: "מתקזז במלואו בהזמנת פרויקט" },
@@ -171,7 +171,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "אפשר לשלם בתשלומים?",
-        a: "כן. העבודה מתחילה עם 50% מקדמה, והיתרה במסירה. לפרויקטים גדולים אפשר לפרוס לתשלומים, נסגור את זה יחד לפי מה שנוח לכם.",
+        a: "כן, המבנה הקבוע הוא שלושה חלקים: 50% מקדמה בתחילת העבודה, 30% באבן דרך מוסכמת באמצע, ו-20% במסירה. לפרויקטים גדולים אפשר לפרוס יותר, נסגור יחד לפי מה שנוח לכם.",
       },
       {
         q: "המחיר כולל מע\"מ?",
@@ -179,7 +179,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "מה קורה אחרי המסירה?",
-        a: "כל חבילה כוללת תקופת תמיכה (חודש עד 3 חודשים לפי החבילה). אחרי זה אפשר להישאר במנוי Shani Care מ-₪250 לחודש, שמכסה אחסון, עדכונים, גיבויים וניטור, כדי שהאתר יישאר חי ומעודכן.",
+        a: "כל חבילה כוללת תקופת תמיכה, ובמערכת AI מלאה כלולים 3 חודשי Shani Care מהיום הראשון, כי מערכת חיה צריכה מישהי שמשגיחה עליה. אחרי התקופה ממשיכים במנוי מ-₪250 לחודש (אחסון, עדכונים, גיבויים וניטור), ומי שמשלם שנה מראש מקבל 10% הנחה.",
       },
       {
         q: "למה אתר אצלך עולה יותר מוויקס או אלמנטור?",
@@ -197,9 +197,9 @@ const COPY: Record<"he" | "en", Copy> = {
     title: "Transparent pricing, no surprises.",
     intro:
       "Premium that pays for itself, with an easy entry point. Pick a package, or start with a monthly plan. Not sure what fits? The free audit will recommend.",
-    launchBadge: "Launch pricing · limited to the first 5 projects · in exchange for a testimonial and portfolio rights",
+    launchBadge: "Launch pricing until Aug 1 or the first 5 projects, whichever comes first · in exchange for a testimonial and portfolio rights",
     trust: ["Replies within 24h", "You own the code", "10+ years of experience"],
-    vatNote: "All prices exclude VAT · 50% deposit to start",
+    vatNote: "All prices exclude VAT · Payment: 50% deposit · 30% at milestone · 20% on delivery",
     packages: [
       {
         no: "01",
@@ -284,7 +284,7 @@ const COPY: Record<"he" | "en", Copy> = {
     subWaMsg: "Hi Shani, I'm interested in the Shani Care membership",
     addOnsTitle: "Add-ons",
     addOns: [
-      { label: "WhatsApp bot", price: "₪700 setup", note: "or included in Full AI plan" },
+      { label: "WhatsApp bot", price: "₪900 setup + ₪150/mo", note: "includes ongoing maintenance and improvements · or included in Full AI plan" },
       { label: "Single automation (n8n)", price: "from ₪900" },
       { label: "Custom AI agent + Hebrew Skill", price: "from ₪2,900" },
       { label: "Standalone AI Audit (mapping + plan)", price: "₪450", note: "fully credited toward a project" },
@@ -306,7 +306,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "Can I pay in installments?",
-        a: "Yes. Work starts with a 50% deposit and the balance on delivery. For larger projects we can split into installments, we'll set it up in a way that works for you.",
+        a: "Yes. The standard structure is three parts: 50% deposit to start, 30% at an agreed milestone, and 20% on delivery. For larger projects we can split further, we'll set it up in a way that works for you.",
       },
       {
         q: "Does the price include VAT?",
