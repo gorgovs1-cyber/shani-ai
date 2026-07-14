@@ -35,6 +35,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File C:\Projects\shifted-tech-ins
 
 # הסרה:
 powershell -NoProfile -ExecutionPolicy Bypass -File C:\Projects\shifted-tech-inspiration-worker\ai-company\workers\inspiration-inbox\install-task.ps1 -Uninstall
+
+# בדיקה ידנית שהמשימה רשומה ותקינה:
+Get-ScheduledTask -TaskName ShaniAI-InspirationInbox-Worker | Get-ScheduledTaskInfo
 ```
 
 אפשר גם להריץ את ה-worker ידנית פעם אחת (בלי Scheduler): `node worker.mjs` בלי פרמטרים.

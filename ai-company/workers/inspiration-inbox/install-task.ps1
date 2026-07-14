@@ -42,9 +42,13 @@ $action = New-ScheduledTaskAction `
     -Argument "`"$workerPath`"" `
     -WorkingDirectory $RepoDir
 
+# RepetitionDuration is deliberately OMITTED: repetition then continues
+# indefinitely. [TimeSpan]::MaxValue serializes into invalid task XML
+# (Duration "P99999999DT23H59M59S") and Register-ScheduledTask rejects it
+# with "The task XML contains a value which is incorrectly formatted or
+# out of range" - observed on this machine.
 $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(2) `
-    -RepetitionInterval (New-TimeSpan -Minutes $IntervalMinutes) `
-    -RepetitionDuration ([TimeSpan]::MaxValue)
+    -RepetitionInterval (New-TimeSpan -Minutes $IntervalMinutes)
 
 # Interactive logon type = runs only when the user is logged in (V1 requirement).
 $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Limited
@@ -56,7 +60,17 @@ $settings = New-ScheduledTaskSettingsSet `
 
 Register-ScheduledTask -TaskName $TaskName -Action $action -Trigger $trigger `
     -Principal $principal -Settings $settings `
-    -Description 'Shani AI - Inspiration Inbox Worker V1. Processes queued Instagram Reel references via /watch + Content Desk. Never publishes.' | Out-Null
+    -Description 'Shani AI - Inspiration Inbox Worker V1. Processes queued Instagram Reel references via /watch + Content Desk. Never publishes.' `
+    -ErrorAction Stop | Out-Null
 
-Write-Host "Installed scheduled task: $TaskName (every $IntervalMinutes min, only when logged in)."
+# Success is claimed ONLY if the task actually exists after registration.
+$task = Get-ScheduledTask -TaskName $TaskName -ErrorAction Stop
+$info = Get-ScheduledTaskInfo -TaskName $TaskName -ErrorAction Stop
+$act  = $task.Actions[0]
+Write-Host "Installed and verified scheduled task:"
+Write-Host ("  Name:     " + $task.TaskName)
+Write-Host ("  State:    " + $task.State)
+Write-Host ("  Next run: " + $(if ($info.NextRunTime) { $info.NextRunTime } else { '(not reported yet)' }))
+Write-Host ("  Repeats:  every " + $task.Triggers[0].Repetition.Interval + " (indefinitely; no Duration element)")
+Write-Host ("  Command:  " + $act.Execute + ' ' + $act.Arguments)
 Write-Host "Uninstall with: powershell -NoProfile -ExecutionPolicy Bypass -File install-task.ps1 -Uninstall"
