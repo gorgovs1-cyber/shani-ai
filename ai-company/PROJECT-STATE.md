@@ -5,8 +5,11 @@
 עודכן: 2026-07-15 · ענף: `ai-company/inspiration-worker-v1` · HEAD בעת העדכון: `c4555f41`
 
 ## פאזה נוכחית
-**חיבור מסלול ה-intake האוטומטי של מחקר לקוחות** (מטרה §10): טופס /audit → n8n Cloud →
-תור ענן → runner מקומי → Client Research Desk → דוח → Shani pending.
+**Content Production Team V1** (הנחיית שני, 15/07): הפקת נכסי תוכן מוכנים-לפרסום מחבילות
+שעברו Review. Producer V1 = פקודת `/producer` שממירה חבילה מאושרת לתיקיית production.
+
+**מוקפא עד להודעה חדשה:** גשר מחקר-הלקוחות הושלם ונשמר (`7c49ce3a`+`29f904fc`) — קוד, workflow
+לייבוא ו-smoke עברו. ההרכבה ב-n8n (טאב, credentials, סוד, .env) נדחתה. לא למחוק, לא לשכתב.
 
 ## יכולות מוכחות (לא לבנות מחדש, לא לבקר שוב)
 - /watch headless דרך `claude -p` (ריצה אמיתית, ~8–12 דק').
