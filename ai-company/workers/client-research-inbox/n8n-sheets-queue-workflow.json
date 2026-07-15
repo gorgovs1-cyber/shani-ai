@@ -1,0 +1,574 @@
+{
+  "name": "Client Research Queue — Sheets Bridge (v1)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "id": "trigger-crm-row",
+      "name": "Trigger: New CRM Row",
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const row = $input.first().json || {};\nconst meta = new Set(['submissionId', 'receivedAt', 'source', 'payloadVersion', 'processingStatus', 'row_number']);\nconst answers = {};\nfor (const [k, v] of Object.entries(row)) if (!meta.has(k)) answers[k] = v;\nconst submissionId = row.submissionId || ('SUB-' + Date.now());\nconst nowIso = new Date().toISOString();\nreturn [{ json: {\n  submission_id: submissionId,\n  created_at: row.receivedAt || nowIso,\n  updated_at: nowIso,\n  status: 'pending',\n  attempts: 0,\n  locked_at: '', locked_by: '', next_attempt_at: '',\n  client_id: '', report_path: '', review_status: '',\n  shani_status: 'pending', error_code: '', error_message: '',\n  envelope_json: JSON.stringify({ submissionId, receivedAt: row.receivedAt || nowIso, source: 'sheets-queue', payloadVersion: 1, answers })\n} }];"
+      },
+      "id": "build-queue-row",
+      "name": "Build Queue Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "options": {},
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "schema": []
+        }
+      },
+      "id": "queue-append-job",
+      "name": "Queue: Append Job",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        520,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "crq-claim/v1",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-claim",
+      "name": "Webhook: Claim",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        60
+      ],
+      "webhookId": "crq-claim-v1"
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "options": {}
+      },
+      "id": "queue-read-all",
+      "name": "Queue: Read All",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        260,
+        60
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const req = ($('Webhook: Claim').first().json.body) || {};\nconst rows = $input.all().map(i => i.json).filter(r => r && r.submission_id);\nconst now = Date.now();\nconst staleMin = Number(req.stale_minutes || 120);\nif ((req.action || 'claim') === 'reclaim_stale') {\n  const jobs = rows.filter(r => r.status === 'processing' && r.locked_at && (now - Date.parse(r.locked_at)) > staleMin * 60000);\n  return [{ json: { mode: 'respond_only', response: { jobs } } }];\n}\nconst eligible = rows\n  .filter(r => r.status === 'pending' && (!r.next_attempt_at || Date.parse(r.next_attempt_at) <= now))\n  .sort((a, b) => String(a.created_at).localeCompare(String(b.created_at)));\nif (!eligible.length) return [{ json: { mode: 'respond_only', response: { job: null } } }];\nconst row = eligible[0];\nconst lockedAt = new Date().toISOString();\nconst lockedBy = req.worker_id || 'runner';\nreturn [{ json: {\n  mode: 'claim',\n  response: { job: { ...row, status: 'processing', locked_at: lockedAt, locked_by: lockedBy } },\n  update: { submission_id: row.submission_id, status: 'processing', locked_at: lockedAt, locked_by: lockedBy, updated_at: lockedAt }\n} }];"
+      },
+      "id": "pick-job",
+      "name": "Pick Job",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        520,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.mode }}",
+              "rightValue": "claim",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "if-claimed",
+      "name": "IF: Claimed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        780,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "return [{ json: $input.first().json.update }];"
+      },
+      "id": "extract-update",
+      "name": "Extract Update",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "options": {},
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "matchingColumns": [
+            "submission_id"
+          ],
+          "value": {},
+          "schema": []
+        }
+      },
+      "id": "queue-mark-processing",
+      "name": "Queue: Mark Processing",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1300,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $('Pick Job').first().json.response }}",
+        "options": {}
+      },
+      "id": "respond-claimed-job",
+      "name": "Respond: Claimed Job",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1560,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.response }}",
+        "options": {}
+      },
+      "id": "respond-no-job",
+      "name": "Respond: No Job",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1040,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "crq-update/v1",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-update",
+      "name": "Webhook: Update",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        420
+      ],
+      "webhookId": "crq-update-v1"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const b = ($input.first().json.body) || {};\nif (!b.submission_id) return [{ json: { __invalid: true } }];\nconst out = { __invalid: false, submission_id: b.submission_id, updated_at: new Date().toISOString() };\nconst allowed = ['status','attempts','locked_at','locked_by','next_attempt_at','client_id','report_path','review_status','shani_status','error_code','error_message'];\nfor (const k of allowed) if (b.patch && k in b.patch) out[k] = (b.patch[k] === null || b.patch[k] === undefined) ? '' : String(b.patch[k]);\nreturn [{ json: out }];"
+      },
+      "id": "flatten-patch",
+      "name": "Flatten Patch",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "u1",
+              "leftValue": "={{ $json.__invalid }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "if-valid-update",
+      "name": "IF: Valid Update?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const j = { ...$input.first().json }; delete j.__invalid; return [{ json: j }];"
+      },
+      "id": "drop-flag",
+      "name": "Drop Flag",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "",
+          "cachedResultName": "SELECT AFTER IMPORT"
+        },
+        "options": {},
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "matchingColumns": [
+            "submission_id"
+          ],
+          "value": {},
+          "schema": []
+        }
+      },
+      "id": "queue-apply-update",
+      "name": "Queue: Apply Update",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1040,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true } }}",
+        "options": {}
+      },
+      "id": "respond-updated",
+      "name": "Respond: Updated",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1300,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": false, \"error\": \"missing submission_id\" } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "respond-bad-update",
+      "name": "Respond: Bad Update",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        780,
+        520
+      ]
+    }
+  ],
+  "connections": {
+    "Trigger: New CRM Row": {
+      "main": [
+        [
+          {
+            "node": "Build Queue Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Queue Row": {
+      "main": [
+        [
+          {
+            "node": "Queue: Append Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: Claim": {
+      "main": [
+        [
+          {
+            "node": "Queue: Read All",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue: Read All": {
+      "main": [
+        [
+          {
+            "node": "Pick Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick Job": {
+      "main": [
+        [
+          {
+            "node": "IF: Claimed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Claimed?": {
+      "main": [
+        [
+          {
+            "node": "Extract Update",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond: No Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Update": {
+      "main": [
+        [
+          {
+            "node": "Queue: Mark Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue: Mark Processing": {
+      "main": [
+        [
+          {
+            "node": "Respond: Claimed Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook: Update": {
+      "main": [
+        [
+          {
+            "node": "Flatten Patch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flatten Patch": {
+      "main": [
+        [
+          {
+            "node": "IF: Valid Update?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Valid Update?": {
+      "main": [
+        [
+          {
+            "node": "Drop Flag",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond: Bad Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drop Flag": {
+      "main": [
+        [
+          {
+            "node": "Queue: Apply Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue: Apply Update": {
+      "main": [
+        [
+          {
+            "node": "Respond: Updated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

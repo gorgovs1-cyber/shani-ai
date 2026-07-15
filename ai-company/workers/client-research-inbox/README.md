@@ -164,3 +164,24 @@ Editor, עם `submission_json` בפורמט שמופיע ב-`example-job.json`, 
    ולא בתחום ה-worker הזה בכלל (ראי `00-mvp-spec.md`).
 4. Commit של קבצי לקוח בריפו, אם רוצים לשמר אותם — ה-worker לעולם לא עושה
    את זה בעצמו.
+
+## ספק תור חלופי: n8n + Google Sheets (בשימוש בפועל, V1)
+
+שני בחרה לנהל את התור ב-Google Sheets (שם כבר יושבים הלידים) במקום Supabase. קוד ה-Supabase
+נשאר ותקף — הבחירה נעשית ב-env בלבד:
+
+- `QUEUE_PROVIDER=n8n-sheets` (או אוטומטית כש-`N8N_QUEUE_CLAIM_URL` מוגדר)
+- `N8N_QUEUE_CLAIM_URL` / `N8N_QUEUE_UPDATE_URL` — כתובות ה-Production של שני ה-webhooks
+  מה-workflow `n8n-sheets-queue-workflow.json` (מיובא ל-n8n של שני)
+- `N8N_QUEUE_SECRET` — סוד משותף; חייב להתאים ל-Header Auth credential ב-n8n
+  (שם הכותרת: `x-queue-secret`). לעולם לא בגיט ולא בצ'אט — רק ב-`.env` המקומי וב-n8n.
+
+טאב התור בגיליון: `research_queue`, שורת כותרות (להדבקה בשורה 1):
+
+```
+submission_id	created_at	updated_at	status	attempts	locked_at	locked_by	next_attempt_at	client_id	report_path	review_status	shani_status	error_code	error_message	envelope_json
+```
+
+זרימה: שורת ליד חדשה ב-CRM ← Trigger ב-n8n מעתיק לטאב התור כ-`pending` ← ה-runner המקומי
+קורא ל-`crq-claim` (נועל ל-`processing`) ← מריץ את Client Research Desk ← מעדכן דרך
+`crq-update` ל-`ready`/`needs_shani`/`failed`. שחזור תקיעות: `reclaim_stale` דרך אותו webhook.

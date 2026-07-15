@@ -83,7 +83,7 @@ function stamp(kind) {
 }
 
 // Secrets that must never reach a log line, even truncated.
-const SECRET_ENV_KEYS = ['SUPABASE_SERVICE_ROLE_KEY'];
+const SECRET_ENV_KEYS = ['SUPABASE_SERVICE_ROLE_KEY', 'N8N_QUEUE_SECRET'];
 
 function sanitize(text) {
   let t = String(text == null ? '' : text);
@@ -160,6 +160,61 @@ class SupabaseJobsClient {
     const cutoff = new Date(Date.now() - staleMinutes * 60000).toISOString();
     const rows = await this._request(`/rest/v1/client_research_jobs?status=eq.processing&locked_at=lt.${encodeURIComponent(cutoff)}`, 'GET');
     return Array.isArray(rows) ? rows : [];
+  }
+}
+
+// ---- n8n + Google Sheets queue client (QUEUE_PROVIDER=n8n-sheets).
+// Talks ONLY to two secured n8n webhooks (see n8n-sheets-queue-workflow.json);
+// the Google credential stays inside n8n. Env: N8N_QUEUE_CLAIM_URL,
+// N8N_QUEUE_UPDATE_URL, N8N_QUEUE_SECRET. Same interface as SupabaseJobsClient.
+class N8nSheetsJobsClient {
+  constructor(claimUrl, updateUrl, secret) {
+    if (!claimUrl || !updateUrl || !secret) {
+      throw new Error('Missing N8N_QUEUE_CLAIM_URL, N8N_QUEUE_UPDATE_URL or N8N_QUEUE_SECRET');
+    }
+    this.claimUrl = claimUrl; this.updateUrl = updateUrl; this.secret = secret;
+  }
+  async _post(url, body) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-queue-secret': this.secret },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`n8n queue POST ${url.split('/').slice(-2).join('/')} -> ${res.status}: ${sanitize(text).slice(0, 300)}`);
+    }
+    return res.json().catch(() => null);
+  }
+  // Sheet row -> the job shape the main loop expects.
+  _rowToJob(row) {
+    if (!row || !row.submission_id) return null;
+    let submission = row.envelope_json;
+    if (typeof submission === 'string') {
+      try { submission = JSON.parse(submission); } catch { submission = null; }
+    }
+    return {
+      id: row.submission_id,
+      created_at: row.created_at || null,
+      status: row.status || 'processing',
+      attempts: Number(row.attempts || 0),
+      next_attempt_at: row.next_attempt_at || null,
+      locked_at: row.locked_at || null,
+      locked_by: row.locked_by || null,
+      submission_json: submission,
+    };
+  }
+  async claimNext(workerId) {
+    const data = await this._post(this.claimUrl, { action: 'claim', worker_id: workerId });
+    return this._rowToJob(data && data.job);
+  }
+  async update(id, patch) {
+    await this._post(this.updateUrl, { submission_id: id, patch });
+  }
+  async reclaimStale(staleMinutes) {
+    const data = await this._post(this.claimUrl, { action: 'reclaim_stale', stale_minutes: staleMinutes });
+    const rows = (data && Array.isArray(data.jobs)) ? data.jobs : [];
+    return rows.map((r) => this._rowToJob(r)).filter(Boolean);
   }
 }
 
@@ -523,13 +578,23 @@ async function selfTest() {
 if (SELF_TEST) {
   selfTest();
 } else {
+  // Queue provider selection. Default: 'n8n-sheets' when its env is present,
+  // otherwise 'supabase' (original behavior). Override with QUEUE_PROVIDER.
+  const provider = (process.env.QUEUE_PROVIDER
+    || (process.env.N8N_QUEUE_CLAIM_URL ? 'n8n-sheets' : 'supabase')).toLowerCase();
   const jobs = (() => {
-    try { return new SupabaseJobsClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY); }
-    catch (e) {
-      log(`CONFIG: ${e.message}. Set it via a real Windows env var or ${path.join(cfg.baseDir, '.env')} (see README.md). Exiting.`);
+    try {
+      if (provider === 'n8n-sheets') {
+        return new N8nSheetsJobsClient(process.env.N8N_QUEUE_CLAIM_URL,
+          process.env.N8N_QUEUE_UPDATE_URL, process.env.N8N_QUEUE_SECRET);
+      }
+      return new SupabaseJobsClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+    } catch (e) {
+      log(`CONFIG (provider=${provider}): ${e.message}. Set it via a real Windows env var or ${path.join(cfg.baseDir, '.env')} (see README.md). Exiting.`);
       process.exit(2);
     }
   })();
+  log(`QUEUE: provider=${provider}`);
   const deps = {
     jobs, clientsDirRoot: path.join(cfg.repoDir, 'ai-company', 'clients'), cfg,
     invokeClientDesk: (submissionPath, timeoutSec, cwd) => runClaudeReal(buildClientDeskPrompt(submissionPath), 'Task,Read,Write,Grep,Glob,WebSearch,WebFetch', timeoutSec, cwd),
