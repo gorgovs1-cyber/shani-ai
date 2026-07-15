@@ -44,8 +44,10 @@ SMALL FIX: אין. NOT NEEDED YET: Approval Inbox, Dispatcher, Producer, Control
 - **תור מחקר הלקוחות: שני בחרה Google Sheets** (הטופס והלידים כבר שם) במקום Supabase.
   קוד ה-Supabase bridge נשמר כמות שהוא (כלל לא-הרסני). מסלול מימוש שנבחר כדי לחסוך הקמת
   Google Cloud: שני webhooks קטנים ב-n8n (list-pending / claim+update) שמשתמשים בקרדנציאל
-  Sheets הקיים של n8n + סוד משותף ב-header; ה-runner המקומי מדבר איתם בלבד. נדרש: שכבת-ספק
-  קטנה ב-worker.mjs של client-research-inbox + קובץ workflow מוכן לייבוא ל-n8n. משימה הבאה.
+  Sheets הקיים של n8n + סוד משותף ב-header; ה-runner המקומי מדבר איתם בלבד. **בוצע:**
+  N8nSheetsJobsClient ב-worker.mjs (בחירה ב-env, ברירת מחדל תואמת-אחור), self-test 20/20,
+  smoke E2E מול stub עבר, ו-n8n-sheets-queue-workflow.json מוכן לייבוא. **ממתין לשני:** ייבוא
+  ה-workflow ל-n8n + טאב research_queue + סוד משותף + .env מקומי → ואז בדיקת קבלה §11.
 - המשימה המתוזמנת `ShaniAI-InspirationInbox-Worker` **הושבתה לבקשת שני** (מצב ידני).
   הפעלה מחדש: Enable-ScheduledTask. נוסף `process-reel.ps1` — פקודה אחת לתור+עיבוד.
 - **שים לב:** סשן מקביל דחף ל-main מהעותק הישן ב-OneDrive (commit c867a31a, עדכון תמחור,
