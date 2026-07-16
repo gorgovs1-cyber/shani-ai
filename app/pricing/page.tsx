@@ -62,8 +62,8 @@ const COPY: Record<"he" | "en", Copy> = {
     title: "מחירים שקופים, בלי הפתעות.",
     intro:
       "פרימיום שמחזיר את עצמו, עם נקודת כניסה נוחה. בוחרים חבילה, או מתחילים במנוי חודשי. לא בטוחים מה מתאים? האבחון החינמי ימליץ.",
-    launchBadge: "מחירי השקה עד 1.8 או 5 הפרויקטים הראשונים, המוקדם מביניהם · בתמורה לעדות והצגה בתיק העבודות",
-    trust: ["תגובה תוך 24 שעות", "הקוד שלך, בבעלותך", "10+ שנות ניסיון"],
+    launchBadge: "מחירי השקה עד 1.9 או 5 הפרויקטים הראשונים, המוקדם מביניהם · בתמורה לעדות והצגה בתיק העבודות",
+    trust: ["תגובה תוך 24 שעות", "הקוד שלך, בבעלותך", "מחיר סופי מראש, בלי הפתעות"],
     vatNote: "כל המחירים לפני מע\"מ · תשלום: 50% מקדמה · 30% באבן דרך · 20% במסירה",
     packages: [
       {
@@ -197,8 +197,8 @@ const COPY: Record<"he" | "en", Copy> = {
     title: "Transparent pricing, no surprises.",
     intro:
       "Premium that pays for itself, with an easy entry point. Pick a package, or start with a monthly plan. Not sure what fits? The free audit will recommend.",
-    launchBadge: "Launch pricing until Aug 1 or the first 5 projects, whichever comes first · in exchange for a testimonial and portfolio rights",
-    trust: ["Replies within 24h", "You own the code", "10+ years of experience"],
+    launchBadge: "Launch pricing until Sep 1 or the first 5 projects, whichever comes first · in exchange for a testimonial and portfolio rights",
+    trust: ["Replies within 24h", "You own the code", "Final price up front, no surprises"],
     vatNote: "All prices exclude VAT · Payment: 50% deposit · 30% at milestone · 20% on delivery",
     packages: [
       {

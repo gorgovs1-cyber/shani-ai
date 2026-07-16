@@ -25,30 +25,30 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
   he: {
     kicker: "06 · המלצות",
     title: "מה לקוחות אומרות.",
-    sub: "תוצאות אמיתיות מעסקים אמיתיים. (עדויות לדוגמה — יוחלפו בעדויות אמיתיות עם תמונה.)",
+    sub: "תוצאות אמיתיות מעסקים אמיתיים.",
     items: [
       {
-        name: "שם מלא",          // PLACEHOLDER
-        city: "תל אביב",          // PLACEHOLDER
-        result: "חסכה 10 שעות בחודש",  // PLACEHOLDER
+        name: "מאור",
+        city: "בעל עסק",
+        result: "האוטומציה עונה במקומו",
         quote:
-          "שני זיהתה בדיוק איפה בזבזתי זמן, ובנתה לי אוטומציה שמטפלת בלידים לבד. אני כבר לא עונה לאותן שאלות עשר פעמים ביום.",
+          "שני זיהתה בדיוק איפה בזבזתי זמן, ובנתה לי אוטומציה שמטפלת בפניות לבד. אני כבר לא עונה לאותן שאלות עשר פעמים ביום.",
         photo: "", // "/testimonials/xxx.jpg"
       },
       {
-        name: "שם מלא",          // PLACEHOLDER
-        city: "ירושלים",         // PLACEHOLDER
-        result: "חודש תוכן בשעתיים", // PLACEHOLDER
+        name: "הילה איתן",
+        city: "מיתוג אישי",
+        result: "דף אישי ממותג באוויר",
         quote:
-          "הסקיל בעברית ששני בנתה לי שינה לי את החיים. Claude כותב לי עכשיו בדיוק בטון של העסק, בלי תרגומים מוזרים.",
+          "רציתי נוכחות אישית שמציגה אותי ברמה אחרת, ושני בנתה לי דף ממותג ומדויק. התהליך היה מהיר וקל, והתוצאה בדיוק אני.",
         photo: "",
       },
       {
-        name: "שם מלא",          // PLACEHOLDER
-        city: "חיפה",            // PLACEHOLDER
-        result: "אתר חדש ב-14 יום", // PLACEHOLDER
+        name: "לילך חזן",
+        city: "בעלת עסק",
+        result: "אתר עסקי חדש באוויר",
         quote:
-          "רציתי אתר שממצב אותי ברמה של הגדולים. קיבלתי אתר מהיר, יפה ומחובר לוואטסאפ, והפניות התחילו להיכנס כבר בשבוע הראשון.",
+          "רציתי אתר שממצב אותי ברמה של הגדולים. קיבלתי אתר מהיר, יפה ומחובר לוואטסאפ, וכל התהליך היה פשוט ונעים.",
         photo: "",
       },
     ],
@@ -56,30 +56,30 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
   en: {
     kicker: "06 · Reviews",
     title: "What clients say.",
-    sub: "Real results from real businesses. (Sample testimonials — to be replaced with real ones and photos.)",
+    sub: "Real results from real businesses.",
     items: [
       {
-        name: "Client name",       // PLACEHOLDER
-        city: "Tel Aviv",          // PLACEHOLDER
-        result: "Saved 10 hours a month", // PLACEHOLDER
+        name: "Maor",
+        city: "Business owner",
+        result: "Automation answers for him",
         quote:
-          "Shani found exactly where I was wasting time and built me an automation that handles leads on its own. I no longer answer the same questions ten times a day.",
+          "Shani found exactly where I was wasting time and built me an automation that handles inquiries on its own. I no longer answer the same questions ten times a day.",
         photo: "",
       },
       {
-        name: "Client name",       // PLACEHOLDER
-        city: "Jerusalem",         // PLACEHOLDER
-        result: "A month of content in 2 hours", // PLACEHOLDER
+        name: "Hila Eitan",
+        city: "Personal brand",
+        result: "Branded personal page live",
         quote:
-          "The Hebrew Skill Shani built changed my life. Claude now writes in my business's exact tone, no more weird translations.",
+          "I wanted a personal presence on a different level, and Shani built me a precise, branded page. The process was fast and easy, and the result is exactly me.",
         photo: "",
       },
       {
-        name: "Client name",       // PLACEHOLDER
-        city: "Haifa",             // PLACEHOLDER
-        result: "New site in 14 days", // PLACEHOLDER
+        name: "Lilach Hazan",
+        city: "Business owner",
+        result: "New business site live",
         quote:
-          "I wanted a site that positions me alongside the big players. I got a fast, beautiful site wired to WhatsApp, and inquiries started coming in the first week.",
+          "I wanted a site that positions me alongside the big players. I got a fast, beautiful site wired to WhatsApp, and the whole process was simple and pleasant.",
         photo: "",
       },
     ],

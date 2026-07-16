@@ -24,7 +24,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 export const metadata: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
   title: "Shani AI Creator · ייעוץ AI, אוטומציות, כלים ואתרים לעסקים",
-  description: "שני גורגוב, Shani AI Creator. מכניסה AI לעסק שלכם: מיפוי ואסטרטגיה, אוטומציות חכמות, כלים וסקילים בעברית, ואתרים שמביאים לקוחות. 10+ שנות ניסיון. ישראל.",
+  description: "שני גורגוב, Shani AI Creator. מכניסה AI לעסק שלכם: מיפוי ואסטרטגיה, אוטומציות חכמות, כלים וסקילים בעברית, ואתרים שמביאים לקוחות. ישראל.",
   keywords: ["AI", "אוטומציה", "אתרים", "GSAP", "Next.js", "ישראל", "שני גורגוב", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
   openGraph: {
     title: "Shani AI Creator · AI, אוטומציות ואתרים לעסקים",
