@@ -69,6 +69,32 @@ python3 marketing-engine/producer/render_visuals.py --package "marketing-engine/
 **כשל בשלב הרינדור** (חריגה/קובץ חסר) → הרצת Producer **לא הושלמה** — מדווחים את השגיאה
 המדויקת ב-`MANUAL-ACTIONS.md`, לא ממשיכים כאילו הצליח.
 
+## מצב faceless (אופציונלי)
+
+```
+/producer Package: marketing-engine/packages/<slug>/ --faceless
+```
+
+מצב זה **מוסיף** על שלב 2 הרגיל — לא מחליף את Recording Studio, ולא רץ בלי הדגל המפורש.
+לאחר שרינדור הוויזואלים (שלב 2 למעלה) הצליח, מריצים ברצף, באותה הרצה:
+
+```bash
+python marketing-engine/producer/tts_cartesia.py --package "marketing-engine/packages/<slug>"
+python marketing-engine/producer/assemble_reel_mp4.py --package "marketing-engine/packages/<slug>"
+```
+
+- `tts_cartesia.py` קורא את `production/voiceover.txt`, מנרמל עברית (ר' הערות בקובץ), וקורא
+  ל-Cartesia (`sonic-3.5`, קול משוכפל, `he`) ישירות — לא HeyGen/Higgsfield/ElevenLabs — לתוך
+  `production/narration.mp3`. `CARTESIA_API_KEY` חייב להיות במשתנה סביבה או `.env` מקומי
+  (ר' `.env.example`), לעולם לא בקוד או בלוג.
+- `assemble_reel_mp4.py` מרכיב את הוויזואלים הקיימים מ-`visual-timeline.csv` (ללא יצירת נכס
+  חדש), מתאים את משך הסצנות לאורך `narration.mp3` בפועל, שורף את `subtitles.srt` (מתוזמן מחדש
+  לאותו יחס), ומפיק `production/final-reel.mp4` (1080×1920). אם `SHANI_INTRO_AUDIO_PATH` מוגדר
+  ומצביע לקובץ קיים, הוא מצורף לפני הקריינות עם איזון עוצמות (`loudnorm`).
+- כשל בכל שלב (מפתח חסר, שגיאת API, ffmpeg) → עצירה ודיווח מדויק ב-`MANUAL-ACTIONS.md`, בלי
+  ניסיון חוזר שקט.
+- `Shani status` נשאר `pending` גם כש-`final-reel.mp4` נוצר. **לעולם לא מפרסם ולא מתזמן.**
+
 ## כללי ברזל
 - **אין המצאה:** אסור לייצר "הקלטת מסך", צילום, תוצאה או מוצר שלא קיימים. פער אמיתי →
   שורה ב-MANUAL-ACTIONS, לא נכס מזויף.
