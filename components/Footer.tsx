@@ -51,6 +51,13 @@ export default function Footer() {
             strokeWidth="6"
             strokeLinejoin="round"
           />
+          <path
+            d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            opacity="0.5"
+          />
           <circle cx="50" cy="50" r="7" fill="currentColor" />
         </svg>
         <span

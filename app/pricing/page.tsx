@@ -24,11 +24,8 @@ type Copy = {
   steps: Step[];
   principlesTitle: string;
   principles: string[];
-  fitTitle: string;
-  fitYes: string[];
-  fitNo: string[];
-  fitYesLabel: string;
-  fitNoLabel: string;
+  valueTitle: string;
+  values: Factor[];
   faqTitle: string;
   faqItems: QA[];
   ctaTitle: string;
@@ -53,7 +50,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         title: "כמות התהליכים והחיבורים",
-        desc: "אוטומציה אחת פשוטה או מערכת שמחברת וואטסאפ, יומן, מייל וגיליונות. כל חיבור נוסף הוא עבודה, אבל גם זמן שנחסך לך.",
+        desc: "אוטומציה אחת פשוטה או מערכת שמחברת וואטסאפ, יומן, מייל וגיליונות. כל חיבור נוסף הוא עבודה, אבל גם זמן שנחסך לכם.",
       },
       {
         title: "תוכן, עיצוב ושפה",
@@ -61,7 +58,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         title: "רמת האוטומציה והכלים",
-        desc: "אילו כלים נדרשים ומה קיים בחינם. עלות שוטפת של כלים היא תמיד בנפרד, על שמך, בשקיפות מלאה.",
+        desc: "אילו כלים נדרשים ומה קיים בחינם. עלות שוטפת של כלים היא תמיד בנפרד, על שמכם, בשקיפות מלאה.",
       },
       {
         title: "ליווי אחרי העלייה לאוויר",
@@ -71,28 +68,35 @@ const COPY: Record<"he" | "en", Copy> = {
     processTitle: "איך נראה התהליך עד הצעה",
     steps: [
       { no: "01", title: "אבחון קצר", desc: "טופס של שלוש דקות על העסק, הכלים והמשימות שחוזרות על עצמן." },
-      { no: "02", title: "כיוונים ראשוניים", desc: "אני עוברת על העסק וחוזרת אלייך תוך יום עסקים עם שניים-שלושה כיוונים, בלי מחיר ובלי התחייבות." },
+      { no: "02", title: "כיוונים ראשוניים", desc: "אני עוברת על העסק וחוזרת אליכם תוך יום עסקים עם שניים-שלושה כיוונים, בלי מחיר ובלי התחייבות." },
       { no: "03", title: "שיחת היכרות", desc: "רבע שעה בטלפון או בוואטסאפ. מבינים יחד מה באמת נכון לבנות ומה לא." },
       { no: "04", title: "הצעה מסודרת", desc: "תוך יום מהשיחה: מה בדיוק נבנה, כמה זה עולה, לוח זמנים ומדדי הצלחה. מחיר סופי, בלי הפתעות." },
     ],
     principlesTitle: "עקרונות שלא משתנים",
     principles: [
       "המחיר שנסגר לפני תחילת העבודה הוא המחיר הסופי.",
-      "עלויות שוטפות של כלים (דומיין, מערכות, מנויים) תמיד בנפרד, על שמך, עם שמות ומחירים מדויקים.",
+      "עלויות שוטפות של כלים (דומיין, מערכות, מנויים) תמיד בנפרד, על שמכם, עם שמות ומחירים מדויקים.",
       "שני סבבי תיקונים כלולים בכל פרויקט.",
       "אפשר להתחיל בפתרון קטן ולהרחיב כשמרגישים את הערך.",
     ],
-    fitTitle: "למי זה מתאים",
-    fitYesLabel: "כנראה נתאים אם",
-    fitNoLabel: "כנראה פחות אם",
-    fitYes: [
-      "יש לך עסק פעיל ומשימות שגוזלות זמן שאפשר לחסוך",
-      "חשוב לך פתרון שמותאם אלייך ולא תבנית",
-      "את מחפשת שותפה לחשיבה, לא רק ספקית",
-    ],
-    fitNo: [
-      "מחפשים את המחיר הנמוך ביותר בשוק ולא משנה מה מקבלים",
-      "צריך רק שינוי קטן חד-פעמי באתר קיים",
+    valueTitle: "מה יוצא לכם מזה",
+    values: [
+      {
+        title: "שעות שחוזרות כל שבוע",
+        desc: "משימות שחוזרות על עצמן קורות לבד, והזמן שהתפנה חוזר ללקוחות, למכירות ולדברים שרק אתם יודעים לעשות.",
+      },
+      {
+        title: "אף פנייה לא הולכת לאיבוד",
+        desc: "מענה מהיר ומסודר לכל מתעניין, גם כשאתם באמצע עבודה וגם אחרי שעות הפעילות. פניות חמות לא מתקררות.",
+      },
+      {
+        title: "נוכחות שבונה אמון",
+        desc: "אתר וכלים שנראים ברמה של העסקים הגדולים, בעברית שנשמעת אנושית ובטון של העסק שלכם.",
+      },
+      {
+        title: "מערכת שעובדת, לא עוד כלי",
+        desc: "לא עוד מנוי שנזנח אחרי חודש, אלא תהליך שרץ לבד, נמדד ומשתפר, עם מישהי שמשגיחה עליו.",
+      },
     ],
     faqTitle: "שאלות נפוצות",
     faqItems: [
@@ -110,7 +114,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     ctaTitle: "הצעד הראשון לא עולה כלום.",
-    ctaSub: "אבחון של שלוש דקות, ותוך יום עסקים תדעי אילו כיוונים שווה לבדוק בעסק שלך.",
+    ctaSub: "אבחון של שלוש דקות, ותוך יום עסקים תדעו אילו כיוונים שווה לבדוק בעסק שלכם.",
     ctaBtn: "לאבחון החינמי ←",
     ctaWa: "מעדיפה לדבר עכשיו? וואטסאפ",
     waMsg: "היי שני, אשמח לשמוע איך נקבעת ההשקעה לעסק שלי",
@@ -143,17 +147,12 @@ const COPY: Record<"he" | "en", Copy> = {
       "Two revision rounds are included in every project.",
       "You can start small and expand once you feel the value.",
     ],
-    fitTitle: "Is this for you",
-    fitYesLabel: "Likely a fit if",
-    fitNoLabel: "Likely not if",
-    fitYes: [
-      "You run an active business with time-consuming tasks worth saving",
-      "You want a solution tailored to you, not a template",
-      "You want a thinking partner, not just a vendor",
-    ],
-    fitNo: [
-      "You are hunting for the lowest price regardless of outcome",
-      "You only need a tiny one-off change to an existing site",
+    valueTitle: "What you get out of it",
+    values: [
+      { title: "Hours back every week", desc: "Repetitive tasks run on their own, and the freed time goes back to clients, sales and the things only you can do." },
+      { title: "No inquiry gets lost", desc: "Fast, organized replies to every lead, even mid-work or after hours. Warm inquiries stop going cold." },
+      { title: "A presence that builds trust", desc: "A site and tools that look like the big players, in human-sounding Hebrew and your business's tone." },
+      { title: "A system, not another tool", desc: "Not another subscription abandoned after a month, but a process that runs, gets measured and improves, with someone watching over it." },
     ],
     faqTitle: "FAQ",
     faqItems: [
@@ -217,21 +216,15 @@ export default function PricingPage() {
           ))}
         </div>
 
-        {/* Fit */}
-        <h2 style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.fitTitle}</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16, marginBottom: 64 }}>
-          <div style={{ background: "var(--card)", border: "1px solid rgba(242,98,46,.4)", borderRadius: 18, padding: "24px 22px" }}>
-            <div style={{ fontWeight: 700, fontSize: 15, color: "var(--acc)", marginBottom: 12 }}>{c.fitYesLabel}</div>
-            {c.fitYes.map((t, i) => (
-              <p key={i} style={{ margin: "0 0 8px", color: "var(--ink)", fontSize: 14.5, lineHeight: 1.65 }}>{t}</p>
-            ))}
-          </div>
-          <div style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 18, padding: "24px 22px" }}>
-            <div style={{ fontWeight: 700, fontSize: 15, color: "var(--muted2)", marginBottom: 12 }}>{c.fitNoLabel}</div>
-            {c.fitNo.map((t, i) => (
-              <p key={i} style={{ margin: "0 0 8px", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{t}</p>
-            ))}
-          </div>
+        {/* Value */}
+        <h2 style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.valueTitle}</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16, marginBottom: 64 }}>
+          {c.values.map((v, i) => (
+            <div key={i} style={{ background: "var(--card)", border: "1px solid rgba(242,98,46,.35)", borderRadius: 18, padding: "24px 22px" }}>
+              <div style={{ fontWeight: 700, fontSize: 16.5, color: "var(--acc)", marginBottom: 8 }}>{v.title}</div>
+              <p style={{ margin: 0, color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.7 }}>{v.desc}</p>
+            </div>
+          ))}
         </div>
 
         {/* FAQ */}

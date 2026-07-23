@@ -99,6 +99,8 @@ export default function AIFlowPlaceholder() {
                     style={{ animation: "aiSpin 4s linear infinite" }}>
                     <path d="M50 7 L87 28.5 L87 71.5 L50 93 L13 71.5 L13 28.5 Z"
                       stroke="#f2622e" strokeWidth="8" strokeLinejoin="round" />
+                    <path d="M50 27 L70 39 L70 61 L50 73 L30 61 L30 39 Z"
+                      stroke="#f2622e" strokeWidth="5" strokeLinejoin="round" opacity="0.5" />
                     <circle cx="50" cy="50" r="8" fill="#f2622e" />
                   </svg>
                 ) : (
