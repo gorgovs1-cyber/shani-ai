@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "מחירים · כמה עולה אתר, אוטומציה ו-AI לעסק | Shani AI Creator",
+  title: "איך נקבעת ההשקעה · אתר, אוטומציה ו-AI לעסק | Shani AI Creator",
   description:
-    "מחירי השקה: דף נחיתה מ-₪890, אתר תדמית קולנועי מ-₪1,900, מערכת AI מלאה מ-₪3,900, ומנוי Shani Care מ-₪250 לחודש. כל המחירים לפני מע\"מ. לא בטוחים? אבחון AI חינם.",
+    "אין מחירון קבוע, יש תהליך שקוף: אבחון חינם, כיוונים ראשוניים תוך יום עסקים, שיחת היכרות קצרה, והצעה אישית עם מחיר סופי. עלויות כלים תמיד בנפרד ובשקיפות.",
   alternates: { canonical: "https://shani-ai.com/pricing" },
   openGraph: {
-    title: "מחירים · Shani AI Creator",
-    description: "מחירון שקוף לאתרים, אוטומציות ומערכות AI לעסקים. נקודת כניסה ממנוי חודשי.",
+    title: "איך נקבעת ההשקעה · Shani AI Creator",
+    description: "תהליך שקוף עד הצעה: אבחון חינם, כיוונים מותאמים, שיחה, ומחיר סופי בלי הפתעות.",
     url: "https://shani-ai.com/pricing",
     type: "website",
     locale: "he_IL",

@@ -30,15 +30,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "אוטומציה לוואטסאפ לעסק, איך זה עובד?",
-        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. בוט וואטסאפ חכם עולה מ-₪700 להקמה, או כלול במנוי Shani Care AI מלא.",
+        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. אפשר להקים בוט כפרויקט חד-פעמי או כחלק ממנוי Shani Care עם תחזוקה שוטפת.",
       },
       {
         h: "כמה עולה אוטומציה לעסק?",
-        p: "במחירי השקה, אוטומציה בודדת (למשל לכידת לידים או מענה אוטומטי) מתחילה ב-₪900, בוט וואטסאפ מ-₪700, וסוכן AI מותאם עם סקיל בעברית מ-₪2,900 (לפני מע\"מ). אם רוצים שהאוטומציה תמשיך לרוץ ולהשתפר, מנוי Shani Care מ-₪450 לחודש כולל אוטומציה פעילה ותחזוקה שוטפת.",
+        p: "תלוי מה בונים: אוטומציה בודדת ללכידת לידים היא פרויקט אחד, מערכת שמחברת וואטסאפ, יומן, מייל וגיליונות היא פרויקט אחר. לכן אין מחירון קבוע, יש הצעה אישית: ממלאים אבחון חינם, מדברים רבע שעה, ותוך יום מקבלים הצעה עם מחיר סופי. עלויות שוטפות של כלים תמיד מפורטות בנפרד ועל שמכם.",
       },
       {
         h: "מכונת הלידים שלי, הדגמה חיה",
-        p: "הדף /audit באתר הזה הוא בעצמו אוטומציה חיה: לקוח ממלא טופס אבחון, אוטומציית n8n מעבדת את התשובות, מנוע Claude כותב תכנית עבודה והצעת מחיר, והכל חוזר תוך שניות, 24/7. אותה מכונה בדיוק אני יכולה לבנות לעסק שלכם.",
+        p: "הדף /audit באתר הזה הוא בעצמו אוטומציה חיה: לקוח ממלא טופס אבחון, אוטומציית n8n קולטת את התשובות תוך שניות, וסוכני Claude חוקרים את העסק ומכינים לי תדריך מלא לשיחה איתו, 24/7. אותה מכונה בדיוק אני יכולה לבנות לעסק שלכם.",
       },
     ],
     faqTitle: "שאלות על אוטומציות",
@@ -94,15 +94,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "WhatsApp automation for business, how does it work?",
-        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A smart WhatsApp bot starts at ₪700 to set up, or is included in the Shani Care Full AI plan.",
+        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A bot can be a one-off project or part of a Shani Care plan with ongoing maintenance.",
       },
       {
         h: "How much does business automation cost?",
-        p: "At launch pricing, a single automation (say lead capture or auto-replies) starts at ₪900, a WhatsApp bot from ₪700, and a custom AI agent with a Hebrew Skill from ₪2,900 (excl. VAT). If you want the automation to keep running and improving, a Shani Care membership from ₪450/mo includes an active automation and ongoing maintenance.",
+        p: "It depends on what we build: a single lead-capture automation is one project, a system connecting WhatsApp, calendar, email and sheets is another. So there is no fixed price list, there is a personal proposal: fill in the free audit, talk for fifteen minutes, and within a day you get a proposal with a final price. Running tool costs are always itemized separately, in your name.",
       },
       {
         h: "My lead machine, a live demo",
-        p: "The /audit page on this very site is itself a live automation: a client fills in an intake form, an n8n automation processes the answers, a Claude engine writes an action plan and a proposal, and it all comes back within seconds, 24/7. I can build that exact same machine for your business.",
+        p: "The /audit page on this very site is itself a live automation: a client fills in an intake form, an n8n automation captures the answers within seconds, and Claude agents research the business and prepare a full call brief for me, 24/7. I can build that exact same machine for your business.",
       },
     ],
     faqTitle: "Automation FAQ",

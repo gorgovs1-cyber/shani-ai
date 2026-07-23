@@ -65,6 +65,15 @@
         <label class="opt"><input type="checkbox" value="מענה מהיר ללקוחות">מענה מהיר ללקוחות</label>
       </div>
     </div>
+    <div class="q"><label class="main">מאיפה העסק עובד?</label>
+      <div class="opts" data-single="מיקום עבודה">
+        <label class="opt"><input type="radio" name="workloc" value="מהבית">מהבית</label>
+        <label class="opt"><input type="radio" name="workloc" value="סטודיו / קליניקה / חנות">סטודיו / קליניקה / חנות</label>
+        <label class="opt"><input type="radio" name="workloc" value="ניידת, עד הלקוח">ניידת, עד הלקוח</label>
+        <label class="opt"><input type="radio" name="workloc" value="היברידי">היברידי</label>
+        <label class="opt"><input type="radio" name="workloc" value="אונליין בלבד">אונליין בלבד</label>
+      </div>
+    </div>
   </div>
 
   <div class="sec">
@@ -153,12 +162,24 @@
       </div>
     </div>
     <div class="q"><label class="main">שם מלא</label><input type="text" data-q="שם"></div>
-    <div class="q"><label class="main">אימייל <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="text" data-q="אימייל"></div>
+    <div class="q"><label class="main">אימייל <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="email" data-q="אימייל"></div>
     <div class="q"><label class="main">וואטסאפ + אינסטגרם/אתר</label><input type="text" data-q="קשר נוסף"></div>
+    <div class="q"><label class="main">איך הכי נוח שאחזור אליכם?</label>
+      <div class="opts" data-single="ערוץ מועדף">
+        <label class="opt"><input type="radio" name="chan" value="וואטסאפ">וואטסאפ</label>
+        <label class="opt"><input type="radio" name="chan" value="מייל">מייל</label>
+        <label class="opt"><input type="radio" name="chan" value="שיחת טלפון">שיחת טלפון</label>
+      </div>
+    </div>
+    <div class="q">
+      <div class="opts" data-multi="הסכמה">
+        <label class="opt"><input type="checkbox" value="אישרו חזרה בערוץ שנבחר">מאשרים שאחזור אליכם בערוץ שבחרתם בנוגע לפנייה הזאת</label>
+      </div>
+    </div>
   </div>
 
   <button type="button" class="submit" onclick="send()">שלחו את האבחון ←</button>
-  <p class="note">2–3 דקות שיחסכו לנו שיחה שלמה. אחזור אליכם עם תכנית והצעה מותאמת.</p>
+  <p class="note">2–3 דקות שיחסכו לנו שיחה שלמה. אחזור אליכם תוך יום עסקים עם כמה כיוונים ראשוניים, ונקבע שיחה קצרה.</p>
   </form>
   <div id="thanks" style="display:none;text-align:center;padding:50px 14px">
     <div style="height:96px;display:flex;justify-content:center;align-items:center">
@@ -186,7 +207,7 @@
       </svg>
     </div>
     <h2 style="color:#F2622E;font-size:28px;margin:12px 0">תודה! קיבלתי את האבחון</h2>
-    <p style="color:#a49a90;font-size:16px;line-height:1.7">התכנית שלכם בבדיקה. אני עוברת על מה הכי נכון לבנות לעסק שלכם — ואחזור אליכם בקרוב עם תכנית ברורה והצעת מחיר.<br><br>רוצים לדבר עכשיו? <a href="https://wa.me/972504744815" style="color:#F2622E">וואטסאפ ישיר ←</a></p>
+    <p style="color:#a49a90;font-size:16px;line-height:1.7">קיבלתי הכל. אני עוברת על העסק שלכם ואחזור תוך יום עסקים עם שניים-שלושה כיוונים ששווה לבדוק, ושאלה או שתיים. הצעת מחיר מסודרת מגיעה רק אחרי שנדבר, ככה היא באמת מותאמת.<br><br>רוצים לדבר עכשיו? <a href="https://wa.me/972504744815" style="color:#F2622E">וואטסאפ ישיר ←</a></p>
   </div>
   <div class="foot">© Shani AI Creator · אבחון עסקי חכם</div>
 </div>
@@ -196,10 +217,13 @@
   var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
   var WA = "972504744815";
 
-  // ▼▼▼ מדידה: הדביקי כאן את המזהים (זהים ל-NEXT_PUBLIC_GA4_ID / NEXT_PUBLIC_META_PIXEL_ID). ריק = לא נטען כלום. ▼▼▼
+  // ▼▼▼ מדידה: הדביקי כאן את המזהים. ריק = לא נטען כלום, הדף עובד רגיל. ▼▼▼
+  // (זהים לערכי NEXT_PUBLIC_GA4_ID / NEXT_PUBLIC_META_PIXEL_ID של האתר)
   var GA4_ID = "G-35YVB7955E";   // GA4 Measurement ID
   var META_PIXEL_ID = "1506427107624542";   // Meta Pixel ID
   var leadFired = false;
+
+  // טעינת GA4 + Meta Pixel (רק אם יש מזהה)
   (function(){
     if (GA4_ID) {
       var s=document.createElement('script'); s.async=true;
@@ -218,17 +242,52 @@
       fbq('init', META_PIXEL_ID); fbq('track', 'PageView');
     }
   })();
+
+  // ירי אירוע ליד ל-GA4 + Meta (פעם אחת, בסיום הטופס)
   function fireLead(){
     if (leadFired) return; leadFired = true;
     try { if (typeof gtag === 'function') gtag('event','generate_lead',{currency:'ILS',source:'audit-form'}); } catch(e){}
     try { if (typeof fbq === 'function') fbq('track','Lead',{source:'audit-form'}); } catch(e){}
   }
-  // עוטף את done() כדי לירות את אירוע הליד בסיום הטופס, בלי לגעת בלוגיקה הקיימת
-  window.addEventListener('DOMContentLoaded', function(){
-    if (typeof window.done === 'function') {
-      var _origDone = window.done;
-      window.done = function(){ fireLead(); return _origDone.apply(this, arguments); };
-    }
-  });
 
-  document.querySelectorAll('.opt').forEach(fun
+  document.querySelectorAll('.opt').forEach(function(o){
+    var inp=o.querySelector('input');
+    inp.addEventListener('change',function(){
+      if(inp.type==='radio'){o.closest('.opts').querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel')});}
+      o.classList.toggle('sel', inp.checked);
+    });
+  });
+  function collect(){
+    var d={};
+    document.querySelectorAll('[data-q]').forEach(function(el){ if(el.value.trim()) d[el.dataset.q]=el.value.trim(); });
+    document.querySelectorAll('[data-multi]').forEach(function(g){ var v=[...g.querySelectorAll('input:checked')].map(function(i){return i.value}); if(v.length) d[g.dataset.multi]=v.join(", "); });
+    document.querySelectorAll('[data-single]').forEach(function(g){ var c=g.querySelector('input:checked'); if(c) d[g.dataset.single]=c.value; });
+    return d;
+  }
+  function done(){ fireLead(); document.getElementById('f').style.display='none'; document.getElementById('thanks').style.display='block'; window.scrollTo(0,0); }
+  function waFallback(d){
+    var L=["היי שני! מילאתי את האבחון",""];
+    for(var k in d) L.push("• "+k+": "+d[k]);
+    window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n")),"_blank");
+    done();
+  }
+  function send(){
+    var emailEl=document.querySelector('[data-q="אימייל"]');
+    var email=(emailEl.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+      emailEl.style.border='2px solid #e5484d';
+      emailEl.focus();
+      emailEl.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    emailEl.style.border='';
+    var d=collect();
+    if(WEBHOOK_URL){
+      fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
+        .then(function(r){ if(r.ok){done();} else {waFallback(d);} })
+        .catch(function(){waFallback(d)});
+    } else { waFallback(d); }
+  }
+</script>
+</body>
+</html>
