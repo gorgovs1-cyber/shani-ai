@@ -83,6 +83,17 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
+            name: "מודול בלוג",
+            desc: "עמוד בלוג ותבנית מאמר, מחוברים לאתר. המאמרים עצמם מתומחרים בנפרד.",
+            price: "700 ₪",
+            more: {
+              fit: "אתה רוצה שגוגל ימצא אותך גם על שאלות שאנשים מחפשים, ולא רק על השם שלך.",
+              includes: "עמוד בלוג עם רשימת המאמרים, תבנית מאמר מעוצבת, וכתובת נפרדת לכל מאמר כדי שגוגל יוכל לאנדקס אותה.",
+              forWho: "מאמנים, יועצים, מטפלים ובעלי מקצוע שיש להם ידע להסביר. כל תחום שבו לקוחות מחפשים תשובה לפני שהם מחפשים ספק.",
+              notFor: "אין לך כוונה לכתוב באופן קבוע. בלוג עם שני מאמרים ישנים עושה רושם גרוע יותר מאתר בלי בלוג.",
+            },
+          },
+          {
             name: "גרסה בשפה שנייה",
             desc: "תרגום, התאמת פריסה, ומתג שפה. 600 ₪ לדף נחיתה, 900 ₪ לאתר.",
             price: "600 ₪",
@@ -290,6 +301,17 @@ const COPY: Record<"he" | "en", Copy> = {
               notFor: "You sell products and need a cart and checkout. That is a store, and a different project.",
               exampleLabel: "lilachhazan.com",
               exampleUrl: "https://lilachhazan.com",
+            },
+          },
+          {
+            name: "Blog module",
+            desc: "A blog page and an article template, wired into the site. Articles are priced separately.",
+            price: "₪700",
+            more: {
+              fit: "You want Google to find you for the questions people search, not only for your name.",
+              includes: "A blog page listing the articles, a designed article template, and a separate URL per article so Google can index it.",
+              forWho: "Coaches, consultants, therapists and professionals with knowledge to explain. Any field where clients look for an answer before they look for a supplier.",
+              notFor: "You do not plan to write regularly. A blog with two old posts looks worse than no blog at all.",
             },
           },
           {
