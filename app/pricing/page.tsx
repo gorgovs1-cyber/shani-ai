@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
 
@@ -9,7 +10,8 @@ const WA = "972504744815";
 
 const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
-type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean };
+type More = { fit: string; includes: string; forWho: string; notFor?: string; exampleLabel?: string; exampleUrl?: string };
+type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean; more?: More };
 type Group = { title: string; items: Item[] };
 type Factor = { title: string; desc: string };
 type Step = { no: string; title: string; desc: string };
@@ -58,17 +60,40 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "דף נחיתה",
             desc: "עמוד אחד רציף. מציג מי אתם, מה אתם עושים, ואיך יוצרים קשר.",
             price: "1,500 ₪",
+            more: {
+              fit: "יש לך שירות אחד ברור להציע, או שאתה מפרסם בתשלום ורוצה מקום אחד שהפרסום מוביל אליו.",
+              includes: "עד שלושה חלקים בגלילה אחת רציפה, בלי תפריט ניווט, עם כפתור וואטסאפ קבוע.",
+              forWho: "בעלי מקצוע שעובדים לבד, מאמני כושר, קוסמטיקאיות, מדריכים, וכל מי שמריץ קמפיין ממומן ורוצה עמוד נחיתה אליו.",
+              notFor: "יש לך כמה שירותים שונים שצריך להסביר לעומק. אז אתר יעבוד לך טוב יותר.",
+              exampleLabel: "hilaeitan.com",
+              exampleUrl: "https://hilaeitan.com",
+            },
           },
           {
             name: "אתר",
             desc: "עמוד אחד עם תפריט צף וקפיצות לחלקים. מסביר שיטה או שירות לעומק, כולל שאלות נפוצות.",
-            price: "2,900 ₪",
+            price: "2,400 ₪",
+            more: {
+              fit: "אתה מסביר שיטה, תהליך או שירות, ואנשים שואלים אותך אותן שאלות לפני שהם סוגרים.",
+              includes: "חמישה עד שמונה חלקים, תפריט צף שקופץ לכל חלק, סקשן שאלות נפוצות ואזור המלצות. מבחינת תוכן ועבודה זה אתר של חמישה עד שבעה עמודים, פרוס כגלילה אחת.",
+              forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים, מעצבים וסטודיו קטן שרוצים להציג עבודות.",
+              notFor: "אתה מוכר מוצרים ורוצה עגלת קניות ותשלום באתר. זו כבר חנות, וזה פרויקט אחר.",
+              exampleLabel: "lilachhazan.com",
+              exampleUrl: "https://lilachhazan.com",
+            },
           },
           {
             name: "גרסה בשפה שנייה",
             desc: "תרגום, התאמת פריסה, ומתג שפה. 600 ₪ לדף נחיתה, 900 ₪ לאתר.",
             price: "600 ₪",
             unit: "ומעלה",
+            more: {
+              fit: "יש לך לקוחות בחו\"ל, או שאתה רוצה להופיע גם בחיפושים באנגלית.",
+              includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
+              forWho: "מיתוג אישי, יועצים שעובדים מול חו\"ל, תיירות, ומי שמגיש מועמדות בינלאומית.",
+              exampleLabel: "hilaeitan.com",
+              exampleUrl: "https://hilaeitan.com",
+            },
           },
         ],
       },
@@ -79,22 +104,43 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "אוטומציה בודדת",
             desc: "תהליך אחד שרץ לבד. תזכורת לפני תור, פנייה שנכנסת ישר לגיליון, מייל שנשלח אחרי כל לקוח.",
             price: "1,400 ₪",
+            more: {
+              fit: "יש פעולה אחת שאתה עושה ידנית כמעט כל יום, ואתה יודע בדיוק מה היא.",
+              includes: "תהליך אחד מקצה לקצה, חיבור לכלים שכבר יש לך, וניטור שמתריע אם משהו נופל.",
+              forWho: "מרפאות, מספרות, סטודיו וכל עסק שמנהל תורים, שולח תזכורות או מקליד פניות לגיליון.",
+            },
           },
           {
             name: "בוט וואטסאפ",
             desc: "עונה על השאלות שחוזרות אצלכם שוב ושוב, בעברית ובטון של העסק, מסביב לשעון.",
             price: "2,400 ₪",
+            more: {
+              fit: "אותן שתיים שלוש שאלות חוזרות אצלך כל יום, ואתה מפספס פניות בערב ובסופי שבוע.",
+              includes: "מענה בעברית בטון של העסק, שעות פעילות, והעברה אליך ברגע שהשיחה דורשת אותך.",
+              forWho: "מסעדות, מרפאות, מספרות, מכוני יופי, ונותני שירות שמקבלים הרבה הודעות.",
+              notFor: "כל פנייה אצלך שונה ודורשת שיקול דעת. אז סוכן AI נכון יותר.",
+            },
           },
           {
             name: "סוכן AI עם סקיל עברי",
             desc: "לא רק עונה. מבין הקשר, זוכר שיחה, ומבצע: קובע פגישה ביומן, מתמחר לפי הכללים שלכם, מסנן פניות.",
             price: "4,900 ₪",
+            more: {
+              fit: "כל פנייה אצלך שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
+              includes: "הבנת הקשר, זיכרון של השיחה, קביעת פגישה ביומן, תמחור לפי הכללים שלך וסינון פניות שלא מתאימות.",
+              forWho: "יועצים, בעלי מקצוע עם תמחור משתנה, ועסקים שמקבלים הרבה פניות שדורשות בירור לפני שיחה.",
+            },
           },
           {
             name: "מערכת AI מלאה",
             desc: "אתר, סוכן AI, אוטומציות וריכוז הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה בנפרד.",
             price: "7,900 ₪",
             flag: true,
+            more: {
+              fit: "אתה מתחיל מאפס, או בונה את הנוכחות הדיגיטלית מחדש ורוצה שהכל ידבר אחד עם השני.",
+              includes: "אתר, סוכן AI, אוטומציות וריכוז כל הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה של כל רכיב בנפרד.",
+              forWho: "עסקים שכבר יש להם זרם פניות קבוע והתפעול הידני מתחיל להישבר.",
+            },
           },
         ],
       },
@@ -224,17 +270,40 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "Landing page",
             desc: "One continuous page. Who you are, what you do, and how to reach you.",
             price: "₪1,500",
+            more: {
+              fit: "You have one clear service to offer, or you run paid ads and want one place they lead to.",
+              includes: "Up to three sections in a single continuous scroll, no navigation menu, with a fixed WhatsApp button.",
+              forWho: "Solo professionals, personal trainers, beauticians, instructors, and anyone running paid campaigns.",
+              notFor: "You have several different services that need depth. A website will serve you better.",
+              exampleLabel: "hilaeitan.com",
+              exampleUrl: "https://hilaeitan.com",
+            },
           },
           {
             name: "Website",
             desc: "One page with a floating menu that jumps to each section. Explains a method or a service in depth, including an FAQ.",
-            price: "₪2,900",
+            price: "₪2,400",
+            more: {
+              fit: "You explain a method, a process or a service, and people ask you the same questions before they commit.",
+              includes: "Five to eight sections, a floating menu that jumps to each one, an FAQ section and a reviews area. In content and work it is a five to seven page site, laid out as one scroll.",
+              forWho: "Coaches, therapists, consultants and independents who sell knowledge or a process. Also architects, designers and small studios showing work.",
+              notFor: "You sell products and need a cart and checkout. That is a store, and a different project.",
+              exampleLabel: "lilachhazan.com",
+              exampleUrl: "https://lilachhazan.com",
+            },
           },
           {
             name: "Second language",
             desc: "Translation, layout adaptation, and a language switch. ₪600 for a landing page, ₪900 for a website.",
             price: "₪600",
             unit: "and up",
+            more: {
+              fit: "You have clients abroad, or you want to show up in English searches too.",
+              includes: "Full translation, layout adapted to the opposite direction, and a language toggle at the top.",
+              forWho: "Personal branding, consultants working with clients abroad, tourism, and international applications.",
+              exampleLabel: "hilaeitan.com",
+              exampleUrl: "https://hilaeitan.com",
+            },
           },
         ],
       },
@@ -245,22 +314,43 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "Single automation",
             desc: "One process that runs on its own. A reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
             price: "₪1,400",
+            more: {
+              fit: "There is one action you do by hand almost every day, and you know exactly what it is.",
+              includes: "One end to end process, connected to the tools you already use, with monitoring that alerts when something fails.",
+              forWho: "Clinics, salons, studios and any business handling appointments, reminders or typing inquiries into a sheet.",
+            },
           },
           {
             name: "WhatsApp bot",
             desc: "Answers the questions you get again and again, in Hebrew and in your business tone, around the clock.",
             price: "₪2,400",
+            more: {
+              fit: "The same two or three questions come up every day, and you miss inquiries in the evening and on weekends.",
+              includes: "Answers in Hebrew in your business tone, working hours, and a handover to you the moment the conversation needs you.",
+              forWho: "Restaurants, clinics, salons, beauty studios and service providers who get a lot of messages.",
+              notFor: "Every inquiry is different and needs judgment. An AI agent is the better fit.",
+            },
           },
           {
             name: "AI agent with a Hebrew skill",
             desc: "It does more than answer. It understands context, remembers the conversation, and acts: books a meeting, quotes by your rules, filters enquiries.",
             price: "₪4,900",
+            more: {
+              fit: "Every inquiry is different and cannot be answered with a prepared reply.",
+              includes: "Context understanding, conversation memory, booking in your calendar, quoting by your rules and filtering inquiries that do not fit.",
+              forWho: "Consultants, professionals with variable pricing, and businesses with many inquiries that need qualifying before a call.",
+            },
           },
           {
             name: "Full AI system",
             desc: "Website, AI agent, automations and every enquiry in one place. All connected, priced below buying each part separately.",
             price: "₪7,900",
             flag: true,
+            more: {
+              fit: "You are starting from scratch, or rebuilding your digital presence and want everything to talk to each other.",
+              includes: "Website, AI agent, automations and all inquiries in one place. Everything connected, for less than buying each part separately.",
+              forWho: "Businesses with a steady flow of inquiries where manual handling is starting to break.",
+            },
           },
         ],
       },
@@ -353,9 +443,25 @@ const COPY: Record<"he" | "en", Copy> = {
   },
 };
 
+function MoreRow({ label, text }: { label: string; text: string }) {
+  return (
+    <p style={{ margin: "0 0 8px", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.7 }}>
+      <span style={{ color: "var(--acc)", fontWeight: 700 }}>{label}: </span>
+      {text}
+    </p>
+  );
+}
+
+const LABELS = {
+  he: { fit: "מתאים לך אם", includes: "מה כולל", forWho: "מומלץ ל", notFor: "לא מתאים אם", example: "דוגמה חיה", open: "להסבר", close: "לסגירה" },
+  en: { fit: "A fit if", includes: "What is included", forWho: "Recommended for", notFor: "Not a fit if", example: "Live example", open: "Details", close: "Close" },
+};
+
 export default function PricingPage() {
   const { lang } = useLang();
   const c = COPY[lang];
+  const L = LABELS[lang];
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const end: "left" | "right" = c.dir === "rtl" ? "left" : "right";
 
   return (
@@ -377,22 +483,86 @@ export default function PricingPage() {
                 <div
                   key={ii}
                   style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    alignItems: "baseline",
-                    gap: 14,
                     padding: "18px 0",
                     borderBottom: ii === g.items.length - 1 ? "none" : "1px solid rgba(150,143,132,.16)",
                   }}
                 >
-                  <div style={{ flex: "1 1 260px", minWidth: 0 }}>
-                    <div style={{ fontWeight: 700, fontSize: 17.5, color: it.flag ? "var(--acc)" : "var(--ink)", lineHeight: 1.4 }}>{it.name}</div>
-                    <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 14 }}>
+                    <div style={{ flex: "1 1 260px", minWidth: 0 }}>
+                      {it.more ? (
+                        <button
+                          type="button"
+                          onClick={() => setOpenKey(openKey === `${gi}-${ii}` ? null : `${gi}-${ii}`)}
+                          aria-expanded={openKey === `${gi}-${ii}`}
+                          style={{
+                            all: "unset",
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: 8,
+                            fontFamily: HEEBO,
+                            fontWeight: 700,
+                            fontSize: 17.5,
+                            lineHeight: 1.4,
+                            color: it.flag ? "var(--acc)" : "var(--ink)",
+                            borderBottom: "1px dashed rgba(242,98,46,.55)",
+                            paddingBottom: 1,
+                          }}
+                        >
+                          <span>{it.name}</span>
+                          <span
+                            aria-hidden
+                            style={{
+                              fontSize: 11,
+                              color: "var(--acc)",
+                              transform: openKey === `${gi}-${ii}` ? "rotate(180deg)" : "none",
+                              transition: "transform .18s",
+                              display: "inline-block",
+                            }}
+                          >
+                            ▼
+                          </span>
+                        </button>
+                      ) : (
+                        <div style={{ fontWeight: 700, fontSize: 17.5, color: it.flag ? "var(--acc)" : "var(--ink)", lineHeight: 1.4 }}>{it.name}</div>
+                      )}
+                      <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
+                    </div>
+                    <div style={{ whiteSpace: "nowrap", textAlign: end }}>
+                      <div style={{ fontWeight: 800, fontSize: 22, color: "var(--acc)", letterSpacing: "-0.02em" }}>{it.price}</div>
+                      {it.unit ? <div style={{ fontSize: 12.5, color: "var(--muted2)", fontWeight: 500 }}>{it.unit}</div> : null}
+                    </div>
                   </div>
-                  <div style={{ whiteSpace: "nowrap", textAlign: end }}>
-                    <div style={{ fontWeight: 800, fontSize: 22, color: "var(--acc)", letterSpacing: "-0.02em" }}>{it.price}</div>
-                    {it.unit ? <div style={{ fontSize: 12.5, color: "var(--muted2)", fontWeight: 500 }}>{it.unit}</div> : null}
-                  </div>
+
+                  {it.more && openKey === `${gi}-${ii}` ? (
+                    <div
+                      style={{
+                        marginTop: 14,
+                        background: "rgba(242,98,46,.07)",
+                        border: "1px solid rgba(242,98,46,.28)",
+                        borderRadius: 14,
+                        padding: "16px 18px",
+                      }}
+                    >
+                      <MoreRow label={L.fit} text={it.more.fit} />
+                      <MoreRow label={L.includes} text={it.more.includes} />
+                      <MoreRow label={L.forWho} text={it.more.forWho} />
+                      {it.more.notFor ? <MoreRow label={L.notFor} text={it.more.notFor} /> : null}
+                      {it.more.exampleUrl ? (
+                        <div style={{ marginTop: 10 }}>
+                          <span style={{ color: "var(--acc)", fontWeight: 700, fontSize: 14 }}>{L.example}: </span>
+                          <a
+                            href={it.more.exampleUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "var(--ink)", fontSize: 14.5, fontWeight: 600 }}
+                          >
+                            {it.more.exampleLabel} ↗
+                          </a>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
                 </div>
               ))}
             </div>
