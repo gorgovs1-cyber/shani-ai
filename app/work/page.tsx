@@ -3,7 +3,7 @@ import { projects } from "@/lib/projects";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "עבודות — Shani AI Creator",
+  title: "עבודות · Shani AI Creator",
   description: "פרויקטים קולנועיים, אפליקציות פול-סטאק ואוטומציות AI לעסקים בישראל.",
 };
 
