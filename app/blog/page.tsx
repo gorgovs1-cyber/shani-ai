@@ -3,8 +3,8 @@ import { sortedPosts } from "@/lib/posts";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "בלוג — Shani AI Creator",
-  description: "מחשבות על עסקים, אוטומציה ו-AI — מהזווית של מי שמגיעה מעולם העסקים, לא מההייטק.",
+  title: "בלוג · Shani AI Creator",
+  description: "מחשבות על עסקים, אוטומציה ו-AI, מהזווית של מי שמגיעה מעולם העסקים, לא מההייטק.",
 };
 
 function fmtDate(iso: string) {
@@ -17,7 +17,7 @@ export default function BlogPage() {
       <section style={{ padding: "10rem clamp(1.5rem, 5vw, 5rem) 5rem" }} dir="rtl">
         <div className="label" style={{ marginBottom: "1.5rem", color: "var(--signal)" }}>מחשבות אחרונות</div>
         <h1 className="display-lg" style={{ color: "var(--cream)", marginBottom: "4rem", maxWidth: 700 }}>
-          מהשטח — על עסקים, AI ומה שביניהם
+          מהשטח · על עסקים, AI ומה שביניהם
         </h1>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
