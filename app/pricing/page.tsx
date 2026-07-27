@@ -28,8 +28,6 @@ type Copy = {
   tools: string[];
   toolsNote: string;
   maintNote: string;
-  friendTitle: string;
-  friendText: string;
   processTitle: string;
   steps: Step[];
   principlesTitle: string;
@@ -51,7 +49,7 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "05 · מחירים",
     title: "מחירים.",
     intro:
-      "כל המחירים כאן סופיים ומלאים. בלי תוספות שמתגלות בסוף, ובלי מחיר שמשתנה לפי מי שואל. אם משהו לא ברור, אפשר פשוט לשאול.",
+      "כל המחירים כאן סופיים ומלאים. בלי תוספות שמתגלות בסוף, ובלי מחיר שמשתנה לפי מי שואל.",
     groups: [
       {
         title: "אתרים",
@@ -151,9 +149,6 @@ const COPY: Record<"he" | "en", Copy> = {
     ],
     toolsNote:
       "האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. אתר וורדפרס עולה 60 עד 100 שקל בחודש, כל עוד הוא באוויר.",
-    friendTitle: "מחיר חבר",
-    friendText:
-      "מי שהגיע דרך המלצה של לקוח שלי מקבל 20% הנחה על כל פרויקט. זה כתוב כאן כדי שיהיה ברור לכולם, ולא משהו שצריך לבקש. התחזוקה החודשית היא ממילא במחיר אחד לכולם.",
     processTitle: "איך נראה התהליך",
     steps: [
       { no: "01", title: "אבחון קצר", desc: "טופס קצר על העסק, הכלים והמשימות שחוזרות על עצמן. בלי עלות." },
@@ -220,7 +215,7 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "05 · Pricing",
     title: "Pricing.",
     intro:
-      "Every price here is final and complete. No extras that surface at the end, and no price that changes depending on who is asking. If something is unclear, just ask.",
+      "Every price here is final and complete. No extras that surface at the end, and no price that changes depending on who is asking.",
     groups: [
       {
         title: "Websites",
@@ -320,9 +315,6 @@ const COPY: Record<"he" | "en", Copy> = {
     ],
     toolsNote:
       "The sites are built in code, so they carry no monthly hosting cost. A WordPress site costs ₪60 to ₪100 every month for as long as it is live.",
-    friendTitle: "Referral price",
-    friendText:
-      "Anyone who comes through a recommendation from one of my clients gets 20% off any project. It is written here so it is clear to everyone, and not something you need to ask for. Monthly care is one price for everyone.",
     processTitle: "How it works",
     steps: [
       { no: "01", title: "Short audit", desc: "A short form about your business, your tools and the tasks that repeat. Free." },
@@ -421,7 +413,7 @@ export default function PricingPage() {
         </div>
 
         {/* Tools */}
-        <div style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 26px", marginBottom: 40 }}>
+        <div style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 26px", marginBottom: 64 }}>
           <h2 style={{ fontWeight: 800, fontSize: 21, color: "var(--ink)", margin: "0 0 12px" }}>{c.toolsTitle}</h2>
           <p style={{ margin: "0 0 12px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7 }}>{c.toolsIntro}</p>
           {c.tools.map((p, i) => (
@@ -430,12 +422,6 @@ export default function PricingPage() {
             </p>
           ))}
           <p style={{ margin: "12px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.7 }}>{c.toolsNote}</p>
-        </div>
-
-        {/* Referral price */}
-        <div style={{ background: "linear-gradient(135deg, rgba(242,98,46,.14), rgba(242,98,46,.04))", border: "1px solid rgba(242,98,46,.35)", borderRadius: 20, padding: "24px 26px", marginBottom: 64 }}>
-          <div style={{ fontWeight: 800, fontSize: 19, color: "var(--acc)", marginBottom: 8 }}>{c.friendTitle}</div>
-          <p style={{ margin: 0, color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.75 }}>{c.friendText}</p>
         </div>
 
         {/* Process */}
