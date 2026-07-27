@@ -28,14 +28,6 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
     sub: "תוצאות אמיתיות מעסקים אמיתיים.",
     items: [
       {
-        name: "מאור",
-        city: "בעל עסק",
-        result: "האוטומציה עונה במקומו",
-        quote:
-          "שני זיהתה בדיוק איפה בזבזתי זמן, ובנתה לי אוטומציה שמטפלת בפניות לבד. אני כבר לא עונה לאותן שאלות עשר פעמים ביום.",
-        photo: "", // "/testimonials/xxx.jpg"
-      },
-      {
         name: "הילה איתן",
         city: "מיתוג אישי",
         result: "דף אישי ממותג באוויר",
@@ -58,14 +50,6 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
     title: "What clients say.",
     sub: "Real results from real businesses.",
     items: [
-      {
-        name: "Maor",
-        city: "Business owner",
-        result: "Automation answers for him",
-        quote:
-          "Shani found exactly where I was wasting time and built me an automation that handles inquiries on its own. I no longer answer the same questions ten times a day.",
-        photo: "",
-      },
       {
         name: "Hila Eitan",
         city: "Personal brand",
