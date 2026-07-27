@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = posts.find((p) => p.slug === params.slug);
   if (!post) return {};
-  return { title: `${post.title} — Shani AI Creator`, description: post.excerpt };
+  return { title: `${post.title} · Shani AI Creator`, description: post.excerpt };
 }
 
 function fmtDate(iso: string) {
@@ -60,7 +60,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
 
           {post.draft && (
             <div style={{ marginTop: "2.5rem", padding: "1rem 1.25rem", background: "var(--signal-soft)", border: "1px solid var(--signal-line)", borderRadius: 12, fontSize: "0.85rem", color: "var(--mist)" }}>
-              ✎ זו טיוטה — שלד הפוסט. להרחיב ולאשר לפני פרסום.
+              ✎ זו טיוטה, שלד הפוסט. להרחיב ולאשר לפני פרסום.
             </div>
           )}
 
