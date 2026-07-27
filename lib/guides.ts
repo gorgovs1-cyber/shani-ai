@@ -50,7 +50,7 @@ export const guides: Guide[] = [
     title: "לתת ל-Claude לצפות בסרטוני וידאו",
     titleEn: "Let Claude watch videos",
     description:
-      "התקנה מלאה של הסקיל /watch — Claude מוריד, צופה ומנתח ריילסים מאינסטגרם, טיקטוק ויוטיוב. מושלם לפירוק ריילסים של מתחרים.",
+      "התקנה מלאה של הסקיל /watch. Claude מוריד, צופה ומנתח ריילסים מאינסטגרם, טיקטוק ויוטיוב. מושלם לפירוק ריילסים של מתחרים.",
     descriptionEn:
       "Full install of the /watch skill — Claude downloads, watches and analyzes reels from Instagram, TikTok and YouTube. Perfect for breaking down competitors' reels.",
     tag: "מדריך",
@@ -76,7 +76,7 @@ export const guides: Guide[] = [
     title: "לבנות אתר מותג בגלילה קולנועית עם AI",
     titleEn: "Build a cinematic brand website with AI",
     description:
-      "השיטה לבניית אתר תדמית יוקרתי בקובץ אחד עם Claude — בלי קוד. כולל המפרט המדויק לבנייה.",
+      "השיטה לבניית אתר תדמית יוקרתי בקובץ אחד עם Claude, בלי קוד. כולל המפרט המדויק לבנייה.",
     descriptionEn:
       "The method for building a luxury single-file brand website with Claude — no code. Includes the exact build spec.",
     tag: "אתרים",
@@ -89,7 +89,7 @@ export const guides: Guide[] = [
     title: "לבנות אוטומציות n8n מפרומפט אחד עם Claude",
     titleEn: "Ship n8n automations from one prompt with Claude",
     description:
-      "איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש — בלי קוד, מתיאור בשפה רגילה. כולל ההוראות המדויקות ודוגמאות.",
+      "איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש, בלי קוד, מתיאור בשפה רגילה. כולל ההוראות המדויקות ודוגמאות.",
     descriptionEn:
       "Set up a Claude Project that turns a single sentence into a working n8n automation — no code. Includes the exact instructions and examples.",
     tag: "אוטומציות",
