@@ -2,7 +2,7 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navTestimonials:'המלצות', navGuides:'מדריכים', navCta:'בואו נדבר',
-    navPricing:'השקעה', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ AI', navServices:'שירותים',
+    navPricing:'מחירים', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ AI', navServices:'שירותים',
     footerSeo:'בונה אתרים, אוטומציות וכלי AI לעסקים בתל אביב, רמת גן, הרצליה, ירושלים, חיפה, באר שבע והשרון — ואונליין בכל הארץ.',
     role:'SHANI AI CREATOR',
     heroTitle:'מכניסה AI לעסק שלכם, בלי כאב ראש.',
@@ -95,7 +95,7 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navTestimonials:'Reviews', navGuides:'Guides', navCta:"Let's talk",
-    navPricing:'Investment', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'AI Consulting', navServices:'Services',
+    navPricing:'Pricing', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'AI Consulting', navServices:'Services',
     footerSeo:'Building websites, automations and AI tools for businesses in Tel Aviv, Ramat Gan, Herzliya, Jerusalem, Haifa, Beer Sheva and the Sharon — and online across Israel.',
     role:'SHANI AI CREATOR',
     heroTitle:'Bring AI into your business, without the headache.',
