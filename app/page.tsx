@@ -5,7 +5,6 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import LeadMagnet from "@/components/LeadMagnet";
-import CTAStrip from "@/components/CTAStrip";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -21,7 +20,6 @@ export default function Home() {
       <About />
       <Process />
       <LeadMagnet />
-      <CTAStrip />
       <TestimonialsSection />
       <FAQ />
       <Contact />
