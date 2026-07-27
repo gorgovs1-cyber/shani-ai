@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Shani AI Creator`,
+    title: `${project.title} · Shani AI Creator`,
     description: project.tagline,
   };
 }
