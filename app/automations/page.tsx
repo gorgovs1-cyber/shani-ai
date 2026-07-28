@@ -30,11 +30,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "אוטומציה לוואטסאפ לעסק, איך זה עובד?",
-        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. אפשר להקים בוט כפרויקט חד-פעמי או כחלק ממנוי Shani Care עם תחזוקה שוטפת.",
+        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. אפשר להקים בוט כפרויקט חד-פעמי, ולהוסיף תחזוקה חודשית רק אם רוצים.",
       },
       {
         h: "כמה עולה אוטומציה לעסק?",
-        p: "תלוי מה בונים: אוטומציה בודדת ללכידת לידים היא פרויקט אחד, מערכת שמחברת וואטסאפ, יומן, מייל וגיליונות היא פרויקט אחר. לכן אין מחירון קבוע, יש הצעה אישית: ממלאים אבחון חינם, מדברים רבע שעה, ותוך יום מקבלים הצעה עם מחיר סופי. עלויות שוטפות של כלים תמיד מפורטות בנפרד ועל שמכם.",
+        p: "תלוי מה בונים: אוטומציה בודדת ללכידת לידים היא פרויקט אחד, מערכת שמחברת וואטסאפ, יומן, מייל וגיליונות היא פרויקט אחר. המחירים מפורסמים במלואם בעמוד המחירים: אוטומציה בודדת ₪1,400, בוט וואטסאפ ₪2,400, סוכן AI ₪4,900, ומערכת מלאה ₪7,900. עלויות שוטפות של כלים תמיד מפורטות בנפרד ועל שמכם.",
       },
       {
         h: "מכונת הלידים שלי, הדגמה חיה",
@@ -53,7 +53,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "מה קורה אם האוטומציה נתקעת?",
-        a: "אני בונה את האוטומציות עם גיבוי, למשל אם וובהוק נכשל, הפנייה עדיין מגיעה אליכם בוואטסאפ, כך ששום ליד לא הולך לאיבוד. במנוי Shani Care אני מנטרת את האוטומציות ומתקנת בעיות לפני שאתם בכלל שמים לב.",
+        a: "אני בונה את האוטומציות עם גיבוי, למשל אם וובהוק נכשל, הפנייה עדיין מגיעה אליכם בוואטסאפ, כך ששום ליד לא הולך לאיבוד. בתחזוקה החודשית אני מנטרת את האוטומציות ומתקנת בעיות לפני שאתם בכלל שמים לב.",
       },
       {
         q: "האוטומציה תעבוד בעברית?",
@@ -94,11 +94,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "WhatsApp automation for business, how does it work?",
-        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A bot can be a one-off project or part of a Shani Care plan with ongoing maintenance.",
+        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A bot can be a one-off project, with monthly care added only if you want it.",
       },
       {
         h: "How much does business automation cost?",
-        p: "It depends on what we build: a single lead-capture automation is one project, a system connecting WhatsApp, calendar, email and sheets is another. So there is no fixed price list, there is a personal proposal: fill in the free audit, talk for fifteen minutes, and within a day you get a proposal with a final price. Running tool costs are always itemized separately, in your name.",
+        p: "It depends on what we build: a single lead-capture automation is one project, a system connecting WhatsApp, calendar, email and sheets is another. The full price list is published on the pricing page: single automation 1,400 NIS, WhatsApp bot 2,400 NIS, AI agent 4,900 NIS and a full system 7,900 NIS. Running tool costs are always itemized separately, in your name.",
       },
       {
         h: "My lead machine, a live demo",
@@ -117,7 +117,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "What happens if the automation breaks?",
-        a: "I build automations with a fallback, for example if a webhook fails, the inquiry still reaches you on WhatsApp, so no lead is ever lost. On a Shani Care membership I monitor the automations and fix issues before you even notice.",
+        a: "I build automations with a fallback, for example if a webhook fails, the inquiry still reaches you on WhatsApp, so no lead is ever lost. With monthly care I monitor the automations and fix issues before you even notice.",
       },
       {
         q: "Will the automation work in Hebrew?",

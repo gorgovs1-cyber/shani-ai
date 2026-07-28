@@ -2,8 +2,8 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navTestimonials:'המלצות', navGuides:'מדריכים', navCta:'בואו נדבר',
-    navPricing:'השקעה', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ AI', navServices:'שירותים',
-    footerSeo:'בונה אתרים, אוטומציות וכלי AI לעסקים בתל אביב, רמת גן, הרצליה, ירושלים, חיפה, באר שבע והשרון — ואונליין בכל הארץ.',
+    navPricing:'מחירים', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ AI', navServices:'שירותים',
+    footerSeo:'בונה אתרים, אוטומציות וכלי AI לעסקים בתל אביב, רמת גן, הרצליה, ירושלים, חיפה, באר שבע והשרון, ואונליין בכל הארץ.',
     role:'SHANI AI CREATOR',
     heroTitle:'מכניסה AI לעסק שלכם, בלי כאב ראש.',
     heroSub:'אני ממפה איפה AI יחסוך לכם הכי הרבה זמן, בונה לכם אוטומציות שעובדות 24/7, כלים וסקילים בעברית שמתאימים בדיוק לעסק, וגם אתרים שמביאים לקוחות. פחות עומס, יותר תוצאות.',
@@ -14,7 +14,7 @@ export const dict = {
     galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'←',
     buildKicker:'02 · מה אני בונה', buildTitle:'AI שעובד בשבילכם.', buildSub:'אסטרטגיה, אוטומציות, כלים, וגם אתר. כל מה שצריך כדי שהעסק ירוץ חכם יותר.', servicesCta:'שלחו לי הודעה',
     aboutKicker:'03 · עליי', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
-    processKicker:'04 · איך אני עובדת', processTitle:'מרעיון למוצר.', processSub:'תהליך ברור בחמישה שלבים, את מעורבת לאורך כל הדרך.',
+    processKicker:'04 · איך אני עובדת', processTitle:'מרעיון למוצר.', processSub:'תהליך ברור בחמישה שלבים, אתם מעורבים לאורך כל הדרך.',
     contactTitle:'בואו נבנה משהו מעולה',
     contactSub:'רוצים להכניס AI לעסק, לבנות אוטומציה שתחסוך לכם שעות, או להקים אתר שמביא לקוחות? בואו נדבר.',
     contactCta1:'דברו איתי בוואטסאפ', contactCta2:'שלחו לי מייל',
@@ -39,11 +39,11 @@ export const dict = {
     ],
     faqKicker:'07 · שאלות נפוצות', faqTitle:'כל מה שרציתם לדעת.',
     faqItems:[
-      {q:'כמה עולה לבנות אתר או אוטומציה לעסק?', a:'אין מחירון קבוע, כי כל עסק צריך משהו אחר, וזה בדיוק ההבדל בין פתרון שעובד לתבנית. התהליך שקוף: ממלאים אבחון חינם של שלוש דקות, מדברים רבע שעה, ותוך יום מקבלים הצעה אישית עם מחיר סופי. מה שנסגר הוא מה שמשלמים, ועלויות כלים שוטפות תמיד בנפרד ובשקיפות.'},
-      {q:'כמה זמן לוקח לבנות?', a:'דף נחיתה מוכן תוך 7 עד 10 ימים, אתר תדמית תוך שבועיים עד שלושה, ופרויקטים מורכבים עד 4 שבועות. אני עובדת בפיתוח מבוסס-AI, כך שהמסירה מהירה משמעותית מהתעשייה בלי להתפשר על האיכות. לכל חבילה זמן מסירה מוגדר מראש.'},
-      {q:'מה אם לא אהיה מרוצה מהתוצאה?', a:'העבודה מלווה אתכם לאורך כל הדרך: מגדירים ביחד את הכיוון, ואני מציגה גרסאות לאישור בכל שלב, כך שאין הפתעות בסוף. כל חבילה כוללת סבבי שינויים, ואם צריך עוד, אפשר להוסיף. המטרה שלי היא שתצאו עם נכס שאתם גאים בו, לא רק "לסמן וי".'},
+      {q:'כמה עולה לבנות אתר או אוטומציה לעסק?', a:'המחירון מפורסם במלואו בעמוד המחירים. דף נחיתה 1,500 ₪, אתר 2,400 ₪, אוטומציה בודדת 1,400 ₪, בוט וואטסאפ 2,400 ₪, סוכן AI 4,900 ₪ ומערכת מלאה 7,900 ₪. אלה מחירים סופיים, ועלויות כלים שוטפות תמיד בנפרד ועל שמכם.'},
+      {q:'כמה זמן לוקח לבנות?', a:'אתר: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. מערכת מלאה לוקחת יותר, ולוח הזמנים המדויק נמצא בהצעה. אני עובדת בפיתוח מבוסס-AI, ולכן המסירה מהירה מהמקובל בתעשייה בלי להתפשר על האיכות.'},
+      {q:'מה אם לא אהיה מרוצה מהתוצאה?', a:'העבודה מלווה אתכם לאורך כל הדרך: מגדירים ביחד את הכיוון, ואני מציגה גרסאות לאישור בכל שלב, כך שאין הפתעות בסוף. כל פרויקט כולל שני סבבי שינויים, ואם צריך עוד, סבב נוסף עולה 350 ₪ ומתומחר מראש. המטרה שלי היא שתצאו עם נכס שאתם גאים בו, לא רק "לסמן וי".'},
       {q:'למה אתר אצלך יותר יקר מוויקס או אלמנטור?', a:'כי זה לא אותו מוצר. תבנית וויקס נראית כמו עוד תבנית, נטענת לאט ומוגבלת ב-SEO. אני בונה קוד קאסטום Next.js, מהיר, עם Lighthouse גבוה, SEO אמיתי, אנימציות קולנועיות, ובעלות מלאה שלכם על הקוד, בלי דמי מנוי כפויים. ומעל הכל, אני מחברת אוטומציות ו-AI שאף תבנית לא נותנת. משלמים יותר, מקבלים נכס שמחזיר את עצמו.'},
-      {q:'האם יש התחייבות לטווח ארוך?', a:'בפרויקט חד-פעמי אין שום התחייבות מתמשכת, מסיימים ואתם חופשיים עם הקוד שלכם. מנוי Shani Care הוא חודשי בלבד, עם ביטול בהתראה של 30 יום. אתם בשליטה מלאה.'},
+      {q:'האם יש התחייבות לטווח ארוך?', a:'בפרויקט חד-פעמי אין שום התחייבות מתמשכת, מסיימים ואתם חופשיים עם הקוד שלכם. גם התחזוקה החודשית היא בלי התחייבות: אפשר להפסיק בכל חודש, והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.'},
       {q:'לא בטוחים מאיפה להתחיל?', a:'מתחילים עם אבחון AI חינם, שיחה ממוקדת שבסיומה תקבלו תוכנית עבודה ברורה: מה להטמיע, באיזה סדר, ואילו כלים ואוטומציות יחסכו לכם הכי הרבה זמן, בלי התחייבות.'}
     ],
     steps:[
@@ -67,7 +67,7 @@ export const dict = {
     ctaStripBtn:'דברו איתי בוואטסאפ ←',
     testimonials:{
       label:'06 · המלצות',
-      title:'מה לקוחות אומרות.',
+      title:'מה לקוחות אומרים.',
       items:[
         {
           quote:'שני לימדה אותי לדבר עם AI בעברית אמיתית. חודש של תוכן הפך להיות עניין של שעתיים. לא האמנתי שזה אפשרי.',
@@ -95,7 +95,7 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navTestimonials:'Reviews', navGuides:'Guides', navCta:"Let's talk",
-    navPricing:'Investment', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'AI Consulting', navServices:'Services',
+    navPricing:'Pricing', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'AI Consulting', navServices:'Services',
     footerSeo:'Building websites, automations and AI tools for businesses in Tel Aviv, Ramat Gan, Herzliya, Jerusalem, Haifa, Beer Sheva and the Sharon — and online across Israel.',
     role:'SHANI AI CREATOR',
     heroTitle:'Bring AI into your business, without the headache.',
@@ -132,11 +132,11 @@ export const dict = {
     ],
     faqKicker:'07 · FAQ', faqTitle:'Everything you need to know.',
     faqItems:[
-      {q:'How much does a website or automation cost?', a:'There is no fixed price list, because every business needs something different, which is exactly the difference between a working solution and a template. The process is transparent: fill in the free three-minute audit, talk for fifteen minutes, and within a day you get a personal proposal with a final price. What we agree on is what you pay, and running tool costs are always itemized separately.'},
-      {q:'How long does it take to build?', a:'A landing page is ready in 7 to 10 days, a brand website in two to three weeks, and complex projects up to four. I work with AI-assisted development, so delivery is significantly faster than the industry without compromising quality. Every package has a delivery time set upfront.'},
-      {q:"What if I'm not happy with the result?", a:'The work involves you the whole way: we define the direction together and I present versions for approval at every stage, so there are no surprises at the end. Every package includes revision rounds, and more can be added if needed. My goal is for you to walk away with an asset you\'re proud of, not just a box ticked.'},
+      {q:'How much does a website or automation cost?', a:'The full price list is published on the pricing page. Landing page 1,500 NIS, website 2,400 NIS, single automation 1,400 NIS, WhatsApp bot 2,400 NIS, AI agent 4,900 NIS and a full system 7,900 NIS. These are final prices, and running tool costs are always separate and in your name.'},
+      {q:'How long does it take to build?', a:'Website: a full first version within five working days of receiving your materials, and live within one to two weeks. A full system takes longer, and the exact timeline is in the proposal. I work with AI-assisted development, so delivery is faster than the industry standard without compromising quality.'},
+      {q:"What if I'm not happy with the result?", a:'The work involves you the whole way: we define the direction together and I present versions for approval at every stage, so there are no surprises at the end. Every project includes two revision rounds, and an extra round is 350 NIS, priced upfront. My goal is for you to walk away with an asset you\'re proud of, not just a box ticked.'},
       {q:'Why is a site with you pricier than Wix or Elementor?', a:"Because it isn't the same product. A Wix template looks like another template, loads slowly and is limited on SEO. I build custom Next.js code, fast, with a high Lighthouse score, real SEO, cinematic animation, and full ownership of the code, with no forced subscription. Above all, I wire in automations and AI no template can give you. You pay more, you get an asset that pays for itself."},
-      {q:'Is there a long-term commitment?', a:'A one-off project has no ongoing commitment, we finish and you\'re free with your code. The Shani Care membership is monthly only, cancellable with 30 days\' notice. You stay in full control.'},
+      {q:'Is there a long-term commitment?', a:'A one-off project has no ongoing commitment, we finish and you\'re free with your code. Monthly care has no commitment either: you can stop any month and the site keeps working. If you prefer, you just reach out when you need something and get a quote for that job.'},
       {q:'Not sure where to start?', a:'Start with a free AI Audit, a focused session that ends with a clear action plan: what to implement, in what order, and which tools and automations will save you the most time, no commitment.'}
     ],
     steps:[

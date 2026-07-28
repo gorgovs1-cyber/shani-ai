@@ -26,7 +26,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "כמה עולה לבנות אתר לעסק?",
-        p: "אין לי מחירון קבוע, כי אתר של עמוד אחד ואתר עם חמישה עמודים, אנימציות וחיבורים למערכות הם פרויקטים שונים לגמרי. המחיר תלוי בכמות העמודים, בתוכן, במורכבות האנימציות ובחיבורים. התהליך פשוט: אבחון חינם של שלוש דקות, שיחה קצרה, והצעה אישית עם מחיר סופי תוך יום. מה שנסגר הוא מה שמשלמים, בלי הפתעות.",
+        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר 2,400 ₪, וגרסה בשפה שנייה 600 ₪ לדף נחיתה או 900 ₪ לאתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
       },
       {
         h: "למה אתר בקוד עדיף על וויקס או אלמנטור?",
@@ -34,7 +34,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "כמה זמן לוקח לבנות אתר?",
-        p: "דף נחיתה מוכן תוך 7 עד 10 ימים, אתר תדמית תוך שבועיים עד שלושה. אני עובדת בשיטות פיתוח מבוססות-AI, מה שמאפשר לספק אתר מהיר, נקי ומדויק בזמן קצר בהרבה מהתעשייה, בלי להתפשר על האיכות.",
+        p: "גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אני עובדת בפיתוח מבוסס-AI, ולכן המסירה מהירה מהמקובל בתעשייה בלי להתפשר על האיכות.",
       },
       {
         h: "האם האתר יהיה מחובר לאוטומציות ו-AI?",
@@ -49,11 +49,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "אני אוכל לערוך את האתר בעצמי אחר כך?",
-        a: "תלוי מה רוצים לערוך. עדכוני תוכן שוטפים אפשר לנהל דרך מנוי Shani Care (עדכונים חודשיים), או שאני בונה ממשק ניהול פשוט לתכנים שמשתנים הרבה. שינויים עיצוביים עמוקים עדיף להשאיר לי, כדי לשמור על האיכות.",
+        a: "תלוי מה רוצים לערוך. עדכוני תוכן שוטפים אפשר לנהל דרך התחזוקה החודשית, או שאני בונה ממשק ניהול פשוט לתכנים שמשתנים הרבה. שינויים עיצוביים עמוקים עדיף להשאיר לי, כדי לשמור על האיכות.",
       },
       {
         q: "מה עם דומיין ואחסון?",
-        a: "אני מלווה אתכם ברכישת הדומיין ומעלה את האתר לאחסון מהיר ומאובטח. במנוי Shani Care אני מנהלת עבורכם את האחסון, הדומיין, הגיבויים והניטור, כך שאתם לא צריכים להתעסק בזה בכלל.",
+        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, כ-74 ₪ לשנה, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. בתחזוקה החודשית אני שומרת על העדכונים, הגיבויים והניטור, ואתם לא תלויים בי לשום דבר.",
       },
       {
         q: "האתר יהיה בעברית ובאנגלית?",
@@ -90,7 +90,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "How much does a business website cost?",
-        p: "There is no fixed price list, because a one-page site and a five-page site with animations and integrations are completely different projects. Price depends on page count, content, animation complexity and integrations. The process is simple: a free three-minute audit, a short call, and a personal proposal with a final price within a day. What we agree on is what you pay, no surprises.",
+        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, website 2,400 NIS, and a second-language version 600 NIS for a landing page or 900 NIS for a website. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
       },
       {
         h: "Why is coded better than Wix or Elementor?",
@@ -98,7 +98,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "How long does a website take?",
-        p: "A landing page is ready in 7 to 10 days, a brand site in two to three weeks. I work with AI-assisted development methods, which lets me deliver a fast, clean, precise site far quicker than the industry norm, without compromising quality.",
+        p: "A full first version within five working days of receiving your materials, and live within one to two weeks. I work with AI-assisted development, so delivery is faster than the industry norm without compromising quality.",
       },
       {
         h: "Will the site connect to automations and AI?",
@@ -113,11 +113,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "Can I edit the site myself later?",
-        a: "Depends what you want to edit. Ongoing content updates can run through a Shani Care membership (monthly updates), or I build a simple admin for content that changes often. Deeper design changes are best left to me, to keep quality high.",
+        a: "Depends what you want to edit. Ongoing content updates can run through monthly care, or I build a simple admin for content that changes often. Deeper design changes are best left to me, to keep quality high.",
       },
       {
         q: "What about domain and hosting?",
-        a: "I guide you through buying the domain and deploy the site to fast, secure hosting. On a Shani Care membership I manage hosting, domain, backups and monitoring for you, so you don't have to touch any of it.",
+        a: "The domain is registered in your name and on your card, around 74 NIS a year, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost. With monthly care I handle updates, backups and monitoring, and you are never dependent on me.",
       },
       {
         q: "Will the site be in Hebrew and English?",

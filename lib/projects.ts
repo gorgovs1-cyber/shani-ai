@@ -30,7 +30,7 @@ export const projects: Project[] = [
     tagline: "עסקים שמפספסים לידים כי אין מי שיענה בזמן.",
     taglineEn: "Businesses losing leads because no one answers in time.",
     description:
-      "בעיה: פניות נופלות בין הכיסאות ולקוחות אבודים. פתרון: מכונת לידים מקצה לקצה — טופס אבחון חכם ← אוטומציית n8n ← CRM בגוגל שיטס ← מיילים ממותגים ← מנוע Claude שכותב תכנית והצעת מחיר מלאה לכל ליד, אוטומטית. תוצאה: כל פנייה מקבלת מענה ותכנית תוך שניות, 24/7, בלי מגע יד.",
+      "בעיה: פניות נופלות בין הכיסאות ולקוחות אבודים. פתרון: מכונת לידים מקצה לקצה. טופס אבחון חכם ← אוטומציית n8n ← CRM בגוגל שיטס ← מיילים ממותגים ← מנוע Claude שכותב תכנית והצעת מחיר מלאה לכל ליד, אוטומטית. תוצאה: כל פנייה מקבלת מענה ותכנית תוך שניות, 24/7, בלי מגע יד.",
     descriptionEn:
       "Problem: inquiries fall through the cracks and leads are lost. Solution: an end-to-end lead machine — a smart intake form → n8n automation → Google Sheets CRM → branded emails → a Claude engine that writes a full plan and proposal for every lead, automatically. Result: every inquiry gets a response and a plan within seconds, 24/7, hands-free.",
     tech: ["n8n", "Claude API", "Google Sheets", "Gmail API", "Webhooks", "HTML/CSS"],
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     tagline: "יצירת תוכן עקבי אוכלת שעות בכל שבוע.",
     taglineEn: "Consistent content creation eats hours every week.",
     description:
-      "בעיה: תוכן עקבי לרשתות דורש שעות בכל שבוע, והעקביות נשברת ברגע שהעומס עולה. פתרון: סוכן Claude שקורא מסמך מותג קבוע — קול, צבעים, פורמטים ולוח פרסום — ומנסח שבוע שלם של תוכן: רילים, קרוסלות וסטוריז, מוכנים לעריכה קצרה ופרסום. תוצאה: מעבר משעות מול דף ריק לבחירה מתוך בנק תוכן מוכן, עם קול מותג אחיד לאורך זמן.",
+      "בעיה: תוכן עקבי לרשתות דורש שעות בכל שבוע, והעקביות נשברת ברגע שהעומס עולה. פתרון: סוכן Claude שקורא מסמך מותג קבוע עם קול, צבעים, פורמטים ולוח פרסום, ומנסח שבוע שלם של תוכן: רילים, קרוסלות וסטוריז, מוכנים לעריכה קצרה ופרסום. תוצאה: מעבר משעות מול דף ריק לבחירה מתוך בנק תוכן מוכן, עם קול מותג אחיד לאורך זמן.",
     descriptionEn:
       "Problem: consistent social content takes hours every week, and consistency breaks the moment the workload rises. Solution: a Claude agent that reads a fixed brand document — voice, colors, formats and publishing calendar — and drafts a full week of content: reels, carousels and stories, ready for a quick edit and publish. Result: from hours in front of a blank page to picking from a ready content bank, with a consistent brand voice over time.",
     tech: ["Claude API", "Scheduled Agents", "n8n", "Brand System", "Content Ops"],
