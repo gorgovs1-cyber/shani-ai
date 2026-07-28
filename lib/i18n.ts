@@ -16,7 +16,6 @@ export const dict = {
         { label: "עבודות", href: "#work" },
         { label: "שירותים", href: "#services" },
         { label: "עליי", href: "#about" },
-        { label: "בלוג", href: "/blog" },
       ],
       cta: "דברו איתי",
       menu: "תפריט",
