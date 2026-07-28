@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-<meta charset="UTF-8">
+<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>הצעה לאתר · גיא הירשהורן · SHANI AI</title>
-<meta name="robots" content="noindex">
+<title>הצעה לאתר · גיא הירשהורן · SHANI AI</title><meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --o:#F2622E; --bg:#0C0C11; --card:#141009; --edge:rgba(242,98,46,.22);
-    --ink:#F4EDE1; --body:#C9C0B4; --muted:#A09688; --hair:rgba(200,190,178,.14);
-  }
-  @page{size:A4;margin:13mm 0}
-  html{background:var(--bg)}
+  :root{--o:#F2622E;--bg:#0C0C11;--card:#141009;--edge:rgba(242,98,46,.22);--pedge:rgba(242,98,46,.5);--ink:#F4EDE1;--body:#C9C0B4;--muted:#A09688;--hair:rgba(200,190,178,.14);--fline:rgba(200,190,178,.35);--tint:rgba(242,98,46,.10)}
+  @page{size:A4;margin:0}
+  html,body{background:var(--bg)}
   body{font-family:'Heebo',sans-serif;direction:rtl;background:var(--bg);color:var(--body);
        font-size:11.4pt;line-height:1.8;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .wrap{max-width:600px;margin:0 auto;padding:0 24px}
+  .wrap{max-width:600px;margin:0 auto;padding:15mm 24px 14mm}
+  /* בלי פסים לבנים: הרקע ממלא את כל העמוד, ובלוקים לא נחתכים באמצע */
+  .card,.rows,.pbox,.tintbox,.signcard{page-break-inside:avoid}
   @media (max-width:640px){body{font-size:11pt}.wrap{padding:0 18px}h1{font-size:24pt}.pnum{font-size:34pt}}
-
   .mast{text-align:center;padding:10px 0 0}
   .mark{width:46px;height:46px;margin:0 auto 9px;display:block}
   .brand{color:var(--o);font-size:8.5pt;letter-spacing:.34em;font-weight:500}
@@ -26,28 +20,21 @@
   .sub{color:var(--muted);font-size:11.5pt;font-weight:400}
   .date{color:var(--muted);font-size:9pt;letter-spacing:.06em;margin-top:13px}
   .rule{height:1px;background:linear-gradient(to left,transparent,var(--o),transparent);opacity:.55;margin:26px 0 30px}
-
   .kick{color:var(--o);font-size:8.5pt;letter-spacing:.26em;font-weight:500;margin:28px 0 10px;text-align:right}
-
-  .card{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:20px 24px;margin-bottom:8px}
+  .card{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:20px 24px;margin-bottom:8px;break-inside:avoid}
   .card h2{color:var(--ink);font-size:14.5pt;font-weight:800;margin:0 0 2px}
   .card .cap{color:var(--muted);font-size:8.5pt;letter-spacing:.2em;margin-bottom:14px}
   .card > p:last-child{margin-bottom:0}
-
   ul{list-style:none}
   li{position:relative;padding-right:17px;margin-bottom:7px;font-size:11.3pt;line-height:1.65}
   li::before{content:"";position:absolute;right:2px;top:.66em;width:5px;height:5px;border-radius:50%;background:var(--o)}
   li:last-child{margin-bottom:0}
   li strong{color:var(--ink);font-weight:700}
-
   p{margin-bottom:12px} p:last-child{margin-bottom:0}
   .intro{font-size:11.8pt;line-height:1.9;margin-bottom:8px}
   .hl{color:var(--o);font-weight:700}
   strong{color:var(--ink);font-weight:700}
-
   .rows{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:2px 24px;margin-bottom:8px;page-break-inside:avoid}
-  .rh{display:flex;justify-content:space-between;padding:12px 0 8px;border-bottom:1px solid var(--hair)}
-  .rh span{color:var(--muted);font-size:8.5pt;letter-spacing:.18em}
   .row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--hair)}
   .row:last-child{border-bottom:none}
   .row .l{color:var(--body);font-size:11.3pt}
@@ -55,43 +42,39 @@
   .row .v{color:var(--ink);font-size:11.3pt;font-weight:500;white-space:nowrap}
   .row.tot .l,.row.tot .v{color:var(--o);font-weight:700}
   .row .v.p{color:var(--o);font-weight:700;font-size:12.5pt}
-
-  .pbox{background:var(--card);border:1px solid rgba(242,98,46,.5);border-radius:12px;padding:26px 24px;text-align:center;margin-bottom:8px;page-break-inside:avoid}
+  .pbox{background:var(--card);border:1px solid var(--pedge);border-radius:12px;padding:26px 24px;text-align:center;margin-bottom:8px;page-break-inside:avoid}
   .plabel{color:var(--muted);font-size:10pt;margin-bottom:2px}
+  .pwas{color:var(--muted);font-size:12pt;text-decoration:line-through;margin-bottom:4px}
   .pnum{color:var(--o);font-size:40pt;font-weight:900;letter-spacing:-.03em;line-height:1.1}
   .pnum .cur{font-size:20pt;font-weight:700}
   .pcap{color:var(--ink);font-size:10.5pt;margin-top:2px}
   .pdiv{height:1px;background:var(--hair);margin:18px 0 14px}
   .pterm{color:var(--body);font-size:10.5pt;line-height:1.9}
-
-  .tintbox{background:rgba(242,98,46,.10);border:1px solid rgba(242,98,46,.3);border-radius:12px;padding:22px 24px;margin-bottom:8px;page-break-inside:avoid}
+  .tintbox{background:var(--tint);border:1px solid rgba(242,98,46,.3);border-radius:12px;padding:22px 24px;margin-bottom:8px;page-break-inside:avoid}
   .tintbox .kick2{color:var(--o);font-size:8.5pt;letter-spacing:.26em;margin-bottom:12px}
   .tintbox p{font-size:11.2pt}
-
   .qa{padding:13px 0;border-bottom:1px solid var(--hair)}
   .qa:last-child{border-bottom:none}
   .qq{color:var(--ink);font-size:11.3pt;font-weight:700;margin-bottom:3px}
   .qaa{font-size:11pt;line-height:1.75}
-
   .note{color:var(--muted);font-size:9.5pt;line-height:1.7;margin-top:13px}
-
   .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:6px}
   .flab{color:var(--muted);font-size:8.5pt;letter-spacing:.18em;margin-bottom:24px}
-  .fline{border-bottom:1px solid rgba(200,190,178,.35);height:1px}
+  .fline{border-bottom:1px solid var(--fline);height:1px}
   .sigbox{margin-top:24px}
-  .sigline{border-bottom:1px solid rgba(200,190,178,.35);height:52px}
+  .sigline{border-bottom:1px solid var(--fline);height:52px}
   .signcard{page-break-inside:avoid}
-
   .foot{text-align:center;margin:34px 0 10px;padding-top:22px;border-top:1px solid var(--hair)}
   .fname{color:var(--ink);font-size:12pt;font-weight:700}
   .fbrand{color:var(--o);font-size:8pt;letter-spacing:.3em;margin:4px 0 8px}
   .fc{color:var(--muted);font-size:10pt}
 
-  .inp{width:100%;border:0;border-bottom:1px solid rgba(200,190,178,.35);background:transparent;
+  .inp{width:100%;border:0;border-bottom:1px solid var(--fline);background:transparent;
        font-family:'Heebo',sans-serif;font-size:12pt;color:var(--ink);padding:6px 2px 8px;
        direction:rtl;text-align:right;outline:none;-webkit-appearance:none;border-radius:0}
   .inp:focus{border-bottom-color:var(--o)}
-  .inp::placeholder{color:#6b635b}
+  .inp::placeholder{color:var(--muted);opacity:.55}
+  .inp[type=email]{direction:ltr;text-align:left}
   .sig{font-size:17pt;padding-bottom:14px}
   .chk{display:flex;align-items:flex-start;gap:10px;margin-top:22px;font-size:11pt;cursor:pointer}
   .chk input{width:19px;height:19px;accent-color:var(--o);margin-top:3px;flex:0 0 auto;cursor:pointer}
@@ -100,141 +83,81 @@
        font-family:'Heebo',sans-serif;font-weight:700;font-size:12.5pt;border:0;cursor:pointer}
   .btn:disabled{opacity:.35;cursor:not-allowed}
   .btn-wa{background:#25D366;color:#08210f}
-  .btn-mail{background:transparent;color:var(--ink);border:1px solid rgba(200,190,178,.35)}
+  .btn-mail{background:transparent;color:var(--ink);border:1px solid var(--fline)}
   .hint{color:var(--muted);font-size:9.5pt;text-align:center;margin-top:12px;line-height:1.6}
+  .status{font-size:10.5pt;line-height:1.6;text-align:center;padding:0}
+  .status:not(:empty){padding:12px 14px;border-radius:9px;border:1px solid var(--fline);color:var(--body)}
+  .status.good{border-color:rgba(37,211,102,.5);color:var(--ink)}
+  .status.warn{border-color:rgba(242,98,46,.55);color:var(--ink)}
   @media print{.btns,.chk{display:none}}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <div class="mast">
-    <svg class="mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+</style></head><body><div class="wrap">
+  <div class="mast"><svg class="mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M32 3.5 56.5 17.75v28.5L32 60.5 7.5 46.25v-28.5L32 3.5Z" stroke="#F2622E" stroke-width="2.4"/>
       <path d="M32 19 43 25.5v13L32 45l-11-6.5v-13L32 19Z" stroke="#F2622E" stroke-width="1.7"/>
-      <circle cx="32" cy="32" r="4.2" fill="#F2622E"/>
-    </svg>
+      <circle cx="32" cy="32" r="4.2" fill="#F2622E"/></svg>
     <div class="brand">SHANI AI CREATOR</div>
     <h1>הצעה לאתר</h1>
     <div class="sub">עבור גיא הירשהורן · GAMA Architects · אדריכלות ועיצוב פנים</div>
     <div class="date">28.07.2026</div>
-  </div>
-  <div class="rule"></div>
+  </div><div class="rule"></div>
 
   <div class="kick">מה נבנה</div>
-  <p class="intro">
-    אתר שמציג את הפרויקטים שלך ומסביר את סוגי הפרויקטים והעלויות. במקום שתסביר את זה מחדש בכל שיחה ראשונה, האתר עושה את זה בשבילך, ומי שמגיע אליך כבר יודע מה הוא מחפש.
-  </p>
+  <p class="intro">אתר שמציג את הפרויקטים שלך ומסביר את סוגי הפרויקטים והעלויות. במקום שתסביר את זה מחדש בכל שיחה ראשונה, האתר עושה את זה בשבילך, ומי שמגיע אליך כבר יודע מה הוא מחפש.</p>
 
-  <div class="card">
-    <h2>האתר</h2>
-    <div class="cap">מה נכנס פנימה</div>
-    <ul>
-      <li>עיצוב מותאם לאדריכלות ולעיצוב פנים, ובנייה בקוד — לא על תבנית מוכנה</li>
-      <li>עמוד אחד שגוללים בו, עם תפריט צף שקופץ ישר לכל חלק</li>
-      <li>גלריית פרויקטים — הלב של האתר. תמונות גדולות וכמה שורות על כל פרויקט</li>
-      <li>חלק שמסביר את תהליך העבודה שלך, משלב ראשון ועד מסירה</li>
-      <li>חלק על סוגי פרויקטים וסדרי גודל</li>
-      <li>אודות</li>
-      <li>שאלות נפוצות, שעונות על מה שאנשים שואלים לפני שהם קובעים</li>
-      <li>טופס יצירת קשר וכפתור וואטסאפ ישיר</li>
-      <li>מותאם לנייד</li>
-      <li>התאמת נגישות לתקן הישראלי 5568</li>
-      <li>מדיניות פרטיות ותקנון</li>
-      <li>שני סבבי שינויים אחרי שראית</li>
-      <li>הקוד שלך, בבעלות מלאה</li>
-    </ul>
-  </div>
+  <div class="card"><h2>האתר</h2><div class="cap">מה נכנס פנימה</div><ul>
+    <li>עיצוב מותאם לאדריכלות ולעיצוב פנים, ובנייה בקוד — לא על תבנית מוכנה</li>
+    <li>עמוד אחד שגוללים בו, עם תפריט צף שקופץ ישר לכל חלק</li>
+    <li>גלריית פרויקטים — הלב של האתר. תמונות גדולות וכמה שורות על כל פרויקט</li>
+    <li>חלק שמסביר את תהליך העבודה שלך, משלב ראשון ועד מסירה</li>
+    <li>חלק על סוגי פרויקטים וסדרי גודל</li>
+    <li>אודות</li>
+    <li>שאלות נפוצות, שעונות על מה שאנשים שואלים לפני שהם קובעים</li>
+    <li>טופס יצירת קשר וכפתור וואטסאפ ישיר</li>
+    <li>מותאם לנייד</li>
+    <li>התאמת נגישות לתקן הישראלי 5568</li>
+    <li>מדיניות פרטיות ותקנון</li>
+    <li>שני סבבי שינויים אחרי שראית</li>
+    <li>הקוד שלך, בבעלות מלאה</li></ul></div>
 
-  <div class="card">
-    <h2>חודשיים ליווי</h2>
-    <div class="cap">כלולים במחיר · עד 1 באוקטובר 2026</div>
-    <ul>
-      <li>עדכון והשלמה של כרטיס העסק שלך בגוגל, וחיבור שלו לאתר</li>
-      <li>חיבור Search Console, כדי לראות מה אנשים מחפשים לפני שהם מוצאים אותך</li>
-      <li>חיבור Analytics למדידת תנועה</li>
-      <li>דוח בסוף כל חודש: כמה אנשים הגיעו, מאיפה, וכמה מהם פנו אליך</li>
-      <li>תיקוני טקסט, החלפת תמונות ושינויים קטנים לאורך התקופה</li>
-      <li>הוספת פרויקט חדש לגלריה, אם יסתיים לך אחד בתקופה הזו</li>
-      <li>זמינות בוואטסאפ לשאלות ותקלות</li>
-    </ul>
-  </div>
+  <div class="card"><h2>חודשיים ליווי</h2><div class="cap">כלולים במחיר · עד 1 באוקטובר 2026</div><ul>
+    <li>עדכון והשלמה של כרטיס העסק שלך בגוגל, וחיבור שלו לאתר</li>
+    <li>חיבור Search Console, כדי לראות מה אנשים מחפשים לפני שהם מוצאים אותך</li>
+    <li>חיבור Analytics למדידת תנועה</li>
+    <li>דוח בסוף כל חודש: כמה אנשים הגיעו, מאיפה, וכמה מהם פנו אליך</li>
+    <li>תיקוני טקסט, החלפת תמונות ושינויים קטנים לאורך התקופה</li>
+    <li>הוספת פרויקט חדש לגלריה, אם יסתיים לך אחד בתקופה הזו</li>
+    <li>זמינות בוואטסאפ לשאלות ותקלות</li></ul></div>
 
   <div class="kick">מה זה עולה לך אחרי</div>
   <div class="rows">
     <div class="row"><div class="l">דומיין co.il</div><div class="v">74 ₪ לשנה</div></div>
     <div class="row"><div class="l">אחסון</div><div class="v">0 ₪</div></div>
     <div class="row"><div class="l">תעודת אבטחה SSL</div><div class="v">0 ₪</div></div>
-    <div class="row tot"><div class="l">סך הכל</div><div class="v">כ־6 ₪ לחודש</div></div>
-  </div>
+    <div class="row tot"><div class="l">סך הכל</div><div class="v">כ־6 ₪ לחודש</div></div></div>
   <p class="note">האתר בנוי בקוד ולכן אין לו עלות אחסון חודשית. אתר וורדפרס עולה 60 עד 100 שקל בחודש, כל חודש, כל עוד הוא באוויר.</p>
-
-  <div class="kick">איפה זה עומד מול האפשרויות האחרות</div>
-  <div class="rows">
-    <div class="rh"><span>מה</span><span>עלות</span></div>
-    <div class="row"><div class="l">לבנות ב־Wix לבד</div><div class="v">600–2,400 ₪ לשנה</div></div>
-    <div class="row"><div class="l">פרילנסר על תבנית</div><div class="v">800–2,500 ₪</div></div>
-    <div class="row"><div class="l">סטודיו וורדפרס</div><div class="v">3,200–15,000 ₪</div></div>
-    <div class="row tot"><div class="l">אצלי</div><div class="v">2,400 ₪</div></div>
-  </div>
-  <p class="note">בכל האפשרויות האחרות יש עלות חודשית קבועה, ורובן מגיעות בלי התאמת נגישות.</p>
 
   <div class="pbox">
     <div class="plabel">אתר תדמית ופורטפוליו</div>
     <div class="pnum">2,400<span class="cur"> ₪</span></div>
-    <div class="pcap">כולל חודשיים ליווי</div>
-    <div class="pdiv"></div>
-    <div class="pterm">
-      50% בהתחלה · 50% בעלייה לאוויר<br>
-      זמן אספקה: שבועיים מרגע שהחומרים אצלי<br>
-      אני עוסקת פטורה — אין מע"מ, זה בדיוק מה שתשלם
-    </div>
-  </div>
-
-  <div class="tintbox">
-    <div class="kick2">למה המחיר הזה</div>
-    <p>זה <span class="hl">המחיר שמופיע במחירון באתר</span>, ולא מחיר שנבנה במיוחד בשבילך. מחיר אחד לכולם, ואין מחיר אחר למי ששואל אחרת.</p>
-    <p>המחיר מכסה את החלקים שמפורטים למעלה. אם נחליט יחד להוסיף חלקים מעבר לזה, כל חלק נוסף עולה <span class="hl">450 ₪</span> ומתומחר מראש, לפני שאני מתחילה. לא יתגלה שום דבר בסוף.</p>
-  </div>
+    <div class="pcap">כולל חודשיים ליווי</div><div class="pdiv"></div>
+    <div class="pterm">50% בהתחלה · 50% בעלייה לאוויר<br>זמן אספקה: שבועיים מרגע שהחומרים אצלי<br>אני עוסקת פטורה — אין מע"מ, זה בדיוק מה שתשלם</div></div>
 
   <div class="kick">תוספות לאתר · אפשר, לא חובה</div>
   <p class="note" style="margin:0 0 10px">אפשר להחליט עליהן עכשיו או בכל שלב אחרי שהאתר באוויר, והמחיר לא משתנה.</p>
   <div class="rows">
-    <div class="row">
-      <div class="l">גרסה באנגלית — אתר דו־לשוני
-        <small>תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר בין השפות</small></div>
-      <div class="v p">600 ₪</div>
-    </div>
-    <div class="row">
-      <div class="l">חלק נוסף באתר
-        <small>סקשן חדש מעבר למה שסוכם</small></div>
-      <div class="v p">450 ₪</div>
-    </div>
-    <div class="row">
-      <div class="l">מאמר לאתר
-        <small>כתיבה, התאמה לחיפוש בגוגל, והעלאה</small></div>
-      <div class="v p">450 ₪</div>
-    </div>
-    <div class="row">
-      <div class="l">סבב שינויים נוסף
-        <small>מעבר לשני הסבבים שכבר כלולים במחיר</small></div>
-      <div class="v p">350 ₪</div>
-    </div>
-  </div>
+    <div class="row"><div class="l">גרסה באנגלית — אתר דו־לשוני<small>תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר בין השפות</small></div><div class="v p">600 ₪</div></div>
+    <div class="row"><div class="l">חלק נוסף באתר<small>סקשן חדש מעבר למה שסוכם</small></div><div class="v p">450 ₪</div></div>
+    <div class="row"><div class="l">מאמר לאתר<small>כתיבה, התאמה לחיפוש בגוגל, והעלאה</small></div><div class="v p">450 ₪</div></div>
+    <div class="row"><div class="l">סבב שינויים נוסף<small>מעבר לשני הסבבים שכלולים במחיר. שים לב: בחודשיים הליווי ובתחזוקה החודשית שינויים ותיקונים כלולים ממילא, כך שברוב המקרים לא תצטרך את זה</small></div><div class="v p">350 ₪</div></div></div>
 
   <div class="kick">אחרי החודשיים · אם תרצה</div>
-  <div class="card">
-    <h2>תחזוקה חודשית</h2>
-    <div class="cap">200 ₪ לחודש · בלי התחייבות</div>
-    <ul>
-      <li>שינויי טקסט ותמונות לפי הצורך, כולל הוספת פרויקטים חדשים</li>
-      <li>דוח חודשי על התנועה לאתר והפניות</li>
-      <li>עדכון שוטף של כרטיס העסק בגוגל</li>
-      <li>זמינות בוואטסאפ לשאלות ותקלות</li>
-      <li>עדכוני אבטחה ובדיקות תקינות</li>
-    </ul>
-    <p style="margin-top:12px">אפשר להפסיק בכל חודש. האתר ממשיך לעבוד בכל מקרה, הוא שלך.</p>
-  </div>
+  <div class="card"><h2>תחזוקה חודשית</h2><div class="cap">200 ₪ לחודש · בלי התחייבות</div><ul>
+    <li>שינויי טקסט ותמונות לפי הצורך, כולל הוספת פרויקטים חדשים</li>
+    <li>דוח חודשי על התנועה לאתר והפניות</li>
+    <li>עדכון שוטף של כרטיס העסק בגוגל</li>
+    <li>זמינות בוואטסאפ לשאלות ותקלות</li>
+    <li>עדכוני אבטחה ובדיקות תקינות</li></ul>
+    <p style="margin-top:12px">אפשר להפסיק בכל חודש. האתר ממשיך לעבוד בכל מקרה, הוא שלך.</p></div>
 
   <div class="kick">מה לא כלול</div>
   <p>חלקים נוספים מעבר למה שסוכם, עיצוב מחדש אחרי אישור, צילום פרויקטים, כתיבת תוכן שיווקי מאפס, וקמפיינים בתשלום.</p>
@@ -242,25 +165,22 @@
 
   <div class="kick">מה אני צריכה ממך כדי להתחיל</div>
   <p>אפשר לשלוח הכל בוואטסאפ או במייל. <strong>הרשימה הזו קובעת את לוח הזמנים</strong> — הספירה של שבועיים מתחילה ביום שהחומרים אצלי, לא ביום שסגרנו.</p>
-  <div class="card">
-    <ul>
-      <li><strong>צילומי פרויקטים.</strong> שלושה עד שישה פרויקטים, כמה תמונות מכל אחד, באיכות הכי גבוהה שיש לך. רצוי גם אחת לרוחב וגם לגובה. שווה לחפש את הקבצים המקוריים ולא את מה שכבר עלה לאינסטגרם ונדחס.</li>
-      <li><strong>כמה שורות על כל פרויקט.</strong> איפה זה, מה היה האתגר, ומה עשית. בשפה שלך, בלי לנסח יפה.</li>
-      <li><strong>טקסט עליך.</strong> מי אתה, איך אתה עובד, ומה מבדיל אותך.</li>
-      <li><strong>סוגי הפרויקטים שאתה לוקח</strong> וסדרי גודל של היקף, ברמה שנוח לך לפרסם.</li>
-      <li>המלצות של לקוחות, אם יש, עם שם ועם אישור שלהם לפרסם.</li>
-      <li>לוגו וצבעים, אם כבר יש לך.</li>
-      <li>פרטי קשר לאתר: טלפון, מייל, ואזור הפעילות.</li>
-      <li>קישור לאינסטגרם gama.architects, וגישה לכרטיס העסק בגוגל.</li>
-    </ul>
-  </div>
+  <div class="card"><ul>
+    <li><strong>צילומי פרויקטים.</strong> שלושה עד שישה פרויקטים, כמה תמונות מכל אחד, באיכות הכי גבוהה שיש לך. רצוי גם אחת לרוחב וגם לגובה. שווה לחפש את הקבצים המקוריים ולא את מה שכבר עלה לאינסטגרם ונדחס.</li>
+    <li><strong>כמה שורות על כל פרויקט.</strong> איפה זה, מה היה האתגר, ומה עשית. בשפה שלך, בלי לנסח יפה.</li>
+    <li><strong>טקסט עליך.</strong> מי אתה, איך אתה עובד, ומה מבדיל אותך.</li>
+    <li><strong>סוגי הפרויקטים שאתה לוקח</strong> וסדרי גודל של היקף, ברמה שנוח לך לפרסם.</li>
+    <li>המלצות של לקוחות, אם יש, עם שם ועם אישור שלהם לפרסם.</li>
+    <li>לוגו וצבעים, אם כבר יש לך.</li>
+    <li>פרטי קשר לאתר: טלפון, מייל, ואזור הפעילות.</li>
+    <li>קישור לאינסטגרם gama.architects, וגישה לכרטיס העסק בגוגל.</li></ul></div>
   <p class="note">את הדומיין אני רוכשת עבורך ורושמת על שמך, כ־74 ₪ לשנה. הוא שלך גם אם תעבור למישהו אחר.</p>
 
   <div class="kick">שאלות שנשאלות</div>
   <div class="card">
     <div class="qa"><div class="qq">כמה זמן זה לוקח?</div><div class="qaa">שבועיים מרגע שהחומרים אצלי. זה מה שאני מתחייבת אליו. אם הצילומים והטקסטים מגיעים מהר, זה יכול להיות פחות.</div></div>
     <div class="qa"><div class="qq">מי כותב את הטקסטים?</div><div class="qaa">אתה כותב לי את התוכן בשפה שלך, בלי לנסות לנסח יפה. אני מסדרת, עורכת ובונה ממנו את החלקים. כתיבה שיווקית מאפס היא עבודה נפרדת.</div></div>
-    <div class="qa"><div class="qq">כמה סבבי שינויים יש?</div><div class="qaa">לפני הבנייה אני מראה לך כיוון עיצובי ואנחנו מסכימים עליו. אחרי שהאתר בנוי יש שני סבבי שינויים כלולים. סבב שלישי עולה 350 ₪ ומתומחר מראש.</div></div>
+    <div class="qa"><div class="qq">כמה סבבי שינויים יש?</div><div class="qaa">לפני הבנייה אני מראה לך כיוון עיצובי ואנחנו מסכימים עליו. אחרי שהאתר בנוי יש שני סבבי שינויים כלולים. מעבר לזה, בחודשיים הליווי אני ממשיכה לעשות תיקוני טקסט, החלפות תמונות ושינויים קטנים בלי עלות, וכך גם בתחזוקה החודשית אם תמשיך איתה. סבב עיצובי שלם נוסף עולה 350 ₪ ומתומחר מראש.</div></div>
     <div class="qa"><div class="qq">האתר יביא לי לקוחות?</div><div class="qaa">האתר גורם למי שכבר מגיע אליך להבין מה אתה עושה ולפנות מוכן. להביא תנועה חדשה זו עבודה אחרת, ואפשר לדבר עליה בהמשך.</div></div>
     <div class="qa"><div class="qq">אהיה ראשון בגוגל?</div><div class="qaa">אני מעדכנת את כרטיס העסק, מחברת מדידה, ועוקבת אחרי המיקומים לאורך החודשיים. איפה תהיה בגוגל תלוי בתחרות ובזמן, ואת זה אני לא מבטיחה.</div></div>
     <div class="qa"><div class="qq">למה לא פשוט Wix?</div><div class="qaa">ב־Wix אתה שוכר. מפסיק לשלם, האתר נעלם, ויש תשלום חודשי כל עוד הוא באוויר. כאן זה קוד שהוא שלך, בלי עלות חודשית.</div></div>
@@ -269,54 +189,109 @@
     <div class="qa"><div class="qq">מה קורה כשיהיו לי פרויקטים חדשים?</div><div class="qaa">בחודשיים הליווי אני מוסיפה פרויקט חדש לגלריה בלי עלות. אחרי זה זה כלול בתחזוקה החודשית.</div></div>
   </div>
 
-  <div class="kick" style="margin-top:6px">אישור ההצעה</div>
-  <p class="note" style="margin-bottom:14px">ממלאים את השדות, מסמנים את האישור, ולוחצים על הכפתור. נפתחת שיחת וואטסאפ עם שני וההודעה כבר מוכנה — רק ללחוץ שליחה.</p>
+  <div class="kick">אישור ההצעה</div>
+  <p class="note" style="margin-bottom:14px">ממלאים את השדות, מסמנים את האישור, ולוחצים על הכפתור. בוואטסאפ נפתחת שיחה עם שני עם ההודעה מוכנה; במייל נשלח עותק לשני ועותק לכתובת שהזנת.</p>
   <div class="card signcard">
     <div class="fgrid">
       <div class="f"><div class="flab" style="margin-bottom:6px">שם פרטי</div>
-        <input class="inp" id="fname" type="text" placeholder="גיא" autocomplete="given-name"></div>
+        <input class="inp" id="fname" type="text" autocomplete="given-name"></div>
       <div class="f"><div class="flab" style="margin-bottom:6px">שם העסק</div>
-        <input class="inp" id="fbiz" type="text" placeholder="GAMA Architects" autocomplete="organization"></div>
+        <input class="inp" id="fbiz" type="text" autocomplete="organization"></div>
       <div class="f"><div class="flab" style="margin-bottom:6px">מספר עוסק</div>
-        <input class="inp" id="fvat" type="text" inputmode="numeric" placeholder="000000000"></div>
+        <input class="inp" id="fvat" type="text" inputmode="numeric"></div>
+      <div class="f"><div class="flab" style="margin-bottom:6px">אימייל — לקבלת עותק</div>
+        <input class="inp" id="fmail" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com"></div>
       <div class="f"><div class="flab" style="margin-bottom:6px">תאריך</div>
         <input class="inp" id="fdate" type="text"></div>
+      <div class="f"></div>
     </div>
     <div style="margin-top:22px">
       <div class="flab" style="margin-bottom:6px">חתימה — הקלד את שמך המלא</div>
-      <input class="inp sig" id="fsig" type="text" placeholder="גיא הירשהורן" autocomplete="name">
+      <input class="inp sig" id="fsig" type="text" autocomplete="name">
     </div>
     <label class="chk"><input type="checkbox" id="fok">
       <span>אני מאשר את ההצעה ואת התנאים: אתר תדמית ופורטפוליו ב־2,400 ₪ כולל חודשיים ליווי, 50% בהתחלה ו־50% בעלייה לאוויר, ואספקה תוך שבועיים מרגע שהחומרים אצל שני.</span></label>
     <div class="btns">
-      <button class="btn btn-wa" id="bwa" disabled>אישור ושליחה בוואטסאפ</button>
+      <button class="btn btn-wa" id="bsign" disabled>אישור וחתימה · שליחה</button>
+      <div class="status" id="status"></div>
+      <button class="btn btn-mail" id="bwa2" style="display:none">שליחה בוואטסאפ במקום</button>
       <button class="btn btn-mail" id="bmail" disabled>שליחה במייל במקום</button>
     </div>
-    <div class="hint">בלחיצה נפתחת שיחת וואטסאפ עם שני, וההודעה כבר מוכנה עם הפרטים שמילאת.<br>לא נשלח כלום בלי שתלחץ שליחה.</div>
+    <div class="hint">בלחיצה אחת ההצעה החתומה נשלחת אוטומטית במייל אליך ולשני, ואז נפתח וואטסאפ להודעה קצרה.<br>הכפתור התחתון הוא גיבוי, למקרה שהשליחה האוטומטית לא עוברת.</div>
   </div>
-  <script>
-  (function(){var WA="972504744815",MAIL="shani.creates.ai@gmail.com";
-   var el=function(i){return document.getElementById(i)},d=new Date();
+  <script>(function(){
+   var WA="972504744815", MAIL="shani.creates.ai@gmail.com", TERMS="אני מאשר את ההצעה ואת התנאים: אתר תדמית ופורטפוליו ב־2,400 ₪ כולל חודשיים ליווי, 50% בהתחלה ו־50% בעלייה לאוויר, ואספקה תוך שבועיים מרגע שהחומרים אצל שני.", SLUG="gia-hirshhorn";
+   var el=function(i){return document.getElementById(i)}, d=new Date();
    el("fdate").value=("0"+d.getDate()).slice(-2)+"."+("0"+(d.getMonth()+1)).slice(-2)+"."+d.getFullYear();
-   function ready(){var ok=el("fok").checked&&el("fname").value.trim()&&el("fsig").value.trim();
-     el("bwa").disabled=!ok;el("bmail").disabled=!ok}
-   function msg(){return "אישור הצעת מחיר — אתר תדמית ופורטפוליו\n\nשם פרטי: "+el("fname").value.trim()
-     +"\nשם העסק: "+el("fbiz").value.trim()+"\nמספר עוסק: "+el("fvat").value.trim()
-     +"\nתאריך: "+el("fdate").value.trim()+"\nחתימה: "+el("fsig").value.trim()
-     +"\n\nאני מאשר את ההצעה ואת התנאים: 2,400 ₪ כולל חודשיים ליווי, 50% בהתחלה ו-50% בעלייה לאוויר, אספקה שבועיים מרגע קבלת החומרים."}
-   ["fname","fbiz","fvat","fdate","fsig"].forEach(function(i){el(i).addEventListener("input",ready)});
-   el("fok").addEventListener("change",ready);
-   el("bwa").addEventListener("click",function(){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg()),"_blank")});
-   el("bmail").addEventListener("click",function(){window.location.href="mailto:"+MAIL+"?subject="+encodeURIComponent("אישור הצעת מחיר · "+(el("fbiz").value.trim()||el("fname").value.trim()))+"&body="+encodeURIComponent(msg())});
-   ready()})();
-  </script>
 
-  <div class="foot">
-    <div class="fname">שני גורגוב</div>
+   var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+   function vals(){return {slug:SLUG,
+     first_name:el("fname").value.trim(), business:el("fbiz").value.trim(),
+     vat_id:el("fvat").value.trim(), email:el("fmail").value.trim(),
+     date:el("fdate").value.trim(), signature:el("fsig").value.trim(), terms:TERMS}}
+
+   function missing(){var v=vals(), m=[];
+     if(!v.first_name) m.push("\u05e9\u05dd \u05e4\u05e8\u05d8\u05d9");
+     if(!v.signature) m.push("\u05d7\u05ea\u05d9\u05de\u05d4");
+     if(!EMAIL_RE.test(v.email)) m.push("\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05ea\u05e7\u05d9\u05df");
+     if(!el("fok").checked) m.push("\u05e1\u05d9\u05de\u05d5\u05df \u05d4\u05d0\u05d9\u05e9\u05d5\u05e8");
+     return m}
+
+   function say(html,cls){var s=el("status"); s.innerHTML=html; s.className="status "+(cls||"")}
+
+   function ready(){var m=missing(), e=m.length>0;
+     el("bsign").disabled=e; el("bmail").disabled=e;
+     if(e){ say("\u05db\u05d3\u05d9 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d7\u05e1\u05e8: "+m.join(" \u00b7 "),"warn"); }
+     else { say("",""); }}
+
+   function longMsg(){var v=vals();
+     return "\u05d0\u05d9\u05e9\u05d5\u05e8 \u05d4\u05e6\u05e2\u05ea \u05de\u05d7\u05d9\u05e8\n\n"
+       +"\u05e9\u05dd \u05e4\u05e8\u05d8\u05d9: "+v.first_name+"\n"
+       +"\u05e9\u05dd \u05d4\u05e2\u05e1\u05e7: "+v.business+"\n"
+       +"\u05de\u05e1\u05e4\u05e8 \u05e2\u05d5\u05e1\u05e7: "+v.vat_id+"\n"
+       +"\u05d0\u05d9\u05de\u05d9\u05d9\u05dc: "+v.email+"\n"
+       +"\u05ea\u05d0\u05e8\u05d9\u05da: "+v.date+"\n"
+       +"\u05d7\u05ea\u05d9\u05de\u05d4: "+v.signature+"\n\n"+TERMS}
+
+   function shortMsg(){var v=vals();
+     return "\u05d7\u05ea\u05de\u05ea\u05d9 \u05e2\u05dc \u05d4\u05d4\u05e6\u05e2\u05d4. \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4 \u05e0\u05e9\u05dc\u05d7\u05d4 \u05dc\u05de\u05d9\u05d9\u05dc \u2014 "+(v.business||v.first_name)+"."}
+
+   function wa(t){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank")}
+
+   el("bsign").addEventListener("click",function(){
+     if(missing().length)return;
+     el("bsign").disabled=true; el("bmail").disabled=true;
+     say("\u05e9\u05d5\u05dc\u05d7\u05ea \u05d0\u05ea \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4\u2026","");
+     fetch("/api/proposal-sign",{method:"POST",headers:{"Content-Type":"application/json"},
+       body:JSON.stringify(vals())})
+     .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
+     .then(function(res){
+       if(res.j && res.j.ok){
+         say("<strong>\u05e0\u05e9\u05dc\u05d7.</strong> \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4 \u05d1\u05d3\u05e8\u05da \u05dc\u05de\u05d9\u05d9\u05dc \u05e9\u05dc\u05da \u05d5\u05dc\u05e9\u05e0\u05d9.<br>\u05e0\u05e4\u05ea\u05d7 \u05e2\u05db\u05e9\u05d9\u05d5 \u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4 \u05db\u05d3\u05d9 \u05dc\u05d4\u05d5\u05d3\u05d9\u05e2 \u05dc\u05d4 \u2014 \u05d0\u05e4\u05e9\u05e8 \u05d2\u05dd \u05e4\u05e9\u05d5\u05d8 \u05dc\u05e1\u05d2\u05d5\u05e8.","good");
+         setTimeout(function(){wa(shortMsg())},700);
+       } else {
+         say("<strong>\u05d4\u05e9\u05dc\u05d9\u05d7\u05d4 \u05d4\u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05dc\u05d0 \u05e2\u05d1\u05e8\u05d4.</strong> \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d9\u05d3\u05e0\u05d9\u05ea \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9\u05dd \u05dc\u05de\u05d8\u05d4, \u05d5\u05d6\u05d4 \u05d9\u05d2\u05d9\u05e2 \u05d1\u05d3\u05d9\u05d5\u05e7 \u05d0\u05d5\u05ea\u05d5 \u05d3\u05d1\u05e8.","warn");
+         el("bmail").disabled=false; el("bwa2").style.display="block";
+       }
+     })
+     .catch(function(){
+       say("<strong>\u05d0\u05d9\u05df \u05d7\u05d9\u05d1\u05d5\u05e8 \u05dc\u05e9\u05e8\u05ea.</strong> \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d9\u05d3\u05e0\u05d9\u05ea \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9\u05dd \u05dc\u05de\u05d8\u05d4.","warn");
+       el("bmail").disabled=false; el("bwa2").style.display="block";
+     });
+   });
+
+   el("bwa2").addEventListener("click",function(){wa(longMsg())});
+   el("bmail").addEventListener("click",function(){var v=vals();
+     window.location.href="mailto:"+MAIL+(v.email?"?cc="+encodeURIComponent(v.email)+"&":"?")
+       +"subject="+encodeURIComponent("\u05d0\u05d9\u05e9\u05d5\u05e8 \u05d4\u05e6\u05e2\u05ea \u05de\u05d7\u05d9\u05e8 \u00b7 "+(v.business||v.first_name))
+       +"&body="+encodeURIComponent(longMsg())});
+
+   ["fname","fbiz","fvat","fmail","fdate","fsig"].forEach(function(i){el(i).addEventListener("input",ready)});
+   el("fok").addEventListener("change",ready);
+   ready();
+  })();</script>
+
+  <div class="foot"><div class="fname">שני גורגוב</div>
     <div class="fbrand">SHANI AI CREATOR</div>
     <div class="fc">shani-ai.com · 050-4744815 · shani.creates.ai@gmail.com</div>
-  </div>
-
-</div>
-</body>
-</html>
+  </div></div></body></html>
