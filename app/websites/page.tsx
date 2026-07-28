@@ -26,7 +26,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "כמה עולה לבנות אתר לעסק?",
-        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר 2,400 ₪, מודול בלוג 700 ₪, וגרסה בשפה שנייה 600 ₪ לדף נחיתה או 900 ₪ לאתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
+        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר 2,400 ₪, וגרסה בשפה שנייה 600 ₪ לדף נחיתה או 900 ₪ לאתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
       },
       {
         h: "למה אתר בקוד עדיף על וויקס או אלמנטור?",
@@ -90,7 +90,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "How much does a business website cost?",
-        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, website 2,400 NIS, blog module 700 NIS, and a second-language version 600 NIS for a landing page or 900 NIS for a website. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
+        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, website 2,400 NIS, and a second-language version 600 NIS for a landing page or 900 NIS for a website. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
       },
       {
         h: "Why is coded better than Wix or Elementor?",
