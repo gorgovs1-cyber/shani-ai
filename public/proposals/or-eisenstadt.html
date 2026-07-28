@@ -211,8 +211,7 @@
     </div>
     <div class="hint">בלחיצה אחת ההצעה החתומה נשלחת אוטומטית במייל אליך ולשני, ואז נפתח וואטסאפ להודעה קצרה.<br>הכפתור התחתון הוא גיבוי, למקרה שהשליחה האוטומטית לא עוברת.</div>
   </div>
-  <script>
-  (function(){
+  <script>(function(){
    var WA="972504744815", MAIL="shani.creates.ai@gmail.com", TERMS="אני מאשר את ההצעה ואת התנאים: אתר ב־1,500 ₪ (מחיר חבר, מחירון 2,400 ₪) כולל חודשיים ליווי, 50% בהתחלה ו־50% בעלייה לאוויר, ואספקה 14 עד 21 יום מרגע שהחומרים אצל שני.", SLUG="or-eisenstadt";
    var el=function(i){return document.getElementById(i)}, d=new Date();
    el("fdate").value=("0"+d.getDate()).slice(-2)+"."+("0"+(d.getMonth()+1)).slice(-2)+"."+d.getFullYear();
@@ -222,49 +221,53 @@
      first_name:el("fname").value.trim(), business:el("fbiz").value.trim(),
      vat_id:el("fvat").value.trim(), email:el("fmail").value.trim(),
      date:el("fdate").value.trim(), signature:el("fsig").value.trim(), terms:TERMS}}
-   function ok(){var v=vals();
-     return el("fok").checked && v.first_name && v.signature && EMAIL_RE.test(v.email)}
-   function ready(){var e=!ok(); el("bsign").disabled=e; el("bmail").disabled=e}
 
-   function longMsg(){var v=vals();
-     return "אישור הצעת מחיר
-
-שם פרטי: "+v.first_name+"
-שם העסק: "+v.business
-       +"
-מספר עוסק: "+v.vat_id+"
-אימייל: "+v.email+"
-תאריך: "+v.date
-       +"
-חתימה: "+v.signature+"
-
-"+TERMS}
-   function shortMsg(){var v=vals();
-     return "חתמתי על ההצעה. ההצעה החתומה נשלחה למייל — "+(v.business||v.first_name)+"."}
-   function wa(t){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank")}
+   function missing(){var v=vals(), m=[];
+     if(!v.first_name) m.push("\u05e9\u05dd \u05e4\u05e8\u05d8\u05d9");
+     if(!v.signature) m.push("\u05d7\u05ea\u05d9\u05de\u05d4");
+     if(!EMAIL_RE.test(v.email)) m.push("\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05ea\u05e7\u05d9\u05df");
+     if(!el("fok").checked) m.push("\u05e1\u05d9\u05de\u05d5\u05df \u05d4\u05d0\u05d9\u05e9\u05d5\u05e8");
+     return m}
 
    function say(html,cls){var s=el("status"); s.innerHTML=html; s.className="status "+(cls||"")}
 
+   function ready(){var m=missing(), e=m.length>0;
+     el("bsign").disabled=e; el("bmail").disabled=e;
+     if(e){ say("\u05db\u05d3\u05d9 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d7\u05e1\u05e8: "+m.join(" \u00b7 "),"warn"); }
+     else { say("",""); }}
+
+   function longMsg(){var v=vals();
+     return "\u05d0\u05d9\u05e9\u05d5\u05e8 \u05d4\u05e6\u05e2\u05ea \u05de\u05d7\u05d9\u05e8\n\n"
+       +"\u05e9\u05dd \u05e4\u05e8\u05d8\u05d9: "+v.first_name+"\n"
+       +"\u05e9\u05dd \u05d4\u05e2\u05e1\u05e7: "+v.business+"\n"
+       +"\u05de\u05e1\u05e4\u05e8 \u05e2\u05d5\u05e1\u05e7: "+v.vat_id+"\n"
+       +"\u05d0\u05d9\u05de\u05d9\u05d9\u05dc: "+v.email+"\n"
+       +"\u05ea\u05d0\u05e8\u05d9\u05da: "+v.date+"\n"
+       +"\u05d7\u05ea\u05d9\u05de\u05d4: "+v.signature+"\n\n"+TERMS}
+
+   function shortMsg(){var v=vals();
+     return "\u05d7\u05ea\u05de\u05ea\u05d9 \u05e2\u05dc \u05d4\u05d4\u05e6\u05e2\u05d4. \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4 \u05e0\u05e9\u05dc\u05d7\u05d4 \u05dc\u05de\u05d9\u05d9\u05dc \u2014 "+(v.business||v.first_name)+"."}
+
+   function wa(t){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank")}
+
    el("bsign").addEventListener("click",function(){
-     if(!ok())return;
+     if(missing().length)return;
      el("bsign").disabled=true; el("bmail").disabled=true;
-     say("שולחת את ההצעה החתומה…","");
+     say("\u05e9\u05d5\u05dc\u05d7\u05ea \u05d0\u05ea \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4\u2026","");
      fetch("/api/proposal-sign",{method:"POST",headers:{"Content-Type":"application/json"},
        body:JSON.stringify(vals())})
      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
      .then(function(res){
        if(res.j && res.j.ok){
-         say("<strong>נשלח.</strong> ההצעה החתומה בדרך למייל שלך ולשני.<br>"+
-             "נפתח עכשיו וואטסאפ כדי להודיע לה — אפשר גם פשוט לסגור.","good");
+         say("<strong>\u05e0\u05e9\u05dc\u05d7.</strong> \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4 \u05d1\u05d3\u05e8\u05da \u05dc\u05de\u05d9\u05d9\u05dc \u05e9\u05dc\u05da \u05d5\u05dc\u05e9\u05e0\u05d9.<br>\u05e0\u05e4\u05ea\u05d7 \u05e2\u05db\u05e9\u05d9\u05d5 \u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4 \u05db\u05d3\u05d9 \u05dc\u05d4\u05d5\u05d3\u05d9\u05e2 \u05dc\u05d4 \u2014 \u05d0\u05e4\u05e9\u05e8 \u05d2\u05dd \u05e4\u05e9\u05d5\u05d8 \u05dc\u05e1\u05d2\u05d5\u05e8.","good");
          setTimeout(function(){wa(shortMsg())},700);
        } else {
-         say("<strong>השליחה האוטומטית לא עברה.</strong> אפשר לשלוח ידנית בכפתורים למטה, "+
-             "וזה יגיע בדיוק אותו דבר.","warn");
+         say("<strong>\u05d4\u05e9\u05dc\u05d9\u05d7\u05d4 \u05d4\u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05dc\u05d0 \u05e2\u05d1\u05e8\u05d4.</strong> \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d9\u05d3\u05e0\u05d9\u05ea \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9\u05dd \u05dc\u05de\u05d8\u05d4, \u05d5\u05d6\u05d4 \u05d9\u05d2\u05d9\u05e2 \u05d1\u05d3\u05d9\u05d5\u05e7 \u05d0\u05d5\u05ea\u05d5 \u05d3\u05d1\u05e8.","warn");
          el("bmail").disabled=false; el("bwa2").style.display="block";
        }
      })
      .catch(function(){
-       say("<strong>אין חיבור לשרת.</strong> אפשר לשלוח ידנית בכפתורים למטה.","warn");
+       say("<strong>\u05d0\u05d9\u05df \u05d7\u05d9\u05d1\u05d5\u05e8 \u05dc\u05e9\u05e8\u05ea.</strong> \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d9\u05d3\u05e0\u05d9\u05ea \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9\u05dd \u05dc\u05de\u05d8\u05d4.","warn");
        el("bmail").disabled=false; el("bwa2").style.display="block";
      });
    });
@@ -272,14 +275,13 @@
    el("bwa2").addEventListener("click",function(){wa(longMsg())});
    el("bmail").addEventListener("click",function(){var v=vals();
      window.location.href="mailto:"+MAIL+(v.email?"?cc="+encodeURIComponent(v.email)+"&":"?")
-       +"subject="+encodeURIComponent("אישור הצעת מחיר · "+(v.business||v.first_name))
+       +"subject="+encodeURIComponent("\u05d0\u05d9\u05e9\u05d5\u05e8 \u05d4\u05e6\u05e2\u05ea \u05de\u05d7\u05d9\u05e8 \u00b7 "+(v.business||v.first_name))
        +"&body="+encodeURIComponent(longMsg())});
 
    ["fname","fbiz","fvat","fmail","fdate","fsig"].forEach(function(i){el(i).addEventListener("input",ready)});
    el("fok").addEventListener("change",ready);
    ready();
-  })();
-  </script>
+  })();</script>
 
   <div class="foot"><div class="fname">שני גורגוב</div>
     <div class="fbrand">SHANI AI CREATOR</div>
