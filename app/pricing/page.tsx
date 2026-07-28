@@ -84,9 +84,9 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "גרסה בשפה שנייה",
-            desc: "תרגום, התאמת פריסה, ומתג שפה. 600 ₪ לדף נחיתה, 900 ₪ לאתר.",
+            desc: "תרגום, התאמת פריסה, ומתג שפה. מחיר אחד לכל סוג אתר — דף נחיתה או אתר.",
             price: "600 ₪",
-            unit: "ומעלה",
+            unit: "",
             more: {
               fit: "יש לך לקוחות בחו\"ל, או שאתה רוצה להופיע גם בחיפושים באנגלית.",
               includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
@@ -294,9 +294,9 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "Second language",
-            desc: "Translation, layout adaptation, and a language switch. ₪600 for a landing page, ₪900 for a website.",
+            desc: "Translation, layout adaptation, and a language switch. One price for any site type.",
             price: "₪600",
-            unit: "and up",
+            unit: "",
             more: {
               fit: "You have clients abroad, or you want to show up in English searches too.",
               includes: "Full translation, layout adapted to the opposite direction, and a language toggle at the top.",

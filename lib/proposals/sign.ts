@@ -223,6 +223,45 @@ export async function sendSignedEmail(args: {
   return { ok: true, id: json.id ?? '' };
 }
 
+/**
+ * מעדכן את גיליון הלידים דרך n8n: סטטוס "נחתם" + פרטי החתימה.
+ * נכשל בשקט — חתימה של לקוח לא נופלת בגלל שהגיליון לא זמין.
+ * הכתובת מוגדרת ב-SIGN_WEBHOOK_URL בוורסל; אם אין — מדלגים.
+ */
+export async function notifyLeadSheet(args: {
+  data: SignPayload;
+  signedAt: Date;
+  emailOk: boolean;
+}): Promise<void> {
+  const url = process.env.SIGN_WEBHOOK_URL;
+  if (!url) return;
+  try {
+    const { data, signedAt, emailOk } = args;
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 8000);
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'proposal_signed',
+        slug: data.slug,
+        client: PROPOSALS[data.slug]?.client ?? '',
+        title: PROPOSALS[data.slug]?.title ?? '',
+        first_name: data.first_name,
+        business: data.business,
+        vat_id: data.vat_id,
+        email: data.email,
+        signed_at: signedAt.toISOString(),
+        email_sent: emailOk,
+      }),
+      signal: ctrl.signal,
+    });
+    clearTimeout(t);
+  } catch {
+    /* הגיליון יתעדכן ידנית אם ה-webhook לא זמין */
+  }
+}
+
 /** רושם את החתימה. נכשל בשקט — לא מפיל את השליחה. */
 export async function recordSignature(args: {
   data: SignPayload;
