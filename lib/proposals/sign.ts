@@ -5,12 +5,13 @@
  *  - ה-PDF המקורי (public/proposals/<slug>.pdf) מכיל שדות טופס. כאן אנחנו לא
  *    ממלאים אותם ומשאירים אותם ניתנים לעריכה, אלא מציירים את הטקסט על העמוד
  *    ומוחקים את הטופס. התוצאה היא מסמך סגור שאי אפשר לשנות בקורא PDF רגיל.
- *  - הטקסט עובר דרך toVisual() כדי שעברית תיראה נכון, כי pdf-lib לא מסדר RTL.
+ *  - הטקסט עובר דרך drawRTL() שמסדר עברית, מספרים ואנגלית באותה שורה.
  *  - הפונט מוטמע מ-public/fonts, אחרת אין גליפים לעברית.
+ *  - אם החותם צייר חתימה ביד, היא נכנסת כתמונה על מלבן לבן בתוך שדה החתימה.
  */
 import { PDFDocument, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import { toVisual } from './bidi';
+import { drawRTL, measure } from './bidi';
 import { supabaseAdmin } from '@/lib/analytics/supabase';
 
 export type SignPayload = {
@@ -21,6 +22,8 @@ export type SignPayload = {
   email: string;
   date: string;
   signature: string;
+  /** חתימה שצוירה ביד, כ-data URL של PNG. ריק אם החותם רק הקליד את שמו. */
+  signature_img?: string;
   terms: string;
 };
 
@@ -43,20 +46,58 @@ function drawInField(
   color: ReturnType<typeof rgb>
 ) {
   if (!text) return;
-  const visual = toVisual(text, 'rtl');
-  let s = size;
-  let w = font.widthOfTextAtSize(visual, s);
-  // אם הטקסט ארוך מהשדה, מקטינים עד שהוא נכנס
-  while (w > rect.width - 4 && s > 6) {
-    s -= 0.5;
-    w = font.widthOfTextAtSize(visual, s);
+  drawRTL(page, rect.x + rect.width - 2, rect.y + 5, text, font, size, color, rect.width - 4);
+}
+
+/**
+ * שדה החתימה כשיש ציור.
+ *
+ * הציור מגיע מקנבס שקוף עם קו כהה, ולכן הוא לא ייראה על רקע שחור. במקום
+ * לצבוע מחדש את הקו אנחנו מניחים מלבן לבן בגודל השדה ומצליבים עליו את
+ * הציור — כמו חתימה על פתק נייר שהודבק למסמך. אם החותם גם הקליד את שמו,
+ * השם יושב בצד ימין של הפתק והציור לשמאלו.
+ */
+async function drawSignature(
+  pdf: PDFDocument,
+  page: PDFPage,
+  rect: { x: number; y: number; width: number; height: number },
+  typed: string,
+  dataUrl: string,
+  font: PDFFont
+): Promise<void> {
+  const b64 = (dataUrl.split(',')[1] || '').trim();
+  if (!b64) return;
+  let png;
+  try {
+    png = await pdf.embedPng(Buffer.from(b64, 'base64'));
+  } catch {
+    return; // ציור פגום לא מפיל את החתימה
   }
-  page.drawText(visual, {
-    x: rect.x + rect.width - w - 2, // יישור לימין
-    y: rect.y + 5,
-    size: s,
-    font,
-    color,
+
+  const PAD = 5;
+  page.drawRectangle({
+    x: rect.x, y: rect.y, width: rect.width, height: rect.height,
+    color: rgb(1, 1, 1),
+  });
+
+  const dark = rgb(0.07, 0.07, 0.09);
+  let typedW = 0;
+  if (typed) {
+    const size = Math.min(15, rect.height * 0.34);
+    typedW = measure(typed, font, size) + 14;
+    drawRTL(page, rect.x + rect.width - 9, rect.y + rect.height / 2 - size * 0.36,
+      typed, font, size, dark, rect.width * 0.45);
+  }
+
+  const availW = rect.width - typedW - PAD * 2;
+  const availH = rect.height - PAD * 2;
+  const scale = Math.min(availW / png.width, availH / png.height);
+  const w = png.width * scale;
+  const h = png.height * scale;
+  page.drawImage(png, {
+    x: rect.x + PAD + (availW - w) / 2,
+    y: rect.y + (rect.height - h) / 2,
+    width: w, height: h,
   });
 }
 
@@ -93,21 +134,22 @@ export async function buildSignedPdf(
         pdf.getPages().find((p) => p.ref === pageRef) ?? pdf.getPages()[pdf.getPageCount() - 1];
       sigPage = page;
       if (r.y < lowestY) lowestY = r.y;
-      const size = name === 'signature' ? 17 : 12;
-      drawInField(page, r, String((data as any)[name] ?? ''), font, size, ink);
+      if (name === 'signature' && data.signature_img) {
+        await drawSignature(pdf, page, r, data.signature, data.signature_img, font);
+      } else {
+        const size = name === 'signature' ? 17 : 12;
+        drawInField(page, r, String((data as any)[name] ?? ''), font, size, ink);
+      }
     }
   }
 
   // חותמת אימות מתחת לשדות
   if (sigPage) {
     const stamp =
-      `נחתם אלקטרונית · ${signedAt.toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })} · ` +
+      `נחתם אלקטרונית · ${signedAt.toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }).replace(',', '')} · ` +
       `IP ${meta.ip} · ${data.email}`;
-    const visual = toVisual(stamp, 'rtl');
-    const size = 7.5;
-    const w = font.widthOfTextAtSize(visual, size);
     const y = Math.max(lowestY - 22, 30);
-    sigPage.drawText(visual, { x: 486 - w, y, size, font, color: dim });
+    drawRTL(sigPage, 486, y, stamp, font, 7.5, dim, 376);
   }
 
   // מוחקים את הטופס כדי שהמסמך יהיה סגור לעריכה

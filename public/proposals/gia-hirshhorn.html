@@ -11,7 +11,8 @@
        font-size:11.4pt;line-height:1.8;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .wrap{max-width:600px;margin:0 auto;padding:15mm 24px 14mm}
   /* בלי פסים לבנים: הרקע ממלא את כל העמוד, ובלוקים לא נחתכים באמצע */
-  .card,.rows,.pbox,.tintbox,.signcard{page-break-inside:avoid}
+  .rows,.pbox,.tintbox,.signcard{page-break-inside:avoid}
+  li,.qa{break-inside:avoid;page-break-inside:avoid}
   @media (max-width:640px){body{font-size:11pt}.wrap{padding:0 18px}h1{font-size:24pt}.pnum{font-size:34pt}}
   .mast{text-align:center;padding:10px 0 0}
   .mark{width:46px;height:46px;margin:0 auto 9px;display:block}
@@ -20,8 +21,8 @@
   .sub{color:var(--muted);font-size:11.5pt;font-weight:400}
   .date{color:var(--muted);font-size:9pt;letter-spacing:.06em;margin-top:13px}
   .rule{height:1px;background:linear-gradient(to left,transparent,var(--o),transparent);opacity:.55;margin:26px 0 30px}
-  .kick{color:var(--o);font-size:8.5pt;letter-spacing:.26em;font-weight:500;margin:28px 0 10px;text-align:right}
-  .card{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:20px 24px;margin-bottom:8px;break-inside:avoid}
+  .kick{color:var(--o);font-size:8.5pt;letter-spacing:.26em;font-weight:500;margin:28px 0 10px;text-align:right;break-after:avoid;page-break-after:avoid}
+  .card{background:var(--card);border:1px solid var(--edge);border-radius:12px;padding:20px 24px;margin-bottom:8px}
   .card h2{color:var(--ink);font-size:14.5pt;font-weight:800;margin:0 0 2px}
   .card .cap{color:var(--muted);font-size:8.5pt;letter-spacing:.2em;margin-bottom:14px}
   .card > p:last-child{margin-bottom:0}
@@ -53,7 +54,7 @@
   .tintbox{background:var(--tint);border:1px solid rgba(242,98,46,.3);border-radius:12px;padding:22px 24px;margin-bottom:8px;page-break-inside:avoid}
   .tintbox .kick2{color:var(--o);font-size:8.5pt;letter-spacing:.26em;margin-bottom:12px}
   .tintbox p{font-size:11.2pt}
-  .qa{padding:13px 0;border-bottom:1px solid var(--hair)}
+  .qa{padding:13px 0;border-bottom:1px solid var(--hair);break-inside:avoid;page-break-inside:avoid}
   .qa:last-child{border-bottom:none}
   .qq{color:var(--ink);font-size:11.3pt;font-weight:700;margin-bottom:3px}
   .qaa{font-size:11pt;line-height:1.75}
@@ -82,6 +83,13 @@
   .btn{display:block;width:100%;text-align:center;padding:15px 18px;border-radius:10px;
        font-family:'Heebo',sans-serif;font-weight:700;font-size:12.5pt;border:0;cursor:pointer}
   .btn:disabled{opacity:.35;cursor:not-allowed}
+  .padwrap{margin-top:20px}
+  .padhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+  .padclear{background:transparent;border:1px solid var(--fline);color:var(--muted);
+       border-radius:7px;padding:5px 13px;font-family:'Heebo',sans-serif;font-size:9.5pt;cursor:pointer}
+  .pad{width:100%;height:165px;background:#fff;border-radius:10px;display:block;
+       touch-action:none;cursor:crosshair}
+  .padnote{color:var(--muted);font-size:9pt;margin-top:7px;text-align:center}
   .btn-wa{background:#25D366;color:#08210f}
   .btn-mail{background:transparent;color:var(--ink);border:1px solid var(--fline)}
   .hint{color:var(--muted);font-size:9.5pt;text-align:center;margin-top:12px;line-height:1.6}
@@ -177,7 +185,7 @@
   <p class="note">את הדומיין אני רוכשת עבורך ורושמת על שמך, כ־74 ₪ לשנה. הוא שלך גם אם תעבור למישהו אחר.</p>
 
   <div class="kick">שאלות שנשאלות</div>
-  <div class="card">
+  <div class="card faq">
     <div class="qa"><div class="qq">כמה זמן זה לוקח?</div><div class="qaa">שבועיים מרגע שהחומרים אצלי. זה מה שאני מתחייבת אליו. אם הצילומים והטקסטים מגיעים מהר, זה יכול להיות פחות.</div></div>
     <div class="qa"><div class="qq">מי כותב את הטקסטים?</div><div class="qaa">אתה כותב לי את התוכן בשפה שלך, בלי לנסות לנסח יפה. אני מסדרת, עורכת ובונה ממנו את החלקים. כתיבה שיווקית מאפס היא עבודה נפרדת.</div></div>
     <div class="qa"><div class="qq">כמה סבבי שינויים יש?</div><div class="qaa">לפני הבנייה אני מראה לך כיוון עיצובי ואנחנו מסכימים עליו. אחרי שהאתר בנוי יש שני סבבי שינויים כלולים. מעבר לזה, בחודשיים הליווי אני ממשיכה לעשות תיקוני טקסט, החלפות תמונות ושינויים קטנים בלי עלות, וכך גם בתחזוקה החודשית אם תמשיך איתה. סבב עיצובי שלם נוסף עולה 350 ₪ ומתומחר מראש.</div></div>
@@ -209,6 +217,14 @@
       <div class="flab" style="margin-bottom:6px">חתימה — הקלד את שמך המלא</div>
       <input class="inp sig" id="fsig" type="text" autocomplete="name">
     </div>
+    <div class="padwrap">
+      <div class="padhead">
+        <span class="flab">או חתום ביד — באצבע בטלפון, בעכבר במחשב</span>
+        <button type="button" class="padclear" id="bclear">נקה</button>
+      </div>
+      <canvas id="pad" class="pad" width="1100" height="330"></canvas>
+      <div class="padnote">מספיק אחד מהשניים. אם תעשה את שניהם, שניהם ייכנסו למסמך.</div>
+    </div>
     <label class="chk"><input type="checkbox" id="fok">
       <span>אני מאשר את ההצעה ואת התנאים: אתר תדמית ופורטפוליו ב־2,400 ₪ כולל חודשיים ליווי, 50% בהתחלה ו־50% בעלייה לאוויר, ואספקה תוך שבועיים מרגע שהחומרים אצל שני.</span></label>
     <div class="btns">
@@ -219,63 +235,79 @@
     </div>
     <div class="hint">בלחיצה אחת ההצעה החתומה נשלחת אוטומטית במייל אליך ולשני, ואז נפתח וואטסאפ להודעה קצרה.<br>הכפתור התחתון הוא גיבוי, למקרה שהשליחה האוטומטית לא עוברת.</div>
   </div>
-  <script>(function(){
+  <script>
+  (function(){
    var WA="972504744815", MAIL="shani.creates.ai@gmail.com", TERMS="אני מאשר את ההצעה ואת התנאים: אתר תדמית ופורטפוליו ב־2,400 ₪ כולל חודשיים ליווי, 50% בהתחלה ו־50% בעלייה לאוויר, ואספקה תוך שבועיים מרגע שהחומרים אצל שני.", SLUG="gia-hirshhorn";
    var el=function(i){return document.getElementById(i)}, d=new Date();
    el("fdate").value=("0"+d.getDate()).slice(-2)+"."+("0"+(d.getMonth()+1)).slice(-2)+"."+d.getFullYear();
 
    var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+   // ריבוע חתימה. הקנבס גדול מהתצוגה כדי שהקו יישאר חד גם ב-PDF.
+   var pad=el("pad"), px=pad.getContext("2d"), drawing=false, inked=false, last=null;
+   px.lineWidth=4; px.lineCap="round"; px.lineJoin="round"; px.strokeStyle="#12121a";
+   function pt(e){
+     var r=pad.getBoundingClientRect(), t=(e.touches&&e.touches[0])||e;
+     return {x:(t.clientX-r.left)*(pad.width/r.width),
+             y:(t.clientY-r.top)*(pad.height/r.height)}}
+   function start(e){e.preventDefault(); drawing=true; last=pt(e);
+     px.beginPath(); px.moveTo(last.x,last.y); px.lineTo(last.x+0.1,last.y); px.stroke(); inked=true; ready()}
+   function move(e){if(!drawing)return; e.preventDefault(); var p=pt(e);
+     px.beginPath(); px.moveTo(last.x,last.y); px.lineTo(p.x,p.y); px.stroke(); last=p}
+   function stop(){drawing=false}
+   pad.addEventListener("mousedown",start); pad.addEventListener("mousemove",move);
+   window.addEventListener("mouseup",stop);
+   pad.addEventListener("touchstart",start,{passive:false});
+   pad.addEventListener("touchmove",move,{passive:false});
+   pad.addEventListener("touchend",stop);
+   el("bclear").addEventListener("click",function(){
+     px.clearRect(0,0,pad.width,pad.height); inked=false; ready()});
+   function drawnSig(){return inked?pad.toDataURL("image/png"):""}
    function vals(){return {slug:SLUG,
      first_name:el("fname").value.trim(), business:el("fbiz").value.trim(),
      vat_id:el("fvat").value.trim(), email:el("fmail").value.trim(),
-     date:el("fdate").value.trim(), signature:el("fsig").value.trim(), terms:TERMS}}
-
+     date:el("fdate").value.trim(), signature:el("fsig").value.trim(),
+     signature_img:drawnSig(), terms:TERMS}}
    function missing(){var v=vals(), m=[];
-     if(!v.first_name) m.push("\u05e9\u05dd \u05e4\u05e8\u05d8\u05d9");
-     if(!v.signature) m.push("\u05d7\u05ea\u05d9\u05de\u05d4");
-     if(!EMAIL_RE.test(v.email)) m.push("\u05d0\u05d9\u05de\u05d9\u05d9\u05dc \u05ea\u05e7\u05d9\u05df");
-     if(!el("fok").checked) m.push("\u05e1\u05d9\u05de\u05d5\u05df \u05d4\u05d0\u05d9\u05e9\u05d5\u05e8");
+     if(!v.first_name) m.push("שם פרטי");
+     if(!v.signature && !inked) m.push("חתימה — מוקלדת או ביד");
+     if(!EMAIL_RE.test(v.email)) m.push("אימייל תקין");
+     if(!el("fok").checked) m.push("סימון האישור");
      return m}
-
-   function say(html,cls){var s=el("status"); s.innerHTML=html; s.className="status "+(cls||"")}
-
    function ready(){var m=missing(), e=m.length>0;
      el("bsign").disabled=e; el("bmail").disabled=e;
-     if(e){ say("\u05db\u05d3\u05d9 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d7\u05e1\u05e8: "+m.join(" \u00b7 "),"warn"); }
-     else { say("",""); }}
+     if(e){ say("כדי לשלוח חסר: "+m.join(" · "),"warn"); } else { say("",""); }}
 
    function longMsg(){var v=vals();
-     return "\u05d0\u05d9\u05e9\u05d5\u05e8 \u05d4\u05e6\u05e2\u05ea \u05de\u05d7\u05d9\u05e8\n\n"
-       +"\u05e9\u05dd \u05e4\u05e8\u05d8\u05d9: "+v.first_name+"\n"
-       +"\u05e9\u05dd \u05d4\u05e2\u05e1\u05e7: "+v.business+"\n"
-       +"\u05de\u05e1\u05e4\u05e8 \u05e2\u05d5\u05e1\u05e7: "+v.vat_id+"\n"
-       +"\u05d0\u05d9\u05de\u05d9\u05d9\u05dc: "+v.email+"\n"
-       +"\u05ea\u05d0\u05e8\u05d9\u05da: "+v.date+"\n"
-       +"\u05d7\u05ea\u05d9\u05de\u05d4: "+v.signature+"\n\n"+TERMS}
-
+     return "אישור הצעת מחיר\n\nשם פרטי: "+v.first_name+"\nשם העסק: "+v.business
+       +"\nמספר עוסק: "+v.vat_id+"\nאימייל: "+v.email+"\nתאריך: "+v.date
+       +"\nחתימה: "+v.signature+"\n\n"+TERMS}
    function shortMsg(){var v=vals();
-     return "\u05d7\u05ea\u05de\u05ea\u05d9 \u05e2\u05dc \u05d4\u05d4\u05e6\u05e2\u05d4. \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4 \u05e0\u05e9\u05dc\u05d7\u05d4 \u05dc\u05de\u05d9\u05d9\u05dc \u2014 "+(v.business||v.first_name)+"."}
-
+     return "חתמתי על ההצעה. ההצעה החתומה נשלחה למייל — "+(v.business||v.first_name)+"."}
    function wa(t){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank")}
+
+   function say(html,cls){var s=el("status"); s.innerHTML=html; s.className="status "+(cls||"")}
 
    el("bsign").addEventListener("click",function(){
      if(missing().length)return;
      el("bsign").disabled=true; el("bmail").disabled=true;
-     say("\u05e9\u05d5\u05dc\u05d7\u05ea \u05d0\u05ea \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4\u2026","");
+     say("שולחת את ההצעה החתומה…","");
      fetch("/api/proposal-sign",{method:"POST",headers:{"Content-Type":"application/json"},
        body:JSON.stringify(vals())})
      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
      .then(function(res){
        if(res.j && res.j.ok){
-         say("<strong>\u05e0\u05e9\u05dc\u05d7.</strong> \u05d4\u05d4\u05e6\u05e2\u05d4 \u05d4\u05d7\u05ea\u05d5\u05de\u05d4 \u05d1\u05d3\u05e8\u05da \u05dc\u05de\u05d9\u05d9\u05dc \u05e9\u05dc\u05da \u05d5\u05dc\u05e9\u05e0\u05d9.<br>\u05e0\u05e4\u05ea\u05d7 \u05e2\u05db\u05e9\u05d9\u05d5 \u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4 \u05db\u05d3\u05d9 \u05dc\u05d4\u05d5\u05d3\u05d9\u05e2 \u05dc\u05d4 \u2014 \u05d0\u05e4\u05e9\u05e8 \u05d2\u05dd \u05e4\u05e9\u05d5\u05d8 \u05dc\u05e1\u05d2\u05d5\u05e8.","good");
+         say("<strong>נשלח.</strong> ההצעה החתומה בדרך למייל שלך ולשני.<br>"+
+             "נפתח עכשיו וואטסאפ כדי להודיע לה — אפשר גם פשוט לסגור.","good");
          setTimeout(function(){wa(shortMsg())},700);
        } else {
-         say("<strong>\u05d4\u05e9\u05dc\u05d9\u05d7\u05d4 \u05d4\u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea \u05dc\u05d0 \u05e2\u05d1\u05e8\u05d4.</strong> \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d9\u05d3\u05e0\u05d9\u05ea \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9\u05dd \u05dc\u05de\u05d8\u05d4, \u05d5\u05d6\u05d4 \u05d9\u05d2\u05d9\u05e2 \u05d1\u05d3\u05d9\u05d5\u05e7 \u05d0\u05d5\u05ea\u05d5 \u05d3\u05d1\u05e8.","warn");
+         say("<strong>השליחה האוטומטית לא עברה.</strong> אפשר לשלוח ידנית בכפתורים למטה, "+
+             "וזה יגיע בדיוק אותו דבר.","warn");
          el("bmail").disabled=false; el("bwa2").style.display="block";
        }
      })
      .catch(function(){
-       say("<strong>\u05d0\u05d9\u05df \u05d7\u05d9\u05d1\u05d5\u05e8 \u05dc\u05e9\u05e8\u05ea.</strong> \u05d0\u05e4\u05e9\u05e8 \u05dc\u05e9\u05dc\u05d5\u05d7 \u05d9\u05d3\u05e0\u05d9\u05ea \u05d1\u05db\u05e4\u05ea\u05d5\u05e8\u05d9\u05dd \u05dc\u05de\u05d8\u05d4.","warn");
+       say("<strong>אין חיבור לשרת.</strong> אפשר לשלוח ידנית בכפתורים למטה.","warn");
        el("bmail").disabled=false; el("bwa2").style.display="block";
      });
    });
@@ -283,13 +315,14 @@
    el("bwa2").addEventListener("click",function(){wa(longMsg())});
    el("bmail").addEventListener("click",function(){var v=vals();
      window.location.href="mailto:"+MAIL+(v.email?"?cc="+encodeURIComponent(v.email)+"&":"?")
-       +"subject="+encodeURIComponent("\u05d0\u05d9\u05e9\u05d5\u05e8 \u05d4\u05e6\u05e2\u05ea \u05de\u05d7\u05d9\u05e8 \u00b7 "+(v.business||v.first_name))
+       +"subject="+encodeURIComponent("אישור הצעת מחיר · "+(v.business||v.first_name))
        +"&body="+encodeURIComponent(longMsg())});
 
    ["fname","fbiz","fvat","fmail","fdate","fsig"].forEach(function(i){el(i).addEventListener("input",ready)});
    el("fok").addEventListener("change",ready);
    ready();
-  })();</script>
+  })();
+  </script>
 
   <div class="foot"><div class="fname">שני גורגוב</div>
     <div class="fbrand">SHANI AI CREATOR</div>
