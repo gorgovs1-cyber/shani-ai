@@ -71,26 +71,15 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "אתר",
-            desc: "עמוד אחד עם תפריט צף וקפיצות לחלקים. מסביר שיטה או שירות לעומק, כולל שאלות נפוצות.",
+            desc: "עמוד אחד עם תפריט צף וקפיצות לחלקים. מסביר שיטה או שירות לעומק, כולל שאלות נפוצות. החודש הראשון של התחזוקה כלול.",
             price: "2,400 ₪",
             more: {
               fit: "אתה מסביר שיטה, תהליך או שירות, ואנשים שואלים אותך אותן שאלות לפני שהם סוגרים.",
-              includes: "חמישה עד שמונה חלקים, תפריט צף שקופץ לכל חלק, סקשן שאלות נפוצות ואזור המלצות. מבחינת תוכן ועבודה זה אתר של חמישה עד שבעה עמודים, פרוס כגלילה אחת.",
+              includes: "חמישה עד שמונה חלקים, תפריט צף שקופץ לכל חלק, סקשן שאלות נפוצות ואזור המלצות. מבחינת תוכן ועבודה זה אתר של חמישה עד שבעה עמודים, פרוס כגלילה אחת. וגם החודש הראשון של התחזוקה: בדיקת אמצע חודש ודוח חודשי מלא. אחריו אפשר להמשיך ב-200 לחודש או לא, בלי התחייבות.",
               forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים, מעצבים וסטודיו קטן שרוצים להציג עבודות.",
               notFor: "אתה מוכר מוצרים ורוצה עגלת קניות ותשלום באתר. זו כבר חנות, וזה פרויקט אחר.",
               exampleLabel: "lilachhazan.com",
               exampleUrl: "https://lilachhazan.com",
-            },
-          },
-          {
-            name: "מודול בלוג",
-            desc: "עמוד בלוג ותבנית מאמר, מחוברים לאתר. המאמרים עצמם מתומחרים בנפרד.",
-            price: "700 ₪",
-            more: {
-              fit: "אתה רוצה שגוגל ימצא אותך גם על שאלות שאנשים מחפשים, ולא רק על השם שלך.",
-              includes: "עמוד בלוג עם רשימת המאמרים, תבנית מאמר מעוצבת, וכתובת נפרדת לכל מאמר כדי שגוגל יוכל לאנדקס אותה.",
-              forWho: "מאמנים, יועצים, מטפלים ובעלי מקצוע שיש להם ידע להסביר. כל תחום שבו לקוחות מחפשים תשובה לפני שהם מחפשים ספק.",
-              notFor: "אין לך כוונה לכתוב באופן קבוע. בלוג עם שני מאמרים ישנים עושה רושם גרוע יותר מאתר בלי בלוג.",
             },
           },
           {
@@ -168,7 +157,7 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "אתר",
-            desc: "שינויי טקסט ותמונות, עדכוני אבטחה, ודוח חודשי על התנועה.",
+            desc: "שינויי טקסט ותמונות, עדכוני אבטחה, ושני עדכונים בחודש: בדיקת אמצע חודש קצרה ודוח חודשי מלא עם המלצה.",
             price: "200 ₪",
             unit: "לחודש",
           },
@@ -188,7 +177,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "התחזוקה היא לא חובה ואין בה התחייבות. אפשר להפסיק בכל חודש, והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
+      "מי שמזמין אתר מקבל את החודש הראשון של התחזוקה כלול. אחריו התחזוקה היא לא חובה ואין בה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
     includedTitle: "כלול בכל אתר, בלי תוספת תשלום",
     included: [
       "התאמת נגישות לתקן הישראלי 5568. נדרש בחוק לאתר עסקי, ורוב האתרים הזולים מגיעים בלעדיו.",
@@ -292,26 +281,15 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "Website",
-            desc: "One page with a floating menu that jumps to each section. Explains a method or a service in depth, including an FAQ.",
+            desc: "One page with a floating menu that jumps to each section. Explains a method or a service in depth, including an FAQ. The first month of care is included.",
             price: "₪2,400",
             more: {
               fit: "You explain a method, a process or a service, and people ask you the same questions before they commit.",
-              includes: "Five to eight sections, a floating menu that jumps to each one, an FAQ section and a reviews area. In content and work it is a five to seven page site, laid out as one scroll.",
+              includes: "Five to eight sections, a floating menu that jumps to each one, an FAQ section and a reviews area. In content and work it is a five to seven page site, laid out as one scroll. Plus the first month of care: a mid-month check and a full monthly report. After that you can continue at 200 NIS a month or not, with no commitment.",
               forWho: "Coaches, therapists, consultants and independents who sell knowledge or a process. Also architects, designers and small studios showing work.",
               notFor: "You sell products and need a cart and checkout. That is a store, and a different project.",
               exampleLabel: "lilachhazan.com",
               exampleUrl: "https://lilachhazan.com",
-            },
-          },
-          {
-            name: "Blog module",
-            desc: "A blog page and an article template, wired into the site. Articles are priced separately.",
-            price: "₪700",
-            more: {
-              fit: "You want Google to find you for the questions people search, not only for your name.",
-              includes: "A blog page listing the articles, a designed article template, and a separate URL per article so Google can index it.",
-              forWho: "Coaches, consultants, therapists and professionals with knowledge to explain. Any field where clients look for an answer before they look for a supplier.",
-              notFor: "You do not plan to write regularly. A blog with two old posts looks worse than no blog at all.",
             },
           },
           {
@@ -389,7 +367,7 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "Website",
-            desc: "Text and image changes, security updates, and a monthly traffic report.",
+            desc: "Text and image changes, security updates, and two updates a month: a short mid-month check and a full monthly report with a recommendation.",
             price: "₪200",
             unit: "per month",
           },
@@ -409,7 +387,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "Monthly care is optional and there is no commitment. You can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
+      "Order a website and the first month of care is included. After that, care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
     includedTitle: "Included in every website, at no extra cost",
     included: [
       "Accessibility to Israeli standard 5568. Required by law for a business site, and most cheap sites arrive without it.",
