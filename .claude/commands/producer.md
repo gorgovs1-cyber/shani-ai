@@ -4,8 +4,10 @@ description: >
   Producer V1.2 של צוות התוכן: ממיר חבילת תוכן אחת שכבר עברה ביקורת (content-desk-package.md
   עם Review status) לתיקיית production-ready עם נכסים אמיתיים בלבד — כולל רינדור ויזואלי מלא
   אוטומטי (קאבר, כרטיסי CTA/Outro, overlays, סלוטי הקלטת-מסך, PNG+SVG, manifest, timeline,
-  contact sheet, QA) דרך marketing-engine/producer/render_visuals.py. לא סוכן — פקודת תזמור.
-  לא יוצר מחקר/קופי חדש, לא משנה את החבילה, לא מקליט מסך במקום שני, לא מפרסם.
+  contact sheet, QA) דרך marketing-engine/producer/render_visuals.py, וכן מדריך צילום פשוט
+  בעברית (production/CREATOR-HANDOFF.md) דרך marketing-engine/producer/creator_handoff.py —
+  ההנדאוף העיקרי לשני. לא סוכן — פקודת תזמור. לא יוצר מחקר/קופי חדש, לא משנה את החבילה, לא
+  מקליט מסך במקום שני, לא מפרסם.
 ---
 
 # /producer — חבילה מאושרת → תיקיית הפקה
@@ -69,6 +71,29 @@ python3 marketing-engine/producer/render_visuals.py --package "marketing-engine/
 **כשל בשלב הרינדור** (חריגה/קובץ חסר) → הרצת Producer **לא הושלמה** — מדווחים את השגיאה
 המדויקת ב-`MANUAL-ACTIONS.md`, לא ממשיכים כאילו הצליח.
 
+## שלב 3 — Creator Handoff: מדריך צילום פשוט בעברית (חובה, לא אופציונלי)
+
+**מיד אחרי** שלב 2 (רינדור ויזואלי מוצלח), מריצים אוטומטית — **באותה הרצה** — את:
+
+```bash
+python3 marketing-engine/producer/creator_handoff.py --package "marketing-engine/packages/<slug>"
+```
+
+זה כלי תזמור דטרמיניסטי (בלי קריאת LLM, לא סוכן חדש) שקורא את `production/visual-manifest.json`,
+`on-screen-text.csv` ו-`voiceover.txt` הקיימים (דרך `recording_studio.build_shots`, בלי לפרסר
+פעמיים) וכותב `production/CREATOR-HANDOFF.md` — מדריך צילום פשוט בעברית, בלי ז'רגון פיתוח, בלי
+נתיבי קבצים פנימיים, בלי הסבר ארכיטקטורה.
+
+**זהו ההנדאוף העיקרי לשני — לא דוח טכני.** אחרי הרצת Producer מאושרת (Review status: approved
++ רינדור ויזואלי תקין + Creator Handoff נכתב בהצלחה), **התגובה הסופית של Claude בשיחה חייבת
+להיות תוכן `CREATOR-HANDOFF.md` עצמו, מוצג במלואו בעברית פשוטה** — לא דוח פיתוח, לא רשימת
+קבצים, לא Git status, לא נתיבים כראש התגובה. פרטים טכניים (נתיבי קבצים, Git status, מה השתנה
+בקוד) מותרים **רק** בסעיף נפרד ומסומן בבירור בסוף התגובה, תחת הכותרת **"פרטים טכניים למפתחים"**
+— לעולם לא לפני המדריך.
+
+**כשל בשלב הזה** (script נכשל / הקובץ לא נכתב) → לא ממציאים מדריך — מדווחים את השגיאה המדויקת,
+ומראים לשני את הדוח הטכני הרגיל במקום (כישלון גלוי, לא מוסתר).
+
 ## כללי ברזל
 - **אין המצאה:** אסור לייצר "הקלטת מסך", צילום, תוצאה או מוצר שלא קיימים. פער אמיתי →
   שורה ב-MANUAL-ACTIONS, לא נכס מזויף.
@@ -77,3 +102,4 @@ python3 marketing-engine/producer/render_visuals.py --package "marketing-engine/
 - הכל בתוך תיקיית החבילה — לא נוגעים בקבצים מחוץ ל-production/ (מלבד קריאה).
 - לוגו/פונטים/צבעים: ר' `marketing-engine/producer/BRAND-GROUNDING.md` +
   `marketing-engine/producer/FONT-SOURCING.md` — מקור אמת יחיד, לא מומצא כאן מחדש.
+- **ההתגובה הסופית בשיחה היא מדריך הצילום (Creator Handoff), לא דוח פיתוח** — ר' "שלב 3" למעלה.

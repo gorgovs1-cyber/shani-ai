@@ -202,10 +202,12 @@ def make_glow_bg(out_w=REEL_W, out_h=REEL_H):
 # --------------------------------------------------------------------------------
 # Full-screen branded cards
 # --------------------------------------------------------------------------------
-def render_headline_card(lines, subtitle=None, accent_last=True, out_w=REEL_W, out_h=REEL_H):
+def render_headline_card(lines, subtitle=None, accent_last=True, out_w=REEL_W, out_h=REEL_H, rtl=True):
     """Cover-style card: logo+wordmark header, centered bold headline (accent on the
     last line), optional dim subtitle, handle footer. Matches the reel's cover/hook
-    frame layout exactly (center-aligned, not right-aligned like the carousels)."""
+    frame layout exactly (center-aligned, not right-aligned like the carousels).
+    rtl=False for Latin-only content (e.g. a bare @handle outro) — matches the
+    handle footer's own rtl=False convention, avoiding bidi-reordering Latin text."""
     img = make_glow_bg(out_w, out_h).convert('RGBA')
     draw = draw_header(img)
 
@@ -215,23 +217,23 @@ def render_headline_card(lines, subtitle=None, accent_last=True, out_w=REEL_W, o
 
     wrapped = []
     for raw_line in lines:
-        wrapped.extend(wrap_rtl(draw, raw_line, f_big, max_w))
+        wrapped.extend(wrap_rtl(draw, raw_line, f_big, max_w, rtl=rtl))
 
-    line_heights = [th(draw, l, f_big) for l in wrapped]
+    line_heights = [th(draw, l, f_big, rtl=rtl) for l in wrapped]
     gap = 22
     block_h = sum(line_heights) + gap * (len(wrapped) - 1)
-    sub_h = th(draw, subtitle, f_sub) if subtitle else 0
+    sub_h = th(draw, subtitle, f_sub, rtl=rtl) if subtitle else 0
     total_h = block_h + (44 + sub_h if subtitle else 0)
 
     zone_top, zone_bottom = 300, out_h - 400
     y = zone_top + max(0, (zone_bottom - zone_top - total_h) // 2)
     for i, line in enumerate(wrapped):
         color = ORANGE if (accent_last and i == len(wrapped) - 1) else TEXT
-        ctxt(draw, y, line, f_big, rgba(color), canvas_w=out_w)
+        ctxt(draw, y, line, f_big, rgba(color), canvas_w=out_w, rtl=rtl)
         y += line_heights[i] + gap
     if subtitle:
         y += 22
-        ctxt(draw, y, subtitle, f_sub, rgba(DIM), canvas_w=out_w)
+        ctxt(draw, y, subtitle, f_sub, rgba(DIM), canvas_w=out_w, rtl=rtl)
 
     draw_handle_footer(draw)
     return img.convert('RGB')
@@ -484,7 +486,11 @@ def _svg_glow_defs(out_w=REEL_W, out_h=REEL_H):
             f'<stop offset="100%" stop-color="{BG_HEX}" stop-opacity="0"/></radialGradient>')
 
 
-def svg_headline_card(lines, subtitle=None, accent_last=True, out_w=REEL_W, out_h=REEL_H):
+def svg_headline_card(lines, subtitle=None, accent_last=True, out_w=REEL_W, out_h=REEL_H, rtl=True):
+    """rtl=False for Latin-only content (e.g. a bare @handle outro) — omits direction="rtl"
+    on the headline text so a lone neutral character like "@" doesn't get bidi-reordered
+    away from its Latin run, matching the handle footer's own rtl=False convention."""
+    text_dir = ' direction="rtl"' if rtl else ""
     parts = [f'<svg width="{out_w}" height="{out_h}" viewBox="0 0 {out_w} {out_h}" '
              f'xmlns="http://www.w3.org/2000/svg" direction="rtl">',
              '  <defs>' + _svg_glow_defs(out_w, out_h) + '</defs>',
@@ -502,13 +508,13 @@ def svg_headline_card(lines, subtitle=None, accent_last=True, out_w=REEL_W, out_
     for i, line in enumerate(lines):
         color = ORANGE_HEX if (accent_last and i == len(lines) - 1) else TEXT_HEX
         tspans.append(f'<tspan x="{out_w//2}" dy="{0 if i == 0 else line_h}" fill="{color}">{_svg_escape(line)}</tspan>')
-    parts.append(f'  <text x="{out_w//2}" y="{y}" text-anchor="middle" direction="rtl" '
+    parts.append(f'  <text x="{out_w//2}" y="{y}" text-anchor="middle"{text_dir} '
                  f'font-family="Heebo, sans-serif" font-weight="700" font-size="84" fill="{TEXT_HEX}">')
     parts.append("    " + "".join(tspans))
     parts.append('  </text>')
 
     if subtitle:
-        parts.append(f'  <text x="{out_w//2}" y="{y + n*line_h - 20}" text-anchor="middle" direction="rtl" '
+        parts.append(f'  <text x="{out_w//2}" y="{y + n*line_h - 20}" text-anchor="middle"{text_dir} '
                      f'font-family="Heebo, sans-serif" font-weight="500" font-size="42" fill="{DIM_HEX}">'
                      f'{_svg_escape(subtitle)}</text>')
 
@@ -679,42 +685,87 @@ def svg_slot_placeholder(shot_idx, start, end, caption_text, recorded_desc, out_
 
 
 # --------------------------------------------------------------------------------
-# Reel package data — sourced verbatim from shot-list.md / package.md /
-# on-screen-text.csv / cover-brief.md for the acceptance package. No invented copy.
+# Reel package data — sourced verbatim from each package's shot-list.md / package.md /
+# on-screen-text.csv / cover-brief.md. No invented copy. Keyed by package directory slug
+# so this renderer works for any approved package, not just the one it first shipped with.
 # --------------------------------------------------------------------------------
-REEL_SHOTS = [
-    dict(idx=1, start=0, end=2, text="נתתי לקלוד ריל", kind="recording", role="hook",
-         recorded_desc="ההקלטה האמיתית: הדבקת קישור הרפרנס והרצת /watch, הוכחה מהפריים הראשון"),
-    dict(idx=2, start=2, end=4, text="12 דקות אחר כך: פירוק מלא של ההוק, החיתוכים וה-CTA",
-         kind="recording", role="payoff",
-         recorded_desc="jump-cut קדימה לפלט המוגמר, גלילת ציר הסצנות האמיתי"),
-    dict(idx=3, start=4, end=8, text="יכולת בשם /watch שחיברתי ל-Claude Code",
-         kind="recording", role="text",
-         recorded_desc="חזרה כרונולוגית לרצף הריצה (progress)"),
-    dict(idx=4, start=8, end=11, text="מורידה את הסרטון · מוציאה פריימים",
-         kind="recording", role="step", step_label="שלב 1",
-         recorded_desc="שורת ההורדה ופלט חילוץ הפריימים"),
-    dict(idx=5, start=11, end=15, text="מתמללת · בונה ציר סצנות מלא",
-         kind="recording", role="step", step_label="שלב 2",
-         recorded_desc="גלילת התמלול ואז ציר הסצנות"),
-    dict(idx=6, start=15, end=18, text="לומדת מהמבנה",
-         kind="recording", role="step", step_label="שלב 3",
-         recorded_desc="הניתוח הסופי מוצג במלואו"),
-    dict(idx=7, start=18, end=21, text="בלי להעתיק את התוכן",
-         kind="recording", role="step", step_label="שלב 4",
-         recorded_desc="זום קל על שורות ההוק/החיתוכים בניתוח"),
-    dict(idx=8, start=21, end=25, text="3 השאלות שאני שואלת לפני שאני כותבת?",
-         kind="graphic", role="cta"),
-    dict(idx=9, start=25, end=28, text="כתבו 'תחקיר'", kind="graphic", role="cta_outro"),
-]
-
-COVER = dict(
-    lines=["נתתי לקלוד ריל"],
-    subtitle="12 דקות אחר כך: פירוק מלא",
-)
+REEL_PACKAGES = {
+    "2026-07-14-claude-watch-behind-scenes": dict(
+        shots=[
+            dict(idx=1, start=0, end=2, text="נתתי לקלוד ריל", kind="recording", role="hook",
+                 recorded_desc="ההקלטה האמיתית: הדבקת קישור הרפרנס והרצת /watch, הוכחה מהפריים הראשון"),
+            dict(idx=2, start=2, end=4, text="12 דקות אחר כך: פירוק מלא של ההוק, החיתוכים וה-CTA",
+                 kind="recording", role="payoff",
+                 recorded_desc="jump-cut קדימה לפלט המוגמר, גלילת ציר הסצנות האמיתי"),
+            dict(idx=3, start=4, end=8, text="יכולת בשם /watch שחיברתי ל-Claude Code",
+                 kind="recording", role="text",
+                 recorded_desc="חזרה כרונולוגית לרצף הריצה (progress)"),
+            dict(idx=4, start=8, end=11, text="מורידה את הסרטון · מוציאה פריימים",
+                 kind="recording", role="step", step_label="שלב 1",
+                 recorded_desc="שורת ההורדה ופלט חילוץ הפריימים"),
+            dict(idx=5, start=11, end=15, text="מתמללת · בונה ציר סצנות מלא",
+                 kind="recording", role="step", step_label="שלב 2",
+                 recorded_desc="גלילת התמלול ואז ציר הסצנות"),
+            dict(idx=6, start=15, end=18, text="לומדת מהמבנה",
+                 kind="recording", role="step", step_label="שלב 3",
+                 recorded_desc="הניתוח הסופי מוצג במלואו"),
+            dict(idx=7, start=18, end=21, text="בלי להעתיק את התוכן",
+                 kind="recording", role="step", step_label="שלב 4",
+                 recorded_desc="זום קל על שורות ההוק/החיתוכים בניתוח"),
+            dict(idx=8, start=21, end=25, text="3 השאלות שאני שואלת לפני שאני כותבת?",
+                 kind="graphic", role="cta"),
+            dict(idx=9, start=25, end=28, text="כתבו 'תחקיר'", kind="graphic", role="cta_outro"),
+        ],
+        cover=dict(lines=["נתתי לקלוד ריל"], subtitle="12 דקות אחר כך: פירוק מלא"),
+    ),
+    "2026-07-14-claude-md-behavior-file": dict(
+        # Content correction round 3 (2026-07-17, Shani-approved): 7 shots / 30s, restructured
+        # to the reference Reel's "concrete problem -> real screen proof" pattern. See
+        # package.md / content-desk-package.md section 5ba for the full correction record.
+        shots=[
+            dict(idx=1, start=0, end=3, text="3 הרגלים שעצרתי עם קובץ אחד",
+                 kind="recording", role="hook",
+                 recorded_desc="פתיחת הפרויקט, קובץ CLAUDE.md האמיתי בעורך — ההוק כטקסט על גבי ההקלטה עצמה"),
+            dict(idx=2, start=3, end=6, text="CLAUDE.md = כללי העבודה של הפרויקט",
+                 kind="recording", role="intro",
+                 recorded_desc="המשך אותה הקלטה — גלילה קלה לראש הקובץ, מציגה את שם הקובץ"),
+            dict(idx=3, start=6, end=11, text="1. בלי בנייה מוגזמת",
+                 kind="recording", role="content",
+                 recorded_desc='גלילה בקובץ האמיתי לסעיף "העדפות תקשורת", התמקדות בשורה '
+                               '"לא לבנות מערכת רחבה כשביקשתי שינוי ממוקד..."'),
+            dict(idx=4, start=11, end=16, text="2. בלי להמציא מידע",
+                 kind="recording", role="content",
+                 recorded_desc='המשך אותו סעיף — התמקדות בשורה "לא להמציא פרטים על מיתוג, קוד '
+                               'קיים, אינטגרציות, לקוחות, תמחור או סטטוס מוצר"'),
+            dict(idx=5, start=16, end=21, text="3. ביקורת אמיתית, לא ליטופים",
+                 kind="recording", role="content",
+                 recorded_desc='המשך אותו סעיף — התמקדות בשורה "כנות אנליטית. לא להסכים '
+                               'אוטומטית ולא לרצות אותי..."'),
+            dict(idx=6, start=21, end=25, text="קובץ אחד. הקשר קבוע.",
+                 kind="recording", role="closing",
+                 recorded_desc="סגירת חלון העורך / זום-אאוט כללי על הקובץ הפתוח — משפט סיכום, לא הדגמה חדשה"),
+            dict(idx=7, start=25, end=30, text="כתבו 'הנחיות'", subtext="לקבלת רשימת הכללים המלאה",
+                 kind="graphic", role="cta_outro"),
+        ],
+        cover=dict(
+            lines=["קובץ אחד גרם לקלוד קוד להפסיק לעשות שלושה דברים שעיצבנו אותי בכל פרויקט."],
+            subtitle="CLAUDE.md = כללי העבודה של הפרויקט",
+        ),
+    ),
+}
 
 
 def render_reel_package(package_dir):
+    package_slug = os.path.basename(os.path.normpath(os.path.abspath(package_dir)))
+    if package_slug not in REEL_PACKAGES:
+        raise ValueError(
+            f"render_visuals: no REEL_PACKAGES entry for package '{package_slug}'. "
+            "Add its shots/cover data to REEL_PACKAGES in render_visuals.py before rendering — "
+            "refusing to guess or reuse another package's content."
+        )
+    reel_shots = REEL_PACKAGES[package_slug]["shots"]
+    cover = REEL_PACKAGES[package_slug]["cover"]
+
     prod = os.path.join(package_dir, "production")
     vsvg = os.path.join(prod, "visuals", "svg")
     vpng = os.path.join(prod, "visuals", "png")
@@ -734,32 +785,43 @@ def render_reel_package(package_dir):
         ))
 
     # --- full-screen cards: cover (approved composition, see COVER-APPROVAL.md) +
-    #     shot8 = headline style (render_headline_card, unchanged), shot9 = solid CTA button ---
-    cover_png = render_cover(COVER["lines"], subtitle=COVER["subtitle"])
+    #     one card per "graphic" shot. Role decides style: action-taking roles
+    #     (cta_outro/cta_keyword) get the solid CTA button; everything else
+    #     (question-style cta, plain outro) reuses the headline card, unchanged. ---
+    cover_png = render_cover(cover["lines"], subtitle=cover["subtitle"])
     cover_png.save(os.path.join(vpng, "cover.png"))
     with open(os.path.join(vsvg, "cover.svg"), "w", encoding="utf-8") as f:
-        f.write(svg_cover(COVER["lines"], subtitle=COVER["subtitle"]))
+        f.write(svg_cover(cover["lines"], subtitle=cover["subtitle"]))
     add_entry("cover", "Cover / thumbnail frame (approved composition)", "full-screen", 0, 0,
-              f'{COVER["lines"][0]} / {COVER["subtitle"]}')
+              f'{cover["lines"][0]} / {cover["subtitle"]}')
 
-    shot8 = next(s for s in REEL_SHOTS if s["idx"] == 8)
-    cta8_png = render_headline_card([shot8["text"]], accent_last=False)
-    cta8_png.save(os.path.join(vpng, "cta-shot8.png"))
-    with open(os.path.join(vsvg, "cta-shot8.svg"), "w", encoding="utf-8") as f:
-        f.write(svg_headline_card([shot8["text"]], accent_last=False))
-    add_entry("cta-shot8", "CTA card — shot 8 (headline style)", "full-screen",
-              shot8["start"], shot8["end"], shot8["text"])
+    BUTTON_ROLES = {"cta_outro", "cta_keyword"}
+    for s in reel_shots:
+        if s["kind"] != "graphic":
+            continue
+        name = f'cta-shot{s["idx"]}'
+        if s["role"] in BUTTON_ROLES:
+            subtext = s.get("subtext")
+            card_png = render_cta_button_card(s["text"], subtext=subtext)
+            card_svg = svg_cta_button_card(s["text"], subtext=subtext)
+            style_label = "solid button style"
+            base_text = f'{s["text"]} / {subtext}' if subtext else s["text"]
+            source_text = f'{base_text} + {HANDLE}' if s["role"] == "cta_outro" else base_text
+        else:
+            accent_last = (s["role"] == "outro")
+            is_latin_handle = (s["role"] == "outro" and s["text"] == HANDLE)
+            card_png = render_headline_card([s["text"]], accent_last=accent_last, rtl=not is_latin_handle)
+            card_svg = svg_headline_card([s["text"]], accent_last=accent_last, rtl=not is_latin_handle)
+            style_label = "headline style"
+            source_text = s["text"]
+        card_png.save(os.path.join(vpng, f"{name}.png"))
+        with open(os.path.join(vsvg, f"{name}.svg"), "w", encoding="utf-8") as f:
+            f.write(card_svg)
+        add_entry(name, f"CTA/Outro card — shot {s['idx']} ({style_label})", "full-screen",
+                  s["start"], s["end"], source_text)
 
-    shot9 = next(s for s in REEL_SHOTS if s["idx"] == 9)
-    cta9_png = render_cta_button_card(shot9["text"])
-    cta9_png.save(os.path.join(vpng, "cta-shot9.png"))
-    with open(os.path.join(vsvg, "cta-shot9.svg"), "w", encoding="utf-8") as f:
-        f.write(svg_cta_button_card(shot9["text"]))
-    add_entry("cta-shot9", "CTA + Outro card — shot 9 (solid button style)", "full-screen",
-              shot9["start"], shot9["end"], f'{shot9["text"]} + {HANDLE}')
-
-    # --- overlays (transparent recording-window frame, shots 1-7) ---
-    for s in REEL_SHOTS:
+    # --- overlays (transparent recording-window frame, shots requiring real screen capture) ---
+    for s in reel_shots:
         if s["kind"] != "recording":
             continue
         base_name = f'overlay-shot{s["idx"]}'
@@ -791,7 +853,7 @@ def render_reel_package(package_dir):
             ))
 
     # --- manual recording slots (branded chrome + opaque placeholder window) ---
-    for s in REEL_SHOTS:
+    for s in reel_shots:
         if s["kind"] != "recording":
             continue
         name = f'slot-shot{s["idx"]}'
@@ -852,24 +914,23 @@ def render_carousel_slide(n, total, title_lines, body_lines=None, is_cta=False,
 # --------------------------------------------------------------------------------
 # Contact sheet
 # --------------------------------------------------------------------------------
-def build_contact_sheet(package_dir, cell_w=270, cell_h=480, cols=5):
+def build_contact_sheet(package_dir, package_slug, reel_shots, cell_w=270, cell_h=480, cols=5):
     prod = os.path.join(package_dir, "production")
     vpng = os.path.join(prod, "visuals", "png")
     vovl = os.path.join(prod, "visuals", "overlays")
 
     cells = [("cover.png", "COVER", None)]
-    for s in REEL_SHOTS:
+    for s in reel_shots:
         if s["kind"] == "recording":
             cells.append((f'slot-shot{s["idx"]}.png', f'SHOT {s["idx"]}', None))
         else:
-            fname = "cta-shot8.png" if s["idx"] == 8 else "cta-shot9.png"
-            cells.append((fname, f'SHOT {s["idx"]}', None))
+            cells.append((f'cta-shot{s["idx"]}.png', f'SHOT {s["idx"]}', None))
 
     rows = math.ceil(len(cells) / cols)
     sheet = Image.new('RGB', (cols * cell_w, rows * cell_h + 60), BG)
     draw = ImageDraw.Draw(sheet)
     f_label = fnt(True, 20, mono=True)
-    draw.text((30, 18), "VISUAL SEQUENCE CONTACT SHEET — claude-watch-behind-scenes",
+    draw.text((30, 18), f"VISUAL SEQUENCE CONTACT SHEET — {package_slug}",
               font=fnt(True, 24, mono=True), fill=ORANGE)
 
     for i, (fname, label, _unused) in enumerate(cells):
@@ -932,10 +993,11 @@ def write_qa_doc(package_dir, manifest, expected_counts, generated_counts, conta
                   "— כולם מאומתים מול globals.css ומדגימת פיקסלים מהריל שהועלה. "
                   "ר' `BRAND-GROUNDING.md` לעדות המלאה.\n")
 
-    lines.append("## 3. סגנון שוטים 8/9\n")
-    lines.append("שוט 8 (שאלה) → כרטיס headline ממורכז (אותו סגנון כמו הקאבר). "
-                  "שוט 9 (הוראת CTA) → כפתור אורגני מלא (solid fill), תואם בדיוק את פריים הסיום "
-                  "בריל האמיתי. שתי הבחנות שונות בפועל בהתאם לתפקיד השוט, לא זהות מלאכותית.\n")
+    lines.append("## 3. סגנון כרטיסי גרפיקה (graphic shots)\n")
+    lines.append("שוטי שאלה/outro (`cta`, `outro`) → כרטיס headline ממורכז (אותו סגנון כמו הקאבר). "
+                  "שוטי הוראת-פעולה (`cta_outro`, `cta_keyword`) → כפתור אורגני מלא (solid fill), "
+                  "תואם בדיוק את פריים הסיום בריל האמיתי. הבחירה נגזרת מתפקיד השוט (`role`) "
+                  "בנתוני החבילה, לא זהות מלאכותית בין כל השוטים.\n")
 
     lines.append("## 4. תוצאה\n")
     lines.append("**כל הבדיקות עברו — אין פגם רינדור חוסם.**\n" if all_ok else
@@ -957,17 +1019,25 @@ def main():
     args = ap.parse_args()
 
     package_dir = os.path.abspath(args.package)
-    package_slug = os.path.basename(package_dir.rstrip("/"))
+    package_slug = os.path.basename(os.path.normpath(package_dir))
 
     if args.type == "reel":
         manifest = render_reel_package(package_dir)
-        contact_sheet = build_contact_sheet(package_dir)
+        reel_shots = REEL_PACKAGES[package_slug]["shots"]
+        contact_sheet = build_contact_sheet(package_dir, package_slug, reel_shots)
 
         full_screen = [m for m in manifest if m["type"] == "full-screen"]
         overlays = [m for m in manifest if m["type"] == "overlay"]
         slots = [m for m in manifest if m["type"] == "manual-recording-slot"]
 
-        expected = {"full-screen cards": 3, "overlays (caption + step-badge)": 11, "manual recording slots": 7}
+        recording_shots = [s for s in reel_shots if s["kind"] == "recording"]
+        graphic_shots = [s for s in reel_shots if s["kind"] == "graphic"]
+        step_shots = [s for s in recording_shots if "step_label" in s]
+        expected = {
+            "full-screen cards": 1 + len(graphic_shots),
+            "overlays (caption + step-badge)": len(recording_shots) + len(step_shots),
+            "manual recording slots": len(recording_shots),
+        }
         generated = {"full-screen cards": len(full_screen), "overlays (caption + step-badge)": len(overlays),
                      "manual recording slots": len(slots)}
 

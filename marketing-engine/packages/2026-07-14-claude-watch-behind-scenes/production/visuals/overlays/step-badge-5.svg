@@ -1,0 +1,5 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" direction="rtl">
+  <!-- transparent step badge overlay, optional light layer -->
+  <rect x="860" y="623" width="130" height="58" rx="12" fill="#141009" fill-opacity="0.75" stroke="#F2622E" stroke-width="2"/>
+  <text x="925" y="661" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="28" fill="#F2622E">שלב 2</text>
+</svg>

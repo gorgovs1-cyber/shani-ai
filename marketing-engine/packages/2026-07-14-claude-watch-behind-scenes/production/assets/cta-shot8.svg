@@ -1,0 +1,16 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" direction="rtl">
+  <rect x="0" y="0" width="1080" height="1920" fill="#141009"/>
+
+  <rect x="90" y="760" width="900" height="400" rx="24" fill="#20180E" stroke="#F2622E" stroke-width="2"/>
+
+  <text x="540" y="900" text-anchor="middle" direction="rtl"
+        font-family="Heebo, sans-serif" font-weight="700" font-size="64" fill="#F4EDE1">
+    <tspan x="540" dy="0">3 השאלות שאני שואלת</tspan>
+    <tspan x="540" dy="90">לפני שאני כותבת?</tspan>
+  </text>
+
+  <text x="540" y="1830" text-anchor="middle"
+        font-family="'JetBrains Mono', monospace" font-weight="400" font-size="32" fill="#F4EDE1" fill-opacity="0.75">
+    @shani.creates.ai
+  </text>
+</svg>

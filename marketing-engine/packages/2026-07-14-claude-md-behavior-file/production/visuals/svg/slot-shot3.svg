@@ -1,0 +1,17 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" direction="rtl">
+  <defs>  <radialGradient id="glow" cx="80%" cy="5%" r="55%"><stop offset="0%" stop-color="#3a1c14" stop-opacity="0.65"/><stop offset="100%" stop-color="#141009" stop-opacity="0"/></radialGradient></defs>
+  <rect x="0" y="0" width="1080" height="1920" fill="#141009"/>
+  <rect x="0" y="0" width="1080" height="1920" fill="url(#glow)"/>
+  <path d="M540.0 40.0 L598.0 73.5 L598.0 140.5 L540.0 174.0 L482.0 140.5 L482.0 73.5 Z" stroke="#F2622E" stroke-width="9.3" stroke-linejoin="round" fill="none"/>
+  <path d="M540.0 71.2 L571.0 89.1 L571.0 124.9 L540.0 142.8 L509.0 124.9 L509.0 89.1 Z" stroke="#F2622E" stroke-width="6.2" stroke-linejoin="round" fill="none" opacity="0.55"/>
+  <circle cx="540" cy="107" r="10.1" fill="#F2622E"/>
+  <text x="540" y="195" text-anchor="middle" font-family="Heebo, sans-serif" font-weight="700" font-size="38" fill="#F4EDE1">Shani AI Creator</text>
+  <text x="540" y="510" text-anchor="middle" direction="rtl" font-family="Heebo, sans-serif" font-weight="700" font-size="54" fill="#F4EDE1">1. בלי בנייה מוגזמת</text>
+  <rect x="0" y="699" width="1080" height="4" fill="#F2622E"/>
+  <rect x="0" y="703" width="1080" height="575" fill="#1d160e"/>
+  <text x="540" y="799" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="34" fill="#F2622E">SCREEN RECORDING SLOT</text>
+  <text x="540" y="864" text-anchor="middle" direction="rtl" font-family="Heebo, sans-serif" font-weight="700" font-size="46" fill="#F4EDE1">שוט 3 · 6s–11s</text>
+  <text x="540" y="924" text-anchor="middle" direction="rtl" font-family="Heebo, sans-serif" font-weight="400" font-size="32" fill="#968F84">גלילה בקובץ האמיתי לסעיף "העדפות תקשורת", התמקדות בשורה "לא לבנות מערכת רחבה כשביקשתי שינוי ממוקד..."</text>
+  <text x="540" y="1238" text-anchor="middle" direction="rtl" font-family="Heebo, sans-serif" font-weight="500" font-size="26" fill="#F2622E">ר' screen-recording-checklist.md — לא לפרסום, לא הקלטה סופית</text>
+  <text x="540" y="1840" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="400" font-size="30" fill="#968F84">@shani.creates.ai</text>
+</svg>

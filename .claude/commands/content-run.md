@@ -91,14 +91,18 @@ content-desk.md מריץ בעצמו Researcher → Creator → Reviewer ומרכ
 ```
 /producer Package: marketing-engine/packages/<slug>/
 ```
-מריץ producer.md V1.2 — קבצי production/ הרגילים **וגם** רינדור ויזואלי אוטומטי (קאבר/CTA/
-overlays/סלוטים/PNG+SVG/manifest/timeline/contact sheet/QA) דרך `render_visuals.py`, ללא בקשה
+מריץ producer.md V1.2 — קבצי production/ הרגילים, רינדור ויזואלי אוטומטי (קאבר/CTA/
+overlays/סלוטים/PNG+SVG/manifest/timeline/contact sheet/QA) דרך `render_visuals.py`, **וגם**
+מדריך צילום פשוט בעברית (`production/CREATOR-HANDOFF.md`) דרך `creator_handoff.py` — ללא בקשה
 נפרדת. ר' producer.md לפרטים.
 
-### שלב 5 — תיקיית production-ready + סטטוס
-דיווח לשני: נתיב `marketing-engine/packages/<slug>/production/`, `Shani status: pending`
-(תמיד — אף שלב כאן לא קובע Shani status חוץ משני עצמה), ורשימת הפעולות שנשארו לה
-(`MANUAL-ACTIONS.md`).
+### שלב 5 — ההנדאוף לשני: מדריך הצילום, לא דוח טכני
+**התגובה הסופית של Claude בסוף `/content-run` היא תוכן `CREATOR-HANDOFF.md`, מוצג במלואו בעברית
+פשוטה** — בדיוק כמו "שלב 3" ב-producer.md. לא דוח פיתוח, לא רשימת קבצים, לא Git status כראש
+התגובה. `Shani status: pending` (תמיד — אף שלב כאן לא קובע Shani status חוץ משני עצמה) ורשימת
+הפעולות שנשארו לה (`MANUAL-ACTIONS.md`) מוזכרות בקצרה, לא כגוף התגובה. פרטים טכניים (נתיבים,
+Git status, מה רץ בפועל) מותרים **רק** בסעיף נפרד בסוף התגובה, תחת הכותרת **"פרטים טכניים
+למפתחים"** — לעולם לא לפני המדריך.
 
 ## כללי ברזל
 - לא בונה סוכן חדש, לא נוגעת ב-researcher.md / creator.md / reviewer.md / client-desk.md.
