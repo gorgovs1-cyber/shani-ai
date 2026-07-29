@@ -1,0 +1,14 @@
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" direction="rtl">
+  <defs>  <radialGradient id="glow" cx="80%" cy="5%" r="55%"><stop offset="0%" stop-color="#3a1c14" stop-opacity="0.65"/><stop offset="100%" stop-color="#141009" stop-opacity="0"/></radialGradient></defs>
+  <rect x="0" y="0" width="1080" height="1920" fill="#141009"/>
+  <rect x="0" y="0" width="1080" height="1920" fill="url(#glow)"/>
+  <path d="M540.0 113.0 L598.0 146.5 L598.0 213.5 L540.0 247.0 L482.0 213.5 L482.0 146.5 Z" stroke="#F2622E" stroke-width="9.3" stroke-linejoin="round" fill="none"/>
+  <path d="M540.0 144.2 L571.0 162.1 L571.0 197.9 L540.0 215.8 L509.0 197.9 L509.0 162.1 Z" stroke="#F2622E" stroke-width="6.2" stroke-linejoin="round" fill="none" opacity="0.55"/>
+  <circle cx="540" cy="180" r="10.1" fill="#F2622E"/>
+  <text x="540" y="268" text-anchor="middle" font-family="Heebo, sans-serif" font-weight="700" font-size="38" fill="#F4EDE1">Shani AI Creator</text>
+  <text x="540" y="892" text-anchor="middle" direction="rtl" font-family="Heebo, sans-serif" font-weight="700" font-size="84" fill="#F4EDE1">
+    <tspan x="540" dy="0" fill="#F2622E">קובץ אחד גרם לקלוד קוד להפסיק לעשות שלושה דברים שעיצבנו אותי בכל פרויקט.</tspan>
+  </text>
+  <text x="540" y="1108" text-anchor="middle" direction="rtl" font-family="Heebo, sans-serif" font-weight="500" font-size="42" fill="#968F84">CLAUDE.md = כללי העבודה של הפרויקט</text>
+  <text x="540" y="1840" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="400" font-size="30" fill="#968F84">SHANI-AI.COM</text>
+</svg>
