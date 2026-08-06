@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>רשימת חומרים לאתר · גיא הירשהורן · SHANI AI CREATOR</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="רשימת החומרים שצריך לאיסוף לפני בניית האתר של GAMA Architects.">
+<meta property="og:title" content="רשימת חומרים לאתר · GAMA Architects">
+<meta property="og:description" content="כל מה שצריך לאסוף כדי שנתחיל לבנות. אפשר לסמן תוך כדי.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F2622E;
+    --cream:#F4EDE1;
+    --dark:#141009;
+    --card:#1C1710;
+    --line:rgba(242,98,46,.22);
+    --dim:#968F84;
+    --soft:#CFC6BD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--dark);
+    color:var(--cream);
+    font-family:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif;
+    line-height:1.65;
+    font-weight:300;
+    padding:0 0 90px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+
+  /* ── header ── */
+  header{padding:54px 0 30px;text-align:center}
+  .mark{margin:0 auto 16px;display:block}
+  .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;letter-spacing:3.5px;
+    color:var(--orange);text-transform:uppercase;
+  }
+  h1{font-size:34px;font-weight:800;margin:20px 0 6px;letter-spacing:-.5px}
+  .forwho{font-size:17px;color:var(--soft);font-weight:400}
+  .date{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;color:var(--dim);margin-top:12px;
+  }
+  .rule{height:1px;background:linear-gradient(to left,transparent,var(--orange),transparent);margin:30px 0}
+
+  section{margin:0 0 30px}
+  h2{
+    font-size:15px;letter-spacing:.6px;color:var(--orange);
+    font-weight:700;margin-bottom:14px;
+  }
+  .lead{font-size:18px;line-height:1.75;color:var(--cream);font-weight:300}
+  .lead strong{color:var(--orange);font-weight:700}
+  p{margin-bottom:12px}
+  .note{font-size:14.5px;color:var(--soft);line-height:1.7}
+
+  /* ── progress ── */
+  .progress-wrap{
+    position:sticky;top:0;z-index:40;
+    background:rgba(20,16,9,.94);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:12px 0 11px;margin-bottom:26px;
+  }
+  .progress-inner{max-width:760px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:14px}
+  .bar{flex:1;height:6px;background:rgba(244,237,225,.11);border-radius:99px;overflow:hidden}
+  .bar span{display:block;height:100%;width:0;background:linear-gradient(to left,var(--orange),#ff8a52);border-radius:99px;transition:width .35s ease}
+  .pcount{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--orange);font-weight:500;white-space:nowrap;
+    direction:ltr;unicode-bidi:isolate;
+  }
+
+  /* ── card ── */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 22px;
+  }
+  .card + .card{margin-top:14px}
+  .card h3{font-size:18px;font-weight:700;margin-bottom:4px;color:var(--cream)}
+  .card .sub{font-size:14px;color:var(--dim);margin-bottom:14px;font-weight:400}
+
+  /* ── checklist items ── */
+  .item{
+    display:flex;gap:13px;align-items:flex-start;
+    padding:13px 0;border-top:1px solid rgba(255,255,255,.07);
+    cursor:pointer;
+  }
+  .item:first-of-type{border-top:none;padding-top:2px}
+  .box{
+    flex:0 0 21px;height:21px;margin-top:3px;
+    border:1.6px solid var(--orange);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .18s ease, border-color .18s ease;
+  }
+  .box svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:all .18s ease}
+  .item.done .box{background:var(--orange)}
+  .item.done .box svg{opacity:1;transform:scale(1)}
+  .item.done .txt{opacity:.42}
+  .item.done .t-title{text-decoration:line-through}
+  .txt{transition:opacity .18s ease}
+  .t-title{font-size:16px;font-weight:500;color:var(--cream);display:block;margin-bottom:2px}
+  .t-desc{font-size:14.5px;color:var(--soft);font-weight:300;line-height:1.65}
+  .t-desc b{color:var(--cream);font-weight:500}
+  .t-desc .hot{color:var(--orange);font-weight:700}
+  .badge{
+    display:inline-block;font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.8px;padding:2px 7px;border-radius:5px;
+    background:rgba(242,98,46,.15);color:var(--orange);
+    margin-inline-start:7px;vertical-align:2px;font-weight:500;
+  }
+  .badge.opt{background:rgba(244,237,225,.09);color:var(--dim)}
+
+  /* ── strip ── */
+  .strip{
+    background:linear-gradient(135deg,rgba(242,98,46,.13),rgba(242,98,46,.04));
+    border-right:3px solid var(--orange);
+    border-radius:0 12px 12px 0;
+    padding:16px 20px;font-size:16px;color:var(--cream);line-height:1.7;
+  }
+  .strip b{color:var(--orange);font-weight:700}
+
+  /* ── template ── */
+  .tpl{
+    background:#100D07;border:1px solid rgba(255,255,255,.09);
+    border-radius:12px;padding:16px 18px;margin-top:12px;
+    font-family:'JetBrains Mono',monospace;font-size:13.5px;
+    color:var(--soft);line-height:2;white-space:pre-wrap;
+    direction:rtl;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;border:1.4px solid var(--orange);color:var(--orange);
+    font-family:'Heebo',sans-serif;font-size:14.5px;font-weight:700;
+    padding:9px 18px;border-radius:99px;cursor:pointer;margin-top:12px;
+    transition:background .18s ease,color .18s ease;
+  }
+  .btn:hover{background:var(--orange);color:#fff}
+  .btn.solid{background:var(--orange);color:#fff}
+  .btn.solid:hover{filter:brightness(1.08)}
+
+  .mailbox{
+    text-align:center;background:var(--card);
+    border:2px solid var(--orange);border-radius:16px;
+    padding:22px 20px;
+  }
+  .mailbox .k{font-size:14px;color:var(--dim);margin-bottom:6px}
+  .mailbox .v{
+    font-family:'JetBrains Mono',monospace;font-size:17px;
+    color:var(--orange);font-weight:500;word-break:break-all;
+  }
+  .mailbox .v.tel{font-size:19px}
+
+  /* ── send row ── */
+  .send{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+
+  footer{
+    margin-top:44px;padding-top:26px;
+    border-top:1px solid var(--line);
+    text-align:center;font-size:13.5px;color:var(--dim);line-height:2;
+  }
+  footer .name{color:var(--cream);font-weight:700;font-size:15px}
+  footer a{color:var(--orange);text-decoration:none}
+
+  .toast{
+    position:fixed;bottom:22px;right:50%;transform:translateX(50%) translateY(20px);
+    background:var(--orange);color:#fff;font-size:14.5px;font-weight:500;
+    padding:11px 22px;border-radius:99px;opacity:0;pointer-events:none;
+    transition:all .25s ease;z-index:90;
+  }
+  .toast.on{opacity:1;transform:translateX(50%) translateY(0)}
+
+  @media(max-width:560px){
+    h1{font-size:27px}
+    .lead{font-size:16.5px}
+    .card{padding:17px 16px}
+    .t-title{font-size:15.5px}
+    .tpl{font-size:12.5px}
+  }
+  @media print{
+    body{background:#fff;color:#141009}
+    .progress-wrap,.btn,.send,.toast{display:none}
+    .card,.mailbox,.tpl{background:#fff;border-color:#ddd}
+    .t-desc,.note,.strip,.txt{color:#333;opacity:1}
+    .strip{background:#faf3ee}
+    h1,.card h3,.t-title{color:#141009}
+    .item.done .t-title{text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="bar"><span id="pbar"></span></div>
+    <div class="pcount" id="pcount" dir="ltr">0 / 0</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header>
+    <svg class="mark" width="46" height="52" viewBox="0 0 46 52" fill="none" aria-hidden="true">
+      <path d="M23 2 L43 13.5 V38.5 L23 50 L3 38.5 V13.5 Z" stroke="#F2622E" stroke-width="2.2" fill="none"/>
+      <path d="M23 13 L33 18.75 V30.25 L23 36 L13 30.25 V18.75 Z" stroke="#F2622E" stroke-width="1.6" fill="none" opacity=".8"/>
+      <circle cx="23" cy="24.5" r="3.4" fill="#F2622E"/>
+    </svg>
+    <div class="brand">Shani AI Creator</div>
+    <h1>רשימת חומרים לאתר</h1>
+    <div class="forwho">עבור גיא הירשהורן · GAMA Architects</div>
+    <div class="date">06.08.2026 · יעד לאיסוף: יום חמישי 13.08</div>
+  </header>
+
+  <div class="rule"></div>
+
+  <section>
+    <p class="lead">
+      זו הרשימה המלאה של מה שאני צריכה ממך.
+      אפשר <strong>לסמן תוך כדי</strong> מה כבר שלחת, ולשלוח בחלקים —
+      לא צריך לחכות שהכל יהיה מוכן.
+    </p>
+  </section>
+
+  <section>
+    <div class="strip">
+      אין כאן שום התחייבות. אנחנו אוספים חומרים, ואחרי שנעבור עליהם יחד
+      <b>אני אגיד לך בדיוק מה נבנה ובאיזה היקף</b> — ורק אז נסגור.
+    </div>
+  </section>
+
+  <!-- ══════ 1. הפרויקטים ══════ -->
+  <section>
+    <h2>1 · הפרויקטים — הלב של האתר</h2>
+
+    <div class="card">
+      <h3>צילומי פרויקטים</h3>
+      <div class="sub">זה החלק שלוקח לך הכי הרבה זמן, אז כדאי להתחיל ממנו</div>
+      <ul style="list-style:none">
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">הקבצים המקוריים, לא מה שעלה לאינסטגרם<span class="badge">חובה</span></span>
+          <span class="t-desc">אינסטגרם דוחס תמונות והן נראות רע בגדול על מסך. חפש את הקבצים כמו שיצאו מהצלם או מהמצלמה.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">קודם כל — 6 עד 8 הפרויקטים הכי חזקים<span class="badge">חובה</span></span>
+          <span class="t-desc">אמרת שיש לך בערך 30. <b>אל תשלח את כולם ביחד בהתחלה.</b> תתחיל מהאלה שאתה הכי גאה בהם ושהכי מייצגים את סוג הלקוח שאתה רוצה לקבל עוד ממנו. את השאר נעבור יחד ונחליט מה נכנס לאתר ומה לא — <span class="hot">גלריה עמוסה מדי מחלישה את החזקים</span>.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">4 עד 8 תמונות מכל פרויקט<span class="badge">חובה</span></span>
+          <span class="t-desc">רצוי גם לרוחב וגם לגובה. אם יש — גם זווית רחבה של החלל וגם קלוז־אפ של פרט שהשקעת בו.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">תמונה אחת ראשית לכל פרויקט<span class="badge">חובה</span></span>
+          <span class="t-desc">תסמן לי בשם הקובץ איזו תמונה היא ה"כרטיס ביקור" של הפרויקט. זו התמונה שתופיע בגלריה הראשית.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">שרטוטים, תוכניות והדמיות<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">תוכנית קומה, חתך, סקיצת יד או רנדר. זה מה שמבדיל אתר של אדריכל מאתר של מעצב, ולקוחות אוהבים לראות את החשיבה מאחורי התוצאה.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">לפני ואחרי<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">בשיפוצים ובעיצוב פנים זה החומר שהכי עובד. אם יש לך אפילו תמונת טלפון של "לפני" — שווה זהב.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">אישור פרסום מהלקוחות<span class="badge">חובה</span></span>
+          <span class="t-desc">תוודא שמותר לפרסם את הפרויקט ואת התמונות. אם לקוח מבקש בלי כתובת מדויקת או בלי שם — נכתוב "דירה בהרצליה" ונסגור עניין.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>כמה שורות על כל פרויקט</h3>
+      <div class="sub">בשפה שלך, בלי לנסח יפה — אני מסדרת</div>
+      <p class="note">
+        תעתיק את התבנית הזו פעם אחת לכל פרויקט. גם אם תענה בחצי מהשדות זה מספיק לי כדי להתחיל:
+      </p>
+      <div class="tpl" id="tpl">שם הפרויקט:
+מיקום (עיר / שכונה):
+סוג: (דירה / פנטהאוז / בית פרטי / משרד / מסחרי / שיפוץ)
+גודל במ"ר:
+שנה:
+מה הלקוח ביקש:
+מה היה האתגר:
+מה עשית / מה הפתרון:
+הפרט שאני הכי גאה בו בפרויקט הזה:
+צלם (לקרדיט, אם צריך):</div>
+      <button class="btn" id="copytpl">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="5.2" y="5.2" width="8.6" height="8.6" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10.8 5.2V4a1.8 1.8 0 0 0-1.8-1.8H4a1.8 1.8 0 0 0-1.8 1.8v5a1.8 1.8 0 0 0 1.8 1.8h1.2" stroke="currentColor" stroke-width="1.5"/></svg>
+        העתקת התבנית
+      </button>
+    </div>
+  </section>
+
+  <!-- ══════ 2. טקסטים ══════ -->
+  <section>
+    <h2>2 · טקסטים</h2>
+    <div class="card">
+      <ul style="list-style:none">
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">מי אתה ואיך אתה עובד<span class="badge">חובה</span></span>
+          <span class="t-desc">רקע קצר, כמה שנים אתה בתחום, איפה למדת, ומה מבדיל אותך מאדריכל אחר. 5 עד 10 שורות מספיקות. אפשר גם להקליט הודעה קולית ואני אתמלל.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">תהליך העבודה שלך, שלב־שלב<span class="badge">חובה</span></span>
+          <span class="t-desc">מהפגישה הראשונה ועד המסירה. מה קורה בכל שלב, כמה זמן זה לוקח, ומה נדרש מהלקוח. זה החלק שחוסך לך את ההסבר הזה בכל שיחת טלפון.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">סוגי פרויקטים וסדרי גודל<span class="badge">חובה</span></span>
+          <span class="t-desc">אילו פרויקטים אתה לוקח, ומה טווח ההיקף לכל סוג — ברמה שנוח לך לפרסם. גם "החל מ־" עובד. זה מה שמסנן לך פניות לא רלוונטיות עוד לפני שהטלפון מצלצל.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">5 השאלות שהכי שואלים אותך<span class="badge">חובה</span></span>
+          <span class="t-desc">מה חוזר אצלך בכל שיחת היכרות — עלויות, לוחות זמנים, היתרים, ליווי ביצוע. תכתוב את השאלה ואת התשובה שלך, ומזה אני בונה את חלק השאלות הנפוצות.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">המלצות של לקוחות<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">עם שם מלא ועם אישור מפורש לפרסם. אם אין לך — צילום מסך של הודעת וואטסאפ מרוצה גם עובד, ואפשר לבקש מהם עכשיו.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════ 3. מיתוג וקשר ══════ -->
+  <section>
+    <h2>3 · מיתוג, קשר וגישות</h2>
+    <div class="card">
+      <ul style="list-style:none">
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">לוגו GAMA בקובץ המקורי<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">רצוי SVG, AI או EPS. אם יש רק PNG — שלח את הגדול ביותר שיש לך. אם אין לוגו בכלל, תגיד לי ונחליט מה עושים.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">צבעים וגופנים, אם יש לך שפה קיימת<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">קודי צבע או פשוט משהו שהמיתוג שלך מופיע עליו — כרטיס ביקור, מצגת, חתימת מייל.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">2 עד 3 אתרים שאהבת<span class="badge">חובה</span></span>
+          <span class="t-desc">לאו דווקא של אדריכלים. תגיד לי גם מה בדיוק אהבת בהם, וחשוב לא פחות — <b>אתר אחד שממש לא אהבת ולמה.</b> זה מה שסוגר לי את הכיוון העיצובי לפני שאני מתחילה, ומונע סבבי שינויים.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">פרטי קשר לאתר<span class="badge">חובה</span></span>
+          <span class="t-desc">טלפון להצגה, מייל לפניות, אזור פעילות, ומספר עוסק / ח.פ. לתקנון.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">גישה לכרטיס העסק בגוגל<span class="badge">חובה</span></span>
+          <span class="t-desc">תוסיף אותי כמנהל לכרטיס, או תגיד לי אם אין לך כרטיס ואני אפתח. זה חלק מחודשיים הליווי.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">רשתות שאתה פעיל בהן<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">אינסטגרם gama.architects, וגם פייסבוק, לינקדאין או פינטרסט אם יש.</span></div></li>
+
+        <li class="item"><div class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.2 L4.4 9 L10.5 2.8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="txt"><span class="t-title">דומיין קיים<span class="badge opt">אם יש</span></span>
+          <span class="t-desc">אם כבר קנית כתובת בעבר — תגיד לי איזו ואיפה. אם לא, אני רוכשת אותה עבורך על שמך, כ־74 ₪ לשנה.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ══════ איך לשלוח ══════ -->
+  <section>
+    <h2>איך שולחים</h2>
+
+    <div class="card" style="margin-bottom:14px">
+      <h3>תמונות ושרטוטים — במייל בלבד</h3>
+      <p class="note" style="margin-bottom:0">
+        <b style="color:var(--orange)">אל תשלח תמונות בוואטסאפ.</b>
+        וואטסאפ דוחס קבצים, והתמונה שנראית מצוין בטלפון תיראה מרוחה על מסך מחשב.
+        מייל, גוגל דרייב או WeTransfer — כל אחד מהם עובד.
+        אם הקבצים כבדים, תעלה לדרייב ותשלח לי קישור אחד.
+      </p>
+    </div>
+
+    <div class="mailbox">
+      <div class="k">מייל לתמונות ולקבצים</div>
+      <div class="v">shani.creates.ai@gmail.com</div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3>טקסטים — איפה שנוח לך</h3>
+      <p class="note" style="margin-bottom:0">
+        וואטסאפ, מייל, או הודעה קולית. באמת לא צריך לנסח יפה — תכתוב כמו שאתה מסביר את זה בטלפון,
+        וזו העבודה שלי לסדר את זה.
+      </p>
+    </div>
+
+    <div class="send">
+      <button class="btn solid" id="wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        שליחה בוואטסאפ לשני
+      </button>
+      <button class="btn" id="summary">מה עוד חסר לי? העתקה לוואטסאפ</button>
+    </div>
+    <p class="note" style="text-align:center;margin-top:12px;font-size:13.5px;color:var(--dim)">
+      הסימונים בדף הזה הם רק בשבילך, לעקוב. הם לא נשמרים ולא מגיעים אליי —
+      אם תרצה לעדכן אותי, תשתמש בכפתור ההעתקה.
+    </p>
+  </section>
+
+  <div class="rule"></div>
+
+  <section>
+    <div class="strip">
+      <b>מה שקובע את לוח הזמנים זו הרשימה הזו.</b>
+      הספירה של שבועיים מתחילה ביום שהחומרים אצלי, לא ביום שסגרנו.
+      ככל שיגיע יותר מוקדם — נתחיל יותר מוקדם.
+    </div>
+  </section>
+
+  <footer>
+    <div class="name">שני גורגוב</div>
+    SHANI AI CREATOR<br>
+    <a href="https://shani-ai.com">shani-ai.com</a> · 050-4744815 · shani.creates.ai@gmail.com
+  </footer>
+
+</div>
+
+<div class="toast" id="toast">הועתק</div>
+
+<script>
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+  var bar = document.getElementById('pbar');
+  var count = document.getElementById('pcount');
+  var toastEl = document.getElementById('toast');
+  var toastTimer;
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('on'); }, 1900);
+  }
+
+  function render(){
+    var done = items.filter(function(i){ return i.classList.contains('done'); }).length;
+    bar.style.width = (items.length ? (done / items.length * 100) : 0) + '%';
+    count.textContent = done + ' / ' + items.length;
+  }
+
+  items.forEach(function(it){
+    it.setAttribute('role','checkbox');
+    it.setAttribute('aria-checked','false');
+    it.setAttribute('tabindex','0');
+    function toggle(){
+      it.classList.toggle('done');
+      it.setAttribute('aria-checked', it.classList.contains('done') ? 'true' : 'false');
+      render();
+    }
+    it.addEventListener('click', toggle);
+    it.addEventListener('keydown', function(e){
+      if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); }
+    });
+  });
+  render();
+
+  function copy(text, msg){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast(msg); }, function(){ fallback(text, msg); });
+    } else { fallback(text, msg); }
+  }
+  function fallback(text, msg){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast(msg); } catch(e){ toast('לא הצלחתי להעתיק, סמן ידנית'); }
+    document.body.removeChild(ta);
+  }
+
+  document.getElementById('copytpl').addEventListener('click', function(e){
+    e.stopPropagation();
+    copy(document.getElementById('tpl').textContent, 'התבנית הועתקה');
+  });
+
+  document.getElementById('summary').addEventListener('click', function(){
+    var open = items.filter(function(i){ return !i.classList.contains('done'); })
+      .map(function(i){ return '• ' + i.querySelector('.t-title').childNodes[0].textContent.trim(); });
+    var txt;
+    if(!open.length){
+      txt = 'היי שני, סיימתי לאסוף הכל מהרשימה. שולח לך עכשיו.';
+    } else {
+      txt = 'היי שני, עדכון על החומרים לאתר.\nמה שעוד חסר לי:\n' + open.join('\n');
+    }
+    copy(txt, 'הסיכום הועתק — הדבק בוואטסאפ');
+  });
+
+  document.getElementById('wa').addEventListener('click', function(){
+    var msg = encodeURIComponent('היי שני, לגבי החומרים לאתר של GAMA');
+    window.open('https://wa.me/972504744815?text=' + msg, '_blank', 'noopener');
+  });
+})();
+</script>
+</body>
+</html>

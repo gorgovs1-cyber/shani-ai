@@ -43,7 +43,7 @@
   <svg class="hex" width="66" height="66" viewBox="0 0 100 100"><polygon points="50,7 87,28.5 87,71.5 50,93 13,71.5 13,28.5" fill="none" stroke="#F2622E" stroke-width="6"/><polygon points="50,27 70,39 70,61 50,73 30,61 30,39" fill="none" stroke="#F2622E" stroke-width="4"/><circle cx="50" cy="50" r="6.5" fill="#F2622E"/></svg>
   <div class="brand">SHANI AI CREATOR</div>
   <h1>אבחון <span>AI, אוטומציה ושיווק</span> לעסק</h1>
-  <p class="sub">2–3 דקות שיחסכו לנו שיחה שלמה. אמפה איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו — בלי לנחש.</p>
+  <p class="sub">2–3 דקות שיחסכו לנו שיחה שלמה. אמפה איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו, בלי לנחש.</p>
   <div class="time">⏱ כ-3 דקות</div>
 </header>
 
@@ -137,6 +137,17 @@
       </div>
       <input type="text" data-q="קישור לאתר" placeholder="יש לכם אתר? הדביקו קישור כאן..." style="margin-top:12px">
     </div>
+    <div class="q" id="siteExtra" style="display:none">
+      <label class="main">איזה סוג אתר הכי מתאים? <span class="hint">כדי שאדע להעריך היקף ומחיר לפני שאני מתקשרת</span></label>
+      <div class="opts" data-single="סוג אתר">
+        <label class="opt"><input type="radio" name="sitetype" value="עמוד נחיתה, עמוד קצר אחד">עמוד נחיתה (עמוד קצר אחד)</label>
+        <label class="opt"><input type="radio" name="sitetype" value="אתר, כמה עמודים כולל גלריה">אתר (כמה עמודים, כולל גלריה)</label>
+        <label class="opt"><input type="radio" name="sitetype" value="לא בטוח/ה, תייעצי אותי">לא בטוח/ה, תייעצי אותי</label>
+      </div>
+      <p class="hint" style="margin:10px 2px 0;line-height:1.6">עמוד נחיתה = עמוד אחד קצר, שירות אחד ברור. אתר = כמה עמודים (למשל: גלריית פרויקטים, השיטה שלכם, אודות, שאלות נפוצות).</p>
+      <input type="text" data-q="כמות פריטים באתר" placeholder="בערך כמה פרויקטים / מוצרים / שירותים יוצגו? מספר גס מספיק" style="margin-top:12px">
+      <input type="text" data-q="קטגוריות פרויקטים" placeholder="יש כמה סוגים שונים של עבודות שכדאי להציג בנפרד? (למשל מגורים / מסחרי). אם לא רלוונטי, דלגו" style="margin-top:10px">
+    </div>
     <div class="q"><label class="main">במה אתם הכי מרגישים שחסר לכם?</label>
       <div class="opts" data-multi="חסר">
         <label class="opt"><input type="checkbox" value="מענה ללקוחות">מענה ללקוחות</label>
@@ -153,7 +164,7 @@
   <div class="sec">
     <div class="sec-tag">05 · לסיום</div>
     <div class="sec-title">כמה פרטים אחרונים</div>
-    <div class="q"><label class="main">אם הייתם יכולים לפתור בעיה אחת עכשיו — מה היא?</label><input type="text" data-q="הבעיה הכי חשובה"></div>
+    <div class="q"><label class="main">אם הייתם יכולים לפתור בעיה אחת עכשיו, מה היא?</label><input type="text" data-q="הבעיה הכי חשובה"></div>
     <div class="q"><label class="main">כמה דחוף לכם?</label>
       <div class="opts" data-single="דחיפות">
         <label class="opt"><input type="radio" name="urg" value="לא דחוף">לא דחוף</label>
@@ -162,8 +173,9 @@
       </div>
     </div>
     <div class="q"><label class="main">שם מלא</label><input type="text" data-q="שם"></div>
-    <div class="q"><label class="main">אימייל <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="email" data-q="אימייל"></div>
-    <div class="q"><label class="main">וואטסאפ + אינסטגרם/אתר</label><input type="text" data-q="קשר נוסף"></div>
+    <div class="q"><label class="main">אימייל <span style="color:#F2622E">*</span> <span class="hint">לכאן אשלח לכם אישור והמשך</span></label><input type="email" data-q="אימייל"></div>
+    <div class="q"><label class="main">מספר נייד <span style="color:#F2622E">*</span> <span class="hint">לוואטסאפ, כדי שאחזור אליכם מהר</span></label><input type="tel" data-q="טלפון" placeholder="050-1234567"></div>
+    <div class="q"><label class="main">קישור לאינסטגרם או לאתר <span class="hint">אופציונלי</span></label><input type="text" data-q="קשר נוסף" placeholder="instagram.com/yourbusiness"></div>
     <div class="q"><label class="main">איך הכי נוח שאחזור אליכם?</label>
       <div class="opts" data-single="ערוץ מועדף">
         <label class="opt"><input type="radio" name="chan" value="וואטסאפ">וואטסאפ</label>
@@ -213,7 +225,7 @@
 </div>
 
 <script>
-  // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק — נשלח לוואטסאפ. ▼▼▼
+  // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק, נשלח לוואטסאפ. ▼▼▼
   var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
   var WA = "972504744815";
 
@@ -257,6 +269,17 @@
       o.classList.toggle('sel', inp.checked);
     });
   });
+
+  // מציגה את שאלת "סוג האתר" רק אם משהו בטופס מרמז שרלוונטי אתר/דף נחיתה
+  function updateSiteExtra(){
+    var goalWebsite = !!document.querySelector('[data-multi="מטרה"] input[value="אתר חדש"]:checked');
+    var missingWebsite = !!document.querySelector('[data-multi="חסר"] input[value="אתר"]:checked');
+    var siteRadio = document.querySelector('input[name="site"]:checked');
+    var siteNeeds = siteRadio && ['אין אתר','יש אתר אבל לא מביא לקוחות','דף נחיתה בלבד'].indexOf(siteRadio.value) > -1;
+    document.getElementById('siteExtra').style.display = (goalWebsite || missingWebsite || siteNeeds) ? 'block' : 'none';
+  }
+  document.getElementById('f').addEventListener('change', updateSiteExtra);
+
   function collect(){
     var d={};
     document.querySelectorAll('[data-q]').forEach(function(el){ if(el.value.trim()) d[el.dataset.q]=el.value.trim(); });
@@ -281,6 +304,15 @@
       return;
     }
     emailEl.style.border='';
+    var phoneEl=document.querySelector('[data-q="טלפון"]');
+    var phone=(phoneEl.value||'').trim();
+    if(!phone){
+      phoneEl.style.border='2px solid #e5484d';
+      phoneEl.focus();
+      phoneEl.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    phoneEl.style.border='';
     var d=collect();
     if(WEBHOOK_URL){
       fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})

@@ -26,7 +26,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "כמה עולה לבנות אתר לעסק?",
-        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר 2,400 ₪, וגרסה בשפה שנייה 600 ₪ לדף נחיתה או 900 ₪ לאתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
+        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר בכמה עמודים כולל גלריית פרויקטים משותפת 2,400 ₪, אתר פורטפוליו עם עד 10 עמודי פרויקט נפרדים 3,700 ₪, וגרסה בשפה שנייה 600 ₪ לדף נחיתה או 900 ₪ לאתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
       },
       {
         h: "למה אתר בקוד עדיף על וויקס או אלמנטור?",
@@ -34,7 +34,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "כמה זמן לוקח לבנות אתר?",
-        p: "גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אני עובדת בפיתוח מבוסס-AI, ולכן המסירה מהירה מהמקובל בתעשייה בלי להתפשר על האיכות.",
+        p: "דף נחיתה: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אתר עם כמה עמודים וגלריית פרויקטים משותפת: עד 8–10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה, כי יש יותר חלקים לסדר. אתר פורטפוליו עם עמודי פרויקט נפרדים: 13–15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות. אני עובדת בפיתוח מבוסס-AI, ולכן המסירה מהירה מהמקובל בתעשייה בלי להתפשר על האיכות.",
       },
       {
         h: "האם האתר יהיה מחובר לאוטומציות ו-AI?",
@@ -53,7 +53,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "מה עם דומיין ואחסון?",
-        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, כ-74 ₪ לשנה, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. בתחזוקה החודשית אני שומרת על העדכונים, הגיבויים והניטור, ואתם לא תלויים בי לשום דבר.",
+        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, בממוצע כ-60 עד 90 ₪ לשנה תלוי בסיומת ובספק, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. בתחזוקה החודשית אני שומרת על העדכונים, הגיבויים והניטור, ואתם לא תלויים בי לשום דבר.",
       },
       {
         q: "האתר יהיה בעברית ובאנגלית?",
@@ -90,7 +90,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "How much does a business website cost?",
-        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, website 2,400 NIS, and a second-language version 600 NIS for a landing page or 900 NIS for a website. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
+        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, a multi-page website with a shared project gallery 2,400 NIS, a portfolio website with up to 10 dedicated project pages 3,700 NIS, and a second-language version 600 NIS for a landing page or 900 NIS for a website. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
       },
       {
         h: "Why is coded better than Wix or Elementor?",
@@ -98,7 +98,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "How long does a website take?",
-        p: "A full first version within five working days of receiving your materials, and live within one to two weeks. I work with AI-assisted development, so delivery is faster than the industry norm without compromising quality.",
+        p: "Landing page: a full first version within five working days of receiving your materials, and live within one to two weeks. A website with several pages and a shared project gallery: 8–10 working days, and live within two to three weeks, since there's simply more to put together. A portfolio website with dedicated project pages: 13–15 working days, and live within three to four weeks. I work with AI-assisted development, so delivery is faster than the industry norm without compromising quality.",
       },
       {
         h: "Will the site connect to automations and AI?",
@@ -117,7 +117,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "What about domain and hosting?",
-        a: "The domain is registered in your name and on your card, around 74 NIS a year, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost. With monthly care I handle updates, backups and monitoring, and you are never dependent on me.",
+        a: "The domain is registered in your name and on your card, on average 60 to 90 NIS a year depending on the extension and provider, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost. With monthly care I handle updates, backups and monitoring, and you are never dependent on me.",
       },
       {
         q: "Will the site be in Hebrew and English?",

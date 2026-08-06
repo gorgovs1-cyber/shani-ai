@@ -11,7 +11,7 @@ const WA = "972504744815";
 const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
 type More = { fit: string; includes: string; forWho: string; notFor?: string; exampleLabel?: string; exampleUrl?: string };
-type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean; more?: More };
+type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean; summary?: string[]; more?: More };
 type Group = { title: string; items: Item[] };
 type Factor = { title: string; desc: string };
 type Step = { no: string; title: string; desc: string };
@@ -60,6 +60,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "דף נחיתה",
             desc: "עמוד אחד רציף. מציג מי אתם, מה אתם עושים, ואיך יוצרים קשר.",
             price: "1,500 ₪",
+            summary: ["עד 3 חלקים בגלילה אחת", "כפתור וואטסאפ קבוע", "בלי תפריט ניווט", "5 ימי עבודה"],
             more: {
               fit: "יש לך שירות אחד ברור להציע, או שאתה מפרסם בתשלום ורוצה מקום אחד שהפרסום מוביל אליו.",
               includes: "עד שלושה חלקים בגלילה אחת רציפה, בלי תפריט ניווט, עם כפתור וואטסאפ קבוע.",
@@ -71,22 +72,36 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "אתר",
-            desc: "עמוד אחד עם תפריט צף וקפיצות לחלקים. מסביר שיטה או שירות לעומק, כולל שאלות נפוצות. החודש הראשון של התחזוקה כלול.",
+            desc: "אתר בכמה עמודים, כמו שבניתי ללילך חזן: עמוד בית, ועוד 2 עד 4 עמודים לפי מה שיש לכם לספר, למשל שיטה, אודות או שאלות נפוצות. כל עמוד נבנה בנפרד, וגוגל יכול למצוא אותו לבד בחיפוש, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים יחד בעמוד גלריה אחד. שני החודשים הראשונים של הליווי כלולים.",
             price: "2,400 ₪",
+            summary: ["בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל", "גלריית עבודות משותפת, עד 10 פריטים", "שאלות נפוצות + המלצות", "2 חודשי ליווי כלולים (שווי 600 ₪)"],
             more: {
-              fit: "אתה מסביר שיטה, תהליך או שירות, ואנשים שואלים אותך אותן שאלות לפני שהם סוגרים.",
-              includes: "חמישה עד שמונה חלקים, תפריט צף שקופץ לכל חלק, סקשן שאלות נפוצות ואזור המלצות. מבחינת תוכן ועבודה זה אתר של חמישה עד שבעה עמודים, פרוס כגלילה אחת. וגם החודש הראשון של התחזוקה: בדיקת אמצע חודש ודוח חודשי מלא. אחריו אפשר להמשיך ב-200 לחודש או לא, בלי התחייבות.",
-              forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים, מעצבים וסטודיו קטן שרוצים להציג עבודות.",
-              notFor: "אתה מוכר מוצרים ורוצה עגלת קניות ותשלום באתר. זו כבר חנות, וזה פרויקט אחר.",
+              fit: "אתה מסביר שיטה, תהליך או שירות, ואנשים שואלים אותך אותן שאלות לפני שהם סוגרים. גם אם יש לך תיק עבודות או גלריית פרויקטים להציג.",
+              includes: "עמוד בית ועוד 2 עד 4 עמודים, בדיוק כמו אצל לילך חזן (lilachhazan.com): עמוד בית, עמוד נפרד על השיטה שלה, ועמוד נפרד לשאלות נפוצות. לכל עמוד כתובת, כותרת ותיאור משלו, ולכן הוא מדורג בנפרד בגוגל, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים ככרטיסים בעמוד גלריה משותף אחד, עם אפשרות לסנן לפי סוג עבודה. עמוד תוכן נוסף מעבר למה שסיכמנו הוא תוספת (ראו 'חלק נוסף באתר' למטה). רוצים שפרויקט ספציפי יקבל עמוד נפרד משלו וידורג בנפרד בגוגל, במקום להיות רק כרטיס בגלריה? זו התוספת 'עמוד פרויקט עם קידום עצמאי' למטה. יש לכם תיק עבודות גדול שרובו צריך עמוד נפרד? זה המוצר 'אתר פורטפוליו'. שני החודשים הראשונים של הליווי, בשווי 600 ₪, כלולים: בדיקה באמצע החודש ודוח מלא בסוף החודש. אחרי זה אפשר להמשיך ב-200 ₪ לחודש או לא, בלי שום התחייבות.",
+              forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים, מעצבים וסטודיו קטן שרוצים להציג תיק עבודות קטן עד בינוני.",
+              notFor: "אתה מוכר מוצרים ורוצה עגלת קניות ותשלום באתר, זו כבר חנות, פרויקט אחר. או שיש לך תיק עבודות גדול (מ-15 פרויקטים ומעלה) שרובו צריך עמוד נפרד, ראו 'אתר פורטפוליו'.",
               exampleLabel: "lilachhazan.com",
               exampleUrl: "https://lilachhazan.com",
             },
           },
           {
+            name: "אתר פורטפוליו",
+            desc: "בנוי כמו 'אתר', ובנוסף עד 10 מהפרויקטים שלכם מקבלים כל אחד עמוד נפרד משלו, שמדורג בנפרד בגוגל. מתאים לתיקי עבודות גדולים: אדריכלות, עיצוב פנים, קבלנות.",
+            price: "3,700 ₪",
+            summary: ["הכל מ'אתר' + עד 10 עמודי פרויקט נפרדים", "כל עמוד פרויקט מדורג בנפרד בגוגל", "עמוד נוסף מעבר ל-10: 250 ₪", "13-15 ימי עבודה"],
+            more: {
+              fit: "יש לכם תיק עבודות גדול (בערך 15 פרויקטים ומעלה), וחשוב לכם שהעבודות המובילות יימצאו בנפרד בחיפוש בגוגל, לא רק ככרטיס בגלריה.",
+              includes: "בדיוק כמו 'אתר': עמוד בית + 2 עד 4 עמודי תוכן, כל אחד מדורג בנפרד בגוגל. ההבדל: כל עד 10 הפרויקטים בתיק העבודות שלכם מקבלים עמוד נפרד משלו במקום כרטיס משותף בגלריה. כל עמוד מקבל כתובת, כותרת ותיאור משלו, כדי שגוגל ידרג אותו בנפרד. כל עמודי הפרויקט נבנים באותו עיצוב אחיד, כדי לשמור על מראה עקבי ולא להתחיל כל פעם מאפס. יש לכם יותר מ-10 פרויקטים שרוצים גם להם עמוד נפרד? זה 250 ₪ לעמוד נוסף, אותו מחיר כמו בתוספת הרגילה. שני החודשים הראשונים של הליווי, בשווי 600 ₪, כלולים.",
+              forWho: "אדריכלים, סטודיו עיצוב, קבלנים, צלמים ומעצבים עם תיק עבודות גדול, שכל פרויקט בו שווה הצגה נפרדת.",
+              notFor: "יש לכם עד 10 פרויקטים ולא כולם חייבים להימצא לבד בגוגל, 'אתר' הרגיל עושה את העבודה בפחות כסף, ותמיד אפשר להוסיף עמוד פרויקט בודד בהמשך.",
+            },
+          },
+          {
             name: "גרסה בשפה שנייה",
-            desc: "תרגום, התאמת פריסה, ומתג שפה. מחיר אחד לכל סוג אתר — דף נחיתה או אתר.",
+            desc: "תרגום, התאמת פריסה, ומתג שפה. מחיר אחד לכל סוג אתר, דף נחיתה או אתר.",
             price: "600 ₪",
             unit: "",
+            summary: ["תרגום מלא + פריסה הפוכה", "מתג שפה בראש העמוד", "אותו מחיר לכל סוג אתר"],
             more: {
               fit: "יש לך לקוחות בחו\"ל, או שאתה רוצה להופיע גם בחיפושים באנגלית.",
               includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
@@ -104,6 +119,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "אוטומציה בודדת",
             desc: "תהליך אחד שרץ לבד. תזכורת לפני תור, פנייה שנכנסת ישר לגיליון, מייל שנשלח אחרי כל לקוח.",
             price: "1,400 ₪",
+            summary: ["תהליך אחד מקצה לקצה", "מתחברת לכלים שיש לך כבר", "ניטור שמתריע על תקלה"],
             more: {
               fit: "יש פעולה אחת שאתה עושה ידנית כמעט כל יום, ואתה יודע בדיוק מה היא.",
               includes: "תהליך אחד מקצה לקצה, חיבור לכלים שכבר יש לך, וניטור שמתריע אם משהו נופל.",
@@ -114,6 +130,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "בוט וואטסאפ",
             desc: "עונה על השאלות שחוזרות אצלכם שוב ושוב, בעברית ובטון של העסק, מסביב לשעון.",
             price: "2,400 ₪",
+            summary: ["מענה 24/7 בעברית", "בטון של העסק שלכם", "מעבירה אליכם כשצריך"],
             more: {
               fit: "אותן שתיים שלוש שאלות חוזרות אצלך כל יום, ואתה מפספס פניות בערב ובסופי שבוע.",
               includes: "מענה בעברית בטון של העסק, שעות פעילות, והעברה אליך ברגע שהשיחה דורשת אותך.",
@@ -125,6 +142,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "סוכן AI עם סקיל עברי",
             desc: "לא רק עונה. מבין הקשר, זוכר שיחה, ומבצע: קובע פגישה ביומן, מתמחר לפי הכללים שלכם, מסנן פניות.",
             price: "4,900 ₪",
+            summary: ["מבין הקשר וזוכר שיחה", "קובע פגישה ביומן", "מתמחר לפי הכללים שלכם"],
             more: {
               fit: "כל פנייה אצלך שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
               includes: "הבנת הקשר, זיכרון של השיחה, קביעת פגישה ביומן, תמחור לפי הכללים שלך וסינון פניות שלא מתאימות.",
@@ -136,6 +154,7 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "אתר, סוכן AI, אוטומציות וריכוז הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה בנפרד.",
             price: "7,900 ₪",
             flag: true,
+            summary: ["אתר + סוכן AI + אוטומציות", "הכל מחובר במקום אחד", "זול יותר מרכישה בנפרד"],
             more: {
               fit: "אתה מתחיל מאפס, או בונה את הנוכחות הדיגיטלית מחדש ורוצה שהכל ידבר אחד עם השני.",
               includes: "אתר, סוכן AI, אוטומציות וריכוז כל הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה של כל רכיב בנפרד.",
@@ -150,6 +169,10 @@ const COPY: Record<"he" | "en", Copy> = {
           { name: "חלק נוסף באתר", desc: "סקשן חדש מעבר למה שסוכם.", price: "450 ₪" },
           { name: "סבב שינויים נוסף", desc: "מעבר לשני הסבבים שכלולים בכל פרויקט.", price: "350 ₪" },
           { name: "מאמר לאתר", desc: "כתיבה, התאמה לחיפוש בגוגל, והעלאה.", price: "450 ₪" },
+          { name: "פרויקטים נוספים בגלריה המשותפת, 11 עד 16", desc: "מעבר ל-10 הפרויקטים הכלולים, כרטיס נוסף בגלריה המשותפת.", price: "300 ₪" },
+          { name: "פרויקטים נוספים בגלריה המשותפת, 17 עד 22", desc: "לתיקי עבודות גדולים במיוחד.", price: "400 ₪" },
+          { name: "מעל 22 פרויקטים בגלריה", desc: "בהיקף הזה שווה לתכנן יחד בשיחה, ולבחור את הפרויקטים שהכי מייצגים אתכם. גלריה עמוסה מדי מחלישה את החזקים.", price: "שיחה + הצעה מותאמת" },
+          { name: "עמוד פרויקט עם קידום עצמאי", desc: "שדרוג מכרטיס בגלריה המשותפת לעמוד נפרד משלו, שמדורג בנפרד בגוגל. באתר פורטפוליו זה המחיר לכל עמוד מעבר ל-10 הכלולים.", price: "250 ₪ לעמוד" },
         ],
       },
       {
@@ -177,7 +200,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "מי שמזמין אתר מקבל את החודש הראשון של התחזוקה כלול. אחריו התחזוקה היא לא חובה ואין בה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
+      "מי שמזמין אתר מקבל את שני החודשים הראשונים של התחזוקה כלולים, בשווי 600 ₪. אחריהם התחזוקה היא לא חובה ואין בה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
     includedTitle: "כלול בכל אתר, בלי תוספת תשלום",
     included: [
       "התאמת נגישות לתקן הישראלי 5568. נדרש בחוק לאתר עסקי, ורוב האתרים הזולים מגיעים בלעדיו.",
@@ -189,7 +212,7 @@ const COPY: Record<"he" | "en", Copy> = {
     toolsIntro:
       "כלים ותשתית נרשמים על שמכם ובכרטיס שלכם, ואני מקימה ומחברת הכל. אתם לא תלויים בי לשום דבר.",
     tools: [
-      "דומיין: כ-74 ₪ לשנה.",
+      "דומיין: בממוצע כ-60 עד 90 ₪ לשנה, תלוי בסיומת ובספק.",
       "אחסון ואבטחה לאתר: 0 ₪.",
       "כלים לבוט או לסוכן, לפי שימוש: 0 עד 150 ₪ לחודש.",
     ],
@@ -208,7 +231,9 @@ const COPY: Record<"he" | "en", Copy> = {
       "50% בהתחלה, 50% במסירה.",
       "עלויות שוטפות של כלים תמיד בנפרד, על שמכם, עם שמות ומחירים מדויקים.",
       "שני סבבי שינויים כלולים בכל פרויקט. סבב שלישי מתומחר בנפרד ומראש.",
-      "אתר: גרסה ראשונה מלאה עד 5 ימי עבודה, ובאוויר תוך שבוע עד שבועיים.",
+      "דף נחיתה: גרסה ראשונה מלאה עד 5 ימי עבודה, ובאוויר תוך שבוע עד שבועיים.",
+      "אתר: גרסה ראשונה מלאה עד 8 עד 10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה.",
+      "אתר פורטפוליו: גרסה ראשונה מלאה עד 13 עד 15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות.",
       "אפשר להתחיל בפתרון קטן ולהרחיב כשמרגישים את הערך.",
     ],
     valueTitle: "מה יוצא לכם מזה",
@@ -242,7 +267,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "כמה זמן לוקח פרויקט?",
-        a: "אתר: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. מערכת מלאה לוקחת יותר, ולוח הזמנים המדויק נמצא בהצעה.",
+        a: "דף נחיתה: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אתר: גרסה ראשונה מלאה עד 8 עד 10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה, כי יש יותר חלקים לסדר. אתר פורטפוליו: 13 עד 15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות, כי יש עוד עמודי פרויקט לבנות ולקדם בגוגל. מערכת מלאה לוקחת יותר, ולוח הזמנים המדויק נמצא בהצעה.",
       },
       {
         q: "אני משלם על הכלים בנפרד?",
@@ -270,6 +295,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "Landing page",
             desc: "One continuous page. Who you are, what you do, and how to reach you.",
             price: "₪1,500",
+            summary: ["Up to 3 sections, one scroll", "Fixed WhatsApp button", "No navigation menu", "5 working days"],
             more: {
               fit: "You have one clear service to offer, or you run paid ads and want one place they lead to.",
               includes: "Up to three sections in a single continuous scroll, no navigation menu, with a fixed WhatsApp button.",
@@ -281,15 +307,28 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "Website",
-            desc: "One page with a floating menu that jumps to each section. Explains a method or a service in depth, including an FAQ. The first month of care is included.",
+            desc: "A multi-page site built around your content — a homepage plus usually 2–4 more pages such as method, about or FAQ, each with its own address and independent SEO on Google. If you have a portfolio, one shared gallery shows up to 10 pieces. The first two months of care are included.",
             price: "₪2,400",
+            summary: ["Home + 2-4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of care included (worth ₪600)"],
             more: {
-              fit: "You explain a method, a process or a service, and people ask you the same questions before they commit.",
-              includes: "Five to eight sections, a floating menu that jumps to each one, an FAQ section and a reviews area. In content and work it is a five to seven page site, laid out as one scroll. Plus the first month of care: a mid-month check and a full monthly report. After that you can continue at 200 NIS a month or not, with no commitment.",
-              forWho: "Coaches, therapists, consultants and independents who sell knowledge or a process. Also architects, designers and small studios showing work.",
-              notFor: "You sell products and need a cart and checkout. That is a store, and a different project.",
+              fit: "You explain a method, a process or a service, and people ask you the same questions before they commit. Also a fit if you have a portfolio or project gallery to show.",
+              includes: "A homepage plus 2–4 content pages based on what you have to say (for example method, about, FAQ) — each page with its own SEO on Google, exactly like the site I built for Lilach Hazan (lilachhazan.com): a homepage, a separate method page, and a separate FAQ page, each ranking on its own. If you have a portfolio, one shared gallery of up to 10 pieces, with categories to filter by if you have a few kinds of work — the pieces appear as cards on that one gallery page, not each on its own separate page. An extra content page beyond what's scoped is an add-on (see 'Extra section' below). Want a page and its own SEO for a few individual projects? That's the 'Dedicated project page' add-on (see below). Have a large portfolio where most of it needs its own page? That's 'Portfolio website', the next tier. Plus the first two months of care, worth ₪600, included: a mid-month check and a full monthly report. After that you can continue at 200 NIS a month or not, with no commitment.",
+              forWho: "Coaches, therapists, consultants and independents who sell knowledge or a process. Also architects, designers and small studios showing a small-to-medium portfolio.",
+              notFor: "You sell products and need a cart and checkout (that's a store, a different project), or you have a large portfolio (15+ projects) where most of it needs its own page and SEO — see 'Portfolio website'.",
               exampleLabel: "lilachhazan.com",
               exampleUrl: "https://lilachhazan.com",
+            },
+          },
+          {
+            name: "Portfolio website",
+            desc: "Built like 'Website', plus up to 10 of your projects each get their own page, able to rank on Google on its own. A fit for large portfolios: architecture, interior design, contracting.",
+            price: "₪3,700",
+            summary: ["Everything in 'Website' + up to 10 dedicated project pages", "Every project page can rank on Google on its own", "Extra page beyond 10: ₪250", "13-15 working days"],
+            more: {
+              fit: "You have a large portfolio (roughly 15+ projects), and it matters that your top work is found separately on Google, not just as a card in a gallery.",
+              includes: "Exactly like 'Website': a homepage plus 2 to 4 content pages, each able to rank on Google on its own. The difference: up to 10 of your projects get their own page instead of a shared gallery card. Each page gets its own address, title and description, so Google ranks it separately. All project pages share the same design, to keep things consistent instead of building each one from scratch. Have more than 10 projects and want pages for them too? That's ₪250 per extra page, same as the regular add-on. The first two months of care, worth ₪600, are included.",
+              forWho: "Architects, design studios, contractors, photographers and designers with a large portfolio where each project deserves its own showing.",
+              notFor: "You have up to 10 projects, or not all of them need to be found separately on Google. The regular 'Website' does the job for less, and you can always add a single dedicated project page later.",
             },
           },
           {
@@ -297,6 +336,7 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "Translation, layout adaptation, and a language switch. One price for any site type.",
             price: "₪600",
             unit: "",
+            summary: ["Full translation + mirrored layout", "Language toggle at the top", "Same price for any site type"],
             more: {
               fit: "You have clients abroad, or you want to show up in English searches too.",
               includes: "Full translation, layout adapted to the opposite direction, and a language toggle at the top.",
@@ -314,6 +354,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "Single automation",
             desc: "One process that runs on its own. A reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
             price: "₪1,400",
+            summary: ["One end-to-end process", "Connects to tools you already use", "Monitoring that alerts on failure"],
             more: {
               fit: "There is one action you do by hand almost every day, and you know exactly what it is.",
               includes: "One end to end process, connected to the tools you already use, with monitoring that alerts when something fails.",
@@ -324,6 +365,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "WhatsApp bot",
             desc: "Answers the questions you get again and again, in Hebrew and in your business tone, around the clock.",
             price: "₪2,400",
+            summary: ["24/7 answers in Hebrew", "In your business tone", "Hands off to you when needed"],
             more: {
               fit: "The same two or three questions come up every day, and you miss inquiries in the evening and on weekends.",
               includes: "Answers in Hebrew in your business tone, working hours, and a handover to you the moment the conversation needs you.",
@@ -335,6 +377,7 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "AI agent with a Hebrew skill",
             desc: "It does more than answer. It understands context, remembers the conversation, and acts: books a meeting, quotes by your rules, filters enquiries.",
             price: "₪4,900",
+            summary: ["Understands context, remembers chats", "Books meetings in your calendar", "Quotes by your own rules"],
             more: {
               fit: "Every inquiry is different and cannot be answered with a prepared reply.",
               includes: "Context understanding, conversation memory, booking in your calendar, quoting by your rules and filtering inquiries that do not fit.",
@@ -346,6 +389,7 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "Website, AI agent, automations and every enquiry in one place. All connected, priced below buying each part separately.",
             price: "₪7,900",
             flag: true,
+            summary: ["Website + AI agent + automations", "Everything connected in one place", "Cheaper than buying separately"],
             more: {
               fit: "You are starting from scratch, or rebuilding your digital presence and want everything to talk to each other.",
               includes: "Website, AI agent, automations and all inquiries in one place. Everything connected, for less than buying each part separately.",
@@ -360,6 +404,10 @@ const COPY: Record<"he" | "en", Copy> = {
           { name: "Extra section", desc: "A new section beyond what we agreed.", price: "₪450" },
           { name: "Extra revision round", desc: "Beyond the two rounds included in every project.", price: "₪350" },
           { name: "Article for the site", desc: "Writing, search optimisation, and publishing.", price: "₪450" },
+          { name: "Extra shared-gallery projects, 11 to 16", desc: "Beyond the 10 projects included, another card in the shared gallery.", price: "₪300" },
+          { name: "Extra shared-gallery projects, 17 to 22", desc: "For especially large portfolios.", price: "₪400" },
+          { name: "Above 22 gallery projects", desc: "Worth planning together on a call, to choose the projects that represent you best — a gallery this crowded weakens the strong ones.", price: "Call + custom quote" },
+          { name: "Dedicated project page", desc: "Upgrade from a shared-gallery card to its own page, with its own address and independent SEO. On a Portfolio website, this is the price per page beyond the 10 included.", price: "₪250 per page" },
         ],
       },
       {
@@ -387,7 +435,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "Order a website and the first month of care is included. After that, care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
+      "Order a website and the first two months of care are included, worth ₪600. After that, care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
     includedTitle: "Included in every website, at no extra cost",
     included: [
       "Accessibility to Israeli standard 5568. Required by law for a business site, and most cheap sites arrive without it.",
@@ -399,7 +447,7 @@ const COPY: Record<"he" | "en", Copy> = {
     toolsIntro:
       "Tools and infrastructure are registered in your name and on your card, and I set everything up and connect it. You are not dependent on me for anything.",
     tools: [
-      "Domain: around ₪74 per year.",
+      "Domain: on average ₪60 to ₪90 a year, depending on the extension and provider.",
       "Hosting and security for the site: ₪0.",
       "Tools for a bot or an agent, based on usage: ₪0 to ₪150 per month.",
     ],
@@ -418,7 +466,9 @@ const COPY: Record<"he" | "en", Copy> = {
       "50% to start, 50% on delivery.",
       "Running tool costs are always separate, in your name, with exact names and prices.",
       "Two revision rounds are included in every project. A third round is priced separately and in advance.",
-      "Website: a full first version within 5 working days, and live within one to two weeks.",
+      "Landing page: a full first version within 5 working days, and live within one to two weeks.",
+      "Website: a full first version within 8 to 10 working days, and live within two to three weeks.",
+      "Portfolio website: a full first version within 13 to 15 working days, and live within three to four weeks.",
       "You can start small and expand once you feel the value.",
     ],
     valueTitle: "What you get out of it",
@@ -432,7 +482,7 @@ const COPY: Record<"he" | "en", Copy> = {
     faqItems: [
       { q: "Are these prices final?", a: "Yes. What you see here is what you pay, and it is agreed before we start. Anything not included appears as an add-on with its own price, and never surfaces at the end." },
       { q: "What if my project is not exactly one of these?", a: "Then we build it from the parts that are listed here. If something is not on the list at all, I price it separately and explain what it is based on." },
-      { q: "How long does a project take?", a: "Website: a full first version within five working days from the moment I have your materials, and live within one to two weeks. A full system takes longer, and the exact timeline is in the proposal." },
+      { q: "How long does a project take?", a: "Landing page: a full first version within five working days from the moment I have your materials, and live within one to two weeks. Website: a full first version within 8 to 10 working days, and live within two to three weeks — there's simply more to put together. Portfolio website: 13 to 15 working days, and live within three to four weeks — there are more project pages to build and optimise for Google. A full system takes longer, and the exact timeline is in the proposal." },
       { q: "Do I pay for the tools separately?", a: "Yes, and that is in your favour. The domain and the tools are registered in your name and on your card, so they are yours and you are not dependent on me. I set everything up and connect it." },
     ],
     ctaTitle: "The first step costs nothing.",
@@ -478,13 +528,19 @@ export default function PricingPage() {
         {c.groups.map((g, gi) => (
           <div key={gi} style={{ marginBottom: 40 }}>
             <h2 style={{ fontWeight: 800, fontSize: "clamp(21px,2.6vw,28px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 16px" }}>{g.title}</h2>
-            <div style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "6px 26px" }}>
+            <div style={{ display: "grid", gap: 14 }}>
               {g.items.map((it, ii) => (
                 <div
                   key={ii}
                   style={{
-                    padding: "18px 0",
-                    borderBottom: ii === g.items.length - 1 ? "none" : "1px solid rgba(150,143,132,.16)",
+                    position: "relative",
+                    background: "linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015))",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: "1px solid rgba(255,255,255,.14)",
+                    borderRadius: 18,
+                    padding: "18px 22px",
+                    boxShadow: "0 8px 30px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.10)",
                   }}
                 >
                   <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 14 }}>
@@ -527,6 +583,27 @@ export default function PricingPage() {
                         <div style={{ fontWeight: 700, fontSize: 17.5, color: it.flag ? "var(--acc)" : "var(--ink)", lineHeight: 1.4 }}>{it.name}</div>
                       )}
                       <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
+                      {it.summary ? (
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 8px", margin: "10px 0 0" }}>
+                          {it.summary.map((s, si) => (
+                            <span
+                              key={si}
+                              style={{
+                                fontSize: 12.5,
+                                color: "var(--acc)",
+                                background: "rgba(242,98,46,.10)",
+                                border: "1px solid rgba(242,98,46,.24)",
+                                borderRadius: 999,
+                                padding: "4px 10px",
+                                fontWeight: 600,
+                                lineHeight: 1.4,
+                              }}
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
                     <div style={{ whiteSpace: "nowrap", textAlign: end }}>
                       <div style={{ fontWeight: 800, fontSize: 22, color: "var(--acc)", letterSpacing: "-0.02em" }}>{it.price}</div>

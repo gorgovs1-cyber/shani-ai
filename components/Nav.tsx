@@ -292,6 +292,47 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+
+          {/* Language toggle — was missing from mobile menu entirely */}
+          <div
+            role="group"
+            aria-label="Language / שפה"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "rgba(244,237,225,0.07)",
+              border: "1px solid var(--dline)",
+              borderRadius: 999,
+              padding: 4,
+              fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+            }}
+          >
+            {(["en", "he"] as const).map((l) => {
+              const active = lang === l;
+              return (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  aria-pressed={active}
+                  style={{
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "10px 22px",
+                    borderRadius: 999,
+                    fontSize: 15,
+                    fontWeight: 700,
+                    background: active ? "var(--acc)" : "transparent",
+                    color: active ? "#fff" : "var(--dmuted)",
+                    transition: "background .2s ease, color .2s ease",
+                    fontFamily: "inherit",
+                  }}
+                >
+                  {l === "en" ? "EN" : "עב"}
+                </button>
+              );
+            })}
+          </div>
+
           <a
             href={anchor("#contact")}
             onClick={closeMenu}
