@@ -11,7 +11,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "ניהלתי עסק משלי 10 שנים, אז אני יודעת בדיוק איפה נשרף הזמן ואיפה AI יחסוך לכם הכי הרבה. אני ממפה את התהליכים שלכם, בונה אסטרטגיה, ומלווה בהטמעה, בעברית טבעית, בלי באזז וורדס ובלי הבטחות ריקות.",
     primaryCta: "דברו איתי על ייעוץ",
     primaryWaMsg: "היי שני, אני רוצה ייעוץ והטמעת AI לעסק",
-    secondaryCta: "לצפייה במחירים ←",
+    secondaryCta: "לצפייה במחירים",
     includesTitle: "מה כולל הייעוץ",
     includes: [
       "מיפוי מלא של תהליכי העסק",
@@ -95,7 +95,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "I ran my own business for 10 years, so I know exactly where time gets wasted and where AI actually moves the needle. I map your processes, build a strategy, and guide the rollout, in plain language, no buzzwords and no empty promises.",
     primaryCta: "Talk to me about consulting",
     primaryWaMsg: "Hi Shani, I'd like AI consulting and rollout for my business",
-    secondaryCta: "See pricing →",
+    secondaryCta: "See pricing",
     includesTitle: "What consulting includes",
     includes: [
       "Full mapping of your business processes",

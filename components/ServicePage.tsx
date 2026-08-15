@@ -55,7 +55,7 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
   const { lang } = useLang();
   const c = copyByLang[lang];
   const dir = c.dir;
-  const auditLabel = lang === "he" ? "להתחיל באבחון AI חינם ←" : "Start a free AI Audit →";
+  const auditLabel = lang === "he" ? "להתחיל באבחון AI חינם" : "Start a free AI Audit";
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -144,7 +144,7 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
                   </dl>
                   {p.exampleUrl ? (
                     <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 14.5, textDecoration: "none", fontFamily: HEEBO }}>
-                      {c.products!.labels.example}: {p.exampleLabel} ←
+                      {c.products!.labels.example}: {p.exampleLabel}
                     </a>
                   ) : null}
                 </div>
@@ -162,7 +162,7 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
               {c.also.map((a) => (
                 <a key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
-                  <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label} ←</div>
+                  <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
                   <div style={{ color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
                 </a>
               ))}

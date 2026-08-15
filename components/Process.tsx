@@ -177,7 +177,7 @@ export default function Process() {
         >
           {(t as any).processPriceLine}{" "}
           <a href="/pricing" style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "none" }}>
-            {(t as any).processPriceCta} ←
+            {(t as any).processPriceCta}
           </a>
         </p>
       )}

@@ -11,7 +11,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "אני בונה אתרים בקוד קאסטום Next.js, מהירים, עם אנימציות GSAP קולנועיות ומבנה SEO מלא, שממצבים את העסק שלכם ברמה של החברות הגדולות והופכים מבקרים ללקוחות. הקוד שלכם, בבעלותכם המלאה.",
     primaryCta: "דברו איתי על אתר",
     primaryWaMsg: "היי שני, אני רוצה לבנות אתר לעסק",
-    secondaryCta: "לצפייה במחירים ←",
+    secondaryCta: "לצפייה במחירים",
     includesTitle: "מה נכלל באתר",
     includes: [
       "קוד קאסטום Next.js, לא תבנית",
@@ -118,7 +118,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "I build websites in custom Next.js code, fast, with cinematic GSAP animation and real SEO, that position your business alongside the big players and turn visitors into clients. Your code, fully owned by you.",
     primaryCta: "Talk to me about a website",
     primaryWaMsg: "Hi Shani, I'd like to build a website for my business",
-    secondaryCta: "See pricing →",
+    secondaryCta: "See pricing",
     includesTitle: "What's included",
     includes: [
       "Custom Next.js code, not a template",

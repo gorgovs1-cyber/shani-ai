@@ -41,7 +41,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             textDecoration: "none", fontFamily: "var(--font-body)",
             display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "3rem",
           }}>
-            ← כל העבודות
+            כל העבודות
           </Link>
 
           <div className="label" style={{ color: "var(--signal)", marginBottom: "1rem" }}>
@@ -119,7 +119,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               className="btn-grad"
               style={{ display: "block", textAlign: "center", marginTop: "1.5rem", padding: "0.85rem" }}
             >
-              {project.liveUrl ? "צפה בפרויקט ←" : "בואו נדבר על פרויקט דומה ←"}
+              {project.liveUrl ? "צפה בפרויקט" : "בואו נדבר על פרויקט דומה"}
             </a>
           </div>
         </section>

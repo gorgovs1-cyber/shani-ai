@@ -11,7 +11,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "אני מחברת את הכלים שלכם, טפסים, וואטסאפ, מיילים, CRM ולוח שנה, לאוטומציות n8n + Claude שמטפלות בלידים, בתוכן ובמענה לבד. הטכנולוגיה עושה את העבודה השחורה, ואתם מתפנים לעסק עצמו.",
     primaryCta: "דברו איתי על אוטומציה",
     primaryWaMsg: "היי שני, אני רוצה אוטומציה לעסק",
-    secondaryCta: "לצפייה במחירים ←",
+    secondaryCta: "לצפייה במחירים",
     includesTitle: "מה אפשר לאטמט",
     includes: [
       "מענה אוטומטי בוואטסאפ ללידים",
@@ -120,7 +120,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "I connect your tools, forms, WhatsApp, email, CRM and calendar, into n8n + Claude automations that handle leads, content and replies on their own. Technology does the grunt work, and you get back to running the business.",
     primaryCta: "Talk to me about automation",
     primaryWaMsg: "Hi Shani, I'd like an automation for my business",
-    secondaryCta: "See pricing →",
+    secondaryCta: "See pricing",
     includesTitle: "What can be automated",
     includes: [
       "Automatic WhatsApp replies to leads",

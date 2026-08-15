@@ -42,7 +42,7 @@ export default function NextProjectLink({
           {title}
         </span>
       </div>
-      <span style={{ color: "var(--signal)", fontSize: "2rem" }}>←</span>
+      
     </Link>
   );
 }

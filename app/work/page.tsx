@@ -57,7 +57,7 @@ export default function WorkPage() {
                 </span>
               </div>
 
-              <span style={{ color: "var(--signal)", fontSize: "1.2rem" }}>←</span>
+              
             </Link>
           ))}
           <div style={{ borderTop: "1px solid var(--border)" }} />

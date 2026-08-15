@@ -42,7 +42,6 @@ export default function ROICalculator() {
   const animMonthly = useCountUp(monthlySaving);
   const animYearly = useCountUp(yearlySaving);
   const fmt = (n: number) => n.toLocaleString(lang === "he" ? "he-IL" : "en-US");
-  const arrow = lang === "he" ? "←" : "→";
 
   useEffect(() => {
     let ctx: any;
@@ -156,7 +155,7 @@ export default function ROICalculator() {
           className="btn-grad"
           style={{ display: "block", textAlign: "center", padding: "1rem" }}
         >
-          {t.roi.cta} {arrow}
+          {t.roi.cta}
         </a>
       </div>
     </section>

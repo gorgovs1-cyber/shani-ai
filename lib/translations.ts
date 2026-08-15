@@ -8,10 +8,10 @@ export const dict = {
     heroTitle:'יוצרת פתרונות טכנולוגיים לעסקים',
     heroSub:'אני בונה לעסקים קטנים אתר שמביא פניות, מערכת שעונה ללקוחות גם כשאתם באמצע עבודה, ותוכנית מסודרת מה שווה לתקן קודם, כל המחירים פתוחים באתר.',
     heroCta1:'לצפייה בפרויקטים', heroCta2:'בואו נדבר',
-    auditCtaPrefix:'לא בטוחים מאיפה להתחיל?', auditCtaLink:'התחילו עם אבחון AI ←',
+    auditCtaPrefix:'לא בטוחים מאיפה להתחיל?', auditCtaLink:'התחילו עם אבחון AI',
     meta1:'ישראל', meta2:'תגובה תוך 24 שעות', meta3:'פיתוח מבוסס AI',
     workKicker:'04 · עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות לקוח, מוצרים שבניתי, והדגמות טכניות שמראות מה אפשרי.',
-    galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'←',
+    galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'',
     buildKicker:'01 · מה אני בונה', buildTitle:'שלושה דברים, כל אחד פותר בעיה אחרת', buildSub:'מתחת לכל כרטיס כתוב למי הוא מתאים, ואם אתם עדיין מתלבטים, זו בדיוק השאלה שהאבחון החינם עונה עליה.', servicesCta:'שלחו לי הודעה',
     problemKicker:'01 · לפני שמדברים על פתרונות',
     problemTitle:'פניות נופלות בין הכיסאות',
@@ -90,7 +90,7 @@ export const dict = {
       privacy:'בלי ספאם. אפשר להסיר את עצמכם בכל רגע.'
     },
     ctaStrip:'לא בטוחים מאיפה להתחיל? שיחת מיפוי ראשונה, ללא עלות.',
-    ctaStripBtn:'דברו איתי בוואטסאפ ←',
+    ctaStripBtn:'דברו איתי בוואטסאפ',
     testimonials:{
       label:'06 · המלצות',
       title:'מה לקוחות אומרים.',
@@ -127,10 +127,10 @@ export const dict = {
     heroTitle:'Building technology solutions for businesses',
     heroSub:'I build small businesses a website that brings enquiries, a system that answers clients while you are busy working, and a clear plan of what is worth fixing first, with every price published on the site.',
     heroCta1:'View Projects', heroCta2:"Let's Talk",
-    auditCtaPrefix:'Not sure where to start?', auditCtaLink:'Begin with an AI Audit →',
+    auditCtaPrefix:'Not sure where to start?', auditCtaLink:'Begin with an AI Audit',
     meta1:'Israel', meta2:'Replies within 24h', meta3:'AI-assisted development',
     workKicker:'04 · Work', workTitle:'Featured Projects', workSub:'AI systems, automations, digital products and websites I have built for businesses.',
-    galleryKicker:'Up close', galleryTitle:'', scrollHint:'Keep scrolling', scrollArrow:'→',
+    galleryKicker:'Up close', galleryTitle:'', scrollHint:'Keep scrolling', scrollArrow:'',
     buildKicker:'01 · What I build', buildTitle:'Three things, each solves a different problem', buildSub:'Under every card it says who it fits, and if you are still unsure, that is exactly the question the free audit answers.', servicesCta:'Send me a message',
     problemKicker:'01 · Before we talk solutions',
     problemTitle:'Enquiries slip through the cracks',
@@ -209,7 +209,7 @@ export const dict = {
       privacy:'No spam. Unsubscribe anytime.'
     },
     ctaStrip:'Not sure where to start? First mapping session, free.',
-    ctaStripBtn:'Chat on WhatsApp →',
+    ctaStripBtn:'Chat on WhatsApp',
     testimonials:{
       label:'06 · Reviews',
       title:'What clients say.',

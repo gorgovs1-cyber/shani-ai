@@ -142,7 +142,7 @@ export default function SplashScreen() {
           </div>
           {/* Line 7 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease 2.85s forwards" }}>
-            <span style={{ color: "var(--acc, #f2622e)" }}>→</span>{" "}
+            <span style={{ color: "var(--acc, #f2622e)" }}>▸</span>{" "}
             launching shani.ai{" "}
             <span style={{ color: "var(--acc, #f2622e)" }}>✦</span>
             <span style={{

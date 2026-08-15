@@ -56,7 +56,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         title: "אתרים",
         href: "/websites",
-        hrefLabel: "כל הפרטים על כל גודל, בעמוד האתרים ←",
+        hrefLabel: "כל הפרטים על כל גודל, בעמוד האתרים",
         items: [
           {
             name: "דף נחיתה",
@@ -88,7 +88,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         title: "אוטומציה ו-AI",
         href: "/automations",
-        hrefLabel: "כל הפרטים על כל דרגה, בעמוד האוטומציות ←",
+        hrefLabel: "כל הפרטים על כל דרגה, בעמוד האוטומציות",
         note: "ארבע הדרגות למטה הן מסלול אחד ולא ארבע אפשרויות נפרדות. ככל שהפניות אצלכם מגוונות יותר, כך עולים דרגה. אפשר להתחיל בכל נקודה ולהרחיב בהמשך.",
         items: [
           {
@@ -231,7 +231,7 @@ const COPY: Record<"he" | "en", Copy> = {
     ],
     ctaTitle: "הצעד הראשון לא עולה כלום.",
     ctaSub: "אבחון קצר, ותוך יום עסקים תדעו אילו כיוונים שווה לבדוק בעסק שלכם.",
-    ctaBtn: "לאבחון החינמי ←",
+    ctaBtn: "לאבחון החינמי",
     ctaWa: "מעדיפים לדבר עכשיו? וואטסאפ",
     waMsg: "היי שני, ראיתי את המחירון ואשמח לשאול משהו",
   },
@@ -246,7 +246,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         title: "Websites",
         href: "/websites",
-        hrefLabel: "Full detail on every size, on the websites page →",
+        hrefLabel: "Full detail on every size, on the websites page",
         items: [
           {
             name: "Landing page",
@@ -278,7 +278,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         title: "Automation and AI",
         href: "/automations",
-        hrefLabel: "Full detail on every level, on the automations page →",
+        hrefLabel: "Full detail on every level, on the automations page",
         note: "The four levels below are one path, not four separate options. The more varied your enquiries are, the higher you go. You can start anywhere and extend later.",
         items: [
           {
@@ -397,7 +397,7 @@ const COPY: Record<"he" | "en", Copy> = {
     ],
     ctaTitle: "The first step costs nothing.",
     ctaSub: "A short audit, and within one business day you will know which directions are worth exploring.",
-    ctaBtn: "Start the free audit →",
+    ctaBtn: "Start the free audit",
     ctaWa: "Prefer to talk now? WhatsApp",
     waMsg: "Hi Shani, I saw the pricing page and would like to ask something",
   },
@@ -557,7 +557,7 @@ export default function PricingPage() {
                             rel="noopener noreferrer"
                             style={{ color: "var(--ink)", fontSize: 14.5, fontWeight: 600 }}
                           >
-                            {it.more.exampleLabel} ↗
+                            {it.more.exampleLabel}
                           </a>
                         </div>
                       ) : null}

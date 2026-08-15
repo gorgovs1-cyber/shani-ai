@@ -227,7 +227,7 @@ export default function Services() {
                 marginTop: "auto",
               }}
             >
-              {t.servicesCta} ←
+              {t.servicesCta}
             </a>
           </div>
         ))}
