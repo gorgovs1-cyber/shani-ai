@@ -8,7 +8,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     kicker: "שירות · ייעוץ AI",
     title: "יועצת AI שמדברת עסקים, לא רק טכנולוגיה.",
     lead:
-      "ניהלתי עסק משלי 10 שנים, אז אני יודעת בדיוק איפה נשרף הזמן ואיפה AI יחסוך לכם הכי הרבה. אני ממפה את התהליכים שלכם, בונה אסטרטגיה, ומלווה בהטמעה, בעברית אמיתית, בלי באזז וורדס ובלי הבטחות ריקות.",
+      "ניהלתי עסק משלי 10 שנים, אז אני יודעת בדיוק איפה נשרף הזמן ואיפה AI יחסוך לכם הכי הרבה. אני ממפה את התהליכים שלכם, בונה אסטרטגיה, ומלווה בהטמעה, בעברית טבעית, בלי באזז וורדס ובלי הבטחות ריקות.",
     primaryCta: "דברו איתי על ייעוץ",
     primaryWaMsg: "היי שני, אני רוצה ייעוץ והטמעת AI לעסק",
     secondaryCta: "לצפייה במחירים ←",
@@ -23,6 +23,26 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "הדרכת צוות בשימוש נכון ב-AI",
       "מדידה של החיסכון בפועל",
     ],
+    products: {
+      title: "איך מתחילים",
+      note: "יש דרך כניסה אחת, והיא בלי עלות. משם ההצעה נבנית לפי מה שנמצא בפועל.",
+      labels: { fit: "מתי זה מתאים", includes: "מה מקבלים", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      items: [
+        {
+          name: "אבחון ראשוני",
+          price: "ללא עלות",
+          fit: "אתם יודעים שמשהו בעסק גוזל יותר מדי זמן, אבל לא בטוחים מה לתקן קודם ואיפה AI בכלל רלוונטי.",
+          includes: "טופס קצר על העסק, הכלים והמשימות שחוזרות. תוך יום עסקים אני חוזרת עם שניים שלושה כיוונים, ואז שיחת היכרות של עשרים דקות שבה מחליטים מה נכון לבנות ומה לא. בסיום מגיעה הצעה מסודרת עם מה נבנה, כמה זה עולה ולוח זמנים.",
+          forWho: "בעלי עסקים קטנים ובינוניים שרוצים להבין מה אפשרי לפני שמתחייבים לפרויקט.",
+          notFor: "אתם כבר יודעים בדיוק מה אתם רוצים לבנות. אז אפשר לדלג ולפנות ישירות בוואטסאפ.",
+        },
+      ],
+    },
+    alsoTitle: "השירותים עצמם",
+    also: [
+      { label: "אתרים", href: "/websites", desc: "שלושה גדלים, לפי כמה יש לכם לספר." },
+      { label: "אוטומציות", href: "/automations", desc: "ארבע דרגות, לפי כמה הפניות מגוונות." },
+    ],
     sections: [
       {
         h: "מה עושה יועץ AI לעסקים?",
@@ -30,7 +50,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "איך מתחילים? אבחון AI",
-        p: "מתחילים בשיחת אבחון ממוקדת. אנחנו יושבים, ממפים את כל התהליכים שלכם ומזהים איפה בדיוק בורח הזמן. בסוף אתם יוצאים עם תכנית עבודה ברורה. מתחילים באבחון חינמי דרך הטופס באתר, ומי שרוצה מיפוי מעמיק יותר יכול להזמין אבחון מלא בתשלום, שמתקזז במלואו אם מזמינים פרויקט.",
+        p: "מתחילים בשיחת אבחון ממוקדת. אנחנו יושבים, ממפים את כל התהליכים שלכם ומזהים איפה בדיוק בורח הזמן. בסוף אתם יוצאים עם תכנית עבודה ברורה. מתחילים באבחון חינמי דרך הטופס באתר, ותוך יום עסקים אני חוזרת עם כיוונים.",
       },
       {
         h: "מה זה סקיל בעברית ולמה זה משנה?",
@@ -86,6 +106,26 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Guidance through rollout, not just a doc",
       "Training your team to use AI well",
       "Measuring the actual time saved",
+    ],
+    products: {
+      title: "How it starts",
+      note: "There is one way in, and it costs nothing. The proposal is built from what the audit actually finds.",
+      labels: { fit: "When it fits", includes: "What you get", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      items: [
+        {
+          name: "First audit",
+          price: "Free",
+          fit: "You know something in the business is eating too much time, but you are not sure what to fix first or where AI is even relevant.",
+          includes: "A short form about the business, the tools and the recurring tasks. Within one working day I come back with two or three directions, followed by a twenty minute call where we decide what is worth building and what is not. A full proposal follows, with what gets built, what it costs and a timeline.",
+          forWho: "Owners of small and mid-sized businesses who want to understand what is possible before committing to a project.",
+          notFor: "You already know exactly what you want built. Then you can skip ahead and message me directly.",
+        },
+      ],
+    },
+    alsoTitle: "The services themselves",
+    also: [
+      { label: "Websites", href: "/websites", desc: "Three sizes, by how much you have to say." },
+      { label: "Automations", href: "/automations", desc: "Four levels, by how varied your enquiries are." },
     ],
     sections: [
       {

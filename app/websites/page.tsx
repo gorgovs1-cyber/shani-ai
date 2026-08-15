@@ -8,7 +8,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     kicker: "שירות · אתרים",
     title: "אתרים קולנועיים שמביאים לקוחות, לא רק נראים טוב.",
     lead:
-      "אני בונה אתרים בקוד קאסטום Next.js, מהירים, עם אנימציות GSAP קולנועיות ו-מבנה SEO מלא, שממצבים את העסק שלכם ברמה של החברות הגדולות והופכים מבקרים ללקוחות. הקוד שלכם, בבעלותכם המלאה.",
+      "אני בונה אתרים בקוד קאסטום Next.js, מהירים, עם אנימציות GSAP קולנועיות ומבנה SEO מלא, שממצבים את העסק שלכם ברמה של החברות הגדולות והופכים מבקרים ללקוחות. הקוד שלכם, בבעלותכם המלאה.",
     primaryCta: "דברו איתי על אתר",
     primaryWaMsg: "היי שני, אני רוצה לבנות אתר לעסק",
     secondaryCta: "לצפייה במחירים ←",
@@ -23,10 +23,53 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "בעלות מלאה על הקוד",
       "מסירה תוך 7–21 יום",
     ],
+    products: {
+      title: "שלושה גדלים, לפי כמה יש לכם לספר",
+      note: "ההבדל בין השלושה הוא כמה תוכן צריך להסביר, ולא כמה יפה האתר. אפשר להתחיל בקטן ולהרחיב בהמשך.",
+      labels: { fit: "מתי זה מתאים", includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      items: [
+        {
+          name: "דף נחיתה",
+          price: "1,500 ₪",
+          fit: "יש לכם שירות אחד ברור להציע, או שאתם מפרסמים בתשלום ורוצים מקום אחד שהפרסום מוביל אליו.",
+          includes: "עד שלושה חלקים בגלילה אחת רציפה, בלי תפריט ניווט, עם כפתור וואטסאפ קבוע. גרסה ראשונה עד חמישה ימי עבודה.",
+          forWho: "בעלי מקצוע שעובדים לבד, מאמני כושר, קוסמטיקאיות, מדריכים, וכל מי שמריץ קמפיין ממומן ורוצה עמוד נחיתה אליו.",
+          notFor: "יש לכם כמה שירותים שונים שצריך להסביר לעומק. אז אתר יעבוד לכם טוב יותר.",
+        },
+        {
+          name: "אתר",
+          price: "2,400 ₪",
+          fit: "אתם מסבירים שיטה, תהליך או שירות, ואנשים שואלים אתכם אותן שאלות לפני שהם סוגרים.",
+          includes: "עמוד בית ועוד 2 עד 4 עמודים, לכל אחד כתובת, כותרת ותיאור משלו, ולכן הוא מדורג בנפרד בגוגל ולא רק דרך עמוד הבית. אם יש לכם תיק עבודות, עד 10 פרויקטים מוצגים ככרטיסים בגלריה משותפת. שני חודשי ליווי כלולים, בשווי 400 ₪. גרסה ראשונה 8 עד 10 ימי עבודה.",
+          forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים ומעצבים עם תיק עבודות קטן עד בינוני.",
+          notFor: "אתם מוכרים מוצרים ורוצים עגלת קניות ותשלום באתר, זו כבר חנות. או שיש לכם תיק עבודות גדול שרובו צריך עמוד נפרד, ואז אתר פורטפוליו נכון יותר.",
+        },
+        {
+          name: "אתר פורטפוליו",
+          price: "3,700 ₪",
+          fit: "יש לכם תיק עבודות גדול, בערך 15 פרויקטים ומעלה, וחשוב לכם שהעבודות המובילות יימצאו בנפרד בחיפוש בגוגל.",
+          includes: "הכל מ'אתר', ובנוסף כל אחד מעד 10 הפרויקטים מקבל עמוד נפרד עם כתובת, כותרת ותיאור משלו. עמוד נוסף מעבר ל-10 הוא 250 ₪. גרסה ראשונה 13 עד 15 ימי עבודה.",
+          forWho: "אדריכלים, סטודיו עיצוב, קבלנים, צלמים ומעצבים עם תיק עבודות גדול, שכל פרויקט בו שווה הצגה נפרדת.",
+          notFor: "יש לכם עד 10 פרויקטים ולא כולם חייבים להימצא לבד בגוגל. 'אתר' הרגיל עושה את העבודה בפחות כסף, ותמיד אפשר להוסיף עמוד פרויקט בודד בהמשך.",
+        },
+        {
+          name: "גרסה בשפה שנייה",
+          price: "600 ₪",
+          fit: "יש לכם לקוחות בחו״ל, או שאתם רוצים להופיע גם בחיפושים באנגלית.",
+          includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד. אותו מחיר לכל סוג אתר.",
+          forWho: "מיתוג אישי, יועצים שעובדים מול חו״ל, תיירות, ומי שמגיש מועמדות בינלאומית.",
+        },
+      ],
+    },
+    alsoTitle: "שירותים נוספים",
+    also: [
+      { label: "אוטומציות", href: "/automations", desc: "מערכת שמטפלת בפניות שהאתר מביא." },
+      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "אבחון שמסמן מה שווה לתקן קודם." },
+    ],
     sections: [
       {
         h: "כמה עולה לבנות אתר לעסק?",
-        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר בכמה עמודים כולל גלריית פרויקטים משותפת 2,400 ₪, אתר פורטפוליו עם עד 10 עמודי פרויקט נפרדים 3,700 ₪, וגרסה בשפה שנייה 600 ₪ לדף נחיתה או 900 ₪ לאתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
+        p: "המחירים מפורסמים במלואם בעמוד המחירים. דף נחיתה 1,500 ₪, אתר בכמה עמודים כולל גלריית פרויקטים משותפת 2,400 ₪, אתר פורטפוליו עם עד 10 עמודי פרויקט נפרדים 3,700 ₪, וגרסה בשפה שנייה 600 ₪, אותו מחיר לכל סוג אתר. אלה מחירים סופיים, ומה שלא כלול מופיע כתוספת עם מחיר משלה. ממלאים אבחון קצר בלי עלות, ותוך יום עסקים אני חוזרת עם כיוונים ועם הצעה מסודרת.",
       },
       {
         h: "למה אתר בקוד עדיף על וויקס או אלמנטור?",
@@ -87,10 +130,53 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Full ownership of the code",
       "Delivery in 7–21 days",
     ],
+    products: {
+      title: "Three sizes, by how much you have to say",
+      note: "The difference between them is how much content there is to explain, not how good the site looks. You can start small and extend later.",
+      labels: { fit: "When it fits", includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      items: [
+        {
+          name: "Landing page",
+          price: "1,500 NIS",
+          fit: "You have one clear service to offer, or you run paid ads and want one place they lead to.",
+          includes: "Up to three parts in a single continuous scroll, no navigation menu, with a fixed WhatsApp button. First version within five working days.",
+          forWho: "Solo professionals, personal trainers, beauticians, instructors, and anyone running paid campaigns who needs a landing page.",
+          notFor: "You have several different services that need explaining in depth. A website will work better.",
+        },
+        {
+          name: "Website",
+          price: "2,400 NIS",
+          fit: "You explain a method, a process or a service, and people ask you the same questions before they buy.",
+          includes: "A homepage plus 2 to 4 more pages, each with its own URL, title and description, so it ranks separately on Google. If you have a portfolio, up to 10 projects appear as cards in a shared gallery. Two months of care included, worth 400 NIS. First version 8 to 10 working days.",
+          forWho: "Coaches, therapists, consultants and freelancers selling knowledge or a process. Also architects and designers with a small to mid-sized portfolio.",
+          notFor: "You sell products and need a cart and checkout, that is a shop. Or you have a large portfolio where most pieces need their own page, in which case a portfolio site fits better.",
+        },
+        {
+          name: "Portfolio site",
+          price: "3,700 NIS",
+          fit: "You have a large portfolio, roughly 15 projects and up, and you want your leading work to be found separately on Google.",
+          includes: "Everything in 'Website', plus each of up to 10 projects gets its own page with its own URL, title and description. An extra page beyond 10 is 250 NIS. First version 13 to 15 working days.",
+          forWho: "Architects, design studios, contractors, photographers and designers with a large portfolio where each project deserves its own page.",
+          notFor: "You have up to 10 projects and they do not all need to be found separately on Google. The regular 'Website' does the job for less, and a single project page can always be added later.",
+        },
+        {
+          name: "Second language version",
+          price: "600 NIS",
+          fit: "You have clients abroad, or you want to appear in English searches too.",
+          includes: "Full translation, a mirrored layout, and a language switch at the top of the page. Same price for every site type.",
+          forWho: "Personal brands, consultants working with clients abroad, tourism, and anyone applying internationally.",
+        },
+      ],
+    },
+    alsoTitle: "More services",
+    also: [
+      { label: "Automations", href: "/automations", desc: "A system that handles the enquiries the site brings in." },
+      { label: "Consulting", href: "/ai-consulting", desc: "An audit that marks what is worth fixing first." },
+    ],
     sections: [
       {
         h: "How much does a business website cost?",
-        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, a multi-page website with a shared project gallery 2,400 NIS, a portfolio website with up to 10 dedicated project pages 3,700 NIS, and a second-language version 600 NIS for a landing page or 900 NIS for a website. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
+        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, a multi-page website with a shared project gallery 2,400 NIS, a portfolio website with up to 10 dedicated project pages 3,700 NIS, and a second-language version 600 NIS, the same price for every site type. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
       },
       {
         h: "Why is coded better than Wix or Elementor?",
