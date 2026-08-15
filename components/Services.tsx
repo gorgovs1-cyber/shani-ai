@@ -157,6 +157,7 @@ export default function Services() {
                 style={{
                   display: "inline-block",
                   marginTop: 18,
+                  marginBottom: 26,
                   padding: "6px 12px",
                   borderRadius: 999,
                   border: "1px solid color-mix(in oklch, var(--acc) 35%, var(--line))",
