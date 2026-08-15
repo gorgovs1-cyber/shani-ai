@@ -12,7 +12,7 @@ const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}
 
 type More = { fit: string; includes: string; forWho: string; notFor?: string; exampleLabel?: string; exampleUrl?: string };
 type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean; summary?: string[]; more?: More };
-type Group = { title: string; items: Item[] };
+type Group = { title: string; note?: string; items: Item[] };
 type Factor = { title: string; desc: string };
 type Step = { no: string; title: string; desc: string };
 type QA = { q: string; a: string };
@@ -114,9 +114,10 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         title: "אוטומציה ו-AI",
+        note: "ארבע הדרגות למטה הן מסלול אחד ולא ארבע אפשרויות נפרדות. ככל שהפניות אצלכם מגוונות יותר, כך עולים דרגה. אפשר להתחיל בכל נקודה ולהרחיב בהמשך.",
         items: [
           {
-            name: "אוטומציה בודדת",
+            name: "דרגה 1 · אוטומציה בודדת",
             desc: "תהליך אחד שרץ לבד. תזכורת לפני תור, פנייה שנכנסת ישר לגיליון, מייל שנשלח אחרי כל לקוח.",
             price: "1,400 ₪",
             summary: ["תהליך אחד מקצה לקצה", "מתחברת לכלים שיש לך כבר", "ניטור שמתריע על תקלה"],
@@ -127,7 +128,7 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
-            name: "בוט וואטסאפ",
+            name: "דרגה 2 · בוט וואטסאפ",
             desc: "עונה על השאלות שחוזרות אצלכם שוב ושוב, בעברית ובטון של העסק, מסביב לשעון.",
             price: "2,400 ₪",
             summary: ["מענה 24/7 בעברית", "בטון של העסק שלכם", "מעבירה אליכם כשצריך"],
@@ -139,7 +140,7 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
-            name: "סוכן AI עם סקיל עברי",
+            name: "דרגה 3 · סוכן AI עם סקיל עברי",
             desc: "לא רק עונה. מבין הקשר, זוכר שיחה, ומבצע: קובע פגישה ביומן, מתמחר לפי הכללים שלכם, מסנן פניות.",
             price: "4,900 ₪",
             summary: ["מבין הקשר וזוכר שיחה", "קובע פגישה ביומן", "מתמחר לפי הכללים שלכם"],
@@ -150,7 +151,7 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
-            name: "מערכת AI מלאה",
+            name: "דרגה 4 · מערכת AI מלאה",
             desc: "אתר, סוכן AI, אוטומציות וריכוז הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה בנפרד.",
             price: "7,900 ₪",
             flag: true,
@@ -349,9 +350,10 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         title: "Automation and AI",
+        note: "The four levels below are one path, not four separate options. The more varied your enquiries are, the higher you go. You can start anywhere and extend later.",
         items: [
           {
-            name: "Single automation",
+            name: "Level 1 · Single automation",
             desc: "One process that runs on its own. A reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
             price: "₪1,400",
             summary: ["One end-to-end process", "Connects to tools you already use", "Monitoring that alerts on failure"],
@@ -362,7 +364,7 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
-            name: "WhatsApp bot",
+            name: "Level 2 · WhatsApp bot",
             desc: "Answers the questions you get again and again, in Hebrew and in your business tone, around the clock.",
             price: "₪2,400",
             summary: ["24/7 answers in Hebrew", "In your business tone", "Hands off to you when needed"],
@@ -374,7 +376,7 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
-            name: "AI agent with a Hebrew skill",
+            name: "Level 3 · AI agent with a Hebrew skill",
             desc: "It does more than answer. It understands context, remembers the conversation, and acts: books a meeting, quotes by your rules, filters enquiries.",
             price: "₪4,900",
             summary: ["Understands context, remembers chats", "Books meetings in your calendar", "Quotes by your own rules"],
@@ -385,7 +387,7 @@ const COPY: Record<"he" | "en", Copy> = {
             },
           },
           {
-            name: "Full AI system",
+            name: "Level 4 · Full AI system",
             desc: "Website, AI agent, automations and every enquiry in one place. All connected, priced below buying each part separately.",
             price: "₪7,900",
             flag: true,
@@ -527,7 +529,12 @@ export default function PricingPage() {
         {/* Price groups */}
         {c.groups.map((g, gi) => (
           <div key={gi} style={{ marginBottom: 40 }}>
-            <h2 style={{ fontWeight: 800, fontSize: "clamp(21px,2.6vw,28px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 16px" }}>{g.title}</h2>
+            <h2 style={{ fontWeight: 800, fontSize: "clamp(21px,2.6vw,28px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 8px" }}>{g.title}</h2>
+            {g.note ? (
+              <p style={{ margin: "0 0 20px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.65, maxWidth: "62ch" }}>{g.note}</p>
+            ) : (
+              <div style={{ height: 8 }} />
+            )}
             <div style={{ display: "grid", gap: 14 }}>
               {g.items.map((it, ii) => (
                 <div
