@@ -22,7 +22,10 @@ export default function WorkPage() {
           {projects.map((project, i) => (
             <Link
               key={project.slug}
-              href={`/work/${project.slug}`}
+              href={project.noDetailPage ? (project.liveUrl ?? "/work") : `/work/${project.slug}`}
+              {...(project.noDetailPage && project.liveUrl
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className="work-row-link"
               style={{
                 textDecoration: "none",

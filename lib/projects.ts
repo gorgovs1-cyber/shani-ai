@@ -15,6 +15,8 @@ export type Project = {
   video?: string;
   liveUrl?: string;
   featured: boolean;
+  /** true = הכרטיס מוצג בגלריה אבל אין לו עמוד פרויקט נפרד, והוא מקשר ישירות לאתר החי */
+  noDetailPage?: boolean;
 };
 
 const SIGNAL = "#ff6a3d";
@@ -114,6 +116,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/lilach-thumb.jpg",
     liveUrl: "https://www.lilachhazan.com/",
     featured: false,
+    noDetailPage: true,
   },
   {
     slug: "my-money",

@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // נגזר מ-lib/projects.ts, אותו מקור שממנו נבנים העמודים עצמם,
   // כדי שהסייטמאפ לא יוכל להצביע על עמוד שלא קיים
-  const workPages: MetadataRoute.Sitemap = projects.map((p) => ({
+  const workPages: MetadataRoute.Sitemap = projects.filter((p) => !p.noDetailPage).map((p) => ({
     url: `${BASE}/work/${p.slug}`,
     lastModified: now,
     changeFrequency: 'monthly',

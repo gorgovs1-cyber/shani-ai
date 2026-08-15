@@ -23,7 +23,7 @@ type Item = {
 
 const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; items: Item[] }> = {
   he: {
-    kicker: "04 · המלצות",
+    kicker: "02 · המלצות",
     title: "מה לקוחות אומרים",
     sub: "עסקים שכבר עובדים עם מה שבניתי להם.",
     items: [
@@ -46,7 +46,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
     ],
   },
   en: {
-    kicker: "04 · Reviews",
+    kicker: "02 · Reviews",
     title: "What clients say",
     sub: "Businesses already running on what I built for them.",
     items: [

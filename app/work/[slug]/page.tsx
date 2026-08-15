@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import NextProjectLink from "@/components/NextProjectLink";
 
 export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return projects.filter((p) => !p.noDetailPage).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
