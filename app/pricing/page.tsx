@@ -74,10 +74,10 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "אתר",
             desc: "אתר בכמה עמודים, כמו שבניתי ללילך חזן: עמוד בית, ועוד 2 עד 4 עמודים לפי מה שיש לכם לספר, למשל שיטה, אודות או שאלות נפוצות. כל עמוד נבנה בנפרד, וגוגל יכול למצוא אותו לבד בחיפוש, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים יחד בעמוד גלריה אחד. שני החודשים הראשונים של הליווי כלולים.",
             price: "2,400 ₪",
-            summary: ["בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל", "גלריית עבודות משותפת, עד 10 פריטים", "שאלות נפוצות + המלצות", "2 חודשי ליווי כלולים (שווי 600 ₪)"],
+            summary: ["בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל", "גלריית עבודות משותפת, עד 10 פריטים", "שאלות נפוצות + המלצות", "2 חודשי ליווי כלולים (שווי 400 ₪)"],
             more: {
               fit: "אתה מסביר שיטה, תהליך או שירות, ואנשים שואלים אותך אותן שאלות לפני שהם סוגרים. גם אם יש לך תיק עבודות או גלריית פרויקטים להציג.",
-              includes: "עמוד בית ועוד 2 עד 4 עמודים, בדיוק כמו אצל לילך חזן (lilachhazan.com): עמוד בית, עמוד נפרד על השיטה שלה, ועמוד נפרד לשאלות נפוצות. לכל עמוד כתובת, כותרת ותיאור משלו, ולכן הוא מדורג בנפרד בגוגל, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים ככרטיסים בעמוד גלריה משותף אחד, עם אפשרות לסנן לפי סוג עבודה. עמוד תוכן נוסף מעבר למה שסיכמנו הוא תוספת (ראו 'חלק נוסף באתר' למטה). רוצים שפרויקט ספציפי יקבל עמוד נפרד משלו וידורג בנפרד בגוגל, במקום להיות רק כרטיס בגלריה? זו התוספת 'עמוד פרויקט עם קידום עצמאי' למטה. יש לכם תיק עבודות גדול שרובו צריך עמוד נפרד? זה המוצר 'אתר פורטפוליו'. שני החודשים הראשונים של הליווי, בשווי 600 ₪, כלולים: בדיקה באמצע החודש ודוח מלא בסוף החודש. אחרי זה אפשר להמשיך ב-200 ₪ לחודש או לא, בלי שום התחייבות.",
+              includes: "עמוד בית ועוד 2 עד 4 עמודים, בדיוק כמו אצל לילך חזן (lilachhazan.com): עמוד בית, עמוד נפרד על השיטה שלה, ועמוד נפרד לשאלות נפוצות. לכל עמוד כתובת, כותרת ותיאור משלו, ולכן הוא מדורג בנפרד בגוגל, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים ככרטיסים בעמוד גלריה משותף אחד, עם אפשרות לסנן לפי סוג עבודה. עמוד תוכן נוסף מעבר למה שסיכמנו הוא תוספת (ראו 'חלק נוסף באתר' למטה). רוצים שפרויקט ספציפי יקבל עמוד נפרד משלו וידורג בנפרד בגוגל, במקום להיות רק כרטיס בגלריה? זו התוספת 'עמוד פרויקט עם קידום עצמאי' למטה. יש לכם תיק עבודות גדול שרובו צריך עמוד נפרד? זה המוצר 'אתר פורטפוליו'. שני החודשים הראשונים של הליווי, בשווי 400 ₪, כלולים: בדיקה באמצע החודש ודוח מלא בסוף החודש. אחרי זה אפשר להמשיך ב-200 ₪ לחודש או לא, בלי שום התחייבות.",
               forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים, מעצבים וסטודיו קטן שרוצים להציג תיק עבודות קטן עד בינוני.",
               notFor: "אתה מוכר מוצרים ורוצה עגלת קניות ותשלום באתר, זו כבר חנות, פרויקט אחר. או שיש לך תיק עבודות גדול (מ-15 פרויקטים ומעלה) שרובו צריך עמוד נפרד, ראו 'אתר פורטפוליו'.",
               exampleLabel: "lilachhazan.com",
@@ -91,7 +91,7 @@ const COPY: Record<"he" | "en", Copy> = {
             summary: ["הכל מ'אתר' + עד 10 עמודי פרויקט נפרדים", "כל עמוד פרויקט מדורג בנפרד בגוגל", "עמוד נוסף מעבר ל-10: 250 ₪", "13-15 ימי עבודה"],
             more: {
               fit: "יש לכם תיק עבודות גדול (בערך 15 פרויקטים ומעלה), וחשוב לכם שהעבודות המובילות יימצאו בנפרד בחיפוש בגוגל, לא רק ככרטיס בגלריה.",
-              includes: "בדיוק כמו 'אתר': עמוד בית + 2 עד 4 עמודי תוכן, כל אחד מדורג בנפרד בגוגל. ההבדל: כל עד 10 הפרויקטים בתיק העבודות שלכם מקבלים עמוד נפרד משלו במקום כרטיס משותף בגלריה. כל עמוד מקבל כתובת, כותרת ותיאור משלו, כדי שגוגל ידרג אותו בנפרד. כל עמודי הפרויקט נבנים באותו עיצוב אחיד, כדי לשמור על מראה עקבי ולא להתחיל כל פעם מאפס. יש לכם יותר מ-10 פרויקטים שרוצים גם להם עמוד נפרד? זה 250 ₪ לעמוד נוסף, אותו מחיר כמו בתוספת הרגילה. שני החודשים הראשונים של הליווי, בשווי 600 ₪, כלולים.",
+              includes: "בדיוק כמו 'אתר': עמוד בית + 2 עד 4 עמודי תוכן, כל אחד מדורג בנפרד בגוגל. ההבדל: כל עד 10 הפרויקטים בתיק העבודות שלכם מקבלים עמוד נפרד משלו במקום כרטיס משותף בגלריה. כל עמוד מקבל כתובת, כותרת ותיאור משלו, כדי שגוגל ידרג אותו בנפרד. כל עמודי הפרויקט נבנים באותו עיצוב אחיד, כדי לשמור על מראה עקבי ולא להתחיל כל פעם מאפס. יש לכם יותר מ-10 פרויקטים שרוצים גם להם עמוד נפרד? זה 250 ₪ לעמוד נוסף, אותו מחיר כמו בתוספת הרגילה. שני החודשים הראשונים של הליווי, בשווי 400 ₪, כלולים.",
               forWho: "אדריכלים, סטודיו עיצוב, קבלנים, צלמים ומעצבים עם תיק עבודות גדול, שכל פרויקט בו שווה הצגה נפרדת.",
               notFor: "יש לכם עד 10 פרויקטים ולא כולם חייבים להימצא לבד בגוגל, 'אתר' הרגיל עושה את העבודה בפחות כסף, ותמיד אפשר להוסיף עמוד פרויקט בודד בהמשך.",
             },
@@ -200,7 +200,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "מי שמזמין אתר מקבל את שני החודשים הראשונים של התחזוקה כלולים, בשווי 600 ₪. אחריהם התחזוקה היא לא חובה ואין בה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
+      "מי שמזמין אתר מקבל את שני החודשים הראשונים של התחזוקה כלולים, בשווי 400 ₪. אחריהם התחזוקה היא לא חובה ואין בה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
     includedTitle: "כלול בכל אתר, בלי תוספת תשלום",
     included: [
       "התאמת נגישות לתקן הישראלי 5568. נדרש בחוק לאתר עסקי, ורוב האתרים הזולים מגיעים בלעדיו.",
@@ -309,10 +309,10 @@ const COPY: Record<"he" | "en", Copy> = {
             name: "Website",
             desc: "A multi-page site built around your content, a homepage plus usually 2–4 more pages such as method, about or FAQ, each with its own address and independent SEO on Google. If you have a portfolio, one shared gallery shows up to 10 pieces. The first two months of care are included.",
             price: "₪2,400",
-            summary: ["Home + 2-4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of care included (worth ₪600)"],
+            summary: ["Home + 2-4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of care included (worth ₪400)"],
             more: {
               fit: "You explain a method, a process or a service, and people ask you the same questions before they commit. Also a fit if you have a portfolio or project gallery to show.",
-              includes: "A homepage plus 2–4 content pages based on what you have to say (for example method, about, FAQ), each page with its own SEO on Google, exactly like the site I built for Lilach Hazan (lilachhazan.com): a homepage, a separate method page, and a separate FAQ page, each ranking on its own. If you have a portfolio, one shared gallery of up to 10 pieces, with categories to filter by if you have a few kinds of work, the pieces appear as cards on that one gallery page, not each on its own separate page. An extra content page beyond what's scoped is an add-on (see 'Extra section' below). Want a page and its own SEO for a few individual projects? That's the 'Dedicated project page' add-on (see below). Have a large portfolio where most of it needs its own page? That's 'Portfolio website', the next tier. Plus the first two months of care, worth ₪600, included: a mid-month check and a full monthly report. After that you can continue at 200 NIS a month or not, with no commitment.",
+              includes: "A homepage plus 2–4 content pages based on what you have to say (for example method, about, FAQ), each page with its own SEO on Google, exactly like the site I built for Lilach Hazan (lilachhazan.com): a homepage, a separate method page, and a separate FAQ page, each ranking on its own. If you have a portfolio, one shared gallery of up to 10 pieces, with categories to filter by if you have a few kinds of work, the pieces appear as cards on that one gallery page, not each on its own separate page. An extra content page beyond what's scoped is an add-on (see 'Extra section' below). Want a page and its own SEO for a few individual projects? That's the 'Dedicated project page' add-on (see below). Have a large portfolio where most of it needs its own page? That's 'Portfolio website', the next tier. Plus the first two months of care, worth ₪400, included: a mid-month check and a full monthly report. After that you can continue at 200 NIS a month or not, with no commitment.",
               forWho: "Coaches, therapists, consultants and independents who sell knowledge or a process. Also architects, designers and small studios showing a small-to-medium portfolio.",
               notFor: "You sell products and need a cart and checkout (that's a store, a different project), or you have a large portfolio (15+ projects) where most of it needs its own page and SEO, see 'Portfolio website'.",
               exampleLabel: "lilachhazan.com",
@@ -326,7 +326,7 @@ const COPY: Record<"he" | "en", Copy> = {
             summary: ["Everything in 'Website' + up to 10 dedicated project pages", "Every project page can rank on Google on its own", "Extra page beyond 10: ₪250", "13-15 working days"],
             more: {
               fit: "You have a large portfolio (roughly 15+ projects), and it matters that your top work is found separately on Google, not just as a card in a gallery.",
-              includes: "Exactly like 'Website': a homepage plus 2 to 4 content pages, each able to rank on Google on its own. The difference: up to 10 of your projects get their own page instead of a shared gallery card. Each page gets its own address, title and description, so Google ranks it separately. All project pages share the same design, to keep things consistent instead of building each one from scratch. Have more than 10 projects and want pages for them too? That's ₪250 per extra page, same as the regular add-on. The first two months of care, worth ₪600, are included.",
+              includes: "Exactly like 'Website': a homepage plus 2 to 4 content pages, each able to rank on Google on its own. The difference: up to 10 of your projects get their own page instead of a shared gallery card. Each page gets its own address, title and description, so Google ranks it separately. All project pages share the same design, to keep things consistent instead of building each one from scratch. Have more than 10 projects and want pages for them too? That's ₪250 per extra page, same as the regular add-on. The first two months of care, worth ₪400, are included.",
               forWho: "Architects, design studios, contractors, photographers and designers with a large portfolio where each project deserves its own showing.",
               notFor: "You have up to 10 projects, or not all of them need to be found separately on Google. The regular 'Website' does the job for less, and you can always add a single dedicated project page later.",
             },
@@ -435,7 +435,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "Order a website and the first two months of care are included, worth ₪600. After that, care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
+      "Order a website and the first two months of care are included, worth ₪400. After that, care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
     includedTitle: "Included in every website, at no extra cost",
     included: [
       "Accessibility to Israeli standard 5568. Required by law for a business site, and most cheap sites arrive without it.",
