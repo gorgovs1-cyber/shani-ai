@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import WordReveal from "@/components/WordReveal";
 
 const SCREENSHOT = (url: string) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1280`;
@@ -71,9 +72,10 @@ export default function WorkGrid() {
           {t.workKicker}
         </div>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
-          <h2 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontFamily: "'Heebo',sans-serif" }}>
-            {t.workTitle}
-          </h2>
+          <WordReveal
+            text={t.workTitle}
+            style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontFamily: "'Heebo',sans-serif" }}
+          />
           <p style={{ margin: 0, color: "var(--muted2)", fontSize: 17, lineHeight: 1.6, maxWidth: "36ch", fontFamily: "'Heebo',sans-serif" }}>
             {t.workSub}
           </p>

@@ -2,6 +2,7 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import WordReveal from "@/components/WordReveal";
 import Parallax from "@/components/Parallax";
 
 export default function About() {
@@ -71,7 +72,8 @@ export default function About() {
           >
             {t.aboutKicker}
           </div>
-          <h2
+          <WordReveal
+            text={t.aboutTitle}
             style={{
               margin: 0,
               fontWeight: 800,
@@ -80,9 +82,7 @@ export default function About() {
               letterSpacing: "-0.03em",
               fontFamily: "'Heebo', var(--font-heebo), sans-serif",
             }}
-          >
-            {t.aboutTitle}
-          </h2>
+          />
 
           {/* Stat cards */}
           <div style={{ marginTop: 30, display: "flex", gap: 14, flexWrap: "wrap" }}>

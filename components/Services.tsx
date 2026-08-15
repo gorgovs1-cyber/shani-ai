@@ -79,9 +79,30 @@ export default function Services() {
         className="services-grid"
         style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
       >
-        {t.services.map((s) => (
+        {t.services.map((s, i) => (
           <div
             key={s.no}
+            ref={(el) => {
+              if (!el) return;
+              const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+              if (reduced) return;
+              el.style.opacity = "0";
+              el.style.transform = "translateY(22px)";
+              el.style.transition =
+                `opacity .6s cubic-bezier(.2,.7,.2,1) ${i * 130}ms, transform .6s cubic-bezier(.2,.7,.2,1) ${i * 130}ms`;
+              const io = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                  el.style.opacity = "1";
+                  el.style.transform = "none";
+                  io.disconnect();
+                  // מחזירים את המעבר המקורי כדי שהריחוף לא יירש את ההשהיה
+                  window.setTimeout(() => {
+                    el.style.transition = "transform .3s, box-shadow .3s, border-color .3s";
+                  }, 600 + i * 130);
+                }
+              }, { threshold: 0.15 });
+              io.observe(el);
+            }}
             style={{
               position: "relative",
               display: "flex",

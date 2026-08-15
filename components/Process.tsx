@@ -2,6 +2,7 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import WordReveal from "@/components/WordReveal";
 
 export default function Process() {
   const { lang } = useLang();
@@ -43,7 +44,8 @@ export default function Process() {
       >
         {t.processKicker}
       </div>
-      <h2
+      <WordReveal
+        text={t.processTitle}
         style={{
           margin: "0 0 12px",
           fontWeight: 800,
@@ -52,9 +54,7 @@ export default function Process() {
           letterSpacing: "-0.03em",
           fontFamily: "'Heebo', var(--font-heebo), sans-serif",
         }}
-      >
-        {t.processTitle}
-      </h2>
+      />
       <p
         style={{
           margin: "0 0 50px",

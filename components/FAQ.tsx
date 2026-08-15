@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import WordReveal from "@/components/WordReveal";
 
 export default function FAQ() {
   const { lang } = useLang();
@@ -50,7 +51,8 @@ export default function FAQ() {
         >
           {t.faqKicker}
         </div>
-        <h2
+        <WordReveal
+          text={t.faqTitle}
           style={{
             margin: 0,
             fontWeight: 800,
@@ -59,9 +61,7 @@ export default function FAQ() {
             letterSpacing: "-0.03em",
             fontFamily: "'Heebo', var(--font-heebo), sans-serif",
           }}
-        >
-          {t.faqTitle}
-        </h2>
+        />
       </div>
 
       {/* Items */}
