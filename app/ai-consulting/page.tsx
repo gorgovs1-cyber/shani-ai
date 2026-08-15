@@ -68,10 +68,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "דווקא לעסקים קטנים AI משנה הכי הרבה, כי כל שעה שחוזרת אליכם שווה המון. גם עסק של אדם אחד מבזבז שעות על תוכן, מענה ללקוחות וסדר בדאטה, וזה בדיוק מה ש-AI יכול לקחת. באבחון נראה בדיוק איפה זה רלוונטי אצלכם.",
       },
       {
-        q: "כמה עולה ייעוץ AI?",
-        a: "האבחון הוא בלי עלות, וזו נקודת ההתחלה אצלי תמיד. ממלאים טופס קצר, ותוך יום עסקים אני חוזרת עם כיוונים לעסק שלכם. אחרי שיחה קצרה אני שולחת הצעה מסודרת, והמחירים עצמם מפורסמים במלואם בעמוד המחירים.",
-      },
-      {
         q: "כמה זמן לוקח לראות תוצאות?",
         a: "חלק מהדברים מרגישים כבר בשבוע הראשון, למשל סקיל שהופך כתיבת תוכן משעות לדקות. הטמעה רחבה יותר לוקחת כמה שבועות. אני מתמקדת קודם ב\"ניצחונות מהירים\" שנותנים החזר מיידי, ומשם בונים הלאה.",
       },
@@ -134,7 +130,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "How do you start? An AI audit",
-        p: "You start with a focused audit session. We sit down, map all your processes and pinpoint where time leaks. You leave with a clear action plan. Start with the free audit via the site's form; a deeper paid mapping is available and fully credited if you commission a project.",
+        p: "You start with a focused audit session. We sit down, map all your processes and pinpoint where time leaks. You leave with a clear action plan. Start with the free audit via the site's form, and within one working day I come back with directions.",
       },
       {
         h: "What is a Hebrew Skill and why does it matter?",
@@ -150,10 +146,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       {
         q: "My business is small, is AI even relevant for me?",
         a: "AI changes the most precisely for small businesses, because every hour returned to you is worth a lot. Even a one-person business wastes hours on content, client replies and data cleanup, which is exactly what AI can take. In the audit we'll see where it's relevant for you.",
-      },
-      {
-        q: "How much does AI consulting cost?",
-        a: "A basic audit via the site's form is free. A deep audit with mapping and a full action plan is paid, credited if you commission a project. Full rollout guidance is priced by scope in a personal proposal, once we understand together what's needed.",
       },
       {
         q: "How long until I see results?",
