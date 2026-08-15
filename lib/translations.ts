@@ -6,13 +6,13 @@ export const dict = {
     footerSeo:'בונה אתרים, אוטומציות וכלי AI לעסקים בתל אביב, רמת גן, הרצליה, ירושלים, חיפה, באר שבע והשרון, ואונליין בכל הארץ.',
     role:'SHANI AI CREATOR',
     heroTitle:'יוצרת פתרונות טכנולוגיים לעסקים',
-    heroSub:'אני ממפה איפה AI יחסוך לכם הכי הרבה זמן, בונה לכם אוטומציות שעובדות 24/7, כלים וסקילים בעברית שמתאימים בדיוק לעסק, וגם אתרים שמביאים לקוחות, כדי שיהיה לכם פחות עומס ויותר תוצאות.',
+    heroSub:'אני בונה לעסקים קטנים אתר שמביא פניות, מערכת שעונה ללקוחות גם כשאתם באמצע עבודה, ותוכנית מסודרת מה שווה לתקן קודם, כל המחירים פתוחים באתר.',
     heroCta1:'לצפייה בפרויקטים', heroCta2:'בואו נדבר',
     auditCtaPrefix:'לא בטוחים מאיפה להתחיל?', auditCtaLink:'התחילו עם אבחון AI ←',
     meta1:'ישראל', meta2:'תגובה תוך 24 שעות', meta3:'פיתוח מבוסס AI',
-    workKicker:'03 · עבודות', workTitle:'פרויקטים נבחרים', workSub:'מערכות AI, אוטומציות, מוצרים דיגיטליים ואתרים שבניתי לעסקים.',
+    workKicker:'04 · עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות לקוח, מוצרים שבניתי, והדגמות טכניות שמראות מה אפשרי.',
     galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'←',
-    buildKicker:'01 · מה אני בונה', buildTitle:'AI שעובד בשבילכם', buildSub:'אסטרטגיה, אוטומציות, כלים, וגם אתר, כל מה שצריך כדי שהעסק ירוץ חכם יותר.', servicesCta:'שלחו לי הודעה',
+    buildKicker:'01 · מה אני בונה', buildTitle:'שלושה דברים, כל אחד פותר בעיה אחרת', buildSub:'מתחת לכל כרטיס כתוב למי הוא מתאים, ואם אתם עדיין מתלבטים, זו בדיוק השאלה שהאבחון החינם עונה עליה.', servicesCta:'שלחו לי הודעה',
     problemKicker:'01 · לפני שמדברים על פתרונות',
     problemTitle:'פניות נופלות בין הכיסאות',
     problemLines:[
@@ -37,22 +37,22 @@ export const dict = {
       {label:'מערכת AI מלאה', price:'7,900 ₪'}
     ],
     priceCta:'למחירון המלא',
-    aboutKicker:'04 · עליי', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
-    processKicker:'05 · איך אני עובדת', processTitle:'מרעיון למוצר', processSub:'תהליך ברור בחמישה שלבים, אתם מעורבים לאורך כל הדרך.',
+    aboutKicker:'05 · מי אני', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
+    processKicker:'02 · איך זה עובד', processTitle:'מהפנייה ועד שזה רץ', processSub:'הצעד הראשון לא עולה כלום, ובכל שלב אתם יודעים בדיוק איפה הדברים עומדים.',
     contactTitle:'בואו נבנה משהו מעולה',
     contactSub:'רוצים להכניס AI לעסק, לבנות אוטומציה שתחסוך לכם שעות, או להקים אתר שמביא לקוחות? בואו נדבר.',
-    contactCta1:'דברו איתי בוואטסאפ', contactCta2:'שלחו לי מייל',
+    contactCta1:'אבחון חינם לעסק שלכם', contactCta2:'דברו איתי בוואטסאפ',
     footer:'נבנה באהבה בישראל',
-    marqueeItems:['ייעוץ AI','אוטומציות','סקילים בעברית','מערכות תוכן','אתרים','מבוססת בישראל'],
+    marqueeItems:['ייעוץ ותכנון','אוטומציות','אתרים','עברית טבעית','מבוססת בישראל','מענה תוך 24 שעות'],
     aboutParas:[
       '10 שנים ניהלתי עסק משלי, אז אני יודעת בדיוק איפה נשרף הזמן בעסק, מה מזיז את העסק קדימה ומה רק מרגיש דחוף, ואיפה הטכנולוגיה יכולה לקחת מכם את העבודה השחורה.',
       'היום אני מלמדת עסקים לעבוד עם AI בעברית טבעית, בונה אוטומציות וכלים מותאמים, ומנהלת את כל התהליך מהמיפוי ועד שזה רץ לבד, כולל אתרים כשצריך.',
       'הכל מבוסס AI ופיתוח מודרני: מהר, מדויק ובמחיר שמתאים לעסקים קטנים ובינוניים שרוצים תוצאות, לא הבטחות.'
     ],
     services:[
-      {no:'01', title:'ייעוץ ותכנון לעסק', subtitle:'תוכנית עבודה ברורה, לא רשימת רעיונות', desc:'אני נכנסת לעסק, מפרקת את השבוע שלכם למשימות ומסמנת מה גוזל הכי הרבה זמן, ובסוף התהליך יש בידיים שלכם סדר עדיפויות עם הערכת חיסכון לכל סעיף.', anchor:'אבחון ראשוני ללא עלות'},
-      {no:'02', title:'מערכות שחוסכות לכם זמן', subtitle:'הפניות מסתדרות לבד', desc:'המערכת קולטת כל פנייה, מסווגת אותה, שולחת מענה ראשוני ומרכזת את הפרטים במקום אחד, כך שבסוף היום אתם רואים בדיוק מי מחכה לתשובה.', anchor:'מתחבר לכלים שכבר יש בעסק'},
-      {no:'03', title:'אתרים שמקדמים את העסק', subtitle:'אתר שמביא פניות, לא רק נראה טוב', desc:'אני בונה אתר מהיר שמותאם למובייל, מחובר לוואטסאפ ובנוי נכון לקידום בגוגל, והקוד נמסר לכם בסיום בלי התחייבות מתמשכת.', anchor:'אתר עסקי מ-2,400 ₪'}
+      {no:'01', title:'ייעוץ ותכנון לעסק', subtitle:'תוכנית עבודה ברורה, לא רשימת רעיונות', desc:'אני נכנסת לעסק, מפרקת את השבוע שלכם למשימות ומסמנת מה גוזל הכי הרבה זמן, ובסוף התהליך יש בידיים שלכם סדר עדיפויות עם הערכת חיסכון לכל סעיף.', fit:'אתם רוצים להכניס טכנולוגיה לעסק, אבל לא יודעים מה שווה את הכסף ומה סתם צעצוע', anchor:'אבחון ראשוני ללא עלות'},
+      {no:'02', title:'מערכות שחוסכות לכם זמן', subtitle:'הפניות מסתדרות לבד', desc:'המערכת קולטת כל פנייה, מסווגת אותה, שולחת מענה ראשוני ומרכזת את הפרטים במקום אחד, כך שאתם רואים בכל רגע מי מחכה לתשובה.', fit:'אתם עונים על אותן שאלות שוב ושוב, או מפספסים פניות בערב', anchor:'מתחבר לכלים שכבר יש בעסק'},
+      {no:'03', title:'אתרים שמקדמים את העסק', subtitle:'אתר שמביא פניות, לא רק נראה טוב', desc:'אני בונה אתר מהיר שמותאם למובייל, מחובר לוואטסאפ ובנוי נכון לקידום בגוגל, והקוד נמסר לכם בסיום בלי התחייבות מתמשכת.', fit:'אין לכם אתר, או שיש אחד שלא מביא כלום', anchor:'אתר עסקי מ-2,400 ₪'}
     ],
     projects:[
       {title:'AI Lead Machine', kind:'אוטומציה', mono:'A', url:'https://shani-ai.com/audit', desc:'מכונת לידים מקצה לקצה: טופס אבחון חכם, אוטומציית n8n, CRM ומנוע Claude שכותב תכנית והצעת מחיר לכל פנייה. מענה תוך שניות, 24/7.', tags:['Automation','n8n','Claude']},
@@ -71,12 +71,14 @@ export const dict = {
       {q:'לא בטוחים מאיפה להתחיל?', a:'מתחילים עם אבחון AI חינם, שיחה ממוקדת שבסיומה תקבלו תוכנית עבודה ברורה: מה להטמיע, באיזה סדר, ואילו כלים ואוטומציות יחסכו לכם הכי הרבה זמן, בלי התחייבות.'}
     ],
     steps:[
-      {n:'01', title:'גילוי', desc:'מבינים את העסק, הקהל והמטרה.'},
-      {n:'02', title:'אסטרטגיה', desc:'מגדירים מה בונים ובאיזה סדר.'},
-      {n:'03', title:'עיצוב', desc:'בונים שפה ויזואלית וחוויית משתמש.'},
-      {n:'04', title:'בנייה מואצת', desc:'בונים בסיוע AI, עם קוד נקי ותנועה חלקה, ומגיעים לגרסה עובדת תוך ימים ולא חודשים.'},
-      {n:'05', title:'שיגור', desc:'עולים לאוויר, מודדים ומשפרים.'}
+      {n:'01', title:'אבחון חינם', desc:'טופס קצר על העסק והמשימות שחוזרות, בלי עלות ובלי התחייבות.'},
+      {n:'02', title:'תשובה תוך יום עסקים', desc:'אני חוזרת אליכם עם שתיים שלוש הצעות קונקרטיות למה שווה לבנות אצלכם, ושיחת היכרות קצרה.'},
+      {n:'03', title:'הצעה עם מחיר סופי', desc:'מה בדיוק נבנה, כמה זה עולה ולוח זמנים, לפי המחירון הפומבי, בלי הפתעות.'},
+      {n:'04', title:'בנייה עם אישור שלכם', desc:'אני בונה, אתם רואים גרסאות ומאשרים, שני סבבי שינויים כלולים.'},
+      {n:'05', title:'עולים לאוויר עם חודשיים ליווי', desc:'תיקונים, עדכונים ומעקב אחרי הפניות שנכנסות כלולים בחודשיים הראשונים, ואחריהם אתם מחליטים אם להמשיך.'}
     ],
+    processPriceLine:'כל המחירים מפורסמים מראש: דף נחיתה מ-1,500 ₪, אתר עסקי מ-2,400 ₪, מערכות ואוטומציות מ-1,400 ₪.',
+    processPriceCta:'למחירון המלא',
     trusted:{ label:'עבדתי עם' },
     leadMagnet:{
       kicker:'מתנה',
@@ -123,13 +125,13 @@ export const dict = {
     footerSeo:'Building websites, automations and AI tools for businesses in Tel Aviv, Ramat Gan, Herzliya, Jerusalem, Haifa, Beer Sheva and the Sharon, and online across Israel.',
     role:'SHANI AI CREATOR',
     heroTitle:'Building technology solutions for businesses',
-    heroSub:'I map where AI will save you the most time, build automations that run 24/7, create custom AI tools and Hebrew Skills that fit your business exactly, and yes, websites that bring clients in. Less workload, more results.',
+    heroSub:'I build small businesses a website that brings enquiries, a system that answers clients while you are busy working, and a clear plan of what is worth fixing first, with every price published on the site.',
     heroCta1:'View Projects', heroCta2:"Let's Talk",
     auditCtaPrefix:'Not sure where to start?', auditCtaLink:'Begin with an AI Audit →',
     meta1:'Israel', meta2:'Replies within 24h', meta3:'AI-assisted development',
-    workKicker:'03 · Work', workTitle:'Featured Projects', workSub:'AI systems, automations, digital products and websites I have built for businesses.',
+    workKicker:'04 · Work', workTitle:'Featured Projects', workSub:'AI systems, automations, digital products and websites I have built for businesses.',
     galleryKicker:'Up close', galleryTitle:'', scrollHint:'Keep scrolling', scrollArrow:'→',
-    buildKicker:'01 · What I build', buildTitle:'AI that works for you', buildSub:'Strategy, automations, custom tools, and a website too. Everything to make your business run smarter.', servicesCta:'Send me a message',
+    buildKicker:'01 · What I build', buildTitle:'Three things, each solves a different problem', buildSub:'Under every card it says who it fits, and if you are still unsure, that is exactly the question the free audit answers.', servicesCta:'Send me a message',
     problemKicker:'01 · Before we talk solutions',
     problemTitle:'Enquiries slip through the cracks',
     problemLines:[
@@ -154,7 +156,7 @@ export const dict = {
       {label:'Full AI system', price:'7,900 NIS'}
     ],
     priceCta:'See the full price list',
-    aboutKicker:'04 · About', aboutTitle:'About', stat1:'years in business', stat2:'response time',
+    aboutKicker:'05 · Who I am', aboutTitle:'About', stat1:'years in business', stat2:'response time',
     processKicker:'05 · How I work', processTitle:'From idea to a product', processSub:'A clear five-step process, you stay involved the whole way.',
     contactTitle:"Let's Build Something Great",
     contactSub:"Want to bring AI into your business, build an automation that saves you hours, or launch a website that brings clients in? Let's talk.",
@@ -167,9 +169,9 @@ export const dict = {
       'It is all powered by AI and modern development: fast, precise, and at a price that works for small and mid-size businesses that want results, not promises.'
     ],
     services:[
-      {no:'01', title:'Consulting & planning', subtitle:'A clear action plan, not a list of ideas', desc:'I get inside the business, break your week down into tasks and mark what eats the most time, and you come out of it holding a priority list with an estimated time saving for each item.', anchor:'First audit is free'},
-      {no:'02', title:'Systems that save you time', subtitle:'Enquiries sort themselves out', desc:'The system captures every enquiry, classifies it, sends a first response and gathers the details in one place, so at the end of the day you can see exactly who is still waiting.', anchor:'Connects to the tools you already use'},
-      {no:'03', title:'Websites that grow the business', subtitle:'A site that brings enquiries, not just good looks', desc:'I build a fast, mobile-ready site that is wired to WhatsApp and structured properly for Google, and the code is handed over to you at the end with no ongoing commitment.', anchor:'Business site from 2,400 NIS'}
+      {no:'01', title:'Consulting & planning', subtitle:'A clear action plan, not a list of ideas', desc:'I get inside the business, break your week down into tasks and mark what eats the most time, and you come out of it holding a priority list with an estimated time saving for each item.', fit:'You want technology in the business but cannot tell what is worth the money and what is a toy', anchor:'First audit is free'},
+      {no:'02', title:'Systems that save you time', subtitle:'Enquiries sort themselves out', desc:'The system captures every enquiry, classifies it, sends a first response and gathers the details in one place, so you can see at any moment who is still waiting.', fit:'You answer the same questions again and again, or miss enquiries in the evening', anchor:'Connects to the tools you already use'},
+      {no:'03', title:'Websites that grow the business', subtitle:'A site that brings enquiries, not just good looks', desc:'I build a fast, mobile-ready site that is wired to WhatsApp and structured properly for Google, and the code is handed over to you at the end with no ongoing commitment.', fit:'You have no website, or one that brings nothing', anchor:'Business site from 2,400 NIS'}
     ],
     projects:[
       {title:'AI Lead Machine', kind:'Automation', mono:'A', url:'https://shani-ai.com/audit', desc:'An end-to-end lead machine: a smart intake form, an n8n automation, a CRM, and a Claude engine that writes a plan and a proposal for every inquiry. A response within seconds, 24/7.', tags:['Automation','n8n','Claude']},
@@ -188,12 +190,14 @@ export const dict = {
       {q:'Not sure where to start?', a:'Start with a free AI Audit, a focused session that ends with a clear action plan: what to implement, in what order, and which tools and automations will save you the most time, no commitment.'}
     ],
     steps:[
-      {n:'01', title:'Discovery', desc:'Understand the business, audience and goal.'},
-      {n:'02', title:'Strategy', desc:'Define what to build and in what order.'},
-      {n:'03', title:'Design', desc:'Craft the visual language and UX.'},
-      {n:'04', title:'Accelerated Build', desc:'We develop using advanced methods and AI assistance, delivering a polished product with clean code and smooth motion in days, not weeks.'},
-      {n:'05', title:'Launch', desc:'Go live, measure and improve.'}
+      {n:'01', title:'Free audit', desc:'A short form about the business and the recurring tasks, no cost and no commitment.'},
+      {n:'02', title:'An answer within one working day', desc:'I come back with two or three concrete suggestions for what is worth building, and a short intro call.'},
+      {n:'03', title:'A proposal with a final price', desc:'Exactly what gets built, what it costs and a timeline, based on the public price list, no surprises.'},
+      {n:'04', title:'Building with your approval', desc:'I build, you review versions and approve, two revision rounds included.'},
+      {n:'05', title:'Live, with two months of care', desc:'Fixes, updates and tracking of incoming enquiries are included for the first two months, then you decide whether to continue.'}
     ],
+    processPriceLine:'All prices are published up front: landing page from 1,500 NIS, business website from 2,400 NIS, systems and automations from 1,400 NIS.',
+    processPriceCta:'See the full price list',
     trusted:{ label:'Worked with' },
     leadMagnet:{
       kicker:'Free gift',

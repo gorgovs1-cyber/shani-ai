@@ -73,9 +73,29 @@ export default function Process() {
         className="process-grid"
         style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 18 }}
       >
-        {t.steps.map((step) => (
+        {t.steps.map((step, i) => (
           <div
             key={step.n}
+            ref={(el) => {
+              if (!el) return;
+              const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+              if (reduced) return;
+              el.style.opacity = "0";
+              el.style.transform = "translateY(20px)";
+              el.style.transition =
+                `opacity .55s cubic-bezier(.2,.7,.2,1) ${i * 110}ms, transform .55s cubic-bezier(.2,.7,.2,1) ${i * 110}ms`;
+              const io = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                  el.style.opacity = "1";
+                  el.style.transform = "none";
+                  io.disconnect();
+                  window.setTimeout(() => {
+                    el.style.transition = "transform .3s, box-shadow .3s, border-color .3s";
+                  }, 550 + i * 110);
+                }
+              }, { threshold: 0.15 });
+              io.observe(el);
+            }}
             style={{
               position: "relative",
               background: "var(--card)",
@@ -142,6 +162,25 @@ export default function Process() {
           </div>
         ))}
       </div>
+
+      {/* Price anchor line */}
+      {"processPriceLine" in t && (
+        <p
+          style={{
+            margin: "34px 0 0",
+            color: "var(--muted2)",
+            fontSize: 15.5,
+            lineHeight: 1.7,
+            maxWidth: "66ch",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+        >
+          {(t as any).processPriceLine}{" "}
+          <a href="/pricing" style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "none" }}>
+            {(t as any).processPriceCta} ←
+          </a>
+        </p>
+      )}
     </section>
   );
 }

@@ -118,7 +118,7 @@ export default function Contact() {
             }}
           >
             <a
-              href="https://wa.me/972504744815"
+              href="/audit"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -148,7 +148,9 @@ export default function Contact() {
               {t.contactCta1}
             </a>
             <a
-              href="mailto:shani.creates.ai@gmail.com"
+              href="https://wa.me/972504744815"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

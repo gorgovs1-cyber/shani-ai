@@ -1,10 +1,10 @@
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
+import Process from "@/components/Process";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import WorkGrid from "@/components/WorkGrid";
 import About from "@/components/About";
-import Process from "@/components/Process";
 import LeadMagnet from "@/components/LeadMagnet";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -16,10 +16,10 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Services />
+      <Process />
       <TestimonialsSection />
       <WorkGrid />
       <About />
-      <Process />
       <LeadMagnet />
       <FAQ />
       <Contact />

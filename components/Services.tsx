@@ -173,6 +173,21 @@ export default function Services() {
             >
               {s.desc}
             </p>
+            {'fit' in s && (
+              <p
+                style={{
+                  margin: "14px 0 0",
+                  color: "var(--ink)",
+                  fontSize: 14.5,
+                  lineHeight: 1.6,
+                  fontWeight: 700,
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+              >
+                <span style={{ color: "var(--acc)" }}>{lang === "he" ? "מתאים לכם אם: " : "It fits if: "}</span>
+                {(s as any).fit}
+              </p>
+            )}
             {'anchor' in s && (
               <div
                 style={{

@@ -180,37 +180,28 @@ export default function Hero() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 18px 40px -16px var(--acc)";
                 }}
               >
-                {lang === "he" ? "אבחון AI חינם" : "Free AI Audit"}
+                {lang === "he" ? "אבחון חינם לעסק שלכם" : "A free audit for your business"}
               </a>
-              {/* Secondary: View projects */}
+            </div>
+            {/* Caption under the single CTA + small work link */}
+            <div
+              style={{
+                marginTop: 14,
+                display: "flex",
+                alignItems: "center",
+                gap: 18,
+                flexWrap: "wrap",
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+            >
+              <span style={{ color: "var(--dmuted)", fontSize: 14.5 }}>
+                {lang === "he" ? "תשובה תוך יום עסקים" : "An answer within one working day"}
+              </span>
               <a
                 href="#work"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 9,
-                  background: "rgba(244,237,225,0.05)",
-                  color: "var(--dtext)",
-                  textDecoration: "none",
-                  fontWeight: 600,
-                  fontSize: 16,
-                  padding: "17px 28px",
-                  borderRadius: 14,
-                  border: "1px solid var(--dline)",
-                  transition: "border-color .2s, background .2s",
-                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--dmuted)";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.09)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "var(--dline)";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.05)";
-                }}
+                style={{ color: "var(--dtext)", fontSize: 14.5, fontWeight: 600, textDecoration: "none", opacity: 0.85 }}
               >
-                {t.heroCta1}
+                {t.heroCta1} ←
               </a>
             </div>
 
