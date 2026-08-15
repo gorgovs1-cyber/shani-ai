@@ -210,8 +210,10 @@ html.lenis { height: auto; }
 @media (max-width: 900px) {
   .nav-desktop { display: none !important; }
   .nav-hamburger { display: flex !important; }
-  /* בעברית ההמבורגר יושב בימין: הוא הופך לפריט הראשון בשורה, שב-RTL הוא הצד הימני */
-  html[dir="rtl"] .nav-hamburger { order: -1; }
+  /* בעברית ההמבורגר יושב בקצה הימני: order נמוך = ראשון בשורה, וב-RTL ראשון הוא ימין.
+     הוא ילד ישיר של הכמוסה, ולכן ההזזה חלה על כל רוחב הניווט ולא רק בתוך קבוצה פנימית. */
+  html[dir="rtl"] .nav-hamburger { order: -1; margin-inline-end: 4px; }
+  html[dir="ltr"] .nav-hamburger { order: 1; }
   .nav-spacer { height: 68px; }
   .nav-subtitle { display: none !important; }
   .nav-lang { display: none !important; }

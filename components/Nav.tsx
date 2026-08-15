@@ -230,27 +230,28 @@ export default function Nav() {
               {t.navCta}
             </a>
 
-            {/* Mobile hamburger */}
-            <button
-              className="nav-hamburger"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={menuOpen}
-              style={{
-                display: "none",
-                flexDirection: "column",
-                gap: 5,
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 8,
-              }}
-            >
-              <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: "transform 0.3s ease", transform: menuOpen ? "rotate(45deg) translate(5px, 6px)" : "none" }} />
-              <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, opacity: menuOpen ? 0 : 1, transition: "opacity 0.3s ease" }} />
-              <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: "transform 0.3s ease", transform: menuOpen ? "rotate(-45deg) translate(5px, -6px)" : "none" }} />
-            </button>
           </div>
+
+          {/* המבורגר: ילד ישיר של הכמוסה, כדי שב-RTL אפשר להעביר אותו לקצה הימני */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            style={{
+              display: "none",
+              flexDirection: "column",
+              gap: 5,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 8,
+            }}
+          >
+            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: "transform 0.3s ease", transform: menuOpen ? "rotate(45deg) translate(5px, 6px)" : "none" }} />
+            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, opacity: menuOpen ? 0 : 1, transition: "opacity 0.3s ease" }} />
+            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: "transform 0.3s ease", transform: menuOpen ? "rotate(-45deg) translate(5px, -6px)" : "none" }} />
+          </button>
         </nav>
       </div>
 
