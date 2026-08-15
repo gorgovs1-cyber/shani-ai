@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { projects } from '@/lib/projects'
 
 const BASE = 'https://shani-ai.com'
 
@@ -19,9 +20,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/terms`,         lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
   ]
 
-  const workSlugs = ['solis', 'rox-watch', 'air-jordan', 'lilach-hazan', 'my-money']
-  const workPages: MetadataRoute.Sitemap = workSlugs.map((slug) => ({
-    url: `${BASE}/work/${slug}`,
+  // נגזר מ-lib/projects.ts, אותו מקור שממנו נבנים העמודים עצמם,
+  // כדי שהסייטמאפ לא יוכל להצביע על עמוד שלא קיים
+  const workPages: MetadataRoute.Sitemap = projects.map((p) => ({
+    url: `${BASE}/work/${p.slug}`,
     lastModified: now,
     changeFrequency: 'monthly',
     priority: 0.6,
