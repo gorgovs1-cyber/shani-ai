@@ -10,7 +10,7 @@ export const dict = {
     heroCta1:'לצפייה בפרויקטים', heroCta2:'בואו נדבר',
     auditCtaPrefix:'לא בטוחים מאיפה להתחיל?', auditCtaLink:'התחילו עם אבחון AI ←',
     meta1:'ישראל', meta2:'תגובה תוך 24 שעות', meta3:'פיתוח מבוסס AI',
-    workKicker:'01 · עבודות', workTitle:'פרויקטים נבחרים', workSub:'מערכות AI, אוטומציות, מוצרים דיגיטליים ואתרים שבניתי לעסקים.',
+    workKicker:'04 · עבודות', workTitle:'פרויקטים נבחרים', workSub:'מערכות AI, אוטומציות, מוצרים דיגיטליים ואתרים שבניתי לעסקים.',
     galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'←',
     buildKicker:'02 · מה אני בונה', buildTitle:'AI שעובד בשבילכם.', buildSub:'אסטרטגיה, אוטומציות, כלים, וגם אתר. כל מה שצריך כדי שהעסק ירוץ חכם יותר.', servicesCta:'שלחו לי הודעה',
     problemKicker:'01 · לפני שמדברים על פתרונות',
@@ -28,7 +28,7 @@ export const dict = {
       {no:'02', title:'אוטומציות', desc:'מתקנים את מה שגוזל הכי הרבה זמן.', href:'/automations'},
       {no:'03', title:'אתר', desc:'נותנים לזה חזית שמביאה פניות חדשות.', href:'/websites'}
     ],
-    priceKicker:'06 · כמה זה עולה',
+    priceKicker:'07 · כמה זה עולה',
     priceTitle:'המחירים מפורסמים, תמיד',
     priceSub:'המחיר שמופיע במחירון הוא המחיר. בלי תוספות שמתגלות בסוף.',
     priceItems:[
@@ -37,8 +37,8 @@ export const dict = {
       {label:'מערכת AI מלאה', price:'7,900 ₪'}
     ],
     priceCta:'למחירון המלא',
-    aboutKicker:'03 · עליי', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
-    processKicker:'04 · איך אני עובדת', processTitle:'מרעיון למוצר.', processSub:'תהליך ברור בחמישה שלבים, אתם מעורבים לאורך כל הדרך.',
+    aboutKicker:'05 · עליי', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
+    processKicker:'06 · איך אני עובדת', processTitle:'מרעיון למוצר.', processSub:'תהליך ברור בחמישה שלבים, אתם מעורבים לאורך כל הדרך.',
     contactTitle:'בואו נבנה משהו מעולה',
     contactSub:'רוצים להכניס AI לעסק, לבנות אוטומציה שתחסוך לכם שעות, או להקים אתר שמביא לקוחות? בואו נדבר.',
     contactCta1:'דברו איתי בוואטסאפ', contactCta2:'שלחו לי מייל',
@@ -61,7 +61,7 @@ export const dict = {
       {title:'Rox', kind:'פרויקט הדגמה', mono:'R', url:'https://meridian-watch-eight.vercel.app/', desc:'חוויית איקומרס למותג שעוני יוקרה.', tags:['Ecommerce','Design']},
       {title:'Solis', kind:'פרויקט הדגמה', mono:'S', url:'https://solis-orange.vercel.app/', desc:'חוויית מותג למשקה פרימיום.', tags:['Brand Experience','Design']}
     ],
-    faqKicker:'07 · שאלות נפוצות', faqTitle:'כל מה שרציתם לדעת.',
+    faqKicker:'08 · שאלות נפוצות', faqTitle:'כל מה שרציתם לדעת.',
     faqItems:[
       {q:'כמה עולה לבנות אתר או אוטומציה לעסק?', a:'המחירון מפורסם במלואו בעמוד המחירים. דף נחיתה 1,500 ₪, אתר 2,400 ₪, אוטומציה בודדת 1,400 ₪, בוט וואטסאפ 2,400 ₪, סוכן AI 4,900 ₪ ומערכת מלאה 7,900 ₪. אלה מחירים סופיים, ועלויות כלים שוטפות תמיד בנפרד ועל שמכם.'},
       {q:'כמה זמן לוקח לבנות?', a:'דף נחיתה: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אתר: 8 עד 10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה. אתר פורטפוליו: 13 עד 15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות. מערכת מלאה לוקחת יותר, ולוח הזמנים המדויק נמצא בהצעה. אני עובדת בפיתוח מבוסס-AI, ולכן המסירה מהירה מהמקובל בתעשייה בלי להתפשר על האיכות.'},
@@ -127,7 +127,7 @@ export const dict = {
     heroCta1:'View Projects', heroCta2:"Let's Talk",
     auditCtaPrefix:'Not sure where to start?', auditCtaLink:'Begin with an AI Audit →',
     meta1:'Israel', meta2:'Replies within 24h', meta3:'AI-assisted development',
-    workKicker:'01 · Work', workTitle:'Featured Projects', workSub:'AI systems, automations, digital products and websites I have built for businesses.',
+    workKicker:'04 · Work', workTitle:'Featured Projects', workSub:'AI systems, automations, digital products and websites I have built for businesses.',
     galleryKicker:'Up close', galleryTitle:'', scrollHint:'Keep scrolling', scrollArrow:'→',
     buildKicker:'02 · What I build', buildTitle:'AI that works for you.', buildSub:'Strategy, automations, custom tools, and a website too. Everything to make your business run smarter.', servicesCta:'Send me a message',
     problemKicker:'01 · Before we talk solutions',
@@ -145,7 +145,7 @@ export const dict = {
       {no:'02', title:'Automations', desc:'Fix whatever is eating the most time.', href:'/automations'},
       {no:'03', title:'Website', desc:'Give it a front door that brings in new enquiries.', href:'/websites'}
     ],
-    priceKicker:'06 · What it costs',
+    priceKicker:'07 · What it costs',
     priceTitle:'Prices are always published',
     priceSub:'The price on the list is the price. No extras that show up at the end.',
     priceItems:[
@@ -154,8 +154,8 @@ export const dict = {
       {label:'Full AI system', price:'7,900 NIS'}
     ],
     priceCta:'See the full price list',
-    aboutKicker:'03 · About', aboutTitle:'About', stat1:'years in business', stat2:'response time',
-    processKicker:'04 · How I work', processTitle:'From idea to a product.', processSub:'A clear five-step process, you stay involved the whole way.',
+    aboutKicker:'05 · About', aboutTitle:'About', stat1:'years in business', stat2:'response time',
+    processKicker:'06 · How I work', processTitle:'From idea to a product.', processSub:'A clear five-step process, you stay involved the whole way.',
     contactTitle:"Let's Build Something Great",
     contactSub:"Want to bring AI into your business, build an automation that saves you hours, or launch a website that brings clients in? Let's talk.",
     contactCta1:'Message me on WhatsApp', contactCta2:'Send me an email',
@@ -178,7 +178,7 @@ export const dict = {
       {title:'Rox', kind:'Demo Project', mono:'R', url:'https://meridian-watch-eight.vercel.app/', desc:'A luxury watch ecommerce experience.', tags:['Ecommerce','Design']},
       {title:'Solis', kind:'Demo Project', mono:'S', url:'https://solis-orange.vercel.app/', desc:'A premium beverage brand experience.', tags:['Brand Experience','Design']}
     ],
-    faqKicker:'07 · FAQ', faqTitle:'Everything you need to know.',
+    faqKicker:'08 · FAQ', faqTitle:'Everything you need to know.',
     faqItems:[
       {q:'How much does a website or automation cost?', a:'The full price list is published on the pricing page. Landing page 1,500 NIS, website 2,400 NIS, single automation 1,400 NIS, WhatsApp bot 2,400 NIS, AI agent 4,900 NIS and a full system 7,900 NIS. These are final prices, and running tool costs are always separate and in your name.'},
       {q:'How long does it take to build?', a:'Landing page: a full first version within five working days of receiving your materials, and live within one to two weeks. Website: 8 to 10 working days, live within two to three weeks. Portfolio site: 13 to 15 working days, live within three to four weeks. A full system takes longer, and the exact timeline is in the proposal. I work with AI-assisted development, so delivery is faster than the industry standard without compromising quality.'},
