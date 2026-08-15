@@ -4,6 +4,7 @@ import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
 import Parallax from "@/components/Parallax";
+import ScrubText from "@/components/ScrubText";
 
 export default function About() {
   const { lang } = useLang();
@@ -149,11 +150,12 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right: paragraphs */}
+        {/* Right: paragraphs, scroll-scrubbed word reveal */}
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           {t.aboutParas.map((para, i) => (
-            <p
+            <ScrubText
               key={i}
+              text={para}
               style={{
                 margin: 0,
                 color: "var(--ink)",
@@ -162,9 +164,7 @@ export default function About() {
                 fontWeight: 400,
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
-            >
-              {para}
-            </p>
+            />
           ))}
         </div>
       </div>

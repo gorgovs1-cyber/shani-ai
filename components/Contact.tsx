@@ -1,6 +1,7 @@
 "use client";
 
 import { useLang } from "@/components/LanguageProvider";
+import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
 
 export default function Contact() {
@@ -117,6 +118,7 @@ export default function Contact() {
               marginTop: 40,
             }}
           >
+            <Magnetic>
             <a
               href="/audit"
               style={{
@@ -147,6 +149,7 @@ export default function Contact() {
             >
               {t.contactCta1}
             </a>
+            </Magnetic>
             <a
               href="https://wa.me/972504744815"
               target="_blank"

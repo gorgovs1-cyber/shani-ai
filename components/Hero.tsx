@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
+import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
 export default function Hero() {
   const { lang } = useLang();
@@ -153,6 +154,7 @@ export default function Hero() {
               style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 40 }}
             >
               {/* Primary: Free AI Audit */}
+              <Magnetic>
               <a
                 href="/audit"
                 style={{
@@ -182,27 +184,7 @@ export default function Hero() {
               >
                 {lang === "he" ? "אבחון חינם לעסק שלכם" : "A free audit for your business"}
               </a>
-            </div>
-            {/* Caption under the single CTA + small work link */}
-            <div
-              style={{
-                marginTop: 14,
-                display: "flex",
-                alignItems: "center",
-                gap: 18,
-                flexWrap: "wrap",
-                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-              }}
-            >
-              <span style={{ color: "var(--dmuted)", fontSize: 14.5 }}>
-                {lang === "he" ? "תשובה תוך יום עסקים" : "An answer within one working day"}
-              </span>
-              <a
-                href="#work"
-                style={{ color: "var(--dtext)", fontSize: 14.5, fontWeight: 600, textDecoration: "none", opacity: 0.85 }}
-              >
-                {t.heroCta1} ←
-              </a>
+              </Magnetic>
             </div>
 
             {/* Meta row */}
