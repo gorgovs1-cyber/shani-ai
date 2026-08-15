@@ -12,7 +12,7 @@ const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}
 
 type More = { fit: string; includes: string; forWho: string; notFor?: string; exampleLabel?: string; exampleUrl?: string };
 type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean; summary?: string[]; more?: More };
-type Group = { title: string; note?: string; items: Item[] };
+type Group = { title: string; note?: string; href?: string; hrefLabel?: string; items: Item[] };
 type Factor = { title: string; desc: string };
 type Step = { no: string; title: string; desc: string };
 type QA = { q: string; a: string };
@@ -55,46 +55,26 @@ const COPY: Record<"he" | "en", Copy> = {
     groups: [
       {
         title: "אתרים",
+        href: "/websites",
+        hrefLabel: "כל הפרטים על כל גודל, בעמוד האתרים ←",
         items: [
           {
             name: "דף נחיתה",
             desc: "עמוד אחד רציף. מציג מי אתם, מה אתם עושים, ואיך יוצרים קשר.",
             price: "1,500 ₪",
             summary: ["עד 3 חלקים בגלילה אחת", "כפתור וואטסאפ קבוע", "בלי תפריט ניווט", "5 ימי עבודה"],
-            more: {
-              fit: "יש לך שירות אחד ברור להציע, או שאתה מפרסם בתשלום ורוצה מקום אחד שהפרסום מוביל אליו.",
-              includes: "עד שלושה חלקים בגלילה אחת רציפה, בלי תפריט ניווט, עם כפתור וואטסאפ קבוע.",
-              forWho: "בעלי מקצוע שעובדים לבד, מאמני כושר, קוסמטיקאיות, מדריכים, וכל מי שמריץ קמפיין ממומן ורוצה עמוד נחיתה אליו.",
-              notFor: "יש לך כמה שירותים שונים שצריך להסביר לעומק. אז אתר יעבוד לך טוב יותר.",
-              exampleLabel: "hilaeitan.com",
-              exampleUrl: "https://hilaeitan.com",
-            },
           },
           {
             name: "אתר",
-            desc: "אתר בכמה עמודים, כמו שבניתי ללילך חזן: עמוד בית, ועוד 2 עד 4 עמודים לפי מה שיש לכם לספר, למשל שיטה, אודות או שאלות נפוצות. כל עמוד נבנה בנפרד, וגוגל יכול למצוא אותו לבד בחיפוש, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים יחד בעמוד גלריה אחד. שני החודשים הראשונים של הליווי כלולים.",
+            desc: "עמוד בית ועוד 2 עד 4 עמודים, כל אחד מדורג בנפרד בגוגל. כולל גלריית עבודות משותפת ושני חודשי ליווי.",
             price: "2,400 ₪",
             summary: ["בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל", "גלריית עבודות משותפת, עד 10 פריטים", "שאלות נפוצות + המלצות", "2 חודשי ליווי כלולים (שווי 400 ₪)"],
-            more: {
-              fit: "אתה מסביר שיטה, תהליך או שירות, ואנשים שואלים אותך אותן שאלות לפני שהם סוגרים. גם אם יש לך תיק עבודות או גלריית פרויקטים להציג.",
-              includes: "עמוד בית ועוד 2 עד 4 עמודים, בדיוק כמו אצל לילך חזן (lilachhazan.com): עמוד בית, עמוד נפרד על השיטה שלה, ועמוד נפרד לשאלות נפוצות. לכל עמוד כתובת, כותרת ותיאור משלו, ולכן הוא מדורג בנפרד בגוגל, לא רק דרך עמוד הבית. אם יש לכם תיק עבודות, כל הפרויקטים (עד 10) מוצגים ככרטיסים בעמוד גלריה משותף אחד, עם אפשרות לסנן לפי סוג עבודה. עמוד תוכן נוסף מעבר למה שסיכמנו הוא תוספת (ראו 'חלק נוסף באתר' למטה). רוצים שפרויקט ספציפי יקבל עמוד נפרד משלו וידורג בנפרד בגוגל, במקום להיות רק כרטיס בגלריה? זו התוספת 'עמוד פרויקט עם קידום עצמאי' למטה. יש לכם תיק עבודות גדול שרובו צריך עמוד נפרד? זה המוצר 'אתר פורטפוליו'. שני החודשים הראשונים של הליווי, בשווי 400 ₪, כלולים: בדיקה באמצע החודש ודוח מלא בסוף החודש. אחרי זה אפשר להמשיך ב-200 ₪ לחודש או לא, בלי שום התחייבות.",
-              forWho: "מאמנים, מטפלים, יועצים ואנשים עצמאיים שמוכרים ידע או תהליך. גם אדריכלים, מעצבים וסטודיו קטן שרוצים להציג תיק עבודות קטן עד בינוני.",
-              notFor: "אתה מוכר מוצרים ורוצה עגלת קניות ותשלום באתר, זו כבר חנות, פרויקט אחר. או שיש לך תיק עבודות גדול (מ-15 פרויקטים ומעלה) שרובו צריך עמוד נפרד, ראו 'אתר פורטפוליו'.",
-              exampleLabel: "lilachhazan.com",
-              exampleUrl: "https://lilachhazan.com",
-            },
           },
           {
             name: "אתר פורטפוליו",
-            desc: "בנוי כמו 'אתר', ובנוסף עד 10 מהפרויקטים שלכם מקבלים כל אחד עמוד נפרד משלו, שמדורג בנפרד בגוגל. מתאים לתיקי עבודות גדולים: אדריכלות, עיצוב פנים, קבלנות.",
+            desc: "הכל מ'אתר', ובנוסף עד 10 עמודי פרויקט נפרדים שכל אחד מדורג בגוגל.",
             price: "3,700 ₪",
             summary: ["הכל מ'אתר' + עד 10 עמודי פרויקט נפרדים", "כל עמוד פרויקט מדורג בנפרד בגוגל", "עמוד נוסף מעבר ל-10: 250 ₪", "13-15 ימי עבודה"],
-            more: {
-              fit: "יש לכם תיק עבודות גדול (בערך 15 פרויקטים ומעלה), וחשוב לכם שהעבודות המובילות יימצאו בנפרד בחיפוש בגוגל, לא רק ככרטיס בגלריה.",
-              includes: "בדיוק כמו 'אתר': עמוד בית + 2 עד 4 עמודי תוכן, כל אחד מדורג בנפרד בגוגל. ההבדל: כל עד 10 הפרויקטים בתיק העבודות שלכם מקבלים עמוד נפרד משלו במקום כרטיס משותף בגלריה. כל עמוד מקבל כתובת, כותרת ותיאור משלו, כדי שגוגל ידרג אותו בנפרד. כל עמודי הפרויקט נבנים באותו עיצוב אחיד, כדי לשמור על מראה עקבי ולא להתחיל כל פעם מאפס. יש לכם יותר מ-10 פרויקטים שרוצים גם להם עמוד נפרד? זה 250 ₪ לעמוד נוסף, אותו מחיר כמו בתוספת הרגילה. שני החודשים הראשונים של הליווי, בשווי 400 ₪, כלולים.",
-              forWho: "אדריכלים, סטודיו עיצוב, קבלנים, צלמים ומעצבים עם תיק עבודות גדול, שכל פרויקט בו שווה הצגה נפרדת.",
-              notFor: "יש לכם עד 10 פרויקטים ולא כולם חייבים להימצא לבד בגוגל, 'אתר' הרגיל עושה את העבודה בפחות כסף, ותמיד אפשר להוסיף עמוד פרויקט בודד בהמשך.",
-            },
           },
           {
             name: "גרסה בשפה שנייה",
@@ -102,18 +82,13 @@ const COPY: Record<"he" | "en", Copy> = {
             price: "600 ₪",
             unit: "",
             summary: ["תרגום מלא + פריסה הפוכה", "מתג שפה בראש העמוד", "אותו מחיר לכל סוג אתר"],
-            more: {
-              fit: "יש לך לקוחות בחו\"ל, או שאתה רוצה להופיע גם בחיפושים באנגלית.",
-              includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
-              forWho: "מיתוג אישי, יועצים שעובדים מול חו\"ל, תיירות, ומי שמגיש מועמדות בינלאומית.",
-              exampleLabel: "hilaeitan.com",
-              exampleUrl: "https://hilaeitan.com",
-            },
           },
         ],
       },
       {
         title: "אוטומציה ו-AI",
+        href: "/automations",
+        hrefLabel: "כל הפרטים על כל דרגה, בעמוד האוטומציות ←",
         note: "ארבע הדרגות למטה הן מסלול אחד ולא ארבע אפשרויות נפרדות. ככל שהפניות אצלכם מגוונות יותר, כך עולים דרגה. אפשר להתחיל בכל נקודה ולהרחיב בהמשך.",
         items: [
           {
@@ -121,34 +96,18 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "תהליך אחד שרץ לבד. תזכורת לפני תור, פנייה שנכנסת ישר לגיליון, מייל שנשלח אחרי כל לקוח.",
             price: "1,400 ₪",
             summary: ["תהליך אחד מקצה לקצה", "מתחברת לכלים שיש לך כבר", "ניטור שמתריע על תקלה"],
-            more: {
-              fit: "יש פעולה אחת שאתה עושה ידנית כמעט כל יום, ואתה יודע בדיוק מה היא.",
-              includes: "תהליך אחד מקצה לקצה, חיבור לכלים שכבר יש לך, וניטור שמתריע אם משהו נופל.",
-              forWho: "מרפאות, מספרות, סטודיו וכל עסק שמנהל תורים, שולח תזכורות או מקליד פניות לגיליון.",
-            },
           },
           {
             name: "דרגה 2 · בוט וואטסאפ",
             desc: "עונה על השאלות שחוזרות אצלכם שוב ושוב, בעברית ובטון של העסק, מסביב לשעון.",
             price: "2,400 ₪",
             summary: ["מענה 24/7 בעברית", "בטון של העסק שלכם", "מעבירה אליכם כשצריך"],
-            more: {
-              fit: "אותן שתיים שלוש שאלות חוזרות אצלך כל יום, ואתה מפספס פניות בערב ובסופי שבוע.",
-              includes: "מענה בעברית בטון של העסק, שעות פעילות, והעברה אליך ברגע שהשיחה דורשת אותך.",
-              forWho: "מסעדות, מרפאות, מספרות, מכוני יופי, ונותני שירות שמקבלים הרבה הודעות.",
-              notFor: "כל פנייה אצלך שונה ודורשת שיקול דעת. אז סוכן AI נכון יותר.",
-            },
           },
           {
             name: "דרגה 3 · סוכן AI עם סקיל עברי",
             desc: "לא רק עונה. מבין הקשר, זוכר שיחה, ומבצע: קובע פגישה ביומן, מתמחר לפי הכללים שלכם, מסנן פניות.",
             price: "4,900 ₪",
             summary: ["מבין הקשר וזוכר שיחה", "קובע פגישה ביומן", "מתמחר לפי הכללים שלכם"],
-            more: {
-              fit: "כל פנייה אצלך שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
-              includes: "הבנת הקשר, זיכרון של השיחה, קביעת פגישה ביומן, תמחור לפי הכללים שלך וסינון פניות שלא מתאימות.",
-              forWho: "יועצים, בעלי מקצוע עם תמחור משתנה, ועסקים שמקבלים הרבה פניות שדורשות בירור לפני שיחה.",
-            },
           },
           {
             name: "דרגה 4 · מערכת AI מלאה",
@@ -156,11 +115,6 @@ const COPY: Record<"he" | "en", Copy> = {
             price: "7,900 ₪",
             flag: true,
             summary: ["אתר + סוכן AI + אוטומציות", "הכל מחובר במקום אחד", "זול יותר מרכישה בנפרד"],
-            more: {
-              fit: "אתה מתחיל מאפס, או בונה את הנוכחות הדיגיטלית מחדש ורוצה שהכל ידבר אחד עם השני.",
-              includes: "אתר, סוכן AI, אוטומציות וריכוז כל הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה של כל רכיב בנפרד.",
-              forWho: "עסקים שכבר יש להם זרם פניות קבוע והתפעול הידני מתחיל להישבר.",
-            },
           },
         ],
       },
@@ -172,7 +126,7 @@ const COPY: Record<"he" | "en", Copy> = {
           { name: "מאמר לאתר", desc: "כתיבה, התאמה לחיפוש בגוגל, והעלאה.", price: "450 ₪" },
           { name: "פרויקטים נוספים בגלריה המשותפת, 11 עד 16", desc: "מעבר ל-10 הפרויקטים הכלולים, כרטיס נוסף בגלריה המשותפת.", price: "300 ₪" },
           { name: "פרויקטים נוספים בגלריה המשותפת, 17 עד 22", desc: "לתיקי עבודות גדולים במיוחד.", price: "400 ₪" },
-          { name: "מעל 22 פרויקטים בגלריה", desc: "בהיקף הזה שווה לתכנן יחד בשיחה, ולבחור את הפרויקטים שהכי מייצגים אתכם. גלריה עמוסה מדי מחלישה את החזקים.", price: "שיחה + הצעה מותאמת" },
+          { name: "מעל 22 פרויקטים בגלריה", desc: "בהיקף הזה שווה לבחור יחד בשיחה. גלריה עמוסה מדי מחלישה את הפרויקטים החזקים.", price: "שיחה + הצעה מותאמת" },
           { name: "עמוד פרויקט עם קידום עצמאי", desc: "שדרוג מכרטיס בגלריה המשותפת לעמוד נפרד משלו, שמדורג בנפרד בגוגל. באתר פורטפוליו זה המחיר לכל עמוד מעבר ל-10 הכלולים.", price: "250 ₪ לעמוד" },
         ],
       },
@@ -291,46 +245,26 @@ const COPY: Record<"he" | "en", Copy> = {
     groups: [
       {
         title: "Websites",
+        href: "/websites",
+        hrefLabel: "Full detail on every size, on the websites page →",
         items: [
           {
             name: "Landing page",
             desc: "One continuous page. Who you are, what you do, and how to reach you.",
             price: "₪1,500",
             summary: ["Up to 3 sections, one scroll", "Fixed WhatsApp button", "No navigation menu", "5 working days"],
-            more: {
-              fit: "You have one clear service to offer, or you run paid ads and want one place they lead to.",
-              includes: "Up to three sections in a single continuous scroll, no navigation menu, with a fixed WhatsApp button.",
-              forWho: "Solo professionals, personal trainers, beauticians, instructors, and anyone running paid campaigns.",
-              notFor: "You have several different services that need depth. A website will serve you better.",
-              exampleLabel: "hilaeitan.com",
-              exampleUrl: "https://hilaeitan.com",
-            },
           },
           {
             name: "Website",
             desc: "A multi-page site built around your content, a homepage plus usually 2–4 more pages such as method, about or FAQ, each with its own address and independent SEO on Google. If you have a portfolio, one shared gallery shows up to 10 pieces. The first two months of care are included.",
             price: "₪2,400",
             summary: ["Home + 2-4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of care included (worth ₪400)"],
-            more: {
-              fit: "You explain a method, a process or a service, and people ask you the same questions before they commit. Also a fit if you have a portfolio or project gallery to show.",
-              includes: "A homepage plus 2–4 content pages based on what you have to say (for example method, about, FAQ), each page with its own SEO on Google, exactly like the site I built for Lilach Hazan (lilachhazan.com): a homepage, a separate method page, and a separate FAQ page, each ranking on its own. If you have a portfolio, one shared gallery of up to 10 pieces, with categories to filter by if you have a few kinds of work, the pieces appear as cards on that one gallery page, not each on its own separate page. An extra content page beyond what's scoped is an add-on (see 'Extra section' below). Want a page and its own SEO for a few individual projects? That's the 'Dedicated project page' add-on (see below). Have a large portfolio where most of it needs its own page? That's 'Portfolio website', the next tier. Plus the first two months of care, worth ₪400, included: a mid-month check and a full monthly report. After that you can continue at 200 NIS a month or not, with no commitment.",
-              forWho: "Coaches, therapists, consultants and independents who sell knowledge or a process. Also architects, designers and small studios showing a small-to-medium portfolio.",
-              notFor: "You sell products and need a cart and checkout (that's a store, a different project), or you have a large portfolio (15+ projects) where most of it needs its own page and SEO, see 'Portfolio website'.",
-              exampleLabel: "lilachhazan.com",
-              exampleUrl: "https://lilachhazan.com",
-            },
           },
           {
             name: "Portfolio website",
             desc: "Built like 'Website', plus up to 10 of your projects each get their own page, able to rank on Google on its own. A fit for large portfolios: architecture, interior design, contracting.",
             price: "₪3,700",
             summary: ["Everything in 'Website' + up to 10 dedicated project pages", "Every project page can rank on Google on its own", "Extra page beyond 10: ₪250", "13-15 working days"],
-            more: {
-              fit: "You have a large portfolio (roughly 15+ projects), and it matters that your top work is found separately on Google, not just as a card in a gallery.",
-              includes: "Exactly like 'Website': a homepage plus 2 to 4 content pages, each able to rank on Google on its own. The difference: up to 10 of your projects get their own page instead of a shared gallery card. Each page gets its own address, title and description, so Google ranks it separately. All project pages share the same design, to keep things consistent instead of building each one from scratch. Have more than 10 projects and want pages for them too? That's ₪250 per extra page, same as the regular add-on. The first two months of care, worth ₪400, are included.",
-              forWho: "Architects, design studios, contractors, photographers and designers with a large portfolio where each project deserves its own showing.",
-              notFor: "You have up to 10 projects, or not all of them need to be found separately on Google. The regular 'Website' does the job for less, and you can always add a single dedicated project page later.",
-            },
           },
           {
             name: "Second language",
@@ -338,18 +272,13 @@ const COPY: Record<"he" | "en", Copy> = {
             price: "₪600",
             unit: "",
             summary: ["Full translation + mirrored layout", "Language toggle at the top", "Same price for any site type"],
-            more: {
-              fit: "You have clients abroad, or you want to show up in English searches too.",
-              includes: "Full translation, layout adapted to the opposite direction, and a language toggle at the top.",
-              forWho: "Personal branding, consultants working with clients abroad, tourism, and international applications.",
-              exampleLabel: "hilaeitan.com",
-              exampleUrl: "https://hilaeitan.com",
-            },
           },
         ],
       },
       {
         title: "Automation and AI",
+        href: "/automations",
+        hrefLabel: "Full detail on every level, on the automations page →",
         note: "The four levels below are one path, not four separate options. The more varied your enquiries are, the higher you go. You can start anywhere and extend later.",
         items: [
           {
@@ -357,34 +286,18 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "One process that runs on its own. A reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
             price: "₪1,400",
             summary: ["One end-to-end process", "Connects to tools you already use", "Monitoring that alerts on failure"],
-            more: {
-              fit: "There is one action you do by hand almost every day, and you know exactly what it is.",
-              includes: "One end to end process, connected to the tools you already use, with monitoring that alerts when something fails.",
-              forWho: "Clinics, salons, studios and any business handling appointments, reminders or typing inquiries into a sheet.",
-            },
           },
           {
             name: "Level 2 · WhatsApp bot",
             desc: "Answers the questions you get again and again, in Hebrew and in your business tone, around the clock.",
             price: "₪2,400",
             summary: ["24/7 answers in Hebrew", "In your business tone", "Hands off to you when needed"],
-            more: {
-              fit: "The same two or three questions come up every day, and you miss inquiries in the evening and on weekends.",
-              includes: "Answers in Hebrew in your business tone, working hours, and a handover to you the moment the conversation needs you.",
-              forWho: "Restaurants, clinics, salons, beauty studios and service providers who get a lot of messages.",
-              notFor: "Every inquiry is different and needs judgment. An AI agent is the better fit.",
-            },
           },
           {
             name: "Level 3 · AI agent with a Hebrew skill",
             desc: "It does more than answer. It understands context, remembers the conversation, and acts: books a meeting, quotes by your rules, filters enquiries.",
             price: "₪4,900",
             summary: ["Understands context, remembers chats", "Books meetings in your calendar", "Quotes by your own rules"],
-            more: {
-              fit: "Every inquiry is different and cannot be answered with a prepared reply.",
-              includes: "Context understanding, conversation memory, booking in your calendar, quoting by your rules and filtering inquiries that do not fit.",
-              forWho: "Consultants, professionals with variable pricing, and businesses with many inquiries that need qualifying before a call.",
-            },
           },
           {
             name: "Level 4 · Full AI system",
@@ -392,11 +305,6 @@ const COPY: Record<"he" | "en", Copy> = {
             price: "₪7,900",
             flag: true,
             summary: ["Website + AI agent + automations", "Everything connected in one place", "Cheaper than buying separately"],
-            more: {
-              fit: "You are starting from scratch, or rebuilding your digital presence and want everything to talk to each other.",
-              includes: "Website, AI agent, automations and all inquiries in one place. Everything connected, for less than buying each part separately.",
-              forWho: "Businesses with a steady flow of inquiries where manual handling is starting to break.",
-            },
           },
         ],
       },
@@ -535,6 +443,14 @@ export default function PricingPage() {
             ) : (
               <div style={{ height: 8 }} />
             )}
+            {g.href ? (
+              <a
+                href={g.href}
+                style={{ display: "inline-block", marginBottom: 20, color: "var(--acc)", fontWeight: 700, fontSize: 15, textDecoration: "none", fontFamily: HEEBO }}
+              >
+                {g.hrefLabel}
+              </a>
+            ) : null}
             <div style={{ display: "grid", gap: 14 }}>
               {g.items.map((it, ii) => (
                 <div
