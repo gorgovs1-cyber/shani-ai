@@ -84,6 +84,9 @@ export default function Services() {
             key={s.no}
             style={{
               position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
               background: "var(--card)",
               border: "1px solid var(--line)",
               borderRadius: 22,
@@ -120,7 +123,7 @@ export default function Services() {
                 fontWeight: 800,
                 fontSize: 22,
                 letterSpacing: "-0.01em",
-                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                 color: "var(--acc)",
               }}
             >
@@ -149,6 +152,25 @@ export default function Services() {
             >
               {s.desc}
             </p>
+            {'anchor' in s && (
+              <div
+                style={{
+                  display: "inline-block",
+                  marginTop: 18,
+                  padding: "6px 12px",
+                  borderRadius: 999,
+                  border: "1px solid color-mix(in oklch, var(--acc) 35%, var(--line))",
+                  background: "color-mix(in oklch, var(--acc) 8%, transparent)",
+                  color: "var(--acc)",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  lineHeight: 1.4,
+                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                }}
+              >
+                {(s as any).anchor}
+              </div>
+            )}
             <a
               href={`https://wa.me/972504744815?text=${encodeURIComponent(`היי שני, אני מתעניינת ב${s.title}`)}`}
               target="_blank"
@@ -157,7 +179,6 @@ export default function Services() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 6,
-                marginTop: 28,
                 color: "var(--acc)",
                 fontSize: 14,
                 fontWeight: 700,
@@ -166,6 +187,7 @@ export default function Services() {
                 borderTop: "1px solid var(--line)",
                 paddingTop: 20,
                 width: "100%",
+                marginTop: "auto",
               }}
             >
               {t.servicesCta} ←

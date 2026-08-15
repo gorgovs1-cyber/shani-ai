@@ -237,9 +237,11 @@ html.lenis { height: auto; }
   [role="list"] article { min-width: 280px !important; }
 
   /* Services / About / Process: stack */
-  .services-grid { grid-template-columns: 1fr !important; }
-  .about-grid    { grid-template-columns: 1fr !important; }
-  .process-grid  { grid-template-columns: 1fr !important; }
+  .services-grid     { grid-template-columns: 1fr !important; }
+  .about-grid        { grid-template-columns: 1fr !important; }
+  .process-grid      { grid-template-columns: 1fr !important; }
+  .journey-grid      { grid-template-columns: 1fr !important; }
+  .price-anchor-grid { grid-template-columns: 1fr !important; }
 
   /* Contact CTA: stack */
   .contact-cta-row { flex-direction: column !important; align-items: stretch !important; }
@@ -272,6 +274,12 @@ html.lenis { height: auto; }
 /* ─── SERVICES GRID MOBILE ─── */
 @media (max-width: 768px) {
   .services-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ─── JOURNEY + PRICE ANCHOR MOBILE ─── */
+@media (max-width: 768px) {
+  .journey-grid      { grid-template-columns: 1fr !important; }
+  .price-anchor-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ─── ABOUT GRID MOBILE ─── */
