@@ -23,6 +23,47 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "התראות פנימיות על כל פנייה",
       "דוחות חודשיים אוטומטיים",
     ],
+    products: {
+      title: "ארבע דרגות, מסלול אחד",
+      note: "אלה לא ארבעה מוצרים נפרדים שצריך לבחור ביניהם. ככל שהפניות אצלכם מגוונות יותר, כך עולים דרגה. אפשר להתחיל בכל נקודה ולהרחיב בהמשך.",
+      labels: { fit: "מתי זה מתאים", includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      items: [
+        {
+          name: "דרגה 1 · אוטומציה בודדת",
+          price: "1,400 ₪",
+          fit: "יש פעולה אחת שאתם עושים ידנית כמעט כל יום, ואתם יודעים בדיוק מה היא.",
+          includes: "תהליך אחד מקצה לקצה, חיבור לכלים שכבר יש לכם, וניטור שמתריע אם משהו נופל.",
+          forWho: "מרפאות, מספרות, סטודיו וכל עסק שמנהל תורים, שולח תזכורות או מקליד פניות לגיליון.",
+        },
+        {
+          name: "דרגה 2 · בוט וואטסאפ",
+          price: "2,400 ₪",
+          fit: "אותן שתיים שלוש שאלות חוזרות אצלכם כל יום, ואתם מפספסים פניות בערב ובסופי שבוע.",
+          includes: "מענה בעברית בטון של העסק, שעות פעילות, והעברה אליכם ברגע שהשיחה דורשת אתכם.",
+          forWho: "מסעדות, מרפאות, מספרות, מכוני יופי, ונותני שירות שמקבלים הרבה הודעות.",
+          notFor: "כל פנייה אצלכם שונה ודורשת שיקול דעת. אז דרגה 3 נכונה יותר.",
+        },
+        {
+          name: "דרגה 3 · סוכן AI עם סקיל עברי",
+          price: "4,900 ₪",
+          fit: "כל פנייה אצלכם שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
+          includes: "הבנת הקשר, זיכרון של השיחה, קביעת פגישה ביומן, תמחור לפי הכללים שלכם וסינון פניות שלא מתאימות.",
+          forWho: "יועצים, בעלי מקצוע עם תמחור משתנה, ועסקים שמקבלים הרבה פניות שדורשות בירור לפני שיחה.",
+        },
+        {
+          name: "דרגה 4 · מערכת AI מלאה",
+          price: "7,900 ₪",
+          fit: "אתם מתחילים מאפס, או בונים את הנוכחות הדיגיטלית מחדש ורוצים שהכל ידבר אחד עם השני.",
+          includes: "אתר, סוכן AI, אוטומציות וריכוז הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה בנפרד.",
+          forWho: "עסקים שרוצים להקים הכל בבת אחת במקום להוסיף חלק כל כמה חודשים.",
+        },
+      ],
+    },
+    alsoTitle: "שירותים נוספים",
+    also: [
+      { label: "אתרים", href: "/websites", desc: "אתר מהיר שמותאם למובייל ומחובר לוואטסאפ." },
+      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "אבחון שמסמן מה שווה לתקן קודם." },
+    ],
     sections: [
       {
         h: "מה זה אוטומציה לעסק ולמה צריך אותה?",
@@ -86,6 +127,47 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Connecting all your tools together",
       "Internal alerts on every inquiry",
       "Automatic monthly reports",
+    ],
+    products: {
+      title: "Four levels, one path",
+      note: "These are not four separate products to choose between. The more varied your enquiries are, the higher you go. You can start anywhere and extend later.",
+      labels: { fit: "When it fits", includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      items: [
+        {
+          name: "Level 1 · Single automation",
+          price: "1,400 NIS",
+          fit: "There is one action you do by hand almost every day, and you know exactly what it is.",
+          includes: "One end-to-end process, a connection to the tools you already use, and monitoring that alerts you if something fails.",
+          forWho: "Clinics, salons, studios and any business managing appointments, sending reminders or typing enquiries into a sheet.",
+        },
+        {
+          name: "Level 2 · WhatsApp bot",
+          price: "2,400 NIS",
+          fit: "The same two or three questions come up every day, and you miss enquiries in the evenings and at weekends.",
+          includes: "Replies in Hebrew in your business's tone, opening hours, and a handover to you the moment the conversation needs you.",
+          forWho: "Restaurants, clinics, salons, beauty studios and service providers who get a lot of messages.",
+          notFor: "Every enquiry you get is different and needs judgement. Level 3 is a better fit.",
+        },
+        {
+          name: "Level 3 · AI agent with a Hebrew skill",
+          price: "4,900 NIS",
+          fit: "Every enquiry is different and cannot be answered with a prepared reply.",
+          includes: "Context understanding, conversation memory, booking into your calendar, pricing by your rules and filtering out enquiries that do not fit.",
+          forWho: "Consultants, professionals with variable pricing, and businesses with enquiries that need qualifying before a call.",
+        },
+        {
+          name: "Level 4 · Full AI system",
+          price: "7,900 NIS",
+          fit: "You are starting from scratch, or rebuilding your digital presence and want everything to talk to each other.",
+          includes: "A website, an AI agent, automations and all enquiries in one place. Everything connected, for less than buying separately.",
+          forWho: "Businesses that want to set everything up at once instead of adding a piece every few months.",
+        },
+      ],
+    },
+    alsoTitle: "More services",
+    also: [
+      { label: "Websites", href: "/websites", desc: "A fast, mobile-ready site wired to WhatsApp." },
+      { label: "Consulting", href: "/ai-consulting", desc: "An audit that marks what is worth fixing first." },
     ],
     sections: [
       {

@@ -19,6 +19,25 @@ export type ServiceCopy = {
   secondaryCta: string; // links to /pricing
   includesTitle: string;
   includes: string[];
+  /** המוצרים של השירות הזה, עם ההסבר המלא. המחירון מקשר לכאן. */
+  products?: {
+    title: string;
+    note?: string;
+    labels: { fit: string; includes: string; forWho: string; notFor: string; example: string };
+    items: {
+      name: string;
+      price: string;
+      fit: string;
+      includes: string;
+      forWho: string;
+      notFor?: string;
+      exampleLabel?: string;
+      exampleUrl?: string;
+    }[];
+  };
+  /** קישורים לשני השירותים האחרים */
+  alsoTitle?: string;
+  also?: { label: string; href: string; desc: string }[];
   sections: { h: string; p: string }[];
   faqTitle: string;
   faqItems: { q: string; a: string }[];
@@ -71,6 +90,69 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
             ))}
           </ul>
         </section>
+
+        {/* Products: the full explanation lives here, pricing links in */}
+        {c.products ? (
+          <section style={{ marginTop: 72 }}>
+            <h2 style={{ margin: "0 0 10px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
+              {c.products.title}
+            </h2>
+            {c.products.note ? (
+              <p style={{ margin: "0 0 28px", color: "var(--muted2)", fontSize: 16, lineHeight: 1.7, maxWidth: "64ch", fontFamily: HEEBO }}>
+                {c.products.note}
+              </p>
+            ) : (
+              <div style={{ height: 18 }} />
+            )}
+            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+              {c.products.items.map((p) => (
+                <div key={p.name} style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 28px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16, flexWrap: "wrap", marginBottom: 18 }}>
+                    <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(19px,2.2vw,24px)", letterSpacing: "-0.01em", color: "var(--ink)", fontFamily: HEEBO }}>
+                      {p.name}
+                    </h3>
+                    <span style={{ fontWeight: 800, fontSize: 20, color: "var(--acc)", fontFamily: HEEBO, whiteSpace: "nowrap" }}>{p.price}</span>
+                  </div>
+                  <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+                    {[
+                      [c.products!.labels.fit, p.fit],
+                      [c.products!.labels.includes, p.includes],
+                      [c.products!.labels.forWho, p.forWho],
+                      ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
+                    ].map(([label, value]) => (
+                      <div key={label as string}>
+                        <dt style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".14em", color: "var(--acc)", marginBottom: 5 }}>{label}</dt>
+                        <dd style={{ margin: 0, color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7, fontFamily: HEEBO }}>{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  {p.exampleUrl ? (
+                    <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 14.5, textDecoration: "none", fontFamily: HEEBO }}>
+                      {c.products!.labels.example}: {p.exampleLabel} ←
+                    </a>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {/* Cross-links to the other services */}
+        {c.also && c.also.length ? (
+          <section style={{ marginTop: 72 }}>
+            <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(21px,2.6vw,30px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
+              {c.alsoTitle}
+            </h2>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
+              {c.also.map((a) => (
+                <a key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
+                  <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label} ←</div>
+                  <div style={{ color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {/* Detail sections (search-query headings) */}
         <section style={{ marginTop: 64, display: "flex", flexDirection: "column", gap: 40 }}>
