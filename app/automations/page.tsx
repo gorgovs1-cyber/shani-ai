@@ -23,6 +23,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "התראות פנימיות על כל פנייה",
       "דוחות חודשיים אוטומטיים",
     ],
+    liveDemo: {
+      title: "ככה זה נראה כשזה רץ",
+      sub: "זו לא הדמיה, זה בדיוק מה שקורה אצלי כשנכנסת פנייה חדשה. אותה מכונה אני בונה לעסק שלכם.",
+    },
     products: {
       title: "ארבע דרגות, מסלול אחד",
       note: "אלה לא ארבעה מוצרים נפרדים שצריך לבחור ביניהם. ככל שהפניות אצלכם מגוונות יותר, כך עולים דרגה. אפשר להתחיל בכל נקודה ולהרחיב בהמשך.",
@@ -98,7 +102,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "האוטומציה תעבוד בעברית?",
-        a: "כן, וזה בדיוק ההתמחות שלי. רוב כלי ה-AI חושבים באנגלית ויוצא מהם עברית מוזרה. אני בונה סקילים בעברית אמיתית שגורמים ל-AI לענות ולכתוב בטון של העסק שלכם, כך שהלקוחות אפילו לא ירגישו שזו מערכת אוטומטית.",
+        a: "כן, וזה בדיוק ההתמחות שלי. רוב כלי ה-AI חושבים באנגלית ויוצא מהם עברית מוזרה. אני בונה סקילים בעברית טבעית שגורמים ל-AI לענות ולכתוב בטון של העסק שלכם, כך שהלקוחות אפילו לא ירגישו שזו מערכת אוטומטית.",
       },
     ],
     closingTitle: "בואו נמצא מה כדאי לאטמט אצלכם.",
@@ -128,6 +132,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Internal alerts on every inquiry",
       "Automatic monthly reports",
     ],
+    liveDemo: {
+      title: "This is what it looks like running",
+      sub: "This is not a mockup, it is exactly what happens on my end when a new enquiry arrives. The same machine gets built for your business.",
+    },
     products: {
       title: "Four levels, one path",
       note: "These are not four separate products to choose between. The more varied your enquiries are, the higher you go. You can start anywhere and extend later.",

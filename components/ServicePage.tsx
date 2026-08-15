@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
+import AutomationFlowDemo from "@/components/AutomationFlowDemo";
 
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
@@ -38,6 +39,8 @@ export type ServiceCopy = {
   /** קישורים לשני השירותים האחרים */
   alsoTitle?: string;
   also?: { label: string; href: string; desc: string }[];
+  /** הדגמה חיה של אוטומציה מעל בלוק המוצרים */
+  liveDemo?: { title: string; sub: string };
   sections: { h: string; p: string }[];
   faqTitle: string;
   faqItems: { q: string; a: string }[];
@@ -90,6 +93,19 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
             ))}
           </ul>
         </section>
+
+        {/* Live automation demo */}
+        {c.liveDemo ? (
+          <section style={{ marginTop: 72 }}>
+            <h2 style={{ margin: "0 0 8px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
+              {c.liveDemo.title}
+            </h2>
+            <p style={{ margin: "0 0 24px", color: "var(--muted2)", fontSize: 16, lineHeight: 1.7, maxWidth: "62ch", fontFamily: HEEBO }}>
+              {c.liveDemo.sub}
+            </p>
+            <AutomationFlowDemo />
+          </section>
+        ) : null}
 
         {/* Products: the full explanation lives here, pricing links in */}
         {c.products ? (
