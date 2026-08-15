@@ -2,6 +2,7 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import WordReveal from "@/components/WordReveal";
 
 export default function Services() {
   const { lang } = useLang();
@@ -46,7 +47,8 @@ export default function Services() {
           >
             {t.buildKicker}
           </div>
-          <h2
+          <WordReveal
+            text={t.buildTitle}
             style={{
               margin: 0,
               fontWeight: 800,
@@ -56,9 +58,7 @@ export default function Services() {
               maxWidth: "18ch",
               fontFamily: "'Heebo', var(--font-heebo), sans-serif",
             }}
-          >
-            {t.buildTitle}
-          </h2>
+          />
         </div>
         <p
           style={{

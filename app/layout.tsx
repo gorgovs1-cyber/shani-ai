@@ -8,6 +8,7 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
 import SkipLink from "@/components/SkipLink";
 import ScrollReveal from "@/components/ScrollReveal";
+import PageTransition from "@/components/PageTransition";
 import LanguageProvider from "@/components/LanguageProvider";
 import { Analytics } from "@vercel/analytics/react";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
@@ -106,7 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div id="cursor-ring" aria-hidden="true" />
           <LenisProvider>
             <Nav />
-            <main id="main-content">{children}</main>
+            <main id="main-content">
+              <PageTransition>{children}</PageTransition>
+            </main>
           </LenisProvider>
           <CustomCursor />
           <FloatingWhatsApp />

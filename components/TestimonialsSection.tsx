@@ -1,6 +1,7 @@
 "use client";
 
 import { useLang } from "@/components/LanguageProvider";
+import WordReveal from "@/components/WordReveal";
 
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
@@ -111,9 +112,10 @@ export default function TestimonialsSection() {
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
           {c.kicker}
         </div>
-        <h2 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontFamily: HEEBO, color: "var(--ink)" }}>
-          {c.title}
-        </h2>
+        <WordReveal
+          text={c.title}
+          style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontFamily: HEEBO, color: "var(--ink)" }}
+        />
         <p style={{ margin: "16px 0 0", color: "var(--muted2)", fontSize: 16, lineHeight: 1.6, maxWidth: "52ch", fontFamily: HEEBO }}>
           {c.sub}
         </p>

@@ -2,6 +2,7 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import Parallax from "@/components/Parallax";
 
 export default function About() {
   const { lang } = useLang();
@@ -43,21 +44,22 @@ export default function About() {
       >
         {/* Left: photo, kicker, title, stats */}
         <div>
-          <img
-            src="/shani-about.jpg.png"
-            alt={lang === "he" ? "שני גורגוב, Shani AI Creator" : "Shani Gorgov, Shani AI Creator"}
-            loading="lazy"
-            decoding="async"
-            style={{
-              width: "100%",
-              aspectRatio: "4 / 5",
-              objectFit: "cover",
-              borderRadius: 20,
-              border: "1px solid var(--line)",
-              marginBottom: 28,
-              display: "block",
-            }}
-          />
+          <Parallax amount={34} style={{ marginBottom: 28 }}>
+            <img
+              src="/shani-about.jpg.png"
+              alt={lang === "he" ? "שני גורגוב, Shani AI Creator" : "Shani Gorgov, Shani AI Creator"}
+              loading="lazy"
+              decoding="async"
+              style={{
+                width: "100%",
+                aspectRatio: "4 / 5",
+                objectFit: "cover",
+                borderRadius: 20,
+                border: "1px solid var(--line)",
+                display: "block",
+              }}
+            />
+          </Parallax>
           <div
             style={{
               fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
