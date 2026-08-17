@@ -6,22 +6,22 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
   he: {
     dir: "rtl",
     kicker: "שירות · אתרים",
-    title: "אתרים קולנועיים שמביאים לקוחות, לא רק נראים טוב.",
+    title: "אתרים קולנועיים שמביאים לקוחות, לא רק נראים טוב",
     lead:
-      "אני בונה אתרים בקוד קאסטום Next.js, מהירים, עם אנימציות GSAP קולנועיות ומבנה SEO מלא, שממצבים את העסק שלכם ברמה של החברות הגדולות והופכים מבקרים ללקוחות. הקוד שלכם, בבעלותכם המלאה.",
+      "אני בונה אתרים בקוד שנכתב מאפס, מהירים, עם תנועה חלקה ומבנה שגוגל אוהב, שנותנים לעסק שלכם נוכחות של חברה גדולה והופכים מבקרים ללקוחות. הקוד נשאר שלכם, בבעלות מלאה.",
     primaryCta: "דברו איתי על אתר",
     primaryWaMsg: "היי שני, אני רוצה לבנות אתר לעסק",
     secondaryCta: "לצפייה במחירים",
     includesTitle: "מה נכלל באתר",
     includes: [
-      "קוד קאסטום Next.js, לא תבנית",
-      "אנימציות GSAP קולנועיות",
-      "מובייל-first · Lighthouse 90+",
-      "SEO מלא + Schema.org",
-      "טופס פנייה + חיבור וואטסאפ",
-      "Analytics + Meta Pixel מובנים",
+      "קוד שנכתב מאפס (Next.js), לא תבנית",
+      "תנועה ואנימציות חלקות",
+      "בנוי קודם למובייל, ונטען מהר",
+      "מבנה מלא לקידום בגוגל (SEO)",
+      "טופס פנייה וחיבור לוואטסאפ",
+      "מדידה מובנית של פניות ופרסום",
       "בעלות מלאה על הקוד",
-      "מסירה תוך 7–21 יום",
+      "מסירה תוך 7 עד 21 יום",
     ],
     products: {
       title: "שלושה גדלים, לפי כמה יש לכם לספר",
@@ -64,7 +64,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     alsoTitle: "ואחרי שהאתר באוויר",
     also: [
       { label: "אוטומציות", href: "/automations", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
-      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "לא בטוחים שאתר הוא הדבר הראשון שחסר לכם? האבחון מסמן מה שווה לתקן קודם." },
+      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "לא בטוחים שאתר הוא הדבר הראשון שחסר לכם? האבחון מראה מה שווה לתקן קודם." },
     ],
     sections: [
       {
@@ -73,22 +73,22 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "למה אתר בקוד עדיף על וויקס או אלמנטור?",
-        p: "תבנית מוכנה נראית כמו עוד תבנית, נטענת לאט ומוגבלת ב-SEO ובעיצוב. אתר בקוד קאסטום נטען מהר, מקבל ציון Lighthouse גבוה, מדורג טוב יותר בגוגל, ומאפשר אנימציות וחוויית משתמש שאי אפשר לשחזר בתבנית. וחשוב מכל, הקוד שלכם, בלי תלות בפלטפורמה חיצונית ובלי דמי מנוי כפויים.",
+        p: "תבנית מוכנה נראית כמו עוד תבנית, נטענת לאט ומוגבלת גם בקידום וגם בעיצוב. אתר שנכתב מאפס נטען מהר, מדורג טוב יותר בגוגל, ומאפשר תנועה וחוויית גלישה שתבנית פשוט לא יודעת לעשות. ומעבר לכל זה, הקוד שלכם, בלי תלות בפלטפורמה חיצונית ובלי דמי מנוי כפויים.",
       },
       {
         h: "כמה זמן לוקח לבנות אתר?",
-        p: "דף נחיתה: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אתר עם כמה עמודים וגלריית פרויקטים משותפת: עד 8–10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה, כי יש יותר חלקים לסדר. אתר פורטפוליו עם עמודי פרויקט נפרדים: 13–15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות. אני עובדת בפיתוח מבוסס-AI, ולכן המסירה מהירה מהמקובל בתעשייה בלי להתפשר על האיכות.",
+        p: "דף נחיתה: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אתר עם כמה עמודים וגלריית פרויקטים משותפת: 8 עד 10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה, כי יש יותר חלקים לסדר. אתר פורטפוליו עם עמודי פרויקט נפרדים: 13 עד 15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות. אני עובדת עם כלי AI לאורך כל הפיתוח, ולכן המסירה מהירה מהמקובל בלי להתפשר על האיכות.",
       },
       {
         h: "האם האתר יהיה מחובר לאוטומציות ו-AI?",
-        p: "כן. בניגוד לרוב בוני האתרים, אני מחברת את האתר לאוטומציות n8n, ל-CRM ולסוכני AI בעברית, כך שהאתר לוכד לידים, עונה ללקוחות ומזין את המערכות שלכם לבד. אפשר להתחיל באתר ולהוסיף אוטומציה בהמשך.",
+        p: "כן. בניגוד לרוב בוני האתרים, אני מחברת את האתר למערכות שמנהלות את הפניות ולסוכני AI שמדברים עברית, כך שהאתר קולט לידים, עונה ללקוחות ומעדכן את המערכות שלכם לבד. אפשר להתחיל באתר ולהוסיף אוטומציה בהמשך.",
       },
     ],
     faqTitle: "שאלות על אתרים",
     faqItems: [
       {
         q: "האתר יהיה מותאם למובייל?",
-        a: "בהחלט. אני בונה מובייל-first, כלומר האתר מתוכנן קודם למסך הטלפון ואז מותאם למחשב, כי רוב הגולשים מגיעים מהנייד. הכל נבדק על מגוון מסכים לפני העלייה לאוויר.",
+        a: "כן, וזה לא תוספת אלא נקודת המוצא. אני מתכננת קודם את מסך הטלפון ורק אחר כך את המחשב, כי רוב הגולשים מגיעים מהנייד. הכל נבדק על מגוון מסכים לפני העלייה לאוויר.",
       },
       {
         q: "אני אוכל לערוך את האתר בעצמי אחר כך?",
@@ -100,7 +100,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "האתר יהיה בעברית ובאנגלית?",
-        a: "האתר נבנה מלכתחילה לעברית עם RTL מלא. גרסה באנגלית היא תוספת שאפשר להוסיף בהקמה או בהמשך, ומתומחרת בהצעה לפי היקף התוכן.",
+        a: "האתר בנוי מלכתחילה לעברית, מימין לשמאל, על כל המשמעויות של זה בעיצוב ובפריסה. גרסה באנגלית היא תוספת שאפשר להוסיף בהקמה או בהמשך, במחיר אחיד של 600 ₪.",
       },
     ],
     closingTitle: "מוכנים לאתר שבאמת עובד?",
@@ -113,22 +113,22 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
   en: {
     dir: "ltr",
     kicker: "Service · Websites",
-    title: "Cinematic websites that bring clients in, not just look good.",
+    title: "Cinematic websites that bring clients in, not just look good",
     lead:
-      "I build websites in custom Next.js code — fast, with cinematic GSAP animation and real SEO — that position your business alongside the big players and turn visitors into clients. Your code, fully owned by you.",
+      "I build websites in code written from scratch, fast, with smooth motion and a structure Google likes, giving your business the presence of a much bigger company and turning visitors into clients. The code stays yours, fully owned.",
     primaryCta: "Talk to me about a website",
     primaryWaMsg: "Hi Shani, I'd like to build a website for my business",
     secondaryCta: "See pricing",
     includesTitle: "What's included",
     includes: [
-      "Custom Next.js code, not a template",
-      "Cinematic GSAP animation",
-      "Mobile-first · Lighthouse 90+",
-      "Full SEO + Schema.org",
+      "Code written from scratch (Next.js), not a template",
+      "Smooth, cinematic motion",
+      "Built for mobile first, and loads fast",
+      "Built properly to rank on Google (SEO)",
       "Contact form + WhatsApp",
-      "Analytics + Meta Pixel built in",
+      "Built-in tracking of enquiries and ads",
       "Full ownership of the code",
-      "Delivery in 7–21 days",
+      "Delivery in 7 to 21 days",
     ],
     products: {
       title: "Three sizes, by how much you have to say",
@@ -180,7 +180,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "Why is a coded site better than Wix or Elementor?",
-        p: "A ready template looks like another template, loads slowly and is limited on SEO and design. Custom code loads fast, earns a high Lighthouse score, ranks better on Google, and enables animation and UX a template can't reproduce. Most importantly, the code is yours, no dependency on an external platform and no forced subscription.",
+        p: "A ready template looks like another template, loads slowly and is limited both on search and on design. A site written from scratch loads fast, ranks better on Google, and allows motion and a browsing experience a template simply cannot do. Beyond all of that, the code is yours, with no dependency on an outside platform and no forced subscription.",
       },
       {
         h: "How long does a website take?",
@@ -188,7 +188,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "Will the site connect to automations and AI?",
-        p: "Yes. Unlike most website builders, I wire the site into n8n automations, a CRM and Hebrew AI agents, so it's not just a storefront but a working tool: it captures leads, answers clients and feeds your systems on its own. You can start with the site and add automation later.",
+        p: "Yes. Unlike most website builders, I wire the site into the systems that manage your enquiries and into AI agents that speak Hebrew, so the site captures leads, answers clients and updates your systems on its own. You can start with the site and add automation later.",
       },
     ],
     faqTitle: "Website FAQ",
