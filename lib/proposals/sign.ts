@@ -272,7 +272,7 @@ export async function recordSignature(args: {
 }): Promise<void> {
   try {
     const { data, meta, signedAt, emailId, emailError } = args;
-    await supabaseAdmin().from('signed_proposals').insert({
+    const { error } = await supabaseAdmin().from('signed_proposals').insert({
       slug: data.slug,
       first_name: data.first_name,
       business: data.business,
@@ -286,8 +286,14 @@ export async function recordSignature(args: {
       email_id: emailId,
       email_error: emailError,
     });
-  } catch {
-    /* אין סופאבייס מוגדר, או שהטבלה חסרה — לא עוצרים את הזרימה */
+    // עדיין לא מפילים את החתימה אם השמירה נכשלה — אבל כן צועקים.
+    // עד 17/08/2026 הבלוק הזה בלע כל שגיאה בשקט, כולל "הטבלה לא קיימת",
+    // ולכן אי אפשר היה לדעת שחתימות לא נשמרות בכלל.
+    if (error) {
+      console.error('[recordSignature] Supabase insert failed:', error.message, error.details ?? '');
+    }
+  } catch (err) {
+    console.error('[recordSignature] could not reach Supabase:', err instanceof Error ? err.message : err);
   }
 }
 
