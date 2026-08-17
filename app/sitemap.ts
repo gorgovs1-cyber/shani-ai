@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/accessibility`, lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
     { url: `${BASE}/privacy`,       lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
     { url: `${BASE}/terms`,         lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${BASE}/cancellation`,  lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
   ]
 
   // נגזר מ-lib/projects.ts, אותו מקור שממנו נבנים העמודים עצמם,

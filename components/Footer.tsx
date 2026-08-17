@@ -158,6 +158,19 @@ export default function Footer() {
         >
           {lang === "he" ? "תקנון" : "Terms"}
         </a>
+        <a
+          href="/cancellation"
+          style={{
+            color: "var(--muted2)",
+            textDecoration: "none",
+            transition: "color .2s",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+        >
+          {lang === "he" ? "מדיניות ביטולים" : "Cancellation"}
+        </a>
         {/* Lets a visitor change the cookie choice at any time */}
         <button
           type="button"

@@ -8,7 +8,8 @@ const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
 
 type Table = { head: string[]; rows: string[][] };
-type Section = { heading: string; body?: string; items?: string[]; table?: Table; cookieButton?: boolean };
+type Link = { href: string; label: string };
+type Section = { heading: string; body?: string; items?: string[]; table?: Table; cookieButton?: boolean; link?: Link };
 type Copy = { kicker: string; title: string; updated: string; intro: string; sections: Section[]; cookieBtn: string };
 
 /**
@@ -30,7 +31,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "מי אחראית על המידע",
         body:
-          "בעלת האתר והאחראית על מאגר המידע היא שני גורגוב (Shani AI Creator), עוסק פטור הפועל בישראל. לכל פנייה בנושא פרטיות — עיון במידע, תיקון, מחיקה, הסרה מדיוור או בקשה לפרטים נוספים על ספק מסוים — אפשר לכתוב לכתובת shani.creates.ai@gmail.com. אענה לפניות בעצמי; אין באתר ממונה הגנת פרטיות נפרד.",
+          "בעלת האתר והאחראית על מאגר המידע היא שני גורגוב (Shani AI Creator), עוסק פטור מספר 300585536, הפועלת בישראל. לכל פנייה בנושא פרטיות — עיון במידע, תיקון, מחיקה, הסרה מדיוור או בקשה לפרטים נוספים על ספק מסוים — אפשר לכתוב לכתובת shani.creates.ai@gmail.com. אענה לפניות בעצמי; אין באתר ממונה הגנת פרטיות נפרד.",
       },
       {
         heading: "איזה מידע נאסף בפועל",
@@ -56,7 +57,8 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "דיוור ורשימת תפוצה",
         body:
-          "אני שולחת דיוור שיווקי רק למי שסימן בעצמו את תיבת ההסכמה בטופס באתר. התיבה אינה מסומנת מראש, ובלי סימון שלה הטופס לא נשלח. יחד עם ההרשמה נשמר גם נוסח ההסכמה שאושר ומועד האישור. בכל הודעה יופיע קישור הסרה, ואפשר גם פשוט להשיב למייל או לכתוב ל-shani.creates.ai@gmail.com ולבקש הסרה — הבקשה תבוצע ולא יישלחו הודעות נוספות. ההסכמה ניתנת מרצון וניתן לחזור בה בכל רגע. הזכות הזו נשענת על ס' 30א לחוק התקשורת (בזק ושידורים), התשמ\"ב-1982.",
+          "אני שולחת דיוור שיווקי רק למי שסימן בעצמו את תיבת ההסכמה בטופס באתר. התיבה אינה מסומנת מראש, ובלי סימון שלה הטופס לא נשלח. יחד עם ההרשמה נשמר גם נוסח ההסכמה שאושר ומועד האישור. בכל הודעה יופיע קישור הסרה, ואפשר גם למלא בקשת הסרה בעמוד ההסרה שבאתר: shani-ai.com/unsubscribe. לחלופין אפשר פשוט להשיב למייל או לכתוב ל-shani.creates.ai@gmail.com ולבקש הסרה — הבקשה תבוצע ולא יישלחו הודעות נוספות. ההסכמה ניתנת מרצון וניתן לחזור בה בכל רגע. הזכות הזו נשענת על ס' 30א לחוק התקשורת (בזק ושידורים), התשמ\"ב-1982.",
+        link: { href: "/unsubscribe", label: "מעבר לעמוד ההסרה מדיוור" },
       },
       {
         heading: "עוגיות וטכנולוגיות מעקב",
@@ -149,7 +151,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "Who controls the data",
         body:
-          "The site owner and the controller of the database is Shani Gorgov (Shani AI Creator), an exempt sole trader (עוסק פטור) operating in Israel. For any privacy request — access, correction, deletion, unsubscribing, or more detail about a specific processor — write to shani.creates.ai@gmail.com. I handle these requests personally; the site has no separate data protection officer.",
+          "The site owner and the controller of the database is Shani Gorgov (Shani AI Creator), an exempt sole trader (עוסק פטור) registered in Israel under business number 300585536. For any privacy request — access, correction, deletion, unsubscribing, or more detail about a specific processor — write to shani.creates.ai@gmail.com. I handle these requests personally; the site has no separate data protection officer.",
       },
       {
         heading: "What is actually collected",
@@ -175,7 +177,8 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "Email & mailing list",
         body:
-          "I send marketing email only to people who ticked the consent box themselves. The box is not pre-ticked, and the form will not submit without it. The consent wording and the time of consent are stored alongside the signup. Every message carries an unsubscribe link, and you can also simply reply or write to shani.creates.ai@gmail.com and ask to be removed — the request will be honoured and no further messages will be sent. Consent is given freely and can be withdrawn at any time. This right derives from s. 30A of the Communications (Telecommunications and Broadcasting) Law, 5742-1982.",
+          "I send marketing email only to people who ticked the consent box themselves. The box is not pre-ticked, and the form will not submit without it. The consent wording and the time of consent are stored alongside the signup. Every message carries an unsubscribe link, and you can also submit a removal request on the unsubscribe page: shani-ai.com/unsubscribe. Alternatively you can simply reply or write to shani.creates.ai@gmail.com and ask to be removed — the request will be honoured and no further messages will be sent. Consent is given freely and can be withdrawn at any time. This right derives from s. 30A of the Communications (Telecommunications and Broadcasting) Law, 5742-1982.",
+        link: { href: "/unsubscribe", label: "Go to the unsubscribe page" },
       },
       {
         heading: "Cookies and tracking technologies",
@@ -292,6 +295,27 @@ export default function PrivacyPage() {
                   <li key={j} style={{ color: "var(--ink)", fontSize: "clamp(16px,1.5vw,19px)", lineHeight: 1.7, fontFamily: HEEBO }}>{it}</li>
                 ))}
               </ul>
+            )}
+            {s.link && (
+              <a
+                href={s.link.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  marginTop: 18,
+                  minHeight: 44,
+                  padding: "12px 22px",
+                  borderRadius: 12,
+                  border: "1.5px solid var(--acc)",
+                  color: "var(--acc)",
+                  fontFamily: HEEBO,
+                  fontWeight: 800,
+                  fontSize: 16,
+                  textDecoration: "none",
+                }}
+              >
+                {s.link.label}
+              </a>
             )}
             {s.table && (
               <div style={{ margin: "20px 0 0", overflowX: "auto", border: "1px solid var(--line)", borderRadius: 14, background: "var(--card)" }}>
