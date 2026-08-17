@@ -2,6 +2,7 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+import { openCookieSettings } from "@/components/CookieConsent";
 
 export default function Footer() {
   const { lang } = useLang();
@@ -157,6 +158,26 @@ export default function Footer() {
         >
           {lang === "he" ? "תקנון" : "Terms"}
         </a>
+        {/* Lets a visitor change the cookie choice at any time */}
+        <button
+          type="button"
+          onClick={openCookieSettings}
+          style={{
+            background: "none",
+            border: "none",
+            padding: 0,
+            minHeight: 44,
+            cursor: "pointer",
+            color: "var(--muted2)",
+            fontSize: 14.5,
+            transition: "color .2s",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
+        >
+          {lang === "he" ? "הגדרות עוגיות" : "Cookie settings"}
+        </button>
       </nav>
 
       {/* Copyright */}

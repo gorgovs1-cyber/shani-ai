@@ -4,6 +4,37 @@ import { useEffect, useState } from "react";
 
 const SESSION_KEY = "shani-splash-seen";
 
+/**
+ * Hebrew text inside the LTR terminal window.
+ * dir="rtl" keeps the Hebrew itself correct while the line's ✓/▸ marker stays
+ * on the left where a terminal expects it. Heebo is set explicitly because the
+ * terminal's JetBrains Mono ships no Hebrew glyphs and would silently fall back
+ * to an inconsistent system font.
+ */
+function He({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      dir="rtl"
+      style={{
+        fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+        fontSize: "0.95em",
+        unicodeBidi: "isolate",
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+/** The English gloss after the slash — dimmed so Hebrew stays the lead. */
+function Gloss({ children }: { children: React.ReactNode }) {
+  return (
+    <span dir="ltr" style={{ color: "var(--dmuted, #b1a48f)", unicodeBidi: "isolate" }}>
+      / {children}
+    </span>
+  );
+}
+
 export default function SplashScreen() {
   const [phase, setPhase] = useState<"show" | "fadeout" | "gone">("show");
 
@@ -114,36 +145,41 @@ export default function SplashScreen() {
           </svg>
         </div>
 
-        {/* Terminal lines */}
+        {/* Terminal lines.
+            Bilingual by design: the command is English, the results come back in
+            Hebrew with an English gloss after a slash. That mirrors the product
+            itself (AI that answers in real Hebrew) and serves both language
+            versions of the site from one splash.
+            Hebrew needs its own font — JetBrains Mono has no Hebrew glyphs — and
+            its own dir, so the ✓/▸ markers stay on the left. See <He /> below. */}
         <div style={{ padding: "20px 22px 24px", fontFamily: "'JetBrains Mono', var(--font-mono), monospace", fontSize: 13.5, lineHeight: 2, color: "var(--dtext, #f4ede1)" }}>
           {/* Line 1 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease .15s forwards" }}>
-            <span style={{ color: "var(--acc, #f2622e)" }}>$</span> shani build --product
+            <span style={{ color: "var(--acc, #f2622e)" }}>$</span> shani build --business
           </div>
           {/* Line 2 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease .6s forwards", color: "var(--dmuted, #b1a48f)" }}>
-            ▸ initializing workspace…
+            ▸ initializing…
           </div>
           {/* Line 3 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.05s forwards" }}>
-            <span style={{ color: "#27c93f" }}>✓</span> design system loaded
+            <span style={{ color: "#27c93f" }}>✓</span>{" "}
+            <He>מיפוי תהליכים</He> <Gloss>process mapping</Gloss>
           </div>
           {/* Line 4 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.5s forwards" }}>
-            <span style={{ color: "#27c93f" }}>✓</span> crafting interfaces
+            <span style={{ color: "#27c93f" }}>✓</span>{" "}
+            <He>אוטומציה מחוברת</He> <Gloss>automation connected</Gloss>
           </div>
           {/* Line 5 */}
-          <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.95s forwards", color: "var(--dmuted, #b1a48f)" }}>
-            ▸ deploying to production…
+          <div style={{ opacity: 0, animation: "scl-termline .25s ease 1.95s forwards" }}>
+            <span style={{ color: "#27c93f" }}>✓</span>{" "}
+            <He>אתר באוויר</He> <Gloss>site live</Gloss>
           </div>
           {/* Line 6 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease 2.4s forwards" }}>
-            <span style={{ color: "#27c93f" }}>✓</span> build complete in 8.2s
-          </div>
-          {/* Line 7 */}
-          <div style={{ opacity: 0, animation: "scl-termline .25s ease 2.85s forwards" }}>
             <span style={{ color: "var(--acc, #f2622e)" }}>▸</span>{" "}
-            launching shani.ai{" "}
+            ready{" "}
             <span style={{ color: "var(--acc, #f2622e)" }}>✦</span>
             <span style={{
               display: "inline-block",

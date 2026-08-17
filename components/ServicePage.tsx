@@ -51,7 +51,15 @@ export type ServiceCopy = {
   auditLine: string;
 };
 
-export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | "en", ServiceCopy> }) {
+export default function ServicePage({
+  copyByLang,
+  beforeClosing,
+}: {
+  copyByLang: Record<"he" | "en", ServiceCopy>;
+  /** Optional block rendered just above the closing CTA — used for page-specific
+      widgets (e.g. the ROI calculator on /automations) without forking this template. */
+  beforeClosing?: React.ReactNode;
+}) {
   const { lang } = useLang();
   const c = copyByLang[lang];
   const dir = c.dir;
@@ -207,6 +215,8 @@ export default function ServicePage({ copyByLang }: { copyByLang: Record<"he" | 
             ))}
           </div>
         </section>
+
+        {beforeClosing}
 
         {/* Closing CTA band */}
         <section style={{ marginTop: 64, background: "var(--dark)", borderRadius: 24, padding: "clamp(32px,4vw,52px)", textAlign: "center" }}>

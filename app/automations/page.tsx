@@ -1,6 +1,7 @@
 "use client";
 
 import ServicePage, { ServiceCopy } from "@/components/ServicePage";
+import ROICalculator from "@/components/ROICalculator";
 
 const copyByLang: Record<"he" | "en", ServiceCopy> = {
   he: {
@@ -63,10 +64,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
       ],
     },
-    alsoTitle: "שירותים נוספים",
+    alsoTitle: "לפני האוטומציה, ואחריה",
     also: [
-      { label: "אתרים", href: "/websites", desc: "אתר מהיר שמותאם למובייל ומחובר לוואטסאפ." },
-      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "אבחון שמסמן מה שווה לתקן קודם." },
+      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "עוד לא ברור מה לאטמט קודם? האבחון מסמן איפה בורח הזמן, ומשם בונים." },
+      { label: "אתרים", href: "/websites", desc: "אוטומציה שווה כשיש פניות שנכנסות אליה. האתר הוא זה שמביא אותן." },
     ],
     sections: [
       {
@@ -75,7 +76,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         h: "אוטומציה לוואטסאפ לעסק, איך זה עובד?",
-        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. אפשר להקים בוט כפרויקט חד-פעמי, ולהוסיף תחזוקה חודשית רק אם רוצים.",
+        p: "כשלקוח משאיר פנייה, האוטומציה יכולה לשלוח לו הודעת וואטסאפ אוטומטית תוך שניות, לענות על שאלות נפוצות, ואפילו לתאם פגישה, הכל בעברית טבעית ובטון של העסק שלכם. אפשר להקים בוט כפרויקט חד-פעמי, ולהוסיף את Shani Care, הליווי החודשי, רק אם רוצים.",
       },
       {
         h: "כמה עולה אוטומציה לעסק?",
@@ -98,7 +99,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "מה קורה אם האוטומציה נתקעת?",
-        a: "אני בונה את האוטומציות עם גיבוי, למשל אם וובהוק נכשל, הפנייה עדיין מגיעה אליכם בוואטסאפ, כך ששום ליד לא הולך לאיבוד. בתחזוקה החודשית אני מנטרת את האוטומציות ומתקנת בעיות לפני שאתם בכלל שמים לב.",
+        a: "אני בונה את האוטומציות עם גיבוי, למשל אם וובהוק נכשל, הפנייה עדיין מגיעה אליכם בוואטסאפ, כך ששום ליד לא הולך לאיבוד. ב-Shani Care, הליווי החודשי, אני מנטרת את האוטומציות ומתקנת בעיות לפני שאתם בכלל שמים לב.",
       },
       {
         q: "האוטומציה תעבוד בעברית?",
@@ -117,7 +118,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     kicker: "Service · Automations",
     title: "Automations that work for you 24/7, even while you sleep.",
     lead:
-      "I connect your tools, forms, WhatsApp, email, CRM and calendar, into n8n + Claude automations that handle leads, content and replies on their own. Technology does the grunt work, and you get back to running the business.",
+      "I connect your tools — forms, WhatsApp, email, CRM and calendar — into n8n + Claude automations that handle leads, content and replies on their own. Technology does the grunt work, and you get back to running the business.",
     primaryCta: "Talk to me about automation",
     primaryWaMsg: "Hi Shani, I'd like an automation for my business",
     secondaryCta: "See pricing",
@@ -129,12 +130,12 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Automatic emails and reminders",
       "Automatic pricing and proposals",
       "Connecting all your tools together",
-      "Internal alerts on every inquiry",
+      "Internal alerts on every enquiry",
       "Automatic monthly reports",
     ],
     liveDemo: {
       title: "This is what it looks like running",
-      sub: "This is not a mockup, it is exactly what happens on my end when a new enquiry arrives. The same machine gets built for your business.",
+      sub: "This is not a mockup; it is exactly what happens on my end when a new enquiry arrives. The same machine gets built for your business.",
     },
     products: {
       title: "Four levels, one path",
@@ -143,14 +144,14 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       items: [
         {
           name: "Level 1 · Single automation",
-          price: "1,400 NIS",
+          price: "₪1,400",
           fit: "There is one action you do by hand almost every day, and you know exactly what it is.",
           includes: "One end-to-end process, a connection to the tools you already use, and monitoring that alerts you if something fails.",
           forWho: "Clinics, salons, studios and any business managing appointments, sending reminders or typing enquiries into a sheet.",
         },
         {
           name: "Level 2 · WhatsApp bot",
-          price: "2,400 NIS",
+          price: "₪2,400",
           fit: "The same two or three questions come up every day, and you miss enquiries in the evenings and at weekends.",
           includes: "Replies in Hebrew in your business's tone, opening hours, and a handover to you the moment the conversation needs you.",
           forWho: "Restaurants, clinics, salons, beauty studios and service providers who get a lot of messages.",
@@ -158,24 +159,24 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
         {
           name: "Level 3 · AI agent with a Hebrew skill",
-          price: "4,900 NIS",
+          price: "₪4,900",
           fit: "Every enquiry is different and cannot be answered with a prepared reply.",
           includes: "Context understanding, conversation memory, booking into your calendar, pricing by your rules and filtering out enquiries that do not fit.",
           forWho: "Consultants, professionals with variable pricing, and businesses with enquiries that need qualifying before a call.",
         },
         {
           name: "Level 4 · Full AI system",
-          price: "7,900 NIS",
+          price: "₪7,900",
           fit: "You are starting from scratch, or rebuilding your digital presence and want everything to talk to each other.",
           includes: "A website, an AI agent, automations and all enquiries in one place. Everything connected, for less than buying separately.",
           forWho: "Businesses that want to set everything up at once instead of adding a piece every few months.",
         },
       ],
     },
-    alsoTitle: "More services",
+    alsoTitle: "Before the automation, and after",
     also: [
-      { label: "Websites", href: "/websites", desc: "A fast, mobile-ready site wired to WhatsApp." },
-      { label: "Consulting", href: "/ai-consulting", desc: "An audit that marks what is worth fixing first." },
+      { label: "Consulting", href: "/ai-consulting", desc: "Not sure yet what to automate first? The audit marks where the time leaks, and you build from there." },
+      { label: "Websites", href: "/websites", desc: "Automation is worth most when enquiries are coming in. The site is what brings them." },
     ],
     sections: [
       {
@@ -183,15 +184,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         p: "Automation connects your tools so they talk to each other on their own. Instead of copying details from a form to a CRM by hand, answering every client the same questions, and sending reminders manually, the system does it automatically, with no human error and nothing forgotten. The result: faster responses, fewer leads slipping through the cracks, and hours returned to you every week.",
       },
       {
-        h: "WhatsApp automation for business, how does it work?",
-        p: "When a client leaves an inquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A bot can be a one-off project, with monthly care added only if you want it.",
+        h: "WhatsApp automation for business — how does it work?",
+        p: "When a client leaves an enquiry, the automation can send them a WhatsApp message within seconds, answer common questions, and even book a meeting, all in natural Hebrew and in your business's tone. A bot can be a one-off project, with Shani Care, the monthly plan, added only if you want it.",
       },
       {
         h: "How much does business automation cost?",
-        p: "It depends on what we build: a single lead-capture automation is one project, a system connecting WhatsApp, calendar, email and sheets is another. The full price list is published on the pricing page: single automation 1,400 NIS, WhatsApp bot 2,400 NIS, AI agent 4,900 NIS and a full system 7,900 NIS. Running tool costs are always itemized separately, in your name.",
+        p: "It depends on what we build: a single lead-capture automation is one project; a system connecting WhatsApp, calendar, email and sheets is another. The full price list is published on the pricing page: single automation ₪1,400, WhatsApp bot ₪2,400, AI agent ₪4,900 and a full system ₪7,900. Running tool costs are always itemised separately, in your name.",
       },
       {
-        h: "My lead machine, a live demo",
+        h: "My lead machine — a live demo",
         p: "The /audit page on this very site is itself a live automation: a client fills in an intake form, an n8n automation captures the answers within seconds, and Claude agents research the business and prepare a full call brief for me, 24/7. I can build that exact same machine for your business.",
       },
     ],
@@ -207,7 +208,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "What happens if the automation breaks?",
-        a: "I build automations with a fallback, for example if a webhook fails, the inquiry still reaches you on WhatsApp, so no lead is ever lost. With monthly care I monitor the automations and fix issues before you even notice.",
+        a: "I build automations with a fallback: if a webhook fails, for example, the enquiry still reaches you on WhatsApp, so no lead is ever lost. With Shani Care I monitor the automations and fix issues before you even notice.",
       },
       {
         q: "Will the automation work in Hebrew?",
@@ -224,5 +225,5 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
 };
 
 export default function AutomationsPage() {
-  return <ServicePage copyByLang={copyByLang} />;
+  return <ServicePage copyByLang={copyByLang} beforeClosing={<ROICalculator />} />;
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Heebo, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
@@ -7,11 +7,13 @@ import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SplashScreen from "@/components/SplashScreen";
 import SkipLink from "@/components/SkipLink";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageTransition from "@/components/PageTransition";
 import LanguageProvider from "@/components/LanguageProvider";
 import { Analytics } from "@vercel/analytics/react";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
+import CookieConsent from "@/components/CookieConsent";
 
 // Latin headings + body
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -51,6 +53,15 @@ export const metadata: Metadata = {
   },
 };
 
+// viewportFit: "cover" is required for env(safe-area-inset-*) to return anything
+// but 0. Without it the floating WhatsApp button, the accessibility widget and
+// the cookie banner all sit on the home indicator on modern iPhones.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -83,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 { "@type": "City", name: "ירושלים" },
                 { "@type": "City", name: "חיפה" },
                 { "@type": "City", name: "באר שבע" },
+                { "@type": "City", name: "השרון" },
                 { "@type": "Country", name: "ישראל" },
               ],
               address: {
@@ -113,6 +125,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </LenisProvider>
           <CustomCursor />
           <FloatingWhatsApp />
+          <AccessibilityWidget />
+          {/* Cookie consent banner — gates GA4 + Meta Pixel below */}
+          <CookieConsent />
         </LanguageProvider>
         <Analytics />
         <AnalyticsScripts />

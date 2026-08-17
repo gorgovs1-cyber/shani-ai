@@ -38,10 +38,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
       ],
     },
-    alsoTitle: "השירותים עצמם",
+    alsoTitle: "אחרי האבחון, לאן זה ממשיך",
     also: [
-      { label: "אתרים", href: "/websites", desc: "שלושה גדלים, לפי כמה יש לכם לספר." },
-      { label: "אוטומציות", href: "/automations", desc: "ארבע דרגות, לפי כמה הפניות מגוונות." },
+      { label: "אוטומציות", href: "/automations", desc: "אם מה שגוזל הכי הרבה זמן זו עבודה שחוזרת על עצמה, שם היא עוברת למערכת." },
+      { label: "אתרים", href: "/websites", desc: "אם הבעיה היא שלא מגיעות מספיק פניות, קודם צריך כתובת שאפשר לשלוח אליה אנשים." },
     ],
     sections: [
       {
@@ -88,7 +88,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     kicker: "Service · AI Consulting",
     title: "An AI consultant who speaks business, not just tech.",
     lead:
-      "I ran my own business for 10 years, so I know exactly where time gets wasted and where AI actually moves the needle. I map your processes, build a strategy, and guide the rollout, in plain language, no buzzwords and no empty promises.",
+      "I ran my own business for 10 years, so I know exactly where time gets wasted and where AI actually moves the needle. I map your processes, build a strategy and guide the rollout — in plain language, with no buzzwords and no empty promises.",
     primaryCta: "Talk to me about consulting",
     primaryWaMsg: "Hi Shani, I'd like AI consulting and rollout for my business",
     secondaryCta: "See pricing",
@@ -112,21 +112,21 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
           name: "First audit",
           price: "Free",
           fit: "You know something in the business is eating too much time, but you are not sure what to fix first or where AI is even relevant.",
-          includes: "A short form about the business, the tools and the recurring tasks. Within one working day I come back with two or three directions, followed by a twenty minute call where we decide what is worth building and what is not. A full proposal follows, with what gets built, what it costs and a timeline.",
+          includes: "A short form about the business, the tools and the recurring tasks. Within one working day I come back with two or three directions, followed by a twenty-minute call where we decide what is worth building and what is not. A full proposal follows, with what gets built, what it costs and a timeline.",
           forWho: "Owners of small and mid-sized businesses who want to understand what is possible before committing to a project.",
-          notFor: "You already know exactly what you want built. Then you can skip ahead and message me directly.",
+          notFor: "You already know exactly what you want built — then you can skip ahead and message me directly.",
         },
       ],
     },
-    alsoTitle: "The services themselves",
+    alsoTitle: "Where the audit leads next",
     also: [
-      { label: "Websites", href: "/websites", desc: "Three sizes, by how much you have to say." },
-      { label: "Automations", href: "/automations", desc: "Four levels, by how varied your enquiries are." },
+      { label: "Automations", href: "/automations", desc: "If what eats the most time is work that repeats, that is where it moves to a system." },
+      { label: "Websites", href: "/websites", desc: "If the problem is that not enough enquiries come in, you first need an address to send people to." },
     ],
     sections: [
       {
         h: "What does an AI consultant for business do?",
-        p: "An AI consultant helps you understand where in your business you can use AI to save time and money, and how to do it right without wasting months on trial and error. I don't sell you a tool, I first understand the business, then recommend exactly what to implement, in what order, and what will return the most hours.",
+        p: "An AI consultant helps you understand where in your business you can use AI to save time and money, and how to do it right without wasting months on trial and error. I don't sell you a tool; I first understand the business, then recommend exactly what to implement, in what order, and what will return the most hours.",
       },
       {
         h: "How do you start? An AI audit",
@@ -137,7 +137,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         p: "Most AI tools think in English and translate, so the Hebrew they produce sounds off and unprofessional. I build Skills, instruction systems that teach AI to write and think in real Hebrew, in your business's exact voice and tone, so what comes out is ready to use and sounds like you.",
       },
       {
-        h: "AI rollout, you're not left alone with a document",
+        h: "AI rollout — you're not left alone with a document",
         p: "Consulting worth anything doesn't end with a pretty document. I guide the actual rollout: set up the tools, build the Skills and automations, train the team, and make sure it truly enters your workflow. The goal is measurable results, not another file forgotten in a drive.",
       },
     ],
@@ -145,7 +145,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqItems: [
       {
         q: "My business is small, is AI even relevant for me?",
-        a: "AI changes the most precisely for small businesses, because every hour returned to you is worth a lot. Even a one-person business wastes hours on content, client replies and data cleanup, which is exactly what AI can take. In the audit we'll see where it's relevant for you.",
+        a: "It is precisely small businesses that AI changes the most, because every hour returned to you is worth a lot. Even a one-person business wastes hours on content, client replies and data cleanup, which is exactly what AI can take. In the audit we'll see where it's relevant for you.",
       },
       {
         q: "How long until I see results?",
@@ -158,7 +158,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     closingTitle: "Let's map where AI will save you the most.",
     closingSub:
-      "A first audit call, focused and no-commitment, that ends with you knowing exactly where to start.",
+      "A first audit call, focused and with no commitment, that ends with you knowing exactly where to start.",
     closingCta: "Chat on WhatsApp",
     closingWaMsg: "Hi Shani, I'd like AI consulting and rollout for my business",
     auditLine: "Or start with a free audit",

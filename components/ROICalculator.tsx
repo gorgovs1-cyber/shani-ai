@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useLang } from "@/components/LanguageProvider";
 
+const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
+const MONO = "'JetBrains Mono', var(--font-mono), monospace";
+
 /** Smoothly animates a number toward `target` (eased), for a premium count-up. */
 function useCountUp(target: number, duration = 650) {
   const [value, setValue] = useState(target);
@@ -10,6 +13,16 @@ function useCountUp(target: number, duration = 650) {
   const rafRef = useRef<number>();
 
   useEffect(() => {
+    // The global prefers-reduced-motion block in globals.css only neutralises
+    // CSS animations; a JS rAF count-up runs regardless. Jump straight to the
+    // value instead.
+    if (typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      fromRef.current = target;
+      setValue(target);
+      return;
+    }
+
     const from = fromRef.current;
     const start = performance.now();
     cancelAnimationFrame(rafRef.current!);
@@ -44,6 +57,11 @@ export default function ROICalculator() {
   const fmt = (n: number) => n.toLocaleString(lang === "he" ? "he-IL" : "en-US");
 
   useEffect(() => {
+    // gsap.from() with opacity:0 leaves the card invisible until ScrollTrigger
+    // fires. Under reduced motion we skip the tween entirely rather than
+    // risking a blank card, and honour the preference at the same time.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     let ctx: any;
     const init = async () => {
       const { gsap } = await import("gsap");
@@ -64,14 +82,22 @@ export default function ROICalculator() {
     <section
       ref={ref}
       id="roi"
-      className="section-padding roi-section"
-      style={{ borderTop: "1px solid var(--border)" }}
+      className="roi-section"
+      dir={lang === "he" ? "rtl" : "ltr"}
+      style={{ marginTop: 64, paddingTop: 8 }}
     >
-      <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-        <div className="label" style={{ color: "var(--signal)", marginBottom: "1rem" }}>
+      <div style={{ textAlign: "center", marginBottom: 32 }}>
+        <div style={{
+          fontFamily: MONO, fontSize: 13, letterSpacing: ".18em",
+          color: "var(--acc)", marginBottom: 14, textTransform: "uppercase",
+        }}>
           {t.roi.label}
         </div>
-        <h2 className="display-md" style={{ color: "var(--cream)" }}>
+        <h2 style={{
+          margin: 0, fontWeight: 800, fontFamily: HEEBO,
+          fontSize: "clamp(24px,3vw,36px)", letterSpacing: "-0.02em",
+          color: "var(--ink)",
+        }}>
           {t.roi.title}
         </h2>
       </div>
@@ -79,16 +105,16 @@ export default function ROICalculator() {
       <div className="roi-card" style={{
         maxWidth: 640,
         margin: "0 auto",
-        background: "var(--graphite)",
-        border: "1px solid var(--border)",
+        background: "var(--card)",
+        border: "1px solid var(--line)",
         borderRadius: 20,
-        padding: "2.5rem",
+        padding: "clamp(24px,3vw,40px)",
       }}>
         {/* Slider 1 — hours */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-            <span style={{ fontSize: "0.88rem", color: "var(--mist)" }}>{t.roi.hoursLabel}</span>
-            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 700, color: "var(--cream)", fontSize: "1.05rem" }}>
+            <span style={{ fontSize: 15, color: "var(--muted2)", fontFamily: HEEBO }}>{t.roi.hoursLabel}</span>
+            <span style={{ fontFamily: MONO, fontWeight: 700, color: "var(--ink)", fontSize: 17 }}>
               {hours} {t.roi.hoursUnit}
             </span>
           </div>
@@ -96,9 +122,12 @@ export default function ROICalculator() {
             type="range" min={1} max={40} value={hours}
             onChange={(e) => setHours(Number(e.target.value))}
             aria-label={t.roi.hoursLabel}
-            style={{ width: "100%", accentColor: "var(--signal)", cursor: "pointer" }}
+            // .roi-range lifts the control to a 44px hit area on coarse
+            // pointers only (globals.css) — 24px is a mistap on a phone.
+            className="roi-range"
+            style={{ width: "100%", accentColor: "var(--acc)", cursor: "pointer", minHeight: 24 }}
           />
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", color: "var(--mist)", marginTop: "0.3rem", fontFamily: "var(--font-mono)" }}>
+          <div dir="ltr" style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--muted2)", marginTop: 6, fontFamily: MONO }}>
             <span>1</span><span>40</span>
           </div>
         </div>
@@ -106,8 +135,8 @@ export default function ROICalculator() {
         {/* Slider 2 — rate */}
         <div style={{ marginBottom: "2.5rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-            <span style={{ fontSize: "0.88rem", color: "var(--mist)" }}>{t.roi.rateLabel}</span>
-            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 700, color: "var(--cream)", fontSize: "1.05rem" }}>
+            <span style={{ fontSize: 15, color: "var(--muted2)", fontFamily: HEEBO }}>{t.roi.rateLabel}</span>
+            <span style={{ fontFamily: MONO, fontWeight: 700, color: "var(--ink)", fontSize: 17 }}>
               {rate} ₪
             </span>
           </div>
@@ -115,48 +144,65 @@ export default function ROICalculator() {
             type="range" min={50} max={500} step={25} value={rate}
             onChange={(e) => setRate(Number(e.target.value))}
             aria-label={t.roi.rateLabel}
-            style={{ width: "100%", accentColor: "var(--signal)", cursor: "pointer" }}
+            className="roi-range"
+            style={{ width: "100%", accentColor: "var(--acc)", cursor: "pointer", minHeight: 24 }}
           />
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", color: "var(--mist)", marginTop: "0.3rem", fontFamily: "var(--font-mono)" }}>
+          <div dir="ltr" style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--muted2)", marginTop: 6, fontFamily: MONO }}>
             <span>50 ₪</span><span>500 ₪</span>
           </div>
         </div>
 
         {/* Result */}
         <div style={{
-          background: "var(--signal-soft)",
-          border: "1px solid var(--signal-line)",
+          background: "color-mix(in oklch, var(--acc) 8%, transparent)",
+          border: "1px solid color-mix(in oklch, var(--acc) 30%, transparent)",
           borderRadius: 14,
-          padding: "1.5rem",
+          padding: 24,
           textAlign: "center",
-          marginBottom: "1.5rem",
+          marginBottom: 20,
         }}>
-          <div style={{ fontSize: "0.78rem", color: "var(--mist)", marginBottom: "0.5rem" }}>
+          <div style={{ fontSize: 14, color: "var(--muted2)", marginBottom: 8, fontFamily: HEEBO }}>
             {t.roi.resultPre}
           </div>
           <div style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            fontFamily: HEEBO,
+            fontSize: "clamp(30px, 4vw, 46px)",
             fontWeight: 800,
-            color: "var(--signal)",
-            lineHeight: 1,
+            color: "var(--acc)",
+            lineHeight: 1.05,
             fontVariantNumeric: "tabular-nums",
             direction: "ltr",
           }}>
             {fmt(animMonthly)} ₪
           </div>
-          <div style={{ fontSize: "0.78rem", color: "var(--mist)", marginTop: "0.5rem" }}>
+          <div style={{ fontSize: 14, color: "var(--muted2)", marginTop: 8, fontFamily: HEEBO }}>
             {t.roi.perMonth} {t.roi.perYearTpl.replace("{v}", fmt(animYearly))}
           </div>
         </div>
 
         <a
-          href="https://wa.me/972504744815"
-          className="btn-grad"
-          style={{ display: "block", textAlign: "center", padding: "1rem" }}
+          href={`https://wa.me/972504744815?text=${encodeURIComponent(
+            lang === "he"
+              ? "היי שני, בדקתי במחשבון ואני רוצה לדבר על אוטומציה"
+              : "Hi Shani, I used the calculator and I'd like to talk about automation"
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "block", textAlign: "center", padding: "16px 24px",
+            background: "var(--acc)", color: "#fff", textDecoration: "none",
+            fontWeight: 700, fontSize: 16, borderRadius: 14, fontFamily: HEEBO,
+          }}
         >
           {t.roi.cta}
         </a>
+
+        <p style={{
+          margin: "14px 0 0", fontSize: 13, lineHeight: 1.6,
+          color: "var(--muted2)", fontFamily: HEEBO, textAlign: "center",
+        }}>
+          {t.roi.disclaimer}
+        </p>
       </div>
     </section>
   );

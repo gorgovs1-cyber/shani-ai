@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
-import { dict, dirOf, type Lang, type Dict } from "@/lib/i18n";
+import { dict, dirOf, type Lang, type Dict } from "@/lib/translations";
 
 type LangCtx = {
   lang: Lang;

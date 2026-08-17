@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${project.title} · Shani AI Creator`,
     description: project.tagline,
+    alternates: { canonical: `https://shani-ai.com/work/${project.slug}` },
   };
 }
 

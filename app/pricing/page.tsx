@@ -131,7 +131,7 @@ const COPY: Record<"he" | "en", Copy> = {
         ],
       },
       {
-        title: "תחזוקה חודשית",
+        title: "Shani Care · ליווי חודשי",
         items: [
           {
             name: "אתר",
@@ -155,7 +155,7 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "מי שמזמין אתר מקבל את שני החודשים הראשונים של התחזוקה כלולים, בשווי 400 ₪. אחריהם התחזוקה היא לא חובה ואין בה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
+      "מי שמזמין אתר מקבל את שני החודשים הראשונים של Shani Care כלולים, בשווי 400 ₪. אחריהם זה לא חובה ואין בזה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
     includedTitle: "כלול בכל אתר, בלי תוספת תשלום",
     included: [
       "התאמת נגישות לתקן הישראלי 5568. נדרש בחוק לאתר עסקי, ורוב האתרים הזולים מגיעים בלעדיו.",
@@ -256,15 +256,15 @@ const COPY: Record<"he" | "en", Copy> = {
           },
           {
             name: "Website",
-            desc: "A multi-page site built around your content, a homepage plus usually 2–4 more pages such as method, about or FAQ, each with its own address and independent SEO on Google. If you have a portfolio, one shared gallery shows up to 10 pieces. The first two months of care are included.",
+            desc: "A multi-page site built around your content — a homepage plus usually 2–4 more pages such as method, about or FAQ, each with its own address and independent SEO on Google. If you have a portfolio, one shared gallery shows up to 10 pieces. The first two months of Shani Care are included.",
             price: "₪2,400",
-            summary: ["Home + 2-4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of care included (worth ₪400)"],
+            summary: ["Home + 2–4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of Shani Care included (worth ₪400)"],
           },
           {
             name: "Portfolio website",
-            desc: "Built like 'Website', plus up to 10 of your projects each get their own page, able to rank on Google on its own. A fit for large portfolios: architecture, interior design, contracting.",
+            desc: "Built like 'Website', plus each of up to 10 projects gets its own page, able to rank on Google on its own. A fit for large portfolios: architecture, interior design, contracting.",
             price: "₪3,700",
-            summary: ["Everything in 'Website' + up to 10 dedicated project pages", "Every project page can rank on Google on its own", "Extra page beyond 10: ₪250", "13-15 working days"],
+            summary: ["Everything in 'Website' + up to 10 dedicated project pages", "Every project page can rank on Google on its own", "Extra page beyond 10: ₪250", "13–15 working days"],
           },
           {
             name: "Second language",
@@ -283,7 +283,7 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "Level 1 · Single automation",
-            desc: "One process that runs on its own. A reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
+            desc: "One process that runs on its own: a reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
             price: "₪1,400",
             summary: ["One end-to-end process", "Connects to tools you already use", "Monitoring that alerts on failure"],
           },
@@ -316,12 +316,12 @@ const COPY: Record<"he" | "en", Copy> = {
           { name: "Article for the site", desc: "Writing, search optimisation, and publishing.", price: "₪450" },
           { name: "Extra shared-gallery projects, 11 to 16", desc: "Beyond the 10 projects included, another card in the shared gallery.", price: "₪300" },
           { name: "Extra shared-gallery projects, 17 to 22", desc: "For especially large portfolios.", price: "₪400" },
-          { name: "Above 22 gallery projects", desc: "Worth planning together on a call, to choose the projects that represent you best, a gallery this crowded weakens the strong ones.", price: "Call + custom quote" },
+          { name: "Above 22 gallery projects", desc: "Worth planning together on a call, to choose the projects that represent you best; a gallery this crowded weakens the strong ones.", price: "Call + custom quote" },
           { name: "Dedicated project page", desc: "Upgrade from a shared-gallery card to its own page, with its own address and independent SEO. On a Portfolio website, this is the price per page beyond the 10 included.", price: "₪250 per page" },
         ],
       },
       {
-        title: "Monthly care",
+        title: "Shani Care · monthly",
         items: [
           {
             name: "Website",
@@ -345,13 +345,13 @@ const COPY: Record<"he" | "en", Copy> = {
       },
     ],
     maintNote:
-      "Order a website and the first two months of care are included, worth ₪400. After that, care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
+      "Order a website and the first two months of Shani Care are included, worth ₪400. After that, Shani Care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
     includedTitle: "Included in every website, at no extra cost",
     included: [
       "Accessibility to Israeli standard 5568. Required by law for a business site, and most cheap sites arrive without it.",
       "Privacy policy and terms of use.",
       "Your code, fully owned. You can take it to any other developer.",
-      "Mobile ready, and two revision rounds after you have seen it.",
+      "Mobile ready, plus two revision rounds after you have seen it.",
     ],
     toolsTitle: "Running costs on your side",
     toolsIntro:
@@ -392,7 +392,7 @@ const COPY: Record<"he" | "en", Copy> = {
     faqItems: [
       { q: "Are these prices final?", a: "Yes. What you see here is what you pay, and it is agreed before we start. Anything not included appears as an add-on with its own price, and never surfaces at the end." },
       { q: "What if my project is not exactly one of these?", a: "Then we build it from the parts that are listed here. If something is not on the list at all, I price it separately and explain what it is based on." },
-      { q: "How long does a project take?", a: "Landing page: a full first version within five working days from the moment I have your materials, and live within one to two weeks. Website: a full first version within 8 to 10 working days, and live within two to three weeks, there's simply more to put together. Portfolio website: 13 to 15 working days, and live within three to four weeks, there are more project pages to build and optimise for Google. A full system takes longer, and the exact timeline is in the proposal." },
+      { q: "How long does a project take?", a: "Landing page: a full first version within five working days from the moment I have your materials, and live within one to two weeks. Website: a full first version within 8 to 10 working days, and live within two to three weeks; there's simply more to put together. Portfolio website: 13 to 15 working days, and live within three to four weeks; there are more project pages to build and optimise for Google. A full system takes longer, and the exact timeline is in the proposal." },
       { q: "Do I pay for the tools separately?", a: "Yes, and that is in your favour. The domain and the tools are registered in your name and on your card, so they are yours and you are not dependent on me. I set everything up and connect it." },
     ],
     ctaTitle: "The first step costs nothing.",

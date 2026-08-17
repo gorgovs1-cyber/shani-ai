@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import Magnetic from "@/components/Magnetic";
@@ -9,6 +9,17 @@ export default function Hero() {
   const { lang } = useLang();
   const t = dict[lang];
   const portraitRef = useRef<HTMLDivElement>(null);
+  /** On touch, mouseenter fires on tap and mouseleave never follows, so the
+      inline hover styles below would stick to the last-tapped pill/CTA. */
+  const [hoverable, setHoverable] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setHoverable(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   // Parallax on hero portrait
   useEffect(() => {
@@ -174,10 +185,12 @@ export default function Hero() {
                   fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                 }}
                 onMouseEnter={(e) => {
+                  if (!hoverable) return;
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 26px 52px -16px var(--acc)";
                 }}
                 onMouseLeave={(e) => {
+                  if (!hoverable) return;
                   (e.currentTarget as HTMLElement).style.transform = "";
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 18px 40px -16px var(--acc)";
                 }}
@@ -185,6 +198,72 @@ export default function Hero() {
                 {lang === "he" ? "אבחון חינם לעסק שלכם" : "A free audit for your business"}
               </a>
               </Magnetic>
+            </div>
+
+            {/* Triage — three doors in.
+                The hero sells one outcome, but the business sells three services.
+                Rather than flattening them into the headline (which is what made
+                the old H1 say nothing), the visitor self-selects here and lands
+                on the page that matches their actual problem. */}
+            <div style={{ marginTop: 34 }}>
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                  fontSize: 12,
+                  letterSpacing: ".16em",
+                  color: "var(--dmuted)",
+                  marginBottom: 14,
+                  textTransform: "uppercase",
+                }}
+              >
+                {t.triageTitle}
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                {t.triage.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      minHeight: 44,
+                      // Without this an inline-flex pill sizes to its text and
+                      // pushes past the panel on a 360px screen — the English
+                      // labels ("I want a site that brings enquiries") are long
+                      // enough to overflow. maxWidth lets the label wrap inside.
+                      maxWidth: "100%",
+                      padding: "11px 18px",
+                      borderRadius: 999,
+                      border: "1px solid var(--dline)",
+                      background: "rgba(244,237,225,0.05)",
+                      color: "var(--dtext)",
+                      textDecoration: "none",
+                      fontSize: 15,
+                      fontWeight: 600,
+                      fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+                      transition: "background .12s ease, border-color .12s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!hoverable) return;
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = "color-mix(in oklch, var(--acc) 18%, transparent)";
+                      el.style.borderColor = "color-mix(in oklch, var(--acc) 55%, var(--dline))";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!hoverable) return;
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = "rgba(244,237,225,0.05)";
+                      el.style.borderColor = "var(--dline)";
+                    }}
+                  >
+                    {item.label}
+                    <span aria-hidden="true" style={{ color: "var(--acc)" }}>
+                      {lang === "he" ? "←" : "→"}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Meta row */}

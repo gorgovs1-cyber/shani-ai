@@ -31,6 +31,20 @@
   --dtext:  #f4ede1;
   --dmuted: #b1a48f;
   --dline:  rgba(244,237,225,0.12);
+
+  /* Legacy aliases — kept so older components keep rendering.
+     These names are used across /work and a few components but were never
+     defined, which silently dropped their colors and borders.
+     They map onto the warm palette above; do not give them new values. */
+  --signal:      var(--acc);
+  --signal-soft: rgba(242,98,46,0.08);
+  --signal-line: rgba(242,98,46,0.32);
+  --cream:       var(--ink);
+  --mist:        var(--muted2);
+  --border:      var(--line);
+  --border-2:    rgba(27,23,18,0.2);
+  --graphite:    var(--dpanel);
+  --ink-2:       var(--card);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -202,8 +216,34 @@ html.lenis { height: auto; }
   .hero-grid p { font-size: 15px !important; margin-top: 16px !important; }
   .hero-meta-row { display: none !important; }
   .hero-cta-row { margin-top: 26px !important; gap: 12px !important; }
-  .hero-cta-row > a { flex: 1 1 100% !important; width: 100% !important; padding-top: 15px !important; padding-bottom: 15px !important; }
+  /* `> div` covers the <Magnetic> wrapper that now sits between the row and the
+     CTA link. Without it the full-width mobile CTA rule silently stopped
+     matching and the primary button shrank back to its text width. */
+  .hero-cta-row > div { flex: 1 1 100% !important; width: 100% !important; display: block !important; }
+  .hero-cta-row > a,
+  .hero-cta-row > div > a { flex: 1 1 100% !important; width: 100% !important; padding-top: 15px !important; padding-bottom: 15px !important; }
 }
+
+/* ─── TOUCH TARGETS (coarse pointers only — desktop sizing unchanged) ───
+   WCAG 2.5.5 / genjutsu mobile principles: 44px minimum hit area. These two
+   controls are visually small by design, so the size is raised only where the
+   pointer is a finger. */
+@media (pointer: coarse) {
+  .work-visit {
+    min-height: 44px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .roi-range {
+    height: 44px;
+    min-height: 44px !important;
+  }
+}
+
+/* Fallback for the accessibility panel's viewport cap. The component sets
+   max-height in dvh inline; on a browser without dvh that declaration is
+   dropped and this vh version takes over, so the panel is still clamped. */
+#a11y-panel { max-height: calc(100vh - 8.5rem); }
 
 /* ─── NAV ─── */
 .nav-spacer { height: 76px; }

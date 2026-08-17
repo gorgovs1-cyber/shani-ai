@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "עבודות · Shani AI Creator",
   description: "פרויקטים קולנועיים, אפליקציות פול-סטאק ואוטומציות AI לעסקים בישראל.",
+  alternates: { canonical: "https://shani-ai.com/work" },
 };
 
 export default function WorkPage() {

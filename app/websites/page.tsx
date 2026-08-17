@@ -61,10 +61,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
       ],
     },
-    alsoTitle: "שירותים נוספים",
+    alsoTitle: "ואחרי שהאתר באוויר",
     also: [
-      { label: "אוטומציות", href: "/automations", desc: "מערכת שמטפלת בפניות שהאתר מביא." },
-      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "אבחון שמסמן מה שווה לתקן קודם." },
+      { label: "אוטומציות", href: "/automations", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
+      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "לא בטוחים שאתר הוא הדבר הראשון שחסר לכם? האבחון מסמן מה שווה לתקן קודם." },
     ],
     sections: [
       {
@@ -92,11 +92,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "אני אוכל לערוך את האתר בעצמי אחר כך?",
-        a: "תלוי מה רוצים לערוך. עדכוני תוכן שוטפים אפשר לנהל דרך התחזוקה החודשית, או שאני בונה ממשק ניהול פשוט לתכנים שמשתנים הרבה. שינויים עיצוביים עמוקים עדיף להשאיר לי, כדי לשמור על האיכות.",
+        a: "תלוי מה רוצים לערוך. עדכוני תוכן שוטפים אפשר לנהל דרך Shani Care, הליווי החודשי, או שאני בונה ממשק ניהול פשוט לתכנים שמשתנים הרבה. שינויים עיצוביים עמוקים עדיף להשאיר לי, כדי לשמור על האיכות.",
       },
       {
         q: "מה עם דומיין ואחסון?",
-        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, בממוצע כ-60 עד 90 ₪ לשנה תלוי בסיומת ובספק, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. בתחזוקה החודשית אני שומרת על העדכונים, הגיבויים והניטור, ואתם לא תלויים בי לשום דבר.",
+        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, בממוצע כ-60 עד 90 ₪ לשנה תלוי בסיומת ובספק, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. ב-Shani Care אני שומרת על העדכונים, הגיבויים והניטור, ואתם לא תלויים בי לשום דבר.",
       },
       {
         q: "האתר יהיה בעברית ובאנגלית?",
@@ -115,7 +115,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     kicker: "Service · Websites",
     title: "Cinematic websites that bring clients in, not just look good.",
     lead:
-      "I build websites in custom Next.js code, fast, with cinematic GSAP animation and real SEO, that position your business alongside the big players and turn visitors into clients. Your code, fully owned by you.",
+      "I build websites in custom Next.js code — fast, with cinematic GSAP animation and real SEO — that position your business alongside the big players and turn visitors into clients. Your code, fully owned by you.",
     primaryCta: "Talk to me about a website",
     primaryWaMsg: "Hi Shani, I'd like to build a website for my business",
     secondaryCta: "See pricing",
@@ -137,7 +137,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       items: [
         {
           name: "Landing page",
-          price: "1,500 NIS",
+          price: "₪1,500",
           fit: "You have one clear service to offer, or you run paid ads and want one place they lead to.",
           includes: "Up to three parts in a single continuous scroll, no navigation menu, with a fixed WhatsApp button. First version within five working days.",
           forWho: "Solo professionals, personal trainers, beauticians, instructors, and anyone running paid campaigns who needs a landing page.",
@@ -145,41 +145,41 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
         {
           name: "Website",
-          price: "2,400 NIS",
+          price: "₪2,400",
           fit: "You explain a method, a process or a service, and people ask you the same questions before they buy.",
-          includes: "A homepage plus 2 to 4 more pages, each with its own URL, title and description, so it ranks separately on Google. If you have a portfolio, up to 10 projects appear as cards in a shared gallery. Two months of care included, worth 400 NIS. First version 8 to 10 working days.",
+          includes: "A homepage plus 2 to 4 more pages, each with its own URL, title and description, so it ranks separately on Google. If you have a portfolio, up to 10 projects appear as cards in a shared gallery. Two months of Shani Care included, worth ₪400. First version 8 to 10 working days.",
           forWho: "Coaches, therapists, consultants and freelancers selling knowledge or a process. Also architects and designers with a small to mid-sized portfolio.",
-          notFor: "You sell products and need a cart and checkout, that is a shop. Or you have a large portfolio where most pieces need their own page, in which case a portfolio site fits better.",
+          notFor: "You sell products and need a cart and checkout — that is a shop. Or you have a large portfolio where most pieces need their own page, in which case a portfolio site fits better.",
         },
         {
           name: "Portfolio site",
-          price: "3,700 NIS",
+          price: "₪3,700",
           fit: "You have a large portfolio, roughly 15 projects and up, and you want your leading work to be found separately on Google.",
-          includes: "Everything in 'Website', plus each of up to 10 projects gets its own page with its own URL, title and description. An extra page beyond 10 is 250 NIS. First version 13 to 15 working days.",
+          includes: "Everything in 'Website', plus each of up to 10 projects gets its own page with its own URL, title and description. An extra page beyond 10 is ₪250. First version 13 to 15 working days.",
           forWho: "Architects, design studios, contractors, photographers and designers with a large portfolio where each project deserves its own page.",
           notFor: "You have up to 10 projects and they do not all need to be found separately on Google. The regular 'Website' does the job for less, and a single project page can always be added later.",
         },
         {
           name: "Second language version",
-          price: "600 NIS",
+          price: "₪600",
           fit: "You have clients abroad, or you want to appear in English searches too.",
           includes: "Full translation, a mirrored layout, and a language switch at the top of the page. Same price for every site type.",
           forWho: "Personal brands, consultants working with clients abroad, tourism, and anyone applying internationally.",
         },
       ],
     },
-    alsoTitle: "More services",
+    alsoTitle: "And once the site is live",
     also: [
-      { label: "Automations", href: "/automations", desc: "A system that handles the enquiries the site brings in." },
-      { label: "Consulting", href: "/ai-consulting", desc: "An audit that marks what is worth fixing first." },
+      { label: "Automations", href: "/automations", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
+      { label: "Consulting", href: "/ai-consulting", desc: "Not sure a site is the first thing missing? The audit marks what is worth fixing first." },
     ],
     sections: [
       {
         h: "How much does a business website cost?",
-        p: "The full price list is published on the pricing page. Landing page 1,500 NIS, a multi-page website with a shared project gallery 2,400 NIS, a portfolio website with up to 10 dedicated project pages 3,700 NIS, and a second-language version 600 NIS, the same price for every site type. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
+        p: "The full price list is published on the pricing page. Landing page ₪1,500, a multi-page website with a shared project gallery ₪2,400, a portfolio website with up to 10 dedicated project pages ₪3,700, and a second-language version ₪600, the same price for every site type. These are final prices, and anything not included appears as an add-on with its own price. Fill in the short audit at no cost, and within one business day I come back with directions and a proper proposal.",
       },
       {
-        h: "Why is coded better than Wix or Elementor?",
+        h: "Why is a coded site better than Wix or Elementor?",
         p: "A ready template looks like another template, loads slowly and is limited on SEO and design. Custom code loads fast, earns a high Lighthouse score, ranks better on Google, and enables animation and UX a template can't reproduce. Most importantly, the code is yours, no dependency on an external platform and no forced subscription.",
       },
       {
@@ -199,11 +199,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "Can I edit the site myself later?",
-        a: "Depends what you want to edit. Ongoing content updates can run through monthly care, or I build a simple admin for content that changes often. Deeper design changes are best left to me, to keep quality high.",
+        a: "It depends what you want to edit. Ongoing content updates can run through Shani Care, the monthly plan, or I can build a simple admin for content that changes often. Deeper design changes are best left to me, to keep quality high.",
       },
       {
         q: "What about domain and hosting?",
-        a: "The domain is registered in your name and on your card, on average 60 to 90 NIS a year depending on the extension and provider, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost. With monthly care I handle updates, backups and monitoring, and you are never dependent on me.",
+        a: "The domain is registered in your name and on your card, on average ₪60 to ₪90 a year depending on the extension and provider, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost. With Shani Care I handle updates, backups and monitoring, and you are never dependent on me.",
       },
       {
         q: "Will the site be in Hebrew and English?",
@@ -212,7 +212,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     closingTitle: "Ready for a site that actually works?",
     closingSub:
-      "We'll talk about your business and your goals, and I'll build a site that positions you right and brings inquiries. No commitment on the first call.",
+      "We'll talk about your business and your goals, and I'll build a site that positions you right and brings enquiries. No commitment on the first call.",
     closingCta: "Chat on WhatsApp",
     closingWaMsg: "Hi Shani, I'd like to build a website for my business",
     auditLine: "Or start with a free audit",

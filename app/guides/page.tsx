@@ -12,6 +12,37 @@ const MONO = "'JetBrains Mono', var(--font-mono), monospace";
 const FORM_ENDPOINT = "https://formspree.io/f/mnjkvblg";
 const UNLOCK_KEY = "shani-guides-unlocked";
 
+/**
+ * Marketing consent wording — mirrors components/LeadMagnet.tsx.
+ *
+ * ס' 30א לחוק התקשורת (בזק ושידורים) requires prior, explicit, opt-in consent
+ * before any marketing email is sent — statutory damages reach ₪1,000 per
+ * message with no proof of harm. The checkbox therefore starts UNCHECKED,
+ * submission is blocked until it is ticked, and the exact wording the visitor
+ * agreed to is sent along with the signup so the consent can be evidenced.
+ *
+ * Note: the guides themselves are static files under /guides/<file> and unlock
+ * client-side, so nothing is delivered by email. There is no transactional
+ * message here — the address is collected for marketing only, which is exactly
+ * why the consent has to be explicit rather than assumed.
+ */
+const CONSENT_COPY = {
+  he: {
+    label:
+      "אני מאשר/ת קבלת דיוור שיווקי במייל משני גורגוב — תוכן, טיפים והצעות. אפשר להסיר את ההרשמה בכל רגע.",
+    policyPrefix: "הפרטים נשמרים לפי",
+    policyLink: "מדיניות הפרטיות",
+    required: "כדי לפתוח את המדריכים צריך לאשר קבלת דיוור.",
+  },
+  en: {
+    label:
+      "I agree to receive marketing emails from Shani Gorgov — content, tips and offers. You can unsubscribe at any time.",
+    policyPrefix: "Your details are handled under the",
+    policyLink: "Privacy Policy",
+    required: "Please tick the consent box so I can unlock the guides.",
+  },
+} as const;
+
 type Copy = {
   kicker: string;
   title: string;
@@ -63,10 +94,12 @@ const COPY: Record<"he" | "en", Copy> = {
 export default function GuidesPage() {
   const { lang } = useLang();
   const c = COPY[lang];
+  const cc = CONSENT_COPY[lang === "en" ? "en" : "he"];
   const dir = lang === "he" ? "rtl" : "ltr";
 
   const [unlocked, setUnlocked] = useState(false);
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
 
   useEffect(() => {
@@ -77,13 +110,22 @@ export default function GuidesPage() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!email.trim() || !consent || status === "sending") return;
     setStatus("sending");
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "guides-page", lang }),
+        body: JSON.stringify({
+          email,
+          source: "guides-page",
+          lang,
+          // Evidence of consent, stored with the signup itself.
+          marketing_consent: true,
+          consent_text: CONSENT_COPY[lang === "en" ? "en" : "he"].label,
+          consent_at: new Date().toISOString(),
+          consent_source: "guides-page",
+        }),
       });
       if (res.ok) {
         try { localStorage.setItem(UNLOCK_KEY, "1"); } catch {}
@@ -152,7 +194,8 @@ export default function GuidesPage() {
               />
               <button
                 type="submit"
-                disabled={status === "sending"}
+                disabled={status === "sending" || !consent}
+                aria-describedby="guides-consent-label"
                 style={{
                   flex: "0 0 auto",
                   background: "var(--acc)",
@@ -162,13 +205,93 @@ export default function GuidesPage() {
                   fontSize: 16,
                   padding: "16px 28px",
                   borderRadius: 14,
-                  cursor: status === "sending" ? "default" : "pointer",
+                  minHeight: 44,
+                  cursor: status === "sending" || !consent ? "not-allowed" : "pointer",
+                  opacity: status === "sending" || !consent ? 0.55 : 1,
+                  transition: "opacity .2s",
                   fontFamily: HEEBO,
                   boxShadow: "0 16px 36px -16px var(--acc)",
                 }}
               >
                 {status === "sending" ? c.sending : c.button}
               </button>
+
+              {/* Explicit, opt-in marketing consent — ס' 30א לחוק התקשורת */}
+              <label
+                htmlFor="guides-consent"
+                style={{
+                  flexBasis: "100%",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 10,
+                  minHeight: 44,
+                  padding: "6px 2px",
+                  cursor: "pointer",
+                  textAlign: dir === "rtl" ? "right" : "left",
+                }}
+              >
+                <input
+                  id="guides-consent"
+                  type="checkbox"
+                  required
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  onFocus={(e) => {
+                    e.currentTarget.style.outline = "2px solid var(--acc)";
+                    e.currentTarget.style.outlineOffset = "3px";
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.outline = "";
+                    e.currentTarget.style.outlineOffset = "";
+                  }}
+                  style={{
+                    width: 20,
+                    height: 20,
+                    marginTop: 3,
+                    flexShrink: 0,
+                    accentColor: "var(--acc)",
+                    cursor: "pointer",
+                  }}
+                />
+                <span
+                  id="guides-consent-label"
+                  style={{
+                    fontFamily: HEEBO,
+                    fontSize: 14,
+                    lineHeight: 1.6,
+                    color: "var(--muted2)",
+                  }}
+                >
+                  {cc.label}{" "}
+                  {cc.policyPrefix}{" "}
+                  <a
+                    href="/privacy"
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
+                  >
+                    {cc.policyLink}
+                  </a>
+                  .
+                </span>
+              </label>
+
+              {!consent && (
+                <p
+                  aria-hidden="true"
+                  style={{
+                    flexBasis: "100%",
+                    margin: 0,
+                    fontFamily: HEEBO,
+                    fontSize: 13,
+                    lineHeight: 1.6,
+                    color: "var(--muted2)",
+                    opacity: 0.75,
+                    textAlign: dir === "rtl" ? "right" : "left",
+                  }}
+                >
+                  {cc.required}
+                </p>
+              )}
             </form>
             {status === "error" && (
               <p style={{ margin: "12px 0 0", color: "#c0392b", fontSize: 14, fontFamily: HEEBO }}>{c.errorMsg}</p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useLang } from "@/components/LanguageProvider";
 
 type Settings = {
   fontSize: 0 | 1 | 2;       // 0=רגיל 1=גדול 2=גדול מאוד
@@ -25,6 +26,8 @@ const DEFAULT: Settings = {
 };
 
 export default function AccessibilityWidget() {
+  const { t, lang, dir } = useLang();
+  const w = t.a11yWidget;
   const [open, setOpen] = useState(false);
   const [s, setS] = useState<Settings>(DEFAULT);
   const [guideY, setGuideY] = useState(200);
@@ -66,13 +69,19 @@ export default function AccessibilityWidget() {
   // Close on outside click
   useEffect(() => {
     if (!open) return;
-    const handler = (e: MouseEvent) => {
+    const handler = (e: Event) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    // iOS Safari only synthesizes mouse events over elements it considers
+    // clickable, so tapping bare page background never closed the panel.
+    document.addEventListener("touchstart", handler, { passive: true });
+    return () => {
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("touchstart", handler);
+    };
   }, [open]);
 
   const toggle = (key: keyof Settings) =>
@@ -102,40 +111,22 @@ export default function AccessibilityWidget() {
         />
       )}
 
-      {/* Skip to content */}
-      <a
-        href="#main-content"
-        style={{
-          position: "fixed",
-          top: -100,
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "var(--signal)",
-          color: "#fff",
-          padding: "0.75rem 1.5rem",
-          borderRadius: 8,
-          fontSize: "0.9rem",
-          fontWeight: 700,
-          zIndex: 999999,
-          transition: "top 0.2s",
-          textDecoration: "none",
-        }}
-        onFocus={e => { (e.currentTarget as HTMLElement).style.top = "1rem"; }}
-        onBlur={e => { (e.currentTarget as HTMLElement).style.top = "-100px"; }}
-      >
-        דלג לתוכן הראשי
-      </a>
+      {/* No skip-link here on purpose — <SkipLink /> in app/layout.tsx already
+          provides one, and two skip links means keyboard users tab past a
+          duplicate before reaching the page. */}
 
       {/* Toggle button — bottom-right, opposite the WhatsApp button */}
       <button
         onClick={() => setOpen(o => !o)}
-        aria-label="פתח תפריט נגישות"
+        aria-label={w.open}
         aria-expanded={open}
         aria-controls="a11y-panel"
         style={{
           position: "fixed",
-          bottom: "2rem",
-          right: "1.25rem",
+          // Safe-area offset so the button does not sit under the iOS home
+          // indicator. Resolves to plain 2rem on every device without a notch.
+          bottom: "calc(env(safe-area-inset-bottom, 0px) + 2rem)",
+          right: "calc(env(safe-area-inset-right, 0px) + 1.25rem)",
           width: 48,
           height: 48,
           borderRadius: "50%",
@@ -168,13 +159,21 @@ export default function AccessibilityWidget() {
           id="a11y-panel"
           ref={panelRef}
           role="dialog"
-          aria-label="תפריט נגישות"
-          dir="rtl"
+          aria-label={w.panel}
+          dir={dir}
           style={{
             position: "fixed",
-            bottom: "6rem",
-            right: "1.25rem",
-            width: 272,
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 6rem)",
+            right: "calc(env(safe-area-inset-right, 0px) + 1.25rem)",
+            // Seven 44px toggles plus header and footer make this panel ~570px
+            // tall. Bottom-anchored at 6rem that ran off the top of a 360x640
+            // phone, so the last toggles and the statement link were
+            // unreachable. Cap to the viewport and scroll inside instead.
+            width: "min(272px, calc(100vw - 2.5rem))",
+            maxHeight: "calc(100dvh - 8.5rem)",
+            overflowY: "auto",
+            overscrollBehavior: "contain",
+            WebkitOverflowScrolling: "touch" as any,
             background: "var(--ink-2)",
             border: "1px solid rgba(255,106,61,0.3)",
             borderRadius: 16,
@@ -192,7 +191,7 @@ export default function AccessibilityWidget() {
             borderBottom: "1px solid var(--border)",
           }}>
             <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--cream)", letterSpacing: "0.05em" }}>
-              הגדרות נגישות
+              {w.heading}
             </span>
             <button
               onClick={resetAll}
@@ -200,28 +199,31 @@ export default function AccessibilityWidget() {
                 fontSize: "0.65rem", color: "var(--mist)", background: "none",
                 border: "1px solid var(--border-2)", borderRadius: 4,
                 padding: "0.2rem 0.55rem", cursor: "none",
+                // Was ~19x40px — well under the 44px minimum on touch.
+                minHeight: 44, minWidth: 44,
               }}
-              aria-label="אפס את כל הגדרות הנגישות"
+              aria-label={w.resetAria}
             >
-              איפוס
+              {w.reset}
             </button>
           </div>
 
           {/* Font size */}
           <div style={{ marginBottom: "1rem" }}>
             <div style={{ fontSize: "0.7rem", color: "var(--mist)", marginBottom: "0.5rem", letterSpacing: "0.05em" }}>
-              גודל טקסט
+              {w.fontSize}
             </div>
             <div style={{ display: "flex", gap: "0.5rem" }}>
-              {(["רגיל", "גדול", "גדול מאוד"] as const).map((label, i) => (
+              {w.sizes.map((label, i) => (
                 <button
                   key={i}
                   onClick={() => setS(prev => ({ ...prev, fontSize: i as 0|1|2 }))}
                   aria-pressed={s.fontSize === i}
-                  aria-label={`גודל טקסט ${label}`}
+                  aria-label={`${w.fontSize}: ${label}`}
                   style={{
                     flex: 1,
                     padding: "0.4rem 0.3rem",
+                    minHeight: 44, // was ~23px tall — under the 44px minimum
                     borderRadius: 8,
                     border: `1px solid ${s.fontSize === i ? "var(--signal)" : "var(--border-2)"}`,
                     background: s.fontSize === i ? "rgba(255,106,61,0.15)" : "transparent",
@@ -240,15 +242,16 @@ export default function AccessibilityWidget() {
 
           {/* Toggles */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            {[
-              { key: "highContrast",   label: "ניגודיות גבוהה",     icon: "◑" },
-              { key: "grayscale",      label: "גווני אפור",          icon: "◐" },
-              { key: "underlineLinks", label: "הדגשת קישורים",       icon: "U̲" },
-              { key: "stopAnimations", label: "עצור אנימציות",       icon: "⏸" },
-              { key: "largeCursor",    label: "סמן גדול",            icon: "⬆" },
-              { key: "letterSpacing",  label: "מרווח אותיות",        icon: "A A" },
-              { key: "readingGuide",   label: "מדריך קריאה",         icon: "≡" },
-            ].map(({ key, label, icon }) => {
+            {([
+              { key: "highContrast",   icon: "◑" },
+              { key: "grayscale",      icon: "◐" },
+              { key: "underlineLinks", icon: "U̲" },
+              { key: "stopAnimations", icon: "⏸" },
+              { key: "largeCursor",    icon: "⬆" },
+              { key: "letterSpacing",  icon: "A A" },
+              { key: "readingGuide",   icon: "≡" },
+            ] as const).map(({ key, icon }) => {
+              const label = w.toggles[key];
               const active = !!s[key as keyof Settings];
               return (
                 <button
@@ -261,6 +264,7 @@ export default function AccessibilityWidget() {
                     alignItems: "center",
                     justifyContent: "space-between",
                     padding: "0.55rem 0.75rem",
+                    minHeight: 44, // was ~33px tall — under the 44px minimum
                     borderRadius: 8,
                     border: `1px solid ${active ? "rgba(255,106,61,0.4)" : "var(--border)"}`,
                     background: active ? "rgba(255,106,61,0.1)" : "transparent",
@@ -269,7 +273,7 @@ export default function AccessibilityWidget() {
                     cursor: "none",
                     transition: "all 0.2s",
                     width: "100%",
-                    textAlign: "right",
+                    textAlign: lang === "he" ? "right" : "left",
                   }}
                 >
                   <div style={{
@@ -312,9 +316,16 @@ export default function AccessibilityWidget() {
                 color: "var(--mist)",
                 textDecoration: "underline",
                 textUnderlineOffset: "3px",
+                // A bare 10px inline link is not a tappable target; the hit
+                // area is padded out to 44px without changing the text size.
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 44,
+                padding: "0 12px",
               }}
             >
-              הצהרת נגישות
+              {w.statement}
             </a>
           </div>
         </div>
