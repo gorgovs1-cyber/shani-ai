@@ -3,6 +3,7 @@
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
+import WebsiteCard3D from "@/components/WebsiteCard3D";
 
 export default function Services() {
   const { lang } = useLang();
@@ -133,11 +134,13 @@ export default function Services() {
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
                 fontSize: 13,
                 color: "var(--acc)",
-                marginBottom: 50,
+                marginBottom: s.no === "01" ? 16 : 50,
               }}
             >
               {s.no}
             </div>
+            {/* הדגמת תלת-ממד רק בכרטיס האתרים, כהוכחת יכולת ולא כקישוט על כל הכרטיסים */}
+            {s.no === "01" && <WebsiteCard3D />}
             <h3
               style={{
                 margin: "0 0 6px",
