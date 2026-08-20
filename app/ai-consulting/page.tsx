@@ -76,6 +76,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "ממש לא. אני מסבירה הכל בשפה פשוטה, בעברית, בלי להניח שום רקע טכני, ובלי לזלזל בכם. אתם מביאים את ההיכרות עם העסק, אני מביאה את הטכנולוגיה, וביחד מוצאים מה הכי מתאים.",
       },
     ],
+    bridge: { text: "אחרי שמיפינו מה בורח, השלב הבא הוא לסגור את זה.", linkLabel: "לאוטומציות", href: "/automations" },
     closingTitle: "בואו נמפה איפה AI יחסוך לכם הכי הרבה",
     closingSub:
       "שיחת אבחון ראשונה, ממוקדת ובלי התחייבות, שבסופה תדעו בדיוק מאיפה להתחיל.",
@@ -156,7 +157,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "Not at all. I explain everything in plain language, in Hebrew, assuming no technical background, and never talking down to you. You bring the knowledge of your business, I bring the technology, and together we find what fits best.",
       },
     ],
-    closingTitle: "Let's map where AI will save you the most.",
+    bridge: { text: "Once we've mapped what's leaking, the next step is closing that gap.", linkLabel: "See automations", href: "/automations" },
+    closingTitle: "Let's map where AI will save you the most",
     closingSub:
       "A first audit call, focused and with no commitment, that ends with you knowing exactly where to start.",
     closingCta: "Chat on WhatsApp",

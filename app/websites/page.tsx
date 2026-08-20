@@ -103,6 +103,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "האתר בנוי מלכתחילה לעברית, מימין לשמאל, על כל המשמעויות של זה בעיצוב ובפריסה. גרסה באנגלית היא תוספת שאפשר להוסיף בהקמה או בהמשך, במחיר אחיד של 600 ₪.",
       },
     ],
+    bridge: { text: "רוצים לראות דוגמאות אמיתיות לפני שמתחילים?", linkLabel: "לתיק העבודות", href: "/work" },
     closingTitle: "מוכנים לאתר שבאמת עובד?",
     closingSub:
       "נדבר על העסק שלכם, על המטרות, ואבנה לכם אתר שממצב אתכם נכון ומביא פניות. בלי התחייבות בשיחה הראשונה.",
@@ -210,6 +211,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "The site is built Hebrew-first with full RTL. An English version is an add-on you can include at build time or add later, priced in the proposal by content scope.",
       },
     ],
+    bridge: { text: "Want to see real examples before you start?", linkLabel: "See the portfolio", href: "/work" },
     closingTitle: "Ready for a site that actually works?",
     closingSub:
       "We'll talk about your business and your goals, and I'll build a site that positions you right and brings enquiries. No commitment on the first call.",

@@ -106,6 +106,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "כן, וזה בדיוק ההתמחות שלי. רוב כלי ה-AI חושבים באנגלית, ויוצאת מהם עברית מוזרה שמריחים ממרחק. אני מלמדת את המערכת לכתוב בעברית של בן אדם ובטון של העסק שלכם, כך שהלקוחות לא ירגישו שהם מדברים עם מכונה.",
       },
     ],
+    bridge: { text: "האוטומציה מטפלת בפניות שכבר נכנסות. השלב הבא הוא שיהיו יותר פניות.", linkLabel: "לאתרים", href: "/websites" },
     closingTitle: "בואו נמצא מה כדאי להעביר לאוטומציה אצלכם",
     closingSub:
       "בשיחה קצרה נזהה איפה בורח לכם הכי הרבה זמן ומה אפשר להעביר למערכת, בלי התחייבות.",
@@ -215,7 +216,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "Yes, and that's exactly my specialty. Most AI tools think in English, and the Hebrew that comes out is stilted in a way you can smell from a distance. I teach the system to write in the Hebrew of a real person and in your business's tone, so clients won't feel they're talking to a machine.",
       },
     ],
-    closingTitle: "Let's find what's worth automating for you.",
+    bridge: { text: "Automation handles the enquiries that already come in. The next step is getting more of them.", linkLabel: "See websites", href: "/websites" },
+    closingTitle: "Let's find what's worth automating for you",
     closingSub:
       "In a short call we'll spot where you lose the most time and what can move to automation. No commitment.",
     closingCta: "Chat on WhatsApp",

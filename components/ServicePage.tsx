@@ -39,6 +39,9 @@ export type ServiceCopy = {
   /** קישורים לשני השירותים האחרים */
   alsoTitle?: string;
   also?: { label: string; href: string; desc: string }[];
+  /** גשר לשלב הבא בסיפור, מוצג ממש לפני ה-CTA הסוגר, כדי שהעמוד לא ייגמר
+      בקריאה גנרית לפעולה אלא בהמשך הסיפור: ייעוץ → אוטומציות → אתרים → הוכחה. */
+  bridge?: { text: string; linkLabel: string; href: string };
   /** הדגמה חיה של אוטומציה מעל בלוק המוצרים */
   liveDemo?: { title: string; sub: string };
   sections: { h: string; p: string }[];
@@ -217,6 +220,32 @@ export default function ServicePage({
         </section>
 
         {beforeClosing}
+
+        {/* Story bridge to the next step, right before the closing CTA,
+            so the page doesn't just end on a generic call to action. */}
+        {c.bridge ? (
+          <div style={{ marginTop: 56, textAlign: "center" }}>
+            <a
+              href={c.bridge.href}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                color: "var(--muted2)",
+                fontSize: 16,
+                lineHeight: 1.6,
+                textDecoration: "none",
+                fontFamily: HEEBO,
+              }}
+            >
+              {c.bridge.text}
+              <span style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
+                {c.bridge.linkLabel}
+              </span>
+              <span aria-hidden="true" style={{ color: "var(--acc)" }}>{dir === "rtl" ? "←" : "→"}</span>
+            </a>
+          </div>
+        ) : null}
 
         {/* Closing CTA band */}
         <section style={{ marginTop: 64, background: "var(--dark)", borderRadius: 24, padding: "clamp(32px,4vw,52px)", textAlign: "center" }}>
