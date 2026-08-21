@@ -68,6 +68,7 @@ export default function ServicePage({
   const dir = c.dir;
   const auditLabel = lang === "he" ? "להתחיל באבחון AI חינם" : "Start a free AI Audit";
   const [open, setOpen] = useState<number | null>(null);
+  const [openProduct, setOpenProduct] = useState<number | null>(null);
 
   return (
     <>
@@ -132,32 +133,42 @@ export default function ServicePage({
               <div style={{ height: 18 }} />
             )}
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-              {c.products.items.map((p) => (
+              {c.products.items.map((p, pi) => (
                 <div key={p.name} style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 28px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16, flexWrap: "wrap", marginBottom: 18 }}>
-                    <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(19px,2.2vw,24px)", letterSpacing: "-0.01em", color: "var(--ink)", fontFamily: HEEBO }}>
-                      {p.name}
-                    </h3>
+                  <button
+                    type="button"
+                    onClick={() => setOpenProduct(openProduct === pi ? null : pi)}
+                    aria-expanded={openProduct === pi}
+                    style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16, flexWrap: "wrap", background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: HEEBO, textAlign: dir === "rtl" ? "right" : "left" }}
+                  >
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                      <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(19px,2.2vw,24px)", letterSpacing: "-0.01em", color: "var(--ink)", fontFamily: HEEBO }}>
+                        {p.name}
+                      </h3>
+                      <span aria-hidden="true" style={{ color: "var(--acc)", fontSize: 12, transition: "transform .2s", transform: openProduct === pi ? "rotate(180deg)" : "none", display: "inline-block" }}>▼</span>
+                    </span>
                     <span style={{ fontWeight: 800, fontSize: 20, color: "var(--acc)", fontFamily: HEEBO, whiteSpace: "nowrap" }}>{p.price}</span>
+                  </button>
+                  <div aria-hidden={openProduct !== pi} style={{ overflow: "hidden", maxHeight: openProduct === pi ? 800 : 0, transition: "max-height .35s ease" }}>
+                    <dl style={{ margin: 0, paddingTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
+                      {[
+                        [c.products!.labels.fit, p.fit],
+                        [c.products!.labels.includes, p.includes],
+                        [c.products!.labels.forWho, p.forWho],
+                        ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
+                      ].map(([label, value]) => (
+                        <div key={label as string}>
+                          <dt style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".14em", color: "var(--acc)", marginBottom: 5 }}>{label}</dt>
+                          <dd style={{ margin: 0, color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7, fontFamily: HEEBO }}>{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    {p.exampleUrl ? (
+                      <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 14.5, textDecoration: "none", fontFamily: HEEBO }}>
+                        {c.products!.labels.example}: {p.exampleLabel}
+                      </a>
+                    ) : null}
                   </div>
-                  <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-                    {[
-                      [c.products!.labels.fit, p.fit],
-                      [c.products!.labels.includes, p.includes],
-                      [c.products!.labels.forWho, p.forWho],
-                      ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
-                    ].map(([label, value]) => (
-                      <div key={label as string}>
-                        <dt style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".14em", color: "var(--acc)", marginBottom: 5 }}>{label}</dt>
-                        <dd style={{ margin: 0, color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7, fontFamily: HEEBO }}>{value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  {p.exampleUrl ? (
-                    <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 14.5, textDecoration: "none", fontFamily: HEEBO }}>
-                      {c.products!.labels.example}: {p.exampleLabel}
-                    </a>
-                  ) : null}
                 </div>
               ))}
             </div>
