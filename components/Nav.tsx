@@ -172,6 +172,7 @@ export default function Nav() {
     <>
       {/* Floating capsule — fixed, hides when scrolling down */}
       <div
+        className="nav-wrap"
         style={{
           position: "fixed",
           top: 18,
@@ -183,6 +184,8 @@ export default function Nav() {
           display: "flex",
           justifyContent: "center",
           // Respect a landscape notch / rounded display edge on both sides.
+          // Mobile gets a tighter value via .nav-wrap in globals.css, so the
+          // capsule sits closer to the true screen edge on small screens.
           paddingInline:
             "max(24px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))",
           pointerEvents: "none",

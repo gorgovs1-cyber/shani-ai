@@ -257,6 +257,9 @@ html.lenis { height: auto; }
   .nav-spacer { height: 68px; }
   .nav-lang { display: none !important; }
   .nav-cta { display: none !important; }
+  /* Tighter side margin on mobile so the floating capsule sits closer to the
+     true screen edge, instead of the 24px used on larger screens. */
+  .nav-wrap { padding-inline: max(10px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)) !important; }
 }
 /* iOS Safari: fix fixed nav flicker */
 @supports (-webkit-touch-callout: none) {
