@@ -74,18 +74,24 @@ export default function Footer() {
       </div>
 
       {/* Site pages */}
-      <nav className="footer-nav" aria-label={lang === "he" ? "מפת אתר" : "Site map"} style={{ display: "flex", flexBasis: "100%", flexWrap: "wrap", rowGap: 12, columnGap: 26, fontSize: 14.5, color: "var(--muted2)", marginBottom: 4 }}>
+      {/* alignItems:center נוסף כשהקישורים קיבלו גובה מגע של 44px,
+          כדי שכל השורה תישאר מיושרת ולא רק הקישור הגבוה */}
+      <nav className="footer-nav" aria-label={lang === "he" ? "מפת אתר" : "Site map"} style={{ display: "flex", alignItems: "center", flexBasis: "100%", flexWrap: "wrap", rowGap: 12, columnGap: 26, fontSize: 14.5, color: "var(--muted2)", marginBottom: 4 }}>
         {[
           { label: t.navWebsites,    href: "/websites" },
           { label: t.navAutomations, href: "/automations" },
           { label: t.navConsulting,  href: "/ai-consulting" },
           { label: t.navPricing,     href: "/pricing" },
           { label: t.navGuides,      href: "/guides" },
+          // הבלוג יושב בפוטר ולא בתפריט העליון: התפריט כבר מחזיק שישה
+          // קישורים, מתג שפה ו-CTA, ובנייד הוא ממילא צפוף.
+          // התווית כתובה כאן ולא ב-lib/translations.ts, כי אין שם מפתח לבלוג.
+          { label: lang === "he" ? "בלוג" : "Blog", href: "/blog" },
         ].map(({ label, href }) => (
           <a
             key={href}
             href={href}
-            style={{ color: "var(--muted2)", textDecoration: "none", transition: "color .2s", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}
+            style={{ display: "inline-flex", alignItems: "center", minHeight: 44, color: "var(--muted2)", textDecoration: "none", transition: "color .2s", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted2)")}
           >

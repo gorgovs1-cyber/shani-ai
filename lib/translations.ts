@@ -10,7 +10,7 @@ export const dirOf = (l: Lang): "rtl" | "ltr" => (l === "he" ? "rtl" : "ltr");
 export const dict = {
   he: {
     dir: 'rtl' as const,
-    navWork:'פרויקטים', navBuild:'מה אני בונה', navAbout:'עליי', navProcess:'תהליך', navTestimonials:'המלצות', navGuides:'מדריכים', navCta:'בואו נדבר',
+    navWork:'פרויקטים', navGuides:'מדריכים', navCta:'בואו נדבר',
     navPricing:'מחירים', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ AI', navServices:'שירותים',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
     navAriaMain:'ניווט ראשי', navAriaHome:'שני גורגוב, לדף הבית', navAriaMobileMenu:'תפריט ניווט',
@@ -29,37 +29,11 @@ export const dict = {
       {label:'רוצים לחסוך זמן על משימות חוזרות', href:'/automations'},
       {label:'עדיין לא יודעים מאיפה מתחילים', href:'/audit'}
     ],
-    heroCta1:'לראות פרויקטים', heroCta2:'בואו נדבר',
-    auditCtaPrefix:'לא בטוחים מאיפה להתחיל?', auditCtaLink:'לאבחון חינם',
     // "פיתוח מבוסס AI" היה מפרט פנימי, לא משהו שהלקוח מחפש. "קוד ולא תבנית" אומר לו משהו.
     meta1:'ישראל', meta2:'עונה תוך 24 שעות', meta3:'קוד, לא תבנית',
     workKicker:'04 · עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות ללקוחות, מוצרים שבניתי, והדגמות שמראות מה אפשר לבנות.',
     galleryKicker:'מבט מקרוב', galleryTitle:'', scrollHint:'המשיכו לגלול', scrollArrow:'',
     buildKicker:'01 · מה אני בונה', buildTitle:'שלושה דברים, כל אחד פותר בעיה אחרת', buildSub:'מתחת לכל כרטיס כתוב למי הוא מתאים, ואם עדיין מתלבטים זו בדיוק השאלה שהאבחון עונה עליה.', servicesCta:'שלחו לי הודעה',
-    problemKicker:'01 · לפני שמדברים על פתרונות',
-    problemTitle:'פניות נופלות בין הכיסאות',
-    problemLines:[
-      'וואטסאפ, אינסטגרם, טלפון, טופס באתר, כל אחד פונה במקום אחר ואתם צריכים לזכור למי כבר עניתם',
-      'ואז מתברר שמישהו לא קיבל תשובה, בדרך כלל דווקא מי שהיה הכי קרוב לסגור',
-      'ולא בגלל שאתם לא מסודרים, פשוט אין מספיק שעות ביום.'
-    ],
-    journeyKicker:'03 · איך זה מתחבר',
-    journeyTitle:'שלושה שלבים, לא שלושה מוצרים',
-    journeySub:'אפשר להתחיל בכל שלב, אבל זה הסדר שמחזיר הכי הרבה זמן.',
-    journeySteps:[
-      {no:'01', title:'ייעוץ', desc:'מבינים מה שבור ומה שווה לתקן קודם.', href:'/ai-consulting'},
-      {no:'02', title:'אוטומציות', desc:'מתקנים את מה שגוזל הכי הרבה זמן.', href:'/automations'},
-      {no:'03', title:'אתר', desc:'נותנים לזה חזית שמביאה פניות חדשות.', href:'/websites'}
-    ],
-    priceKicker:'08 · כמה זה עולה',
-    priceTitle:'המחירים כתובים, תמיד',
-    priceSub:'מה שכתוב במחירון זה מה שמשלמים, בלי תוספות שצצות בסוף.',
-    priceItems:[
-      {label:'דף נחיתה', price:'1,500 ₪'},
-      {label:'אתר עסקי', price:'2,400 ₪'},
-      {label:'מערכת AI מלאה', price:'7,900 ₪'}
-    ],
-    priceCta:'למחירון המלא',
     aboutKicker:'05 · מי אני', aboutTitle:'עליי', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
     processKicker:'02 · איך זה עובד', processTitle:'מהפנייה ועד שזה רץ', processSub:'הצעד הראשון לא עולה כלום, ובכל שלב אתם יודעים בדיוק איפה הדברים עומדים.',
     contactTitle:'אז מה בונים?',
@@ -86,7 +60,8 @@ export const dict = {
     faqItems:[
       {q:'מה אם לא אהיה מרוצה מהתוצאה?', a:'העבודה מלווה אתכם לאורך כל הדרך: מגדירים ביחד את הכיוון, ואני מציגה גרסאות לאישור בכל שלב, כך שאין הפתעות בסוף. כל פרויקט כולל שני סבבי שינויים, ואם צריך עוד, סבב נוסף עולה 350 ₪ ומתומחר מראש. המטרה שלי היא שתצאו עם נכס שאתם גאים בו, לא רק "לסמן וי".'},
       {q:'למה אתר אצלך יותר יקר מוויקס או אלמנטור?', a:'כי זה לא אותו מוצר. תבנית וויקס נראית כמו עוד תבנית, נטענת לאט ומוגבלת בקידום. אני כותבת קוד מאפס, אז האתר נטען מהר, בנוי נכון לגוגל, והבעלות עליו שלכם בלי דמי מנוי כפויים. ומעבר לזה, אני מחברת אוטומציות ו-AI שאף תבנית לא נותנת, כך שהאתר לא רק מציג את העסק אלא גם עובד בשבילו.'},
-      {q:'לא בטוחים מאיפה להתחיל?', a:'מתחילים עם אבחון AI חינם, שיחה ממוקדת שבסיומה תקבלו תוכנית עבודה ברורה: מה להטמיע, באיזה סדר, ואילו כלים ואוטומציות יחסכו לכם הכי הרבה זמן, בלי התחייבות.'}
+      {q:'לא בטוחים מאיפה להתחיל?', a:'מתחילים עם אבחון AI חינם, שיחה ממוקדת שבסיומה תקבלו תוכנית עבודה ברורה: מה להטמיע, באיזה סדר, ואילו כלים ואוטומציות יחסכו לכם הכי הרבה זמן, בלי התחייבות.'},
+      {q:'יש התחייבות לטווח ארוך?', a:'פרויקט חד פעמי נגמר בלי שום התחייבות המשך: אני מסיימת והקוד עובר אליכם. גם ב-Shani Care אין התחייבות, אפשר לעצור בכל חודש והאתר ממשיך לרוץ. ואם נוח לכם יותר, פשוט פונים כשיש צורך במשהו ספציפי ומקבלים הצעת מחיר לעבודה הזו.'},
     ],
     steps:[
       {n:'01', title:'אבחון חינם', desc:'טופס קצר על העסק והמשימות שחוזרות, בלי עלות ובלי התחייבות.'},
@@ -97,10 +72,7 @@ export const dict = {
     ],
     processPriceLine:'כל המחירים מפורסמים מראש: דף נחיתה מ-1,500 ₪, אתר עסקי מ-2,400 ₪, מערכות ואוטומציות מ-1,400 ₪.',
     processPriceCta:'למחירון המלא',
-    trusted:{ label:'עבדתי עם' },
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
-    ctaStrip:'לא בטוחים מאיפה להתחיל? שיחת מיפוי ראשונה, ללא עלות.',
-    ctaStripBtn:'דברו איתי בוואטסאפ',
     // ההמלצות הפיקטיביות שהיו כאן נמחקו — הן לא רונדרו בשום מקום.
     //   מה שמוצג בפועל הוא components/TestimonialsSection.tsx עם לקוחות אמיתיים.
     roi: {
@@ -138,7 +110,7 @@ export const dict = {
   },
   en: {
     dir: 'ltr' as const,
-    navWork:'Work', navBuild:'What I build', navAbout:'About', navProcess:'Process', navTestimonials:'Reviews', navGuides:'Guides', navCta:"Let's talk",
+    navWork:'Work', navGuides:'Guides', navCta:"Let's talk",
     navPricing:'Pricing', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'AI Consulting', navServices:'Services',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
     navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov — home', navAriaMobileMenu:'Navigation menu',
@@ -154,38 +126,12 @@ export const dict = {
       {label:'I want to save time on repetitive work', href:'/automations'},
       {label:"I don't know where to start yet", href:'/audit'}
     ],
-    heroCta1:'See projects', heroCta2:"Let's talk",
-    auditCtaPrefix:'Not sure where to start?', auditCtaLink:'Get a free audit',
     meta1:'Israel', meta2:'Replies within 24h', meta3:'Code, not a template',
     workKicker:'04 · Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
     galleryKicker:'Up close', galleryTitle:'', scrollHint:'Keep scrolling', scrollArrow:'',
     buildKicker:'01 · What I build', buildTitle:'Three things, each solving a different problem', buildSub:'Under every card it says who it is for, and if you are still unsure, that is exactly the question the free audit answers.', servicesCta:'Send me a message',
-    problemKicker:'01 · Before we talk solutions',
-    problemTitle:'Enquiries slip through the cracks',
-    problemLines:[
-      'WhatsApp, Instagram, the phone, the form on your site, everyone reaches you somewhere different, and you have to remember who you answered and who you did not',
-      'A few days later you find out someone never got a reply, and it is usually whoever was closest to buying',
-      'And it is not that you are disorganised, there simply are not enough hours in the day.'
-    ],
-    journeyKicker:'03 · How it fits together',
-    journeyTitle:'Three stages, not three products',
-    journeySub:'You can start at any stage, but this is the order that gives back the most time.',
-    journeySteps:[
-      {no:'01', title:'Consulting', desc:'Work out what is broken and what is worth fixing first.', href:'/ai-consulting'},
-      {no:'02', title:'Automations', desc:'Fix whatever is eating the most time.', href:'/automations'},
-      {no:'03', title:'Website', desc:'Give it a front door that brings in new enquiries.', href:'/websites'}
-    ],
-    priceKicker:'08 · What it costs',
-    priceTitle:'The prices are written down, always',
-    priceSub:'What the price list says is what you pay, with no extras that show up at the end.',
-    priceItems:[
-      {label:'Landing page', price:'₪1,500'},
-      {label:'Business website', price:'₪2,400'},
-      {label:'Full AI system', price:'₪7,900'}
-    ],
-    priceCta:'See the full price list',
     aboutKicker:'05 · Who I am', aboutTitle:'About', stat1:'years in business', stat2:'response time',
-    processKicker:'05 · How I work', processTitle:'From idea to product', processSub:'A clear five-step process, and you stay involved the whole way.',
+    processKicker:'02 · How it works', processTitle:'From idea to product', processSub:'A clear five-step process, and you stay involved the whole way.',
     contactTitle:'So what are we building?',
     contactSub:'A website, an automation, or still not sure exactly what? Write to me and we will work out where to start.',
     // These were reversed against the Hebrew, which meant the free-audit CTA —
@@ -220,10 +166,7 @@ export const dict = {
     ],
     processPriceLine:'All prices are published up front: landing page from ₪1,500, business website from ₪2,400, systems and automations from ₪1,400.',
     processPriceCta:'See the full price list',
-    trusted:{ label:'Worked with' },
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
-    ctaStrip:'Not sure where to start? The first mapping session is free.',
-    ctaStripBtn:'Chat on WhatsApp',
     // ההמלצות הפיקטיביות שהיו כאן נמחקו — הן לא רונדרו בשום מקום.
     //   מה שמוצג בפועל הוא components/TestimonialsSection.tsx עם לקוחות אמיתיים.
     roi: {

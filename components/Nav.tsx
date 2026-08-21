@@ -157,7 +157,7 @@ export default function Nav() {
   const anchor = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const navLinks = [
-    { label: t.navWork,        href: anchor("#work") },
+    { label: t.navWork,        href: "/work" },
     { label: t.navWebsites,    href: "/websites" },
     { label: t.navAutomations, href: "/automations" },
     { label: t.navConsulting,  href: "/ai-consulting" },

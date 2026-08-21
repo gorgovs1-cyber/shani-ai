@@ -18,8 +18,8 @@ export default function FloatingWhatsApp() {
       aria-label="WhatsApp"
       style={{
         position: "fixed",
-        bottom: "2rem",
-        left: "2rem",
+        bottom: "calc(env(safe-area-inset-bottom, 0px) + 2rem)",
+        insetInlineStart: "calc(env(safe-area-inset-left, 0px) + 2rem)",
         zIndex: 9990,
         width: 56,
         height: 56,
