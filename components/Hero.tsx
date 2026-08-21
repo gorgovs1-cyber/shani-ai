@@ -97,37 +97,6 @@ export default function Hero() {
         >
           {/* Left: content */}
           <div style={{ animation: "scl-fadeup 0.8s ease 0.1s both" }}>
-            {/* Role badge */}
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 9,
-                background: "color-mix(in oklch, var(--acc) 16%, transparent)",
-                border: "1px solid color-mix(in oklch, var(--acc) 40%, transparent)",
-                color: "var(--acc2)",
-                padding: "8px 16px",
-                borderRadius: 999,
-                fontSize: 13,
-                fontWeight: 600,
-                marginBottom: 28,
-                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-                letterSpacing: ".02em",
-              }}
-            >
-              <span
-                style={{
-                  width: 7,
-                  height: 7,
-                  borderRadius: "50%",
-                  background: "var(--acc)",
-                  boxShadow: "0 0 10px var(--acc)",
-                  display: "inline-block",
-                }}
-              />
-              {t.role}
-            </div>
-
             {/* H1 */}
             <h1
               style={{

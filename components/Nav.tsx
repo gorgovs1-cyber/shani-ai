@@ -226,7 +226,7 @@ export default function Nav() {
                 letterSpacing: "-0.01em",
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}>
-                Shani Gorgov
+                Shani AI
               </span>
               <span className="nav-subtitle" style={{
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",

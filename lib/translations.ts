@@ -17,10 +17,9 @@ export const dict = {
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
     navAriaSwitchEn:'מעבר לאנגלית', navAriaSwitchHe:'מעבר לעברית',
     footerSeo:'בונה אתרים, אוטומציות וכלי AI לעסקים בתל אביב, רמת גן, הרצליה, ירושלים, חיפה, באר שבע והשרון, ואונליין בכל הארץ.',
-    role:'SHANI AI CREATOR',
     // ה-H1 הקודם, "יוצרת פתרונות טכנולוגיים לעסקים", תיאר קטגוריה ולא תוצאה,
     // ולא הכיל אף מילת מפתח שמישהו מחפש. החדש אומר מה הלקוח מקבל.
-    heroTitle:'אתר שמביא פניות, ומערכת שלא נותנת לאף אחת ליפול',
+    heroTitle:'יוצרת פתרונות טכנולוגיים לעסקים שרוצים לגדול',
     heroSub:'אני בונה אתרים ומערכות לעסקים קטנים בישראל, קודם בודקים מה הכי דחוף ורק אחר כך בונים. האבחון הראשון בחינם, והמחירים פה באתר.',
     // טריאז': שלוש דלתות כניסה, כדי שמבקר חדש לא יצטרך לנחש מאיפה מתחילים.
     triageTitle:'מה מביא אתכם לכאן?',
@@ -117,8 +116,7 @@ export const dict = {
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'Building websites, automations and AI tools for businesses in Tel Aviv, Ramat Gan, Herzliya, Jerusalem, Haifa, Beer Sheva and the Sharon, and online across Israel.',
-    role:'SHANI AI CREATOR',
-    heroTitle:'A website that brings enquiries, and a system that lets none of them fall',
+    heroTitle:'Technology solutions for businesses ready to grow',
     heroSub:'I build websites and systems for small businesses in Israel. First we work out what is most urgent, and only then do we build. The first audit is free, and the prices are right here on the site.',
     triageTitle:'What brings you here?',
     triage:[
