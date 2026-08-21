@@ -38,7 +38,7 @@ export default function Hero() {
       style={{
         position: "relative",
         zIndex: 1,
-        padding: "26px 24px 0",
+        padding: "26px 24px 26px",
       }}
     >
       {/* Dark panel */}

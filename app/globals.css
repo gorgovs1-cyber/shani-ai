@@ -255,7 +255,6 @@ html.lenis { height: auto; }
   html[dir="rtl"] .nav-hamburger { order: -1; margin-inline-end: 4px; }
   html[dir="ltr"] .nav-hamburger { order: 1; }
   .nav-spacer { height: 68px; }
-  .nav-subtitle { display: none !important; }
   .nav-lang { display: none !important; }
   .nav-cta { display: none !important; }
 }
