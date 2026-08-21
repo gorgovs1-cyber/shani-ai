@@ -11,7 +11,7 @@ const WA = "972504744815";
 const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
 type More = { fit: string; includes: string; forWho: string; notFor?: string; exampleLabel?: string; exampleUrl?: string };
-type Item = { name: string; desc: string; price: string; unit?: string; flag?: boolean; summary?: string[]; more?: More };
+type Item = { name: string; desc?: string; price: string; unit?: string; flag?: boolean; summary?: string[]; more?: More };
 type Group = { title: string; note?: string; href?: string; hrefLabel?: string; items: Item[] };
 type Factor = { title: string; desc: string };
 type Step = { no: string; title: string; desc: string };
@@ -51,7 +51,7 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "05 · מחירים",
     title: "מחירים.",
     intro:
-      "כל המחירים כאן סופיים ומלאים. בלי תוספות שמתגלות בסוף, ובלי מחיר שמשתנה לפי מי שואל.",
+      "המחירים כאן סופיים, בלי הפתעות בסוף. הפירוט המלא בעקרונות ובשאלות הנפוצות למטה.",
     groups: [
       {
         title: "אתרים",
@@ -60,21 +60,36 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "דף נחיתה",
-            desc: "עמוד אחד רציף. מציג מי אתם, מה אתם עושים, ואיך יוצרים קשר.",
             price: "1,500 ₪",
             summary: ["עד 3 חלקים בגלילה אחת", "כפתור וואטסאפ קבוע", "בלי תפריט ניווט", "5 ימי עבודה"],
+            more: {
+              fit: "יש לכם שירות אחד ברור להציג, ורוצים נוכחות מהירה בלי אתר שלם.",
+              includes: "עמוד אחד עם כל המידע החשוב, כפתור וואטסאפ קבוע, מותאם לנייד.",
+              forWho: "עצמאים ובעלי שירות יחיד שרוצים לצאת לאוויר מהר.",
+              notFor: "כמה שירותים או מוצרים שכל אחד צריך עמוד נפרד? כדאי \'אתר\'.",
+            },
           },
           {
             name: "אתר",
-            desc: "עמוד בית ועוד 2 עד 4 עמודים, כל אחד מדורג בנפרד בגוגל. כולל גלריית עבודות משותפת ושני חודשי ליווי.",
             price: "2,400 ₪",
             summary: ["בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל", "גלריית עבודות משותפת, עד 10 פריטים", "שאלות נפוצות + המלצות", "2 חודשי ליווי כלולים (שווי 400 ₪)"],
+            more: {
+              fit: "כמה נושאים להציג בנפרד: שירותים, אודות, שאלות נפוצות, וכל עמוד מדורג בגוגל בפני עצמו.",
+              includes: "עמוד בית ועוד 2 עד 4 עמודים, גלריית עבודות משותפת, ושני חודשי Shani Care כלולים.",
+              forWho: "רוב העסקים הקטנים והבינוניים.",
+              notFor: "תיק עבודות גדול שכל פרויקט בו ראוי לעמוד נפרד? כדאי \'אתר פורטפוליו\'.",
+            },
           },
           {
             name: "אתר פורטפוליו",
-            desc: "הכל מ'אתר', ובנוסף עד 10 עמודי פרויקט נפרדים שכל אחד מדורג בגוגל.",
             price: "3,700 ₪",
             summary: ["הכל מ'אתר' + עד 10 עמודי פרויקט נפרדים", "כל עמוד פרויקט מדורג בנפרד בגוגל", "עמוד נוסף מעבר ל-10: 250 ₪", "13-15 ימי עבודה"],
+            more: {
+              fit: "עבודות שכל אחת מהן שווה חשיפה נפרדת בגוגל: עיצוב, אדריכלות, קבלנות.",
+              includes: "הכל מ\'אתר\', ובנוסף עד 10 עמודי פרויקט נפרדים שכל אחד מדורג בפני עצמו.",
+              forWho: "בעלי תיק עבודות שהכמות והאיכות שלו הן חלק מהמכירה.",
+              notFor: "שירות אחד או שניים בלבד? זה הרבה מעבר למה שצריך.",
+            },
           },
           {
             name: "גרסה בשפה שנייה",
@@ -93,28 +108,44 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "דרגה 1 · אוטומציה בודדת",
-            desc: "תהליך אחד שרץ לבד. תזכורת לפני תור, פנייה שנכנסת ישר לגיליון, מייל שנשלח אחרי כל לקוח.",
             price: "1,400 ₪",
             summary: ["תהליך אחד מקצה לקצה", "מתחברת לכלים שיש לך כבר", "ניטור שמתריע על תקלה"],
+            more: {
+              fit: "משימה חוזרת אחת וברורה שגוזלת זמן כל שבוע.",
+              includes: "לדוגמה: תזכורת לפני תור, פנייה שנכנסת ישר לגיליון, מייל אחרי כל לקוח.",
+              forWho: "עסקים שרוצים להתחיל קטן ולהרגיש את הערך לפני שמרחיבים.",
+            },
           },
           {
             name: "דרגה 2 · בוט וואטסאפ",
-            desc: "עונה על השאלות שחוזרות אצלכם שוב ושוב, בעברית ובטון של העסק, מסביב לשעון.",
             price: "2,400 ₪",
             summary: ["מענה 24/7 בעברית", "בטון של העסק שלכם", "מעבירה אליכם כשצריך"],
+            more: {
+              fit: "אתם עונים שוב ושוב על אותן שאלות, ולקוחות מחכים מחוץ לשעות.",
+              includes: "מענה 24/7 בעברית ובטון של העסק, עם מעבר אליכם כשצריך אדם אמיתי.",
+              forWho: "עסקים עם נפח פניות קבוע ושאלות שחוזרות על עצמן.",
+            },
           },
           {
             name: "דרגה 3 · סוכן AI שמדבר עברית",
-            desc: "לא רק עונה. מבין הקשר, זוכר שיחה, ומבצע: קובע פגישה ביומן, מתמחר לפי הכללים שלכם, מסנן פניות.",
             price: "4,900 ₪",
             summary: ["מבין הקשר וזוכר שיחה", "קובע פגישה ביומן", "מתמחר לפי הכללים שלכם"],
+            more: {
+              fit: "רוצים שהמענה גם יפעל, לא רק יענה: לקבוע פגישה, לתמחר, לסנן.",
+              includes: "הבנת הקשר וזיכרון שיחה, קביעת פגישה ביומן, ותמחור לפי הכללים שלכם.",
+              forWho: "עסקים עם תהליך מכירה או קליטה עם כללים ברורים.",
+            },
           },
           {
             name: "דרגה 4 · מערכת AI מלאה",
-            desc: "אתר, סוכן AI, אוטומציות וריכוז הפניות במקום אחד. הכל מחובר, במחיר נמוך מרכישה בנפרד.",
             price: "7,900 ₪",
             flag: true,
             summary: ["אתר + סוכן AI + אוטומציות", "הכל מחובר במקום אחד", "זול יותר מרכישה בנפרד"],
+            more: {
+              fit: "רוצים אתר, סוכן AI ואוטומציות מחוברים במקום אחד, לא רכיבים נפרדים.",
+              includes: "הכל מדרגות 1 עד 3 ביחד, במחיר נמוך מרכישה בנפרד.",
+              forWho: "עסקים שמוכנים למערכת מלאה ולא רק לצעד אחד.",
+            },
           },
         ],
       },
@@ -158,10 +189,10 @@ const COPY: Record<"he" | "en", Copy> = {
       "מי שמזמין אתר מקבל את שני החודשים הראשונים של Shani Care כלולים, בשווי 400 ₪. אחריהם זה לא חובה ואין בזה התחייבות: אפשר להפסיק בכל חודש והאתר ממשיך לעבוד. מי שמעדיף פונה כשצריך משהו ומקבל הצעה לאותה עבודה.",
     includedTitle: "כלול בכל אתר, בלי תוספת תשלום",
     included: [
-      "התאמת נגישות לתקן הישראלי 5568. נדרש בחוק לאתר עסקי, ורוב האתרים הזולים מגיעים בלעדיו.",
+      "התאמת נגישות לתקן 5568, נדרש בחוק ולרוב חסר באתרים זולים.",
       "מדיניות פרטיות ותקנון.",
       "הקוד שלכם, בבעלות מלאה. אפשר לקחת אותו לכל מפתח אחר.",
-      "מותאם לנייד, ושני סבבי שינויים אחרי שראיתם.",
+      "מותאם לנייד.",
     ],
     toolsTitle: "עלויות שוטפות אצלכם",
     toolsIntro:
@@ -195,19 +226,19 @@ const COPY: Record<"he" | "en", Copy> = {
     values: [
       {
         title: "שעות שחוזרות כל שבוע",
-        desc: "משימות שחוזרות על עצמן קורות לבד, והזמן שהתפנה חוזר ללקוחות, למכירות ולדברים שרק אתם יודעים לעשות.",
+        desc: "המשימות החוזרות קורות לבד, והזמן חוזר ללקוחות ולמכירות.",
       },
       {
         title: "אף פנייה לא הולכת לאיבוד",
-        desc: "מענה מהיר ומסודר לכל מתעניין, גם כשאתם באמצע עבודה וגם אחרי שעות הפעילות. פניות חמות לא מתקררות.",
+        desc: "מענה מהיר לכל מתעניין, גם באמצע עבודה וגם אחרי שעות. פניות חמות לא מתקררות.",
       },
       {
         title: "נוכחות שבונה אמון",
-        desc: "אתר וכלים שנראים ברמה של העסקים הגדולים, בעברית שנשמעת אנושית ובטון של העסק שלכם.",
+        desc: "אתר ברמה של העסקים הגדולים, בעברית אנושית ובטון שלכם.",
       },
       {
         title: "מערכת שעובדת, לא עוד כלי",
-        desc: "לא עוד מנוי שנזנח אחרי חודש, אלא תהליך שרץ לבד, נמדד ומשתפר, עם מישהי שמשגיחה עליו.",
+        desc: "לא מנוי שנזנח אחרי חודש, אלא תהליך שרץ, נמדד ומשתפר.",
       },
     ],
     faqTitle: "שאלות נפוצות",
@@ -222,11 +253,11 @@ const COPY: Record<"he" | "en", Copy> = {
       },
       {
         q: "כמה זמן לוקח פרויקט?",
-        a: "דף נחיתה: גרסה ראשונה מלאה עד חמישה ימי עבודה מרגע שהחומרים אצלי, ובאוויר תוך שבוע עד שבועיים. אתר: גרסה ראשונה מלאה עד 8 עד 10 ימי עבודה, ובאוויר תוך שבועיים עד שלושה, כי יש יותר חלקים לסדר. אתר פורטפוליו: 13 עד 15 ימי עבודה, ובאוויר תוך שלושה עד ארבעה שבועות, כי יש עוד עמודי פרויקט לבנות ולקדם בגוגל. מערכת מלאה לוקחת יותר, ולוח הזמנים המדויק נמצא בהצעה.",
+        a: "תלוי בסוג האתר, כל לוחות הזמנים המדויקים מפורטים למעלה בעקרונות. למערכת מלאה לוקח יותר, והלוח המדויק נמצא בהצעה.",
       },
       {
         q: "אני משלם על הכלים בנפרד?",
-        a: "כן, וזה לטובתכם. הדומיין והכלים נרשמים על שמכם ובכרטיס שלכם, כך שהם שלכם ואתם לא תלויים בי. אני מקימה ומחברת הכל.",
+        a: "כן. פרטים למעלה בקטע 'עלויות שוטפות אצלכם', וזה לטובתכם: הכלים שלכם, ואתם לא תלויים בי.",
       },
     ],
     ctaTitle: "הצעד הראשון לא עולה כלום.",
@@ -241,7 +272,7 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "05 · Pricing",
     title: "Pricing.",
     intro:
-      "Every price here is final and complete. No extras that surface at the end, and no price that changes depending on who is asking.",
+      "Prices here are final, no surprises at the end. Full detail is in Principles and the FAQ below.",
     groups: [
       {
         title: "Websites",
@@ -250,21 +281,36 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "Landing page",
-            desc: "One continuous page. Who you are, what you do, and how to reach you.",
             price: "₪1,500",
             summary: ["Up to 3 sections, one scroll", "Fixed WhatsApp button", "No navigation menu", "5 working days"],
+            more: {
+              fit: "You have one clear service to show, and want a fast presence without a full site.",
+              includes: "One page with everything that matters, a fixed WhatsApp button, mobile ready.",
+              forWho: "Freelancers and single-service businesses who want to launch fast.",
+              notFor: "Several services or products that each need their own page? \'Website\' fits better.",
+            },
           },
           {
             name: "Website",
-            desc: "A multi-page site built around your content — a homepage plus usually 2–4 more pages such as method, about or FAQ, each with its own address and independent SEO on Google. If you have a portfolio, one shared gallery shows up to 10 pieces. The first two months of Shani Care are included.",
             price: "₪2,400",
             summary: ["Home + 2–4 content pages, each with its own SEO", "Shared portfolio gallery, up to 10 pieces", "FAQ + reviews section", "2 months of Shani Care included (worth ₪400)"],
+            more: {
+              fit: "A few topics to show separately — services, about, FAQ — each ranking on Google on its own.",
+              includes: "A homepage plus 2 to 4 more pages, a shared portfolio gallery, and two months of Shani Care included.",
+              forWho: "Most small and mid-sized businesses.",
+              notFor: "A large portfolio where every project deserves its own page? \'Portfolio website\' fits better.",
+            },
           },
           {
             name: "Portfolio website",
-            desc: "Built like 'Website', plus each of up to 10 projects gets its own page, able to rank on Google on its own. A fit for large portfolios: architecture, interior design, contracting.",
             price: "₪3,700",
             summary: ["Everything in 'Website' + up to 10 dedicated project pages", "Every project page can rank on Google on its own", "Extra page beyond 10: ₪250", "13–15 working days"],
+            more: {
+              fit: "Work where each project deserves its own visibility on Google: design, architecture, contracting.",
+              includes: "Everything in \'Website\', plus up to 10 project pages, each ranking on its own.",
+              forWho: "Portfolio owners where quantity and quality are part of the pitch.",
+              notFor: "Just one or two services? This is more than you need.",
+            },
           },
           {
             name: "Second language",
@@ -283,28 +329,44 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           {
             name: "Level 1 · Single automation",
-            desc: "One process that runs on its own: a reminder before an appointment, an enquiry that lands straight in a sheet, an email sent after every client.",
             price: "₪1,400",
             summary: ["One end-to-end process", "Connects to tools you already use", "Monitoring that alerts on failure"],
+            more: {
+              fit: "One clear repeating task that eats time every week.",
+              includes: "For example: a reminder before an appointment, an enquiry straight into a sheet, an email after every client.",
+              forWho: "Businesses who want to start small and feel the value before expanding.",
+            },
           },
           {
             name: "Level 2 · WhatsApp bot",
-            desc: "Answers the questions you get again and again, in Hebrew and in your business tone, around the clock.",
             price: "₪2,400",
             summary: ["24/7 answers in Hebrew", "In your business tone", "Hands off to you when needed"],
+            more: {
+              fit: "You keep answering the same questions, and clients wait outside business hours.",
+              includes: "24/7 answers in Hebrew and your business tone, handing off to a real person when needed.",
+              forWho: "Businesses with steady enquiry volume and recurring questions.",
+            },
           },
           {
             name: "Level 3 · AI agent with a Hebrew skill",
-            desc: "It does more than answer. It understands context, remembers the conversation, and acts: books a meeting, quotes by your rules, filters enquiries.",
             price: "₪4,900",
             summary: ["Understands context, remembers chats", "Books meetings in your calendar", "Quotes by your own rules"],
+            more: {
+              fit: "You want the reply to also act, not just answer: book, quote, filter.",
+              includes: "Understands context and remembers the chat, books meetings, and quotes by your own rules.",
+              forWho: "Businesses with a sales or intake process that has clear rules.",
+            },
           },
           {
             name: "Level 4 · Full AI system",
-            desc: "Website, AI agent, automations and every enquiry in one place. All connected, priced below buying each part separately.",
             price: "₪7,900",
             flag: true,
             summary: ["Website + AI agent + automations", "Everything connected in one place", "Cheaper than buying separately"],
+            more: {
+              fit: "You want a website, AI agent and automations connected in one place, not separate pieces.",
+              includes: "Everything from Levels 1 to 3 together, priced below buying separately.",
+              forWho: "Businesses ready for a full system, not just one step.",
+            },
           },
         ],
       },
@@ -348,10 +410,10 @@ const COPY: Record<"he" | "en", Copy> = {
       "Order a website and the first two months of Shani Care are included, worth ₪400. After that, Shani Care is optional with no commitment: you can stop any month and the site keeps working. If you prefer, reach out when something is needed and get a quote for that job.",
     includedTitle: "Included in every website, at no extra cost",
     included: [
-      "Accessibility to Israeli standard 5568. Required by law for a business site, and most cheap sites arrive without it.",
+      "Accessibility to standard 5568, required by law and usually missing on cheap sites.",
       "Privacy policy and terms of use.",
       "Your code, fully owned. You can take it to any other developer.",
-      "Mobile ready, plus two revision rounds after you have seen it.",
+      "Mobile ready.",
     ],
     toolsTitle: "Running costs on your side",
     toolsIntro:
@@ -383,17 +445,17 @@ const COPY: Record<"he" | "en", Copy> = {
     ],
     valueTitle: "What you get out of it",
     values: [
-      { title: "Hours back every week", desc: "Repeating tasks happen on their own, and the time you free up goes back to clients, to sales, and to the work only you can do." },
-      { title: "No enquiry gets lost", desc: "A fast, organised reply to everyone who reaches out, even mid-job and after hours. Warm enquiries do not go cold." },
-      { title: "A presence that builds trust", desc: "A site and tools that look like the big companies, in Hebrew that sounds human and in your business tone." },
-      { title: "A system that works, not another tool", desc: "Not another subscription abandoned after a month, but a process that runs, gets measured, improves, and has someone watching it." },
+      { title: "Hours back every week", desc: "Repeating tasks happen on their own, and the time goes back to clients and sales." },
+      { title: "No enquiry gets lost", desc: "A fast reply to everyone, even mid-job and after hours. Warm enquiries do not go cold." },
+      { title: "A presence that builds trust", desc: "A site that looks like the big companies, in a human tone." },
+      { title: "A system that works, not another tool", desc: "Not a subscription abandoned after a month, but a process that runs, gets measured, and improves." },
     ],
     faqTitle: "Frequently asked",
     faqItems: [
       { q: "Are these prices final?", a: "Yes. What you see here is what you pay, and it is agreed before we start. Anything not included appears as an add-on with its own price, and never surfaces at the end." },
       { q: "What if my project is not exactly one of these?", a: "Then we build it from the parts that are listed here. If something is not on the list at all, I price it separately and explain what it is based on." },
-      { q: "How long does a project take?", a: "Landing page: a full first version within five working days from the moment I have your materials, and live within one to two weeks. Website: a full first version within 8 to 10 working days, and live within two to three weeks; there's simply more to put together. Portfolio website: 13 to 15 working days, and live within three to four weeks; there are more project pages to build and optimise for Google. A full system takes longer, and the exact timeline is in the proposal." },
-      { q: "Do I pay for the tools separately?", a: "Yes, and that is in your favour. The domain and the tools are registered in your name and on your card, so they are yours and you are not dependent on me. I set everything up and connect it." },
+      { q: "How long does a project take?", a: "Depends on the site type — exact timelines are listed above, under Principles. A full system takes longer, with the exact timeline set in the proposal." },
+      { q: "Do I pay for the tools separately?", a: "Yes — details above under 'Running costs on your side'. It's in your favour: your tools, and you're not dependent on me." },
     ],
     ctaTitle: "The first step costs nothing.",
     ctaSub: "A short audit, and within one business day you will know which directions are worth exploring.",
@@ -505,7 +567,9 @@ export default function PricingPage() {
                       ) : (
                         <div style={{ fontWeight: 700, fontSize: 17.5, color: it.flag ? "var(--acc)" : "var(--ink)", lineHeight: 1.4 }}>{it.name}</div>
                       )}
-                      <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
+                      {it.desc ? (
+                        <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
+                      ) : null}
                       {it.summary ? (
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 8px", margin: "10px 0 0" }}>
                           {it.summary.map((s, si) => (
