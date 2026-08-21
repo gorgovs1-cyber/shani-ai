@@ -31,8 +31,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         {
           name: "אבחון ראשוני",
           price: "ללא עלות",
-          fit: "אתם יודעים שמשהו בעסק גוזל יותר מדי זמן, אבל לא בטוחים מה לתקן קודם ואיפה AI בכלל רלוונטי.",
-          includes: "טופס קצר על העסק, הכלים והמשימות שחוזרות. תוך יום עסקים אני חוזרת עם שניים שלושה כיוונים, ואז שיחת היכרות של עשרים דקות שבה מחליטים מה נכון לבנות ומה לא. בסיום מגיעה הצעה מסודרת עם מה נבנה, כמה זה עולה ולוח זמנים.",
+          fit: "יודעים שמשהו בעסק גוזל זמן, אבל לא בטוחים מה לתקן קודם או איפה AI רלוונטי.",
+          includes: "טופס קצר על העסק והכלים. תוך יום עסקים אני חוזרת עם כיוונים, ואז שיחת היכרות של 20 דקות. בסיום מגיעה הצעה מסודרת: מה נבנה, כמה זה עולה, ולוח זמנים.",
           forWho: "בעלי עסקים קטנים ובינוניים שרוצים להבין מה אפשרי לפני שמתחייבים לפרויקט.",
           notFor: "אתם כבר יודעים בדיוק מה אתם רוצים לבנות. אז אפשר לדלג ולפנות ישירות בוואטסאפ.",
         },
@@ -46,19 +46,19 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "מה עושה יועץ AI לעסקים?",
-        p: "יועצת AI עוזרת לכם להבין איפה בעסק אפשר להשתמש ב-AI כדי לחסוך זמן וכסף, ואיך לעשות את זה נכון בלי לבזבז חודשים על ניסוי וטעייה. אני לא מוכרת לכם כלי, אלא קודם מבינה את העסק, ואז ממליצה בדיוק מה להטמיע, באיזה סדר, ומה יחזיר לכם הכי הרבה שעות.",
+        p: "יועצת AI עוזרת לכם להבין איפה AI חוסך זמן וכסף, בלי לבזבז חודשים על ניסוי וטעייה. אני לא מוכרת כלי — קודם מבינה את העסק, ואז ממליצה מה להטמיע, באיזה סדר, ומה יחזיר הכי הרבה שעות.",
       },
       {
         h: "איך מתחילים? אבחון AI",
-        p: "מתחילים בשיחת אבחון ממוקדת. אנחנו יושבים, ממפים את כל התהליכים שלכם ומזהים איפה בדיוק בורח הזמן. בסוף אתם יוצאים עם תכנית עבודה ברורה. מתחילים באבחון חינמי דרך הטופס באתר, ותוך יום עסקים אני חוזרת עם כיוונים.",
+        p: "מתחילים בשיחת אבחון ממוקדת שממפה את התהליכים שלכם ומזהה איפה בורח הזמן — הפרטים המלאים למעלה. יוצאים ממנה עם תכנית עבודה ברורה.",
       },
       {
         h: "למה AI כותב עברית שנשמעת מוזרה, ואיך מתקנים את זה?",
-        p: "רוב כלי ה-AI חושבים באנגלית ומתרגמים, ולכן העברית שיוצאת מהם קצת עקומה, מנופחת ומיד מסגירה את עצמה. אני בונה למערכת מערכת הוראות שמלמדת אותה לכתוב בעברית של בן אדם, בשפה ובטון של העסק שלכם, כך שמה שיוצא מוכן לשליחה ונשמע כמוכם ולא כמו מכונה.",
+        p: "רוב כלי ה-AI חושבים באנגלית ומתרגמים, ולכן העברית שיוצאת מהם עקומה ומנופחת. אני מלמדת את המערכת לכתוב בעברית של בן אדם, בטון של העסק שלכם — מוכן לשליחה, נשמע כמוכם ולא כמו מכונה.",
       },
       {
         h: "הטמעת AI בעסק, לא נשארים לבד עם מסמך",
-        p: "ייעוץ ששווה משהו לא נגמר במסמך יפה. אני מלווה אתכם בהטמעה בפועל: מגדירה את הכלים, בונה את האוטומציות, מדריכה את הצוות ומוודאת שזה באמת נכנס לשגרת העבודה. המטרה היא תוצאות שאפשר למדוד, ולא עוד קובץ שנשכח בדרייב.",
+        p: "ייעוץ ששווה משהו לא נגמר במסמך יפה. אני מלווה בהטמעה בפועל: מגדירה כלים, בונה אוטומציות, מדריכה את הצוות. המטרה תוצאות שאפשר למדוד, לא עוד קובץ שנשכח בדרייב.",
       },
     ],
     faqTitle: "שאלות על ייעוץ AI",
@@ -112,8 +112,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         {
           name: "First audit",
           price: "Free",
-          fit: "You know something in the business is eating too much time, but you are not sure what to fix first or where AI is even relevant.",
-          includes: "A short form about the business, the tools and the recurring tasks. Within one working day I come back with two or three directions, followed by a twenty-minute call where we decide what is worth building and what is not. A full proposal follows, with what gets built, what it costs and a timeline.",
+          fit: "Something in the business is eating too much time, but you're not sure what to fix first or where AI is relevant.",
+          includes: "A short form about the business and tools. Within one working day I come back with directions, then a 20-minute call. A full proposal follows: what gets built, what it costs, and a timeline.",
           forWho: "Owners of small and mid-sized businesses who want to understand what is possible before committing to a project.",
           notFor: "You already know exactly what you want built, so you can skip ahead and message me directly.",
         },
@@ -127,19 +127,19 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     sections: [
       {
         h: "What does an AI consultant for business do?",
-        p: "An AI consultant helps you understand where in your business you can use AI to save time and money, and how to do it right without wasting months on trial and error. I don't sell you a tool; I first understand the business, then recommend exactly what to implement, in what order, and what will return the most hours.",
+        p: "An AI consultant helps you find where AI saves time and money, without wasting months on trial and error. I don't sell a tool — I first understand the business, then recommend what to implement, in what order, and what returns the most hours.",
       },
       {
         h: "How do you start? An AI audit",
-        p: "You start with a focused audit session. We sit down, map all your processes and pinpoint where time leaks. You leave with a clear action plan. Start with the free audit via the site's form, and within one working day I come back with directions.",
+        p: "You start with a focused audit that maps your processes and pinpoints where time leaks — full details above. You leave with a clear action plan.",
       },
       {
         h: "Why does AI write such odd Hebrew, and how do you fix it?",
-        p: "Most AI tools think in English and translate, so the Hebrew they produce comes out slightly bent, inflated, and gives itself away immediately. I build the system an instruction set that teaches it to write the Hebrew of a real person, in your business's voice and tone, so what comes out is ready to send and sounds like you rather than like a machine.",
+        p: "Most AI tools think in English and translate, so the Hebrew comes out bent and inflated. I teach the system to write like a real person, in your business's tone — ready to send, sounding like you, not a machine.",
       },
       {
         h: "AI rollout — you're not left alone with a document",
-        p: "Consulting worth anything doesn't end with a pretty document. I guide the actual rollout: set up the tools, build the automations, train the team and make sure it truly enters your workflow. The goal is results you can measure, not another file forgotten in a drive.",
+        p: "Consulting worth anything doesn't end with a pretty document. I guide the rollout: set up tools, build automations, train the team. The goal is results you can measure, not another file forgotten in a drive.",
       },
     ],
     faqTitle: "AI consulting FAQ",
