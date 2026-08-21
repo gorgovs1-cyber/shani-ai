@@ -5,7 +5,6 @@ import Process from "@/components/Process";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import WorkGrid from "@/components/WorkGrid";
 import About from "@/components/About";
-import LeadMagnet from "@/components/LeadMagnet";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -20,7 +19,6 @@ export default function Home() {
       <TestimonialsSection />
       <WorkGrid />
       <About />
-      <LeadMagnet />
       <FAQ />
       <Contact />
       <Footer />
