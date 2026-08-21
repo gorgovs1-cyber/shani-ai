@@ -213,6 +213,7 @@ export default function Nav() {
           {/* Left: Logo + name */}
           <a
             href={isHome ? "#top" : "/"}
+            dir="ltr"
             style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none" }}
             aria-label={t.navAriaHome}
           >
