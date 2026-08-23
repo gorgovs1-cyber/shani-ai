@@ -24,7 +24,7 @@ type Item = {
 
 const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; items: Item[] }> = {
   he: {
-    kicker: "03 · המלצות",
+    kicker: "02 · המלצות",
     title: "מה לקוחות אומרים",
     sub: "שני עסקים שעברו את התהליך הזה.",
     items: [
@@ -47,7 +47,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
     ],
   },
   en: {
-    kicker: "03 · Reviews",
+    kicker: "02 · Reviews",
     title: "What clients say",
     sub: "Two businesses that went through this exact process.",
     items: [
@@ -88,7 +88,7 @@ export default function TestimonialsSection() {
       style={{
         position: "relative",
         zIndex: 1,
-        maxWidth: 1320,
+        maxWidth: 1200,
         margin: "0 auto",
         padding: "clamp(72px,9vw,128px) 24px 0",
         opacity: 0,

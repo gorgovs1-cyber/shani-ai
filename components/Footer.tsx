@@ -13,7 +13,7 @@ export default function Footer() {
       style={{
         position: "relative",
         zIndex: 1,
-        maxWidth: 1320,
+        maxWidth: 1200,
         margin: "0 auto",
         padding: "32px 24px 56px",
         display: "flex",

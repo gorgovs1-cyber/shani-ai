@@ -44,7 +44,7 @@ export default function Hero() {
       {/* Dark panel */}
       <div
         style={{
-          maxWidth: 1320,
+          maxWidth: 1200,
           margin: "0 auto",
           position: "relative",
           background: "var(--dark)",

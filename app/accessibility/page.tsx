@@ -108,7 +108,7 @@ export default function AccessibilityPage() {
         style={{
           position: "relative",
           zIndex: 1,
-          maxWidth: 880,
+          maxWidth: 860,
           margin: "0 auto",
           padding: "clamp(96px,12vw,160px) 24px clamp(48px,6vw,80px)",
           textAlign: dir === "rtl" ? "right" : "left",

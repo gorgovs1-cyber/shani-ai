@@ -53,7 +53,7 @@ export default function GuidesPage() {
 
   return (
     <>
-      <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 960, margin: "0 auto" }}>
+      <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
           {c.kicker}
         </div>

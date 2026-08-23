@@ -224,6 +224,17 @@ html.lenis { height: auto; }
   .hero-cta-row > div > a { flex: 1 1 100% !important; width: 100% !important; padding-top: 15px !important; padding-bottom: 15px !important; }
 }
 
+/* ─── MOBILE READABILITY ───
+   genjutsu mobile principles: body copy must not drop below 16px on phones.
+   The site uses inline styles, so this needs !important to win specificity.
+   Scoped to unclassed running text only, so mono kickers and pills keep their size. */
+@media (max-width: 768px) {
+  main p:not([class]),
+  section p:not([class]) {
+    font-size: max(16.5px, 1rem) !important;
+  }
+}
+
 /* ─── TOUCH TARGETS (coarse pointers only — desktop sizing unchanged) ───
    WCAG 2.5.5 / genjutsu mobile principles: 44px minimum hit area. These two
    controls are visually small by design, so the size is raised only where the
@@ -244,6 +255,21 @@ html.lenis { height: auto; }
    max-height in dvh inline; on a browser without dvh that declaration is
    dropped and this vh version takes over, so the panel is still clamped. */
 #a11y-panel { max-height: calc(100vh - 8.5rem); }
+
+/* ─── Z-INDEX SCALE ───
+   genjutsu: define a scale instead of arbitrary values. Documented here as the
+   reference for future work; existing components are migrated gradually.
+   Values match what the components actually use today, so migrating a component
+   to a variable cannot silently drop it behind another layer. */
+:root {
+  --z-content:  1;
+  --z-sticky:   10;
+  --z-nav:      200;
+  --z-float:    9990;
+  --z-modal:    9999;
+  --z-banner:   99900;
+  --z-skiplink: 99999;
+}
 
 /* ─── NAV ─── */
 .nav-spacer { height: 76px; }
@@ -282,11 +308,9 @@ html.lenis { height: auto; }
   /* Gallery cards: full-width-ish on small screens */
   [role="list"] article { min-width: 280px !important; }
 
-  /* Services / About / Process: stack */
+  /* Services / About: stack */
   .services-grid     { grid-template-columns: 1fr !important; }
   .about-grid        { grid-template-columns: 1fr !important; }
-  .process-grid      { grid-template-columns: 1fr !important; }
-  .journey-grid      { grid-template-columns: 1fr !important; }
   .price-anchor-grid { grid-template-columns: 1fr !important; }
 
   /* Contact CTA: stack */
@@ -297,7 +321,6 @@ html.lenis { height: auto; }
 @media (max-width: 480px) {
   /* Even smaller screens */
   [role="list"] article { min-width: 260px !important; }
-  .process-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ─── FOOTER MOBILE ─── */
@@ -309,13 +332,6 @@ html.lenis { height: auto; }
   }
 }
 
-/* ─── PROCESS GRID MOBILE ─── */
-@media (max-width: 900px) {
-  .process-grid { grid-template-columns: repeat(2, 1fr) !important; }
-}
-@media (max-width: 500px) {
-  .process-grid { grid-template-columns: 1fr !important; }
-}
 
 /* ─── SERVICES GRID MOBILE ─── */
 @media (max-width: 768px) {
@@ -324,7 +340,6 @@ html.lenis { height: auto; }
 
 /* ─── JOURNEY + PRICE ANCHOR MOBILE ─── */
 @media (max-width: 768px) {
-  .journey-grid      { grid-template-columns: 1fr !important; }
   .price-anchor-grid { grid-template-columns: 1fr !important; }
 }
 

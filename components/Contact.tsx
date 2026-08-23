@@ -33,7 +33,7 @@ export default function Contact() {
     >
       <div
         style={{
-          maxWidth: 1320,
+          maxWidth: 1200,
           margin: "0 auto",
           position: "relative",
           background: "var(--dark)",

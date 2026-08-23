@@ -16,7 +16,7 @@ export default function About() {
       style={{
         position: "relative",
         zIndex: 1,
-        maxWidth: 1320,
+        maxWidth: 1200,
         margin: "0 auto",
         padding: "clamp(72px,9vw,128px) 24px 0",
         opacity: 0,

@@ -139,7 +139,7 @@ export default function PostArticle({ post, related }: { post: Post; related: Po
 
   return (
     <div dir={dir} style={{ fontFamily: HEEBO }}>
-      <main style={{ position: "relative", zIndex: 1, maxWidth: 760, margin: "0 auto", padding: "clamp(120px,14vw,170px) clamp(20px,5vw,40px) 0" }}>
+      <main style={{ position: "relative", zIndex: 1, maxWidth: 860, margin: "0 auto", padding: "clamp(120px,14vw,170px) clamp(20px,5vw,40px) 0" }}>
         <a
           href="/blog"
           style={{

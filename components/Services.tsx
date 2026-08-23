@@ -15,7 +15,7 @@ export default function Services() {
       style={{
         position: "relative",
         zIndex: 1,
-        maxWidth: 1320,
+        maxWidth: 1200,
         margin: "0 auto",
         padding: "clamp(72px,9vw,128px) 24px 0",
         opacity: 0,
@@ -212,9 +212,7 @@ export default function Services() {
               </div>
             )}
             <a
-              href={`https://wa.me/972504744815?text=${encodeURIComponent(`היי שני, אני מתעניינת ב${s.title}`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={["/websites", "/automations", "/ai-consulting"][i] ?? "/audit"}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -226,6 +224,9 @@ export default function Services() {
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                 borderTop: "1px solid var(--line)",
                 paddingTop: 20,
+                paddingBottom: 12,
+                minHeight: 44,
+                boxSizing: "border-box",
                 width: "100%",
                 marginTop: "auto",
               }}

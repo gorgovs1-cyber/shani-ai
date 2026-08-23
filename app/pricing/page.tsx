@@ -259,6 +259,14 @@ const COPY: Record<"he" | "en", Copy> = {
         q: "אני משלם על הכלים בנפרד?",
         a: "כן. פרטים למעלה בקטע 'עלויות שוטפות אצלכם', וזה לטובתכם: הכלים שלכם, ואתם לא תלויים בי.",
       },
+      {
+        q: "מה אם לא אהיה מרוצה מהתוצאה?",
+        a: "מגדירים ביחד את הכיוון, ואני מציגה גרסאות לאישור בכל שלב, כך שאין הפתעות בסוף. שני סבבי שינויים כלולים, וסבב נוסף עולה 350 ₪ ומתומחר מראש.",
+      },
+      {
+        q: "יש התחייבות לטווח ארוך?",
+        a: "אין. פרויקט חד פעמי נגמר והקוד עובר אליכם. גם ב-Shani Care אפשר לעצור בכל חודש והאתר ממשיך לרוץ.",
+      },
     ],
     ctaTitle: "הצעד הראשון לא עולה כלום.",
     ctaSub: "אבחון קצר, ותוך יום עסקים תדעו אילו כיוונים שווה לבדוק בעסק שלכם.",
@@ -456,6 +464,8 @@ const COPY: Record<"he" | "en", Copy> = {
       { q: "What if my project is not exactly one of these?", a: "Then we build it from the parts that are listed here. If something is not on the list at all, I price it separately and explain what it is based on." },
       { q: "How long does a project take?", a: "Depends on the site type — exact timelines are listed above, under Principles. A full system takes longer, with the exact timeline set in the proposal." },
       { q: "Do I pay for the tools separately?", a: "Yes — details above under 'Running costs on your side'. It's in your favour: your tools, and you're not dependent on me." },
+      { q: "What if I'm not happy with the result?", a: "We agree the direction together, and I show you versions for approval at every stage, so there are no surprises at the end. Two revision rounds are included; a further round is ₪350, priced in advance." },
+      { q: "Is there a long-term commitment?", a: "None. A one-off project ends and the code is yours. With Shani Care you can stop any month and the site keeps running." },
     ],
     ctaTitle: "The first step costs nothing.",
     ctaSub: "A short audit, and within one business day you will know which directions are worth exploring.",
@@ -488,7 +498,7 @@ export default function PricingPage() {
 
   return (
     <div dir={c.dir} style={{ fontFamily: HEEBO }}>
-      <main style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "clamp(120px,14vw,170px) 24px 0" }}>
+      <main style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "clamp(120px,14vw,170px) 24px 0" }}>
         {/* Hero */}
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>

@@ -223,7 +223,7 @@ export default function WorkGrid() {
         id="work"
         style={{
           position: "relative", zIndex: 1,
-          maxWidth: 1320, margin: "0 auto",
+          maxWidth: 1200, margin: "0 auto",
           padding: "clamp(72px,9vw,128px) 24px clamp(28px,4vw,44px)",
           opacity: 0, transform: "translateY(28px)",
           transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
@@ -467,7 +467,7 @@ export default function WorkGrid() {
                     background: "rgba(255,255,255,0.06)", borderRadius: 3,
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
-                    <span style={{ fontFamily: "monospace", fontSize: 9, color: "rgba(255,255,255,0.3)" }}>
+                    <span style={{ fontFamily: "monospace", fontSize: 12, color: "rgba(255,255,255,0.3)" }}>
                       {project.url.replace("https://","").replace(/\/$/,"")}
                     </span>
                   </div>
@@ -509,7 +509,7 @@ export default function WorkGrid() {
                 <div style={{
                   position: "absolute", top: 38, insetInlineStart: 10, zIndex: 6,
                   fontFamily: "'JetBrains Mono',monospace",
-                  fontSize: 10, color: "var(--acc2)",
+                  fontSize: 12, color: "var(--acc2)",
                   background: "rgba(10,8,6,0.9)", backdropFilter: "blur(8px)",
                   WebkitBackdropFilter: "blur(8px)",
                   border: "1px solid var(--dline)", borderRadius: 999,
@@ -546,7 +546,7 @@ export default function WorkGrid() {
               <div style={{ padding: "18px 20px 22px" }}>
                 <div style={{
                   fontFamily: "'JetBrains Mono',monospace",
-                  fontSize: 10, letterSpacing: ".08em", color: "var(--acc)",
+                  fontSize: 12, letterSpacing: ".08em", color: "var(--acc)",
                   marginBottom: 5, textTransform: "uppercase",
                 }}>{project.kind}</div>
                 <h3 style={{
