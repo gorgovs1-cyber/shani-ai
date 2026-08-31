@@ -292,7 +292,7 @@ export default function WorkGrid() {
             const scale = 1 - abs * SCALE_STEP;
             const opacity = visible ? 1 - depthFrac * MAX_FADE : 0;
             const transform = deck3d
-              ? `translateX(${translateX}%) perspective(1600px) rotateY(${sign * depthFrac * MAX_ROTATE}deg) translateZ(${-depthFrac * MAX_DEPTH}px) scale(${scale})`
+              ? `translateX(${translateX}%) perspective(1600px) rotateY(${-sign * depthFrac * MAX_ROTATE}deg) translateZ(${-depthFrac * MAX_DEPTH}px) scale(${scale})`
               : `translateX(${translateX}%) scale(${scale})`;
 
             return (
