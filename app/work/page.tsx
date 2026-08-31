@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 import Footer from "@/components/Footer";
+import WorkRowThumb from "@/components/WorkRowThumb";
 
 export const metadata = {
   title: "עבודות · Shani AI Creator",
@@ -74,16 +75,7 @@ export default function WorkPage() {
                       style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                     />
                   ) : previewUrl ? (
-                    <img
-                      src={SCREENSHOT(previewUrl)}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).style.display = "none";
-                      }}
-                    />
+                    <WorkRowThumb src={SCREENSHOT(previewUrl)} alt="" />
                   ) : (
                     <div
                       style={{
