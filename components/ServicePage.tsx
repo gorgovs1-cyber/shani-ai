@@ -236,24 +236,35 @@ export default function ServicePage({
             so the page doesn't just end on a generic call to action. */}
         {c.bridge ? (
           <div style={{ marginTop: 56, textAlign: "center" }}>
+            <p style={{ margin: "0 0 18px", color: "var(--muted2)", fontSize: 16, lineHeight: 1.6, fontFamily: HEEBO }}>
+              {c.bridge.text}
+            </p>
+            {/* Was a plain text link (transparent background, no padding) sitting
+                between the FAQ and the closing CTA — easy to miss and, worse, easy
+                to mistake for non-interactive text. This is real portfolio proof
+                right before a pricing decision, so it gets real button chrome. */}
             <a
               href={c.bridge.href}
+              className="work-bridge-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                color: "var(--muted2)",
-                fontSize: 16,
-                lineHeight: 1.6,
+                color: "var(--acc)",
+                background: "color-mix(in oklch, var(--acc) 9%, transparent)",
+                border: "1.5px solid color-mix(in oklch, var(--acc) 45%, var(--line))",
+                borderRadius: 999,
+                padding: "13px 26px",
+                fontWeight: 700,
+                fontSize: 15.5,
+                lineHeight: 1.4,
                 textDecoration: "none",
                 fontFamily: HEEBO,
+                transition: "background .15s ease, border-color .15s ease, transform .15s ease",
               }}
             >
-              {c.bridge.text}
-              <span style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
-                {c.bridge.linkLabel}
-              </span>
-              <span aria-hidden="true" style={{ color: "var(--acc)" }}>{dir === "rtl" ? "←" : "→"}</span>
+              {c.bridge.linkLabel}
+              <span aria-hidden="true">{dir === "rtl" ? "←" : "→"}</span>
             </a>
           </div>
         ) : null}
