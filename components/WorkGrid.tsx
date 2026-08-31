@@ -224,16 +224,8 @@ export default function WorkGrid() {
       {/* Gallery */}
       <section
         aria-label="Project gallery"
-        style={{ position: "relative", zIndex: 1, background: "var(--dark)", paddingBottom: 64 }}
+        style={{ position: "relative", zIndex: 1, paddingBottom: 64 }}
       >
-        {/* Glow */}
-        <div aria-hidden="true" style={{
-          position: "absolute", top: 0, insetInlineEnd: 0,
-          width: 500, height: 500, pointerEvents: "none",
-          background: "radial-gradient(circle, color-mix(in oklch,var(--acc) 20%,transparent),transparent 65%)",
-          filter: "blur(48px)",
-        }} />
-
         {/* Header */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -247,7 +239,7 @@ export default function WorkGrid() {
             {/* Explicit affordance. Without this nobody knows the deck is interactive. */}
             <div style={{
               marginTop: 10, display: "flex", alignItems: "center", gap: 8,
-              fontFamily: "'Heebo',sans-serif", fontSize: 13.5, color: "var(--dmuted)",
+              fontFamily: "'Heebo',sans-serif", fontSize: 13.5, color: "var(--muted2)",
             }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
                 <path d="M9 6L4 12l5 6M15 6l5 6-5 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -262,11 +254,11 @@ export default function WorkGrid() {
               aria-live="polite"
               style={{
                 fontFamily: "'JetBrains Mono',monospace", fontSize: 13,
-                color: "var(--dmuted)", letterSpacing: ".08em", direction: "ltr",
+                color: "var(--muted2)", letterSpacing: ".08em", direction: "ltr",
                 fontVariantNumeric: "tabular-nums",
               }}
             >
-              <span style={{ color: "var(--dtext)", fontWeight: 700 }}>
+              <span style={{ color: "var(--cream)", fontWeight: 700 }}>
                 {String(index + 1).padStart(2, "0")}
               </span>
               {" / "}
@@ -285,9 +277,9 @@ export default function WorkGrid() {
                     aria-label={isPrev ? prevLabel : nextLabel}
                     style={{
                       width: 46, height: 46, borderRadius: "50%",
-                      border: `1px solid ${disabled ? "var(--dline)" : "color-mix(in oklch,var(--acc) 55%,var(--dline))"}`,
-                      background: disabled ? "transparent" : "rgba(244,237,225,0.08)",
-                      color: disabled ? "var(--dmuted)" : "var(--dtext)",
+                      border: `1px solid ${disabled ? "var(--border)" : "color-mix(in oklch,var(--acc) 55%,var(--border))"}`,
+                      background: disabled ? "transparent" : "color-mix(in oklch, var(--acc) 6%, transparent)",
+                      color: disabled ? "var(--muted2)" : "var(--cream)",
                       opacity: disabled ? 0.4 : 1,
                       cursor: disabled ? "default" : "pointer",
                       display: "flex", alignItems: "center", justifyContent: "center",
@@ -302,7 +294,7 @@ export default function WorkGrid() {
                     onMouseLeave={(e) => {
                       if (disabled || !hoverable) return;
                       (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.08)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklch,var(--acc) 55%,var(--dline))";
+                      (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklch,var(--acc) 55%,var(--border))";
                     }}
                   >
                     {isPrev ? "←" : "→"}
@@ -369,7 +361,7 @@ export default function WorkGrid() {
               style={{
                 gridColumn: 1, gridRow: 1,
                 justifySelf: "center", alignSelf: "start",
-                width: "clamp(240px, 68vw, 330px)",
+                width: "clamp(260px, 74vw, 420px)",
                 background: "var(--dpanel)",
                 borderRadius: 22,
                 border: "1px solid var(--dline)",
@@ -400,7 +392,7 @@ export default function WorkGrid() {
             >
               {/* Preview with real screenshot */}
               <div style={{
-                height: 165, position: "relative", overflow: "hidden",
+                height: 200, position: "relative", overflow: "hidden",
                 background: project.bg,
               }}>
                 {/* Browser chrome */}
@@ -547,7 +539,7 @@ export default function WorkGrid() {
             margin: "8px clamp(24px,5vw,72px) 0",
             height: 3,
             borderRadius: 999,
-            background: "var(--dline)",
+            background: "var(--border)",
             overflow: "hidden",
           }}
         >
