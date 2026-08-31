@@ -11,10 +11,9 @@ const SCREENSHOT = (url: string) =>
 
 /** Autoplaying gallery-card video. Split out from the map body on purpose: an
     inline `ref={(el) => el?.play()}` callback re-fires on every WorkGrid
-    re-render (the drag-scroll handlers set state on every pointer move),
-    which restarts the same video dozens of times a second and can stall it
-    at readyState 0 indefinitely. A real component with its own effect plays
-    it exactly once, when the card mounts. */
+    re-render, which restarts the same video dozens of times a second and can
+    stall it at readyState 0 indefinitely. A real component with its own
+    effect plays it exactly once, when the card mounts. */
 function GalleryVideo({ src, poster }: { src: string; poster?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -22,10 +21,10 @@ function GalleryVideo({ src, poster }: { src: string; poster?: string }) {
     const el = ref.current;
     if (!el) return;
 
-    // Mobile data/battery budget: this card sits 5th in a horizontally-scrolling
-    // track, so on a phone it is off-screen at load. Playing (and with
-    // preload="auto", fully downloading ~900KB) on mount spent the visitor's
-    // data on something they had not looked at yet. Play only while visible.
+    // Mobile data/battery budget: this card can sit off-screen (behind the
+    // active one) at load. Playing (and with preload="auto", fully
+    // downloading ~900KB) on mount spent the visitor's data on something
+    // they had not looked at yet. Play only while it's the active card.
     const conn = (navigator as any).connection;
     if (conn?.saveData) return;                       // honour Save-Data
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // poster stays
@@ -49,8 +48,6 @@ function GalleryVideo({ src, poster }: { src: string; poster?: string }) {
       muted
       loop
       playsInline
-      // "metadata", not "auto": the poster carries the card until the visitor
-      // actually scrolls the video into view.
       preload="metadata"
       aria-hidden="true"
       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
@@ -58,21 +55,22 @@ function GalleryVideo({ src, poster }: { src: string; poster?: string }) {
   );
 }
 
-/** How far off-centre a card may drift before it stops receding further. */
-const FALLOFF = 1.15;
-const MAX_ROTATE = 20;   // deg on the Y axis
-const MAX_DEPTH  = 170;  // px pushed back on the Z axis
-const MAX_FADE   = 0.42; // opacity removed at the far edge
+/** How many cards on either side of the active one stay visible before
+    fading out completely. Anything farther is invisible and inert. */
+const MAX_VISIBLE = 2;
+/** How far each step fans a card out, as a percentage of the card's OWN
+    width — percentages in translateX are relative to the element's own box,
+    so this needs no measuring of container/card pixel sizes at all. */
+const STEP_PERCENT = 58;
+const MAX_ROTATE = 28;   // deg on the Y axis, at the outermost visible step
+const MAX_DEPTH = 190;   // px pushed back on the Z axis, at the outermost step
+const MAX_FADE = 0.82;   // opacity removed at the outermost visible step
+const SCALE_STEP = 0.1;  // scale removed per step away from active
 
 export default function WorkGrid() {
   const { lang } = useLang();
   const t = dict[lang];
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-  const rafRef = useRef<number>();
+  const stageRef = useRef<HTMLDivElement>(null);
 
   /** 3D is opt-in: skipped on small screens (cost) and for reduced-motion users. */
   const [deck3d, setDeck3d] = useState(false);
@@ -80,17 +78,17 @@ export default function WorkGrid() {
       matching mouseleave never arrives, so every hover style below would stick
       to whichever card/arrow the visitor last touched. */
   const [hoverable, setHoverable] = useState(false);
-  const [active, setActive] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [index, setIndex] = useState(0);
 
   const total = galleryProjects.length;
+  const atStart = index === 0;
+  const atEnd = index === total - 1;
   const enterLabel = lang === "he" ? "כניסה לאתר" : "Visit site";
-  // "Drag" assumes a mouse. On a phone the gesture is a swipe and there is no
-  // cursor to drag with, so the hint has to change with the input device.
+  // There is no more drag-to-scroll (see below) — the hint has to say what
+  // actually works on this input device instead.
   const hintLabel = hoverable
-    ? (lang === "he" ? "גררו או השתמשו בחיצים" : "Drag, or use the arrows")
+    ? (lang === "he" ? "לחצו על החיצים, או על כרטיס בצד" : "Click the arrows, or a card on the side")
     : (lang === "he" ? "החליקו לצדדים" : "Swipe sideways");
   const prevLabel = lang === "he" ? "הפרויקט הקודם" : "Previous project";
   const nextLabel = lang === "he" ? "הפרויקט הבא" : "Next project";
@@ -105,6 +103,7 @@ export default function WorkGrid() {
     const sync = () => {
       setDeck3d(mqWide.matches && !mqMotion.matches);
       setHoverable(mqHover.matches);
+      setReducedMotion(mqMotion.matches);
     };
     sync();
     mqMotion.addEventListener("change", sync);
@@ -117,104 +116,76 @@ export default function WorkGrid() {
     };
   }, []);
 
-  /** Writes the per-card 3D transform straight to the DOM.
-      Deliberately NOT React state — this runs on every scroll frame, and
-      re-rendering six cards at 60fps would drop frames. Only the cheap,
-      low-frequency values (active index, progress) go through state. */
-  const paint = useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-
-    const cards = Array.from(el.querySelectorAll<HTMLElement>("article"));
-    const trackMid = el.scrollLeft + el.clientWidth / 2;
-    const max = el.scrollWidth - el.clientWidth;
-
-    cards.forEach((card, i) => {
-      const cardMid = card.offsetLeft + card.offsetWidth / 2;
-      const dist = cardMid - trackMid;
-      const d = Math.max(-FALLOFF, Math.min(FALLOFF, dist / (card.offsetWidth * 1.35)));
-      const away = Math.abs(d);
-
-      const inner = card.firstElementChild as HTMLElement | null;
-      if (!deck3d) {
-        card.style.transform = "";
-        card.style.opacity = "";
-        // Also clears the deck-mode hover shadow, otherwise a card hovered on a
-        // wide viewport keeps it after a rotate/resize down to the flat layout.
-        card.style.boxShadow = "";
-        if (inner) inner.style.transform = "";
-        return;
-      }
-
-      card.style.transform =
-        `perspective(1600px) rotateY(${-d * MAX_ROTATE}deg) translateZ(${-away * MAX_DEPTH}px)`;
-      card.style.opacity = String(1 - away * MAX_FADE);
-      // Counter-parallax on the preview so the artwork lags the card slightly.
-      if (inner) inner.style.transform = `translateX(${d * 14}px)`;
+  const go = useCallback((dir: "prev" | "next") => {
+    setIndex((i) => {
+      const next = dir === "next" ? i + 1 : i - 1;
+      return Math.max(0, Math.min(total - 1, next));
     });
+  }, [total]);
 
-    const prog = max > 0 ? el.scrollLeft / max : 0;
-    // Derive the counter from scroll progress, not from "which card is nearest
-    // the centre". At scrollLeft 0 the centre of the viewport already sits on
-    // card 2, so the nearest-card approach opened the gallery reading "02 / 06".
-    setActive(Math.round(prog * (total - 1)));
-    setProgress(prog);
-    setAtStart(el.scrollLeft <= 2);
-    setAtEnd(el.scrollLeft >= max - 2);
-  }, [deck3d, total]);
-
+  /** Swipe replaces drag-to-scroll on touch. Attached as a real (non-passive)
+      listener because React's own onTouchMove is passive by default, which
+      would silently ignore preventDefault() — and preventDefault is what
+      stops a horizontal swipe here from also dragging the whole page. Only
+      a gesture that turns out to be MORE horizontal than vertical is claimed;
+      a mostly-vertical touch is left alone so the page still scrolls. */
   useEffect(() => {
-    const el = trackRef.current;
+    const el = stageRef.current;
     if (!el) return;
 
-    const onScroll = () => {
-      if (rafRef.current) return;
-      rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = undefined;
-        paint();
-      });
+    let startX = 0;
+    let startY = 0;
+    let intent: "none" | "horizontal" | "vertical" = "none";
+
+    const onTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      intent = "none";
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      const dx = touch.clientX - startX;
+      const dy = touch.clientY - startY;
+      if (intent === "none" && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+        intent = Math.abs(dx) > Math.abs(dy) ? "horizontal" : "vertical";
+      }
+      if (intent === "horizontal") e.preventDefault();
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      if (intent !== "horizontal") return;
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - startX;
+      if (Math.abs(dx) < 40) return;
+      // Swipe left (finger moves left) reveals what's next, from the right —
+      // same physical mapping as the arrow buttons below, in both languages.
+      go(dx < 0 ? "next" : "prev");
     };
 
-    // Capture-phase wheel listener — Lenis registers at window level with capture,
-    // so we must also use capture:true to intercept before Lenis does.
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      el.scrollLeft += e.deltaY + e.deltaX;
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false, capture: true });
-    el.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    paint();
-
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
     return () => {
-      el.removeEventListener("wheel", onWheel, { capture: true });
-      el.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
     };
-  }, [paint]);
+  }, [go]);
 
-  const scroll = (dir: "prev" | "next") => {
-    const el = trackRef.current;
-    if (!el) return;
-    const cardWidth = el.querySelector("article")?.offsetWidth ?? 400;
-    el.scrollBy({ left: dir === "next" ? cardWidth + 20 : -(cardWidth + 20), behavior: "smooth" });
-  };
-
-  /** Keyboard access to the track. It was previously reachable only by mouse. */
-  const onTrackKey = (e: React.KeyboardEvent) => {
-    const el = trackRef.current;
-    if (!el) return;
-    // In RTL the visual "forward" is the left arrow, so map by language.
+  /** Keyboard access to the stage. In RTL the visual "forward" is the left
+      arrow, so map by language — same rule the arrow buttons below use. */
+  const onStageKey = (e: React.KeyboardEvent) => {
     const forward = lang === "he" ? "ArrowLeft" : "ArrowRight";
     const back    = lang === "he" ? "ArrowRight" : "ArrowLeft";
-    if (e.key === forward)      { e.preventDefault(); scroll("next"); }
-    else if (e.key === back)    { e.preventDefault(); scroll("prev"); }
-    else if (e.key === "Home")  { e.preventDefault(); el.scrollTo({ left: 0, behavior: "smooth" }); }
-    else if (e.key === "End")   { e.preventDefault(); el.scrollTo({ left: el.scrollWidth, behavior: "smooth" }); }
+    if (e.key === forward)      { e.preventDefault(); go("next"); }
+    else if (e.key === back)    { e.preventDefault(); go("prev"); }
+    else if (e.key === "Home")  { e.preventDefault(); setIndex(0); }
+    else if (e.key === "End")   { e.preventDefault(); setIndex(total - 1); }
   };
+
+  const cardTransition = reducedMotion
+    ? "opacity .2s ease"
+    : "transform .55s cubic-bezier(.2,.8,.2,1), opacity .4s ease, box-shadow .15s ease, border-color .15s ease";
 
   return (
     <>
@@ -273,7 +244,7 @@ export default function WorkGrid() {
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)" }}>
               {t.galleryKicker}
             </div>
-            {/* Explicit affordance. Without this nobody knows the row scrolls. */}
+            {/* Explicit affordance. Without this nobody knows the deck is interactive. */}
             <div style={{
               marginTop: 10, display: "flex", alignItems: "center", gap: 8,
               fontFamily: "'Heebo',sans-serif", fontSize: 13.5, color: "var(--dmuted)",
@@ -296,7 +267,7 @@ export default function WorkGrid() {
               }}
             >
               <span style={{ color: "var(--dtext)", fontWeight: 700 }}>
-                {String(active + 1).padStart(2, "0")}
+                {String(index + 1).padStart(2, "0")}
               </span>
               {" / "}
               {String(total).padStart(2, "0")}
@@ -309,7 +280,7 @@ export default function WorkGrid() {
                 return (
                   <button
                     key={dir}
-                    onClick={() => scroll(dir as "prev" | "next")}
+                    onClick={() => go(dir as "prev" | "next")}
                     disabled={disabled}
                     aria-label={isPrev ? prevLabel : nextLabel}
                     style={{
@@ -342,53 +313,22 @@ export default function WorkGrid() {
           </div>
         </div>
 
-        {/* Drag-scrollable track */}
+        {/* Coverflow stage. Cards share one grid cell (gridArea 1/1) and are
+            fanned out purely with transform — no scroll container, so there
+            is nothing left for a drag/wheel/RTL scroll-direction bug to live
+            in. Navigation is discrete: arrows, keyboard, a tap on a side
+            card, or a swipe — never a free-running scrollLeft. */}
         <div
-          ref={trackRef}
+          ref={stageRef}
           role="list"
           tabIndex={0}
           aria-label={trackLabel}
-          onKeyDown={onTrackKey}
-          data-lenis-prevent-wheel
-          className="work-track"
+          onKeyDown={onStageKey}
           style={{
-            display: "flex", gap: 20,
-            overflowX: "auto", overflowY: "hidden",
-            // Extra vertical room so cards pushed back in Z aren't clipped.
-            padding: deck3d ? "30px clamp(24px,5vw,72px) 46px" : "4px clamp(24px,5vw,72px) 20px",
-            direction: "ltr",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch" as any,
-            // Stops a swipe that reaches the end of the track from chaining into
-            // the browser's back/forward edge gesture or bouncing the whole page.
-            overscrollBehaviorX: "contain",
-            cursor: "grab",
-            userSelect: "none",
-            msOverflowStyle: "none",
-            scrollbarWidth: "none" as any,
+            display: "grid",
+            overflow: "hidden",
+            padding: deck3d ? "36px clamp(16px,6vw,72px) 46px" : "16px clamp(16px,6vw,72px) 24px",
             perspective: deck3d ? "1600px" : undefined,
-            perspectiveOrigin: "50% 50%",
-          } as React.CSSProperties}
-          onMouseDown={(e) => {
-            isDragging.current = true;
-            startX.current = e.pageX - (trackRef.current?.offsetLeft ?? 0);
-            scrollLeft.current = trackRef.current?.scrollLeft ?? 0;
-            if (trackRef.current) trackRef.current.style.cursor = "grabbing";
-          }}
-          onMouseLeave={() => {
-            isDragging.current = false;
-            if (trackRef.current) trackRef.current.style.cursor = "grab";
-          }}
-          onMouseUp={() => {
-            isDragging.current = false;
-            if (trackRef.current) trackRef.current.style.cursor = "grab";
-          }}
-          onMouseMove={(e) => {
-            if (!isDragging.current || !trackRef.current) return;
-            e.preventDefault();
-            const x = e.pageX - trackRef.current.offsetLeft;
-            const walk = (x - startX.current) * 1.5;
-            trackRef.current.scrollLeft = scrollLeft.current - walk;
           }}
         >
           {galleryProjects.map((p, i) => {
@@ -404,45 +344,58 @@ export default function WorkGrid() {
               poster: card.poster,
               bg: card.bg,
             };
+
+            const dist = i - index;
+            const abs = Math.min(Math.abs(dist), MAX_VISIBLE);
+            const sign = Math.sign(dist);
+            const isActive = dist === 0;
+            const visible = Math.abs(dist) <= MAX_VISIBLE;
+            const depthFrac = abs / MAX_VISIBLE;
+
+            const translateX = sign * abs * STEP_PERCENT;
+            const scale = 1 - abs * SCALE_STEP;
+            const opacity = visible ? 1 - depthFrac * MAX_FADE : 0;
+            const transform = deck3d
+              ? `translateX(${translateX}%) perspective(1600px) rotateY(${-sign * depthFrac * MAX_ROTATE}deg) translateZ(${-depthFrac * MAX_DEPTH}px) scale(${scale})`
+              : `translateX(${translateX}%) scale(${scale})`;
+
             return (
             <article
               key={p.slug}
               role="listitem"
+              aria-hidden={!isActive}
+              aria-current={isActive ? "true" : undefined}
+              onClick={() => { if (!isActive) setIndex(i); }}
               style={{
-                flexShrink: 0,
+                gridColumn: 1, gridRow: 1,
+                justifySelf: "center", alignSelf: "start",
                 width: "clamp(240px, 68vw, 330px)",
                 background: "var(--dpanel)",
                 borderRadius: 22,
                 border: "1px solid var(--dline)",
                 overflow: "hidden",
-                scrollSnapAlign: "start",
-                // In deck mode `transform` is rewritten every scroll frame by paint(),
-                // so it must NOT be transitioned — a transition here would make the
-                // rotation lag the scroll and stutter. The hover lift moves to
-                // box-shadow instead, which composites just as cheaply.
-                transition: deck3d
-                  ? "border-color .15s ease, box-shadow .15s ease"
-                  : "border-color .15s ease, transform .2s ease",
-                transformStyle: deck3d ? "preserve-3d" : undefined,
-                willChange: deck3d ? "transform, opacity" : undefined,
-                // Only needed for the 3D deck. Leaving it on unconditionally
-                // forced a compositor layer per card on phones too, for nothing.
+                transformStyle: "flat",
+                willChange: "transform, opacity",
                 backfaceVisibility: deck3d ? "hidden" : undefined,
                 direction: t.dir,
+                zIndex: total - abs + (isActive ? 10 : 0),
+                pointerEvents: visible ? (isActive ? "auto" : "auto") : "none",
+                cursor: isActive ? "default" : "pointer",
+                transform,
+                opacity,
+                transition: cardTransition,
               }}
               onMouseEnter={(e) => {
-                if (!hoverable) return;
+                if (!hoverable || !isActive) return;
                 const el = e.currentTarget as HTMLElement;
                 el.style.borderColor = "color-mix(in oklch,var(--acc) 50%,var(--dline))";
                 if (deck3d) el.style.boxShadow = "0 24px 60px -20px rgba(0,0,0,.75)";
-                else el.style.transform = "translateY(-4px)";
               }}
               onMouseLeave={(e) => {
-                if (!hoverable) return;
+                if (!hoverable || !isActive) return;
                 const el = e.currentTarget as HTMLElement;
                 el.style.borderColor = "var(--dline)";
-                if (deck3d) el.style.boxShadow = "";
-                else el.style.transform = "";
+                el.style.boxShadow = "";
               }}
             >
               {/* Preview with real screenshot */}
@@ -477,14 +430,22 @@ export default function WorkGrid() {
                     fall back to the auto-generated mshots screenshot. mshots renders
                     a page ~2s after load, which cuts off any scroll/entrance
                     animation — fine for static sites, wrong for cinematic ones. */}
-                {project.video ? (
+                {isActive && project.video ? (
                   <div style={{ position: "absolute", top: 28, left: 0, right: 0, bottom: 0 }}>
                     <GalleryVideo src={project.video} poster={project.poster} />
                   </div>
+                ) : project.video ? (
+                  <img
+                    src={project.poster}
+                    alt=""
+                    aria-hidden="true"
+                    style={{ position: "absolute", top: 28, left: 0, right: 0, width: "100%", height: "calc(100% - 28px)", objectFit: "cover", objectPosition: "top" }}
+                  />
                 ) : (
-                  <div className={`preview-img-wrap preview-delay-${i}`} style={{
+                  <div className={`preview-img-wrap ${isActive ? `preview-delay-${i}` : ""}`} style={{
                     position: "absolute", top: 28, left: 0, right: 0,
                     pointerEvents: "none",
+                    animationPlayState: isActive ? "running" : "paused",
                   }}>
                     <img
                       src={SCREENSHOT(project.url)}
@@ -516,13 +477,13 @@ export default function WorkGrid() {
                   padding: "5px 10px", letterSpacing: ".04em", fontWeight: 700,
                 }}>{project.kind}</div>
 
-                {/* Visit link */}
+                {/* Visit link — only really reachable once the card is active;
+                    on a receding card the tap should bring it forward instead,
+                    so the link stops being an independent target until then. */}
                 <a
                   href={project.url} target="_blank" rel="noopener noreferrer"
-                  // .work-visit grows the pill to a 44px tap target on coarse
-                  // pointers only (see globals.css); at 12px/8px padding it was
-                  // ~32px tall, under the WCAG 2.5.5 minimum.
                   className="work-visit"
+                  tabIndex={isActive ? 0 : -1}
                   style={{
                     position: "absolute", bottom: 10, insetInlineEnd: 10, zIndex: 6,
                     fontFamily: "'JetBrains Mono',monospace",
@@ -533,12 +494,13 @@ export default function WorkGrid() {
                     padding: "8px 14px", textDecoration: "none",
                     display: "inline-flex", alignItems: "center", gap: 5,
                     transition: "background .2s",
+                    pointerEvents: isActive ? "auto" : "none",
                   }}
                   onMouseEnter={(e) => { if (hoverable) (e.currentTarget as HTMLElement).style.background = "var(--acc)"; }}
                   onMouseLeave={(e) => { if (hoverable) (e.currentTarget as HTMLElement).style.background = "rgba(10,8,6,0.9)"; }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {enterLabel} <span>{t.scrollArrow}</span>
+                  {enterLabel}
                 </a>
               </div>
 
@@ -575,14 +537,11 @@ export default function WorkGrid() {
           })}
         </div>
 
-        {/* Progress rail — the clearest single signal that the row scrolls,
-            and the only one that survives on touch where hover doesn't exist. */}
+        {/* Progress rail — the clearest single signal of where we are in the
+            deck, and the only one that survives on touch where hover doesn't
+            exist. Driven straight off `index`, not a scroll position. */}
         <div
           aria-hidden="true"
-          // dir="ltr" is required, not cosmetic: the track itself is forced LTR,
-          // so scrollLeft 0 is its visual start. In an inherited RTL container the
-          // thumb would sit at the right edge at progress 0 and then translate
-          // further right, straight out of view.
           dir="ltr"
           style={{
             margin: "8px clamp(24px,5vw,72px) 0",
@@ -600,9 +559,8 @@ export default function WorkGrid() {
               background: "var(--acc)",
               // translateX(%) is relative to the thumb's OWN width, so travelling
               // the full rail means moving (total - 1) thumb-widths.
-              // translate, not margin/left — composite-only, no layout per frame.
-              transform: `translateX(${progress * (total - 1) * 100}%)`,
-              transition: "transform .12s linear",
+              transform: `translateX(${(total > 1 ? index / (total - 1) : 0) * (total - 1) * 100}%)`,
+              transition: reducedMotion ? "none" : "transform .3s cubic-bezier(.2,.8,.2,1)",
             }}
           />
         </div>
