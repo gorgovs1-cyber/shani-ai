@@ -64,11 +64,11 @@ const MAX_VISIBLE = 2;
     down from the original coverflow so neighbouring cards stay clearly
     readable — this reads as a carousel with cards peeking on both sides,
     not one hero card with barely-visible edges. */
-const STEP_PERCENT = 46;
-const MAX_ROTATE = 10;   // deg on the Y axis, at the outermost visible step
-const MAX_DEPTH = 60;    // px pushed back on the Z axis, at the outermost step
-const MAX_FADE = 0.25;   // opacity removed at the outermost visible step
-const SCALE_STEP = 0.07; // scale removed per step away from active
+const STEP_PERCENT = 74;
+const MAX_ROTATE = 46;   // deg on the Y axis, at the outermost visible step
+const MAX_DEPTH = 130;   // px pushed back on the Z axis, at the outermost step
+const MAX_FADE = 0.5;    // opacity removed at the outermost visible step
+const SCALE_STEP = 0.15; // scale removed per step away from active
 
 export default function WorkGrid() {
   const { lang } = useLang();
@@ -261,6 +261,7 @@ export default function WorkGrid() {
           onKeyDown={onStageKey}
           style={{
             display: "grid",
+            gridTemplateColumns: "1fr",
             overflow: "hidden",
             padding: deck3d ? "36px clamp(16px,6vw,72px) 46px" : "16px clamp(16px,6vw,72px) 24px",
             perspective: deck3d ? "1600px" : undefined,
