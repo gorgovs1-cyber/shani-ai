@@ -60,12 +60,15 @@ function GalleryVideo({ src, poster }: { src: string; poster?: string }) {
 const MAX_VISIBLE = 2;
 /** How far each step fans a card out, as a percentage of the card's OWN
     width — percentages in translateX are relative to the element's own box,
-    so this needs no measuring of container/card pixel sizes at all. */
-const STEP_PERCENT = 58;
-const MAX_ROTATE = 28;   // deg on the Y axis, at the outermost visible step
-const MAX_DEPTH = 190;   // px pushed back on the Z axis, at the outermost step
-const MAX_FADE = 0.82;   // opacity removed at the outermost visible step
-const SCALE_STEP = 0.1;  // scale removed per step away from active
+    so this needs no measuring of container/card pixel sizes at all. Tuned
+    down from the original coverflow so neighbouring cards stay clearly
+    readable — this reads as a carousel with cards peeking on both sides,
+    not one hero card with barely-visible edges. */
+const STEP_PERCENT = 46;
+const MAX_ROTATE = 10;   // deg on the Y axis, at the outermost visible step
+const MAX_DEPTH = 60;    // px pushed back on the Z axis, at the outermost step
+const MAX_FADE = 0.25;   // opacity removed at the outermost visible step
+const SCALE_STEP = 0.07; // scale removed per step away from active
 
 export default function WorkGrid() {
   const { lang } = useLang();
@@ -228,80 +231,20 @@ export default function WorkGrid() {
       >
         {/* Header */}
         <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          gap: 20, padding: "clamp(44px,6vw,80px) clamp(24px,5vw,72px) 32px",
-          flexWrap: "wrap",
+          padding: "clamp(44px,6vw,80px) clamp(24px,5vw,72px) 32px",
         }}>
-          <div>
-            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)" }}>
-              {t.galleryKicker}
-            </div>
-            {/* Explicit affordance. Without this nobody knows the deck is interactive. */}
-            <div style={{
-              marginTop: 10, display: "flex", alignItems: "center", gap: 8,
-              fontFamily: "'Heebo',sans-serif", fontSize: 13.5, color: "var(--muted2)",
-            }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-                <path d="M9 6L4 12l5 6M15 6l5 6-5 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              {hintLabel}
-            </div>
+          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".2em", color: "var(--acc)" }}>
+            {t.galleryKicker}
           </div>
-
-          {/* Counter + arrows */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div
-              aria-live="polite"
-              style={{
-                fontFamily: "'JetBrains Mono',monospace", fontSize: 13,
-                color: "var(--muted2)", letterSpacing: ".08em", direction: "ltr",
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              <span style={{ color: "var(--cream)", fontWeight: 700 }}>
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              {" / "}
-              {String(total).padStart(2, "0")}
-            </div>
-
-            <div style={{ display: "flex", gap: 8 }}>
-              {(lang === "he" ? ["next","prev"] : ["prev","next"]).map((dir) => {
-                const isPrev = dir === "prev";
-                const disabled = isPrev ? atStart : atEnd;
-                return (
-                  <button
-                    key={dir}
-                    onClick={() => go(dir as "prev" | "next")}
-                    disabled={disabled}
-                    aria-label={isPrev ? prevLabel : nextLabel}
-                    style={{
-                      width: 46, height: 46, borderRadius: "50%",
-                      border: `1px solid ${disabled ? "var(--border)" : "color-mix(in oklch,var(--acc) 55%,var(--border))"}`,
-                      background: disabled ? "transparent" : "color-mix(in oklch, var(--acc) 6%, transparent)",
-                      color: disabled ? "var(--muted2)" : "var(--cream)",
-                      opacity: disabled ? 0.4 : 1,
-                      cursor: disabled ? "default" : "pointer",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 18,
-                      transition: "background .15s ease, border-color .15s ease, opacity .15s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (disabled || !hoverable) return;
-                      (e.currentTarget as HTMLElement).style.background = "var(--acc)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "var(--acc)";
-                    }}
-                    onMouseLeave={(e) => {
-                      if (disabled || !hoverable) return;
-                      (e.currentTarget as HTMLElement).style.background = "rgba(244,237,225,0.08)";
-                      (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklch,var(--acc) 55%,var(--border))";
-                    }}
-                  >
-                    {isPrev ? "←" : "→"}
-                  </button>
-                );
-              })}
-            </div>
+          {/* Explicit affordance. Without this nobody knows the deck is interactive. */}
+          <div style={{
+            marginTop: 10, display: "flex", alignItems: "center", gap: 8,
+            fontFamily: "'Heebo',sans-serif", fontSize: 13.5, color: "var(--muted2)",
+          }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <path d="M9 6L4 12l5 6M15 6l5 6-5 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            {hintLabel}
           </div>
         </div>
 
@@ -526,6 +469,82 @@ export default function WorkGrid() {
               </div>
             </article>
             );
+          })}
+        </div>
+
+        {/* Controls — centered below the deck instead of tucked into the
+            header, so the projects themselves are the first thing seen.
+            One row: prev arrow, counter, next arrow. Real SVG chevrons in
+            designed buttons, not plain arrow glyphs. */}
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "center", gap: 18,
+          margin: "4px clamp(24px,5vw,72px) 0",
+        }}>
+          {(lang === "he" ? ["next","prev"] : ["prev","next"]).map((dir, btnIdx) => {
+            const isPrev = dir === "prev";
+            const disabled = isPrev ? atStart : atEnd;
+            const button = (
+              <button
+                key={dir}
+                onClick={() => go(dir as "prev" | "next")}
+                disabled={disabled}
+                aria-label={isPrev ? prevLabel : nextLabel}
+                style={{
+                  width: 48, height: 48, borderRadius: "50%",
+                  border: `1px solid ${disabled ? "var(--border)" : "color-mix(in oklch,var(--acc) 45%,var(--border))"}`,
+                  background: disabled ? "transparent" : "#fff",
+                  boxShadow: disabled ? "none" : "0 14px 30px -18px rgba(27,23,18,.4)",
+                  color: disabled ? "var(--muted2)" : "var(--ink)",
+                  opacity: disabled ? 0.4 : 1,
+                  cursor: disabled ? "default" : "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "background .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (disabled || !hoverable) return;
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "var(--acc)";
+                  el.style.borderColor = "var(--acc)";
+                  el.style.color = "#fff";
+                  el.style.boxShadow = "0 16px 34px -14px var(--acc)";
+                }}
+                onMouseLeave={(e) => {
+                  if (disabled || !hoverable) return;
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "#fff";
+                  el.style.borderColor = "color-mix(in oklch,var(--acc) 45%,var(--border))";
+                  el.style.color = "var(--ink)";
+                  el.style.boxShadow = "0 14px 30px -18px rgba(27,23,18,.4)";
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  {isPrev
+                    ? <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                    : <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />}
+                </svg>
+              </button>
+            );
+            // Counter sits between the two arrows regardless of language —
+            // the map order already accounts for RTL, so the middle DOM
+            // position is always the visual middle.
+            const counter = (
+              <div
+                key="counter"
+                aria-live="polite"
+                style={{
+                  fontFamily: "'JetBrains Mono',monospace", fontSize: 13,
+                  color: "var(--muted2)", letterSpacing: ".08em", direction: "ltr",
+                  fontVariantNumeric: "tabular-nums", minWidth: 46, textAlign: "center",
+                }}
+              >
+                <span style={{ color: "var(--cream)", fontWeight: 700 }}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {" / "}
+                {String(total).padStart(2, "0")}
+              </div>
+            );
+            return btnIdx === 0 ? [button, counter] : button;
           })}
         </div>
 
