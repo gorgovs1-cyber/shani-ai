@@ -239,6 +239,24 @@ html.lenis { height: auto; }
    WCAG 2.5.5 / genjutsu mobile principles: 44px minimum hit area. These two
    controls are visually small by design, so the size is raised only where the
    pointer is a finger. */
+/* /work row list: it's an <a>, so cursor is already pointer, but there was no
+   visual hover feedback at all (genjutsu UI/UX: every clickable row needs one).
+   Fine-pointer only, per the no-hover doctrine — never load-bearing on touch. */
+@media (hover: hover) and (pointer: fine) {
+  .work-row-link:hover {
+    background: color-mix(in oklch, var(--signal) 5%, transparent);
+  }
+}
+
+/* Bridge CTA (portfolio proof link on service pages): visible hover feedback
+   on real pointers only, per genjutsu no-hover-doctrine — never load-bearing. */
+@media (hover: hover) and (pointer: fine) {
+  .work-bridge-btn:hover {
+    background: color-mix(in oklch, var(--acc) 16%, transparent) !important;
+    border-color: var(--acc) !important;
+  }
+}
+
 @media (pointer: coarse) {
   .work-visit {
     min-height: 44px;
