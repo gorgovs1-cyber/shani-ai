@@ -85,8 +85,6 @@ export default function WorkGrid() {
   const [index, setIndex] = useState(0);
 
   const total = galleryProjects.length;
-  const atStart = index === 0;
-  const atEnd = index === total - 1;
   const enterLabel = lang === "he" ? "כניסה לאתר" : "Visit site";
   // There is no more drag-to-scroll (see below) — the hint has to say what
   // actually works on this input device instead.
@@ -119,10 +117,15 @@ export default function WorkGrid() {
     };
   }, []);
 
+  /** Loops in both directions — this is a 360° carousel, not a dead-ending
+      strip, so "next" past the last project wraps to the first and vice
+      versa. Distance-from-active below wraps the same way, so the visuals
+      match: the carousel always has neighbours fanned on both sides, even
+      when the active card is the first or last item in the list. */
   const go = useCallback((dir: "prev" | "next") => {
     setIndex((i) => {
       const next = dir === "next" ? i + 1 : i - 1;
-      return Math.max(0, Math.min(total - 1, next));
+      return (next + total) % total;
     });
   }, [total]);
 
@@ -281,7 +284,11 @@ export default function WorkGrid() {
               bg: card.bg,
             };
 
-            const dist = i - index;
+            // Circular (shortest-path) distance so the fan wraps around
+            // instead of dead-ending at the first/last card.
+            let dist = i - index;
+            if (dist > total / 2) dist -= total;
+            else if (dist < -total / 2) dist += total;
             const abs = Math.min(Math.abs(dist), MAX_VISIBLE);
             const sign = Math.sign(dist);
             const isActive = dist === 0;
@@ -483,7 +490,8 @@ export default function WorkGrid() {
         }}>
           {(lang === "he" ? ["next","prev"] : ["prev","next"]).map((dir, btnIdx) => {
             const isPrev = dir === "prev";
-            const disabled = isPrev ? atStart : atEnd;
+            // The carousel loops, so prev/next are never disabled.
+            const disabled = false;
             const button = (
               <button
                 key={dir}
