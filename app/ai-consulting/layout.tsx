@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "יועץ AI לעסקים · הטמעת AI בעסק ואבחון AI | Shani AI Creator",
+  title: "ייעוץ ותכנון מערכות לעסק | שני גורגוב",
   description:
-    "ייעוץ והטמעת AI לעסקים: מיפוי תהליכים, אסטרטגיה וסקילים בעברית. שיחת אבחון שבסופה תכנית עבודה ברורה, מה להטמיע, באיזה סדר, ומה יחזיר הכי הרבה שעות. מתחילים באבחון AI חינם.",
+    "עושים סדר בצרכים של העסק: מה לשפר באתר, אילו תהליכים אפשר להפוך לאוטומטיים ואיפה בינה מלאכותית יכולה לעזור. מתחילים באבחון חינמי אחד, ללא התחייבות.",
   alternates: { canonical: "https://shani-ai.com/ai-consulting" },
   openGraph: {
-    title: "יועץ AI לעסקים · Shani AI Creator",
-    description: "מיפוי, אסטרטגיה והטמעת AI לעסקים, עם סקילים בעברית ותכנית עבודה ברורה.",
+    title: "ייעוץ ותכנון לעסק | שני גורגוב",
+    description: "מיפוי הצרכים של העסק ותכנון אתר, וואטסאפ ואוטומציות לפי מה שנחוץ בפועל.",
     url: "https://shani-ai.com/ai-consulting",
     type: "website",
     locale: "he_IL",

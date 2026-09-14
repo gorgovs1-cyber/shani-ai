@@ -24,7 +24,7 @@ type Item = {
 
 const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; items: Item[] }> = {
   he: {
-    kicker: "02 · המלצות",
+    kicker: "המלצות",
     title: "מה לקוחות אומרים",
     sub: "שני עסקים שעברו את התהליך הזה.",
     items: [
@@ -47,7 +47,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
     ],
   },
   en: {
-    kicker: "02 · Reviews",
+    kicker: "Reviews",
     title: "What clients say",
     sub: "Two businesses that went through this exact process.",
     items: [
@@ -91,20 +91,8 @@ export default function TestimonialsSection() {
         maxWidth: 1200,
         margin: "0 auto",
         padding: "clamp(72px,9vw,128px) 24px 0",
-        opacity: 0,
-        transform: "translateY(28px)",
+
         transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
-      }}
-      ref={(el) => {
-        if (!el) return;
-        const io = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            el.style.opacity = "1";
-            el.style.transform = "none";
-            io.disconnect();
-          }
-        }, { threshold: 0.08 });
-        io.observe(el);
       }}
     >
       {/* Header */}

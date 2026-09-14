@@ -6,6 +6,7 @@ import WorkGrid from "@/components/WorkGrid";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import WorkingTogether from "@/components/WorkingTogether";
 
 export default function Home() {
   return (
@@ -13,9 +14,10 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Services />
-      <TestimonialsSection />
       <WorkGrid />
       <About />
+      <WorkingTogether />
+      <TestimonialsSection />
       <Contact />
       <Footer />
     </>

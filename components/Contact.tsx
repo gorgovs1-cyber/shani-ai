@@ -15,20 +15,8 @@ export default function Contact() {
         position: "relative",
         zIndex: 1,
         padding: "clamp(72px,9vw,128px) 24px",
-        opacity: 0,
-        transform: "translateY(28px)",
+
         transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
-      }}
-      ref={(el) => {
-        if (!el) return;
-        const io = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            el.style.opacity = "1";
-            el.style.transform = "none";
-            io.disconnect();
-          }
-        }, { threshold: 0.1 });
-        io.observe(el);
       }}
     >
       <div
@@ -75,6 +63,8 @@ export default function Contact() {
               borderRadius: "50%",
               border: "2px solid color-mix(in oklch, var(--acc) 60%, transparent)",
               marginBottom: 24,
+              display: "block",
+              marginInline: "auto",
               boxShadow: "0 0 26px color-mix(in oklch, var(--acc) 35%, transparent)",
             }}
           />

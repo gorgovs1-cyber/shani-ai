@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Heebo, Playfair_Display, JetBrains_Mono } from "next/font/google";
+import { Inter, Rubik, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import LenisProvider from "@/components/LenisProvider";
@@ -14,11 +14,12 @@ import LanguageProvider from "@/components/LanguageProvider";
 import { Analytics } from "@vercel/analytics/react";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 import CookieConsent from "@/components/CookieConsent";
+import StickyAssessment from "@/components/StickyAssessment";
 
 // Latin headings + body
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 // Hebrew headings + body
-const heebo = Heebo({ subsets: ["hebrew", "latin"], variable: "--font-heebo", display: "swap", weight: ["400", "500", "700", "800", "900"] });
+const heebo = Rubik({ subsets: ["hebrew", "latin"], variable: "--font-heebo", display: "swap", weight: ["400", "500", "700", "800", "900"] });
 // Latin emphasis word (italic)
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", display: "swap", style: ["italic", "normal"], weight: ["500", "600", "700"] });
 // System / tags / dates / boot screen (both languages)
@@ -26,12 +27,12 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
-  title: "Shani AI Creator · ייעוץ AI, אוטומציות, כלים ואתרים לעסקים",
-  description: "שני גורגוב, Shani AI Creator. מכניסה AI לעסק שלכם: מיפוי ואסטרטגיה, אוטומציות חכמות, כלים וסקילים בעברית, ואתרים שמביאים לקוחות. ישראל.",
+  title: "אתרים ואוטומציות לעסקים בישראל | שני גורגוב",
+  description: "שני גורגוב בונה לעסקים בישראל את האתר, הוואטסאפ והאוטומציות כמערכת אחת. פחות פניות שמתפספסות ופחות עבודה ידנית. מתחילים בבדיקת התאמה חינם.",
   keywords: ["AI", "אוטומציה", "אתרים", "GSAP", "Next.js", "ישראל", "שני גורגוב", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
   openGraph: {
-    title: "Shani AI Creator · AI, אוטומציות ואתרים לעסקים",
-    description: "מכניסה AI לעסק שלכם: ייעוץ, אוטומציות, כלים ואתרים שמביאים לקוחות.",
+    title: "אתר, וואטסאפ ואוטומציות שעובדים יחד | שני גורגוב",
+    description: "אתרים ומערכות לעסקים בישראל, עם חיבור לוואטסאפ ותהליכים שמפחיתים עבודה ידנית.",
     siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Shani AI Creator",
-    description: "אתרים קולנועיים, אוטומציות חכמות, AI לעסקים. ישראל.",
+    description: "אתר, וואטסאפ ואוטומציות לעסקים בישראל. בדיקת התאמה חינם.",
     images: ["/og.jpg"],
   },
   robots: {
@@ -80,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: "Shani AI Creator",
               alternateName: "שני גורגוב · Shani AI Creator",
               description:
-                "ייעוץ AI, אוטומציות, כלים וסקילים בעברית ואתרים קולנועיים לעסקים. מיפוי, אסטרטגיה ובנייה מקצה לקצה.",
+                "בניית אתרים, חיבור לוואטסאפ ואוטומציות לעסקים בישראל. ייעוץ, תכנון והקמה לפי הצורך העסקי.",
               url: "https://shani-ai.com",
               telephone: "+972-50-4744815",
               email: "shani.creates.ai@gmail.com",
@@ -128,6 +129,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AccessibilityWidget />
           {/* Cookie consent banner — gates GA4 + Meta Pixel below */}
           <CookieConsent />
+          <StickyAssessment />
         </LanguageProvider>
         <Analytics />
         <AnalyticsScripts />

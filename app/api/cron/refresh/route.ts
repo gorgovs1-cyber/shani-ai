@@ -10,10 +10,9 @@ export const maxDuration = 60;
 export async function GET(req: Request): Promise<Response> {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get('authorization');
-  const url = new URL(req.url);
-  const provided = auth?.replace('Bearer ', '') ?? url.searchParams.get('secret');
+  const provided = auth?.replace('Bearer ', '');
 
-  if (secret && provided !== secret) {
+  if (!secret || provided !== secret) {
     return NextResponse.json({ ok: false, error: 'unauthorized' }, { status: 401 });
   }
 
@@ -27,6 +26,6 @@ export async function GET(req: Request): Promise<Response> {
     });
   } catch (e) {
     console.error('cron refresh failed:', (e as Error).message);
-    return NextResponse.json({ ok: false, error: (e as Error).message }, { status: 500 });
+    return NextResponse.json({ ok: false, error: 'refresh failed' }, { status: 500 });
   }
 }

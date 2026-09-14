@@ -57,7 +57,7 @@ export default function WordReveal({
           <span
             style={{
               display: "inline-block",
-              opacity: animate && !shown ? 0 : 1,
+              opacity: 1,
               transform: animate && !shown ? "translateY(0.35em)" : "none",
               transition: animate
                 ? `opacity .5s cubic-bezier(.2,.7,.2,1) ${i * 60}ms, transform .5s cubic-bezier(.2,.7,.2,1) ${i * 60}ms`

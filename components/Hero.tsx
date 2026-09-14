@@ -143,7 +143,7 @@ export default function Hero() {
                   justifyContent: "center",
                   gap: 9,
                   background: "var(--acc)",
-                  color: "#fff",
+                  color: "var(--ink)",
                   textDecoration: "none",
                   fontWeight: 700,
                   fontSize: 16,
@@ -164,9 +164,10 @@ export default function Hero() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 18px 40px -16px var(--acc)";
                 }}
               >
-                {lang === "he" ? "אבחון חינם לעסק שלכם" : "A free audit for your business"}
+                {lang === "he" ? "בדיקת התאמה חינם" : "Free fit check"}
               </a>
               </Magnetic>
+              <a href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</a>
             </div>
 
             {/* Meta row */}

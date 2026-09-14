@@ -101,7 +101,7 @@ export default function AutomationFlowDemo() {
         <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
         <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
         <span style={{ marginInlineStart: 10, fontFamily: MONO, fontSize: 12, color: "rgba(244,237,225,0.55)", letterSpacing: ".08em" }}>
-          {lang === "he" ? "אוטומציה · רצה עכשיו" : "automation · running now"}
+          {lang === "he" ? "הדגמה להמחשה · לא נתוני לקוחות" : "Illustrative demo · not customer data"}
         </span>
         <span
           aria-hidden="true"

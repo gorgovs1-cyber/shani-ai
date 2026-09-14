@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>אבחון AI ושיווק לעסק · Shani AI Creator</title>
+<title>בדיקת התאמה חינם לעסק · Shani AI Creator</title>
 <meta name="description" content="אבחון AI, אוטומציה ושיווק לעסק, חינם. 2–3 דקות שיחסכו לנו שיחה שלמה: איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו.">
 <link rel="canonical" href="https://shani-ai.com/audit">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -44,9 +44,9 @@
 <header>
   <svg class="hex" width="66" height="66" viewBox="0 0 100 100"><polygon points="50,7 87,28.5 87,71.5 50,93 13,71.5 13,28.5" fill="none" stroke="#F2622E" stroke-width="6"/><polygon points="50,27 70,39 70,61 50,73 30,61 30,39" fill="none" stroke="#F2622E" stroke-width="4"/><circle cx="50" cy="50" r="6.5" fill="#F2622E"/></svg>
   <div class="brand">SHANI AI CREATOR</div>
-  <h1>אבחון <span>AI, אוטומציה ושיווק</span> לעסק</h1>
-  <p class="sub">2–3 דקות שיחסכו לנו שיחה שלמה. אמפה איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו, בלי לנחש.</p>
-  <div class="time">⏱ כ-3 דקות</div>
+  <h1>מה העסק שלכם <span>צריך עכשיו?</span></h1>
+  <p class="sub">ספרו לי קצת על העסק, איך מגיעות אליכם פניות ומה לוקח לכם זמן, כדי שאוכל להבין מה אתם צריכים ולעזור לכם לעשות סדר.</p>
+  <div class="time">בדיקת התאמה חינם · ללא התחייבות</div>
 </header>
 
 <div class="wrap">
@@ -192,6 +192,8 @@
     </div>
   </div>
 
+  <p id="form-status" role="status" aria-live="polite"></p>
+  <a id="fallback-link" hidden target="_blank" rel="noopener noreferrer">המשיכו לשליחה בוואטסאפ</a>
   <button type="button" class="submit" onclick="send()">שלחו את האבחון</button>
   <p class="note">2–3 דקות שיחסכו לנו שיחה שלמה. אחזור אליכם תוך יום עסקים עם כמה כיוונים ראשוניים, ונקבע שיחה קצרה.</p>
   </form>
@@ -293,10 +295,15 @@
   function waFallback(d){
     var L=["היי שני! מילאתי את האבחון",""];
     for(var k in d) L.push("• "+k+": "+d[k]);
-    window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n")),"_blank");
-    done();
+    var link=document.getElementById("fallback-link");
+    link.href="https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n"));
+    link.hidden=false;
+    document.getElementById("form-status").textContent="הטופס לא נשלח. אפשר לנסות שוב או להמשיך לוואטסאפ ולשלוח שם את ההודעה.";
+    link.focus();
   }
+  var sending=false;
   function send(){
+    if(sending) return;
     var emailEl=document.querySelector('[data-q="אימייל"]');
     var email=(emailEl.value||'').trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
@@ -315,12 +322,18 @@
       return;
     }
     phoneEl.style.border='';
+    var consent=document.querySelector('[data-multi="הסכמה"] input');
+    if(!consent.checked){document.getElementById("form-status").textContent="כדי שאוכל לחזור אליכם, סמנו את אישור החזרה בנוגע לפנייה.";consent.focus();return;}
     var d=collect();
+    sending=true;
+    var button=document.querySelector(".submit");button.disabled=true;
+    document.getElementById("form-status").textContent="שולחים את האבחון…";
     if(WEBHOOK_URL){
       fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
         .then(function(r){ if(r.ok){done();} else {waFallback(d);} })
-        .catch(function(){waFallback(d)});
-    } else { waFallback(d); }
+        .catch(function(){waFallback(d)})
+        .finally(function(){sending=false;button.disabled=false;});
+    } else { waFallback(d);sending=false;button.disabled=false; }
   }
 </script>
 </body>

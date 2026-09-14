@@ -56,11 +56,12 @@ export default function Nav() {
 
     const attach = (lenis: any) => {
       const onScroll = (l: any) => {
-        // Lenis direction: 1 = scrolling UP, -1 = scrolling DOWN
+        // Lenis direction: positive is down, negative is up.
         const { scroll, direction } = l;
-        if (scroll < 80) setHidden(false);
-        else if (direction === -1) setHidden(true);
-        else if (direction === 1) setHidden(false);
+        if (window.innerWidth > 900 || scroll < 80) setHidden(false);
+        else if (document.querySelector('.site-nav')?.contains(document.activeElement)) setHidden(false);
+        else if (direction === 1) setHidden(true);
+        else if (direction === -1) setHidden(false);
       };
       lenis.on("scroll", onScroll);
       unsub = () => lenis.off("scroll", onScroll);
@@ -195,6 +196,7 @@ export default function Nav() {
         }}
       >
         <nav
+          className="site-nav"
           aria-label={t.navAriaMain}
           style={{
             pointerEvents: "auto",
@@ -215,6 +217,7 @@ export default function Nav() {
         >
           {/* Left: Logo + name */}
           <a
+            className="nav-brand"
             href={isHome ? "#top" : "/"}
             dir="ltr"
             style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none" }}
@@ -231,14 +234,6 @@ export default function Nav() {
               }}>
                 Shani AI
               </span>
-              <span className="nav-subtitle" style={{
-                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-                fontSize: 8.5,
-                letterSpacing: ".26em",
-                color: "var(--dmuted)",
-              }}>
-                SHANI AI CREATOR
-              </span>
             </span>
           </a>
 
@@ -247,7 +242,15 @@ export default function Nav() {
             className="nav-desktop"
             style={{ display: "flex", alignItems: "center", gap: 20 }}
           >
-            {navLinks.map((l) => {
+            <details className="nav-service-menu" onKeyDown={(e) => { if (e.key === "Escape") { e.currentTarget.open = false; e.currentTarget.querySelector("summary")?.focus(); } }}>
+              <summary>{lang === "he" ? "שירותים" : "Services"}</summary>
+              <div>
+                {navLinks.filter((l) => ["/websites", "/automations", "/ai-consulting"].includes(l.href)).map((l) => (
+                  <a key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>
+                ))}
+              </div>
+            </details>
+            {navLinks.filter((l) => !["/websites", "/automations", "/ai-consulting"].includes(l.href)).map((l) => {
               const current = isCurrent(l.href);
               // The current page keeps the brighter ink so it stays marked after
               // the pointer leaves — aria-current alone helps AT users only.
@@ -284,7 +287,7 @@ export default function Nav() {
           </div>
 
           {/* Right: lang toggle + CTA */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div className="nav-actions" style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {/* Language toggle */}
             <div
               className="nav-lang"
@@ -333,7 +336,7 @@ export default function Nav() {
 
             {/* CTA pill */}
             <a
-              href={anchor("#contact")}
+              href="/audit"
               className="nav-cta"
               style={{
                 display: "inline-flex",
@@ -442,28 +445,15 @@ export default function Nav() {
               gap: "2.25rem",
             }}
           >
-            {navLinks.map((l) => {
-              const current = isCurrent(l.href);
-              return (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={closeMenu}
-                  aria-current={current ? "page" : undefined}
-                  style={{
-                    fontSize: "2rem",
-                    fontWeight: 700,
-                    color: "var(--dtext)",
-                    textDecoration: current ? "underline" : "none",
-                    textUnderlineOffset: "6px",
-                    fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  {l.label}
-                </a>
-              );
-            })}
+            {[
+              { title: lang === "he" ? "שירותים" : "Services", links: navLinks.filter((l) => ["/websites", "/automations", "/ai-consulting"].includes(l.href)) },
+              { title: lang === "he" ? "עבודות ומידע" : "Work & information", links: navLinks.filter((l) => !["/websites", "/automations", "/ai-consulting"].includes(l.href)) },
+            ].map((group) => (
+              <div key={group.title} className="mobile-nav-group">
+                <h2>{group.title}</h2>
+                {group.links.map((l) => <a key={l.href} href={l.href} onClick={closeMenu} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>)}
+              </div>
+            ))}
 
             {/* Language toggle — was missing from mobile menu entirely */}
             <div
@@ -514,7 +504,7 @@ export default function Nav() {
             </div>
 
             <a
-              href={anchor("#contact")}
+              href="/audit"
               onClick={closeMenu}
               style={{
                 display: "inline-flex",

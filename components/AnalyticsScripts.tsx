@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Script from "next/script";
-import { useConsent } from "@/components/CookieConsent";
+import { readConsent, useConsent } from "@/components/CookieConsent";
 
 /**
  * GA4 + Meta Pixel base tags — consent gated.
@@ -41,7 +41,7 @@ const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
 
 // Shared helper — fires the lead event on both GA4 and Meta Pixel if present.
 export function trackLead(params: Record<string, unknown> = {}) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || readConsent()?.choice !== "granted") return;
   try {
     const w = window as any;
     if (typeof w.gtag === "function") {

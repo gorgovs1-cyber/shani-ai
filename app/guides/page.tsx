@@ -34,7 +34,7 @@ const COPY: Record<"he" | "en", Copy> = {
     kicker: "ספריית מדריכים",
     title: "מדריכים להורדה",
     intro:
-      "כל מדריך שאני מעלה כפוסט נשמר כאן. הכול פתוח וחינם, בלי להשאיר מייל ובלי הרשמה. פשוט פותחים וקוראים.",
+      "ריכזתי כאן את המדריכים שלי, ואפשר לקרוא ולהוריד אותם בחינם בלי להירשם או להשאיר מייל.",
     view: "צפייה / הורדה",
   },
   en: {
@@ -53,7 +53,7 @@ export default function GuidesPage() {
 
   return (
     <>
-      <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
+      <div dir={dir} style={{ padding: "7rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
           {c.kicker}
         </div>
@@ -128,7 +128,7 @@ export default function GuidesPage() {
         </div>
 
         <div style={{ height: 80 }} />
-      </main>
+      </div>
       <Footer />
     </>
   );

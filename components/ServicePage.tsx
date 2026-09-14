@@ -34,6 +34,7 @@ export type ServiceCopy = {
       notFor?: string;
       exampleLabel?: string;
       exampleUrl?: string;
+      cta?: { label: string; href: string };
     }[];
   };
   /** קישורים לשני השירותים האחרים */
@@ -66,13 +67,13 @@ export default function ServicePage({
   const { lang } = useLang();
   const c = copyByLang[lang];
   const dir = c.dir;
-  const auditLabel = lang === "he" ? "להתחיל באבחון AI חינם" : "Start a free AI Audit";
+  const auditLabel = lang === "he" ? "בדיקת התאמה חינם" : "Free fit check";
   const [open, setOpen] = useState<number | null>(null);
   const [openProduct, setOpenProduct] = useState<number | null>(null);
 
   return (
     <>
-      <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
+      <div className="service-content" dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
         {/* Hero */}
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
           {c.kicker}
@@ -97,7 +98,7 @@ export default function ServicePage({
           <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
             {c.includesTitle}
           </h2>
-          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 14 }}>
+          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px, 100%), 1fr))", gap: 14 }}>
             {c.includes.map((f) => (
               <li key={f} style={{ display: "flex", gap: 12, alignItems: "flex-start", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 14, padding: "16px 18px", color: "var(--ink)", fontSize: 15, lineHeight: 1.55, fontFamily: HEEBO }}>
                 <span style={{ color: "var(--acc)", flexShrink: 0, fontWeight: 800 }}>✓</span> {f}
@@ -112,9 +113,6 @@ export default function ServicePage({
             <h2 style={{ margin: "0 0 8px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
               {c.liveDemo.title}
             </h2>
-            <p style={{ margin: "0 0 24px", color: "var(--muted2)", fontSize: 16, lineHeight: 1.7, maxWidth: "62ch", fontFamily: HEEBO }}>
-              {c.liveDemo.sub}
-            </p>
             <AutomationFlowDemo />
           </section>
         ) : null}
@@ -169,6 +167,7 @@ export default function ServicePage({
                       </a>
                     ) : null}
                   </div>
+                  {p.cta && <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}><a className="portfolio-button" href={p.cta.href}>{p.cta.label}</a></div>}
                 </div>
               ))}
             </div>
@@ -181,7 +180,7 @@ export default function ServicePage({
             <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(21px,2.6vw,30px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
               {c.alsoTitle}
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 380px))", justifyContent: "start", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 380px))", justifyContent: "start", gap: 16 }}>
               {c.also.map((a) => (
                 <a key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
                   <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
@@ -236,24 +235,34 @@ export default function ServicePage({
             so the page doesn't just end on a generic call to action. */}
         {c.bridge ? (
           <div style={{ marginTop: 56, textAlign: "center" }}>
+            <p style={{ margin: "0 0 18px", color: "var(--muted2)", fontSize: 16, lineHeight: 1.6, fontFamily: HEEBO }}>
+              {c.bridge.text}
+            </p>
+            {/* Was a plain text link (transparent background, no padding) sitting
+                between the FAQ and the closing CTA — easy to miss and, worse, easy
+                to mistake for non-interactive text. This is real portfolio proof
+                right before a pricing decision, so it gets real button chrome. */}
             <a
               href={c.bridge.href}
+              className="work-bridge-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                color: "var(--muted2)",
-                fontSize: 16,
-                lineHeight: 1.6,
+                color: "var(--acc)",
+                background: "color-mix(in oklch, var(--acc) 9%, transparent)",
+                border: "1.5px solid color-mix(in oklch, var(--acc) 45%, var(--line))",
+                borderRadius: 999,
+                padding: "13px 26px",
+                fontWeight: 700,
+                fontSize: 15.5,
+                lineHeight: 1.4,
                 textDecoration: "none",
                 fontFamily: HEEBO,
+                transition: "background .15s ease, border-color .15s ease, transform .15s ease",
               }}
             >
-              {c.bridge.text}
-              <span style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
-                {c.bridge.linkLabel}
-              </span>
-              <span aria-hidden="true" style={{ color: "var(--acc)" }}>{dir === "rtl" ? "←" : "→"}</span>
+              {c.bridge.linkLabel}
             </a>
           </div>
         ) : null}
@@ -263,9 +272,6 @@ export default function ServicePage({
           <h2 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(24px,3vw,36px)", color: "var(--dtext)", fontFamily: HEEBO }}>
             {c.closingTitle}
           </h2>
-          <p style={{ margin: "14px auto 0", color: "var(--dmuted)", fontSize: "clamp(15px,1.5vw,18px)", lineHeight: 1.6, maxWidth: "50ch", fontFamily: HEEBO }}>
-            {c.closingSub}
-          </p>
           <div style={{ display: "flex", gap: 14, marginTop: 26, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
               {auditLabel}
@@ -293,7 +299,7 @@ export default function ServicePage({
             }),
           }}
         />
-      </main>
+      </div>
       <Footer />
     </>
   );

@@ -122,9 +122,9 @@ const COPY = {
   he: {
     label: "הגדרות עוגיות",
     kicker: "עוגיות",
-    title: "רגע לפני שממשיכים",
+    title: "עוגיות באתר",
     body:
-      "האתר הזה מפעיל Google Analytics 4 ו-Meta Pixel כדי לדעת אילו עמודים עובדים ולמדוד פרסום. הכלים האלה שומרים עוגיות של צד שלישי (_ga, _fbp) ומעבירים מידע גם מחוץ לישראל. הם נטענים רק אם תאשרו. בלי אישור האתר עובד בדיוק אותו דבר, פשוט בלי מדידה.",
+      "רק באישור שלכם נטען Google Analytics ו-Meta Pixel למדידה ופרסום, עם עוגיות צד שלישי והעברת מידע מחוץ לישראל, ואפשר לדחות ולהשתמש באתר כרגיל.",
     accept: "אישור",
     reject: "דחייה",
     policy: "מדיניות הפרטיות",
@@ -135,9 +135,9 @@ const COPY = {
   en: {
     label: "Cookie settings",
     kicker: "Cookies",
-    title: "One thing before you continue",
+    title: "Cookies on this site",
     body:
-      "This site runs Google Analytics 4 and Meta Pixel to see which pages work and to measure advertising. These tools set third-party cookies (_ga, _fbp) and transfer data outside Israel. They load only if you accept. Without your consent the site works exactly the same, just without measurement.",
+      "With your consent, Google Analytics and Meta Pixel use third-party cookies for measurement and advertising and transfer data outside Israel. You can reject them and use the site as usual.",
     accept: "Accept",
     reject: "Reject",
     policy: "Privacy Policy",
@@ -190,16 +190,16 @@ export default function CookieConsent() {
   const btnStyle: React.CSSProperties = {
     // Both buttons are visually identical on purpose: the regulator's opinion
     // treats a de-emphasised "reject" as a defect in the consent itself.
-    flex: "1 1 150px",
+    flex: "1 1 0",
     minHeight: 44,
-    padding: "12px 22px",
-    borderRadius: 12,
+    padding: "8px 16px",
+    borderRadius: 8,
     border: "1.5px solid var(--acc)",
     background: "transparent",
     color: "var(--acc)",
     fontFamily: HEEBO,
     fontWeight: 800,
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 1.2,
     cursor: "pointer",
   };
@@ -227,11 +227,11 @@ export default function CookieConsent() {
         .cc-card{
           pointer-events:auto;
           width:100%;
-          max-width:660px;
+          max-width:540px;
           background:var(--dpanel);
           border:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
-          border-radius:20px;
-          padding:22px 22px 18px;
+          border-radius:14px;
+          padding:14px 16px;
           box-shadow:0 18px 50px rgba(0,0,0,.42);
           /* The Hebrew body text is ~13 lines at 360px. Bottom-anchored, that
              put the top of the card off-screen on a 360x640 phone, hiding the
@@ -272,26 +272,13 @@ export default function CookieConsent() {
           aria-labelledby="cc-title"
           aria-describedby="cc-body"
         >
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 11,
-              letterSpacing: ".16em",
-              textTransform: "uppercase",
-              color: "var(--acc)",
-              marginBottom: 8,
-            }}
-          >
-            {c.kicker}
-          </div>
-
           <h2
             id="cc-title"
             style={{
-              margin: "0 0 8px",
+              margin: "0 0 6px",
               fontFamily: HEEBO,
               fontWeight: 900,
-              fontSize: "clamp(18px,2.4vw,22px)",
+              fontSize: 16,
               lineHeight: 1.25,
               letterSpacing: "-0.02em",
               color: "var(--dtext)",
@@ -303,10 +290,10 @@ export default function CookieConsent() {
           <p
             id="cc-body"
             style={{
-              margin: "0 0 16px",
+              margin: "0 0 10px",
               fontFamily: HEEBO,
-              fontSize: 14.5,
-              lineHeight: 1.7,
+              fontSize: 14,
+              lineHeight: 1.55,
               color: "var(--dmuted)",
             }}
           >

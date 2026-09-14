@@ -3,7 +3,6 @@
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
-import WebsiteCard3D from "@/components/WebsiteCard3D";
 
 export default function Services() {
   const { lang } = useLang();
@@ -18,20 +17,8 @@ export default function Services() {
         maxWidth: 1200,
         margin: "0 auto",
         padding: "clamp(72px,9vw,128px) 24px 0",
-        opacity: 0,
-        transform: "translateY(28px)",
+
         transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
-      }}
-      ref={(el) => {
-        if (!el) return;
-        const io = new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            el.style.opacity = "1";
-            el.style.transform = "none";
-            io.disconnect();
-          }
-        }, { threshold: 0.1 });
-        io.observe(el);
       }}
     >
       {/* Header */}
@@ -61,18 +48,6 @@ export default function Services() {
             }}
           />
         </div>
-        <p
-          style={{
-            margin: 0,
-            color: "var(--muted2)",
-            fontSize: 17,
-            lineHeight: 1.6,
-            maxWidth: "30ch",
-            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-          }}
-        >
-          {t.buildSub}
-        </p>
       </div>
 
       {/* 3-col grid */}
@@ -80,30 +55,9 @@ export default function Services() {
         className="services-grid"
         style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
       >
-        {t.services.map((s, i) => (
+        {t.services.slice(0, 2).map((s, i) => (
           <div
             key={s.no}
-            ref={(el) => {
-              if (!el) return;
-              const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-              if (reduced) return;
-              el.style.opacity = "0";
-              el.style.transform = "translateY(22px)";
-              el.style.transition =
-                `opacity .6s cubic-bezier(.2,.7,.2,1) ${i * 130}ms, transform .6s cubic-bezier(.2,.7,.2,1) ${i * 130}ms`;
-              const io = new IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting) {
-                  el.style.opacity = "1";
-                  el.style.transform = "none";
-                  io.disconnect();
-                  // מחזירים את המעבר המקורי כדי שהריחוף לא יירש את ההשהיה
-                  window.setTimeout(() => {
-                    el.style.transition = "transform .3s, box-shadow .3s, border-color .3s";
-                  }, 600 + i * 130);
-                }
-              }, { threshold: 0.15 });
-              io.observe(el);
-            }}
             style={{
               position: "relative",
               display: "flex",
@@ -134,13 +88,11 @@ export default function Services() {
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
                 fontSize: 13,
                 color: "var(--acc)",
-                marginBottom: s.no === "01" ? 16 : 50,
+                marginBottom: 20,
               }}
             >
               {s.no}
             </div>
-            {/* הדגמת תלת-ממד רק בכרטיס האתרים, כהוכחת יכולת ולא כקישוט על כל הכרטיסים */}
-            {s.no === "01" && <WebsiteCard3D />}
             <h3
               style={{
                 margin: "0 0 6px",

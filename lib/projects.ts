@@ -26,6 +26,7 @@ export type ProjectCard = {
 export type Project = {
   slug: string;
   title: string;
+  titleEn?: string;
   client: string;
   category: string;
   categoryHe: string;
@@ -49,18 +50,28 @@ const SIGNAL = "#ff6a3d";
 
 export const projects: Project[] = [
   {
+    slug: "beamer", title: "Beamer", client: "Beamer Israel",
+    category: "Website", categoryHe: "אתר", year: "2026",
+    tagline: "אתר למותג נרות, בעבודה.", taglineEn: "A candle-brand website, in progress.",
+    description: "אתר למותג נרות עם קטלוג ניחוחות, שנמצא עדיין בעבודה.",
+    descriptionEn: "A candle-brand website with a fragrance catalog, still in progress.",
+    tech: [], accent: SIGNAL, liveUrl: "https://beamer-new.vercel.app/",
+    featured: false, noDetailPage: true,
+  },
+  {
     slug: "ai-lead-machine",
-    title: "AI Lead Machine",
+    title: "מערכת לניהול פניות",
+    titleEn: "Enquiry management system",
     client: "Shani AI Creator",
     category: "AI Automation",
-    categoryHe: "אוטומציית AI",
+    categoryHe: "אוטומציה",
     year: "2026",
     tagline: "עסקים שמפספסים לידים כי אין מי שיענה בזמן.",
     taglineEn: "Businesses losing leads because no one answers in time.",
     description:
-      "בעיה: פניות נופלות בין הכיסאות ולקוחות אבודים. פתרון: מכונת לידים מקצה לקצה. טופס אבחון חכם, אוטומציית n8n, CRM בגוגל שיטס, מיילים ממותגים, ומנוע Claude שכותב תכנית והצעת מחיר מלאה לכל ליד, אוטומטית. תוצאה: כל פנייה מקבלת מענה ותכנית תוך שניות, 24/7, בלי מגע יד.",
+      "בעיה: פניות נופלות בין הכיסאות ולקוחות אבודים. פתרון: מכונת לידים מקצה לקצה. טופס אבחון חכם, אוטומציית n8n, CRM בגוגל שיטס, מיילים ממותגים, ומנוע Claude שכותב תכנית והצעת מחיר מלאה לכל ליד, אוטומטית. המטרה: לרכז את המידע מהפנייה ולהכין בסיס לחזרה אישית. הצעת המחיר מותאמת לאחר שיחה.",
     descriptionEn:
-      "Problem: enquiries fall through the cracks and leads are lost. Solution: an end-to-end lead machine — a smart intake form, n8n automation, Google Sheets CRM, branded emails and a Claude engine that writes a full plan and proposal for every lead, automatically. Result: every enquiry gets a response and a plan within seconds, 24/7, hands-free.",
+      "Problem: enquiries fall through the cracks and leads are lost. Solution: an end-to-end lead machine — a smart intake form, n8n automation, Google Sheets CRM, branded emails and a Claude engine that writes a full plan and proposal for every lead, automatically. The aim is to organise each enquiry for a personal follow-up. The proposal is tailored after a conversation.",
     tech: ["n8n", "Claude API", "Google Sheets", "Gmail API", "Webhooks", "HTML/CSS"],
     accent: SIGNAL,
     liveUrl: "https://shani-ai.com",
@@ -73,20 +84,21 @@ export const projects: Project[] = [
       tags: ["Automation", "n8n", "Claude"],
       he: {
         kind: "אוטומציה",
-        desc: "מכונת לידים מקצה לקצה: טופס אבחון חכם, אוטומציית n8n, CRM ומנוע Claude שכותב תכנית והצעת מחיר לכל פנייה. מענה תוך שניות, 24/7.",
+        desc: "מכונת לידים מקצה לקצה: טופס אבחון חכם, אוטומציית n8n, CRM ומנוע Claude שכותב תכנית והצעת מחיר לכל פנייה. ריכוז המידע כהכנה לחזרה אישית לפנייה.",
       },
       en: {
         kind: "Automation",
-        desc: "An end-to-end lead machine: a smart intake form, an n8n automation, a CRM, and a Claude engine that writes a plan and a proposal for every enquiry. A response within seconds, 24/7.",
+        desc: "An end-to-end lead machine: a smart intake form, an n8n automation, a CRM, and a Claude engine that writes a plan and a proposal for every enquiry. Information gathered for a personal follow-up.",
       },
     },
   },
   {
     slug: "ai-content-engine",
-    title: "AI Content Engine",
+    title: "מערכת להכנת תוכן",
+    titleEn: "Content preparation system",
     client: "Shani AI Creator",
     category: "AI Automation",
-    categoryHe: "אוטומציית AI",
+    categoryHe: "אוטומציה",
     year: "2026",
     tagline: "יצירת תוכן עקבי אוכלת שעות בכל שבוע.",
     taglineEn: "Consistent content creation eats hours every week.",
@@ -103,9 +115,9 @@ export const projects: Project[] = [
     title: "SOLIS",
     client: "Solis",
     category: "Cinematic Frontend",
-    categoryHe: "פרונטאנד קולנועי",
+    categoryHe: "אתר מוצר",
     year: "2024",
-    tagline: "מותג מיצים יוקרתי שנראה כמו כולם.",
+    tagline: "אתר מוצר למותג מיצים, עם דגש על תנועה והצגה חזותית.",
     taglineEn: "A premium juice brand that looked like everyone else.",
     description:
       "בעיה: המותג נראה גנרי ולא שידר יוקרה. פתרון: חוויית גלילה קולנועית עם video scrubbing וסאונד אמביינט. תוצאה: אתר שגורם לאנשים לשתף ולזכור.",
@@ -131,9 +143,9 @@ export const projects: Project[] = [
     title: "ROX | Meridian",
     client: "ROX",
     category: "Cinematic Frontend",
-    categoryHe: "פרונטאנד קולנועי",
+    categoryHe: "אתר מוצר",
     year: "2024",
-    tagline: "מותג שעונים שלא הצליח לשדר פרימיום.",
+    tagline: "אתר שעונים עם הצגת מוצרים ועיצוב מוקפד.",
     taglineEn: "A watch brand that couldn't convey premium.",
     description:
       "בעיה: עיצוב שלא הלם את רמת המוצר. פתרון: חוויה ויזואלית עם אנימציות מכניות ואודיו אמביינט. תוצאה: נוכחות דיגיטלית ברמה של מותגי שעונים מובילים.",
@@ -161,7 +173,7 @@ export const projects: Project[] = [
     category: "Client Website",
     categoryHe: "אתר תדמית",
     year: "2024",
-    tagline: "מטפלת מוכשרת שלא הצליחה להעביר את הערך שלה אונליין.",
+    tagline: "אתר שמציג את לילך, את שיטת העבודה שלה ואת הדרך ליצור קשר.",
     taglineEn: "A talented therapist who couldn't convey her value online.",
     description:
       "בעיה: אתר ישן שלא יצר אמון ולא הביא פניות. פתרון: אתר חם ואנושי עם CTA ברורים וטפסי יצירת קשר. תוצאה: נוכחות דיגיטלית שמשקפת את הסמכות של המטפלת.",
@@ -176,6 +188,7 @@ export const projects: Project[] = [
       order: 3,
       mono: "L",
       url: "https://www.lilachhazan.com/",
+      poster: "/project-previews/lilach-hazan.png",
       bg: "#faf8f5",
       tags: ["Website", "Client Work"],
       he: { kind: "פרויקט לקוח", desc: "אתר עסקי מקצועי שבניתי עבור לילך חזן." },
@@ -187,7 +200,7 @@ export const projects: Project[] = [
     title: "My Money",
     client: "My Money",
     category: "SaaS / Full-Stack",
-    categoryHe: "SaaS / פול-סטאק",
+    categoryHe: "מערכת לניהול כספים",
     year: "2024",
     tagline: "עצמאים שמבזבזים שעות על ניהול כספים ידני.",
     taglineEn: "Freelancers wasting hours on manual money management.",
@@ -205,12 +218,12 @@ export const projects: Project[] = [
       "Vercel",
     ],
     accent: SIGNAL,
-    liveUrl: "https://my-money-app-shani7.vercel.app/",
+    liveUrl: "https://my-money-app-tau.vercel.app/",
     featured: true,
     card: {
       order: 2,
       mono: "M",
-      url: "https://my-money-app-shani7.vercel.app/",
+      url: "https://my-money-app-tau.vercel.app/",
       bg: "#0b1628",
       tags: ["Web App", "Finance", "AI"],
       he: { kind: "מוצר אישי", desc: "פלטפורמה לניהול פיננסי שבניתי לעצמאיות ובעלות עסקים קטנים." },
@@ -224,7 +237,7 @@ export const projects: Project[] = [
     category: "Personal Brand",
     categoryHe: "מיתוג אישי",
     year: "2026",
-    tagline: "מאמן ששיטת העבודה שלו קשה להסביר במילים.",
+    tagline: "אתר אישי שמציג את אור ואת שיטת העבודה שלו.",
     taglineEn: "A coach whose method is hard to put into words.",
     description:
       "בעיה: תהליך אימון שמדבר על שינוי פנימי קשה להעביר בטקסט שיווקי, וכל ניסוח ישיר מדי נשמע כמו הבטחה. פתרון: אתר שבו אלמנט המותג עצמו מספר את הסיפור, פניקס שמשתנה לאורך הגלילה, לצד טקסט שקט שפונה קודם לאדם ורק אחר כך מסביר על השיטה. תוצאה: אתר שמעביר את הגישה עוד לפני שקוראים מילה, כולל התאמת נגישות לתקן הישראלי.",

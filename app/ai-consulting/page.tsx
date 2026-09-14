@@ -5,10 +5,10 @@ import ServicePage, { ServiceCopy } from "@/components/ServicePage";
 const copyByLang: Record<"he" | "en", ServiceCopy> = {
   he: {
     dir: "rtl",
-    kicker: "שירות · ייעוץ AI",
-    title: "יועצת AI שמדברת עסקים, לא רק טכנולוגיה",
+    kicker: "שירות · ייעוץ ותכנון",
+    title: "בואו נעשה סדר במה שהעסק צריך",
     lead:
-      "ניהלתי עסק משלי 10 שנים, אז אני יודעת בדיוק איפה נשרף הזמן ואיפה AI יחסוך לכם הכי הרבה. אני ממפה את התהליכים שלכם, בונה תוכנית עבודה ומלווה אתכם בהטמעה, בשפה פשוטה ובלי הבטחות ריקות.",
+      "לפעמים ברור שמשהו צריך להשתנות בעסק, אבל קשה לדעת מאיפה להתחיל, אז אני עוברת איתכם על מה שקורה ביומיום ועוזרת להבין מה כדאי לבנות, לחבר או פשוט לעשות אחרת.",
     primaryCta: "דברו איתי על ייעוץ",
     primaryWaMsg: "היי שני, אני רוצה ייעוץ והטמעת AI לעסק",
     secondaryCta: "לצפייה במחירים",
@@ -19,21 +19,22 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "תכנית עבודה מדורגת וברורה",
       "המלצה על הכלים שמתאימים לכם",
       "AI שכותב בעברית ובטון של העסק",
-      "ליווי בהטמעה, לא רק מסמך",
+      "עזרה בהגדרה ובהפעלת הכלים",
       "הדרכת צוות בשימוש נכון ב-AI",
       "מדידה של החיסכון בפועל",
     ],
     products: {
       title: "איך מתחילים",
-      note: "יש דרך כניסה אחת, והיא בלי עלות. משם ההצעה נבנית לפי מה שנמצא בפועל.",
+      note: "מתחילים באבחון חינמי כדי להבין מה אתם צריכים, ואם נחליט להתקדם לפרויקט אשלח לכם הצעה בהתאם.",
       labels: { fit: "מתי זה מתאים", includes: "מה מקבלים", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
       items: [
         {
-          name: "אבחון ראשוני",
+          name: "אבחון העסק ללא עלות",
+          cta: { label: "למילוי האבחון החינמי", href: "/audit" },
           price: "ללא עלות",
           fit: "יודעים שמשהו בעסק גוזל זמן, אבל לא בטוחים מה לתקן קודם או איפה AI רלוונטי.",
           includes: "טופס קצר על העסק והכלים. תוך יום עסקים אני חוזרת עם כיוונים, ואז שיחת היכרות של 20 דקות. בסיום מגיעה הצעה מסודרת: מה נבנה, כמה זה עולה, ולוח זמנים.",
-          forWho: "בעלי עסקים קטנים ובינוניים שרוצים להבין מה אפשרי לפני שמתחייבים לפרויקט.",
+          forWho: "בעלי עסקים שרוצים להבין מה נחוץ להם לפני שמתחייבים לפרויקט.",
           notFor: "אתם כבר יודעים בדיוק מה אתם רוצים לבנות. אז אפשר לדלג ולפנות ישירות בוואטסאפ.",
         },
       ],
@@ -45,49 +46,49 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     sections: [
       {
-        h: "מה עושה יועץ AI לעסקים?",
-        p: "יועצת AI עוזרת לכם להבין איפה AI חוסך זמן וכסף, בלי לבזבז חודשים על ניסוי וטעייה. אני לא מוכרת כלי — קודם מבינה את העסק, ואז ממליצה מה להטמיע, באיזה סדר, ומה יחזיר הכי הרבה שעות.",
+        h: "איך אני יכולה לעזור לכם לעשות סדר?",
+        p: "אני בודקת איתכם איך מגיעות פניות, מה קורה איתן אחר כך ואילו משימות לוקחות לכם זמן, ומשם נבין אילו כלים יכולים לעזור ומה כדאי לקדם קודם.",
       },
       {
-        h: "איך מתחילים? אבחון AI",
-        p: "מתחילים בשיחת אבחון ממוקדת שממפה את התהליכים שלכם ומזהה איפה בורח הזמן — הפרטים המלאים למעלה. יוצאים ממנה עם תכנית עבודה ברורה.",
+        h: "איך מתחילים? בדיקת התאמה חינם",
+        p: "ממלאים את האבחון החינמי על העסק. אני עוברת על התשובות, חוזרת עם כיוונים ראשוניים ובודקת איתכם מה נכון לקדם. זה אותו אבחון שאליו מגיעים דרך ״בדיקת התאמה חינם״.",
       },
       {
-        h: "למה AI כותב עברית שנשמעת מוזרה, ואיך מתקנים את זה?",
-        p: "רוב כלי ה-AI חושבים באנגלית ומתרגמים, ולכן העברית שיוצאת מהם עקומה ומנופחת. אני מלמדת את המערכת לכתוב בעברית של בן אדם, בטון של העסק שלכם — מוכן לשליחה, נשמע כמוכם ולא כמו מכונה.",
+        h: "ואיך שומרים על השפה של העסק?",
+        p: "אם משלבים כלי שכותב תוכן או עונה ללקוחות, אני מגדירה איתכם איך הוא צריך להתנסח ועוברת על דוגמאות, כדי שהשפה תתאים לכם וללקוחות שלכם.",
       },
       {
-        h: "הטמעת AI בעסק, לא נשארים לבד עם מסמך",
-        p: "ייעוץ ששווה משהו לא נגמר במסמך יפה. אני מלווה בהטמעה בפועל: מגדירה כלים, בונה אוטומציות, מדריכה את הצוות. המטרה תוצאות שאפשר למדוד, לא עוד קובץ שנשכח בדרייב.",
+        h: "מה קורה אם מחליטים להתקדם?",
+        p: "נסכם מה בונים ומה כלול בעבודה, ואני אדאג לחיבורים ולהסבר על השימוש בכלים כדי שתוכלו לעבוד איתם ביומיום.",
       },
     ],
-    faqTitle: "שאלות על ייעוץ AI",
+    faqTitle: "עוד דברים שאולי תרצו לדעת",
     faqItems: [
       {
-        q: "העסק שלי קטן, AI רלוונטי בכלל אליי?",
-        a: "דווקא לעסקים קטנים AI משנה הכי הרבה, כי כל שעה שחוזרת אליכם שווה המון. גם עסק של אדם אחד מבזבז שעות על תוכן, על מענה ללקוחות ועל סידור מידע, וזה בדיוק מה שאפשר להעביר הלאה. באבחון נראה איפה זה רלוונטי אצלכם.",
+        q: "איך יודעים אם אוטומציה מתאימה לעסק שלי?",
+        a: "בודקים אילו משימות חוזרות על עצמן, איפה פניות מתעכבות ומה דורש את שיקול הדעת שלכם. לא כל תהליך צריך אוטומציה, ולא כל אוטומציה צריכה בינה מלאכותית. ההמלצה נבנית לפי הצורך בפועל.",
       },
       {
         q: "כמה זמן לוקח לראות תוצאות?",
-        a: "חלק מהדברים מרגישים כבר בשבוע הראשון, למשל כלי שהופך כתיבת תוכן משעות לדקות. הטמעה רחבה יותר לוקחת כמה שבועות. אני מתחילה תמיד מהדברים שנותנים החזר מיידי, ורק אחר כך בונים הלאה.",
+        a: "זה תלוי במה שבונים ובכלים שכבר יש בעסק, אז לפני שמתחילים נסכם לוח זמנים ונבחר מה כדאי להפעיל קודם.",
       },
       {
         q: "צריך ידע טכני כדי לעבוד איתך?",
-        a: "ממש לא. אני מסבירה הכל בשפה פשוטה, בעברית, בלי להניח שום רקע טכני, ובלי לזלזל בכם. אתם מביאים את ההיכרות עם העסק, אני מביאה את הטכנולוגיה, וביחד מוצאים מה הכי מתאים.",
+        a: "לא צריך ידע טכני, אתם מכירים את העסק שלכם ואני כאן כדי להסביר את האפשרויות ולעזור לבחור מה מתאים.",
       },
     ],
-    bridge: { text: "אחרי שמיפינו מה בורח, השלב הבא הוא לסגור את זה.", linkLabel: "לאוטומציות", href: "/automations" },
-    closingTitle: "בואו נמפה איפה AI יחסוך לכם הכי הרבה",
+    bridge: { text: "רוצים להבין אילו פעולות אפשר להעביר למערכת?", linkLabel: "לאוטומציות", href: "/automations" },
+    closingTitle: "ספרו לי מה הייתם רוצים לשפר",
     closingSub:
-      "שיחת אבחון ראשונה, ממוקדת ובלי התחייבות, שבסופה תדעו בדיוק מאיפה להתחיל.",
+      "אבחון חינמי שעוזר לעשות סדר בצרכים ולבחור מה כדאי לקדם בעסק.",
     closingCta: "דברו איתי בוואטסאפ",
     closingWaMsg: "היי שני, אני רוצה ייעוץ והטמעת AI לעסק",
     auditLine: "או התחילו באבחון חינם",
   },
   en: {
     dir: "ltr",
-    kicker: "Service · AI Consulting",
-    title: "An AI consultant who speaks business, not just tech",
+    kicker: "Service · Consulting & planning",
+    title: "Understand what your business needs — and what to build first",
     lead:
       "I ran my own business for 10 years, so I know exactly where time gets wasted and where AI actually moves the needle. I map your processes, build an action plan and guide you through the rollout, in plain language and with no empty promises.",
     primaryCta: "Talk to me about consulting",
@@ -110,11 +111,12 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       labels: { fit: "When it fits", includes: "What you get", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
       items: [
         {
-          name: "First audit",
+          name: "Free business assessment",
+          cta: { label: "Start the free assessment", href: "/audit" },
           price: "Free",
           fit: "Something in the business is eating too much time, but you're not sure what to fix first or where AI is relevant.",
           includes: "A short form about the business and tools. Within one working day I come back with directions, then a 20-minute call. A full proposal follows: what gets built, what it costs, and a timeline.",
-          forWho: "Owners of small and mid-sized businesses who want to understand what is possible before committing to a project.",
+          forWho: "Business owners who want to understand what they need before committing to a project.",
           notFor: "You already know exactly what you want built, so you can skip ahead and message me directly.",
         },
       ],
@@ -145,8 +147,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqTitle: "AI consulting FAQ",
     faqItems: [
       {
-        q: "My business is small, is AI even relevant for me?",
-        a: "It is precisely small businesses that AI changes the most, because every hour returned to you is worth a lot. Even a one-person business wastes hours on content, client replies and data cleanup, which is exactly what AI can take. In the audit we'll see where it's relevant for you.",
+        q: "How do I know if automation fits my business?",
+        a: "We look at recurring tasks, delayed enquiries and decisions that need your judgement. Not every process needs automation, and not every automation needs AI. Recommendations follow your actual needs.",
       },
       {
         q: "How long until I see results?",
@@ -160,7 +162,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     bridge: { text: "Once we've mapped what's leaking, the next step is closing that gap.", linkLabel: "See automations", href: "/automations" },
     closingTitle: "Let's map where AI will save you the most",
     closingSub:
-      "A first audit call, focused and with no commitment, that ends with you knowing exactly where to start.",
+      "One free business assessment to clarify your needs and decide what to work on next.",
     closingCta: "Chat on WhatsApp",
     closingWaMsg: "Hi Shani, I'd like AI consulting and rollout for my business",
     auditLine: "Or start with a free audit",
