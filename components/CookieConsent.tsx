@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
+import Link from "next/link";
 
 /**
  * Cookie consent — banner + shared state.
@@ -298,13 +299,13 @@ export default function CookieConsent() {
             }}
           >
             {c.body}{" "}
-            <a
+            <Link
               className="cc-link"
               href="/privacy"
               style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
             >
               {c.policy}
-            </a>
+            </Link>
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>

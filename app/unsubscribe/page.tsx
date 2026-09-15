@@ -4,6 +4,7 @@ import { Suspense, useEffect, useId, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
@@ -338,9 +339,9 @@ function UnsubscribeForm() {
         </p>
         <p style={{ margin: "14px 0 0", color: "var(--muted2)", fontSize: 15, lineHeight: 1.7, fontFamily: HEEBO }}>
           {c.privacyPrefix}{" "}
-          <a className="unsub-link" href="/privacy" style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
+          <Link className="unsub-link" href="/privacy" style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
             {c.privacyLink}
-          </a>
+          </Link>
           .
         </p>
       </section>

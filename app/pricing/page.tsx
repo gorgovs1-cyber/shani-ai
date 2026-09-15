@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
 
@@ -169,18 +170,21 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "שינויי טקסט ותמונות, עדכוני אבטחה, ושני עדכונים בחודש: בדיקת אמצע חודש קצרה ודוח חודשי מלא עם המלצה.",
             price: "200 ₪",
             unit: "לחודש",
+            summary: ["שינויי טקסט ותמונות", "עדכוני אבטחה", "בדיקת אמצע חודש", "דוח חודשי עם המלצה"],
           },
           {
             name: "אתר ואוטומציות",
             desc: "כל מה שלמעלה, וגם ניטור שהאוטומציות רצות ותיקון תקלות.",
             price: "350 ₪",
             unit: "לחודש",
+            summary: ["כל מה שבמסלול אתר", "ניטור שוטף של האוטומציות", "תיקון תקלות"],
           },
           {
             name: "אתר, בוט או סוכן",
             desc: "כולל קריאת שיחות אמיתיות, הוספת תשובות חדשות, וכיול שוטף.",
             price: "450 ₪",
             unit: "לחודש",
+            summary: ["כל מה שבמסלול אתר ואוטומציות", "קריאת שיחות אמיתיות", "הוספת תשובות חדשות", "כיול שוטף"],
           },
         ],
       },
@@ -398,18 +402,21 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "Text and image changes, security updates, and two updates a month: a short mid-month check and a full monthly report with a recommendation.",
             price: "₪200",
             unit: "per month",
+            summary: ["Text and image changes", "Security updates", "Mid-month check", "Monthly report and recommendation"],
           },
           {
             name: "Website and automations",
             desc: "Everything above, plus monitoring that the automations are running and fixing what breaks.",
             price: "₪350",
             unit: "per month",
+            summary: ["Everything in Website", "Automation monitoring", "Fixes when something breaks"],
           },
           {
             name: "Website, bot or agent",
             desc: "Includes reading real conversations, adding new answers, and ongoing tuning.",
             price: "₪450",
             unit: "per month",
+            summary: ["Everything in Website & automations", "Review of real conversations", "New answers", "Ongoing tuning"],
           },
         ],
       },
@@ -494,7 +501,6 @@ export default function PricingPage() {
   const c = COPY[lang];
   const L = LABELS[lang];
   const [openKey, setOpenKey] = useState<string | null>(null);
-  const end: "left" | "right" = c.dir === "rtl" ? "left" : "right";
 
   return (
     <div dir={c.dir} style={{ fontFamily: HEEBO }}>
@@ -507,8 +513,11 @@ export default function PricingPage() {
         </div>
 
         {/* Price groups */}
-        {c.groups.map((g, gi) => (
-          <div key={gi} style={{ marginBottom: 40 }}>
+        {c.groups.map((g, gi) => {
+          const groupKey = `group-${gi}`;
+          const isAddons = gi === 2;
+          const isCare = gi === 3;
+          return <div key={gi} style={{ marginBottom: 40 }}>
             <h2 style={{ fontWeight: 800, fontSize: "clamp(21px,2.6vw,28px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 8px" }}>{g.title}</h2>
             {g.note ? (
               <p style={{ margin: "0 0 20px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.65, maxWidth: "62ch" }}>{g.note}</p>
@@ -516,135 +525,45 @@ export default function PricingPage() {
               <div style={{ height: 8 }} />
             )}
             {g.href ? (
-              <a
+              <Link
                 href={g.href}
                 style={{ display: "inline-block", marginBottom: 20, color: "var(--acc)", fontWeight: 700, fontSize: 15, textDecoration: "none", fontFamily: HEEBO }}
               >
                 {g.hrefLabel}
-              </a>
+              </Link>
             ) : null}
-            <div style={{ display: "grid", gap: 14 }}>
-              {g.items.map((it, ii) => (
-                <div
-                  key={ii}
-                  style={{
-                    position: "relative",
-                    background: "linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015))",
-                    backdropFilter: "blur(16px)",
-                    WebkitBackdropFilter: "blur(16px)",
-                    border: "1px solid rgba(255,255,255,.14)",
-                    borderRadius: 18,
-                    padding: "18px 22px",
-                    boxShadow: "0 8px 30px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.10)",
-                  }}
-                >
-                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 14 }}>
-                    <div style={{ flex: "1 1 260px", minWidth: 0 }}>
-                      {it.more ? (
-                        <button
-                          type="button"
-                          onClick={() => setOpenKey(openKey === `${gi}-${ii}` ? null : `${gi}-${ii}`)}
-                          aria-expanded={openKey === `${gi}-${ii}`}
-                          style={{
-                            all: "unset",
-                            cursor: "pointer",
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 8,
-                            fontFamily: HEEBO,
-                            fontWeight: 700,
-                            fontSize: 17.5,
-                            lineHeight: 1.4,
-                            color: it.flag ? "var(--acc)" : "var(--ink)",
-                            borderBottom: "1px dashed rgba(242,98,46,.55)",
-                            paddingBottom: 1,
-                          }}
-                        >
-                          <span>{it.name}</span>
-                          <span
-                            aria-hidden
-                            style={{
-                              fontSize: 11,
-                              color: "var(--acc)",
-                              transform: openKey === `${gi}-${ii}` ? "rotate(180deg)" : "none",
-                              transition: "transform .18s",
-                              display: "inline-block",
-                            }}
-                          >
-                            ▼
-                          </span>
-                        </button>
-                      ) : (
-                        <div style={{ fontWeight: 700, fontSize: 17.5, color: it.flag ? "var(--acc)" : "var(--ink)", lineHeight: 1.4 }}>{it.name}</div>
-                      )}
-                      {it.desc ? (
-                        <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
-                      ) : null}
-                      {it.summary ? (
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 8px", margin: "10px 0 0" }}>
-                          {it.summary.map((s, si) => (
-                            <span
-                              key={si}
-                              style={{
-                                fontSize: 12.5,
-                                color: "var(--acc)",
-                                background: "rgba(242,98,46,.10)",
-                                border: "1px solid rgba(242,98,46,.24)",
-                                borderRadius: 999,
-                                padding: "4px 10px",
-                                fontWeight: 600,
-                                lineHeight: 1.4,
-                              }}
-                            >
-                              {s}
-                            </span>
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                    <div style={{ whiteSpace: "nowrap", textAlign: end }}>
-                      <div style={{ fontWeight: 800, fontSize: 22, color: "var(--acc)", letterSpacing: "-0.02em" }}>{it.price}</div>
-                      {it.unit ? <div style={{ fontSize: 12.5, color: "var(--muted2)", fontWeight: 500 }}>{it.unit}</div> : null}
-                    </div>
-                  </div>
-
-                  {it.more && openKey === `${gi}-${ii}` ? (
-                    <div
-                      style={{
-                        marginTop: 14,
-                        background: "rgba(242,98,46,.07)",
-                        border: "1px solid rgba(242,98,46,.28)",
-                        borderRadius: 14,
-                        padding: "16px 18px",
-                      }}
-                    >
-                      <MoreRow label={L.fit} text={it.more.fit} />
-                      <MoreRow label={L.includes} text={it.more.includes} />
-                      <MoreRow label={L.forWho} text={it.more.forWho} />
-                      {it.more.notFor ? <MoreRow label={L.notFor} text={it.more.notFor} /> : null}
-                      {it.more.exampleUrl ? (
-                        <div style={{ marginTop: 10 }}>
-                          <span style={{ color: "var(--acc)", fontWeight: 700, fontSize: 14 }}>{L.example}: </span>
-                          <a
-                            href={it.more.exampleUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: "var(--ink)", fontSize: 14.5, fontWeight: 600 }}
-                          >
-                            {it.more.exampleLabel}
-                          </a>
-                        </div>
-                      ) : null}
-                    </div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
+            {isAddons ? (
+              <div className="price-accordion">
+                <button type="button" className="price-accordion-trigger" onClick={() => setOpenKey(openKey === groupKey ? null : groupKey)} aria-expanded={openKey === groupKey}>
+                  <span>{lang === "he" ? "לצפייה בתוספות ובמחירים" : "View add-ons and prices"}</span><span aria-hidden>{openKey === groupKey ? "−" : "+"}</span>
+                </button>
+                {openKey === groupKey && <ul className="addon-list">{g.items.map((it) => <li key={it.name}><span><strong>{it.name}</strong>{it.desc && <small>{it.desc}</small>}</span><b>{it.price}</b></li>)}</ul>}
+              </div>
+            ) : (
+              <div style={{ display: "grid", gap: 12 }}>
+                {g.items.map((it, ii) => {
+                  const itemKey = `${gi}-${ii}`;
+                  const expanded = openKey === itemKey;
+                  const canOpen = !!it.summary?.length || !!it.more || isCare;
+                  return <div className="price-accordion" key={it.name}>
+                    <button type="button" className="price-accordion-trigger" disabled={!canOpen} onClick={() => canOpen && setOpenKey(expanded ? null : itemKey)} aria-expanded={canOpen ? expanded : undefined}>
+                      <span className="price-accordion-title"><strong>{it.name}</strong><small>{it.desc || it.summary?.[0]}</small></span>
+                      <span className="price-accordion-price"><b>{it.price}</b>{it.unit && <small>{it.unit}</small>}</span>
+                      {canOpen && <span className="price-accordion-symbol" aria-hidden>{expanded ? "−" : "+"}</span>}
+                    </button>
+                    {expanded && <div className="price-accordion-panel">
+                      {it.summary?.length ? <><h3>{lang === "he" ? "מה כלול" : "What is included"}</h3><ul>{it.summary.map((s) => <li key={s}>{s}</li>)}</ul></> : null}
+                      {it.more && !isCare ? <div className="price-detail-copy"><MoreRow label={L.fit} text={it.more.fit} /><MoreRow label={L.forWho} text={it.more.forWho} />{it.more.notFor && <MoreRow label={L.notFor} text={it.more.notFor} />}</div> : null}
+                    </div>}
+                  </div>;
+                })}
+              </div>
+            )}
             {g.title === c.groups[3].title ? (
               <p style={{ margin: "14px 2px 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.75 }}>{c.maintNote}</p>
             ) : null}
           </div>
-        ))}
+        })}
 
         {/* Included */}
         <div style={{ background: "rgba(242,98,46,.07)", border: "1px solid rgba(242,98,46,.3)", borderRadius: 20, padding: "26px 26px", marginBottom: 40 }}>

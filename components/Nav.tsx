@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
@@ -216,7 +217,7 @@ export default function Nav() {
           }}
         >
           {/* Left: Logo + name */}
-          <a
+          <Link
             className="nav-brand"
             href={isHome ? "#top" : "/"}
             dir="ltr"
@@ -235,7 +236,7 @@ export default function Nav() {
                 Shani AI
               </span>
             </span>
-          </a>
+          </Link>
 
           {/* Center: Desktop nav links */}
           <div
@@ -246,7 +247,7 @@ export default function Nav() {
               <summary>{lang === "he" ? "שירותים" : "Services"}</summary>
               <div>
                 {navLinks.filter((l) => ["/websites", "/automations", "/ai-consulting"].includes(l.href)).map((l) => (
-                  <a key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>
+                  <Link key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</Link>
                 ))}
               </div>
             </details>
@@ -256,7 +257,7 @@ export default function Nav() {
               // the pointer leaves — aria-current alone helps AT users only.
               const baseColor = current ? "var(--dtext)" : "var(--dmuted)";
               return (
-                <a
+                <Link
                   key={l.href}
                   href={l.href}
                   aria-current={current ? "page" : undefined}
@@ -281,7 +282,7 @@ export default function Nav() {
                   onBlur={(e) => (e.currentTarget.style.color = baseColor)}
                 >
                   {l.label}
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -335,7 +336,7 @@ export default function Nav() {
             </div>
 
             {/* CTA pill */}
-            <a
+            <Link
               href="/audit"
               className="nav-cta"
               style={{
@@ -371,7 +372,7 @@ export default function Nav() {
               }}
             >
               {t.navCta}
-            </a>
+            </Link>
 
           </div>
 
@@ -422,11 +423,13 @@ export default function Nav() {
             position: "fixed",
             inset: 0,
             zIndex: 10000,
-            background: "rgba(20,16,9,0.98)",
+            background: "rgba(20,16,9,0.92)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
             display: "flex",
             // Scrollable so the links stay reachable on short/landscape screens,
             // and padded out of the notch and the home-indicator strip.
-            overflowY: "auto",
+            overflow: "hidden",
             boxSizing: "border-box",
             paddingTop: "max(24px, env(safe-area-inset-top, 0px))",
             paddingBottom: "max(24px, env(safe-area-inset-bottom, 0px))",
@@ -442,18 +445,13 @@ export default function Nav() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "2.25rem",
+              gap: "clamp(6px, 2.2vh, 14px)",
+              width: "100%",
             }}
           >
-            {[
-              { title: lang === "he" ? "שירותים" : "Services", links: navLinks.filter((l) => ["/websites", "/automations", "/ai-consulting"].includes(l.href)) },
-              { title: lang === "he" ? "עבודות ומידע" : "Work & information", links: navLinks.filter((l) => !["/websites", "/automations", "/ai-consulting"].includes(l.href)) },
-            ].map((group) => (
-              <div key={group.title} className="mobile-nav-group">
-                <h2>{group.title}</h2>
-                {group.links.map((l) => <a key={l.href} href={l.href} onClick={closeMenu} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>)}
-              </div>
-            ))}
+            <div className="mobile-nav-group">
+              {navLinks.map((l) => <Link key={l.href} href={l.href} onClick={closeMenu} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</Link>)}
+            </div>
 
             {/* Language toggle — was missing from mobile menu entirely */}
             <div

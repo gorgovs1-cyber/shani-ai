@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
 import AutomationFlowDemo from "@/components/AutomationFlowDemo";
+import Link from "next/link";
 
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
@@ -88,9 +89,9 @@ export default function ServicePage({
           <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
           </a>
-          <a href="/pricing" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
+          <Link href="/pricing" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
             {c.secondaryCta}
-          </a>
+          </Link>
         </div>
 
         {/* Includes */}
@@ -133,6 +134,12 @@ export default function ServicePage({
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {c.products.items.map((p, pi) => (
                 <div key={p.name} style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 28px" }}>
+                  {c.products!.items.length === 1 && p.cta?.href === "/audit" ? (
+                    <div style={{ textAlign: "center" }}>
+                      <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(22px,2.6vw,30px)", color: "var(--ink)", fontFamily: HEEBO }}>{p.name}</h3>
+                      <a className="portfolio-button" href={p.cta.href} style={{ marginTop: 22 }}>{p.cta.label}</a>
+                    </div>
+                  ) : <>
                   <button
                     type="button"
                     onClick={() => setOpenProduct(openProduct === pi ? null : pi)}
@@ -168,6 +175,7 @@ export default function ServicePage({
                     ) : null}
                   </div>
                   {p.cta && <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}><a className="portfolio-button" href={p.cta.href}>{p.cta.label}</a></div>}
+                  </>}
                 </div>
               ))}
             </div>
@@ -182,10 +190,10 @@ export default function ServicePage({
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 380px))", justifyContent: "start", gap: 16 }}>
               {c.also.map((a) => (
-                <a key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
+                <Link key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
                   <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
                   <div style={{ color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
-                </a>
+                </Link>
               ))}
             </div>
           </section>
@@ -242,7 +250,7 @@ export default function ServicePage({
                 between the FAQ and the closing CTA — easy to miss and, worse, easy
                 to mistake for non-interactive text. This is real portfolio proof
                 right before a pricing decision, so it gets real button chrome. */}
-            <a
+            <Link
               href={c.bridge.href}
               className="work-bridge-btn"
               style={{
@@ -263,7 +271,7 @@ export default function ServicePage({
               }}
             >
               {c.bridge.linkLabel}
-            </a>
+            </Link>
           </div>
         ) : null}
 

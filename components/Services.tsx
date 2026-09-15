@@ -3,6 +3,7 @@
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
+import Link from "next/link";
 
 export default function Services() {
   const { lang } = useLang();
@@ -55,9 +56,12 @@ export default function Services() {
         className="services-grid"
         style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
       >
-        {t.services.slice(0, 2).map((s, i) => (
-          <div
+        {t.services.map((s, i) => (
+          <Link
             key={s.no}
+            href={["/websites", "/automations", "/ai-consulting"][i]}
+            className="service-card-link"
+            aria-label={`${s.title} — ${t.servicesCta}`}
             style={{
               position: "relative",
               display: "flex",
@@ -68,6 +72,9 @@ export default function Services() {
               borderRadius: 22,
               padding: "34px 30px",
               overflow: "hidden",
+              textDecoration: "none",
+              color: "inherit",
+              cursor: "pointer",
               transition: "transform .3s, box-shadow .3s, border-color .3s",
             }}
             onMouseEnter={(e) => {
@@ -163,8 +170,8 @@ export default function Services() {
                 {(s as any).anchor}
               </div>
             )}
-            <a
-              href={["/websites", "/automations", "/ai-consulting"][i] ?? "/audit"}
+            <span
+              className="service-card-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -183,9 +190,9 @@ export default function Services() {
                 marginTop: "auto",
               }}
             >
-              {t.servicesCta}
-            </a>
-          </div>
+              {t.servicesCta}<span aria-hidden="true">{lang === "he" ? "←" : "→"}</span>
+            </span>
+          </Link>
         ))}
       </div>
     </section>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
+import Link from "next/link";
 export default function Hero() {
   const { lang } = useLang();
   const t = dict[lang];
@@ -167,7 +168,7 @@ export default function Hero() {
                 {lang === "he" ? "בדיקת התאמה חינם" : "Free fit check"}
               </a>
               </Magnetic>
-              <a href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</a>
+              <Link href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
             </div>
 
             {/* Meta row */}
