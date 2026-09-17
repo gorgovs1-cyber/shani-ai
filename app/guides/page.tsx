@@ -54,13 +54,13 @@ export default function GuidesPage() {
   return (
     <>
       <div dir={dir} style={{ padding: "7rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
+        <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16, textAlign: "center" }}>
           {c.kicker}
         </div>
-        <h1 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>
+        <h1 style={{ margin: "0 auto", textAlign: "center", fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>
           {c.title}
         </h1>
-        <p style={{ margin: "28px 0 0", color: "var(--ink)", fontSize: "clamp(17px,1.6vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>
+        <p style={{ margin: "28px auto 0", textAlign: "center", color: "var(--ink)", fontSize: "clamp(17px,1.6vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>
           {c.intro}
         </p>
 
@@ -80,6 +80,7 @@ export default function GuidesPage() {
             return (
               <article
                 key={g.slug}
+                className="guide-card"
                 style={{
                   background: "var(--card)",
                   border: "1px solid var(--line)",
@@ -90,17 +91,18 @@ export default function GuidesPage() {
                   gap: 12,
                 }}
               >
-                <span style={{ fontFamily: MONO, fontSize: 11, letterSpacing: ".18em", color: "var(--acc)", textTransform: "uppercase" }}>
+                <span style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".16em", color: "var(--muted2)", textTransform: "uppercase" }}>
                   {tag}
                 </span>
-                <h3 style={{ margin: 0, fontWeight: 800, fontSize: 19, lineHeight: 1.25, color: "var(--ink)", fontFamily: HEEBO }}>
+                <h2 style={{ margin: 0, fontWeight: 800, fontSize: 19, lineHeight: 1.25, color: "var(--ink)", fontFamily: HEEBO }}>
                   {title}
-                </h3>
+                </h2>
                 <p style={{ margin: 0, color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.6, flex: 1, fontFamily: HEEBO }}>
                   {desc}
                 </p>
                 <a
                   href={`/guides/${g.file}`}
+                  className="guide-card-link"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -120,7 +122,7 @@ export default function GuidesPage() {
                     fontFamily: HEEBO,
                   }}
                 >
-                  {c.view} ↓
+                  {c.view} <span aria-hidden="true">↗</span>
                 </a>
               </article>
             );

@@ -6,11 +6,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "מדיניות פרטיות · Shani AI Creator",
   description:
-    "איזה מידע נאסף באתר של Shani AI Creator (שני גורגוב), למה הוא משמש, אילו עוגיות פועלות, מי הספקים שמעבדים אותו, ומה הזכויות שלכם לפי חוק הגנת הפרטיות.",
+    "איזה מידע נאסף באתר של Shani AI Creator, למה הוא משמש, אילו עוגיות פועלות, מי הספקים שמעבדים אותו, ומה הזכויות שלכם לפי חוק הגנת הפרטיות.",
   alternates: { canonical: "https://shani-ai.com/privacy" },
   openGraph: {
     title: "מדיניות פרטיות · Shani AI Creator",
-    description: "מדיניות הפרטיות של Shani AI Creator (שני גורגוב).",
+    description: "מדיניות הפרטיות של Shani AI Creator.",
     url: "https://shani-ai.com/privacy",
     type: "website",
     locale: "he_IL",

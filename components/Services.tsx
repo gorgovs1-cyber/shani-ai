@@ -23,8 +23,8 @@ export default function Services() {
       }}
     >
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 30, marginBottom: 46, flexWrap: "wrap" }}>
-        <div>
+      <div className="section-heading" style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 30, marginBottom: 46, flexWrap: "wrap", textAlign: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div
             style={{
               fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
@@ -59,7 +59,7 @@ export default function Services() {
         {t.services.map((s, i) => (
           <Link
             key={s.no}
-            href={["/websites", "/automations", "/ai-consulting"][i]}
+            href={["/websites", "/automations", "/automations#solutions"][i]}
             className="service-card-link"
             aria-label={`${s.title} — ${t.servicesCta}`}
             style={{
@@ -190,7 +190,7 @@ export default function Services() {
                 marginTop: "auto",
               }}
             >
-              {t.servicesCta}<span aria-hidden="true">{lang === "he" ? "←" : "→"}</span>
+              {t.servicesCta}
             </span>
           </Link>
         ))}

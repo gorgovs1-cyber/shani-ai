@@ -118,6 +118,7 @@ export default function AccessibilityWidget() {
 
       {/* Toggle button — bottom-right, opposite the WhatsApp button */}
       <button
+        className="accessibility-toggle"
         onClick={() => setOpen(o => !o)}
         aria-label={w.open}
         aria-expanded={open}
@@ -157,6 +158,7 @@ export default function AccessibilityWidget() {
       {/* Panel */}
       {open && (
         <div
+          className="accessibility-panel"
           id="a11y-panel"
           ref={panelRef}
           role="dialog"

@@ -18,7 +18,7 @@ const COPY: Record<"he" | "en", Copy> = {
       "ברוכים הבאים. השימוש באתר ובשירותים של Shani AI Creator (שני גורגוב) כפוף לתנאים שלהלן. השימוש באתר מהווה הסכמה לתנאים אלה.",
     sections: [
       { heading: "השירותים", body:
-        "אני מציעה ייעוץ ומיפוי AI, בניית כלים וסקילים, אוטומציות, ובניית אתרים. תיאורי השירותים באתר הם כלליים; ההיקף, המחיר ולוחות הזמנים המדויקים נקבעים בהצעת מחיר או בהסכם פרטני מול כל לקוח." },
+        "אני מציעה בניית כלי AI וסקילים, אוטומציות ובניית אתרים. האבחון והמיפוי הם חלק מתהליך הגדרת הפרויקט. תיאורי השירותים באתר הם כלליים; ההיקף, המחיר ולוחות הזמנים המדויקים נקבעים בהצעת מחיר או בהסכם פרטני מול כל לקוח." },
       { heading: "אין הבטחת תוצאה", body:
         "אני פועלת במקצועיות ובמיטב היכולת, אך תוצאות עסקיות תלויות בגורמים רבים שאינם בשליטתי. אין במידע באתר או בשירותים משום התחייבות לתוצאה עסקית, הכנסה או ביצועים מסוימים." },
       { heading: "הצעות מחיר ותשלום", body:
@@ -49,7 +49,7 @@ const COPY: Record<"he" | "en", Copy> = {
       "Welcome. Use of the Shani AI Creator (Shani Gorgov) website and services is subject to the terms below. Using the site constitutes acceptance of these terms.",
     sections: [
       { heading: "Services", body:
-        "I offer AI consulting and mapping, custom tools and Skills, automations, and website builds. Service descriptions on the site are general; exact scope, price and timelines are set in a proposal or individual agreement with each client." },
+        "I build custom AI tools and Skills, automations, and websites. Assessment and mapping are part of defining each project. Service descriptions on the site are general; exact scope, price and timelines are set in a proposal or individual agreement with each client." },
       { heading: "No guaranteed results", body:
         "I work professionally and to the best of my ability, but business results depend on many factors outside my control. Nothing on the site or in the services is a commitment to a specific business result, revenue or performance." },
       { heading: "Quotes & payment", body:
@@ -83,7 +83,7 @@ export default function TermsPage() {
     <>
       <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
-        <h1 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
+        <h1 style={{ margin: "0 auto", textAlign: "center", fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
         <p className="page-meta" style={{ margin: "12px 0 0", fontFamily: MONO, fontSize: 13, color: "var(--muted2)" }}>{c.updated}</p>
         <p style={{ margin: "28px 0 0", color: "var(--ink)", fontSize: "clamp(17px,1.6vw,21px)", lineHeight: 1.7, fontFamily: HEEBO }}>{c.intro}</p>
 

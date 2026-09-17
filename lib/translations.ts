@@ -11,7 +11,7 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
-    navPricing:'מחירים', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ ותכנון',
+    navPricing:'מחירים', navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
     navAriaMain:'ניווט ראשי', navAriaHome:'שני גורגוב, לדף הבית', navAriaMobileMenu:'תפריט ניווט',
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
@@ -34,7 +34,7 @@ export const dict = {
     // "נבנה באהבה בישראל" הוא תרגום ישיר של made with love, לא ניסוח עברי.
     footer:'נבנה בישראל',
     // "עברית טבעית" ו"מבוססת בישראל" היו מפרט פנימי ותרגום של based in Israel.
-    marqueeItems:['אתרים','אוטומציות','ייעוץ ותכנון','מותאם לעסק שלכם','ישראל','מענה תוך 24 שעות'],
+    marqueeItems:['אתרים','אוטומציות','פתרונות AI','מותאם לעסק שלכם','ישראל','מענה תוך 24 שעות'],
     processTitle: 'איך מתחילים ומתקדמים',
     processIntro: 'אתם לא צריכים לדעת מראש איזו מערכת לבקש, בשביל זה אני כאן.',
     processSteps: [
@@ -50,7 +50,7 @@ export const dict = {
     services:[
       {no:'01', title:'אתר לעסק שלכם', desc:'אני בונה אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.', fit:'אין לכם אתר, או שלא ברור בו מה אתם מציעים ואיך פונים אליכם', anchor:'מ-1,500 ₪'},
       {no:'02', title:'מערכות שחוסכות זמן', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית: שמירת פרטי פנייה, שליחת אישור או תזכורת, ועדכון הכלים שכבר עובדים איתם.', fit:'אתם עונים על אותן שאלות שוב ושוב, או מפספסים פניות בערב', anchor:'מ-1,400 ₪'},
-      {no:'03', title:'ייעוץ ותכנון', desc:'אני מפרקת את השבוע שלכם ומראה מה גוזל הכי הרבה זמן.', fit:'רוצים להכניס טכנולוגיה, ולא בטוחים מה שווה את הכסף', anchor:'מתחילים בבדיקת התאמה חינם'}
+      {no:'03', title:'פתרונות AI וסוכנים', desc:'סוכן AI שמבין את השיחה, עונה בעברית ויכול לבצע פעולות כמו סינון פניות, קביעת פגישות ותמחור לפי הכללים שלכם.', fit:'המענה צריך לא רק להשיב, אלא גם להבין הקשר ולבצע את הצעד הבא', anchor:'מ-4,900 ₪'}
     ],
     // הפרויקטים עברו ל-lib/projects.ts, שהוא מקור האמת היחיד לתיק העבודות.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
@@ -92,7 +92,7 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navGuides:'Guides', navCta:'Free fit check',
-    navPricing:'Pricing', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'Consulting & planning',
+    navPricing:'Pricing', navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
     navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov — home', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
@@ -111,7 +111,7 @@ export const dict = {
     // the site's main lead funnel — vanished entirely in English.
     contactCta1:'Free fit check', contactCta2:'Message me on WhatsApp',
     footer:'Built in Israel',
-    marqueeItems:['Websites','Automations','AI consulting','Built for your business','Israel','Replies within 24h'],
+    marqueeItems:['Websites','Automations','AI solutions','Built for your business','Israel','Replies within 24h'],
     processTitle: 'How we get started and move forward',
     processIntro: 'A clear process. You do not need to know which website, system or tool to ask for.',
     processSteps: [
@@ -126,7 +126,7 @@ export const dict = {
     services:[
       {no:'01', title:'Websites that bring enquiries', desc:'A website that explains your offer, shows your work and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.', fit:'You have no website, or visitors cannot easily understand your offer and contact you', anchor:'From ₪1,500'},
       {no:'02', title:'Systems that save time', desc:'Recurring tasks happen automatically: saving enquiry details, sending a confirmation or reminder, and updating the tools you already use.', fit:'You answer the same questions again and again, or miss enquiries in the evening', anchor:'From ₪1,400'},
-      {no:'03', title:'Consulting & planning', desc:'I break your week down and show you what eats the most time.', fit:'You want technology in the business but cannot tell what is worth the money', anchor:'Start with a free fit check'}
+      {no:'03', title:'AI solutions and agents', desc:'An AI agent that understands the conversation, replies naturally, and can qualify enquiries, book meetings or quote by your rules.', fit:'The reply needs to understand context and take the next step, not only answer', anchor:'From ₪4,900'}
     ],
     // Projects live in lib/projects.ts, the single source of truth for the portfolio.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.

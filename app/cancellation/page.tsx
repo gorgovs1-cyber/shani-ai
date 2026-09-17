@@ -20,7 +20,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "מי עומדת מאחורי העסק",
         body:
-          "שני גורגוב, עוסק פטור מספר 300585536, רשומה בישראל מאז 1 באוגוסט 2026. השירותים שאני נותנת הם ייעוץ AI, בניית אוטומציות וסוכנים, ובניית אתרים בהתאמה אישית. אלה שירותים, לא מוצרים פיזיים, ולכן כללי הביטול שלהלן הם כללי ביטול של שירות. יצירת קשר בכל נושא ביטול: shani.creates.ai@gmail.com או 972-50-4744815+.",
+          "שני גורגוב, עוסק פטור מספר 300585536, רשומה בישראל מאז 1 באוגוסט 2026. השירותים שאני נותנת הם בניית אוטומציות וסוכני AI, ובניית אתרים בהתאמה אישית. אלה שירותים, לא מוצרים פיזיים, ולכן כללי הביטול שלהלן הם כללי ביטול של שירות. יצירת קשר בכל נושא ביטול: shani.creates.ai@gmail.com או 972-50-4744815+.",
       },
       {
         heading: "איך מבטלים",
@@ -126,7 +126,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "Who you are dealing with",
         body:
-          "Shani Gorgov, exempt sole trader (עוסק פטור) no. 300585536, registered in Israel since 1 August 2026. The services I provide are AI consulting, automations and agents, and custom website builds. These are services, not physical goods, so the rules below are the cancellation rules for a service. For anything to do with cancellation: shani.creates.ai@gmail.com or +972-50-4744815.",
+          "Shani Gorgov, exempt sole trader (עוסק פטור) no. 300585536, registered in Israel since 1 August 2026. The services I provide are automations, AI agents, and custom website builds. These are services, not physical goods, so the rules below are the cancellation rules for a service. For anything to do with cancellation: shani.creates.ai@gmail.com or +972-50-4744815.",
       },
       {
         heading: "How to cancel",
@@ -232,7 +232,7 @@ export default function CancellationPage() {
     <>
       <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
-        <h1 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
+        <h1 style={{ margin: "0 auto", textAlign: "center", fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
         <p className="page-meta" style={{ margin: "12px 0 0", fontFamily: MONO, fontSize: 13, color: "var(--muted2)" }}>{c.updated}</p>
         <p style={{ margin: "28px 0 0", color: "var(--ink)", fontSize: "clamp(17px,1.6vw,21px)", lineHeight: 1.7, fontFamily: HEEBO }}>{c.intro}</p>
 

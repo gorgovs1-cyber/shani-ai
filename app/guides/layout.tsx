@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "מדריכים להורדה · AI, אוטומציות ואתרים לעסק | Shani AI Creator",
   description:
-    "מדריכים חינמיים בעברית לעבודה עם Claude, בניית אוטומציות n8n, פרומפטים לעסק ותכנון תוכן. משאירים מייל פעם אחת ומקבלים גישה לכל המדריכים, כולל אלה שיתווספו.",
+    "מדריכים חינמיים בעברית לעבודה עם Claude, בניית אוטומציות n8n, פרומפטים לעסק ותכנון תוכן.",
   alternates: { canonical: "https://shani-ai.com/guides" },
   openGraph: {
     title: "מדריכים להורדה · Shani AI Creator",

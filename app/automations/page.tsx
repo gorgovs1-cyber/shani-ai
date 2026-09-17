@@ -65,29 +65,27 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "לפני האוטומציה, ואחריה",
     also: [
-      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "עוד לא ברור מה להעביר לאוטומציה קודם? האבחון מראה איפה בורח הזמן, ומשם בונים." },
       { label: "אתרים", href: "/websites", desc: "אוטומציה שווה כשיש פניות שנכנסות אליה. האתר הוא זה שמביא אותן." },
     ],
-    sections: [
-      {
-        h: "מה זה אוטומציה לעסק ולמה צריך אותה?",
-        p: "אוטומציה היא דרך לבצע פעולה באופן אוטומטי, למשל לשמור את הפרטים של מי שמילא טופס ולשלוח לו אישור, כדי שלא תצטרכו לעשות את זה בעצמכם בכל פעם.",
-      },
-      {
-        h: "אוטומציה לוואטסאפ לעסק, איך זה עובד?",
-        p: "אנחנו מגדירים באילו מצבים תישלח הודעה, על אילו שאלות המערכת תענה ומתי היא תעביר את השיחה אליכם, בהתאם לשירות שלכם ולדרך שבה אתם מדברים עם לקוחות.",
-      },
-      {
-        h: "כמה עולה אוטומציה לעסק?",
-        p: "המחירים המלאים למעלה, ליד כל דרגה, ובעמוד המחירים. עלויות שוטפות של כלים תמיד מפורטות בנפרד ורשומות על שמכם.",
-      },
-      {
-        h: "איך אני משתמשת בזה בעסק שלי?",
-        p: "הטופס באתר מחובר לתהליך שמרכז לי את המידע שאתם שולחים, כדי שאוכל לעבור עליו ולחזור אליכם כשאני כבר מכירה קצת את העסק.",
-      },
-    ],
+    sections: [],
     faqTitle: "שאלות על אוטומציות",
     faqItems: [
+      {
+        q: "מה זה אוטומציה לעסק ולמה צריך אותה?",
+        a: "אוטומציה מבצעת פעולה שחוזרת על עצמה באופן אוטומטי, למשל שומרת את הפרטים של מי שמילא טופס ושולחת לו אישור, כדי שלא תצטרכו לעשות את זה בעצמכם בכל פעם.",
+      },
+      {
+        q: "אוטומציה לוואטסאפ לעסק — איך זה עובד?",
+        a: "אנחנו מגדירים באילו מצבים תישלח הודעה, על אילו שאלות המערכת תענה ומתי היא תעביר את השיחה אליכם, בהתאם לשירות שלכם ולדרך שבה אתם מדברים עם לקוחות.",
+      },
+      {
+        q: "כמה עולה אוטומציה לעסק?",
+        a: "המחירים המלאים מופיעים ליד כל דרגה ובעמוד המחירים. עלויות שוטפות של כלים תמיד מפורטות בנפרד ורשומות על שמכם.",
+      },
+      {
+        q: "איך אני משתמשת באוטומציה בעסק שלי?",
+        a: "הטופס באתר שלי מחובר לתהליך שמרכז את המידע שאתם שולחים, כדי שאוכל לעבור עליו ולחזור אליכם כשאני כבר מכירה קצת את העסק. נבנה תהליך דומה לפי הדרך שבה העסק שלכם עובד.",
+      },
       {
         q: "צריך להבין בטכנולוגיה כדי להשתמש בזה?",
         a: "לא צריך ידע טכני, אני דואגת לבנייה ולחיבורים ומסבירה לכם איך משתמשים במה שבנינו ואיך עוקבים אחרי הפניות.",
@@ -174,29 +172,27 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "Before the automation, and after",
     also: [
-      { label: "Consulting", href: "/ai-consulting", desc: "Not sure yet what to automate first? The audit marks where the time leaks, and you build from there." },
       { label: "Websites", href: "/websites", desc: "Automation is worth most when enquiries are coming in. The site is what brings them." },
     ],
-    sections: [
-      {
-        h: "What is business automation and why do you need it?",
-        p: "Automation connects your tools so they talk to each other on their own — instead of copying details by hand, answering the same questions over and over, or sending reminders yourself. The result: faster replies, fewer enquiries slipping through, and hours back every week.",
-      },
-      {
-        h: "WhatsApp automation for business — how does it work?",
-        p: "When a client leaves an enquiry, the automation sends a WhatsApp reply within seconds, answers common questions, and can even book a meeting — in natural Hebrew and your business's tone. It can be a one-off project, with Shani Care added only if you want it.",
-      },
-      {
-        h: "How much does business automation cost?",
-        p: "Full prices are above, next to each level, and on the pricing page. Running tool costs are always itemised separately, in your name.",
-      },
-      {
-        h: "My lead machine — a live demo",
-        p: "The audit form on this site is itself the demo: an enquiry comes in, and AI agents prepare a full call brief for me within seconds, any hour. I build that same machine for your business.",
-      },
-    ],
+    sections: [],
     faqTitle: "Automation FAQ",
     faqItems: [
+      {
+        q: "What is business automation and why use it?",
+        a: "Automation connects your tools so they handle recurring actions on their own, such as saving form details, sending confirmations and scheduling reminders. That means faster replies and less manual work.",
+      },
+      {
+        q: "How does WhatsApp automation work?",
+        a: "We define when a message should be sent, which questions the system may answer and when it should hand the conversation to you, based on your service and tone of voice.",
+      },
+      {
+        q: "How much does business automation cost?",
+        a: "Full prices appear next to each level and on the pricing page. Any ongoing tool costs are listed separately and registered in your name.",
+      },
+      {
+        q: "How do you use automation in your own business?",
+        a: "The audit form on this site feeds a process that organises the information you send, so I can review it and reply with context. I build the equivalent process around the way your business works.",
+      },
       {
         q: "Do I need to be technical to use this?",
         a: "No. I build the whole automation, connect it to your systems, and set it all to run on its own. You simply see the results: leads coming in, replies going out, and reports. If needed, I also show you how to manage it day to day.",

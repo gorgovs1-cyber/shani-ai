@@ -76,16 +76,11 @@ export default function ServicePage({
     <>
       <div className="service-content" dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 1200, margin: "0 auto" }}>
         {/* Hero */}
-        <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
-          {c.kicker}
-        </div>
-        <h1 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,5.2vw,60px)", lineHeight: 1.03, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "20ch" }}>
-          {c.title}
-        </h1>
-        <p style={{ margin: "26px 0 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>
-          {c.lead}
-        </p>
-        <div style={{ display: "flex", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
+        <header className="service-page-hero">
+        <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
+        <h1 style={{ margin: "0 auto", fontWeight: 800, fontSize: "clamp(34px,5.2vw,60px)", lineHeight: 1.03, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "20ch" }}>{c.title}</h1>
+        <p style={{ margin: "26px auto 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>{c.lead}</p>
+        <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
           <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
           </a>
@@ -93,9 +88,10 @@ export default function ServicePage({
             {c.secondaryCta}
           </Link>
         </div>
+        </header>
 
         {/* Includes */}
-        <section style={{ marginTop: 64 }}>
+        <section className="service-section" style={{ marginTop: 64 }}>
           <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
             {c.includesTitle}
           </h2>
@@ -110,7 +106,7 @@ export default function ServicePage({
 
         {/* Live automation demo */}
         {c.liveDemo ? (
-          <section style={{ marginTop: 72 }}>
+          <section className="service-section" style={{ marginTop: 72 }}>
             <h2 style={{ margin: "0 0 8px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
               {c.liveDemo.title}
             </h2>
@@ -120,7 +116,7 @@ export default function ServicePage({
 
         {/* Products: the full explanation lives here, pricing links in */}
         {c.products ? (
-          <section style={{ marginTop: 72 }}>
+          <section id="solutions" className="service-section" style={{ marginTop: 72 }}>
             <h2 style={{ margin: "0 0 10px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
               {c.products.title}
             </h2>
@@ -131,9 +127,9 @@ export default function ServicePage({
             ) : (
               <div style={{ height: 18 }} />
             )}
-            <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+            <div className="service-product-list">
               {c.products.items.map((p, pi) => (
-                <div key={p.name} style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 28px" }}>
+                <div key={p.name} className={`service-product${openProduct === pi ? " is-open" : ""}`}>
                   {c.products!.items.length === 1 && p.cta?.href === "/audit" ? (
                     <div style={{ textAlign: "center" }}>
                       <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(22px,2.6vw,30px)", color: "var(--ink)", fontFamily: HEEBO }}>{p.name}</h3>
@@ -141,33 +137,36 @@ export default function ServicePage({
                     </div>
                   ) : <>
                   <button
+                    className="service-product-trigger"
                     type="button"
                     onClick={() => setOpenProduct(openProduct === pi ? null : pi)}
                     aria-expanded={openProduct === pi}
-                    style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16, flexWrap: "wrap", background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: HEEBO, textAlign: dir === "rtl" ? "right" : "left" }}
+                    aria-controls={`service-product-${pi}`}
+                    style={{ fontFamily: HEEBO, textAlign: dir === "rtl" ? "right" : "left" }}
                   >
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                      <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(19px,2.2vw,24px)", letterSpacing: "-0.01em", color: "var(--ink)", fontFamily: HEEBO }}>
+                    <span className="service-product-heading">
+                      <h3 style={{ fontFamily: HEEBO }}>
                         {p.name}
                       </h3>
-                      <span aria-hidden="true" style={{ color: "var(--acc)", fontSize: 12, transition: "transform .2s", transform: openProduct === pi ? "rotate(180deg)" : "none", display: "inline-block" }}>▼</span>
                     </span>
-                    <span style={{ fontWeight: 800, fontSize: 20, color: "var(--acc)", fontFamily: HEEBO, whiteSpace: "nowrap" }}>{p.price}</span>
+                    <span className="service-product-price" style={{ fontFamily: HEEBO }}>{p.price}</span>
+                    <span className="service-product-symbol" aria-hidden="true">{openProduct === pi ? "−" : "+"}</span>
                   </button>
-                  <div aria-hidden={openProduct !== pi} style={{ overflow: "hidden", maxHeight: openProduct === pi ? 800 : 0, transition: "max-height .35s ease" }}>
-                    <dl style={{ margin: 0, paddingTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
+                  <div id={`service-product-${pi}`} className="service-product-panel" hidden={openProduct !== pi}>
+                    <h4>{c.products!.labels.includes}</h4>
+                    <ul>
                       {[
                         [c.products!.labels.fit, p.fit],
                         [c.products!.labels.includes, p.includes],
                         [c.products!.labels.forWho, p.forWho],
                         ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
                       ].map(([label, value]) => (
-                        <div key={label as string}>
-                          <dt style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".14em", color: "var(--acc)", marginBottom: 5 }}>{label}</dt>
-                          <dd style={{ margin: 0, color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7, fontFamily: HEEBO }}>{value}</dd>
-                        </div>
+                        <li key={label as string}>
+                          <span aria-hidden="true">✓</span>
+                          <p><strong>{label}</strong>{value}</p>
+                        </li>
                       ))}
-                    </dl>
+                    </ul>
                     {p.exampleUrl ? (
                       <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 14.5, textDecoration: "none", fontFamily: HEEBO }}>
                         {c.products!.labels.example}: {p.exampleLabel}
@@ -200,7 +199,7 @@ export default function ServicePage({
         ) : null}
 
         {/* Detail sections (search-query headings) */}
-        <section style={{ marginTop: 64, display: "flex", flexDirection: "column", gap: 40 }}>
+        {c.sections.length ? <section style={{ marginTop: 64, display: "flex", flexDirection: "column", gap: 40 }}>
           {c.sections.map((s) => (
             <div key={s.h}>
               <h2 style={{ margin: "0 0 12px", fontWeight: 800, fontSize: "clamp(21px,2.6vw,30px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "26ch" }}>
@@ -211,26 +210,29 @@ export default function ServicePage({
               </p>
             </div>
           ))}
-        </section>
+        </section> : null}
 
         {/* FAQ */}
         <section style={{ marginTop: 72 }}>
           <h2 style={{ margin: "0 0 30px", fontWeight: 800, fontSize: "clamp(26px,3.4vw,42px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
             {c.faqTitle}
           </h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: 4, maxWidth: 860 }}>
+          <div className="service-faq">
             {c.faqItems.map((item, i) => (
-              <div key={i} style={{ border: "1px solid", borderColor: open === i ? "color-mix(in oklch, var(--acc) 40%, var(--line))" : "var(--line)", borderRadius: 16, overflow: "hidden", background: open === i ? "var(--card)" : "transparent", transition: "background .2s, border-color .2s" }}>
+              <div key={i} className={`service-faq-item${open === i ? " is-open" : ""}`}>
                 <button
+                  type="button"
+                  className="service-faq-trigger"
                   onClick={() => setOpen(open === i ? null : i)}
                   aria-expanded={open === i}
-                  style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 28px", background: "none", border: "none", cursor: "pointer", textAlign: dir === "rtl" ? "right" : "left", direction: dir, gap: 16 }}
+                  aria-controls={`service-faq-${i}`}
+                  style={{ textAlign: dir === "rtl" ? "right" : "left", direction: dir }}
                 >
-                  <span style={{ fontWeight: 700, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, lineHeight: 1.4 }}>{item.q}</span>
-                  <span aria-hidden="true" style={{ color: "var(--acc)", fontSize: 24, flexShrink: 0, lineHeight: 1, transition: "transform .25s", transform: open === i ? "rotate(45deg)" : "none", display: "inline-block" }}>+</span>
+                  <span style={{ fontFamily: HEEBO }}>{item.q}</span>
+                  <span aria-hidden="true">{open === i ? "−" : "+"}</span>
                 </button>
-                <div aria-hidden={open !== i} style={{ overflow: "hidden", maxHeight: open === i ? 500 : 0, transition: "max-height .35s ease" }}>
-                  <p style={{ margin: 0, padding: "0 28px 26px", color: "var(--muted2)", fontSize: 16, lineHeight: 1.72, fontFamily: HEEBO, direction: dir }}>{item.a}</p>
+                <div id={`service-faq-${i}`} className="service-faq-panel" hidden={open !== i}>
+                  <p style={{ fontFamily: HEEBO, direction: dir }}>{item.a}</p>
                 </div>
               </div>
             ))}

@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "מדיניות ביטולים והחזרים · Shani AI Creator",
   description:
-    "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator (שני גורגוב, עוסק פטור 300585536): איך מבטלים, ביטול לפני ואחרי תחילת העבודה, מועדי החזר, מה אינו ניתן להחזר, וביטול מנוי Shani Care.",
+    "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator: איך מבטלים, ביטול לפני ואחרי תחילת העבודה, מועדי החזר, מה אינו ניתן להחזר, וביטול מנוי Shani Care.",
   alternates: { canonical: "https://shani-ai.com/cancellation" },
   openGraph: {
     title: "מדיניות ביטולים והחזרים · Shani AI Creator",
     description:
-      "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator (שני גורגוב).",
+      "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator.",
     url: "https://shani-ai.com/cancellation",
     type: "website",
     locale: "he_IL",
