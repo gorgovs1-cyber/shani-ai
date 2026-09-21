@@ -50,15 +50,6 @@ const SIGNAL = "#ff6a3d";
 
 export const projects: Project[] = [
   {
-    slug: "beamer", title: "Beamer", client: "Beamer Israel",
-    category: "Website", categoryHe: "אתר", year: "2026",
-    tagline: "אתר למותג נרות, בעבודה.", taglineEn: "A candle-brand website, in progress.",
-    description: "אתר למותג נרות עם קטלוג ניחוחות, שנמצא עדיין בעבודה.",
-    descriptionEn: "A candle-brand website with a fragrance catalog, still in progress.",
-    tech: [], accent: SIGNAL, liveUrl: "https://beamer-new.vercel.app/",
-    featured: false, noDetailPage: true,
-  },
-  {
     slug: "ai-lead-machine",
     title: "מערכת לניהול פניות",
     titleEn: "Enquiry management system",
@@ -218,12 +209,12 @@ export const projects: Project[] = [
       "Vercel",
     ],
     accent: SIGNAL,
-    liveUrl: "https://my-money-app-tau.vercel.app/",
+    liveUrl: "https://my-money-app-shani7.vercel.app/",
     featured: true,
     card: {
       order: 2,
       mono: "M",
-      url: "https://my-money-app-tau.vercel.app/",
+      url: "https://my-money-app-shani7.vercel.app/",
       bg: "#0b1628",
       tags: ["Web App", "Finance", "AI"],
       he: { kind: "מוצר אישי", desc: "פלטפורמה לניהול פיננסי שבניתי לעצמאיות ובעלות עסקים קטנים." },

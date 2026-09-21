@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
 
@@ -170,21 +169,18 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "שינויי טקסט ותמונות, עדכוני אבטחה, ושני עדכונים בחודש: בדיקת אמצע חודש קצרה ודוח חודשי מלא עם המלצה.",
             price: "200 ₪",
             unit: "לחודש",
-            summary: ["שינויי טקסט ותמונות", "עדכוני אבטחה", "בדיקת אמצע חודש", "דוח חודשי עם המלצה"],
           },
           {
             name: "אתר ואוטומציות",
             desc: "כל מה שלמעלה, וגם ניטור שהאוטומציות רצות ותיקון תקלות.",
             price: "350 ₪",
             unit: "לחודש",
-            summary: ["כל מה שבמסלול אתר", "ניטור שוטף של האוטומציות", "תיקון תקלות"],
           },
           {
             name: "אתר, בוט או סוכן",
             desc: "כולל קריאת שיחות אמיתיות, הוספת תשובות חדשות, וכיול שוטף.",
             price: "450 ₪",
             unit: "לחודש",
-            summary: ["כל מה שבמסלול אתר ואוטומציות", "קריאת שיחות אמיתיות", "הוספת תשובות חדשות", "כיול שוטף"],
           },
         ],
       },
@@ -402,21 +398,18 @@ const COPY: Record<"he" | "en", Copy> = {
             desc: "Text and image changes, security updates, and two updates a month: a short mid-month check and a full monthly report with a recommendation.",
             price: "₪200",
             unit: "per month",
-            summary: ["Text and image changes", "Security updates", "Mid-month check", "Monthly report and recommendation"],
           },
           {
             name: "Website and automations",
             desc: "Everything above, plus monitoring that the automations are running and fixing what breaks.",
             price: "₪350",
             unit: "per month",
-            summary: ["Everything in Website", "Automation monitoring", "Fixes when something breaks"],
           },
           {
             name: "Website, bot or agent",
             desc: "Includes reading real conversations, adding new answers, and ongoing tuning.",
             price: "₪450",
             unit: "per month",
-            summary: ["Everything in Website & automations", "Review of real conversations", "New answers", "Ongoing tuning"],
           },
         ],
       },
@@ -500,120 +493,183 @@ export default function PricingPage() {
   const { lang } = useLang();
   const c = COPY[lang];
   const L = LABELS[lang];
-  const [activeCategory, setActiveCategory] = useState<0 | 1>(0);
   const [openKey, setOpenKey] = useState<string | null>(null);
-
-  const selectCategory = (index: 0 | 1) => {
-    setActiveCategory(index);
-    setOpenKey(null);
-  };
+  const end: "left" | "right" = c.dir === "rtl" ? "left" : "right";
 
   return (
     <div dir={c.dir} style={{ fontFamily: HEEBO }}>
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "clamp(112px,10vw,140px) 24px 0" }}>
         {/* Hero */}
-        <header className="pricing-hero" style={{ marginBottom: 38, textAlign: "center" }}>
+        <div style={{ marginBottom: 48 }}>
           <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
           <h1 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(38px,5.2vw,64px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)" }}>{c.title}</h1>
-          <p style={{ margin: "18px auto 0", color: "var(--muted2)", fontSize: 17, lineHeight: 1.75, maxWidth: "58ch" }}>{c.intro}</p>
-        </header>
-
-        <section className="price-category-section" aria-labelledby="price-category-title">
-          <h2 id="price-category-title" className="section-title">{lang === "he" ? "מה תרצו לבנות?" : "What would you like to build?"}</h2>
-          <div className="price-category-grid">
-            {c.groups.slice(0, 2).map((group, index) => {
-              const selected = activeCategory === index;
-              return <button
-                key={group.title}
-                type="button"
-                className="price-category-card"
-                aria-pressed={selected}
-                onClick={() => selectCategory(index as 0 | 1)}
-              >
-                <strong>{group.title}</strong>
-                <span>{lang === "he" ? "החל מ־" : "From "}<b>{group.items[0].price}</b></span>
-                <small>{selected ? (lang === "he" ? "החבילות מוצגות למטה" : "Packages shown below") : (lang === "he" ? "להצגת החבילות" : "Show packages")}</small>
-              </button>;
-            })}
-          </div>
-        </section>
+          <p style={{ margin: "18px 0 0", color: "var(--muted2)", fontSize: 17, lineHeight: 1.75, maxWidth: "58ch" }}>{c.intro}</p>
+        </div>
 
         {/* Price groups */}
-        {c.groups.map((g, gi) => {
-          // Inactive category stays in the server HTML (hidden) so search engines and AI crawlers can read every package.
-          const inactive = gi < 2 && gi !== activeCategory;
-          const groupKey = `group-${gi}`;
-          const isAddons = gi === 2;
-          const isCare = gi === 3;
-          return <section key={gi} hidden={inactive} className={isCare ? "price-group price-care" : "price-group"} style={{ marginBottom: 40 }}>
-            <h2 className="section-title" style={{ fontWeight: 800, fontSize: "clamp(21px,2.6vw,28px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 8px" }}>{g.title}</h2>
+        {c.groups.map((g, gi) => (
+          <div key={gi} style={{ marginBottom: 40 }}>
+            <h2 style={{ fontWeight: 800, fontSize: "clamp(21px,2.6vw,28px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 8px" }}>{g.title}</h2>
             {g.note ? (
-              <p style={{ margin: "0 auto 20px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.65, maxWidth: "62ch", textAlign: "center" }}>{g.note}</p>
+              <p style={{ margin: "0 0 20px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.65, maxWidth: "62ch" }}>{g.note}</p>
             ) : (
               <div style={{ height: 8 }} />
             )}
             {g.href ? (
-              <div style={{ textAlign: "center" }}><Link href={g.href} style={{ display: "inline-block", marginBottom: 20, color: "var(--acc)", fontWeight: 700, fontSize: 15, textDecoration: "none", fontFamily: HEEBO }}>{g.hrefLabel}</Link></div>
+              <a
+                href={g.href}
+                style={{ display: "inline-block", marginBottom: 20, color: "var(--acc)", fontWeight: 700, fontSize: 15, textDecoration: "none", fontFamily: HEEBO }}
+              >
+                {g.hrefLabel}
+              </a>
             ) : null}
-            {isAddons ? (
-              <div className="price-accordion">
-                <button type="button" className="price-accordion-trigger" onClick={() => setOpenKey(openKey === groupKey ? null : groupKey)} aria-expanded={openKey === groupKey}>
-                  <span>{lang === "he" ? "לצפייה בתוספות ובמחירים" : "View add-ons and prices"}</span><span aria-hidden>{openKey === groupKey ? "−" : "+"}</span>
-                </button>
-                {<ul className="addon-list" hidden={openKey !== groupKey}>{g.items.map((it) => <li key={it.name}><span><strong>{it.name}</strong>{it.desc && <small>{it.desc}</small>}</span><b>{it.price}</b></li>)}</ul>}
-              </div>
-            ) : (
-              <div className={isCare ? "price-care-grid" : "price-package-list"} style={{ display: "grid", gap: 12 }}>
-                {g.items.map((it, ii) => {
-                  const itemKey = `${gi}-${ii}`;
-                  const expanded = openKey === itemKey;
-                  const canOpen = !!it.summary?.length || !!it.more || isCare;
-                  return <div className="price-accordion" key={it.name}>
-                    <button type="button" className="price-accordion-trigger" disabled={!canOpen} onClick={() => canOpen && setOpenKey(expanded ? null : itemKey)} aria-expanded={canOpen ? expanded : undefined}>
-                      <span className="price-accordion-title"><strong>{it.name}</strong><small>{it.desc || it.summary?.[0]}</small></span>
-                      <span className="price-accordion-price"><b>{it.price}</b>{it.unit && <small>{it.unit}</small>}</span>
-                      {canOpen && <span className="price-accordion-symbol" aria-hidden>{expanded ? "−" : "+"}</span>}
-                    </button>
-                    {canOpen && <div className="price-accordion-panel" hidden={!expanded}>
-                      {it.summary?.length ? <><h3>{lang === "he" ? "מה כלול" : "What is included"}</h3><ul>{it.summary.map((s) => <li key={s}>{s}</li>)}</ul></> : null}
-                      {it.more && !isCare ? <div className="price-detail-copy"><MoreRow label={L.includes} text={it.more.includes} /><MoreRow label={L.fit} text={it.more.fit} /><MoreRow label={L.forWho} text={it.more.forWho} />{it.more.notFor && <MoreRow label={L.notFor} text={it.more.notFor} />}</div> : null}
-                    </div>}
-                  </div>;
-                })}
-              </div>
-            )}
+            <div style={{ display: "grid", gap: 14 }}>
+              {g.items.map((it, ii) => (
+                <div
+                  key={ii}
+                  style={{
+                    position: "relative",
+                    background: "linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.015))",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: "1px solid rgba(255,255,255,.14)",
+                    borderRadius: 18,
+                    padding: "18px 22px",
+                    boxShadow: "0 8px 30px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.10)",
+                  }}
+                >
+                  <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: 14 }}>
+                    <div style={{ flex: "1 1 260px", minWidth: 0 }}>
+                      {it.more ? (
+                        <button
+                          type="button"
+                          onClick={() => setOpenKey(openKey === `${gi}-${ii}` ? null : `${gi}-${ii}`)}
+                          aria-expanded={openKey === `${gi}-${ii}`}
+                          style={{
+                            all: "unset",
+                            cursor: "pointer",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: 8,
+                            fontFamily: HEEBO,
+                            fontWeight: 700,
+                            fontSize: 17.5,
+                            lineHeight: 1.4,
+                            color: it.flag ? "var(--acc)" : "var(--ink)",
+                            borderBottom: "1px dashed rgba(242,98,46,.55)",
+                            paddingBottom: 1,
+                          }}
+                        >
+                          <span>{it.name}</span>
+                          <span
+                            aria-hidden
+                            style={{
+                              fontSize: 11,
+                              color: "var(--acc)",
+                              transform: openKey === `${gi}-${ii}` ? "rotate(180deg)" : "none",
+                              transition: "transform .18s",
+                              display: "inline-block",
+                            }}
+                          >
+                            ▼
+                          </span>
+                        </button>
+                      ) : (
+                        <div style={{ fontWeight: 700, fontSize: 17.5, color: it.flag ? "var(--acc)" : "var(--ink)", lineHeight: 1.4 }}>{it.name}</div>
+                      )}
+                      {it.desc ? (
+                        <p style={{ margin: "4px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.65 }}>{it.desc}</p>
+                      ) : null}
+                      {it.summary ? (
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 8px", margin: "10px 0 0" }}>
+                          {it.summary.map((s, si) => (
+                            <span
+                              key={si}
+                              style={{
+                                fontSize: 12.5,
+                                color: "var(--acc)",
+                                background: "rgba(242,98,46,.10)",
+                                border: "1px solid rgba(242,98,46,.24)",
+                                borderRadius: 999,
+                                padding: "4px 10px",
+                                fontWeight: 600,
+                                lineHeight: 1.4,
+                              }}
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div style={{ whiteSpace: "nowrap", textAlign: end }}>
+                      <div style={{ fontWeight: 800, fontSize: 22, color: "var(--acc)", letterSpacing: "-0.02em" }}>{it.price}</div>
+                      {it.unit ? <div style={{ fontSize: 12.5, color: "var(--muted2)", fontWeight: 500 }}>{it.unit}</div> : null}
+                    </div>
+                  </div>
+
+                  {it.more && openKey === `${gi}-${ii}` ? (
+                    <div
+                      style={{
+                        marginTop: 14,
+                        background: "rgba(242,98,46,.07)",
+                        border: "1px solid rgba(242,98,46,.28)",
+                        borderRadius: 14,
+                        padding: "16px 18px",
+                      }}
+                    >
+                      <MoreRow label={L.fit} text={it.more.fit} />
+                      <MoreRow label={L.includes} text={it.more.includes} />
+                      <MoreRow label={L.forWho} text={it.more.forWho} />
+                      {it.more.notFor ? <MoreRow label={L.notFor} text={it.more.notFor} /> : null}
+                      {it.more.exampleUrl ? (
+                        <div style={{ marginTop: 10 }}>
+                          <span style={{ color: "var(--acc)", fontWeight: 700, fontSize: 14 }}>{L.example}: </span>
+                          <a
+                            href={it.more.exampleUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "var(--ink)", fontSize: 14.5, fontWeight: 600 }}
+                          >
+                            {it.more.exampleLabel}
+                          </a>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
             {g.title === c.groups[3].title ? (
               <p style={{ margin: "14px 2px 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.75 }}>{c.maintNote}</p>
             ) : null}
-          </section>
-        })}
+          </div>
+        ))}
 
-        {/* Secondary details stay available without filling the initial scan. */}
-        <section className="pricing-info" style={{ marginBottom: 64 }}>
-          <button type="button" className="price-accordion-trigger pricing-info-trigger" aria-expanded={openKey === "essentials"} onClick={() => setOpenKey(openKey === "essentials" ? null : "essentials")}>
-            <span>{lang === "he" ? "מידע חשוב על כל פרויקט" : "Important details for every project"}</span>
-            <span aria-hidden>{openKey === "essentials" ? "−" : "+"}</span>
-          </button>
-          {openKey === "essentials" && <div className="pricing-info-panel">
-            <div>
-              <h2>{c.includedTitle}</h2>
-              {c.included.map((p, i) => <p key={i}><span>· </span>{p}</p>)}
-            </div>
-            <div>
-              <h2>{c.toolsTitle}</h2>
-              <p>{c.toolsIntro}</p>
-              {c.tools.map((p, i) => <p key={i}><span>· </span>{p}</p>)}
-              <p>{c.toolsNote}</p>
-            </div>
-            <div>
-              <h2>{c.principlesTitle}</h2>
-              {c.principles.map((p, i) => <p key={i}><span>· </span>{p}</p>)}
-            </div>
-          </div>}
-        </section>
+        {/* Included */}
+        <div style={{ background: "rgba(242,98,46,.07)", border: "1px solid rgba(242,98,46,.3)", borderRadius: 20, padding: "26px 26px", marginBottom: 40 }}>
+          <h2 style={{ fontWeight: 800, fontSize: 21, color: "var(--ink)", margin: "0 0 14px" }}>{c.includedTitle}</h2>
+          {c.included.map((p, i) => (
+            <p key={i} style={{ margin: "0 0 10px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7 }}>
+              <span style={{ color: "var(--acc)", fontWeight: 700 }}>· </span>{p}
+            </p>
+          ))}
+        </div>
+
+        {/* Tools */}
+        <div style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "26px 26px", marginBottom: 64 }}>
+          <h2 style={{ fontWeight: 800, fontSize: 21, color: "var(--ink)", margin: "0 0 12px" }}>{c.toolsTitle}</h2>
+          <p style={{ margin: "0 0 12px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7 }}>{c.toolsIntro}</p>
+          {c.tools.map((p, i) => (
+            <p key={i} style={{ margin: "0 0 8px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7 }}>
+              <span style={{ color: "var(--acc)", fontWeight: 700 }}>· </span>{p}
+            </p>
+          ))}
+          <p style={{ margin: "12px 0 0", color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.7 }}>{c.toolsNote}</p>
+        </div>
 
         {/* Process */}
-        <h2 className="section-title" style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.processTitle}</h2>
+        <h2 style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.processTitle}</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 16, marginBottom: 64 }}>
           {c.steps.map((s) => (
             <div key={s.no} style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 18, padding: "24px 22px" }}>
@@ -624,8 +680,18 @@ export default function PricingPage() {
           ))}
         </div>
 
+        {/* Principles */}
+        <div style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 20, padding: "28px 26px", marginBottom: 64 }}>
+          <h2 style={{ fontWeight: 800, fontSize: 22, color: "var(--ink)", margin: "0 0 16px" }}>{c.principlesTitle}</h2>
+          {c.principles.map((p, i) => (
+            <p key={i} style={{ margin: "0 0 10px", color: "var(--muted2)", fontSize: 15.5, lineHeight: 1.7 }}>
+              <span style={{ color: "var(--acc)", fontWeight: 700 }}>· </span>{p}
+            </p>
+          ))}
+        </div>
+
         {/* Value */}
-        <h2 className="section-title" style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.valueTitle}</h2>
+        <h2 style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.valueTitle}</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16, marginBottom: 64 }}>
           {c.values.map((v, i) => (
             <div key={i} style={{ background: "var(--card)", border: "1px solid rgba(242,98,46,.35)", borderRadius: 18, padding: "24px 22px" }}>
@@ -636,14 +702,12 @@ export default function PricingPage() {
         </div>
 
         {/* FAQ */}
-        <h2 className="section-title" style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.faqTitle}</h2>
-        <div className="pricing-faq" style={{ marginBottom: 64 }}>
+        <h2 style={{ fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 22px" }}>{c.faqTitle}</h2>
+        <div style={{ marginBottom: 64 }}>
           {c.faqItems.map((f, i) => (
-            <div key={i} className="pricing-faq-item">
-              <button type="button" className="pricing-faq-question" aria-expanded={openKey === `faq-${i}`} onClick={() => setOpenKey(openKey === `faq-${i}` ? null : `faq-${i}`)}>
-                <span>{f.q}</span><span aria-hidden>{openKey === `faq-${i}` ? "−" : "+"}</span>
-              </button>
-              {openKey === `faq-${i}` && <div className="pricing-faq-answer"><p>{f.a}</p></div>}
+            <div key={i} style={{ background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", marginBottom: 12 }}>
+              <div style={{ fontWeight: 700, fontSize: 16, color: "var(--ink)", marginBottom: 8 }}>{f.q}</div>
+              <p style={{ margin: 0, color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.75 }}>{f.a}</p>
             </div>
           ))}
         </div>

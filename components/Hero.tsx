@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
-import Link from "next/link";
 export default function Hero() {
   const { lang } = useLang();
   const t = dict[lang];
@@ -97,7 +96,7 @@ export default function Hero() {
           }}
         >
           {/* Left: content */}
-          <div className="hero-copy" style={{ animation: "scl-fadeup 0.8s ease 0.1s both", textAlign: "center" }}>
+          <div style={{ animation: "scl-fadeup 0.8s ease 0.1s both" }}>
             {/* H1 */}
             <h1
               style={{
@@ -117,7 +116,7 @@ export default function Hero() {
             {/* Sub */}
             <p
               style={{
-                margin: "30px auto 0",
+                margin: "30px 0 0",
                 color: "var(--dmuted)",
                 fontSize: "clamp(17px, 1.5vw, 21px)",
                 lineHeight: 1.62,
@@ -132,7 +131,7 @@ export default function Hero() {
             {/* CTAs — primary: free AI audit (lead funnel), secondary: view work */}
             <div
               className="hero-cta-row"
-              style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 14, marginTop: 40 }}
+              style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: 40 }}
             >
               {/* Primary: Free AI Audit */}
               <Magnetic>
@@ -168,7 +167,7 @@ export default function Hero() {
                 {lang === "he" ? "בדיקת התאמה חינם" : "Free fit check"}
               </a>
               </Magnetic>
-              <Link href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
+              <a href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</a>
             </div>
 
             {/* Meta row */}

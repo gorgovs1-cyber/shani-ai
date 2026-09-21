@@ -25,6 +25,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "איזה אתר מתאים לכם?",
+      note: "נבחר את סוג האתר לפי מה שאתם מציעים וכמה תוכן צריך להציג, ואפשר גם להתחיל עם מה שצריך עכשיו ולהרחיב בהמשך.",
       labels: { fit: "מתי זה מתאים", includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
       items: [
         {
@@ -63,27 +64,28 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     alsoTitle: "ואחרי שהאתר באוויר",
     also: [
       { label: "אוטומציות", href: "/automations", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
-      { label: "פתרונות AI וסוכנים", href: "/automations#solutions", desc: "כשהאתר כבר מביא פניות, סוכן AI יכול להבין את השיחה ולקדם אותה לצעד הבא." },
+      { label: "ייעוץ ותכנון", href: "/ai-consulting", desc: "לא בטוחים שאתר הוא הדבר הראשון שחסר לכם? האבחון מראה מה שווה לתקן קודם." },
     ],
-    sections: [],
+    sections: [
+      {
+        h: "כמה עולה לבנות אתר לעסק?",
+        p: "המחירים המלאים למעלה, ליד כל חבילה, ובעמוד המחירים: מ-1,500 ₪ לדף נחיתה ועד 3,700 ₪ לאתר פורטפוליו, כולם סופיים בלי הפתעות. ממלאים אבחון קצר בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
+      },
+      {
+        h: "למה אני בונה אתרים בקוד?",
+        p: "אני אוהבת את האפשרות להתאים את העיצוב ואת החיבורים למה שהעסק צריך, בלי להיצמד לתבנית מוכנה, והקוד נשאר שלכם כך שאפשר להמשיך לעבוד עליו גם עם מפתח אחר.",
+      },
+      {
+        h: "כמה זמן לוקח לבנות אתר?",
+        p: "ליד כל חבילה מופיע זמן העבודה שלה, ולפני שמתחילים נסכם את לוח הזמנים לפרויקט שלכם ואת החומרים שאצטרך מכם.",
+      },
+      {
+        h: "אפשר לחבר את האתר לוואטסאפ ולמערכות של העסק?",
+        p: "כן, אפשר לחבר את הפניות מהאתר למערכת שמרכזת את הפרטים, שולחת מענה או מזכירה לכם לחזור ללקוח, לפי מה שנבחר לבנות יחד.",
+      },
+    ],
     faqTitle: "שאלות על אתרים",
     faqItems: [
-      {
-        q: "כמה עולה לבנות אתר לעסק?",
-        a: "המחירים המלאים מופיעים ליד כל חבילה ובעמוד המחירים: מ-1,500 ₪ לדף נחיתה ועד 3,700 ₪ לאתר פורטפוליו. ממלאים אבחון קצר בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
-      },
-      {
-        q: "למה אני בונה אתרים בקוד?",
-        a: "כך אפשר להתאים את העיצוב ואת החיבורים למה שהעסק צריך, בלי להיצמד לתבנית מוכנה. הקוד נשאר שלכם, ולכן אפשר להמשיך לעבוד עליו גם עם מפתח אחר.",
-      },
-      {
-        q: "כמה זמן לוקח לבנות אתר?",
-        a: "ליד כל חבילה מופיע זמן העבודה שלה. לפני שמתחילים נסכם את לוח הזמנים לפרויקט שלכם ואת החומרים שאצטרך מכם.",
-      },
-      {
-        q: "אפשר לחבר את האתר לוואטסאפ ולמערכות של העסק?",
-        a: "כן. אפשר לחבר את הפניות מהאתר למערכת שמרכזת את הפרטים, שולחת מענה או מזכירה לכם לחזור ללקוח, לפי מה שנבחר לבנות יחד.",
-      },
       {
         q: "האתר יהיה מותאם למובייל?",
         a: "כן, וזה לא תוספת אלא נקודת המוצא. אני מתכננת קודם את מסך הטלפון ורק אחר כך את המחשב, כי רוב הגולשים מגיעים מהנייד. הכל נבדק על מגוון מסכים לפני העלייה לאוויר.",
@@ -131,6 +133,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "Three sizes, by how much you have to say",
+      note: "The difference between them is how much content there is to explain, not how good the site looks. You can start small and extend later.",
       labels: { fit: "When it fits", includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
       items: [
         {
@@ -169,27 +172,28 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     alsoTitle: "And once the site is live",
     also: [
       { label: "Automations", href: "/automations", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
-      { label: "AI solutions and agents", href: "/automations#solutions", desc: "Once the site brings enquiries, an AI agent can understand the conversation and move it to the next step." },
+      { label: "Consulting", href: "/ai-consulting", desc: "Not sure a site is the first thing missing? The audit marks what is worth fixing first." },
     ],
-    sections: [],
+    sections: [
+      {
+        h: "How much does a business website cost?",
+        p: "Full prices are above next to each package, and on the pricing page: from ₪1,500 for a landing page up to ₪3,700 for a portfolio site, all final with no surprises. Fill in the short audit at no cost, and within one business day I come back with directions and a proposal.",
+      },
+      {
+        h: "Why is a coded site better than Wix or Elementor?",
+        p: "A ready template looks like everyone else, loads slowly and is limited on both search and design. A site written from scratch loads fast, ranks better, and allows motion a template simply cannot do. And the code stays yours, with no dependency on an outside platform and no forced subscription.",
+      },
+      {
+        h: "How long does a website take?",
+        p: "Exact timelines for every site size are listed above, next to each package. I work with AI-assisted development throughout, so delivery is faster than the industry norm without compromising quality.",
+      },
+      {
+        h: "Will the site connect to automations and AI?",
+        p: "Yes. Unlike most website builders, I wire the site into the systems that manage your enquiries and into AI agents that speak Hebrew — the site captures leads and answers clients on its own. You can start with the site and add automation later.",
+      },
+    ],
     faqTitle: "Website FAQ",
     faqItems: [
-      {
-        q: "How much does a business website cost?",
-        a: "Full prices appear next to each package and on the pricing page: from ₪1,500 for a landing page to ₪3,700 for a portfolio site. Fill in the short free audit and I will come back within one business day with directions and a proposal.",
-      },
-      {
-        q: "Why build the site in code?",
-        a: "Code lets me tailor the design and connections to the business instead of forcing the project into a ready-made template. The code remains yours, so another developer can continue working on it later.",
-      },
-      {
-        q: "How long does a website take?",
-        a: "The timeline for each package is shown above. Before work begins, we agree on the project schedule and the materials I will need from you.",
-      },
-      {
-        q: "Will the site connect to WhatsApp, automations and AI?",
-        a: "Yes. The site can connect to the systems that manage enquiries, send replies and remind you to follow up. You can begin with the website and add automation later.",
-      },
       {
         q: "Will the site be mobile-friendly?",
         a: "Absolutely. I build mobile-first, meaning the site is designed for the phone screen first and then adapted for desktop, because most visitors come from mobile. Everything is tested across screen sizes before launch.",

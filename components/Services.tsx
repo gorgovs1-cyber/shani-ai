@@ -3,7 +3,7 @@
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function Services() {
   const { lang } = useLang();
@@ -23,8 +23,8 @@ export default function Services() {
       }}
     >
       {/* Header */}
-      <div className="section-heading" style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", gap: 30, marginBottom: 46, flexWrap: "wrap", textAlign: "center" }}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 30, marginBottom: 46, flexWrap: "wrap" }}>
+        <div>
           <div
             style={{
               fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
@@ -49,6 +49,18 @@ export default function Services() {
             }}
           />
         </div>
+        <p
+          style={{
+            margin: 0,
+            color: "var(--muted2)",
+            fontSize: 17,
+            lineHeight: 1.6,
+            maxWidth: "30ch",
+            fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+          }}
+        >
+          {t.buildSub}
+        </p>
       </div>
 
       {/* 3-col grid */}
@@ -56,12 +68,9 @@ export default function Services() {
         className="services-grid"
         style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
       >
-        {t.services.map((s, i) => (
-          <Link
+        {t.services.slice(0, 2).map((s, i) => (
+          <div
             key={s.no}
-            href={["/websites", "/automations", "/automations#solutions"][i]}
-            className="service-card-link"
-            aria-label={`${s.title} — ${t.servicesCta}`}
             style={{
               position: "relative",
               display: "flex",
@@ -72,9 +81,6 @@ export default function Services() {
               borderRadius: 22,
               padding: "34px 30px",
               overflow: "hidden",
-              textDecoration: "none",
-              color: "inherit",
-              cursor: "pointer",
               transition: "transform .3s, box-shadow .3s, border-color .3s",
             }}
             onMouseEnter={(e) => {
@@ -95,11 +101,13 @@ export default function Services() {
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
                 fontSize: 13,
                 color: "var(--acc)",
-                marginBottom: 20,
+                marginBottom: s.no === "01" ? 16 : 50,
               }}
             >
               {s.no}
             </div>
+            {/* הדגמת תלת-ממד רק בכרטיס האתרים, כהוכחת יכולת ולא כקישוט על כל הכרטיסים */}
+            {s.no === "01" && <div className="service-site-preview"><Image src="/project-previews/lilach-hazan.png" alt={lang === "he" ? "האתר של לילך חזן, דוגמה לאתר שבניתי" : "Lilach Hazan website, an example of my work"} width={1280} height={1280} sizes="(max-width: 767px) 90vw, 45vw" /></div>}
             <h3
               style={{
                 margin: "0 0 6px",
@@ -170,8 +178,8 @@ export default function Services() {
                 {(s as any).anchor}
               </div>
             )}
-            <span
-              className="service-card-cta"
+            <a
+              href={["/websites", "/automations", "/ai-consulting"][i] ?? "/audit"}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -191,8 +199,8 @@ export default function Services() {
               }}
             >
               {t.servicesCta}
-            </span>
-          </Link>
+            </a>
+          </div>
         ))}
       </div>
     </section>

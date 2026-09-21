@@ -130,8 +130,7 @@ export default function AccessibilityPage() {
         {/* Title */}
         <h1
           style={{
-            margin: "0 auto",
-            textAlign: "center",
+            margin: 0,
             fontWeight: 800,
             fontSize: "clamp(34px,5vw,56px)",
             lineHeight: 1.04,

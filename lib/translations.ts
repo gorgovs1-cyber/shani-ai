@@ -11,7 +11,7 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
-    navPricing:'מחירים', navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים',
+    navPricing:'מחירים', navWebsites:'אתרים', navAutomations:'אוטומציות', navConsulting:'ייעוץ ותכנון',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
     navAriaMain:'ניווט ראשי', navAriaHome:'שני גורגוב, לדף הבית', navAriaMobileMenu:'תפריט ניווט',
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
@@ -19,22 +19,22 @@ export const dict = {
     footerSeo:'אתרים, וואטסאפ ואוטומציות שמתחברים לעבודה של העסק. שני גורגוב, שירות לעסקים בכל הארץ.',
     // ה-H1 הקודם, "יוצרת פתרונות טכנולוגיים לעסקים", תיאר קטגוריה ולא תוצאה,
     // ולא הכיל אף מילת מפתח שמישהו מחפש. החדש אומר מה הלקוח מקבל.
-    heroTitle:'העסק שלכם שווה יותר',
-    heroSub:'אני שני, בונה אתרים ומחברת בין הכלים של העסק שלכם, כדי שתתעסקו פחות בעבודה ידנית ויישאר לכם יותר זמן ללקוחות ולצמיחה.',
+    heroTitle:'אתרים ואוטומציות לעסק שלכם',
+    heroSub:'אני שני, בונה אתרים ומחברת את הפניות לוואטסאפ ולמערכות של העסק, כדי שתוכלו לעקוב אחרי הלקוחות ולהתעסק פחות בעבודה ידנית.',
     // טריאז': שלוש דלתות כניסה, כדי שמבקר חדש לא יצטרך לנחש מאיפה מתחילים.
     // "פיתוח מבוסס AI" היה מפרט פנימי, לא משהו שהלקוח מחפש. "קוד ולא תבנית" אומר לו משהו.
-    meta1:'ישראל', meta2:'עונה תוך 24 שעות', meta3:'מותאם לעסק שלכם',
+    meta1:'ישראל', meta2:'עונה תוך 24 שעות', meta3:'קוד, לא תבנית',
     workKicker:'עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות ללקוחות, מוצרים שבניתי, והדגמות שמראות מה אפשר לבנות.',
     galleryKicker:'מבט מקרוב', scrollArrow:'',
     buildKicker:'מה אני בונה', buildTitle:'מה העסק שלכם צריך כרגע?', buildSub:'יכול להיות שאתם צריכים אתר שיסביר טוב יותר מה אתם עושים, ויכול להיות שהפניות כבר מגיעות אבל קשה לעקוב אחריהן, אז נתחיל ממה שחסר ונחבר את הדברים לפי הצורך.', servicesCta:'לפרטים המלאים',
-    aboutKicker:'מי אני', aboutTitle:'נעים להכיר אני שני', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
+    aboutKicker:'מי אני', aboutTitle:'נעים להכיר, אני שני', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
     contactTitle:'מה הייתם רוצים שיעבוד טוב יותר?',
     contactSub:'ספרו לי קצת על העסק ומה הייתם רוצים לשפר, גם אם אתם עוד לא יודעים בדיוק מה צריך לבנות, ונעשה בזה סדר יחד באבחון החינמי.',
     contactCta1:'בדיקת התאמה חינם', contactCta2:'דברו איתי בוואטסאפ',
     // "נבנה באהבה בישראל" הוא תרגום ישיר של made with love, לא ניסוח עברי.
     footer:'נבנה בישראל',
     // "עברית טבעית" ו"מבוססת בישראל" היו מפרט פנימי ותרגום של based in Israel.
-    marqueeItems:['אתרים','אוטומציות','פתרונות AI','מותאם לעסק שלכם','ישראל','מענה תוך 24 שעות'],
+    marqueeItems:['אתרים','אוטומציות','ייעוץ ותכנון','קוד ולא תבנית','ישראל','מענה תוך 24 שעות'],
     processTitle: 'איך מתחילים ומתקדמים',
     processIntro: 'אתם לא צריכים לדעת מראש איזו מערכת לבקש, בשביל זה אני כאן.',
     processSteps: [
@@ -50,7 +50,7 @@ export const dict = {
     services:[
       {no:'01', title:'אתר לעסק שלכם', desc:'אני בונה אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.', fit:'אין לכם אתר, או שלא ברור בו מה אתם מציעים ואיך פונים אליכם', anchor:'מ-1,500 ₪'},
       {no:'02', title:'מערכות שחוסכות זמן', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית: שמירת פרטי פנייה, שליחת אישור או תזכורת, ועדכון הכלים שכבר עובדים איתם.', fit:'אתם עונים על אותן שאלות שוב ושוב, או מפספסים פניות בערב', anchor:'מ-1,400 ₪'},
-      {no:'03', title:'פתרונות AI וסוכנים', desc:'סוכן AI שמבין את השיחה, עונה בעברית ויכול לבצע פעולות כמו סינון פניות, קביעת פגישות ותמחור לפי הכללים שלכם.', fit:'המענה צריך לא רק להשיב, אלא גם להבין הקשר ולבצע את הצעד הבא', anchor:'מ-4,900 ₪'}
+      {no:'03', title:'ייעוץ ותכנון', desc:'אני מפרקת את השבוע שלכם ומראה מה גוזל הכי הרבה זמן.', fit:'רוצים להכניס טכנולוגיה, ולא בטוחים מה שווה את הכסף', anchor:'מתחילים בבדיקת התאמה חינם'}
     ],
     // הפרויקטים עברו ל-lib/projects.ts, שהוא מקור האמת היחיד לתיק העבודות.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
@@ -92,15 +92,15 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navGuides:'Guides', navCta:'Free fit check',
-    navPricing:'Pricing', navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents',
+    navPricing:'Pricing', navWebsites:'Websites', navAutomations:'Automations', navConsulting:'Consulting & planning',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
     navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov — home', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'Websites, WhatsApp and automations connected to the way your business works. Shani Gorgov, serving businesses across Israel.',
-    heroTitle:'Your business is worth more',
-    heroSub:'I’m Shani, I build websites and connect your business tools so you spend less time on manual work and have more time for customers and growth.',
-    meta1:'Israel', meta2:'Replies within 24h', meta3:'Built for your business',
+    heroTitle:'A website built for enquiries. A system to handle them.',
+    heroSub:'I connect websites, WhatsApp and automations for businesses in Israel, so fewer enquiries get missed and less time goes into manual work. Start with what you need and add more when it helps.',
+    meta1:'Israel', meta2:'Replies within 24h', meta3:'Code, not a template',
     workKicker:'Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
     galleryKicker:'Up close', scrollArrow:'',
     buildKicker:'What I build', buildTitle:'From the first enquiry to a smoother working day', buildSub:'The website explains your business. WhatsApp makes it easy to get in touch. Automations save details and handle recurring tasks, based on what you need.', servicesCta:'Full details',
@@ -111,7 +111,7 @@ export const dict = {
     // the site's main lead funnel — vanished entirely in English.
     contactCta1:'Free fit check', contactCta2:'Message me on WhatsApp',
     footer:'Built in Israel',
-    marqueeItems:['Websites','Automations','AI solutions','Built for your business','Israel','Replies within 24h'],
+    marqueeItems:['Websites','Automations','AI consulting','Code, not a template','Israel','Replies within 24h'],
     processTitle: 'How we get started and move forward',
     processIntro: 'A clear process. You do not need to know which website, system or tool to ask for.',
     processSteps: [
@@ -126,7 +126,7 @@ export const dict = {
     services:[
       {no:'01', title:'Websites that bring enquiries', desc:'A website that explains your offer, shows your work and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.', fit:'You have no website, or visitors cannot easily understand your offer and contact you', anchor:'From ₪1,500'},
       {no:'02', title:'Systems that save time', desc:'Recurring tasks happen automatically: saving enquiry details, sending a confirmation or reminder, and updating the tools you already use.', fit:'You answer the same questions again and again, or miss enquiries in the evening', anchor:'From ₪1,400'},
-      {no:'03', title:'AI solutions and agents', desc:'An AI agent that understands the conversation, replies naturally, and can qualify enquiries, book meetings or quote by your rules.', fit:'The reply needs to understand context and take the next step, not only answer', anchor:'From ₪4,900'}
+      {no:'03', title:'Consulting & planning', desc:'I break your week down and show you what eats the most time.', fit:'You want technology in the business but cannot tell what is worth the money', anchor:'Start with a free fit check'}
     ],
     // Projects live in lib/projects.ts, the single source of truth for the portfolio.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.

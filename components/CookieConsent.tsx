@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLang } from "@/components/LanguageProvider";
-import Link from "next/link";
 
 /**
  * Cookie consent — banner + shared state.
@@ -217,7 +216,9 @@ export default function CookieConsent() {
              notch. */
           padding-left:env(safe-area-inset-left, 0px);
           padding-right:env(safe-area-inset-right, 0px);
-          /* clears the floating WhatsApp button and the iOS home-indicator strip */
+          /* clears the WhatsApp button (bottom-left) and the accessibility
+             widget (bottom-right), both fixed at bottom:2rem, plus the iOS
+             home-indicator strip */
           bottom:calc(env(safe-area-inset-bottom, 0px) + 2rem + 70px);
           display:flex;
           justify-content:center;
@@ -297,13 +298,13 @@ export default function CookieConsent() {
             }}
           >
             {c.body}{" "}
-            <Link
+            <a
               className="cc-link"
               href="/privacy"
               style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
             >
               {c.policy}
-            </Link>
+            </a>
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>

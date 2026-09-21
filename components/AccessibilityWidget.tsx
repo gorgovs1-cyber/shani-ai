@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useLang } from "@/components/LanguageProvider";
-import Link from "next/link";
 
 type Settings = {
   fontSize: 0 | 1 | 2;       // 0=רגיל 1=גדול 2=גדול מאוד
@@ -118,7 +117,6 @@ export default function AccessibilityWidget() {
 
       {/* Toggle button — bottom-right, opposite the WhatsApp button */}
       <button
-        className="accessibility-toggle"
         onClick={() => setOpen(o => !o)}
         aria-label={w.open}
         aria-expanded={open}
@@ -158,7 +156,6 @@ export default function AccessibilityWidget() {
       {/* Panel */}
       {open && (
         <div
-          className="accessibility-panel"
           id="a11y-panel"
           ref={panelRef}
           role="dialog"
@@ -312,7 +309,7 @@ export default function AccessibilityWidget() {
             borderTop: "1px solid var(--border)",
             textAlign: "center",
           }}>
-            <Link
+            <a
               href="/accessibility"
               style={{
                 fontSize: "0.65rem",
@@ -329,7 +326,7 @@ export default function AccessibilityWidget() {
               }}
             >
               {w.statement}
-            </Link>
+            </a>
           </div>
         </div>
       )}

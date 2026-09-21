@@ -63,8 +63,6 @@ export default function Contact() {
               borderRadius: "50%",
               border: "2px solid color-mix(in oklch, var(--acc) 60%, transparent)",
               marginBottom: 24,
-              display: "block",
-              marginInline: "auto",
               boxShadow: "0 0 26px color-mix(in oklch, var(--acc) 35%, transparent)",
             }}
           />

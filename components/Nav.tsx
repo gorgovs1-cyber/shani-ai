@@ -2,10 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
+
+// Visually hidden, but still focusable and announced. Used for the screen-reader
+// close button inside the mobile dialog (see comment at its usage).
+const srOnly: React.CSSProperties = {
+  position: "absolute",
+  width: 1,
+  height: 1,
+  padding: 0,
+  margin: -1,
+  overflow: "hidden",
+  clip: "rect(0 0 0 0)",
+  whiteSpace: "nowrap",
+  border: 0,
+};
 
 export default function Nav() {
   const { lang, setLang } = useLang();
@@ -45,7 +58,7 @@ export default function Nav() {
       const onScroll = (l: any) => {
         // Lenis direction: positive is down, negative is up.
         const { scroll, direction } = l;
-        if (window.innerWidth > 900 || scroll < 80) setHidden(false);
+        if (scroll < 80) setHidden(false);
         else if (document.querySelector('.site-nav')?.contains(document.activeElement)) setHidden(false);
         else if (direction === 1) setHidden(true);
         else if (direction === -1) setHidden(false);
@@ -77,32 +90,64 @@ export default function Nav() {
     if (menuOpen) setHidden(false);
   }, [menuOpen]);
 
-  // The compact mobile dropdown closes on Escape or an outside click. It does
-  // not trap focus or freeze the page, because it is navigation rather than a
-  // full-screen modal.
+  // Mobile menu keyboard contract: Escape closes, Tab is trapped between the
+  // hamburger (which renders above the overlay as the X) and the dialog's own
+  // controls, focus lands inside on open and returns to the hamburger on close.
+  // Background scrolling is frozen (Lenis keeps running otherwise, so the page
+  // scrolls behind the overlay).
   useEffect(() => {
     if (!menuOpen) return;
     const menu = menuRef.current;
     if (!menu) return;
 
+    const SELECTOR = 'a[href], button:not([disabled])';
+    const focusables = () => {
+      const list: HTMLElement[] = [];
+      if (hamburgerRef.current) list.push(hamburgerRef.current);
+      list.push(...Array.from(menu.querySelectorAll<HTMLElement>(SELECTOR)));
+      return list;
+    };
+    const inTrap = (el: Element | null) =>
+      !!el && (el === hamburgerRef.current || menu.contains(el));
+
+    // First link, not the X — keyboard users should land on the menu content.
+    menu.querySelector<HTMLElement>(SELECTOR)?.focus();
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
         setMenuOpen(false);
-        hamburgerRef.current?.focus();
+        return;
       }
-    };
-    const onPointerDown = (e: PointerEvent) => {
-      const target = e.target as Node;
-      if (!menu.contains(target) && !hamburgerRef.current?.contains(target)) setMenuOpen(false);
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || !inTrap(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !inTrap(active))) {
+        e.preventDefault();
+        first.focus();
+      }
     };
 
     document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("pointerdown", onPointerDown);
+    const lenis = (window as any).__lenis;
+    lenis?.stop?.();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("pointerdown", onPointerDown);
+      lenis?.start?.();
+      document.body.style.overflow = prevOverflow;
+      // Only reclaim focus if the closing menu dropped it on <body>; never steal
+      // it from wherever the user deliberately moved it.
+      const active = document.activeElement;
+      if (!active || active === document.body) hamburgerRef.current?.focus();
     };
   }, [menuOpen]);
 
@@ -113,10 +158,10 @@ export default function Nav() {
   const anchor = (hash: string) => (isHome ? hash : `/${hash}`);
 
   const navLinks = [
+    { label: t.navWork,        href: "/work" },
     { label: t.navWebsites,    href: "/websites" },
     { label: t.navAutomations, href: "/automations" },
-    { label: t.navAi,          href: "/automations#solutions" },
-    { label: t.navWork,        href: "/work" },
+    { label: t.navConsulting,  href: "/ai-consulting" },
     { label: t.navPricing,     href: "/pricing" },
     { label: t.navGuides,      href: "/guides" },
   ];
@@ -171,7 +216,7 @@ export default function Nav() {
           }}
         >
           {/* Left: Logo + name */}
-          <Link
+          <a
             className="nav-brand"
             href={isHome ? "#top" : "/"}
             dir="ltr"
@@ -189,8 +234,16 @@ export default function Nav() {
               }}>
                 Shani AI
               </span>
+              <span className="nav-subtitle" style={{
+                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
+                fontSize: 8.5,
+                letterSpacing: ".26em",
+                color: "var(--dmuted)",
+              }}>
+                SHANI AI CREATOR
+              </span>
             </span>
-          </Link>
+          </a>
 
           {/* Center: Desktop nav links */}
           <div
@@ -200,18 +253,18 @@ export default function Nav() {
             <details className="nav-service-menu" onKeyDown={(e) => { if (e.key === "Escape") { e.currentTarget.open = false; e.currentTarget.querySelector("summary")?.focus(); } }}>
               <summary>{lang === "he" ? "שירותים" : "Services"}</summary>
               <div>
-                {navLinks.filter((l) => ["/websites", "/automations", "/automations#solutions"].includes(l.href)).map((l) => (
-                  <Link key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</Link>
+                {navLinks.filter((l) => ["/websites", "/automations", "/ai-consulting"].includes(l.href)).map((l) => (
+                  <a key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>
                 ))}
               </div>
             </details>
-            {navLinks.filter((l) => !["/websites", "/automations", "/automations#solutions"].includes(l.href)).map((l) => {
+            {navLinks.filter((l) => !["/websites", "/automations", "/ai-consulting"].includes(l.href)).map((l) => {
               const current = isCurrent(l.href);
               // The current page keeps the brighter ink so it stays marked after
               // the pointer leaves — aria-current alone helps AT users only.
               const baseColor = current ? "var(--dtext)" : "var(--dmuted)";
               return (
-                <Link
+                <a
                   key={l.href}
                   href={l.href}
                   aria-current={current ? "page" : undefined}
@@ -236,7 +289,7 @@ export default function Nav() {
                   onBlur={(e) => (e.currentTarget.style.color = baseColor)}
                 >
                   {l.label}
-                </Link>
+                </a>
               );
             })}
           </div>
@@ -290,7 +343,7 @@ export default function Nav() {
             </div>
 
             {/* CTA pill */}
-            <Link
+            <a
               href="/audit"
               className="nav-cta"
               style={{
@@ -326,7 +379,7 @@ export default function Nav() {
               }}
             >
               {t.navCta}
-            </Link>
+            </a>
 
           </div>
 
@@ -365,49 +418,53 @@ export default function Nav() {
       {/* Spacer so content doesn't hide under fixed nav */}
       <div className="nav-spacer" aria-hidden="true" />
 
-      {/* Compact mobile dropdown */}
+      {/* Mobile overlay menu */}
       {menuOpen && (
         <div
           id="mobile-menu"
           ref={menuRef}
-          role="navigation"
+          role="dialog"
+          aria-modal="true"
           aria-label={t.navAriaMobileMenu}
-          className="mobile-nav-dropdown"
           style={{
             position: "fixed",
-            top: 82,
-            right: "max(12px, env(safe-area-inset-right, 0px))",
-            zIndex: 199,
-            width: "min(240px, calc(100vw - 24px))",
-            background: "rgba(20,16,9,0.64)",
-            backdropFilter: "blur(20px) saturate(120%)",
-            WebkitBackdropFilter: "blur(20px) saturate(120%)",
-            border: "1px solid rgba(255,255,255,.2)",
-            borderRadius: 16,
-            boxShadow: "0 18px 44px -22px rgba(20,16,9,.68), inset 0 1px 0 rgba(255,255,255,.12)",
+            inset: 0,
+            zIndex: 10000,
+            background: "rgba(20,16,9,0.98)",
             display: "flex",
+            // Scrollable so the links stay reachable on short/landscape screens,
+            // and padded out of the notch and the home-indicator strip.
             overflowY: "auto",
-            maxHeight: "min(340px, calc(100dvh - 104px - env(safe-area-inset-bottom, 0px)))",
             boxSizing: "border-box",
-            padding: "10px",
+            paddingTop: "max(24px, env(safe-area-inset-top, 0px))",
+            paddingBottom: "max(24px, env(safe-area-inset-bottom, 0px))",
+            paddingInline:
+              "max(24px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px))",
           }}
         >
+          {/* margin:auto centres the stack without the flex-centring overflow bug
+              (content clipped above the scroll origin when it is taller than the screen). */}
           <div
             style={{
+              margin: "auto",
               display: "flex",
               flexDirection: "column",
-              alignItems: "stretch",
-              gap: 8,
-              width: "100%",
+              alignItems: "center",
+              gap: "2.25rem",
             }}
           >
-            <div className="mobile-nav-group">
-              {navLinks.map((l) => <Link key={l.href} href={l.href} onClick={closeMenu} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</Link>)}
-            </div>
+            {[
+              { title: lang === "he" ? "שירותים" : "Services", links: navLinks.filter((l) => ["/websites", "/automations", "/ai-consulting"].includes(l.href)) },
+              { title: lang === "he" ? "עבודות ומידע" : "Work & information", links: navLinks.filter((l) => !["/websites", "/automations", "/ai-consulting"].includes(l.href)) },
+            ].map((group) => (
+              <div key={group.title} className="mobile-nav-group">
+                <h2>{group.title}</h2>
+                {group.links.map((l) => <a key={l.href} href={l.href} onClick={closeMenu} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</a>)}
+              </div>
+            ))}
 
             {/* Language toggle — was missing from mobile menu entirely */}
             <div
-              className="mobile-nav-lang"
               role="group"
               aria-label="Language / שפה"
               style={{
@@ -416,8 +473,7 @@ export default function Nav() {
                 background: "rgba(244,237,225,0.07)",
                 border: "1px solid var(--dline)",
                 borderRadius: 999,
-                padding: 3,
-                alignSelf: "center",
+                padding: 4,
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
               }}
             >
@@ -433,7 +489,7 @@ export default function Nav() {
                     style={{
                       border: "none",
                       cursor: "pointer",
-                      padding: "5px 12px",
+                      padding: "10px 22px",
                       borderRadius: 999,
                       // Was ~38px tall — below the 44px touch minimum.
                       minHeight: 44,
@@ -455,6 +511,32 @@ export default function Nav() {
               })}
             </div>
 
+            <a
+              href="/audit"
+              onClick={closeMenu}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                background: "var(--acc)",
+                color: "#fff",
+                textDecoration: "none",
+                fontWeight: 700,
+                fontSize: "1rem",
+                padding: "1rem 2.5rem",
+                borderRadius: 999,
+                marginTop: "0.5rem",
+                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
+              }}
+            >
+              {t.navCta}
+            </a>
+
+            {/* aria-modal="true" hides everything outside this dialog from screen
+                readers — including the X, which lives in the capsule. This gives
+                AT users a close control that is inside the dialog. */}
+            <button type="button" onClick={closeMenu} style={srOnly}>
+              {t.navAriaMenuClose}
+            </button>
           </div>
         </div>
       )}

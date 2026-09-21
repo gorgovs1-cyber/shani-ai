@@ -36,10 +36,7 @@ function Gloss({ children }: { children: React.ReactNode }) {
 }
 
 export default function SplashScreen() {
-  // Render nothing until the client has checked sessionStorage. Starting in
-  // "show" made the terminal appear for one frame on every hard navigation,
-  // even when the visitor had already seen it in this tab.
-  const [phase, setPhase] = useState<"show" | "fadeout" | "gone">("gone");
+  const [phase, setPhase] = useState<"show" | "fadeout" | "gone">("show");
 
   useEffect(() => {
     // Skip if already seen this session or if reduced motion
@@ -49,8 +46,6 @@ export default function SplashScreen() {
       setPhase("gone");
       return;
     }
-
-    setPhase("show");
 
     // Auto-dismiss via CSS animation at 3.2s + .6s fade = 3.8s total
     const fadeTimer = setTimeout(() => {

@@ -4,7 +4,6 @@ import { Suspense, useEffect, useId, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
 const MONO = "'JetBrains Mono', var(--font-mono), monospace";
@@ -180,7 +179,7 @@ function UnsubscribeForm() {
       `}</style>
 
       <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
-      <h1 style={{ margin: "0 auto", textAlign: "center", fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
+      <h1 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
       <p style={{ margin: "28px 0 0", color: "var(--ink)", fontSize: "clamp(17px,1.6vw,21px)", lineHeight: 1.7, fontFamily: HEEBO }}>{c.intro}</p>
 
       <section style={{ marginTop: 44 }}>
@@ -339,9 +338,9 @@ function UnsubscribeForm() {
         </p>
         <p style={{ margin: "14px 0 0", color: "var(--muted2)", fontSize: 15, lineHeight: 1.7, fontFamily: HEEBO }}>
           {c.privacyPrefix}{" "}
-          <Link className="unsub-link" href="/privacy" style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
+          <a className="unsub-link" href="/privacy" style={{ color: "var(--acc)", fontWeight: 700, textDecoration: "underline" }}>
             {c.privacyLink}
-          </Link>
+          </a>
           .
         </p>
       </section>
