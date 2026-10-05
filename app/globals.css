@@ -718,6 +718,9 @@ body p, body li, body dd { font-weight:400 !important; }
 .sl-film-cta { position:absolute; inset:auto 0 0 0; display:flex; align-items:center; gap:10px; padding:16px 18px; color:#fff; font-weight:700; background:linear-gradient(transparent, rgba(0,0,0,.75)); }
 .sl-play { display:inline-flex; width:40px; height:40px; border-radius:50%; align-items:center; justify-content:center; background:var(--acc); color:var(--ink); font-size:14px; }
 .sl-note { font-size:15px !important; color:var(--muted2) !important; }
+.sl-guide { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px 22px; margin:0 0 44px; text-align:center; }
+.sl-guide h2 { margin:0 0 8px; }
+.sl-guide p { margin:0 auto 18px; max-width:44ch; color:var(--muted2) !important; font-size:17px !important; }
 .sl-details { border:1px solid var(--line); border-radius:16px; padding:6px 18px; background:var(--card); margin-bottom:24px; }
 .sl-details summary { cursor:pointer; font-weight:700; padding:12px 0; min-height:44px; }
 .sl-details ul { margin:0 0 12px; padding-inline-start:20px; line-height:1.7; font-size:16px; }

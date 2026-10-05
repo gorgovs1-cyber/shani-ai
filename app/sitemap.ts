@@ -33,5 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }))
 
-  return [...staticPages, ...guidePages]
+  // The SMALL LIGHTS film guide is a regular guide page, reached from /work/small-lights only: it is not in
+  // lib/guides.ts (that list drives the /guides library), so it is added here on its own.
+  const filmGuide: MetadataRoute.Sitemap = [
+    { url: `${BASE}/guides/claude-opus-film.html`, lastModified: new Date('2026-10-05'), changeFrequency: 'yearly', priority: 0.6 },
+  ]
+
+  return [...staticPages, ...guidePages, ...filmGuide]
 }

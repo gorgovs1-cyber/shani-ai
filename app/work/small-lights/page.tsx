@@ -154,6 +154,12 @@ export default function SmallLightsPage() {
             <p>בסוף ביקשתי ממנו להפוך את כל מה שלמדנו לשיטת עבודה. כך נולד SHANI AI VIDEO STUDIO, וגם הריל שבראש העמוד הופק בו.</p>
           </section>
 
+          <aside className="sl-guide">
+            <h2>רוצים לבנות תהליך כזה בעצמכם?</h2>
+            <p>כתבתי מדריך מעשי: מהבריף, דרך הסוכנים והבדיקות, ועד סרט גמור.</p>
+            <a className="sl-btn sl-btn-primary" href="/guides/claude-opus-film.html" data-sl="guide">למדריך המלא</a>
+          </aside>
+
           <details className="sl-details">
             <summary>עוד פרטים מההפקה</summary>
             <ul>

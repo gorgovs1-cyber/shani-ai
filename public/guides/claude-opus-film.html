@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>איך יוצרים סרט עם Claude Opus 5.5 | Shani AI Creator</title>
+<link rel="canonical" href="https://shani-ai.com/guides/claude-opus-film.html">
+<meta name="description" content="השיטה שבה נבנה SMALL LIGHTS: בריף, Story Bible, פירוק לשוטים, סוכני משנה, בנייה בקוד, סאונד, בדיקות ושמירת מצב. מדריך מעשי ליצירת סרט עם Claude Opus 5.5.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shani-ai.com/guides/claude-opus-film.html">
+<meta property="og:title" content="איך יוצרים סרט עם Claude Opus 5.5">
+<meta property="og:description" content="השיטה שבה נבנה SMALL LIGHTS: בריף, Story Bible, פירוק לשוטים, סוכני משנה, בנייה בקוד, סאונד, בדיקות ושמירת מצב. מדריך מעשי ליצירת סרט עם Claude Opus 5.5.">
+<meta property="og:image" content="https://shani-ai.com/og.jpg">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<style>.sai-back{position:fixed;bottom:16px;inset-inline-start:14px;z-index:9999;font:600 13px/1 Heebo,sans-serif;color:#1b1712;background:rgba(255,253,248,.92);border:1px solid rgba(27,23,18,.14);border-radius:999px;padding:9px 14px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.12)}.sai-back:hover,.sai-back:focus-visible{border-color:#f2622e}@media print{.sai-back{display:none!important}}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --orange:#f2622e; --orange-light:#fff3ef; --dark:#141009;
+    --text:#1a1410; --text-mid:#5a4f47; --text-dim:#9a8f87;
+    --border:#e8ddd6; --bg:#faf8f6;
+  }
+  body{ font-family:'Heebo',sans-serif; direction:rtl; background:var(--bg); color:var(--text); max-width:794px; margin:0 auto; }
+
+  .cover{ background:var(--dark); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px 50px; text-align:center; position:relative; overflow:hidden; page-break-after:always; }
+  .cover::before{ content:''; position:absolute; top:-120px; right:-120px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle,rgba(242,98,46,0.25) 0%,transparent 70%); }
+  .cover::after{ content:''; position:absolute; bottom:-80px; left:-80px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(242,98,46,0.15) 0%,transparent 70%); }
+  .cover-brand{ color:rgba(242,98,46,0.85); font-size:12px; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:44px; position:relative; z-index:1; }
+  .cover-kicker{ color:var(--orange); font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.2em; margin-bottom:20px; position:relative; z-index:1; }
+  .cover-title{ color:#f4ede1; font-size:44px; font-weight:800; line-height:1.18; margin-bottom:20px; position:relative; z-index:1; max-width:620px; }
+  .cover-title span{ color:var(--orange); }
+  .cover-subtitle{ color:rgba(244,237,225,0.6); font-size:17px; line-height:1.7; margin-bottom:48px; position:relative; z-index:1; max-width:520px; }
+  .cover-divider{ width:60px; height:3px; background:var(--orange); margin:0 auto 48px; position:relative; z-index:1; }
+  .cover-footer{ color:rgba(244,237,225,0.35); font-size:11px; letter-spacing:0.15em; position:relative; z-index:1; }
+
+  .page{ background:white; padding:56px 50px; }
+  .section-tag{ display:inline-flex; align-items:center; gap:8px; color:var(--orange); font-size:11px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; margin-bottom:22px; }
+  .section-tag::before{ content:''; width:30px; height:2px; background:var(--orange); }
+  h2.headline{ font-size:30px; font-weight:800; line-height:1.3; color:var(--dark); margin-bottom:22px; }
+  h3.sub{ font-size:21px; font-weight:800; color:var(--dark); margin:34px 0 12px; }
+  p.text{ font-size:16px; color:var(--text-mid); line-height:1.85; margin-bottom:16px; }
+  p.text strong{ color:var(--dark); font-weight:700; }
+
+  .callout{ background:var(--orange-light); border-right:4px solid var(--orange); padding:22px 26px; margin:28px 0; border-radius:6px; }
+  .callout h4{ color:var(--orange); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:12px; }
+  .callout p{ font-size:15px; color:var(--text); line-height:1.7; }
+
+  .steps{ list-style:none; display:flex; flex-direction:column; gap:18px; margin:28px 0; }
+  .steps li{ display:flex; gap:16px; }
+  .steps .n{ background:var(--orange); color:#fff; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; flex-shrink:0; }
+  .steps .body{ font-size:16px; color:var(--text); line-height:1.7; padding-top:3px; }
+  .steps .body strong{ color:var(--dark); }
+
+  .code{ background:var(--dark); color:#f4ede1; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.7; padding:22px 24px; border-radius:10px; margin:18px 0; white-space:pre-wrap; direction:ltr; text-align:left; overflow-x:auto; }
+  .code .c{ color:#b1a48f; }
+
+  ul.bullets{ list-style:none; display:flex; flex-direction:column; gap:10px; margin:14px 0 20px; }
+  ul.bullets li{ position:relative; padding-right:22px; font-size:15.5px; color:var(--text-mid); line-height:1.7; }
+  ul.bullets li::before{ content:'◆'; position:absolute; right:0; top:1px; color:var(--orange); font-size:11px; }
+
+  .divider{ height:1px; background:var(--border); margin:40px 0; }
+
+  .cta{ background:var(--dark); border-radius:16px; padding:40px; text-align:center; margin-top:40px; position:relative; overflow:hidden; }
+  .cta::before{ content:''; position:absolute; bottom:-100px; left:50%; transform:translateX(-50%); width:400px; height:300px; background:radial-gradient(circle,rgba(242,98,46,0.3) 0%,transparent 65%); }
+  .cta h3{ color:#f4ede1; font-size:24px; font-weight:800; margin-bottom:12px; position:relative; z-index:1; }
+  .cta p{ color:rgba(244,237,225,0.65); font-size:15px; line-height:1.7; margin-bottom:8px; position:relative; z-index:1; }
+  .cta a{ color:var(--orange); font-weight:700; text-decoration:none; position:relative; z-index:1; }
+  .foot{ text-align:center; color:var(--text-dim); font-size:12px; padding:30px; font-family:'JetBrains Mono',monospace; }
+</style>
+</head>
+<body>
+<a class="sai-back" href="/work/small-lights">→ SMALL LIGHTS</a>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-brand">Shani AI Creator</div>
+    <div class="cover-kicker">// המדריך המעשי</div>
+    <h1 class="cover-title">איך יוצרים <span>סרט</span> עם Claude Opus 5.5</h1>
+    <p class="cover-subtitle">השיטה שבה נבנה SMALL LIGHTS, סרט אנימציה של 4:32 דקות, מפרומפט אחד. מבריף, דרך צוות של סוכנים, ועד סרט גמור שעבר בדיקות.</p>
+    <div class="cover-divider"></div>
+    <div class="cover-footer">@shani.creates.ai · shani.creates.ai@gmail.com</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="page">
+    <div class="section-tag">מה הולכים לעשות</div>
+    <h2 class="headline">Claude לא מייצר וידאו. הוא מנהל את כל ההפקה.</h2>
+    <p class="text">כששואלים את Claude שאלה בצ'אט, מקבלים תשובה. כשנותנים לו פרויקט ארוך בתוך <strong>Claude Code</strong>, הוא יכול לתכנן, לכתוב קוד, להקים לעצמו צוות של סוכנים, לבדוק את העבודה ולתקן אותה.</p>
+    <p class="text">ב-SMALL LIGHTS הוא לא השתמש במודל שמייצר וידאו מטקסט. Claude Opus 5.5 היה המוח של התהליך: הוא כתב את הסיפור, בנה את העולם והדמויות בקוד (Three.js), סינתז את המוזיקה בקוד, רינדר כל פריים ובדק את התוצאה. אחרי <strong>22 שעות ו-36 דקות</strong>, כולל עצירה כשנגמרה המכסה, היה סרט גמור.</p>
+    <p class="text">המדריך הזה הופך את מה שקרה שם לשיטה שאפשר ליישם בפרויקט אחר. כל מספר כאן לקוח מתיעוד ההפקה.</p>
+    <div class="callout">
+      <h4>SMALL LIGHTS במספרים</h4>
+      <p>4:32 דקות · 24 פריימים לשנייה · 6,528 פריימים · 43 שוטים · 9 רצפים ועוד כרטיס סיום · 6 סוכני משנה ומתאם אחד · 243 רמזים בציר הזמן, מהם 123 הבהובי אור</p>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="page">
+    <div class="section-tag">שלב 1</div>
+    <h2 class="headline">כותבים בריף שמגדיר גבולות, לא רק רעיון</h2>
+    <p class="text">הבריף הוא החוזה של הפרויקט. ב-SMALL LIGHTS הוא היה <strong>5,692 תווים</strong> ונגמר ב-"Surprise me". הכוח שלו היה בהפרדה ברורה בין מה שנקבע מראש לבין מה ש-Claude מחליט לבד.</p>
+    <ul class="bullets">
+      <li><strong>מטרה ורף איכות:</strong> מה יוצא בסוף ולאיזו רמה מכוונים.</li>
+      <li><strong>מגבלות:</strong> אילו כלים מותר, אילו אסור, ומה התקציב.</li>
+      <li><strong>סגנון ואורך:</strong> אפשר לקבוע, ואפשר להשאיר פתוח. ב-SMALL LIGHTS גם האורך, יחס המסך וקצב הפריימים נשארו להחלטה של Claude.</li>
+      <li><strong>מה Claude מחליט לבד:</strong> סיפור, דמויות, טון, מבנה הצוות.</li>
+      <li><strong>מה דורש אישור אנושי:</strong> בדרך כלל כל מה שעולה כסף, יוצא החוצה או נוגע במותג.</li>
+      <li><strong>איך שומרים מצב:</strong> קבצי מצב קבועים בריפו, כדי שאפשר יהיה להמשיך אחרי הפסקה.</li>
+    </ul>
+    <div class="code"><span class="c">// Brief skeleton, edit to your project</span>
+GOAL: a complete short film (or explainer, or ad) built in code.
+QUALITY BAR: what "done" looks like, with one reference if you have it.
+FIXED: format limits, tools allowed, tools not allowed, budget.
+OPEN (you decide): story, characters, tone, length, team structure.
+NEEDS MY APPROVAL: anything paid, anything public, brand decisions.
+STATE: keep PROGRESS.md and DECISIONS.md in the repo, updated as you go.
+PROCESS: pre-production first, then production without waiting for me.</div>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>הבריף אסר מודלים חיצוניים ליצירת תמונה, וידאו ומוזיקה, והתיר סוכני משנה "בצורה חכמה ולא כמה שיותר". הוא ביקש לעבור מקדם הפקה להפקה בלי לחכות לאישור.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="page">
+    <div class="section-tag">שלב 2</div>
+    <h2 class="headline">קודם Story Bible, אחר כך ביצוע</h2>
+    <p class="text">לפני שורת קוד אחת, מבקשים מ-Claude לכתוב את מסמכי היסוד של הסרט. הם הופכים לנקודת הייחוס של כל מי שעובד על הפרויקט, כולל הסוכנים.</p>
+    <ul class="bullets">
+      <li><strong>סיפור:</strong> משפט מרכזי, מבנה מערכות, וסוף ברור.</li>
+      <li><strong>עולם ודמויות:</strong> מי הן, איך הן נראות, ומה כל אחת לא יכולה לעשות.</li>
+      <li><strong>חוקי שפה ויזואלית:</strong> פלטה, תאורה, מה הסרט כן ומה הוא לא.</li>
+      <li><strong>כיוון סאונד:</strong> איך המוזיקה קשורה לסיפור.</li>
+    </ul>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>אחרי 10 דקות היה שם, ואחרי 15 דקות היה סיפור שלם: שומר מגדלור בלילה האחרון לפני שהאור נכבה, ודגת חכאי קטנטנה שעונה לאור שלו. Claude קבע שהסרט יהיה בלי מילים, ושכל הבהוב אור הוא תו במוזיקה. הסיפור היה כתוב לפני שהסוכן הראשון התחיל לעבוד, ובתוך חצי שעה מהפרומפט נכנסו לריפו גם הסטוריבורד, השפה הוויזואלית וכיוון הסאונד.</p>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="page">
+    <div class="section-tag">שלב 3</div>
+    <h2 class="headline">מפרקים את הסיפור לשוטים, לזמנים ולנכסים</h2>
+    <p class="text">סרט שלם גדול מדי לעבודה אחת. מפרקים אותו לחלקים שכל אחד מהם אפשר לבנות, לבדוק ולאשר בנפרד.</p>
+    <ol class="steps">
+      <li><span class="n">1</span><span class="body"><strong>רצפים:</strong> פרקי הסיפור, כל אחד עם מטרה רגשית אחת.</span></li>
+      <li><span class="n">2</span><span class="body"><strong>רשימת שוטים:</strong> לכל שוט מזהה, אורך, מצלמה, מה רואים ומה שומעים.</span></li>
+      <li><span class="n">3</span><span class="body"><strong>ציר זמן אחד:</strong> קובץ אחד שקובע מתי כל דבר קורה, גם בתמונה וגם בסאונד.</span></li>
+      <li><span class="n">4</span><span class="body"><strong>נכסים:</strong> דמויות, סביבות ואביזרים, וכל שוט שמשתמש בהם.</span></li>
+      <li><span class="n">5</span><span class="body"><strong>תלויות:</strong> מה חייב להיות מאושר לפני שמתחילים שוט. למשל, דמות מאושרת לפני כל שוט שהיא מופיעה בו.</span></li>
+    </ol>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>9 רצפים ועוד כרטיס סיום, 43 שוטים ו-4:32 דקות. קובץ ציר זמן אחד עם 243 רמזים הניע גם את התמונה וגם את הסאונד, ולכן כל הבהוב אור נפל על התו שלו.</p>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="page">
+    <div class="section-tag">שלב 4</div>
+    <h2 class="headline">מחלקים את העבודה לסוכני משנה</h2>
+    <p class="text">ב-Claude Code, לפי התיעוד של Anthropic, כל סוכן משנה <strong>רץ בחלון הקשר משלו</strong> ומתחיל בלי לראות את השיחה הראשית. זה מה שמאפשר לו להתמקד בתחום אחד בלי להעמיס על השיחה של המתאם.</p>
+    <ul class="bullets">
+      <li><strong>למה לא סוכן אחד:</strong> פרויקט ארוך ממלא את ההקשר. סוכן לכל תחום עובד ממוקד, והמתאם נשאר פנוי להחלטות ולבדיקות.</li>
+      <li><strong>תחומי אחריות:</strong> כל סוכן מקבל תחום ותיקיות משלו, וכותב רק בהם.</li>
+      <li><strong>בלי כפילויות:</strong> רק המתאם מחבר את החלקים ושומר בגרסאות. סוכן לא נוגע בעבודה של סוכן אחר.</li>
+      <li><strong>העברת מצב:</strong> דרך קבצים בריפו, לא דרך זיכרון. כל סוכן כותב מה עשה ומה נשאר, והמתאם מאשר נכסים לפני ששוט משתמש בהם.</li>
+    </ul>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>שישה סוכנים: סאונד, Wick והדג הטורף, השומר, העולם שמעל המים, החדר במגדלור והעולם שמתחת למים. המתאם בדק כל רינדור, החזיר לתיקון את הגרסה הראשונה של פני השומר ("creepy"), ובנה בעצמו 3 מתוך 43 השוטים.</p>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="page">
+    <div class="section-tag">שלב 5</div>
+    <h2 class="headline">בונים בקוד: סצנה, מצלמה, אור ותנועה</h2>
+    <p class="text">כשהסרט בנוי בקוד, כל פריים הוא תוצאה של הזמן בציר. אפשר לרנדר אותו שוב ולקבל בדיוק אותו דבר, וזה מה שהופך תיקונים נקודתיים לאפשריים.</p>
+    <ul class="bullets">
+      <li><strong>סצנות:</strong> כל עולם נבנה פעם אחת ומשמש כמה שוטים.</li>
+      <li><strong>מצלמה:</strong> תנועת המצלמה מוגדרת בשוט, לפי זמנים מהציר.</li>
+      <li><strong>תאורה:</strong> חלק מהסיפור. ב-SMALL LIGHTS האור הוא הקול של הדמויות.</li>
+      <li><strong>אנימציה:</strong> תנועות מוגדרות כפונקציה של זמן, לא בהקלטה.</li>
+      <li><strong>ציר זמן ונכסים:</strong> מקור אמת אחד, שכל השוטים קוראים ממנו.</li>
+    </ul>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>הכול נבנה ב-Three.js ורונדר במעבד, בלי כרטיס גרפי: 6,528 פריימים ב-87 חלקים. Claude סירב לוותר על החלקת קצוות כדי לחסוך זמן רינדור, וקיבל בתמורה כ-4 שעות רינדור נוספות.</p>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="page">
+    <div class="section-tag">שלב 6</div>
+    <h2 class="headline">מתכננים את שכבת הסאונד כחלק מהסיפור</h2>
+    <p class="text">סאונד שמתוכנן מאותו ציר זמן של התמונה נשאר מסונכרן גם כשמשנים שוטים. מגדירים מראש ארבע שכבות, ולא מערבבים ביניהן:</p>
+    <ul class="bullets">
+      <li><strong>הסרט המקורי:</strong> מוזיקה וסאונד בלבד.</li>
+      <li><strong>גרסת קריינות:</strong> גרסה נוספת עם קול. היא לא מחליפה את המקור, ואפשר להשאיר את התמונה זהה.</li>
+      <li><strong>כתוביות:</strong> שכבה נפרדת שאפשר להדליק ולכבות, לא צרובה בתמונה.</li>
+      <li><strong>טקסט בתוך הסרט:</strong> מה שכתוב בתמונה עצמה, ומתורגם בכתוביות.</li>
+    </ul>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>כל הסאונד סונתז בפייתון, ו-123 הבהובי האור הם 123 תווים. Claude לא יכול לשמוע, אז בדק הכול במדידות. הגרסה המסופרת נוספה יום אחרי, עם קריינות באנגלית בקול סינתטי שרץ מקומית, וכתוביות בעברית שמתרגמות גם את הטקסט שביומן.</p>
+    </div>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="page">
+    <div class="section-tag">שלב 7</div>
+    <h2 class="headline">בודקים כמו מפיקים, ומתקנים רק את מה שנשבר</h2>
+    <p class="text">בפרויקט ארוך אי אפשר לבדוק בעין כל פריים. בונים בדיקות אוטומטיות, ואז מסתכלים רק על מה שהן מסמנות.</p>
+    <ul class="bullets">
+      <li><strong>פריימים:</strong> שחור, לבן שרוף, קפיצות, הבהובים ופריימים קפואים.</li>
+      <li><strong>גליצ'ים:</strong> גלאי לפריים בודד ששונה מהשכנים שלו.</li>
+      <li><strong>עקביות:</strong> אותה דמות נראית אותו דבר בכל שוט.</li>
+      <li><strong>סנכרון סאונד:</strong> כל תו נופל על הרגע שלו.</li>
+      <li><strong>כתוביות:</strong> תזמון, מהירות קריאה, ושלא מסתירות את התמונה.</li>
+      <li><strong>רינדור נקודתי:</strong> מרנדרים מחדש רק את החלקים הפגועים.</li>
+    </ul>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>הבדיקה מצאה דיסק לבן שהופיע לפריים אחד בחמישה שוטים, בגלל ערך שגוי אחד בפיקסל (≈ −65504). אחרי התיקון רונדרו מחדש רק 7 מתוך 87 חלקים. סוכן אחד מצא באג בקוד של סוכן אחר. ולא כל התראה הייתה נכונה: אחת מהן הגיעה אליי כתקלה אמיתית, ורק כשביקשתי לתקן התברר שהכלי טעה.</p>
+    </div>
+  </div>
+
+  <!-- STEP 8 -->
+  <div class="page">
+    <div class="section-tag">שלב 8</div>
+    <h2 class="headline">מתכננים מראש לרגע שהעבודה נעצרת</h2>
+    <p class="text">פרויקט של יום שלם יכול להיעצר באמצע: נגמרת מכסה, נסגר חלון, נגמר ההקשר. אם כל המצב נמצא בזיכרון של שיחה אחת, הוא הולך לאיבוד.</p>
+    <ul class="bullets">
+      <li><strong>Manifest:</strong> רשימת הקבצים הסופיים עם גודל ו-checksum.</li>
+      <li><strong>נקודות שמירה:</strong> commit אחרי כל שלב שאושר.</li>
+      <li><strong>מסירה:</strong> קובץ התקדמות שאומר מה נעשה, מה נשאר ומה הוחלט.</li>
+      <li><strong>שמירת מצב:</strong> הכול בריפו, לא בשיחה.</li>
+      <li><strong>חזרה לעבודה:</strong> שורה אחת שמבקשת להמשיך מהמקום שנעצרנו, וזהו.</li>
+    </ul>
+    <div class="callout">
+      <h4>ב-SMALL LIGHTS</h4>
+      <p>באמצע ההפקה נגמרה מכסת השימוש, וכל הסוכנים שעבדו נעצרו תוך 5 דקות. אחרי 4 שעות ו-51 דקות כתבתי שורה אחת: "Continue from where you left off". העבודה המשיכה מהריפו. שני דוחות של סוכנים אבדו, והעבודה שלהם שוחזרה מהרשימות ומהקבצים.</p>
+    </div>
+  </div>
+
+  <!-- HUMAN -->
+  <div class="page">
+    <div class="section-tag">מה נשאר אצלכם</div>
+    <h2 class="headline">מה לא משאירים ל-AI לבד</h2>
+    <ul class="bullets">
+      <li><strong>החלטות מותג:</strong> שם, מסר וטון של העסק.</li>
+      <li><strong>אישור גרסה סופית:</strong> מה יוצא החוצה, ומתי.</li>
+      <li><strong>פרטיות:</strong> מה נשמר, איפה, ומי רואה.</li>
+      <li><strong>קבצי קול ונכסים רגישים:</strong> נשארים מקומיים ופרטיים.</li>
+      <li><strong>QA סופי:</strong> צפייה אנושית במכשיר אמיתי, ולא רק בדיקות אוטומטיות.</li>
+      <li><strong>שינויים קריטיים ב-production:</strong> פריסה, דומיין וכסף רק באישור שלכם.</li>
+    </ul>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="page">
+    <div class="section-tag">צ'קליסט</div>
+    <h2 class="headline">לפרויקט הבא</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><span class="body">בריף עם מטרה, רף איכות, מגבלות, מה פתוח ומה דורש אישור.</span></li>
+      <li><span class="n">2</span><span class="body">קבצי מצב בריפו מההתחלה: התקדמות והחלטות.</span></li>
+      <li><span class="n">3</span><span class="body">Story Bible, שפה ויזואלית וכיוון סאונד לפני ביצוע.</span></li>
+      <li><span class="n">4</span><span class="body">רצפים, רשימת שוטים, ציר זמן אחד ורשימת נכסים.</span></li>
+      <li><span class="n">5</span><span class="body">סוכנים לפי תחומים, עם תיקיות נפרדות ומתאם אחד שמחבר.</span></li>
+      <li><span class="n">6</span><span class="body">אישור נכסים לפני השוטים שמשתמשים בהם.</span></li>
+      <li><span class="n">7</span><span class="body">סאונד מאותו ציר זמן, וגרסאות קול וכתוביות כשכבות נפרדות.</span></li>
+      <li><span class="n">8</span><span class="body">בדיקות אוטומטיות, ותיקון ורינדור רק של מה שנשבר.</span></li>
+      <li><span class="n">9</span><span class="body">Manifest ו-commit אחרי כל שלב מאושר.</span></li>
+      <li><span class="n">10</span><span class="body">צפייה אנושית במכשיר אמיתי לפני שמפרסמים.</span></li>
+    </ol>
+
+    <div class="cta">
+      <h3>צפו ב-SMALL LIGHTS ובתהליך המלא</h3>
+      <p>הסרט, הריל ומה שקרה בדרך, בעמוד אחד.</p>
+      <p><a href="/work/small-lights">לעמוד SMALL LIGHTS</a> · <a href="/audit">לבדיקת התאמה חינם</a></p>
+    </div>
+  </div>
+
+  <div class="foot">© 2026 · Shani AI Creator · נבנה באהבה בישראל</div>
+
+</body>
+</html>
