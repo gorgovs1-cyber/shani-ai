@@ -9,4 +9,4 @@ export const SL_REEL = `${SL_MEDIA}/reel/SMALL_LIGHTS_REEL_v4_READY.mp4`;
 export const SL_REEL_DOWNLOAD = `${SL_MEDIA}/download/SMALL_LIGHTS_REEL_v4_READY.mp4`;
 export const SL_REEL_POSTER = "/small-lights/reel-poster.jpg";
 /** false until the approved reel file is verified (sha256) and live on the media host. */
-export const SL_REEL_LIVE = false;
+export const SL_REEL_LIVE = true;
