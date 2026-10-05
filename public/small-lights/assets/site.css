@@ -1,0 +1,199 @@
+/* SMALL LIGHTS — screening page. One dark look (a screening room at night); every face is self-hosted (SIL OFL 1.1). */
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/cormorant-garamond-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Karla"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/karla-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Karla"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/karla-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
+/* Hebrew (subtitles, subtitle menu): only fetched when Hebrew text is on screen */
+@font-face { font-family: "Assistant"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/assistant-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: "Assistant"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/assistant-hebrew-500-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: "Assistant"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/assistant-latin-400-normal.woff2") format("woff2"); unicode-range: U+0020-0040, U+2013-2014, U+2018-201E, U+2026; }
+@font-face { font-family: "Assistant"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/assistant-latin-500-normal.woff2") format("woff2"); unicode-range: U+0020-0040, U+2013-2014, U+2018-201E, U+2026; }
+
+:root {
+  color-scheme: dark;
+  --night: #0a0f24;
+  --deep: #121a36;
+  --rule: #26305a;
+  --moon: #ece6d6;
+  --mist: #9ba4c8;
+  --lantern: #f4b860;
+  --dusk: #9a86d1;
+  --display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "Karla", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --hebrew: "Assistant", "Karla", "Arial Hebrew", "Noto Sans Hebrew", "Segoe UI", Arial, sans-serif;
+  --subs-ground: rgba(3, 5, 12, .4);
+  --tap: 44px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { margin: 0; background: var(--night); color: var(--moon); }
+body {
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  padding-block: max(28px, env(safe-area-inset-top)) max(56px, env(safe-area-inset-bottom));
+  padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right));
+}
+[hidden] { display: none !important; }
+p { margin: 0; }
+a { color: var(--lantern); }
+kbd { font-family: var(--mono); font-size: 12px; border: 1px solid var(--rule); border-radius: 3px; padding: 0 5px; color: var(--moon); }
+
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+
+header { display: grid; gap: 10px; text-align: center; }
+.chart-label { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--mist); }
+.chart-label b { color: var(--lantern); font-weight: 500; }
+.chart-label .cl { white-space: nowrap; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 6.2vw, 64px); letter-spacing: .32em; margin: 0; padding-left: .32em; line-height: 1.1; text-wrap: balance; }
+
+/* the screen: a 2.39:1 frame; the 16:9 letterboxed file fills it edge to edge (object-fit crops the bars) */
+.screen { position: relative; width: 100%; max-width: 100%; aspect-ratio: 1920 / 804; background: #000; overflow: hidden; border-radius: 3px;
+          box-shadow: 0 0 0 1px var(--rule), 0 30px 80px -30px rgba(244, 184, 96, .18); }
+.screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .6s ease; }
+.poster.gone { opacity: 0; pointer-events: none; }
+.big-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 84px; height: 84px; border-radius: 50%;
+            border: 1px solid rgba(236, 230, 214, .55); background: rgba(10, 15, 36, .45); color: var(--moon); cursor: pointer;
+            display: grid; place-items: center; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); transition: transform .2s ease, border-color .2s ease; }
+.big-play:hover, .big-play:focus-visible { transform: translate(-50%, -50%) scale(1.06); border-color: var(--lantern); outline: none; }
+.big-play svg { width: 28px; height: 28px; margin-left: 5px; fill: currentColor; }
+.status:lang(he) { font-family: var(--hebrew); direction: rtl; }
+.status { position: absolute; left: 12px; bottom: 10px; font-family: var(--mono); font-size: 12px; color: var(--mist); background: rgba(10, 15, 36, .75); padding: 3px 8px; border-radius: 3px; }
+
+/* Hebrew subtitles (optional track, drawn by the page from the active cue; never part of the picture): centred like film
+   subtitles, RTL text centred in the block, small, one or two balanced lines. Where the layout has a black band under the
+   picture (phones; full screen whenever the screen is taller than the picture) they sit centred in that band and never
+   cover the picture. Otherwise (the page on wider screens, a full screen as wide as the picture) they are a small centred
+   overlay in the lower safe area with a light ground; only a cue marked "left"/"right" moves aside there, where the centre
+   of the lower frame holds something important (the writing hand, Wick). */
+.player { display: grid; gap: inherit; min-width: 0; }
+.stage { display: grid; container-type: inline-size; }
+.stage > .screen, .stage > .subs { grid-area: 1 / 1; }
+.subs { z-index: 2; align-self: end; display: flex; justify-content: center; pointer-events: none; padding: 0 5.5% 2.1%; }
+.subs.left { justify-content: flex-start; }
+.subs.right { justify-content: flex-end; }
+.subs p { max-width: 64%; margin: 0; text-align: center; text-wrap: balance; font-family: var(--hebrew); font-size: clamp(12px, 1.22cqi, 16px);
+          font-weight: 500; line-height: 1.34; letter-spacing: .005em; color: var(--moon); }
+.subs.left p, .subs.right p { max-width: 46%; }
+.subs p span { white-space: pre-line; background: var(--subs-ground); padding: 0 .22em; border-radius: 2px;
+               -webkit-box-decoration-break: clone; box-decoration-break: clone; text-shadow: 0 0 2px rgba(0, 0, 0, .75), 0 1px 1px rgba(0, 0, 0, .6); }
+.subs p:empty { display: none; }
+/* only if a browser's own player ever draws the track: small (a share of the video height) and on a light ground */
+video::cue { font-family: "Assistant", "Karla", "Arial Hebrew", "Noto Sans Hebrew", Arial, sans-serif; font-size: 72%; line-height: 1.3; color: #ece6d6; background: rgba(0, 0, 0, .38); }
+
+/* full screen: the page's own player (the whole player element, or a fixed layer where a browser cannot make an element
+   full screen, e.g. iPhone). Black; the picture fitted and centred, raised only when that makes room for two subtitle lines
+   under it; player.js sets the picture box (--pic-*), the subtitle size (--subs-fs) and "band" when the lines fit under the
+   picture. The transport floats at the bottom and fades out while the film plays. */
+.player.is-fs { position: fixed; inset: 0; z-index: 2147483000; display: block; width: 100%; height: 100%; background: #000; }
+.player.is-fs .stage { position: absolute; inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+                       display: block; container-type: normal; background: none; box-shadow: none; }
+.player.is-fs .screen { position: absolute; left: var(--pic-x); top: var(--pic-y); width: var(--pic-w); height: var(--pic-h); max-width: none; aspect-ratio: auto;
+                        border-radius: 0; box-shadow: none; }
+.player.is-fs .subs { position: absolute; left: var(--pic-x); width: var(--pic-w); top: var(--pic-y); height: var(--pic-h); align-items: flex-end; padding: 0 5.5% 2.1%; }
+.player.is-fs .subs p { font-size: var(--subs-fs); transform: translateY(calc(-1 * var(--subs-lift, 0px))); transition: transform .25s ease; }
+.player.is-fs.band .subs, .player.is-fs.band .subs.left, .player.is-fs.band .subs.right {
+  top: calc(var(--pic-y) + var(--pic-h)); height: auto; align-items: flex-start; justify-content: center; padding: calc(var(--subs-fs) * .6) 5.5% 0; }
+.player.is-fs.band .subs p { max-width: min(90%, 44em); }
+.player.is-fs.band .subs p span { background: none; text-shadow: none; padding: 0; }
+.player.is-fs .transport { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; margin: 0;
+                           padding: 28px max(20px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+                           background: linear-gradient(to top, rgba(0, 0, 0, .72), rgba(0, 0, 0, 0)); transition: opacity .3s ease; }
+.player.is-fs.idle { cursor: none; }
+.player.is-fs.idle .transport { opacity: 0; pointer-events: none; }
+/* the fixed layer (no element full screen): exactly the visible screen, whatever the browser's toolbars do */
+.player.is-fs.pseudo { inset: auto; top: 0; left: 0; width: 100%; height: 100vh; height: 100dvh; }
+html.fs-lock, html.fs-lock body { overflow: hidden; }
+
+/* transport */
+.transport { display: grid; grid-template-columns: auto 1fr auto auto auto auto; align-items: center; gap: 12px; }
+.btn { background: none; border: 1px solid var(--rule); color: var(--moon); width: var(--tap); height: var(--tap); border-radius: 50%; cursor: pointer;
+       display: grid; place-items: center; padding: 0; -webkit-tap-highlight-color: transparent; }
+.btn:hover, .btn:focus-visible { border-color: var(--lantern); color: var(--lantern); outline: none; }
+.btn svg { width: 16px; height: 16px; fill: currentColor; }
+.btn[aria-pressed="true"] { opacity: .5; }
+/* subtitles: CC opens a two-choice menu; a small lantern dot shows when Hebrew is on */
+.cc { position: relative; }
+.cc-btn { position: relative; }
+.cc-btn span { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; line-height: 1; padding-left: .08em; }
+.cc-btn.on { border-color: var(--lantern); color: var(--lantern); }
+.cc-btn.on::after { content: ""; position: absolute; left: calc(50% - 2px); bottom: 7px; width: 4px; height: 4px; border-radius: 50%;
+                    background: var(--lantern); box-shadow: 0 0 6px rgba(244, 184, 96, .9); }
+.cc-menu { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); z-index: 6; margin: 0; padding: 6px; list-style: none;
+           min-width: 178px; background: var(--deep); border: 1px solid var(--rule); border-radius: 8px;
+           box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .8); font-family: var(--hebrew); }
+.cc-menu button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: var(--tap); padding: 0 14px; background: none; border: 0;
+                  border-radius: 5px; color: var(--moon); font: inherit; font-size: 16px; line-height: 1.2; text-align: start; cursor: pointer;
+                  -webkit-tap-highlight-color: transparent; }
+.cc-menu button::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--mist); opacity: .7; }
+.cc-menu button[aria-checked="true"] { color: var(--lantern); }
+.cc-menu button[aria-checked="true"]::before { border-color: var(--lantern); background: var(--lantern); opacity: 1; box-shadow: 0 0 8px rgba(244, 184, 96, .75); }
+.cc-menu button:hover, .cc-menu button:focus-visible { background: rgba(244, 184, 96, .08); outline: none; }
+.cc-menu button:focus-visible { box-shadow: inset 0 0 0 1px var(--lantern); }
+.tc { font-family: var(--mono); font-size: 13px; color: var(--mist); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tc b { color: var(--moon); font-weight: 400; }
+.scrub { position: relative; height: var(--tap); cursor: pointer; touch-action: none; -webkit-tap-highlight-color: transparent; }
+.scrub .track, .scrub .fill, .scrub .buf { position: absolute; top: calc(50% - 1px); height: 2px; left: 0; }
+.scrub .track { right: 0; background: var(--rule); }
+.scrub .buf { background: #3a4577; width: 0; }
+.scrub .fill { background: var(--lantern); width: 0; }
+.scrub .tick { position: absolute; top: calc(50% - 6px); width: 1px; height: 12px; background: var(--mist); opacity: .55; pointer-events: none; }
+.scrub .knob { position: absolute; top: calc(50% - 7px); width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--lantern);
+               box-shadow: 0 0 12px rgba(244, 184, 96, .7); left: 0; pointer-events: none; }
+.scrub:focus-visible { outline: 1px solid var(--lantern); outline-offset: 2px; }
+
+/* notes */
+.notes { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; border-top: 1px solid var(--rule); padding-top: 28px; }
+.about { display: grid; gap: 12px; align-content: start; }
+.logline { font-family: var(--display); font-size: clamp(20px, 2.4vw, 25px); line-height: 1.45; max-width: 34em; margin-bottom: 6px; }
+.logline em { color: var(--lantern); }
+.about p:not(.logline) { color: var(--mist); max-width: 62ch; }
+.about strong { color: var(--moon); font-weight: 500; }
+.tip { font-size: 14px; }
+h2 { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--mist); margin: 0 0 8px; }
+ol.seqs { list-style: none; margin: 0; padding: 0; display: grid; }
+ol.seqs li { border-bottom: 1px solid var(--rule); }
+ol.seqs a { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: baseline; min-height: var(--tap); padding: 9px 2px;
+            color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+ol.seqs a:hover .t, ol.seqs a:focus-visible .t, ol.seqs li.now .t { color: var(--lantern); }
+ol.seqs a:focus-visible { outline: 1px solid var(--lantern); outline-offset: 2px; }
+ol.seqs .n { font-family: var(--mono); font-size: 12px; color: var(--dusk); }
+ol.seqs .t { font-family: var(--display); font-size: 19px; }
+ol.seqs .at { font-family: var(--mono); font-size: 12px; color: var(--mist); font-variant-numeric: tabular-nums; }
+
+footer { text-align: center; display: grid; gap: 4px; padding-top: 8px; }
+footer .studio { font-family: var(--display); font-size: 22px; }
+footer .studio i { font-style: italic; }
+footer .made { font-family: var(--display); font-size: 17px; color: var(--mist); letter-spacing: .04em; }
+footer a { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-decoration: none; justify-self: center; padding: 6px 4px; }
+footer a:hover, footer a:focus-visible { text-decoration: underline; }
+
+/* phones */
+@media (max-width: 760px) {
+  body { padding-block: max(20px, env(safe-area-inset-top)) max(40px, env(safe-area-inset-bottom)); padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+  .wrap { gap: 20px; }
+  .chart-label { font-size: 11px; letter-spacing: .12em; }
+  .chart-label .sep { display: none; }
+  .chart-label .cl { display: block; }
+  .notes { grid-template-columns: 1fr; gap: 28px; padding-top: 22px; }
+  .transport { grid-template-columns: auto 1fr auto auto auto; row-gap: 2px; column-gap: 10px; }
+  .transport .scrub { grid-column: 1 / -1; grid-row: 1; }
+  .transport #play { grid-column: 1; grid-row: 2; }
+  .transport .tc { grid-column: 2; grid-row: 2; }
+  .transport .cc { grid-column: 3; grid-row: 2; }
+  .transport #mute { grid-column: 4; grid-row: 2; }
+  .transport #fs { grid-column: 5; grid-row: 2; }
+  /* the subtitles get a black band directly under the picture (never over it), centred: picture and band read as one frame */
+  .stage.with-subs { background: #000; border-radius: 3px; box-shadow: 0 0 0 1px var(--rule), 0 30px 80px -30px rgba(244, 184, 96, .18); }
+  .stage.with-subs > .screen { border-radius: 3px 3px 0 0; box-shadow: none; }
+  .stage > .subs, .stage > .subs.left, .stage > .subs.right { grid-area: 2 / 1; align-self: stretch; align-items: flex-start; justify-content: center;
+                                                              min-height: 49px; padding: 7px 4.5% 8px; }
+  .subs p, .subs.left p, .subs.right p { max-width: 100%; font-size: 12.5px; }
+  .subs p span { background: none; text-shadow: none; padding: 0; }
+  .big-play { width: 64px; height: 64px; }
+  .tip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .poster, .big-play, .player.is-fs .subs p, .player.is-fs .transport { transition: none; } }

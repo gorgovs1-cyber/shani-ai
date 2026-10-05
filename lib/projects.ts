@@ -50,6 +50,15 @@ const SIGNAL = "#ff6a3d";
 
 export const projects: Project[] = [
   {
+    slug: "small-lights", title: "SMALL LIGHTS", client: "Shani AI Creator",
+    category: "AI Film", categoryHe: "סרט AI", year: "2026",
+    tagline: "סרט אנימציה קצר מפרומפט אחד.", taglineEn: "A short animated film from one prompt.",
+    description: "סרט אנימציה של 4:32 דקות ש-Claude Opus 5.5 המציא, ביים והפיק בתוך Claude Code עם צוות של שישה סוכני משנה.",
+    descriptionEn: "A 4:32 animated short that Claude Opus 5.5 invented, directed and produced in Claude Code with a team of six subagents.",
+    tech: ["Claude Opus 5.5", "Claude Code", "Three.js"], accent: SIGNAL, liveUrl: "https://shani-ai.com/work/small-lights",
+    featured: false,
+  },
+  {
     slug: "beamer", title: "Beamer", client: "Beamer Israel",
     category: "Website", categoryHe: "אתר", year: "2026",
     tagline: "אתר למותג נרות, בעבודה.", taglineEn: "A candle-brand website, in progress.",

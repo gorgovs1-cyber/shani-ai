@@ -12,9 +12,12 @@ const previews = [
  {slug:"my-money",capture:"mymoney",he:"אפליקציה לניהול הכנסות והוצאות, שנמצאת עדיין בפיתוח.",en:"An income and expense management app, still in development."},
  {slug:"ai-lead-machine",capture:"audit",he:"השאלון מרכז את פרטי העסק והצרכים שלכם, והאוטומציה מארגנת את המידע כדי שאוכל לעבור עליו ולחזור אליכם.",en:"The questionnaire gathers business needs and the automation organizes the information for my personal follow-up."}
 ];
-export default function ProjectCards({interactive=true}:{interactive?:boolean}){
+export default function ProjectCards({interactive=true,showFilm=false}:{interactive?:boolean;showFilm?:boolean}){
  const {lang}=useLang(); const he=lang==="he";
- return <div className="project-square-grid" aria-hidden={interactive?undefined:true}>{previews.map(item=>{
+ return <div className="project-square-grid" aria-hidden={interactive?undefined:true}>{showFilm&&<article className="project-square-card" key="small-lights" dir={he?"rtl":"ltr"}>
+<a className="project-square-image" href="/work/small-lights" tabIndex={-1} aria-hidden="true"><img src="/small-lights/card.jpg" alt="" loading="lazy" width={800} height={800} /></a>
+<div className="project-square-copy"><h3>SMALL LIGHTS</h3><p>{he?"סרט אנימציה קצר ש-Claude המציא, ביים והפיק מפרומפט אחד, עם צוות של שישה סוכנים.":"A short animated film Claude invented, directed and produced from one prompt, with a team of six agents."}</p><a href="/work/small-lights" className="project-site-button" tabIndex={interactive?undefined:-1}>{he?"לסיפור ולסרט":"The story and the film"}</a></div>
+</article>}{previews.map(item=>{
  const project=projects.find(p=>p.slug===item.slug)!;
  const title=he&&item.slug==="lilach-hazan"?"לילך חזן":project.title;
  return <article className="project-square-card" key={item.slug} dir={he?"rtl":"ltr"}>
