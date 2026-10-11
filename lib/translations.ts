@@ -39,8 +39,8 @@ export const dict = {
     processTitle: 'איך מתחילים ומתקדמים',
     processIntro: 'אתם לא צריכים לדעת מראש איזו מערכת לבקש, בשביל זה אני כאן.',
     processSteps: [
-      { title: 'מתחילים מהעסק שלכם', text: 'אתם ממלאים את בדיקת ההתאמה החינם ואני חוזרת אליכם כדי להבין איך אתם עובדים, מה מעכב אתכם ומה כדאי לקדם קודם.' },
-      { title: 'מסכמים מה צריך לבנות', text: 'אם יש התאמה, אני שולחת הצעה מסודרת עם מה שנבנה ולוח הזמנים, ורק אחרי שהכול ברור ומוסכם מתחילים לעבוד.' },
+      { title: 'אפיון העסק והצרכים', text: 'כל תהליך מתחיל באפיון. אתם ממלאים את בדיקת ההתאמה החינם, ויחד אנחנו מאפיינים איך העסק עובד, מה מעכב אתכם ומה כדאי לבנות קודם.' },
+      { title: 'מסכמים מה בונים', text: 'על בסיס האפיון אני שולחת הצעה מסודרת עם מה שנבנה ולוח הזמנים, ורק אחרי שהכול ברור ומוסכם מתחילים לעבוד.' },
       { title: 'בונים ומחברים הכול', text: 'אני בונה את מה שסיכמנו, בודקת שהפניות מגיעות למקום הנכון ועוברת איתכם על השימוש במערכת ועל התחזוקה בהמשך.' },
     ],
     aboutParas:[
@@ -121,8 +121,8 @@ export const dict = {
     processTitle: 'How we get started and move forward',
     processIntro: 'A clear process. You do not need to know which website, system or tool to ask for.',
     processSteps: [
-      { title: 'Understand the need', text: 'Complete the free fit check. I review your answers and follow up to understand what matters now and what can wait.' },
-      { title: 'Agree on the work', text: 'If there is a fit, you receive a clear proposal covering what will be built, how it connects and the timeline. Work starts after we agree.' },
+      { title: 'Business specification', text: 'Every project starts with a specification. You complete the free fit check, and together we map how your business works, what slows you down and what to build first.' },
+      { title: 'Agree on the work', text: 'Based on the specification, you receive a clear proposal covering what will be built, how it connects and the timeline. Work starts after we agree.' },
       { title: 'Connect and test', text: 'I build what we agreed and test the journey from an enquiry to its follow-up. We then go through how to use the system and what ongoing maintenance involves.' },
     ],
     aboutParas:[
