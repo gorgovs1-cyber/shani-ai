@@ -6,8 +6,12 @@
 <title>בדיקת התאמה חינם לעסק · Shani AI Creator</title>
 <meta name="description" content="אבחון AI, אוטומציה ושיווק לעסק, חינם. 2–3 דקות שיחסכו לנו שיחה שלמה: איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו.">
 <link rel="canonical" href="https://shani-ai.com/audit">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/icon" type="image/png">
+<link rel="apple-touch-icon" href="/apple-icon">
+<link rel="preload" href="/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  @font-face{font-family:'Heebo';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/heebo-hebrew.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+  @font-face{font-family:'Heebo';font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/heebo-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--orange:#F2622E;--orange-soft:#fff3ef;--dark:#141009;--bg:#0c0c11;--card:#17151c;--text:#f4ede1;--muted:#a49a90;--border:#2a2630}
   body{font-family:'Heebo',sans-serif;direction:rtl;background:var(--bg);color:var(--text);line-height:1.6;padding:0 0 80px}
@@ -38,6 +42,17 @@
   .submit:hover{filter:brightness(1.05)}
   .note{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
   .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;letter-spacing:.05em}
+  .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;margin-top:14px;font-size:14px}
+  .foot-links a,.foot-links button{color:var(--text);background:none;border:0;font:inherit;text-decoration:underline;cursor:pointer;min-height:44px;padding:0 10px;display:inline-flex;align-items:center}
+  .foot-links a:focus-visible,.foot-links button:focus-visible,.cc-btn:focus-visible,.cc-link:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+  .cc-wrap{position:fixed;z-index:99900;inset-inline:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;justify-content:center;pointer-events:none}
+  .cc-card{pointer-events:auto;width:100%;max-width:540px;background:var(--card);border:1px solid rgba(242,98,46,.4);border-radius:14px;padding:14px 16px;box-shadow:0 18px 50px rgba(0,0,0,.5);max-height:calc(100dvh - 32px);overflow-y:auto}
+  .cc-card h2{font-size:16px;font-weight:800;margin:0 0 6px}
+  .cc-card p{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 10px}
+  .cc-link{color:var(--orange);font-weight:700;text-decoration:underline}
+  .cc-actions{display:flex;flex-wrap:wrap;gap:10px}
+  .cc-btn{flex:1 1 0;min-height:44px;padding:8px 16px;border-radius:8px;border:1.5px solid var(--orange);background:transparent;color:var(--orange);font-family:inherit;font-weight:800;font-size:14px;cursor:pointer}
+  .cc-btn:hover{background:rgba(242,98,46,.16)}
 </style>
 </head>
 <body>
@@ -226,6 +241,12 @@
     <p style="color:#a49a90;font-size:16px;line-height:1.7">קיבלתי הכל. אני עוברת על העסק שלכם ואחזור תוך יום עסקים עם שניים-שלושה כיוונים ששווה לבדוק, ושאלה או שתיים. הצעת מחיר מסודרת מגיעה רק אחרי שנדבר, ככה היא באמת מותאמת.<br><br>רוצים לדבר עכשיו? <a href="https://wa.me/972504744815" style="color:#F2622E">וואטסאפ ישיר ←</a></p>
   </div>
   <div class="foot">© Shani AI Creator · אבחון עסקי חכם</div>
+  <nav class="foot-links" aria-label="מידע והגדרות">
+    <a href="/privacy">מדיניות פרטיות</a>
+    <a href="/terms">תקנון</a>
+    <a href="/accessibility">הצהרת נגישות</a>
+    <button type="button" id="cc-open">הגדרות עוגיות</button>
+  </nav>
 </div>
 
 <script>
@@ -239,14 +260,35 @@
   var META_PIXEL_ID = "1506427107624542";   // Meta Pixel ID
   var leadFired = false;
 
-  // טעינת GA4 + Meta Pixel (רק אם יש מזהה)
-  (function(){
+  // ── הסכמה לעוגיות ──
+  // אותו מפתח ואותו פורמט כמו components/CookieConsent.tsx באתר הראשי,
+  // כך שבחירה שנעשתה בדף אחד תקפה בכולם. שומרים על CONSENT_VERSION זהה לאתר.
+  var CONSENT_KEY = "shani-cookie-consent", CONSENT_VERSION = 1;
+  var trackersLoaded = false;
+
+  function readConsent(){
+    try {
+      var r = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null");
+      if (r && (r.choice === "granted" || r.choice === "denied") && r.version === CONSENT_VERSION) return r;
+    } catch(e){}
+    return null;
+  }
+  function writeConsent(choice){
+    var r = { choice: choice, ts: new Date().toISOString(), version: CONSENT_VERSION };
+    try { localStorage.setItem(CONSENT_KEY, JSON.stringify(r)); } catch(e){}
+    return r;
+  }
+
+  // GA4 + Meta Pixel נטענים רק אחרי אישור פעיל. לפני כן אין שום בקשה לצד שלישי.
+  function loadTrackers(){
+    if (trackersLoaded) return; trackersLoaded = true;
     if (GA4_ID) {
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){dataLayer.push(arguments);};
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
       var s=document.createElement('script'); s.async=true;
       s.src="https://www.googletagmanager.com/gtag/js?id="+GA4_ID;
       document.head.appendChild(s);
-      window.dataLayer=window.dataLayer||[];
-      window.gtag=function(){dataLayer.push(arguments);};
       gtag('js', new Date()); gtag('config', GA4_ID);
     }
     if (META_PIXEL_ID) {
@@ -255,8 +297,40 @@
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
       document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('consent','grant');
       fbq('init', META_PIXEL_ID); fbq('track', 'PageView');
     }
+  }
+
+  // באנר. שני הכפתורים זהים בעיצובם בכוונה, כמו באתר הראשי.
+  function showBanner(saved){
+    var old = document.getElementById('cc-root'); if (old) old.remove();
+    var root = document.createElement('div'); root.id = 'cc-root'; root.className = 'cc-wrap';
+    root.innerHTML =
+      '<div class="cc-card" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-body">' +
+      '<h2 id="cc-title">עוגיות באתר</h2>' +
+      '<p id="cc-body">רק באישור שלכם נטען Google Analytics ו-Meta Pixel למדידה ופרסום, עם עוגיות צד שלישי והעברת מידע מחוץ לישראל, ואפשר לדחות ולהשתמש באתר כרגיל. <a class="cc-link" href="/privacy">מדיניות הפרטיות</a></p>' +
+      '<div class="cc-actions"><button type="button" class="cc-btn" id="cc-accept">אישור</button><button type="button" class="cc-btn" id="cc-reject">דחייה</button></div>' +
+      (saved ? '<p style="margin:12px 0 0;font-size:12.5px">' + (saved.choice === 'granted' ? 'אישרתם עוגיות מדידה ופרסום.' : 'דחיתם עוגיות מדידה ופרסום.') + '</p>' : '') +
+      '</div>';
+    document.body.appendChild(root);
+    document.getElementById('cc-accept').addEventListener('click', function(){ writeConsent('granted'); root.remove(); loadTrackers(); });
+    document.getElementById('cc-reject').addEventListener('click', function(){
+      writeConsent('denied'); root.remove();
+      // אם כבר אושר בעבר באותו עמוד, מפסיקים לשלוח מכאן והלאה
+      if (window.gtag) gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+    });
+    return root;
+  }
+
+  (function(){
+    var c = readConsent();
+    if (c === null) showBanner(null);
+    else if (c.choice === 'granted') loadTrackers();
+    document.getElementById('cc-open').addEventListener('click', function(){
+      showBanner(readConsent());
+      var a = document.getElementById('cc-accept'); if (a) a.focus();
+    });
   })();
 
   // ירי אירוע ליד ל-GA4 + Meta (פעם אחת, בסיום הטופס)
