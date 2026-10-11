@@ -225,7 +225,7 @@ export default function Hero() {
               }}
             >
               <Image
-                src="/portrait.png"
+                src="/portrait.webp"
                 alt="Shani Gorgov — SHANI AI CREATOR"
                 width={1448}
                 height={1086}

@@ -52,7 +52,7 @@ export default function Contact() {
         <div style={{ position: "relative" }}>
           {/* Personal photo */}
           <img
-            src="/shani-cta.jpg.png"
+            src="/shani-cta.webp"
             alt={lang === "he" ? "שני גורגוב" : "Shani Gorgov"}
             loading="lazy"
             decoding="async"

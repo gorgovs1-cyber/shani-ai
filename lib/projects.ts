@@ -197,7 +197,7 @@ export const projects: Project[] = [
       order: 3,
       mono: "L",
       url: "https://www.lilachhazan.com/",
-      poster: "/project-previews/lilach-hazan.png",
+      poster: "/project-previews/lilach-hazan.webp",
       bg: "#faf8f5",
       tags: ["Website", "Client Work"],
       he: { kind: "פרויקט לקוח", desc: "אתר עסקי מקצועי שבניתי עבור לילך חזן." },
