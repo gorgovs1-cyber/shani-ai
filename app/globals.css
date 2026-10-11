@@ -499,7 +499,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .project-square-copy { padding:16px 8px 8px; display:flex; flex:1; flex-direction:column; align-items:flex-start; }
 .project-square-copy h3 { width:100%; font-size:22px; line-height:1.3; margin:0 0 10px; text-align:center; text-wrap:balance; }
 .project-square-copy p { color:var(--muted2); line-height:1.7; margin:0 0 22px; }
-.project-progress { padding:4px 10px; margin-bottom:12px; border:1px solid #decab3; border-radius:8px; font-size:12px; color:#77512b; background:#f7eddf; }
+.project-progress { padding:4px 10px; margin-bottom:12px; border:1px solid #decab3; border-radius:8px; font-size:13px; color:#77512b; background:#f7eddf; }
 .project-site-button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 22px; border-radius:12px; background:#fff; border:1px solid #d9d1c5; color:var(--ink); text-decoration:none; font-weight:700; font-size:15px; margin-top:auto; box-shadow:0 2px 4px #24160d08; }
 .project-site-button:hover { background:#f4eee4; }
 .assessment-bar { display:none; }
@@ -745,3 +745,11 @@ body p, body li, body dd { font-weight:400 !important; }
   .sl-actions .sl-btn { flex:1 1 100%; }
 }
 @media (prefers-reduced-motion:reduce) { .sl-btn, .sl-film img { transition:none; } .sl-film:hover img { transform:none; } }
+
+/* 44px hit areas without changing the look of small pills */
+.lang-hit { position: relative; }
+.lang-hit::after { content: ""; position: absolute; inset: -8px -3px; }
+.nav-cta { min-height: 44px; }
+.floating-whatsapp { min-width: 44px; min-height: 44px; }
+
+.footer-copyright { font-size: 13px; }

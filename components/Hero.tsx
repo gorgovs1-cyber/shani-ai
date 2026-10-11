@@ -181,7 +181,7 @@ export default function Hero() {
                 gap: 18,
                 marginTop: 42,
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-                fontSize: 12,
+                fontSize: 13,
                 letterSpacing: ".03em",
                 color: "var(--dmuted)",
                 flexWrap: "wrap",

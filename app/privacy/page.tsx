@@ -23,7 +23,7 @@ const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "מדיניות",
     title: "מדיניות פרטיות",
-    updated: "עודכן: אוגוסט 2026",
+    updated: "עודכן: אוקטובר 2026",
     cookieBtn: "פתיחת הגדרות העוגיות",
     intro:
       "המסמך הזה מפרט בדיוק איזה מידע נאסף באתר shani-ai.com, מי מעבד אותו, לאן הוא עובר ומה אפשר לעשות בנוגע אליו. הוא כתוב כדי שתדעו בדיוק על מה אתם מסכימים לפני שאתם מסכימים.",
@@ -91,6 +91,8 @@ const COPY: Record<"he" | "en", Copy> = {
           "Resend — שולחת את מייל ההצעה החתומה, כולל קובץ ה-PDF שבו מוטמעים החתימה המצוירת, מועד החתימה וכתובת ה-IP, לשני ולחותם.",
           "Webhook לגיליון גוגל (Google Sheets דרך אוטומציית n8n) — מקבל התראה על חתימת הצעה עם שם, שם עסק, מספר עוסק, אימייל ומועד החתימה, לצורך ניהול הלידים והלקוחות שלי.",
           "WhatsApp / Meta — אם תיצרו קשר דרך כפתור הוואטסאפ, ההתכתבות מתנהלת אצלם ובכפוף לתנאיהם.",
+          "שותף עבודה — חלק מהשירותים (למשל שיווק ממומן, תשתיות וצ׳אטבוט) ניתנים בשיתוף פעולה עם שותף עבודה. אם הפנייה שלכם דורשת שירות כזה, פרטי הפנייה (שם, פרטי קשר ותיאור הצורך) יועברו אליו רק לצורך מתן אותו שירות, ובכפוף לסודיות.",
+          "ספקי צ׳אטבוט ואוטומציה — אם אקים אצלכם צ׳אטבוט או אוטומציה, הכלים שייבחרו לפרויקט ימסרו לכם בהצעה, והמידע על הלקוחות שלכם שיעובד בהם נשאר שלכם.",
         ],
       },
       {
@@ -142,7 +144,7 @@ const COPY: Record<"he" | "en", Copy> = {
   en: {
     kicker: "Policy",
     title: "Privacy Policy",
-    updated: "Updated: August 2026",
+    updated: "Updated: October 2026",
     cookieBtn: "Open cookie settings",
     intro:
       "This page sets out exactly what data shani-ai.com collects, who processes it, where it goes and what you can do about it. It is written so you know what you are agreeing to before you agree.",
@@ -210,6 +212,8 @@ const COPY: Record<"he" | "en", Copy> = {
           "Resend — sends the signed proposal email, including the PDF in which the hand-drawn signature, the time of signing and the IP address are embedded, to Shani and to the signer.",
           "Google Sheets webhook (via an n8n automation) — receives a notification of a signed proposal with name, business name, VAT number, email and time of signing, for my own lead and client tracking.",
           "WhatsApp / Meta — if you get in touch via the WhatsApp button, the conversation takes place on their platform and under their terms.",
+          "Working partner — some services (for example paid marketing, infrastructure and a chatbot) are delivered together with a working partner. If your enquiry needs such a service, its details (name, contact details and the description of your need) are passed to the partner only to provide that service, and subject to confidentiality.",
+          "Chatbot and automation providers — if I set up a chatbot or automation for you, the tools chosen for the project are given to you in the proposal, and the information about your own customers that they process stays yours.",
         ],
       },
       {

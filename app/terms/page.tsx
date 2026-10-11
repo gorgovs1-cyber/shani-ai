@@ -13,12 +13,12 @@ const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "תקנון",
     title: "תנאי שימוש",
-    updated: "עודכן: יוני 2026",
+    updated: "עודכן: אוקטובר 2026",
     intro:
       "ברוכים הבאים. השימוש באתר ובשירותים של Shani AI Creator (שני גורגוב) כפוף לתנאים שלהלן. השימוש באתר מהווה הסכמה לתנאים אלה.",
     sections: [
       { heading: "השירותים", body:
-        "אני מציעה בניית כלי AI וסקילים, אוטומציות ובניית אתרים. האבחון והמיפוי הם חלק מתהליך הגדרת הפרויקט. תיאורי השירותים באתר הם כלליים; ההיקף, המחיר ולוחות הזמנים המדויקים נקבעים בהצעת מחיר או בהסכם פרטני מול כל לקוח." },
+        "אני מציעה בניית אתרים, אוטומציות, פתרונות AI וסוכנים, צ׳אטבוט בעברית, שיווק ממומן, שירותי IT ותשתיות ענן וליווי עסקי. חלק מהשירותים ניתנים בשיתוף פעולה עם שותף עבודה. בדיקת ההתאמה והמיפוי הם חלק מתהליך הגדרת הפרויקט. תיאורי השירותים באתר הם כלליים; ההיקף, המחיר ולוחות הזמנים המדויקים נקבעים בהצעת מחיר או בהסכם פרטני מול כל לקוח." },
       { heading: "אין הבטחת תוצאה", body:
         "אני פועלת במקצועיות ובמיטב היכולת, אך תוצאות עסקיות תלויות בגורמים רבים שאינם בשליטתי. אין במידע באתר או בשירותים משום התחייבות לתוצאה עסקית, הכנסה או ביצועים מסוימים." },
       { heading: "הצעות מחיר ותשלום", body:
@@ -30,7 +30,7 @@ const COPY: Record<"he" | "en", Copy> = {
       { heading: "סודיות", body:
         "מידע עסקי שתשתפו במהלך העבודה יישמר בסודיות וישמש אך ורק לצורך מתן השירות." },
       { heading: "הגבלת אחריות", body:
-        "השימוש באתר ובשירותים הוא על אחריות המשתמש. לא אהיה אחראית לנזקים עקיפים, תוצאתיים או אובדן רווחים הנובעים מהשימוש, ככל שהדבר מותר על פי דין." },
+        "השימוש באתר ובשירותים הוא על אחריות המשתמש. לא אהיה אחראית לנזקים עקיפים, תוצאתיים או אובדן רווחים הנובעים מהשימוש, ככל שהדבר מותר על פי דין. בשיווק ממומן תקציב הפרסום משולם לפלטפורמות (כגון גוגל ומטא), ואין לי שליטה בתוצאות הקמפיין או בהחלטות הפלטפורמה. בשירותי IT, ענן ואבטחת מידע אין מערכת חסינה לחלוטין, ולכן איני מתחייבת להיעדר תקלות או אירועי אבטחה." },
       { heading: "קישורים לאתרים חיצוניים", body:
         "האתר עשוי לכלול קישורים לאתרים או כלים של צד שלישי. איני אחראית לתוכן או למדיניות הפרטיות שלהם." },
       { heading: "דין וסמכות שיפוט", body:
@@ -44,12 +44,12 @@ const COPY: Record<"he" | "en", Copy> = {
   en: {
     kicker: "Terms",
     title: "Terms of Use",
-    updated: "Updated: June 2026",
+    updated: "Updated: October 2026",
     intro:
       "Welcome. Use of the Shani AI Creator (Shani Gorgov) website and services is subject to the terms below. Using the site constitutes acceptance of these terms.",
     sections: [
       { heading: "Services", body:
-        "I build custom AI tools and Skills, automations, and websites. Assessment and mapping are part of defining each project. Service descriptions on the site are general; exact scope, price and timelines are set in a proposal or individual agreement with each client." },
+        "I offer websites, automations, AI solutions and agents, a Hebrew chatbot, paid marketing, IT and cloud infrastructure services, and close business support. Some services are delivered together with a working partner. The fit check and mapping are part of defining each project. Service descriptions on the site are general; exact scope, price and timelines are set in a proposal or individual agreement with each client." },
       { heading: "No guaranteed results", body:
         "I work professionally and to the best of my ability, but business results depend on many factors outside my control. Nothing on the site or in the services is a commitment to a specific business result, revenue or performance." },
       { heading: "Quotes & payment", body:
@@ -61,7 +61,7 @@ const COPY: Record<"he" | "en", Copy> = {
       { heading: "Confidentiality", body:
         "Business information shared during the work will be kept confidential and used solely to provide the service." },
       { heading: "Limitation of liability", body:
-        "Use of the site and services is at the user's own risk. I will not be liable for indirect or consequential damages or loss of profits arising from use, to the extent permitted by law." },
+        "Use of the site and services is at the user's own risk. I will not be liable for indirect or consequential damages or loss of profits arising from use, to the extent permitted by law. In paid marketing, the ad budget is paid to the platforms (such as Google and Meta) and I do not control campaign results or platform decisions. In IT, cloud and security services no system is completely immune, so I do not commit to the absence of faults or security incidents." },
       { heading: "Links to external sites", body:
         "The site may include links to third-party sites or tools. I am not responsible for their content or privacy practices." },
       { heading: "Governing law & jurisdiction", body:

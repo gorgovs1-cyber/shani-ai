@@ -218,6 +218,9 @@ export default function Nav() {
                     color: baseColor,
                     textDecoration: "none",
                     fontSize: 14.5,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    minHeight: 44,
                     fontWeight: current ? 700 : 500,
                     // Hover feedback budget is 100–150ms. Colour is a paint-only
                     // property here (no layout/compositing cost) and is the only
@@ -265,6 +268,7 @@ export default function Nav() {
                   <button
                     key={l}
                     type="button"
+                    className="lang-hit"
                     onClick={() => setLang(l)}
                     aria-pressed={active}
                     // "EN" / "עב" is not a usable name on its own — spell out the action.
@@ -426,6 +430,7 @@ export default function Nav() {
                   <button
                     key={l}
                     type="button"
+                    className="lang-hit"
                     onClick={() => setLang(l)}
                     aria-pressed={active}
                     aria-label={l === "en" ? t.navAriaSwitchEn : t.navAriaSwitchHe}

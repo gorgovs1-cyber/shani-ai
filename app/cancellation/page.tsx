@@ -13,14 +13,14 @@ const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "מדיניות ביטולים",
     title: "ביטול עסקה והחזר כספי",
-    updated: "עודכן: אוגוסט 2026",
+    updated: "עודכן: אוקטובר 2026",
     intro:
       "כאן כתוב בדיוק מה קורה אם מחליטים לעצור: איך מודיעים, מה מקבלים בחזרה, ומה כבר לא ניתן להחזר. כתבתי את זה בשפה פשוטה, בלי אותיות קטנות, כדי שתדעו מראש איפה אתם עומדים.",
     sections: [
       {
         heading: "מי עומדת מאחורי העסק",
         body:
-          "שני גורגוב, עוסק פטור מספר 300585536, רשומה בישראל מאז 1 באוגוסט 2026. השירותים שאני נותנת הם בניית אוטומציות וסוכני AI, ובניית אתרים בהתאמה אישית. אלה שירותים, לא מוצרים פיזיים, ולכן כללי הביטול שלהלן הם כללי ביטול של שירות. יצירת קשר בכל נושא ביטול: shani.creates.ai@gmail.com או 972-50-4744815+.",
+          "שני גורגוב, עוסק פטור מספר 300585536, רשומה בישראל מאז 1 באוגוסט 2026. השירותים שאני נותנת הם בניית אתרים, אוטומציות ופתרונות AI, צ׳אטבוט בעברית, שיווק ממומן, שירותי IT ותשתיות ענן וליווי עסקי, חלקם בשיתוף פעולה עם שותף עבודה. אלה שירותים, לא מוצרים פיזיים, ולכן כללי הביטול שלהלן הם כללי ביטול של שירות. יצירת קשר בכל נושא ביטול: shani.creates.ai@gmail.com או 972-50-4744815+.",
       },
       {
         heading: "איך מבטלים",
@@ -48,7 +48,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "ביטול לפני שהתחלתי לעבוד",
         body:
-          "אם ביטלתם לפני שהתחלתי בפועל לעבוד על הפרויקט, כלומר לפני מחקר, אפיון, כתיבה, עיצוב או קוד, אני מחזירה את מלוא המקדמה. אני לא גובה דמי ביטול, למרות שהחוק מתיר לגבות עד 5 אחוזים מסכום העסקה או 100 שקל, לפי הנמוך מביניהם. שיחת ההיכרות, האבחון הקצר וההצעה הם ממילא ללא עלות ואינם נחשבים תחילת עבודה.",
+          "אם ביטלתם לפני שהתחלתי בפועל לעבוד על הפרויקט, כלומר לפני מחקר, אפיון, כתיבה, עיצוב או קוד, אני מחזירה את מלוא המקדמה. אני לא גובה דמי ביטול, למרות שהחוק מתיר לגבות עד 5 אחוזים מסכום העסקה או 100 שקל, לפי הנמוך מביניהם. שיחת ההיכרות, בדיקת ההתאמה וההצעה הם ממילא ללא עלות ואינם נחשבים תחילת עבודה.",
       },
       {
         heading: "ביטול אחרי שהעבודה כבר התחילה",
@@ -64,7 +64,7 @@ const COPY: Record<"he" | "en", Copy> = {
         heading: "מה לא ניתן להחזר, ולמה",
         items: [
           "עבודה שכבר נמסרה ואושרה על ידכם. שירות שכבר סופק אי אפשר להשיב, ולכן אין עליו החזר.",
-          "עלויות צד שלישי ששולמו כבר על שמכם, כמו דומיין, כלי AI או מנוי חיצוני. הכלים האלה נרשמים על שמכם ובכרטיס שלכם, הכסף מעולם לא עבר דרכי, ולכן ההחזר עליהם, ככל שקיים, הוא מול הספק לפי מדיניות הביטול שלו. מה שנשאר, נשאר שלכם.",
+          "עלויות צד שלישי ששולמו כבר על שמכם, כמו דומיין, כלי AI, מנוי חיצוני או תקציב פרסום ששולם לפלטפורמה (למשל גוגל או מטא). הכלים האלה נרשמים על שמכם ובכרטיס שלכם, הכסף מעולם לא עבר דרכי, ולכן ההחזר עליהם, ככל שקיים, הוא מול הספק לפי מדיניות הביטול שלו. מה שנשאר, נשאר שלכם.",
           "סבב שינויים נוסף בתשלום שכבר ביצעתי בפועל.",
           "תוספת שהוזמנה, נבנתה ונמסרה, כמו חלק נוסף באתר, מאמר או עמוד פרויקט נוסף.",
         ],
@@ -119,14 +119,14 @@ const COPY: Record<"he" | "en", Copy> = {
   en: {
     kicker: "Cancellation policy",
     title: "Cancellation & Refunds",
-    updated: "Updated: August 2026",
+    updated: "Updated: October 2026",
     intro:
       "This page sets out exactly what happens if you decide to stop: how to give notice, what comes back to you, and what can no longer be refunded. Written in plain language, with no small print, so you know where you stand before you start.",
     sections: [
       {
         heading: "Who you are dealing with",
         body:
-          "Shani Gorgov, exempt sole trader (עוסק פטור) no. 300585536, registered in Israel since 1 August 2026. The services I provide are automations, AI agents, and custom website builds. These are services, not physical goods, so the rules below are the cancellation rules for a service. For anything to do with cancellation: shani.creates.ai@gmail.com or +972-50-4744815.",
+          "Shani Gorgov, exempt sole trader (עוסק פטור) no. 300585536, registered in Israel since 1 August 2026. The services I provide are websites, automations and AI solutions, a Hebrew chatbot, paid marketing, IT and cloud infrastructure services, and close business support, some of them together with a working partner. These are services, not physical goods, so the rules below are the cancellation rules for a service. For anything to do with cancellation: shani.creates.ai@gmail.com or +972-50-4744815.",
       },
       {
         heading: "How to cancel",
@@ -169,7 +169,7 @@ const COPY: Record<"he" | "en", Copy> = {
         heading: "What cannot be refunded, and why",
         items: [
           "Work already delivered and approved by you. A service already provided cannot be returned, so it is not refundable.",
-          "Third-party costs already paid in your name — a domain, an AI tool, an external subscription. These are registered in your name and on your card, the money never passed through me, so any refund is between you and that provider under its own policy. Whatever remains, remains yours.",
+          "Third-party costs already paid in your name — a domain, an AI tool, an external subscription, or an advertising budget paid to a platform (for example Google or Meta). These are registered in your name and on your card, the money never passed through me, so any refund is between you and that provider under its own policy. Whatever remains, remains yours.",
           "A paid additional revision round that I have already carried out.",
           "An add-on that was ordered, built and delivered — an extra section, an article, an extra project page.",
         ],

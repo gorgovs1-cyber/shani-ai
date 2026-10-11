@@ -23,7 +23,7 @@ const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "נגישות",
     title: "הצהרת נגישות",
-    updated: "עודכן לאחרונה: 28/06/2026",
+    updated: "עודכן לאחרונה: 11/10/2026",
     intro:
       "שני גורגוב רואה חשיבות רבה במתן שירות שוויוני לכלל הגולשים, ופועלת כדי שהאתר יהיה נגיש לאנשים עם מוגבלות. אנו משקיעים מאמצים ומשאבים כדי להנגיש את האתר ולשפר אותו באופן מתמיד, מתוך אמונה שלכל אדם מגיעה הזכות לחיות בשוויון, כבוד, נוחות ועצמאות.",
     sections: [
@@ -59,7 +59,7 @@ const COPY: Record<"he" | "en", Copy> = {
   en: {
     kicker: "Accessibility",
     title: "Accessibility Statement",
-    updated: "Last updated: 28/06/2026",
+    updated: "Last updated: 11/10/2026",
     intro:
       "Shani Gorgov is committed to providing an equal and inclusive experience for every visitor, and works to keep this website accessible to people with disabilities. We continually invest effort and resources to improve accessibility, in the belief that everyone deserves to browse with equality, dignity, comfort and independence.",
     sections: [

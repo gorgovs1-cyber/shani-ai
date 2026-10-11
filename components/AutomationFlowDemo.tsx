@@ -101,7 +101,7 @@ export default function AutomationFlowDemo() {
         <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57" }} />
         <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e" }} />
         <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840" }} />
-        <span style={{ marginInlineStart: 10, fontFamily: MONO, fontSize: 12, color: "rgba(244,237,225,0.55)", letterSpacing: ".08em" }}>
+        <span style={{ marginInlineStart: 10, fontFamily: MONO, fontSize: 13, color: "rgba(244,237,225,0.7)", letterSpacing: ".08em" }}>
           {lang === "he" ? "הדגמה להמחשה · לא נתוני לקוחות" : "Illustrative demo · not customer data"}
         </span>
         <span
@@ -174,7 +174,7 @@ export default function AutomationFlowDemo() {
                   {s.t}
                 </span>
               </div>
-              <div style={{ fontSize: 12, lineHeight: 1.5, color: "rgba(244,237,225,0.55)", fontFamily: HEEBO }}>{s.d}</div>
+              <div style={{ fontSize: 13, lineHeight: 1.5, color: "rgba(244,237,225,0.7)", fontFamily: HEEBO }}>{s.d}</div>
             </div>
           </div>
         ))}
