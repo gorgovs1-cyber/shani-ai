@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { localizedMeta, requestLang } from "@/lib/seo";
 import { Inter, Rubik, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
@@ -24,7 +25,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 // System / tags / dates / boot screen (both languages)
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "500", "700"] });
 
-export const metadata: Metadata = {
+const heMeta: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
   title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
   description: "Shani AI Creator בונה לעסקים בישראל אתרים, אוטומציות, צ׳אטבוט ושיווק, כך שהכול עובד יחד ואתם מדברים עם איש קשר אחד. מתחילים בבדיקת התאמה חינם.",
@@ -53,6 +54,13 @@ export const metadata: Metadata = {
   },
 };
 
+export function generateMetadata(): Metadata {
+  return localizedMeta("/", heMeta, {
+    title: "Shani AI Creator | Websites, marketing and AI systems",
+    description: "Websites, automations, a Hebrew chatbot and marketing for businesses in Israel, with one point of contact. Start with a free fit check.",
+  });
+}
+
 // viewportFit: "cover" is required for env(safe-area-inset-*) to return anything
 // but 0. Without it the floating WhatsApp button and cookie banner sit on the
 // home indicator on modern iPhones.
@@ -63,10 +71,11 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const lang = requestLang();
   return (
     <html
-      lang="he"
-      dir="rtl"
+      lang={lang}
+      dir={lang === "en" ? "ltr" : "rtl"}
       className={`${inter.variable} ${heebo.variable} ${playfair.variable} ${mono.variable}`}
     >
       <body>
@@ -137,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
-        <LanguageProvider>
+        <LanguageProvider initialLang={lang}>
           <SkipLink />
           <SplashScreen />
           <ScrollReveal />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { localizedMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const heMeta: Metadata = {
   title: "תנאי שימוש · Shani AI Creator",
   description:
     "תנאי השימוש באתר ובשירותים של Shani AI Creator: פתרונות AI, אוטומציות ובניית אתרים לעסקים. הצעות מחיר, קניין רוחני, סודיות והגבלת אחריות.",
@@ -14,6 +15,13 @@ export const metadata: Metadata = {
     locale: "he_IL",
   },
 };
+
+export function generateMetadata(): Metadata {
+  return localizedMeta("/terms", heMeta, {
+    title: "Terms of use · Shani AI Creator",
+    description: "Terms of use for the Shani AI Creator website and services: proposals and payment, intellectual property, liability and governing law.",
+  });
+}
 
 export default function TermsLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

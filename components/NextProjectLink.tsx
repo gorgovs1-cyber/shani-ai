@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLang } from "@/components/LanguageProvider";
 
 export default function NextProjectLink({
   slug, title,
@@ -8,9 +9,10 @@ export default function NextProjectLink({
   slug: string;
   title: string;
 }) {
+  const L = useLang().href;
   return (
     <Link
-      href={`/work/${slug}`}
+      href={L(`/work/${slug}`)}
       style={{
         display: "flex",
         justifyContent: "space-between",

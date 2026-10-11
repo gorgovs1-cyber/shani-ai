@@ -5,7 +5,7 @@ import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
 
 export default function Contact() {
-  const { lang } = useLang();
+  const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
 
   return (
@@ -111,7 +111,7 @@ export default function Contact() {
           >
             <Magnetic>
             <a
-              href="/audit"
+              href={L("/audit")}
               style={{
                 display: "inline-flex",
                 alignItems: "center",

@@ -4,7 +4,7 @@ import ProjectCards from "@/components/ProjectCards";
 import { useLang } from "@/components/LanguageProvider";
 import Link from "next/link";
 export default function WorkGrid(){
- const {lang,dir}=useLang();
+ const {lang,dir}=useLang(); const L = useLang().href;
  const track=useRef<HTMLDivElement>(null);
  const [interacting,setInteracting]=useState(false);
  const resumeTimer=useRef<number>();
@@ -30,5 +30,5 @@ export default function WorkGrid(){
  const resumeAfterTouch=()=>{if(resumeTimer.current)clearTimeout(resumeTimer.current);resumeTimer.current=window.setTimeout(()=>setInteracting(false),1200);};
  return <section id="work" className="home-projects" dir={dir}><h2>{lang==="he"?"קצת מהעבודות שלי":"A selection of my work"}</h2>
  <div className="home-carousel" ref={track} dir="ltr" role="region" aria-label={lang==="he"?"קרוסלת פרויקטים":"Project carousel"} tabIndex={0} onMouseEnter={()=>setInteracting(true)} onMouseLeave={()=>setInteracting(false)} onTouchStart={pauseForTouch} onTouchEnd={resumeAfterTouch} onTouchCancel={resumeAfterTouch} onFocusCapture={()=>setInteracting(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node))setInteracting(false);}}><div className="home-carousel-strip"><ProjectCards /><ProjectCards interactive={false}/></div></div>
- <div className="home-projects-cta"><Link className="project-site-button project-site-button--primary" href="/work">{lang==="he"?"לכל הפרויקטים":"View all projects"}</Link></div></section>;
+ <div className="home-projects-cta"><Link className="project-site-button project-site-button--primary" href={L("/work")}>{lang==="he"?"לכל הפרויקטים":"View all projects"}</Link></div></section>;
 }

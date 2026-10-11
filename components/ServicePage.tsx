@@ -65,7 +65,7 @@ export default function ServicePage({
       widgets (e.g. the ROI calculator on /automations) without forking this template. */
   beforeClosing?: React.ReactNode;
 }) {
-  const { lang } = useLang();
+  const { lang } = useLang(); const L = useLang().href;
   const c = copyByLang[lang];
   const dir = c.dir;
   const auditLabel = lang === "he" ? "בדיקת התאמה חינם" : "Free fit check";
@@ -80,7 +80,7 @@ export default function ServicePage({
         <h1 style={{ margin: "0 auto", fontWeight: 800, fontSize: "clamp(34px,5.2vw,60px)", lineHeight: 1.03, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "20ch" }}>{c.title}</h1>
         <p style={{ margin: "26px auto 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>{c.lead}</p>
         <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
-          <a href="/audit" className="btn btn-primary" style={{ fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
+          <a href={L("/audit")} className="btn btn-primary" style={{ fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
           </a>
           <a href="#solutions" className="btn btn-ghost" style={{ fontFamily: HEEBO }}>
@@ -148,7 +148,7 @@ export default function ServicePage({
                       {c.products!.labels.example}: {p.exampleLabel}
                     </a>
                   ) : null}
-                  <a className="btn btn-ghost spc-cta" href={p.cta?.href || "/audit"}>
+                  <a className="btn btn-ghost spc-cta" href={L(p.cta?.href || "/audit")}>
                     {p.cta?.label || (lang === "he" ? "זה מתאים לי" : "This fits me")}
                   </a>
                 </article>
@@ -165,7 +165,7 @@ export default function ServicePage({
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
               {c.also.map((a) => (
-                <Link key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
+                <Link key={a.href} href={L(a.href)} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
                   <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
                   <div style={{ color: "var(--muted2)", fontSize: 15, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
                 </Link>
@@ -229,7 +229,7 @@ export default function ServicePage({
                 to mistake for non-interactive text. This is real portfolio proof
                 right before a pricing decision, so it gets real button chrome. */}
             <Link
-              href={c.bridge.href}
+              href={L(c.bridge.href)}
               className="work-bridge-btn"
               style={{
                 display: "inline-flex",
@@ -259,7 +259,7 @@ export default function ServicePage({
             {c.closingTitle}
           </h2>
           <div style={{ display: "flex", gap: 14, marginTop: 26, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="/audit" className="btn btn-primary" style={{ fontFamily: HEEBO }}>
+            <a href={L("/audit")} className="btn btn-primary" style={{ fontFamily: HEEBO }}>
               {auditLabel}
             </a>
             <a href={wa(c.closingWaMsg)} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-dark" style={{ fontFamily: HEEBO }}>

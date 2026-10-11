@@ -6,7 +6,7 @@ import WordReveal from "@/components/WordReveal";
 import Link from "next/link";
 
 export default function Services() {
-  const { lang } = useLang();
+  const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
 
   return (
@@ -64,7 +64,7 @@ export default function Services() {
           return (
           <Card
             key={s.no}
-            href={href}
+            href={L(href)}
             className={`service-card-link${i < 2 ? " is-featured" : ""}`}
             aria-label={`${s.title} — ${ctaLabel}`}
             style={{

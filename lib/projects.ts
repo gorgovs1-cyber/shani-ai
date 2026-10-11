@@ -242,6 +242,7 @@ export const projects: Project[] = [
   {
     slug: "or-eisenstadt",
     title: "אור איזנשטדט",
+    titleEn: "Or Eisenstadt",
     client: "אור איזנשטדט",
     category: "Personal Brand",
     categoryHe: "מיתוג אישי",

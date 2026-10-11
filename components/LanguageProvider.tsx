@@ -9,21 +9,17 @@ type LangCtx = {
   t: Dict;
   setLang: (l: Lang) => void;
   toggle: () => void;
+  href: (path: string) => string;
 };
 
 const Ctx = createContext<LangCtx | null>(null);
 
 const STORAGE_KEY = "shani-lang";
 
-export default function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Default to Hebrew so server-rendered <html lang="he" dir="rtl"> matches first paint.
-  const [lang, setLangState] = useState<Lang>("he");
-
-  // On mount, restore the saved preference (if any).
-  useEffect(() => {
-    const saved = (typeof window !== "undefined" && localStorage.getItem(STORAGE_KEY)) as Lang | null;
-    if (saved === "he" || saved === "en") setLangState(saved);
-  }, []);
+export default function LanguageProvider({ children, initialLang = "he" }: { children: React.ReactNode; initialLang?: Lang }) {
+  // The URL decides the language: /en/* is English, everything else Hebrew.
+  // initialLang comes from the server (x-lang header), so SSR and first paint agree.
+  const [lang] = useState<Lang>(initialLang);
 
   // Reflect the active language onto <html> (drives global CSS direction + lang).
   useEffect(() => {
@@ -31,20 +27,32 @@ export default function LanguageProvider({ children }: { children: React.ReactNo
     el.lang = lang;
     el.dir = dirOf(lang);
     el.setAttribute("data-lang", lang);
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch {}
   }, [lang]);
 
-  const setLang = useCallback((l: Lang) => {
-    setLangState(l);
-    try { localStorage.setItem(STORAGE_KEY, l); } catch {}
+  /** Same page in the other language. */
+  const counterpart = useCallback((l: Lang) => {
+    if (typeof window === "undefined") return "/";
+    const { pathname, hash } = window.location;
+    const bare = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+    const next = l === "en" ? (bare === "/" ? "/en" : `/en${bare}`) : bare;
+    return next + hash;
   }, []);
 
-  const toggle = useCallback(() => {
-    setLangState((prev) => {
-      const next: Lang = prev === "he" ? "en" : "he";
-      try { localStorage.setItem(STORAGE_KEY, next); } catch {}
-      return next;
-    });
-  }, []);
+  const setLang = useCallback((l: Lang) => {
+    if (l === lang) return;
+    window.location.assign(counterpart(l));
+  }, [lang, counterpart]);
+
+  const toggle = useCallback(() => setLang(lang === "he" ? "en" : "he"), [lang, setLang]);
+
+  /** Localise an internal path: in English, /websites becomes /en/websites. Guides and SMALL LIGHTS are single-language. */
+  const href = useCallback((p: string) => {
+    if (lang !== "en" || !p.startsWith("/") || p.startsWith("/en") || p.startsWith("/guides/") || p.startsWith("/small-lights")) return p;
+    if (p === "/") return "/en";
+    if (p.startsWith("/#")) return "/en" + p.slice(1);
+    return "/en" + p;
+  }, [lang]);
 
   const value: LangCtx = {
     lang,
@@ -52,6 +60,7 @@ export default function LanguageProvider({ children }: { children: React.ReactNo
     t: dict[lang],
     setLang,
     toggle,
+    href,
   };
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

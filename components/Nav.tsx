@@ -8,7 +8,7 @@ import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 
 export default function Nav() {
-  const { lang, setLang } = useLang();
+  const { lang, setLang } = useLang(); const L = useLang().href;
   const t = dict[lang];
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -109,15 +109,15 @@ export default function Nav() {
   // On the homepage use in-page anchors (smooth scroll); on any other page
   // link back to the homepage section so nav works everywhere (e.g. /guides).
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const anchor = (hash: string) => (isHome ? hash : `/${hash}`);
+  const isHome = pathname === "/" || pathname === "/en";
+  const anchor = (hash: string) => (isHome ? hash : L(`/${hash}`));
 
   const navLinks = [
-    { label: t.navWebsites,    href: "/websites" },
-    { label: t.navAutomations, href: "/automations" },
-    { label: t.navAi,          href: "/automations#solutions" },
-    { label: t.navWork,        href: "/work" },
-    { label: t.navGuides,      href: "/guides" },
+    { label: t.navWebsites,    href: L("/websites") },
+    { label: t.navAutomations, href: L("/automations") },
+    { label: t.navAi,          href: L("/automations#solutions") },
+    { label: t.navWork,        href: L("/work") },
+    { label: t.navGuides,      href: L("/guides") },
   ];
 
   // Anchor links are not pages, so only route links can be "current".
@@ -172,7 +172,7 @@ export default function Nav() {
           {/* Left: Logo + name */}
           <Link
             className="nav-brand"
-            href={isHome ? "#top" : "/"}
+            href={isHome ? "#top" : L("/")}
             dir="ltr"
             style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none", minHeight: 44 }}
             aria-label={t.navAriaHome}
@@ -199,12 +199,12 @@ export default function Nav() {
             <details className="nav-service-menu" onKeyDown={(e) => { if (e.key === "Escape") { e.currentTarget.open = false; e.currentTarget.querySelector("summary")?.focus(); } }}>
               <summary>{lang === "he" ? "שירותים" : "Services"}</summary>
               <div>
-                {navLinks.filter((l) => ["/websites", "/automations", "/automations#solutions"].includes(l.href)).map((l) => (
+                {navLinks.filter((l) => [L("/websites"), L("/automations"), L("/automations#solutions")].includes(l.href)).map((l) => (
                   <Link key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</Link>
                 ))}
               </div>
             </details>
-            {navLinks.filter((l) => !["/websites", "/automations", "/automations#solutions"].includes(l.href)).map((l) => {
+            {navLinks.filter((l) => ![L("/websites"), L("/automations"), L("/automations#solutions")].includes(l.href)).map((l) => {
               const current = isCurrent(l.href);
               // The current page keeps the brighter ink so it stays marked after
               // the pointer leaves — aria-current alone helps AT users only.
@@ -294,7 +294,7 @@ export default function Nav() {
 
             {/* CTA pill */}
             <a
-              href="/audit"
+              href={L("/audit")}
               className="nav-cta"
               style={{
                 display: "inline-flex",

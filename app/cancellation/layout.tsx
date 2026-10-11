@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { localizedMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const heMeta: Metadata = {
   title: "מדיניות ביטולים והחזרים · Shani AI Creator",
   description:
     "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator: איך מבטלים, ביטול לפני ואחרי תחילת העבודה, מועדי החזר, מה אינו ניתן להחזר, וביטול מנוי Shani Care.",
@@ -14,6 +15,13 @@ export const metadata: Metadata = {
     locale: "he_IL",
   },
 };
+
+export function generateMetadata(): Metadata {
+  return localizedMeta("/cancellation", heMeta, {
+    title: "Cancellation and refund policy · Shani AI Creator",
+    description: "How to cancel, cancelling before and after work starts, when money is refunded and what cannot be refunded, under the Israeli Consumer Protection Law.",
+  });
+}
 
 export default function CancellationLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

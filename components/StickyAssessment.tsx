@@ -5,7 +5,7 @@ import { useLang } from "@/components/LanguageProvider";
 
 export default function StickyAssessment() {
  const path = usePathname();
- const { lang } = useLang();
+ const { lang } = useLang(); const L = useLang().href;
  const [visible, setVisible] = useState(false);
  useEffect(() => {
   let frame = 0;
@@ -38,5 +38,5 @@ export default function StickyAssessment() {
    document.body.classList.remove('assessment-bar-visible');
   };
  }, [path]);
- return <div className="assessment-bar" hidden={!visible}><a href="/audit" className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a></div>;
+ return <div className="assessment-bar" hidden={!visible}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a></div>;
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { localizedMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const heMeta: Metadata = {
   title: "מדריכים להורדה · AI, אוטומציות ואתרים לעסק | Shani AI Creator",
   description:
     "מדריכים חינמיים בעברית לעבודה עם Claude: בניית אוטומציות n8n, פרומפטים מוכנים לעסק, תכנון תוכן ובניית אתר. מורידים ומיישמים.",
@@ -14,6 +15,13 @@ export const metadata: Metadata = {
     locale: "he_IL",
   },
 };
+
+export function generateMetadata(): Metadata {
+  return localizedMeta("/guides", heMeta, {
+    title: "Free guides: AI, automations and websites | Shani AI Creator",
+    description: "Free guides (in Hebrew) for working with Claude: n8n automations, ready-made business prompts, content planning and building a website.",
+  });
+}
 
 export default function GuidesLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

@@ -149,7 +149,7 @@ const COPY = {
 } as const;
 
 export default function CookieConsent() {
-  const { lang } = useLang();
+  const { lang } = useLang(); const L = useLang().href;
   const c = COPY[lang === "en" ? "en" : "he"];
   const dir = lang === "en" ? "ltr" : "rtl";
 
@@ -300,7 +300,7 @@ export default function CookieConsent() {
             {c.body}{" "}
             <Link
               className="cc-link"
-              href="/privacy"
+              href={L("/privacy")}
               style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
             >
               {c.policy}

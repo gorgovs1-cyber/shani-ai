@@ -12,6 +12,8 @@ const nextConfig = {
       { source: '/ai-consulting', destination: '/audit', permanent: true },
       // the price list page was retired; its traffic goes to the services section
       { source: '/pricing', destination: '/#build', permanent: true },
+      { source: '/en/pricing', destination: '/en#build', permanent: true },
+      { source: '/en/ai-consulting', destination: '/en/audit', permanent: true },
       { source: '/blog', destination: '/guides', permanent: true },
       { source: '/blog/:slug*', destination: '/guides', permanent: true },
       // one address per screening page

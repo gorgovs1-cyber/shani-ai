@@ -27,7 +27,7 @@ const DEFAULT: Settings = {
 };
 
 export default function AccessibilityWidget() {
-  const { t, lang, dir } = useLang();
+  const { t, lang, dir } = useLang(); const L = useLang().href;
   const w = t.a11yWidget;
   const [open, setOpen] = useState(false);
   const [s, setS] = useState<Settings>(DEFAULT);
@@ -313,7 +313,7 @@ export default function AccessibilityWidget() {
             textAlign: "center",
           }}>
             <Link
-              href="/accessibility"
+              href={L("/accessibility")}
               style={{
                 fontSize: "0.65rem",
                 color: "var(--mist)",

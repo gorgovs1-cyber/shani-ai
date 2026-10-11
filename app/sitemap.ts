@@ -22,6 +22,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/cancellation`,  lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
   ]
 
+  // English versions live under /en (middleware.ts). Each pair lists both languages as alternates.
+  const bilingual = ['', '/websites', '/automations', '/audit', '/work', '/guides', '/accessibility', '/privacy', '/terms', '/cancellation']
+  const langs = (p: string) => ({ languages: { 'he-IL': `${BASE}${p}`, en: `${BASE}/en${p}` } })
+  for (const page of staticPages) {
+    const p = page.url.replace(BASE, '')
+    if (bilingual.includes(p)) page.alternates = langs(p)
+  }
+  const englishPages: MetadataRoute.Sitemap = bilingual.map((p) => ({
+    url: `${BASE}/en${p}`, lastModified: now, changeFrequency: 'monthly' as const, priority: p === '' ? 0.8 : 0.6, alternates: langs(p),
+  }))
+
   // Open guide pages (static HTML in public/guides). The 2025 content calendar is noindexed, so it stays out.
   const guidePages: MetadataRoute.Sitemap = guides
     .filter((g) => g.file !== 'content-calendar-month1.html')
@@ -38,5 +49,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/guides/claude-opus-film.html`, lastModified: new Date('2026-10-05'), changeFrequency: 'yearly', priority: 0.6 },
   ]
 
-  return [...staticPages, ...guidePages, ...filmGuide]
+  return [...staticPages, ...englishPages, ...guidePages, ...filmGuide]
 }

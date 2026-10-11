@@ -265,7 +265,7 @@ const COPY: Record<"he" | "en", Copy> = {
 };
 
 export default function PrivacyPage() {
-  const { lang } = useLang();
+  const { lang } = useLang(); const L = useLang().href;
   const c = COPY[lang];
   const dir = lang === "he" ? "rtl" : "ltr";
   const cellBase: React.CSSProperties = {
@@ -300,7 +300,7 @@ export default function PrivacyPage() {
             )}
             {s.link && (
               <a
-                href={s.link.href}
+                href={L(s.link.href)}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",

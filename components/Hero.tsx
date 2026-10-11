@@ -7,7 +7,7 @@ import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
 import Link from "next/link";
 export default function Hero() {
-  const { lang } = useLang();
+  const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
   const portraitRef = useRef<HTMLDivElement>(null);
   /** On touch, mouseenter fires on tap and mouseleave never follows, so the
@@ -138,7 +138,7 @@ export default function Hero() {
               {/* Primary: Free AI Audit */}
               <Magnetic>
               <a
-                href="/audit"
+                href={L("/audit")}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -169,7 +169,7 @@ export default function Hero() {
                 {lang === "he" ? "בדיקת התאמה חינם" : "Free fit check"}
               </a>
               </Magnetic>
-              <Link href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
+              <Link href={L("/work")} className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
             </div>
 
             {/* Numbers row: only figures the owner can stand behind */}
