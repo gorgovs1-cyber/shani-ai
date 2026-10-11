@@ -160,7 +160,7 @@ export default function AutomationFlowDemo() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: 800,
                     fontFamily: MONO,
                     background: done(i) ? "var(--acc-fill)" : "rgba(244,237,225,0.12)",

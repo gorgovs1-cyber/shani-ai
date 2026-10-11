@@ -331,7 +331,7 @@ export default function PrivacyPage() {
                           style={{
                             ...cellBase,
                             fontFamily: MONO,
-                            fontSize: 12,
+                            fontSize: 13,
                             letterSpacing: ".08em",
                             textTransform: "uppercase",
                             color: "var(--muted2)",

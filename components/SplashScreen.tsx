@@ -127,7 +127,7 @@ export default function SplashScreen() {
           <span style={{
             marginLeft: 10,
             fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-            fontSize: 11,
+            fontSize: 13,
             color: "var(--dmuted, #b1a48f)",
             letterSpacing: ".04em",
           }}>

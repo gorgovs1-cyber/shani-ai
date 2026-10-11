@@ -91,7 +91,7 @@ export default function GuidesPage() {
                   gap: 12,
                 }}
               >
-                <span style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".16em", color: "var(--muted2)", textTransform: "uppercase" }}>
+                <span style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".16em", color: "var(--muted2)", textTransform: "uppercase" }}>
                   {tag}
                 </span>
                 <h2 style={{ margin: 0, fontWeight: 800, fontSize: 20, lineHeight: 1.25, color: "var(--ink)", fontFamily: HEEBO }}>

@@ -258,7 +258,7 @@ export default function Nav() {
                 borderRadius: 999,
                 padding: 3,
                 fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: 700,
               }}
             >
@@ -278,7 +278,7 @@ export default function Nav() {
                       cursor: "pointer",
                       padding: "7px 13px",
                       borderRadius: 999,
-                      fontSize: 12,
+                      fontSize: 13,
                       fontWeight: 700,
                       background: active ? "var(--acc)" : "transparent",
                       color: active ? "#fff" : "var(--dmuted)",
