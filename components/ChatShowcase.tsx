@@ -82,7 +82,7 @@ export default function ChatShowcase() {
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <section className="chat-showcase" aria-labelledby="chat-title" dir={dir}>
+    <section id="chat" className="chat-showcase" aria-labelledby="chat-title" dir={dir}>
       <div className="chat-copy">
         <div className="chat-kicker">{c.kicker}</div>
         <h2 id="chat-title">{c.title}</h2>

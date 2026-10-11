@@ -11,7 +11,7 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
-    navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים',
+    navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים', navAiShort:'פתרונות AI', navChat:'צ׳אטבוט', navAbout:'אודות', navContact:'צור קשר',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
     navAriaMain:'ניווט ראשי', navAriaHome:'שני גורגוב, לדף הבית', navAriaMobileMenu:'תפריט ניווט',
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
@@ -49,13 +49,13 @@ export const dict = {
     ],
     // סדר הכרטיסים הוא לפי מה שכבר נמכר ויש לו הוכחות, ולא לפי סדר התהליך.
     services:[
-      {no:'01', title:'אתר לעסק שלכם', desc:'אני בונה אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.', fit:'אין לכם אתר, או שלא ברור בו מה אתם מציעים ואיך פונים אליכם'},
-      {no:'02', title:'מערכות שחוסכות זמן', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית: שמירת פרטי פנייה, שליחת אישור או תזכורת, ועדכון הכלים שכבר עובדים איתם.', fit:'אתם מעתיקים פרטים ושולחים אותן הודעות ידנית, או מפספסים פניות בערב'},
-      {no:'03', title:'פתרונות AI וסוכנים', desc:'סוכן AI שמבין את השיחה, עונה בעברית ויכול לבצע פעולות כמו סינון פניות וקביעת פגישות לפי הכללים שלכם.', fit:'כל פנייה אצלכם קצת שונה, והמענה צריך להבין הקשר ולבצע את הצעד הבא'},
-      {no:'04', title:'צ׳אטבוט בעברית לעסק', desc:'צ׳אטבוט שעונה ללקוחות בעברית באתר ובוואטסאפ, ומעביר אליכם כל פנייה שדורשת אדם.', fit:'שואלים אתכם אותן שאלות שוב ושוב, או שפניות נופלות בערב'},
-      {no:'05', title:'שיווק ממומן', desc:'קמפיינים בגוגל, פייסבוק ואינסטגרם שמכוונים לפנייה, עם מעקב ברור על מה הביא אותן.', fit:'יש לכם מה להציע ואתם רוצים שיותר אנשים יגיעו'},
-      {no:'06', title:'IT ותשתיות ענן', desc:'תשתיות, מעבר לענן, אבטחת מידע ותמיכה טכנית, כדי שהעבודה לא תיעצר.', fit:'המערכות מפוזרות או איטיות, ואין מי שאחראי עליהן'},
-      {no:'07', title:'ליווי עסקי צמוד', desc:'איש קשר אחד לכל הפרויקט, מההתחלה ועד אחרי ההשקה, במקום ספק לכל נושא.', fit:'אתם צריכים כמה דברים ואין לכם זמן לתאם ביניהם'}
+      {no:'01', title:'אתר לעסק שלכם', short:'אתרים ודפי נחיתה מהירים שמובילים לפנייה', desc:'אני בונה אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.', fit:'אין לכם אתר, או שלא ברור בו מה אתם מציעים ואיך פונים אליכם'},
+      {no:'02', title:'מערכות שחוסכות זמן', short:'אוטומציות N8N שעושות את העבודה החוזרת', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית: שמירת פרטי פנייה, שליחת אישור או תזכורת, ועדכון הכלים שכבר עובדים איתם.', fit:'אתם מעתיקים פרטים ושולחים אותן הודעות ידנית, או מפספסים פניות בערב'},
+      {no:'03', title:'פתרונות AI וסוכנים', short:'סוכני AI שעובדים בתוך התהליכים שלכם', desc:'סוכן AI שמבין את השיחה, עונה בעברית ויכול לבצע פעולות כמו סינון פניות וקביעת פגישות לפי הכללים שלכם.', fit:'כל פנייה אצלכם קצת שונה, והמענה צריך להבין הקשר ולבצע את הצעד הבא'},
+      {no:'04', title:'צ׳אטבוט בעברית לעסק', short:'עונה ללקוחות בעברית באתר ובוואטסאפ', desc:'צ׳אטבוט שעונה ללקוחות בעברית באתר ובוואטסאפ, ומעביר אליכם כל פנייה שדורשת אדם.', fit:'שואלים אתכם אותן שאלות שוב ושוב, או שפניות נופלות בערב'},
+      {no:'05', title:'שיווק ממומן', short:'קמפיינים בגוגל ובמטא שמביאים פניות', desc:'קמפיינים בגוגל, פייסבוק ואינסטגרם שמכוונים לפנייה, עם מעקב ברור על מה הביא אותן.', fit:'יש לכם מה להציע ואתם רוצים שיותר אנשים יגיעו'},
+      {no:'06', title:'IT ותשתיות ענן', short:'תשתית, ענן ואבטחת מידע מסודרים', desc:'תשתיות, מעבר לענן, אבטחת מידע ותמיכה טכנית, כדי שהעבודה לא תיעצר.', fit:'המערכות מפוזרות או איטיות, ואין מי שאחראי עליהן'},
+      {no:'07', title:'ליווי עסקי צמוד', short:'ליווי מהאפיון ועד אחרי ההשקה', desc:'איש קשר אחד לכל הפרויקט, מההתחלה ועד אחרי ההשקה, במקום ספק לכל נושא.', fit:'אתם צריכים כמה דברים ואין לכם זמן לתאם ביניהם'}
     ],
     // הפרויקטים עברו ל-lib/projects.ts, שהוא מקור האמת היחיד לתיק העבודות.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
@@ -97,7 +97,7 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navGuides:'Guides', navCta:'Free fit check',
-    navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents',
+    navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents', navAiShort:'AI solutions', navChat:'Chatbot', navAbout:'About', navContact:'Contact',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
     navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov — home', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
@@ -130,13 +130,13 @@ export const dict = {
       'Today I build websites and systems for businesses, and I also handle marketing and infrastructure. I start by understanding how you work, then choose what to build.'
     ],
     services:[
-      {no:'01', title:'Websites that bring enquiries', desc:'A website that explains your offer, shows your work and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.', fit:'You have no website, or visitors cannot easily understand your offer and contact you'},
-      {no:'02', title:'Systems that save time', desc:'Recurring tasks happen automatically: saving enquiry details, sending a confirmation or reminder, and updating the tools you already use.', fit:'You copy details and send the same messages by hand, or miss enquiries in the evening'},
-      {no:'03', title:'AI solutions and agents', desc:'An AI agent that understands the conversation, replies naturally, and can qualify enquiries and book meetings by your rules.', fit:'Every enquiry is a little different, and the reply needs to understand context and take the next step'},
-      {no:'04', title:'A Hebrew chatbot for your business', desc:'A chatbot that answers customers in Hebrew on your website and on WhatsApp, and hands over to you anything that needs a person.', fit:'You get asked the same questions again and again, or enquiries slip through in the evening'},
-      {no:'05', title:'Paid marketing', desc:'Google, Facebook and Instagram campaigns built to bring enquiries, with clear tracking of what brought them.', fit:'You have something to offer and want more people to find it'},
-      {no:'06', title:'IT, cloud and security', desc:'Infrastructure, cloud migration, security and technical support, so work does not stop.', fit:'Your systems are scattered or slow, and nobody owns them'},
-      {no:'07', title:'Close business support', desc:'One point of contact for the whole project, from the start to after launch, instead of a separate vendor for every topic.', fit:'You need several things and have no time to coordinate between them'}
+      {no:'01', title:'Websites that bring enquiries', short:'Fast websites and landing pages that lead to enquiries', desc:'A website that explains your offer, shows your work and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.', fit:'You have no website, or visitors cannot easily understand your offer and contact you'},
+      {no:'02', title:'Systems that save time', short:'n8n automations that take over the repetitive work', desc:'Recurring tasks happen automatically: saving enquiry details, sending a confirmation or reminder, and updating the tools you already use.', fit:'You copy details and send the same messages by hand, or miss enquiries in the evening'},
+      {no:'03', title:'AI solutions and agents', short:'AI agents that work inside your processes', desc:'An AI agent that understands the conversation, replies naturally, and can qualify enquiries and book meetings by your rules.', fit:'Every enquiry is a little different, and the reply needs to understand context and take the next step'},
+      {no:'04', title:'A Hebrew chatbot for your business', short:'Answers customers in Hebrew on your site and WhatsApp', desc:'A chatbot that answers customers in Hebrew on your website and on WhatsApp, and hands over to you anything that needs a person.', fit:'You get asked the same questions again and again, or enquiries slip through in the evening'},
+      {no:'05', title:'Paid marketing', short:'Google and Meta campaigns that bring enquiries', desc:'Google, Facebook and Instagram campaigns built to bring enquiries, with clear tracking of what brought them.', fit:'You have something to offer and want more people to find it'},
+      {no:'06', title:'IT, cloud and security', short:'Infrastructure, cloud and data security in order', desc:'Infrastructure, cloud migration, security and technical support, so work does not stop.', fit:'Your systems are scattered or slow, and nobody owns them'},
+      {no:'07', title:'Close business support', short:'Support from specification to after launch', desc:'One point of contact for the whole project, from the start to after launch, instead of a separate vendor for every topic.', fit:'You need several things and have no time to coordinate between them'}
     ],
     // Projects live in lib/projects.ts, the single source of truth for the portfolio.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.

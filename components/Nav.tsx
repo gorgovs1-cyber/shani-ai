@@ -115,9 +115,12 @@ export default function Nav() {
   const navLinks = [
     { label: t.navWebsites,    href: L("/websites") },
     { label: t.navAutomations, href: L("/automations") },
-    { label: t.navAi,          href: L("/automations#solutions") },
+    { label: t.navAiShort,     href: L("/automations#solutions") },
+    { label: t.navChat,        href: anchor("#chat") },
     { label: t.navWork,        href: L("/work") },
     { label: t.navGuides,      href: L("/guides") },
+    { label: t.navAbout,       href: anchor("#about") },
+    { label: t.navContact,     href: anchor("#contact") },
   ];
 
   // Anchor links are not pages, so only route links can be "current".
@@ -155,7 +158,7 @@ export default function Nav() {
           style={{
             pointerEvents: "auto",
             width: "100%",
-            maxWidth: 1200,
+            maxWidth: 1440,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -164,7 +167,7 @@ export default function Nav() {
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
             border: "1px solid var(--dline)",
-            borderRadius: 999,
+            borderRadius: 18,
             padding: "10px 14px 10px 20px",
             boxShadow: "0 20px 50px -24px rgba(20,16,9,.5)",
           }}
@@ -194,17 +197,9 @@ export default function Nav() {
           {/* Center: Desktop nav links */}
           <div
             className="nav-desktop"
-            style={{ display: "flex", alignItems: "center", gap: 20 }}
+            style={{ display: "flex", alignItems: "center", gap: 22 }}
           >
-            <details className="nav-service-menu" onKeyDown={(e) => { if (e.key === "Escape") { e.currentTarget.open = false; e.currentTarget.querySelector("summary")?.focus(); } }}>
-              <summary>{lang === "he" ? "שירותים" : "Services"}</summary>
-              <div>
-                {navLinks.filter((l) => [L("/websites"), L("/automations"), L("/automations#solutions")].includes(l.href)).map((l) => (
-                  <Link key={l.href} href={l.href} aria-current={isCurrent(l.href) ? "page" : undefined}>{l.label}</Link>
-                ))}
-              </div>
-            </details>
-            {navLinks.filter((l) => ![L("/websites"), L("/automations"), L("/automations#solutions")].includes(l.href)).map((l) => {
+            {navLinks.map((l) => {
               const current = isCurrent(l.href);
               // The current page keeps the brighter ink so it stays marked after
               // the pointer leaves — aria-current alone helps AT users only.
@@ -390,7 +385,7 @@ export default function Nav() {
             boxShadow: "0 18px 44px -22px rgba(20,16,9,.68), inset 0 1px 0 rgba(255,255,255,.12)",
             display: "flex",
             overflowY: "auto",
-            maxHeight: "min(340px, calc(100dvh - 104px - env(safe-area-inset-bottom, 0px)))",
+            maxHeight: "min(440px, calc(100dvh - 104px - env(safe-area-inset-bottom, 0px)))",
             boxSizing: "border-box",
             padding: "10px",
           }}
