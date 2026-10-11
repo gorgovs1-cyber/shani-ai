@@ -146,7 +146,7 @@ export default function Services() {
                 style={{
                   margin: "14px 0 0",
                   color: "var(--ink)",
-                  fontSize: 14.5,
+                  fontSize: 15,
                   lineHeight: 1.6,
                   fontWeight: 700,
                   fontFamily: "'Heebo', var(--font-heebo), sans-serif",

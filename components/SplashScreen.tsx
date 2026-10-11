@@ -158,7 +158,7 @@ export default function SplashScreen() {
             versions of the site from one splash.
             Hebrew needs its own font — JetBrains Mono has no Hebrew glyphs — and
             its own dir, so the ✓/▸ markers stay on the left. See <He /> below. */}
-        <div style={{ padding: "20px 22px 24px", fontFamily: "'JetBrains Mono', var(--font-mono), monospace", fontSize: 13.5, lineHeight: 2, color: "var(--dtext, #f4ede1)" }}>
+        <div style={{ padding: "20px 22px 24px", fontFamily: "'JetBrains Mono', var(--font-mono), monospace", fontSize: 14, lineHeight: 2, color: "var(--dtext, #f4ede1)" }}>
           {/* Line 1 */}
           <div style={{ opacity: 0, animation: "scl-termline .25s ease .15s forwards" }}>
             <span style={{ color: "var(--acc, #f2622e)" }}>$</span> shani build --business

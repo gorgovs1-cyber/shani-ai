@@ -272,7 +272,7 @@ function UnsubscribeForm() {
             style={{ marginTop: state === "idle" ? 0 : 18 }}
           >
             {state === "invalid" && (
-              <p style={{ margin: 0, fontFamily: HEEBO, fontSize: 15.5, lineHeight: 1.7, color: "var(--acc)", fontWeight: 700 }}>
+              <p style={{ margin: 0, fontFamily: HEEBO, fontSize: 16, lineHeight: 1.7, color: "var(--acc)", fontWeight: 700 }}>
                 {c.invalid}
               </p>
             )}

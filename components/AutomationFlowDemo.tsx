@@ -127,7 +127,7 @@ export default function AutomationFlowDemo() {
           color: "rgba(244,237,225,0.92)",
           borderRadius: "16px 16px 16px 4px",
           padding: "10px 16px",
-          fontSize: 14.5,
+          fontSize: 15,
           fontFamily: HEEBO,
           marginBottom: 26,
           animation: animate ? "afd-bubble .4s cubic-bezier(.2,.7,.2,1) both" : undefined,
@@ -170,7 +170,7 @@ export default function AutomationFlowDemo() {
                 >
                   {done(i) ? "✓" : i + 1}
                 </span>
-                <span style={{ fontWeight: 700, fontSize: 13.5, color: done(i) ? "#fff" : "rgba(244,237,225,0.75)", fontFamily: HEEBO, transition: "color .35s" }}>
+                <span style={{ fontWeight: 700, fontSize: 14, color: done(i) ? "#fff" : "rgba(244,237,225,0.75)", fontFamily: HEEBO, transition: "color .35s" }}>
                   {s.t}
                 </span>
               </div>

@@ -327,7 +327,7 @@ export default function CookieConsent() {
               style={{
                 margin: "12px 0 0",
                 fontFamily: HEEBO,
-                fontSize: 12.5,
+                fontSize: 13,
                 lineHeight: 1.6,
                 color: "var(--dmuted)",
                 opacity: 0.85,

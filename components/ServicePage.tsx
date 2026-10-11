@@ -81,10 +81,10 @@ export default function ServicePage({
         <h1 style={{ margin: "0 auto", fontWeight: 800, fontSize: "clamp(34px,5.2vw,60px)", lineHeight: 1.03, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "20ch" }}>{c.title}</h1>
         <p style={{ margin: "26px auto 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>{c.lead}</p>
         <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
-          <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
+          <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
           </a>
-          <a href="#solutions" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
+          <a href="#solutions" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
             {c.secondaryCta}
           </a>
         </div>
@@ -148,6 +148,7 @@ export default function ServicePage({
                       <h3 style={{ fontFamily: HEEBO }}>
                         {p.name}
                       </h3>
+                      <span className="service-product-sub" style={{ fontFamily: HEEBO }}>{p.fit}</span>
                     </span>
                     {p.price ? <span className="service-product-price" style={{ fontFamily: HEEBO }}>{p.price}</span> : null}
                     <span className="service-product-symbol" aria-hidden="true">{openProduct === pi ? "−" : "+"}</span>
@@ -168,7 +169,7 @@ export default function ServicePage({
                       ))}
                     </ul>
                     {p.exampleUrl ? (
-                      <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 14.5, textDecoration: "none", fontFamily: HEEBO }}>
+                      <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 15, textDecoration: "none", fontFamily: HEEBO }}>
                         {c.products!.labels.example}: {p.exampleLabel}
                       </a>
                     ) : null}
@@ -187,11 +188,11 @@ export default function ServicePage({
             <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(21px,2.6vw,30px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
               {c.alsoTitle}
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 380px))", justifyContent: "start", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
               {c.also.map((a) => (
                 <Link key={a.href} href={a.href} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
                   <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
-                  <div style={{ color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
+                  <div style={{ color: "var(--muted2)", fontSize: 15, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
                 </Link>
               ))}
             </div>
@@ -265,7 +266,7 @@ export default function ServicePage({
                 borderRadius: 999,
                 padding: "13px 26px",
                 fontWeight: 700,
-                fontSize: 15.5,
+                fontSize: 16,
                 lineHeight: 1.4,
                 textDecoration: "none",
                 fontFamily: HEEBO,

@@ -19,11 +19,12 @@ export const dict = {
     footerSeo:'אתרים, אוטומציות, צ׳אטבוט ושיווק לעסקים, במקום אחד. שני גורגוב, שירות לעסקים בכל הארץ.',
     // ה-H1 הקודם, "יוצרת פתרונות טכנולוגיים לעסקים", תיאר קטגוריה ולא תוצאה,
     // ולא הכיל אף מילת מפתח שמישהו מחפש. החדש אומר מה הלקוח מקבל.
-    heroTitle:'שיהיו לכם יותר פניות, ופחות עבודה ידנית',
-    heroSub:'אני שני. אני בונה אתרים ואוטומציות, ומטפלת גם בשיווק ובתשתית הטכנית, כך שהכול עובד יחד ואתם מדברים עם איש קשר אחד.',
+    heroTitle:'פתרונות AI מתקדמים לעסק שלכם',
+    heroSub:'אני שני, מומחית ב-AI Chatbot, VibeCoding, אוטומציות N8N ואתרים מתקדמים. אני הופכת רעיונות למציאות עם הטכנולוגיות החדשניות ביותר, ואתם מדברים עם איש קשר אחד.',
     // טריאז': שלוש דלתות כניסה, כדי שמבקר חדש לא יצטרך לנחש מאיפה מתחילים.
     // "פיתוח מבוסס AI" היה מפרט פנימי, לא משהו שהלקוח מחפש. "קוד ולא תבנית" אומר לו משהו.
     meta1:'איש קשר אחד', meta2:'אתרים, שיווק ומערכות', meta3:'מותאם לעסק שלכם',
+    heroStats:[{n:'11+',l:'שנים בתחום העסקים'},{n:'7',l:'שירותים במקום אחד'},{n:'1',l:'איש קשר לכל הפרויקט'}],
     workKicker:'עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות ללקוחות, מוצרים שבניתי, והדגמות שמראות מה אפשר לבנות.',
     galleryKicker:'מבט מקרוב', scrollArrow:'',
     buildKicker:'מה אני בונה', buildTitle:'מה העסק שלכם צריך כרגע?', buildSub:'אולי חסר לכם אתר שמסביר מה אתם עושים. אולי הפניות כבר מגיעות וקשה לעקוב אחריהן. נתחיל ממה שחסר ונחבר את השאר.', servicesCta:'לפרטים המלאים', servicesCtaAudit:'לבדיקת התאמה חינם',
@@ -102,9 +103,10 @@ export const dict = {
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'Websites, automations, a chatbot and marketing for your business, in one place. Shani Gorgov, serving businesses across Israel.',
-    heroTitle:'More enquiries, less manual work',
-    heroSub:'I’m Shani. I build websites and automations, and I also handle marketing and the technical setup, so everything works together and you deal with one person.',
+    heroTitle:'Advanced AI solutions for your business',
+    heroSub:'I’m Shani, an expert in AI chatbots, VibeCoding, n8n automations and advanced websites. I turn ideas into reality with the latest technology, and you deal with one person.',
     meta1:'One point of contact', meta2:'Websites, marketing and systems', meta3:'Built for your business',
+    heroStats:[{n:'11+',l:'years in business'},{n:'7',l:'services in one place'},{n:'1',l:'point of contact for the whole project'}],
     workKicker:'Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
     galleryKicker:'Up close', scrollArrow:'',
     buildKicker:'What I build', buildTitle:'From the first enquiry to a smoother working day', buildSub:'Maybe you need a website that explains what you do. Maybe enquiries already come in and are hard to follow. We start with what is missing and connect the rest.', servicesCta:'Full details', servicesCtaAudit:'Free fit check',

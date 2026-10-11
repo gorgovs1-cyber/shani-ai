@@ -114,12 +114,12 @@ export default function TestimonialsSection() {
         {c.items.map((it, i) => (
           <figure key={i} style={{ margin: 0, background: "var(--card)", border: "1px solid var(--line)", borderRadius: 22, padding: "30px 28px", display: "flex", flexDirection: "column" }}>
             {/* Result metric */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "flex-start", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 13.5, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "flex-start", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 14, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
               ★ {it.result}
             </div>
 
             {/* Quote */}
-            <blockquote style={{ margin: 0, color: "var(--ink)", fontSize: 16.5, lineHeight: 1.7, fontFamily: HEEBO, flexGrow: 1 }}>
+            <blockquote style={{ margin: 0, color: "var(--ink)", fontSize: 17, lineHeight: 1.7, fontFamily: HEEBO, flexGrow: 1 }}>
               “{it.quote}”
             </blockquote>
 
@@ -134,7 +134,7 @@ export default function TestimonialsSection() {
                 </span>
               )}
               <span style={{ display: "flex", flexDirection: "column", lineHeight: 1.3 }}>
-                <span style={{ fontWeight: 700, fontSize: 15.5, color: "var(--ink)", fontFamily: HEEBO }}>{it.name}</span>
+                <span style={{ fontWeight: 700, fontSize: 16, color: "var(--ink)", fontFamily: HEEBO }}>{it.name}</span>
                 <span style={{ fontSize: 13, color: "var(--muted2)", fontFamily: MONO }}>{it.city}</span>
               </span>
             </figcaption>

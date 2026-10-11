@@ -172,26 +172,23 @@ export default function Hero() {
               <Link href="/work" className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
             </div>
 
-            {/* Meta row */}
+            {/* Numbers row: only figures the owner can stand behind */}
             <div
               className="hero-meta-row"
               style={{
                 display: "flex",
-                alignItems: "center",
-                gap: 18,
+                alignItems: "flex-start",
+                gap: "12px 36px",
                 marginTop: 42,
-                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-                fontSize: 13,
-                letterSpacing: ".03em",
-                color: "var(--dmuted)",
                 flexWrap: "wrap",
               }}
             >
-              <span>{t.meta1}</span>
-              <span style={{ opacity: 0.4 }}>/</span>
-              <span>{t.meta2}</span>
-              <span style={{ opacity: 0.4 }}>/</span>
-              <span>{t.meta3}</span>
+              {t.heroStats.map((s) => (
+                <div key={s.l} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', var(--font-mono), monospace", fontSize: 28, fontWeight: 700, lineHeight: 1.1, color: "var(--acc-bright)" }}>{s.n}</span>
+                  <span style={{ fontFamily: "'Heebo', var(--font-heebo), sans-serif", fontSize: 14, color: "var(--dmuted)" }}>{s.l}</span>
+                </div>
+              ))}
             </div>
           </div>
 

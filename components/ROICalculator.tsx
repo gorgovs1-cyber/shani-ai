@@ -127,7 +127,7 @@ export default function ROICalculator() {
             className="roi-range"
             style={{ width: "100%", accentColor: "var(--acc)", cursor: "pointer", minHeight: 24 }}
           />
-          <div dir="ltr" style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: "var(--muted2)", marginTop: 6, fontFamily: MONO }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: "var(--muted2)", marginTop: 6, fontFamily: MONO }}>
             <span>1</span><span>40</span>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function ROICalculator() {
             className="roi-range"
             style={{ width: "100%", accentColor: "var(--acc)", cursor: "pointer", minHeight: 24 }}
           />
-          <div dir="ltr" style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: "var(--muted2)", marginTop: 6, fontFamily: MONO }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: "var(--muted2)", marginTop: 6, fontFamily: MONO }}>
             <span>50 ₪</span><span>500 ₪</span>
           </div>
         </div>

@@ -97,7 +97,7 @@ export default function GuidesPage() {
                 <h2 style={{ margin: 0, fontWeight: 800, fontSize: 19, lineHeight: 1.25, color: "var(--ink)", fontFamily: HEEBO }}>
                   {title}
                 </h2>
-                <p style={{ margin: 0, color: "var(--muted2)", fontSize: 14.5, lineHeight: 1.6, flex: 1, fontFamily: HEEBO }}>
+                <p style={{ margin: 0, color: "var(--muted2)", fontSize: 15, lineHeight: 1.6, flex: 1, fontFamily: HEEBO }}>
                   {desc}
                 </p>
                 <a

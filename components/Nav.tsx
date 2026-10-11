@@ -217,7 +217,7 @@ export default function Nav() {
                   style={{
                     color: baseColor,
                     textDecoration: "none",
-                    fontSize: 14.5,
+                    fontSize: 15,
                     display: "inline-flex",
                     alignItems: "center",
                     minHeight: 44,
