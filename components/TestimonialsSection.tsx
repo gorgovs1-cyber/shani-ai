@@ -129,7 +129,7 @@ export default function TestimonialsSection() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={it.photo} alt={it.name} width={48} height={48} style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
               ) : (
-                <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--dark)", color: "var(--acc)", fontWeight: 800, fontSize: 17, fontFamily: MONO }}>
+                <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--dark)", color: "var(--acc-bright)", fontWeight: 800, fontSize: 17, fontFamily: MONO }}>
                   {initials(it.name)}
                 </span>
               )}

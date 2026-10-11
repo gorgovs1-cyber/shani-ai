@@ -89,6 +89,7 @@ export default function AutomationFlowDemo() {
       ref={ref}
       style={{
         background: "var(--dark, #141009)",
+        ...({ "--acc": "var(--acc-bright)" } as React.CSSProperties),
         border: "1px solid rgba(244,237,225,0.12)",
         borderRadius: 22,
         padding: "clamp(22px,3.5vw,36px)",
@@ -162,8 +163,8 @@ export default function AutomationFlowDemo() {
                     fontSize: 11,
                     fontWeight: 800,
                     fontFamily: MONO,
-                    background: done(i) ? "var(--acc)" : "rgba(244,237,225,0.12)",
-                    color: done(i) ? "#fff" : "rgba(244,237,225,0.5)",
+                    background: done(i) ? "var(--acc-fill)" : "rgba(244,237,225,0.12)",
+                    color: done(i) ? "#fff" : "rgba(244,237,225,0.75)",
                     transition: "background .35s, color .35s",
                   }}
                 >

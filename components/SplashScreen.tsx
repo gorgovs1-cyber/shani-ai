@@ -87,6 +87,7 @@ export default function SplashScreen() {
         inset: 0,
         zIndex: 9999,
         background: "#0a0806",
+        ...({ "--acc": "var(--acc-bright)" } as React.CSSProperties),
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

@@ -228,6 +228,7 @@ export default function CookieConsent() {
           width:100%;
           max-width:540px;
           background:var(--dpanel);
+          --acc:var(--acc-bright);
           border:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
           border-radius:14px;
           padding:14px 16px;

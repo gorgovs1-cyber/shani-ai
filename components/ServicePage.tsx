@@ -278,12 +278,12 @@ export default function ServicePage({
         ) : null}
 
         {/* Closing CTA band */}
-        <section style={{ marginTop: 64, background: "var(--dark)", borderRadius: 24, padding: "clamp(32px,4vw,52px)", textAlign: "center" }}>
+        <section style={{ marginTop: 64, background: "var(--dark)", ...({ "--acc": "var(--acc-bright)" } as React.CSSProperties), borderRadius: 24, padding: "clamp(32px,4vw,52px)", textAlign: "center" }}>
           <h2 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(24px,3vw,36px)", color: "var(--dtext)", fontFamily: HEEBO }}>
             {c.closingTitle}
           </h2>
           <div style={{ display: "flex", gap: 14, marginTop: 26, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
+            <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc-fill)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
               {auditLabel}
             </a>
             <a href={wa(c.closingWaMsg)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--dtext)", border: "1.5px solid var(--dline)", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
