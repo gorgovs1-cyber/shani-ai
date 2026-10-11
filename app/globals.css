@@ -561,13 +561,10 @@ body p, body li, body dd { font-weight:400 !important; }
 .footer-brand { display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; margin-bottom:20px; }
 .footer-brand-lockup { display:flex; align-items:center; justify-content:center; gap:12px; }
 .footer-brand p { width:100%; max-width:65ch; margin:0; color:var(--muted2); font-size:14px; line-height:1.7; text-wrap:balance; }
-.footer-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; max-width:600px; margin-inline:auto; }
-.footer-columns nav { display:flex; flex-direction:column; align-items:center; text-align:center; }
-.footer-columns h2 { font-size:14px; margin:0 0 4px; font-weight:700; }
-.footer-columns a,.footer-columns button { display:flex; align-items:center; justify-content:center; min-height:44px; color:var(--muted2); text-decoration:none; font:inherit; font-size:13px; background:none; border:0; padding:3px 6px; cursor:pointer; }
-.footer-columns a:hover,.footer-columns button:hover { color:var(--ink); text-decoration:underline; }
+.footer-links { display:flex; flex-wrap:wrap; justify-content:center; gap:0 6px; max-width:600px; margin-inline:auto; }
+.footer-links a,.footer-links button { display:flex; align-items:center; justify-content:center; min-height:44px; color:var(--muted2); text-decoration:none; font:inherit; font-size:14px; background:none; border:0; padding:3px 10px; cursor:pointer; }
+.footer-links a:hover,.footer-links button:hover { color:var(--ink); text-decoration:underline; }
 .footer-copyright { display:block; text-align:center; border-top:1px solid var(--line); padding-top:16px; margin-top:18px; color:var(--muted2); }
-@media(max-width:600px) { .footer-columns { grid-template-columns:1fr; gap:14px; } .footer-columns nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:0 8px; } .footer-columns h2 { grid-column:1/-1; } .footer-columns button:last-child { grid-column:1/-1; } }
 .service-product-list { display:flex; flex-direction:column; gap:10px; max-width:900px; margin-inline:auto; }
 .service-product { overflow:hidden; background:var(--card); border:1px solid var(--line); border-radius:16px; transition:border-color .2s ease,background .2s ease; }
 .service-product.is-open { border-color:color-mix(in oklch,var(--acc) 38%,var(--line)); }
