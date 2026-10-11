@@ -10,7 +10,7 @@ export default function About() {
     <div className="about-story-copy">
       <h2 className="section-title">{t.aboutTitle}</h2>
       {t.aboutParas.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-      <p className="about-experience"><strong>10+</strong> {t.stat1}</p>
+      <p className="about-experience"><strong>11+</strong> {t.stat1}</p>
     </div>
   </section>;
 }

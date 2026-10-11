@@ -44,7 +44,7 @@ export const dict = {
       { title: 'בונים ומחברים הכול', text: 'אני בונה את מה שסיכמנו, בודקת שהפניות מגיעות למקום הנכון ועוברת איתכם על השימוש במערכת ועל התחזוקה בהמשך.' },
     ],
     aboutParas:[
-      '10 שנים ניהלתי עסק משלי, ואני יודעת איפה נשרף הזמן ומה רק מרגיש דחוף.',
+      'כבר 11 שנים אני בעולם העסקים, ואני יודעת איפה נשרף הזמן ומה רק מרגיש דחוף.',
       'היום אני בונה אתרים ומערכות לעסקים, ומטפלת גם בשיווק ובתשתית. לפני שמתחילים חשוב לי להבין איך אתם עובדים, כדי לבנות משהו שיעזור לכם ביומיום.'
     ],
     // סדר הכרטיסים הוא לפי מה שכבר נמכר ויש לו הוכחות, ולא לפי סדר התהליך.
@@ -126,7 +126,7 @@ export const dict = {
       { title: 'Connect and test', text: 'I build what we agreed and test the journey from an enquiry to its follow-up. We then go through how to use the system and what ongoing maintenance involves.' },
     ],
     aboutParas:[
-      'I ran my own business for 10 years, so I know where time burns and what only feels urgent.',
+      'I have been in business for 11 years, so I know where time burns and what only feels urgent.',
       'Today I build websites and systems for businesses, and I also handle marketing and infrastructure. I start by understanding how you work, then choose what to build.'
     ],
     services:[
