@@ -20,7 +20,7 @@ export const dict = {
     // ה-H1 הקודם, "יוצרת פתרונות טכנולוגיים לעסקים", תיאר קטגוריה ולא תוצאה,
     // ולא הכיל אף מילת מפתח שמישהו מחפש. החדש אומר מה הלקוח מקבל.
     heroTitle:'פתרונות AI מתקדמים לעסק שלכם',
-    heroSub:'אני שני, מומחית ב-AI Chatbot, VibeCoding, אוטומציות N8N ואתרים מתקדמים. אני הופכת רעיונות למציאות עם הטכנולוגיות החדשניות ביותר, ואתם מדברים עם איש קשר אחד.',
+    heroSub:'אני שני, מומחית ב-AI Chatbot, VibeCoding, אוטומציות N8N ואתרים מתקדמים. אני הופכת רעיונות למציאות עם הטכנולוגיות החדשניות ביותר.',
     // טריאז': שלוש דלתות כניסה, כדי שמבקר חדש לא יצטרך לנחש מאיפה מתחילים.
     // "פיתוח מבוסס AI" היה מפרט פנימי, לא משהו שהלקוח מחפש. "קוד ולא תבנית" אומר לו משהו.
     meta1:'איש קשר אחד', meta2:'אתרים, שיווק ומערכות', meta3:'מותאם לעסק שלכם',
@@ -104,7 +104,7 @@ export const dict = {
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'Websites, automations, a chatbot and marketing for your business, in one place. Shani Gorgov, serving businesses across Israel.',
     heroTitle:'Advanced AI solutions for your business',
-    heroSub:'I’m Shani, an expert in AI chatbots, VibeCoding, n8n automations and advanced websites. I turn ideas into reality with the latest technology, and you deal with one person.',
+    heroSub:'I’m Shani, an expert in AI chatbots, VibeCoding, n8n automations and advanced websites. I turn ideas into reality with the latest technology.',
     meta1:'One point of contact', meta2:'Websites, marketing and systems', meta3:'Built for your business',
     heroStats:[{n:'11+',l:'years in business'},{n:'7',l:'services in one place'},{n:'1',l:'point of contact for the whole project'}],
     workKicker:'Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
