@@ -175,7 +175,7 @@ export default function Nav() {
             className="nav-brand"
             href={isHome ? "#top" : "/"}
             dir="ltr"
-            style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none" }}
+            style={{ display: "flex", alignItems: "center", gap: 11, textDecoration: "none", minHeight: 44 }}
             aria-label={t.navAriaHome}
           >
             <Logo height={34} />
@@ -338,7 +338,7 @@ export default function Nav() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? t.navAriaMenuClose : t.navAriaMenuOpen}
             aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
+            aria-controls={menuOpen ? "mobile-menu" : undefined}
             style={{
               display: "none",
               flexDirection: "column",

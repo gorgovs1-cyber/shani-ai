@@ -53,7 +53,7 @@ export default function Contact() {
           {/* Personal photo */}
           <img
             src="/shani-cta.webp"
-            alt={lang === "he" ? "שני גורגוב" : "Shani Gorgov"}
+            alt="" /* decorative: the same person is already described by the About photo */
             loading="lazy"
             decoding="async"
             style={{
