@@ -150,7 +150,7 @@ export default function Hero() {
                   fontWeight: 700,
                   fontSize: 16,
                   padding: "17px 30px",
-                  borderRadius: 14,
+                  borderRadius: 12,
                   transition: "transform .2s, box-shadow .2s",
                   boxShadow: "0 18px 40px -16px var(--acc)",
                   fontFamily: "'Heebo', var(--font-heebo), sans-serif",

@@ -709,6 +709,39 @@ body p, body li, body dd { font-weight:400 !important; }
 /* Service rows: the closed row now states what is inside */
 .service-product-sub { display:block; margin-top:4px; color:var(--muted2); font-size:14px; line-height:1.5; font-weight:400; text-wrap:pretty; }
 /* Home service cards: equal row heights on wide screens, the link stays at the bottom */
-@media (min-width:768px) { .services-grid { grid-auto-rows:1fr; } }
 /* Design tokens to converge on (radius, motion). New and edited components use these. */
 :root { --radius-card:16px; --radius-btn:12px; --t-fast:150ms; --t-base:250ms; }
+
+/* ── Buttons: one system (primary / ghost / ghost on dark) ── */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 28px; border-radius:var(--radius-btn); font-weight:700; font-size:16px; line-height:1.2; text-decoration:none; cursor:pointer; transition:background var(--t-fast) ease, border-color var(--t-fast) ease, transform var(--t-fast) ease; }
+.btn-primary { background:var(--acc-fill); color:#fff; border:0; }
+.btn-primary:hover { transform:translateY(-1px); }
+.btn-ghost { background:transparent; color:var(--acc); border:1.5px solid var(--acc); }
+.btn-ghost:hover { background:color-mix(in oklch, var(--acc) 9%, transparent); }
+.btn-ghost-dark { background:transparent; color:var(--dtext); border:1.5px solid var(--dline); }
+.btn-ghost-dark:hover { border-color:var(--dtext); }
+.btn:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
+@media (prefers-reduced-motion: reduce) { .btn { transition:none; } .btn-primary:hover { transform:none; } }
+
+/* ── Service products: visible cards instead of an accordion ── */
+.service-product-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(260px,100%), 1fr)); gap:16px; }
+.service-product-card { display:flex; flex-direction:column; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); padding:24px 22px; min-width:0; transition:border-color var(--t-base) ease, box-shadow var(--t-base) ease; }
+.service-product-card:hover { border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); box-shadow:0 20px 40px -30px rgba(27,23,18,.35); }
+.service-product-card h3 { margin:0; font-size:20px; font-weight:800; line-height:1.25; color:var(--ink); }
+.service-product-card .spc-fit { margin:0; font-size:15px; line-height:1.6; color:var(--ink); font-weight:600; }
+.service-product-card dl { margin:0; display:flex; flex-direction:column; gap:10px; }
+.service-product-card dt { font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.06em; color:var(--acc); margin-bottom:2px; }
+.service-product-card dd { margin:0; font-size:15px; line-height:1.6; color:var(--muted2); }
+.service-product-card .spc-example { color:var(--acc); font-weight:700; font-size:15px; text-decoration:none; }
+.service-product-card .spc-cta { margin-top:auto; align-self:center; }
+
+/* ── Home services: two core services lead, the rest follow in a tighter row ── */
+@media (min-width:900px) {
+  .services-grid { grid-template-columns:repeat(6, minmax(0,1fr)) !important; }
+  .services-grid > a { grid-column:span 2; padding:26px 24px !important; }
+  .services-grid > a.is-featured { grid-column:span 3; padding:36px 32px !important; }
+  .services-grid > a:nth-child(6), .services-grid > a:nth-child(7) { grid-column:span 3; }
+  .services-grid > a:not(.is-featured) h3 { font-size:19px !important; }
+  .services-grid > a.is-featured h3 { font-size:26px !important; }
+}
+@media (min-width:768px) and (max-width:899px) { .services-grid > a:last-child { grid-column:1 / -1; } }

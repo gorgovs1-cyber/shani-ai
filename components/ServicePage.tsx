@@ -70,7 +70,6 @@ export default function ServicePage({
   const dir = c.dir;
   const auditLabel = lang === "he" ? "בדיקת התאמה חינם" : "Free fit check";
   const [open, setOpen] = useState<number | null>(null);
-  const [openProduct, setOpenProduct] = useState<number | null>(null);
 
   return (
     <>
@@ -81,10 +80,10 @@ export default function ServicePage({
         <h1 style={{ margin: "0 auto", fontWeight: 800, fontSize: "clamp(34px,5.2vw,60px)", lineHeight: 1.03, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "20ch" }}>{c.title}</h1>
         <p style={{ margin: "26px auto 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>{c.lead}</p>
         <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
-          <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
+          <a href="/audit" className="btn btn-primary" style={{ fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
           </a>
-          <a href="#solutions" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
+          <a href="#solutions" className="btn btn-ghost" style={{ fontFamily: HEEBO }}>
             {c.secondaryCta}
           </a>
         </div>
@@ -127,56 +126,32 @@ export default function ServicePage({
             ) : (
               <div style={{ height: 18 }} />
             )}
-            <div className="service-product-list">
-              {c.products.items.map((p, pi) => (
-                <div key={p.name} className={`service-product${openProduct === pi ? " is-open" : ""}`}>
-                  {c.products!.items.length === 1 && p.cta?.href === "/audit" ? (
-                    <div style={{ textAlign: "center" }}>
-                      <h3 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(22px,2.6vw,30px)", color: "var(--ink)", fontFamily: HEEBO }}>{p.name}</h3>
-                      <a className="portfolio-button" href={p.cta.href} style={{ marginTop: 22 }}>{p.cta.label}</a>
-                    </div>
-                  ) : <>
-                  <button
-                    className="service-product-trigger"
-                    type="button"
-                    onClick={() => setOpenProduct(openProduct === pi ? null : pi)}
-                    aria-expanded={openProduct === pi}
-                    aria-controls={`service-product-${pi}`}
-                    style={{ fontFamily: HEEBO, textAlign: dir === "rtl" ? "right" : "left" }}
-                  >
-                    <span className="service-product-heading">
-                      <h3 style={{ fontFamily: HEEBO }}>
-                        {p.name}
-                      </h3>
-                      <span className="service-product-sub" style={{ fontFamily: HEEBO }}>{p.fit}</span>
-                    </span>
-                    {p.price ? <span className="service-product-price" style={{ fontFamily: HEEBO }}>{p.price}</span> : null}
-                    <span className="service-product-symbol" aria-hidden="true">{openProduct === pi ? "−" : "+"}</span>
-                  </button>
-                  <div id={`service-product-${pi}`} className="service-product-panel" hidden={openProduct !== pi}>
-                    <h4>{c.products!.labels.includes}</h4>
-                    <ul>
-                      {[
-                        [c.products!.labels.fit, p.fit],
-                        [c.products!.labels.includes, p.includes],
-                        [c.products!.labels.forWho, p.forWho],
-                        ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
-                      ].map(([label, value]) => (
-                        <li key={label as string}>
-                          <span aria-hidden="true">✓</span>
-                          <p><strong>{label}</strong>{value}</p>
-                        </li>
-                      ))}
-                    </ul>
-                    {p.exampleUrl ? (
-                      <a href={p.exampleUrl} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", marginTop: 16, color: "var(--acc)", fontWeight: 700, fontSize: 15, textDecoration: "none", fontFamily: HEEBO }}>
-                        {c.products!.labels.example}: {p.exampleLabel}
-                      </a>
-                    ) : null}
-                  </div>
-                  {p.cta && <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}><a className="portfolio-button" href={p.cta.href}>{p.cta.label}</a></div>}
-                  </>}
-                </div>
+            <div className="service-product-grid">
+              {c.products.items.map((p) => (
+                <article key={p.name} className="service-product-card">
+                  <h3 style={{ fontFamily: HEEBO }}>{p.name}</h3>
+                  <p className="spc-fit" style={{ fontFamily: HEEBO }}>{p.fit}</p>
+                  <dl style={{ fontFamily: HEEBO }}>
+                    {[
+                      [c.products!.labels.includes, p.includes],
+                      [c.products!.labels.forWho, p.forWho],
+                      ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
+                    ].map(([label, value]) => (
+                      <div key={label as string}>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  {p.exampleUrl ? (
+                    <a className="spc-example" href={p.exampleUrl} target="_blank" rel="noopener noreferrer">
+                      {c.products!.labels.example}: {p.exampleLabel}
+                    </a>
+                  ) : null}
+                  <a className="btn btn-ghost spc-cta" href={p.cta?.href || "/audit"}>
+                    {p.cta?.label || (lang === "he" ? "זה מתאים לי" : "This fits me")}
+                  </a>
+                </article>
               ))}
             </div>
           </section>
@@ -284,10 +259,10 @@ export default function ServicePage({
             {c.closingTitle}
           </h2>
           <div style={{ display: "flex", gap: 14, marginTop: 26, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc-fill)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
+            <a href="/audit" className="btn btn-primary" style={{ fontFamily: HEEBO }}>
               {auditLabel}
             </a>
-            <a href={wa(c.closingWaMsg)} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--dtext)", border: "1.5px solid var(--dline)", textDecoration: "none", fontWeight: 700, fontSize: 16, padding: "15px 32px", borderRadius: 14, fontFamily: HEEBO }}>
+            <a href={wa(c.closingWaMsg)} target="_blank" rel="noopener noreferrer" className="btn btn-ghost-dark" style={{ fontFamily: HEEBO }}>
               {c.closingCta}
             </a>
           </div>

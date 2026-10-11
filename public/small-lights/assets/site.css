@@ -197,3 +197,6 @@ footer a:hover, footer a:focus-visible { text-decoration: underline; }
   .tip { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .poster, .big-play, .player.is-fs .subs p, .player.is-fs .transport { transition: none; } }
+
+/* 44px hit areas for the edition and footer links */
+.sl-editions a, footer > a { display:inline-flex; align-items:center; min-height:44px; padding-inline:4px; }

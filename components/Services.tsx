@@ -65,17 +65,16 @@ export default function Services() {
           <Card
             key={s.no}
             href={href}
-            className="service-card-link"
+            className={`service-card-link${i < 2 ? " is-featured" : ""}`}
             aria-label={`${s.title} — ${ctaLabel}`}
             style={{
-              gridColumn: i === t.services.length - 1 ? "1 / -1" : undefined,
               position: "relative",
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
               background: "var(--card)",
               border: "1px solid var(--line)",
-              borderRadius: 22,
+              borderRadius: 16,
               padding: "34px 30px",
               overflow: "hidden",
               textDecoration: "none",

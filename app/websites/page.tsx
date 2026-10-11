@@ -122,7 +122,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Full ownership of the code",
     ],
     products: {
-      title: "Three sizes, by how much you have to say",
+      title: "Which site fits you?",
       labels: { fit: "When it fits", includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
       items: [
         {
