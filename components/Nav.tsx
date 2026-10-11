@@ -290,7 +290,7 @@ export default function Nav() {
             </div>
 
             {/* CTA pill */}
-            <Link
+            <a
               href="/audit"
               className="nav-cta"
               style={{
@@ -326,7 +326,7 @@ export default function Nav() {
               }}
             >
               {t.navCta}
-            </Link>
+            </a>
 
           </div>
 
