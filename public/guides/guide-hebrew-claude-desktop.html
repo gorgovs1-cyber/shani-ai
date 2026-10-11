@@ -13,8 +13,7 @@
 <meta property="og:image" content="https://shani-ai.com/og.jpg">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
-<style>.sai-back{position:fixed;bottom:16px;inset-inline-start:14px;z-index:9999;font:600 13px/1 Heebo,sans-serif;color:#1b1712;background:rgba(255,253,248,.92);border:1px solid rgba(27,23,18,.14);border-radius:999px;padding:9px 14px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.12)}.sai-back:hover,.sai-back:focus-visible{border-color:#f2622e}@media print{.sai-back{display:none!important}}</style>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>.sai-back{position:fixed;bottom:16px;inset-inline-start:14px;z-index:9999;font:600 14px/1 Heebo,sans-serif;color:#1b1712;background:rgba(255,253,248,.92);border:1px solid rgba(27,23,18,.14);border-radius:999px;padding:9px 14px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.12)}.sai-back:hover,.sai-back:focus-visible{border-color:#f2622e}@media print{.sai-back{display:none!important}}</style>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -35,11 +34,11 @@
   }
 
   .no-print {
-    background: #f2622e;
+    background: #c0400b;
     color: white;
     text-align: center;
     padding: 10px;
-    font-size: 13px;
+    font-size:14px;
     font-weight: 600;
     position: sticky;
     top: 0;
@@ -76,19 +75,19 @@
   .cover-brand {
     font-size: 14px;
     font-weight: 700;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.72);
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 80px;
   }
 
-  .cover-brand span { color: #f2622e; }
+  .cover-brand span { color: var(--oc, #c0400b); }
 
   .cover-tag {
     display: inline-block;
-    background: #f2622e;
+    background: #c0400b;
     color: white;
-    font-size: 11px;
+    font-size:14px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -106,11 +105,11 @@
     margin-bottom: 16px;
   }
 
-  .cover-headline .accent { color: #f2622e; }
+  .cover-headline .accent { color: var(--oc, #c0400b); }
 
   .cover-sub {
     font-size: 16px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.72);
     font-weight: 300;
     line-height: 1.6;
     max-width: 420px;
@@ -152,28 +151,28 @@
   .terminal-dot.g { background: #28c840; }
 
   .terminal-title {
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    font-size:14px;
+    color: rgba(255,255,255,0.72);
     margin-right: auto;
     font-family: monospace;
   }
 
   .terminal-line {
     font-family: 'Courier New', monospace;
-    font-size: 12.5px;
+    font-size:14px;
     line-height: 1.9;
     direction: rtl;
   }
 
-  .terminal-line .prompt { color: #f2622e; }
+  .terminal-line .prompt { color: var(--oc, #c0400b); }
   .terminal-line .cmd { color: rgba(255,255,255,0.9); }
   .terminal-line .out { color: #7ec8a0; }
-  .terminal-line .out-dim { color: rgba(255,255,255,0.35); }
+  .terminal-line .out-dim { color: rgba(255,255,255,0.72); }
   .terminal-line .cursor {
     display: inline-block;
     width: 8px;
     height: 14px;
-    background: #f2622e;
+    background: #c0400b;
     vertical-align: text-bottom;
     animation: blink 1.1s infinite;
     margin-right: 2px;
@@ -190,16 +189,16 @@
   }
 
   .cover-bottom .author {
-    font-size: 13px;
+    font-size:14px;
     font-weight: 600;
     color: rgba(255,255,255,0.7);
   }
 
-  .cover-bottom .author span { color: #f2622e; }
+  .cover-bottom .author span { color: var(--oc, #c0400b); }
 
   .cover-bottom .page-num {
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    font-size:14px;
+    color: rgba(255,255,255,0.72);
   }
 
   /* ─── INNER PAGES ─── */
@@ -212,17 +211,17 @@
   }
 
   .page-header .ph-brand {
-    font-size: 13px;
+    font-size:14px;
     font-weight: 700;
     color: white;
     opacity: 0.7;
   }
 
-  .page-header .ph-brand span { color: #f2622e; opacity: 1; }
+  .page-header .ph-brand span { color: var(--oc, #c0400b); opacity: 1; }
 
   .page-header .ph-chapter {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
+    font-size:14px;
+    color: rgba(255,255,255,0.72);
     letter-spacing: 1px;
   }
 
@@ -240,21 +239,21 @@
   }
 
   .page-footer .pf-note {
-    font-size: 10px;
-    color: #aaa;
+    font-size:14px;
+    color: #6e6353;
   }
 
   .page-footer .pf-num {
-    font-size: 10px;
-    color: #ccc;
+    font-size:14px;
+    color: #6e6353;
     font-weight: 600;
   }
 
   /* ─── CONTENT ELEMENTS ─── */
   .chapter-label {
-    font-size: 10px;
+    font-size:14px;
     font-weight: 700;
-    color: #f2622e;
+    color: var(--oc, #c0400b);
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 6px;
@@ -271,7 +270,7 @@
 
   .chapter-sub {
     font-size: 14px;
-    color: #888;
+    color: #6e6353;
     font-weight: 300;
     margin-bottom: 28px;
     padding-bottom: 20px;
@@ -279,7 +278,7 @@
   }
 
   .body-text {
-    font-size: 13.5px;
+    font-size:14px;
     line-height: 1.85;
     color: #333;
     margin-bottom: 16px;
@@ -302,7 +301,7 @@
 
   .step-num {
     counter-increment: step;
-    background: #f2622e;
+    background: #c0400b;
     color: white;
     width: 30px;
     height: 30px;
@@ -310,7 +309,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size:14px;
     font-weight: 800;
     flex-shrink: 0;
     margin-top: 1px;
@@ -324,16 +323,16 @@
   }
 
   .step-body .step-desc {
-    font-size: 12.5px;
+    font-size:14px;
     color: #555;
     line-height: 1.7;
   }
 
   .step-body .step-code {
     font-family: 'Courier New', monospace;
-    font-size: 11.5px;
+    font-size:14px;
     background: #141009;
-    color: #f2622e;
+    color: var(--oc, #c0400b);
     padding: 6px 10px;
     border-radius: 4px;
     margin-top: 6px;
@@ -374,7 +373,7 @@
   }
 
   .callout .callout-text {
-    font-size: 12.5px;
+    font-size:14px;
     line-height: 1.7;
     color: #444;
   }
@@ -404,13 +403,13 @@
     right: 0;
     width: 4px;
     height: 100%;
-    background: #f2622e;
+    background: #c0400b;
   }
 
   .prompt-card .pc-num {
-    font-size: 10px;
+    font-size:14px;
     font-weight: 700;
-    color: #f2622e;
+    color: var(--oc, #c0400b);
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 6px;
@@ -425,7 +424,7 @@
 
   .prompt-card .pc-prompt {
     font-family: 'Courier New', monospace;
-    font-size: 11.5px;
+    font-size:14px;
     background: #141009;
     color: #7ec8a0;
     padding: 10px 14px;
@@ -437,12 +436,12 @@
 
   .prompt-card .pc-result {
     margin-top: 10px;
-    font-size: 12px;
+    font-size:14px;
     color: #666;
     line-height: 1.6;
   }
 
-  .prompt-card .pc-result strong { color: #28c840; }
+  .prompt-card .pc-result strong { color: #1a7f37; }
 
   /* ─── PROBLEM/SOLUTION ─── */
   .ps-grid {
@@ -468,14 +467,14 @@
   }
 
   .ps-cell .ps-label {
-    font-size: 10px;
+    font-size:14px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 8px;
   }
 
-  .ps-cell.problem .ps-label { color: #e53e3e; }
+  .ps-cell.problem .ps-label { color: #c53030; }
   .ps-cell.solution .ps-label { color: #276749; }
 
   .ps-cell ul {
@@ -484,7 +483,7 @@
   }
 
   .ps-cell ul li {
-    font-size: 12.5px;
+    font-size:14px;
     line-height: 1.7;
     color: #444;
     padding-right: 16px;
@@ -494,10 +493,10 @@
 
   .ps-cell.problem ul li::before {
     content: "✗";
-    color: #e53e3e;
+    color: #c53030;
     position: absolute;
     right: 0;
-    font-size: 10px;
+    font-size:14px;
     top: 3px;
   }
 
@@ -506,7 +505,7 @@
     color: #276749;
     position: absolute;
     right: 0;
-    font-size: 10px;
+    font-size:14px;
     top: 3px;
   }
 
@@ -522,9 +521,9 @@
 
   .cta-box .cta-tag {
     display: inline-block;
-    background: #f2622e;
+    background: #c0400b;
     color: white;
-    font-size: 10px;
+    font-size:14px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -533,7 +532,7 @@
     margin-bottom: 12px;
   }
 
-  .cta-box h3 {
+  .cta-box h2 {
     font-size: 22px;
     font-weight: 900;
     color: white;
@@ -542,7 +541,7 @@
   }
 
   .cta-box p {
-    font-size: 13px;
+    font-size:14px;
     color: rgba(255,255,255,0.65);
     margin-bottom: 16px;
     line-height: 1.7;
@@ -558,8 +557,8 @@
   .cta-pill {
     background: rgba(242,98,46,0.15);
     border: 1px solid rgba(242,98,46,0.4);
-    color: #f2622e;
-    font-size: 12px;
+    color: var(--oc, #c0400b);
+    font-size:14px;
     font-weight: 600;
     padding: 8px 18px;
     border-radius: 20px;
@@ -574,7 +573,7 @@
   .faq-item:last-child { border-bottom: none; }
 
   .faq-q {
-    font-size: 13.5px;
+    font-size:14px;
     font-weight: 700;
     color: #141009;
     margin-bottom: 6px;
@@ -584,13 +583,13 @@
   }
 
   .faq-q .q-icon {
-    color: #f2622e;
+    color: var(--oc, #c0400b);
     font-weight: 900;
     flex-shrink: 0;
   }
 
   .faq-a {
-    font-size: 12.5px;
+    font-size:14px;
     color: #555;
     line-height: 1.75;
     padding-right: 18px;
@@ -605,8 +604,36 @@
   }
 
 </style>
+<link rel="icon" href="/icon" type="image/png">
+<link rel="apple-touch-icon" href="/apple-icon">
+<link rel="preload" href="/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/heebo-hebrew.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/heebo-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style id="sai-site-chrome">
+.cover,.terminal-mock,.page-header,.step-code,.cta-box{--oc:#f2622e}
+.cta-pill,.cta-pill *{--oc:#c0400b}
+/* sai-dark-orange: dark surfaces keep the bright brand orange, light surfaces use #c0400b (AA) */
+.cover,.cta,.sig-avatar,.prompt-icon,.prompt-box,.closing-page,.kpi-row{--orange:#f2622e;--acc:#f2622e}
+.sai-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding:6px 16px;margin:0 0 12px;border-bottom:1px solid rgba(27,23,18,.14);background:#fffdf8;font-family:'Heebo',sans-serif;font-size:15px}
+.sai-nav a{color:#1b1712;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-weight:600}
+.sai-nav a:hover{text-decoration:underline}
+.sai-nav .sai-brand{font-weight:800;letter-spacing:.04em}
+.sai-nav .sai-links{display:flex;flex-wrap:wrap;gap:0 4px}
+.sai-nav .sai-cta{background:#c0400b;color:#fff;border-radius:999px;padding:0 16px}
+.sai-cta-block{margin:40px 16px 0;padding:28px 22px;border-radius:18px;background:#141009;color:#f4ede1;text-align:center;font-family:'Heebo',sans-serif}
+.sai-cta-block p{font-size:18px;font-weight:700;margin:0 0 16px;line-height:1.4}
+.sai-cta-block a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;border-radius:999px;background:#c0400b;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
+.sai-foot{background:#fffdf8;margin:28px 0 0;padding:20px 16px 28px;border-top:1px solid rgba(27,23,18,.14);font-family:'Heebo',sans-serif;font-size:14px;color:#5a4f47;text-align:center}
+.sai-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:0 6px}
+.sai-foot a{color:#1b1712;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px;padding:0 10px}
+.sai-nav a:focus-visible,.sai-foot a:focus-visible,.sai-cta-block a:focus-visible{outline:3px solid #c0400b;outline-offset:3px;border-radius:6px}
+@media(max-width:640px){.sai-back{display:none!important}}
+@media print{.sai-nav,.sai-cta-block,.sai-foot{display:none!important}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "המדריך לעבודה עם Claude Desktop בעברית", "description": "מדריך מלא להתקנה, הגדרה ושימוש יומיומי ב-Claude Desktop, כולל טיפים לכתיבת פרומפטים בעברית.", "inLanguage": "he", "url": "https://shani-ai.com/guides/guide-hebrew-claude-desktop.html", "mainEntityOfPage": "https://shani-ai.com/guides/guide-hebrew-claude-desktop.html", "image": "https://shani-ai.com/og.jpg", "author": {"@type": "Person", "name": "שני גורגוב", "url": "https://shani-ai.com"}, "publisher": {"@type": "Organization", "name": "Shani AI Creator", "logo": {"@type": "ImageObject", "url": "https://shani-ai.com/logo.svg"}}}</script>
 </head>
 <body>
+<header class="sai-nav"><a class="sai-brand" href="/">SHANI AI CREATOR</a><nav class="sai-links" aria-label="ניווט ראשי"><a href="/">בית</a><a href="/work">עבודות</a><a href="/guides">מדריכים</a><a class="sai-cta" href="/audit">בדיקת התאמה חינם</a></nav></header>
+
 <a class="sai-back" href="/guides">→ מדריכים</a>
 
 <div class="no-print">
@@ -663,7 +690,7 @@
 
   <div class="page-content">
     <div class="chapter-label">פרק 1</div>
-    <div class="chapter-title">למה Claude<br>לא עונה בעברית?</div>
+    <h2 class="chapter-title">למה Claude<br>לא עונה בעברית?</h2>
     <div class="chapter-sub">בעיה שכולם מכירות, פתרון שאף אחד לא הסביר בעברית</div>
 
     <div class="body-text">
@@ -729,7 +756,7 @@
 
   <div class="page-content">
     <div class="chapter-label">פרק 2</div>
-    <div class="chapter-title">קודם כל —<br>Claude Desktop</div>
+    <h2 class="chapter-title">קודם כל —<br>Claude Desktop</h2>
     <div class="chapter-sub">אם כבר מותקן, דלגי לעמוד הבא</div>
 
     <div class="body-text">
@@ -792,7 +819,7 @@
 
   <div class="page-content">
     <div class="chapter-label">פרק 3 — הלב של המדריך</div>
-    <div class="chapter-title">התקנת Skill<br>העברית — 30 שניות</div>
+    <h2 class="chapter-title">התקנת Skill<br>העברית — 30 שניות</h2>
     <div class="chapter-sub">3 שלבים. זהו.</div>
 
     <div class="step-list">
@@ -816,7 +843,7 @@
           </div>
           <div class="callout tip" style="margin-top:10px; padding:10px 14px;">
             <div class="callout-icon" style="font-size:14px;">💡</div>
-            <div class="callout-text" style="font-size:11.5px;">אין אפשרות לגרור? נסו: Settings → Skills → Install from file</div>
+            <div class="callout-text" style="font-size:14px;">אין אפשרות לגרור? נסו: Settings → Skills → Install from file</div>
           </div>
         </div>
       </div>
@@ -829,7 +856,7 @@
             שלחו את הפרומפט הבא:
           </div>
           <div class="step-code">כתבו לי פסקת פתיחה לפוסט אינסטגרם על [נושא]</div>
-          <div class="step-desc" style="margin-top:8px; color:#28c840; font-weight:600;">
+          <div class="step-desc" style="margin-top:8px; color: #1a7f37; font-weight:600;">
             ✓ Claude אמורה לענות בעברית מושלמת, RTL, בפסקה אחת קצרה וממוקדת.
           </div>
         </div>
@@ -860,7 +887,7 @@
 
   <div class="page-content">
     <div class="chapter-label">פרק 4</div>
-    <div class="chapter-title">3 פרומפטים<br>שעובדים מיד</div>
+    <h2 class="chapter-title">3 פרומפטים<br>שעובדים מיד</h2>
     <div class="chapter-sub">מוכנים לשימוש — העתיקו, הדביקו, שלחו</div>
 
     <div class="prompt-card">
@@ -913,7 +940,7 @@
 
   <div class="page-content">
     <div class="chapter-label">פרק 5</div>
-    <div class="chapter-title">שאלות שכולם<br>שואלות</div>
+    <h2 class="chapter-title">שאלות שכולם<br>שואלות</h2>
     <div class="chapter-sub" style="margin-bottom:16px; padding-bottom:16px;">FAQ + מה הצעד הבא שלכם</div>
 
     <div class="faq-item">
@@ -945,7 +972,7 @@
 
     <div class="cta-box">
       <div class="cta-tag">הצעד הבא</div>
-      <h3>רוצים עוד מזה?</h3>
+      <h2>רוצים עוד מזה?</h2>
       <p>
         יש לי עוד 4 Skills שבניתי ספציפית לבעלות עסקים — לכתיבת הצעות מחיר, ניהול לקוחות, יצירת תוכן, ועוד. כולן חינם לעוקבות שלי.
       </p>
@@ -963,5 +990,7 @@
   </div>
 </div>
 
+<aside class="sai-cta-block" aria-label="קריאה לפעולה"><p>אתר, וואטסאפ ואוטומציות שעובדים יחד</p><a href="/audit">בדיקת התאמה חינם</a></aside>
+<footer class="sai-foot"><nav aria-label="מידע"><a href="/privacy">מדיניות פרטיות</a><a href="/terms">תקנון</a><a href="/accessibility">הצהרת נגישות</a><a href="/guides">כל המדריכים</a></nav><p>© Shani AI Creator</p></footer>
 </body>
 </html>
