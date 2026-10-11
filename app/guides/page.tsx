@@ -84,10 +84,11 @@ export default function GuidesPage() {
                 style={{
                   background: "var(--card)",
                   border: "1px solid var(--line)",
-                  borderRadius: 20,
+                  borderRadius: "var(--radius-card)",
                   padding: 24,
                   display: "flex",
                   flexDirection: "column",
+                  textAlign: "center",
                   gap: 12,
                 }}
               >

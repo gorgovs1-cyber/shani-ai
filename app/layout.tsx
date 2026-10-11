@@ -28,11 +28,11 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 const heMeta: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
   title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
-  description: "Shani AI Creator בונה לעסקים בישראל אתרים, אוטומציות, צ׳אטבוט ושיווק, כך שהכול עובד יחד ואתם מדברים עם איש קשר אחד. מתחילים בבדיקת התאמה חינם.",
+  description: "Shani AI Creator בונה לעסקים בישראל אתרים, אוטומציות, צ׳אטבוט ושיווק, כך שהכול עובד יחד, עם שירות 24/7. מתחילים בבדיקת התאמה חינם.",
   keywords: ["AI", "אוטומציה", "אתרים", "Next.js", "ישראל", "Shani AI Creator", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
   openGraph: {
     title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
-    description: "אתרים, אוטומציות, צ׳אטבוט ושיווק לעסקים בישראל, עם איש קשר אחד.",
+    description: "אתרים, אוטומציות, צ׳אטבוט ושיווק לעסקים בישראל, עם שירות 24/7.",
     siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
@@ -57,7 +57,7 @@ const heMeta: Metadata = {
 export function generateMetadata(): Metadata {
   return localizedMeta("/", heMeta, {
     title: "Shani AI Creator | Websites, marketing and AI systems",
-    description: "Websites, automations, a Hebrew chatbot and marketing for businesses in Israel, with one point of contact. Start with a free fit check.",
+    description: "Websites, automations, a Hebrew chatbot and marketing for businesses in Israel, with 24/7 service. Start with a free fit check.",
   });
 }
 

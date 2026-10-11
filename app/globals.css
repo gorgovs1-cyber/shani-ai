@@ -883,3 +883,65 @@ body p, body li, body dd { font-weight:400 !important; }
   .nav-wrap { top:0 !important; padding-inline:0 !important; }
   .site-nav { max-width:none !important; border-radius:0 !important; border-width:0 0 1px 0 !important; padding:12px max(24px, calc((100% - 1200px) / 2)) !important; }
 }
+
+/* ─── Service pages: one rhythm, centered headings, balanced rows ─── */
+.sp { max-width:1200px; margin:0 auto; padding:9rem clamp(20px,5vw,40px) 0; font-family:'Heebo', var(--font-heebo), sans-serif; }
+.sp-hero { text-align:center; }
+.sp-kicker { font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.2em; color:var(--acc); margin-bottom:16px; }
+.sp-hero h1 { margin:0 auto; max-width:20ch; font-weight:800; font-size:clamp(34px,5.2vw,60px); line-height:1.08; letter-spacing:-0.03em; color:var(--ink); text-wrap:balance; }
+.sp-lead { margin:24px auto 0; max-width:60ch; color:var(--muted2); font-size:clamp(16px,1.7vw,20px); line-height:1.7; text-wrap:balance; }
+.sp-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-top:30px; }
+.sp-section { margin-top:clamp(64px,8vw,104px); }
+.sp-h2 { margin:0 0 28px; text-align:center; font-weight:800; font-size:clamp(26px,3.2vw,38px); line-height:1.2; letter-spacing:-0.02em; color:var(--ink); text-wrap:balance; }
+.sp-note { margin:-12px auto 28px; max-width:64ch; text-align:center; color:var(--muted2); font-size:16px; line-height:1.7; }
+
+/* includes: 6 → 3 + 3, 8 → 4 + 4; icon above, text centered */
+.sp-includes { list-style:none; margin:0; padding:0; display:grid; gap:14px; grid-template-columns:repeat(3, minmax(0,1fr)); }
+.sp-includes.n4, .sp-includes.n8 { grid-template-columns:repeat(4, minmax(0,1fr)); }
+.sp-includes li { display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; padding:24px 18px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); color:var(--ink); font-size:16px; font-weight:600; line-height:1.5; }
+.sp-check { width:40px; height:40px; display:grid; place-items:center; border-radius:50%; background:color-mix(in oklch, var(--acc) 12%, var(--card)); color:var(--acc); }
+
+/* products: equal cards, content centered, toggle centered at the bottom */
+.sp-products { grid-template-columns:repeat(4, minmax(0,1fr)) !important; align-items:start; }
+.sp-products.n3 { grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
+.sp-products .service-product-card { align-items:center; text-align:center; min-height:220px; }
+.sp-products .spc-toggle { justify-content:center; gap:8px; }
+.sp-products .spc-panel { align-items:center; text-align:center; }
+
+/* related services: centered pair (or single) of equal cards */
+.sp-also { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
+.sp-also-card { flex:0 1 calc((100% - 16px) / 2); max-width:560px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; padding:26px 24px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); text-decoration:none; transition:border-color var(--t-base) ease, box-shadow var(--t-base) ease, transform var(--t-base) ease; }
+.sp-also-card:hover { border-color:var(--acc); box-shadow:0 20px 40px -28px color-mix(in oklch, var(--acc) 60%, transparent); transform:translateY(-3px); }
+.sp-also-card strong { font-size:20px; font-weight:800; color:var(--ink); }
+.sp-also-card span { font-size:15px; line-height:1.6; color:var(--muted2); max-width:44ch; }
+.sp-also-card em { font-style:normal; color:var(--acc); font-weight:700; margin-top:4px; }
+
+.sp-details { display:flex; flex-direction:column; gap:48px; }
+.sp-details > div { text-align:center; }
+.sp-details p { margin:0 auto; max-width:64ch; color:var(--muted2); font-size:clamp(15px,1.6vw,18px); line-height:1.75; }
+
+/* closing band */
+.sp-closing { margin-top:clamp(64px,8vw,104px); background:var(--dark); --acc:var(--acc-bright); border-radius:24px; padding:clamp(36px,5vw,60px) clamp(20px,4vw,48px); text-align:center; }
+.sp-closing h2 { margin:0; font-weight:800; font-size:clamp(26px,3.2vw,38px); color:var(--dtext); text-wrap:balance; }
+.sp-closing p { margin:14px auto 0; max-width:52ch; color:var(--dmuted); font-size:16px; line-height:1.6; }
+
+@media (max-width:1000px) {
+  .sp-includes.n4, .sp-includes.n8, .sp-products, .sp-products.n3 { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
+  .sp-includes { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+@media (max-width:600px) {
+  .sp { padding-top:7rem; }
+  .sp-includes, .sp-includes.n4, .sp-includes.n8, .sp-products, .sp-products.n3 { grid-template-columns:1fr !important; }
+  .sp-includes li { flex-direction:row; text-align:start; padding:16px 18px; }
+  .sp-also-card { flex-basis:100%; }
+  .sp-actions .btn { width:100%; }
+}
+@media (prefers-reduced-motion: reduce) { .sp-also-card:hover { transform:none; } }
+/* Mobile: when the bottom bar is showing, the WhatsApp button matches the bar's 48px button and sits inside it */
+@media (max-width:900px) { body.assessment-bar-visible .floating-whatsapp { width:48px !important; height:48px !important; bottom:calc(10px + env(safe-area-inset-bottom,0px)) !important; box-shadow:none !important; } body.assessment-bar-visible .floating-whatsapp svg { width:24px; height:24px; } }
+/* Project previews fill their frame (screenshots are wide), no empty bands above and below */
+.project-square-image { aspect-ratio:16 / 11 !important; }
+.project-square-image img, .project-square-image video { object-fit:cover !important; object-position:top center !important; }
+/* Process steps: centered like every other card row */
+.working-content li, .working-content li:last-child { text-align:center; }
+.working-content li p { margin-inline:auto; }

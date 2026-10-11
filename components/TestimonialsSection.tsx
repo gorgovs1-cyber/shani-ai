@@ -96,7 +96,7 @@ export default function TestimonialsSection() {
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: 46 }}>
+      <div style={{ marginBottom: 46, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>
           {c.kicker}
         </div>
@@ -104,7 +104,7 @@ export default function TestimonialsSection() {
           text={c.title}
           style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.04, letterSpacing: "-0.03em", fontFamily: HEEBO, color: "var(--ink)" }}
         />
-        <p style={{ margin: "16px 0 0", color: "var(--muted2)", fontSize: 16, lineHeight: 1.6, maxWidth: "52ch", fontFamily: HEEBO }}>
+        <p style={{ margin: "16px auto 0", color: "var(--muted2)", fontSize: 16, lineHeight: 1.6, maxWidth: "52ch", fontFamily: HEEBO }}>
           {c.sub}
         </p>
       </div>
@@ -112,9 +112,9 @@ export default function TestimonialsSection() {
       {/* Cards */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
         {c.items.map((it, i) => (
-          <figure key={i} style={{ margin: 0, background: "var(--card)", border: "1px solid var(--line)", borderRadius: 22, padding: "30px 28px", display: "flex", flexDirection: "column" }}>
+          <figure key={i} style={{ margin: 0, background: "var(--card)", border: "1px solid var(--line)", borderRadius: 22, padding: "30px 28px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
             {/* Result metric */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "flex-start", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 15, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "center", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 15, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
               ★ {it.result}
             </div>
 
@@ -124,7 +124,7 @@ export default function TestimonialsSection() {
             </blockquote>
 
             {/* Attribution: photo + name + city */}
-            <figcaption style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--line)" }}>
+            <figcaption style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 14, marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--line)", alignSelf: "stretch" }}>
               {it.photo ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={it.photo} alt={it.name} width={48} height={48} style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
@@ -133,7 +133,7 @@ export default function TestimonialsSection() {
                   {initials(it.name)}
                 </span>
               )}
-              <span style={{ display: "flex", flexDirection: "column", lineHeight: 1.3 }}>
+              <span style={{ display: "flex", flexDirection: "column", lineHeight: 1.3, textAlign: "start" }}>
                 <span style={{ fontWeight: 700, fontSize: 16, color: "var(--ink)", fontFamily: HEEBO }}>{it.name}</span>
                 <span style={{ fontSize: 13, color: "var(--muted2)", fontFamily: MONO }}>{it.city}</span>
               </span>

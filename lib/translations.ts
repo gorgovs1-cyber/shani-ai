@@ -23,8 +23,8 @@ export const dict = {
     heroSub:'אני שני, מומחית ב-AI Chatbot, VibeCoding, אוטומציות N8N ואתרים מתקדמים. אני הופכת רעיונות למציאות עם הטכנולוגיות החדשניות ביותר.',
     // טריאז': שלוש דלתות כניסה, כדי שמבקר חדש לא יצטרך לנחש מאיפה מתחילים.
     // "פיתוח מבוסס AI" היה מפרט פנימי, לא משהו שהלקוח מחפש. "קוד ולא תבנית" אומר לו משהו.
-    meta1:'איש קשר אחד', meta2:'אתרים, שיווק ומערכות', meta3:'מותאם לעסק שלכם',
-    heroStats:[{n:'11+',l:'שנים בתחום העסקים'},{n:'7',l:'שירותים במקום אחד'},{n:'1',l:'איש קשר לכל הפרויקט'}],
+    meta1:'שירות 24/7', meta2:'אתרים, שיווק ומערכות', meta3:'מותאם לעסק שלכם',
+    heroStats:[{n:'11+',l:'שנים בתחום העסקים'},{n:'7',l:'שירותים במקום אחד'},{n:'24/7',l:'שירות וזמינות'}],
     workKicker:'עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות ללקוחות, מוצרים שבניתי, והדגמות שמראות מה אפשר לבנות.',
     galleryKicker:'מבט מקרוב', scrollArrow:'',
     buildKicker:'מה אני בונה', buildTitle:'מה העסק שלכם צריך כרגע?', buildSub:'אולי חסר לכם אתר שמסביר מה אתם עושים. אולי הפניות כבר מגיעות וקשה לעקוב אחריהן. נתחיל ממה שחסר ונחבר את השאר.', servicesCta:'לפרטים המלאים', servicesCtaAudit:'לבדיקת התאמה חינם',
@@ -55,7 +55,7 @@ export const dict = {
       {no:'04', title:'צ׳אטבוט בעברית לעסק', short:'עונה ללקוחות בעברית באתר ובוואטסאפ', desc:'צ׳אטבוט שעונה ללקוחות בעברית באתר ובוואטסאפ, ומעביר אליכם כל פנייה שדורשת אדם.', fit:'שואלים אתכם אותן שאלות שוב ושוב, או שפניות נופלות בערב'},
       {no:'05', title:'שיווק ממומן', short:'קמפיינים בגוגל ובמטא שמביאים פניות', desc:'קמפיינים בגוגל, פייסבוק ואינסטגרם שמכוונים לפנייה, עם מעקב ברור על מה הביא אותן.', fit:'יש לכם מה להציע ואתם רוצים שיותר אנשים יגיעו'},
       {no:'06', title:'IT ותשתיות ענן', short:'תשתית, ענן ואבטחת מידע מסודרים', desc:'תשתיות, מעבר לענן, אבטחת מידע ותמיכה טכנית, כדי שהעבודה לא תיעצר.', fit:'המערכות מפוזרות או איטיות, ואין מי שאחראי עליהן'},
-      {no:'07', title:'ליווי עסקי צמוד', short:'ליווי מהאפיון ועד אחרי ההשקה', desc:'איש קשר אחד לכל הפרויקט, מההתחלה ועד אחרי ההשקה, במקום ספק לכל נושא.', fit:'אתם צריכים כמה דברים ואין לכם זמן לתאם ביניהם'}
+      {no:'07', title:'ליווי עסקי צמוד', short:'ליווי מהאפיון ועד אחרי ההשקה', desc:'ליווי צמוד לאורך כל הפרויקט, מהאפיון ועד אחרי ההשקה, במקום ספק לכל נושא.', fit:'אתם צריכים כמה דברים ואין לכם זמן לתאם ביניהם'}
     ],
     // הפרויקטים עברו ל-lib/projects.ts, שהוא מקור האמת היחיד לתיק העבודות.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
@@ -105,8 +105,8 @@ export const dict = {
     footerSeo:'Websites, automations, a chatbot and marketing for your business, in one place. Shani Gorgov, serving businesses across Israel.',
     heroTitle:'Advanced AI solutions for your business',
     heroSub:'I’m Shani, an expert in AI chatbots, VibeCoding, n8n automations and advanced websites. I turn ideas into reality with the latest technology.',
-    meta1:'One point of contact', meta2:'Websites, marketing and systems', meta3:'Built for your business',
-    heroStats:[{n:'11+',l:'years in business'},{n:'7',l:'services in one place'},{n:'1',l:'point of contact for the whole project'}],
+    meta1:'24/7 service', meta2:'Websites, marketing and systems', meta3:'Built for your business',
+    heroStats:[{n:'11+',l:'years in business'},{n:'7',l:'services in one place'},{n:'24/7',l:'service and availability'}],
     workKicker:'Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
     galleryKicker:'Up close', scrollArrow:'',
     buildKicker:'What I build', buildTitle:'From the first enquiry to a smoother working day', buildSub:'Maybe you need a website that explains what you do. Maybe enquiries already come in and are hard to follow. We start with what is missing and connect the rest.', servicesCta:'Full details', servicesCtaAudit:'Free fit check',
@@ -136,7 +136,7 @@ export const dict = {
       {no:'04', title:'A Hebrew chatbot for your business', short:'Answers customers in Hebrew on your site and WhatsApp', desc:'A chatbot that answers customers in Hebrew on your website and on WhatsApp, and hands over to you anything that needs a person.', fit:'You get asked the same questions again and again, or enquiries slip through in the evening'},
       {no:'05', title:'Paid marketing', short:'Google and Meta campaigns that bring enquiries', desc:'Google, Facebook and Instagram campaigns built to bring enquiries, with clear tracking of what brought them.', fit:'You have something to offer and want more people to find it'},
       {no:'06', title:'IT, cloud and security', short:'Infrastructure, cloud and data security in order', desc:'Infrastructure, cloud migration, security and technical support, so work does not stop.', fit:'Your systems are scattered or slow, and nobody owns them'},
-      {no:'07', title:'Close business support', short:'Support from specification to after launch', desc:'One point of contact for the whole project, from the start to after launch, instead of a separate vendor for every topic.', fit:'You need several things and have no time to coordinate between them'}
+      {no:'07', title:'Close business support', short:'Support from specification to after launch', desc:'Close support for the whole project, from specification to after launch, instead of a separate vendor for every topic.', fit:'You need several things and have no time to coordinate between them'}
     ],
     // Projects live in lib/projects.ts, the single source of truth for the portfolio.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
