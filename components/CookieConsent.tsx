@@ -200,7 +200,7 @@ export default function CookieConsent() {
     color: "var(--acc)",
     fontFamily: HEEBO,
     fontWeight: 800,
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 1.2,
     cursor: "pointer",
   };
@@ -292,7 +292,7 @@ export default function CookieConsent() {
             style={{
               margin: "0 0 10px",
               fontFamily: HEEBO,
-              fontSize: 14,
+              fontSize: 15,
               lineHeight: 1.55,
               color: "var(--dmuted)",
             }}

@@ -30,7 +30,7 @@ export default function FloatingWhatsApp() {
         alignItems: "center",
         justifyContent: "center",
         boxShadow: "0 4px 24px rgba(37,211,102,0.35)",
-        transition: "opacity 0.4s ease, transform 0.3s ease",
+        transition: "opacity var(--t-slow) ease, transform var(--t-base) ease",
         opacity: visible ? 1 : 0,
         transform: visible ? "scale(1)" : "scale(0.7)",
         textDecoration: "none",

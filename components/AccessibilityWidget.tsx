@@ -141,7 +141,7 @@ export default function AccessibilityWidget() {
           cursor: "none",
           zIndex: 9991,
           boxShadow: isActive ? "0 0 20px rgba(255,106,61,0.5)" : "0 4px 20px rgba(0,0,0,0.4)",
-          transition: "all 0.3s ease",
+          transition: "all var(--t-base) ease",
         }}
       >
         {/* Classic accessibility icon — person in circle */}
@@ -234,7 +234,7 @@ export default function AccessibilityWidget() {
                     fontSize: `${0.62 + i * 0.07}rem`,
                     fontWeight: 600,
                     cursor: "none",
-                    transition: "all 0.2s",
+                    transition: "all var(--t-fast)",
                   }}
                 >
                   {label}
@@ -274,7 +274,7 @@ export default function AccessibilityWidget() {
                     color: active ? "var(--cream)" : "var(--mist)",
                     fontSize: "0.78rem",
                     cursor: "none",
-                    transition: "all 0.2s",
+                    transition: "all var(--t-fast)",
                     width: "100%",
                     textAlign: lang === "he" ? "right" : "left",
                   }}
@@ -285,7 +285,7 @@ export default function AccessibilityWidget() {
                     background: active ? "var(--signal)" : "var(--border-2)",
                     position: "relative",
                     flexShrink: 0,
-                    transition: "background 0.25s",
+                    transition: "background var(--t-base)",
                   }}>
                     <div style={{
                       position: "absolute",
@@ -295,7 +295,7 @@ export default function AccessibilityWidget() {
                       width: 10, height: 10,
                       borderRadius: "50%",
                       background: "#fff",
-                      transition: "all 0.25s",
+                      transition: "all var(--t-base)",
                     }} />
                   </div>
                   <span>{label}</span>

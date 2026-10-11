@@ -14,9 +14,9 @@ export default function Contact() {
       style={{
         position: "relative",
         zIndex: 1,
-        padding: "clamp(72px,9vw,128px) 24px",
+        padding: "var(--section-gap) 24px",
 
-        transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
+        transition: "opacity var(--t-slow) cubic-bezier(.2,.7,.2,1), transform var(--t-slow) cubic-bezier(.2,.7,.2,1)",
       }}
     >
       <div
@@ -89,7 +89,7 @@ export default function Contact() {
             style={{
               margin: "24px auto 0",
               color: "var(--dmuted)",
-              fontSize: "clamp(17px,1.6vw,21px)",
+              fontSize: "clamp(18px,1.6vw,20px)",
               lineHeight: 1.6,
               maxWidth: "42ch",
               fontFamily: "'Heebo', var(--font-heebo), sans-serif",
@@ -112,6 +112,7 @@ export default function Contact() {
             <Magnetic>
             <a
               href={L("/audit")}
+              className="contact-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -120,10 +121,10 @@ export default function Contact() {
                 color: "#fff",
                 textDecoration: "none",
                 fontWeight: 700,
-                fontSize: 17,
+                fontSize: 18,
                 padding: "18px 36px",
                 borderRadius: 12,
-                transition: "transform .2s, box-shadow .2s",
+                transition: "transform var(--t-fast), box-shadow var(--t-fast)",
                 boxShadow: "0 18px 40px -16px var(--acc)",
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
@@ -145,6 +146,7 @@ export default function Contact() {
               href="https://wa.me/972504744815"
               target="_blank"
               rel="noopener noreferrer"
+              className="contact-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -153,11 +155,11 @@ export default function Contact() {
                 color: "var(--dtext)",
                 textDecoration: "none",
                 fontWeight: 600,
-                fontSize: 17,
+                fontSize: 18,
                 padding: "18px 30px",
                 borderRadius: 12,
                 border: "1px solid var(--dline)",
-                transition: "border-color .2s",
+                transition: "border-color var(--t-fast)",
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
               onMouseEnter={(e) => {

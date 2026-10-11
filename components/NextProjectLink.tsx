@@ -19,7 +19,7 @@ export default function NextProjectLink({
         alignItems: "center",
         padding: "3rem clamp(1.5rem, 5vw, 5rem)",
         textDecoration: "none",
-        transition: "background 0.3s ease",
+        transition: "background var(--t-base) ease",
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.background = "var(--signal-soft)";

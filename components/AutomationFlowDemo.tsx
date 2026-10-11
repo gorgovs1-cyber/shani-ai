@@ -146,7 +146,7 @@ export default function AutomationFlowDemo() {
                 border: `1px solid ${done(i) ? "color-mix(in oklch, var(--acc) 55%, transparent)" : "rgba(244,237,225,0.10)"}`,
                 borderRadius: 14,
                 padding: "14px 14px 12px",
-                transition: "background .35s, border-color .35s, transform .35s",
+                transition: "background var(--t-base), border-color var(--t-base), transform var(--t-base)",
                 transform: active === i ? "translateY(-3px)" : "none",
               }}
             >
@@ -160,17 +160,17 @@ export default function AutomationFlowDemo() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: 800,
                     fontFamily: MONO,
                     background: done(i) ? "var(--acc-fill)" : "rgba(244,237,225,0.12)",
                     color: done(i) ? "#fff" : "rgba(244,237,225,0.75)",
-                    transition: "background .35s, color .35s",
+                    transition: "background var(--t-base), color var(--t-base)",
                   }}
                 >
                   {done(i) ? "✓" : i + 1}
                 </span>
-                <span style={{ fontWeight: 700, fontSize: 14, color: done(i) ? "#fff" : "rgba(244,237,225,0.75)", fontFamily: HEEBO, transition: "color .35s" }}>
+                <span style={{ fontWeight: 700, fontSize: 15, color: done(i) ? "#fff" : "rgba(244,237,225,0.75)", fontFamily: HEEBO, transition: "color var(--t-base)" }}>
                   {s.t}
                 </span>
               </div>
@@ -188,7 +188,7 @@ export default function AutomationFlowDemo() {
             width: `${((Math.min(active, steps.length - 1) + 1) / steps.length) * 100}%`,
             background: "var(--acc)",
             borderRadius: 2,
-            transition: "width .5s cubic-bezier(.2,.7,.2,1)",
+            transition: "width var(--t-slow) cubic-bezier(.2,.7,.2,1)",
             float: lang === "he" ? "right" : "left",
           }}
         />

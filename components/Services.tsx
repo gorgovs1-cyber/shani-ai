@@ -19,9 +19,9 @@ export default function Services() {
         zIndex: 1,
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "clamp(72px,9vw,128px) 24px 0",
+        padding: "var(--section-gap) 24px 0",
 
-        transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
+        transition: "opacity var(--t-slow) cubic-bezier(.2,.7,.2,1), transform var(--t-slow) cubic-bezier(.2,.7,.2,1)",
       }}
     >
       {/* Header */}

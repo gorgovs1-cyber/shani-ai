@@ -94,7 +94,7 @@ export default function GuidesPage() {
                 <span style={{ fontFamily: MONO, fontSize: 12, letterSpacing: ".16em", color: "var(--muted2)", textTransform: "uppercase" }}>
                   {tag}
                 </span>
-                <h2 style={{ margin: 0, fontWeight: 800, fontSize: 19, lineHeight: 1.25, color: "var(--ink)", fontFamily: HEEBO }}>
+                <h2 style={{ margin: 0, fontWeight: 800, fontSize: 20, lineHeight: 1.25, color: "var(--ink)", fontFamily: HEEBO }}>
                   {title}
                 </h2>
                 <p style={{ margin: 0, color: "var(--muted2)", fontSize: 15, lineHeight: 1.6, flex: 1, fontFamily: HEEBO }}>

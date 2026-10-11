@@ -98,7 +98,7 @@ export default function Hero() {
           }}
         >
           {/* Left: content */}
-          <div className="hero-copy" style={{ animation: "scl-fadeup 0.8s ease 0.1s both", textAlign: "center" }}>
+          <div className="hero-copy" style={{ animation: "scl-fadeup 0.8s ease 0.1s both" }}>
             {/* H1 */}
             <h1
               style={{
@@ -118,9 +118,9 @@ export default function Hero() {
             {/* Sub */}
             <p
               style={{
-                margin: "30px auto 0",
+                margin: "30px 0 0",
                 color: "var(--dmuted)",
-                fontSize: "clamp(17px, 1.5vw, 21px)",
+                fontSize: "clamp(18px, 1.5vw, 20px)",
                 lineHeight: 1.62,
                 maxWidth: "44ch",
                 fontWeight: 400,
@@ -133,12 +133,13 @@ export default function Hero() {
             {/* CTAs — primary: free AI audit (lead funnel), secondary: view work */}
             <div
               className="hero-cta-row"
-              style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 14, marginTop: 40 }}
+              style={{ display: "flex", justifyContent: "flex-start", flexWrap: "wrap", gap: 14, marginTop: 40 }}
             >
               {/* Primary: Free AI Audit */}
               <Magnetic>
               <a
                 href={L("/audit")}
+                className="hero-cta"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -151,7 +152,7 @@ export default function Hero() {
                   fontSize: 16,
                   padding: "17px 30px",
                   borderRadius: 12,
-                  transition: "transform .2s, box-shadow .2s",
+                  transition: "transform var(--t-fast), box-shadow var(--t-fast)",
                   boxShadow: "0 18px 40px -16px var(--acc)",
                   fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                 }}
@@ -186,7 +187,7 @@ export default function Hero() {
               {t.heroStats.map((s) => (
                 <div key={s.l} style={{ display: "flex", flexDirection: "column", gap: 2 }}>
                   <span style={{ fontFamily: "'JetBrains Mono', var(--font-mono), monospace", fontSize: 28, fontWeight: 700, lineHeight: 1.1, color: "var(--acc-bright)" }}>{s.n}</span>
-                  <span style={{ fontFamily: "'Heebo', var(--font-heebo), sans-serif", fontSize: 14, color: "var(--dmuted)" }}>{s.l}</span>
+                  <span style={{ fontFamily: "'Heebo', var(--font-heebo), sans-serif", fontSize: 15, color: "var(--dmuted)" }}>{s.l}</span>
                 </div>
               ))}
             </div>

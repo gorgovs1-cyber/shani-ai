@@ -74,7 +74,7 @@ export default function ScrubText({
     <p ref={ref} style={style} className={className}>
       {words.map((w, i) => (
         <span key={i}>
-          <span data-w style={{ opacity: 0.18, transition: "opacity .25s linear" }}>{w}</span>
+          <span data-w style={{ opacity: 0.18, transition: "opacity var(--t-base) linear" }}>{w}</span>
           {i < words.length - 1 ? " " : null}
         </span>
       ))}

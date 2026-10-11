@@ -79,7 +79,7 @@ export default function ServicePage({
         <header className="service-page-hero">
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
         <h1 style={{ margin: "0 auto", fontWeight: 800, fontSize: "clamp(34px,5.2vw,60px)", lineHeight: 1.03, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "20ch" }}>{c.title}</h1>
-        <p style={{ margin: "26px auto 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,21px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>{c.lead}</p>
+        <p style={{ margin: "26px auto 0", color: "var(--muted2)", fontSize: "clamp(16px,1.7vw,20px)", lineHeight: 1.7, maxWidth: "60ch", fontFamily: HEEBO }}>{c.lead}</p>
         <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: 30, flexWrap: "wrap" }}>
           <a href={L("/audit")} className="btn btn-primary" style={{ fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
@@ -183,7 +183,7 @@ export default function ServicePage({
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
               {c.also.map((a) => (
                 <Link key={a.href} href={L(a.href)} style={{ display: "block", background: "var(--card)", border: "1px solid var(--line)", borderRadius: 16, padding: "20px 22px", textDecoration: "none" }}>
-                  <div style={{ fontWeight: 800, fontSize: 17, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
+                  <div style={{ fontWeight: 800, fontSize: 18, color: "var(--ink)", fontFamily: HEEBO, marginBottom: 6 }}>{a.label}</div>
                   <div style={{ color: "var(--muted2)", fontSize: 15, lineHeight: 1.6, fontFamily: HEEBO }}>{a.desc}</div>
                 </Link>
               ))}
@@ -262,7 +262,7 @@ export default function ServicePage({
                 lineHeight: 1.4,
                 textDecoration: "none",
                 fontFamily: HEEBO,
-                transition: "background .15s ease, border-color .15s ease, transform .15s ease",
+                transition: "background var(--t-fast) ease, border-color var(--t-fast) ease, transform var(--t-fast) ease",
               }}
             >
               {c.bridge.linkLabel}
@@ -272,7 +272,7 @@ export default function ServicePage({
 
         {/* Closing CTA band */}
         <section style={{ marginTop: 64, background: "var(--dark)", ...({ "--acc": "var(--acc-bright)" } as React.CSSProperties), borderRadius: 24, padding: "clamp(32px,4vw,52px)", textAlign: "center" }}>
-          <h2 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(24px,3vw,36px)", color: "var(--dtext)", fontFamily: HEEBO }}>
+          <h2 style={{ margin: 0, fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", color: "var(--dtext)", fontFamily: HEEBO }}>
             {c.closingTitle}
           </h2>
           <div style={{ display: "flex", gap: 14, marginTop: 26, justifyContent: "center", flexWrap: "wrap" }}>

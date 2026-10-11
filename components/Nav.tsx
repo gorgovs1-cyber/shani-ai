@@ -146,7 +146,7 @@ export default function Nav() {
           pointerEvents: "none",
           transform: hidden ? "translateY(calc(-100% - 28px))" : "translateY(0)",
           // UI-level transition (200–300ms) on transform only.
-          transition: tr("transform 0.28s cubic-bezier(0.32,0,0.16,1)"),
+          transition: tr("transform var(--t-base) cubic-bezier(0.32,0,0.16,1)"),
         }}
       >
         <nav
@@ -225,7 +225,7 @@ export default function Nav() {
                     // Hover feedback budget is 100–150ms. Colour is a paint-only
                     // property here (no layout/compositing cost) and is the only
                     // way to tint text, so it is animated deliberately.
-                    transition: tr("color .12s ease"),
+                    transition: tr("color var(--t-fast) ease"),
                     fontFamily: "'Heebo', var(--font-heebo), sans-serif",
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "var(--dtext)")}
@@ -282,7 +282,7 @@ export default function Nav() {
                       fontWeight: 700,
                       background: active ? "var(--acc)" : "transparent",
                       color: active ? "#fff" : "var(--dmuted)",
-                      transition: tr("background .15s ease, color .15s ease"),
+                      transition: tr("background var(--t-fast) ease, color var(--t-fast) ease"),
                       fontFamily: "inherit",
                     }}
                   >
@@ -304,10 +304,10 @@ export default function Nav() {
                 color: "#fff",
                 textDecoration: "none",
                 fontWeight: 700,
-                fontSize: 14,
+                fontSize: 15,
                 padding: "11px 19px",
                 borderRadius: 999,
-                transition: tr("transform .14s ease, box-shadow .14s ease"),
+                transition: tr("transform var(--t-fast) ease, box-shadow var(--t-fast) ease"),
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
               onMouseEnter={(e) => {
@@ -358,9 +358,9 @@ export default function Nav() {
               minHeight: 44,
             }}
           >
-            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: tr("transform 0.2s ease"), transform: menuOpen ? "rotate(45deg) translate(5px, 6px)" : "none" }} />
-            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, opacity: menuOpen ? 0 : 1, transition: tr("opacity 0.2s ease") }} />
-            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: tr("transform 0.2s ease"), transform: menuOpen ? "rotate(-45deg) translate(5px, -6px)" : "none" }} />
+            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: tr("transform var(--t-fast) ease"), transform: menuOpen ? "rotate(45deg) translate(5px, 6px)" : "none" }} />
+            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, opacity: menuOpen ? 0 : 1, transition: tr("opacity var(--t-fast) ease") }} />
+            <span style={{ display: "block", width: 22, height: 2, background: "var(--dtext)", borderRadius: 2, transition: tr("transform var(--t-fast) ease"), transform: menuOpen ? "rotate(-45deg) translate(5px, -6px)" : "none" }} />
           </button>
         </nav>
       </div>
@@ -449,7 +449,7 @@ export default function Nav() {
                       fontWeight: 700,
                       background: active ? "var(--acc)" : "transparent",
                       color: active ? "#fff" : "var(--dmuted)",
-                      transition: tr("background .15s ease, color .15s ease"),
+                      transition: tr("background var(--t-fast) ease, color var(--t-fast) ease"),
                       fontFamily: "inherit",
                     }}
                   >

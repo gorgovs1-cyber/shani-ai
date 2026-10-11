@@ -95,7 +95,7 @@ export default function ROICalculator() {
         </div>
         <h2 style={{
           margin: 0, fontWeight: 800, fontFamily: HEEBO,
-          fontSize: "clamp(24px,3vw,36px)", letterSpacing: "-0.02em",
+          fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em",
           color: "var(--ink)",
         }}>
           {t.roi.title}
@@ -114,7 +114,7 @@ export default function ROICalculator() {
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem" }}>
             <span style={{ fontSize: 15, color: "var(--muted2)", fontFamily: HEEBO }}>{t.roi.hoursLabel}</span>
-            <span style={{ fontFamily: MONO, fontWeight: 700, color: "var(--ink)", fontSize: 17 }}>
+            <span style={{ fontFamily: MONO, fontWeight: 700, color: "var(--ink)", fontSize: 18 }}>
               {hours} {t.roi.hoursUnit}
             </span>
           </div>
@@ -136,7 +136,7 @@ export default function ROICalculator() {
         <div style={{ marginBottom: "2.5rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.75rem" }}>
             <span style={{ fontSize: 15, color: "var(--muted2)", fontFamily: HEEBO }}>{t.roi.rateLabel}</span>
-            <span style={{ fontFamily: MONO, fontWeight: 700, color: "var(--ink)", fontSize: 17 }}>
+            <span style={{ fontFamily: MONO, fontWeight: 700, color: "var(--ink)", fontSize: 18 }}>
               {rate} ₪
             </span>
           </div>
@@ -161,12 +161,12 @@ export default function ROICalculator() {
           textAlign: "center",
           marginBottom: 20,
         }}>
-          <div style={{ fontSize: 14, color: "var(--muted2)", marginBottom: 8, fontFamily: HEEBO }}>
+          <div style={{ fontSize: 15, color: "var(--muted2)", marginBottom: 8, fontFamily: HEEBO }}>
             {t.roi.resultPre}
           </div>
           <div style={{
             fontFamily: HEEBO,
-            fontSize: "clamp(30px, 4vw, 46px)",
+            fontSize: "clamp(28px, 4vw, 48px)",
             fontWeight: 800,
             color: "var(--acc)",
             lineHeight: 1.05,
@@ -175,7 +175,7 @@ export default function ROICalculator() {
           }}>
             {fmt(animMonthly)} ₪
           </div>
-          <div style={{ fontSize: 14, color: "var(--muted2)", marginTop: 8, fontFamily: HEEBO }}>
+          <div style={{ fontSize: 15, color: "var(--muted2)", marginTop: 8, fontFamily: HEEBO }}>
             {t.roi.perMonth} {t.roi.perYearTpl.replace("{v}", fmt(animYearly))}
           </div>
         </div>
@@ -188,6 +188,7 @@ export default function ROICalculator() {
           )}`}
           target="_blank"
           rel="noopener noreferrer"
+          className="roi-cta"
           style={{
             display: "block", textAlign: "center", padding: "16px 24px",
             background: "var(--acc)", color: "#fff", textDecoration: "none",

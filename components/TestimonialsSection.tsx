@@ -90,9 +90,9 @@ export default function TestimonialsSection() {
         zIndex: 1,
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "clamp(72px,9vw,128px) 24px 0",
+        padding: "var(--section-gap) 24px 0",
 
-        transition: "opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)",
+        transition: "opacity var(--t-slow) cubic-bezier(.2,.7,.2,1), transform var(--t-slow) cubic-bezier(.2,.7,.2,1)",
       }}
     >
       {/* Header */}
@@ -114,12 +114,12 @@ export default function TestimonialsSection() {
         {c.items.map((it, i) => (
           <figure key={i} style={{ margin: 0, background: "var(--card)", border: "1px solid var(--line)", borderRadius: 22, padding: "30px 28px", display: "flex", flexDirection: "column" }}>
             {/* Result metric */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "flex-start", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 14, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "flex-start", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 15, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
               ★ {it.result}
             </div>
 
             {/* Quote */}
-            <blockquote style={{ margin: 0, color: "var(--ink)", fontSize: 17, lineHeight: 1.7, fontFamily: HEEBO, flexGrow: 1 }}>
+            <blockquote style={{ margin: 0, color: "var(--ink)", fontSize: 18, lineHeight: 1.7, fontFamily: HEEBO, flexGrow: 1 }}>
               “{it.quote}”
             </blockquote>
 
@@ -129,7 +129,7 @@ export default function TestimonialsSection() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={it.photo} alt={it.name} width={48} height={48} style={{ width: 48, height: 48, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
               ) : (
-                <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--dark)", color: "var(--acc-bright)", fontWeight: 800, fontSize: 17, fontFamily: MONO }}>
+                <span aria-hidden="true" style={{ width: 48, height: 48, borderRadius: "50%", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "var(--dark)", color: "var(--acc-bright)", fontWeight: 800, fontSize: 18, fontFamily: MONO }}>
                   {initials(it.name)}
                 </span>
               )}

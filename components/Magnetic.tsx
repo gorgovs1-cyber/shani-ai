@@ -23,7 +23,7 @@ export default function Magnetic({
   return (
     <div
       ref={ref}
-      style={{ display: "inline-block", willChange: "transform", transition: "transform .25s cubic-bezier(.2,.7,.2,1)" }}
+      style={{ display: "inline-block", willChange: "transform", transition: "transform var(--t-base) cubic-bezier(.2,.7,.2,1)" }}
       onMouseMove={(e) => {
         if (!enabled() || !ref.current) return;
         const r = ref.current.getBoundingClientRect();

@@ -35,7 +35,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
         transition:
           phase === "enter"
             ? "none"
-            : "opacity .45s cubic-bezier(.2,.7,.2,1), transform .45s cubic-bezier(.2,.7,.2,1)",
+            : "opacity var(--t-slow) cubic-bezier(.2,.7,.2,1), transform var(--t-slow) cubic-bezier(.2,.7,.2,1)",
       }}
     >
       {children}
