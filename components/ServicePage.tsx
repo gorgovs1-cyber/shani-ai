@@ -70,6 +70,7 @@ export default function ServicePage({
   const dir = c.dir;
   const auditLabel = lang === "he" ? "בדיקת התאמה חינם" : "Free fit check";
   const [open, setOpen] = useState<number | null>(null);
+  const [openProduct, setOpenProduct] = useState<number | null>(null);
 
   return (
     <>
@@ -127,32 +128,48 @@ export default function ServicePage({
               <div style={{ height: 18 }} />
             )}
             <div className="service-product-grid">
-              {c.products.items.map((p) => (
-                <article key={p.name} className="service-product-card">
+              {c.products.items.map((p, pi) => {
+                const isOpen = openProduct === pi;
+                return (
+                <article key={p.name} className={`service-product-card${isOpen ? " is-open" : ""}`}>
                   <h3 style={{ fontFamily: HEEBO }}>{p.name}</h3>
                   <p className="spc-fit" style={{ fontFamily: HEEBO }}>{p.fit}</p>
-                  <dl style={{ fontFamily: HEEBO }}>
-                    {[
-                      [c.products!.labels.includes, p.includes],
-                      [c.products!.labels.forWho, p.forWho],
-                      ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
-                    ].map(([label, value]) => (
-                      <div key={label as string}>
-                        <dt>{label}</dt>
-                        <dd>{value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  {p.exampleUrl ? (
-                    <a className="spc-example" href={p.exampleUrl} target="_blank" rel="noopener noreferrer">
-                      {c.products!.labels.example}: {p.exampleLabel}
+                  <button
+                    type="button"
+                    className="spc-toggle"
+                    aria-expanded={isOpen}
+                    aria-controls={`spc-panel-${pi}`}
+                    onClick={() => setOpenProduct(isOpen ? null : pi)}
+                    style={{ fontFamily: HEEBO }}
+                  >
+                    {isOpen ? (lang === "he" ? "סגירה" : "Close") : (lang === "he" ? "מה כלול ולמי זה מתאים" : "What is included")}
+                    <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
+                  </button>
+                  <div id={`spc-panel-${pi}`} className="spc-panel" hidden={!isOpen}>
+                    <dl style={{ fontFamily: HEEBO }}>
+                      {[
+                        [c.products!.labels.includes, p.includes],
+                        [c.products!.labels.forWho, p.forWho],
+                        ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
+                      ].map(([label, value]) => (
+                        <div key={label as string}>
+                          <dt>{label}</dt>
+                          <dd>{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    {p.exampleUrl ? (
+                      <a className="spc-example" href={p.exampleUrl} target="_blank" rel="noopener noreferrer">
+                        {c.products!.labels.example}: {p.exampleLabel}
+                      </a>
+                    ) : null}
+                    <a className="btn btn-ghost spc-cta" href={L(p.cta?.href || "/audit")}>
+                      {p.cta?.label || (lang === "he" ? "זה מתאים לי" : "This fits me")}
                     </a>
-                  ) : null}
-                  <a className="btn btn-ghost spc-cta" href={L(p.cta?.href || "/audit")}>
-                    {p.cta?.label || (lang === "he" ? "זה מתאים לי" : "This fits me")}
-                  </a>
+                  </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           </section>
         ) : null}
@@ -160,7 +177,7 @@ export default function ServicePage({
         {/* Cross-links to the other services */}
         {c.also && c.also.length ? (
           <section style={{ marginTop: 72 }}>
-            <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(21px,2.6vw,30px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
+            <h2 style={{ margin: "0 0 22px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
               {c.alsoTitle}
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
@@ -178,7 +195,7 @@ export default function ServicePage({
         {c.sections.length ? <section style={{ marginTop: 64, display: "flex", flexDirection: "column", gap: 40 }}>
           {c.sections.map((s) => (
             <div key={s.h}>
-              <h2 style={{ margin: "0 0 12px", fontWeight: 800, fontSize: "clamp(21px,2.6vw,30px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "26ch" }}>
+              <h2 style={{ margin: "0 0 12px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO, maxWidth: "26ch" }}>
                 {s.h}
               </h2>
               <p style={{ margin: 0, color: "var(--muted2)", fontSize: "clamp(15px,1.6vw,18px)", lineHeight: 1.75, maxWidth: "68ch", fontFamily: HEEBO }}>
@@ -190,7 +207,7 @@ export default function ServicePage({
 
         {/* FAQ */}
         <section style={{ marginTop: 72 }}>
-          <h2 style={{ margin: "0 0 30px", fontWeight: 800, fontSize: "clamp(26px,3.4vw,42px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
+          <h2 style={{ margin: "0 0 30px", fontWeight: 800, fontSize: "clamp(24px,3vw,34px)", letterSpacing: "-0.02em", color: "var(--ink)", fontFamily: HEEBO }}>
             {c.faqTitle}
           </h2>
           <div className="service-faq">

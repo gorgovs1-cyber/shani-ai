@@ -4,10 +4,12 @@ import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Services() {
   const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
     <section
@@ -51,153 +53,33 @@ export default function Services() {
         </div>
       </div>
 
-      {/* 3-col grid */}
-      <div
-        className="services-grid"
-        style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
-      >
+      {/* Compact service tiles: title first, details on demand */}
+      <div className="services-grid svc-tiles">
         {t.services.map((s, i) => {
           // /audit is a static page behind a rewrite, so it gets a plain anchor (a Link would prefetch a non-existent RSC payload)
           const href = ["/websites", "/automations", "/automations#solutions", "/audit", "/audit", "/audit", "/audit"][i];
           const ctaLabel = href === "/audit" ? t.servicesCtaAudit : t.servicesCta;
-          const Card: any = href === "/audit" ? "a" : Link;
+          const isOpen = open === i;
+          const Cta: any = href === "/audit" ? "a" : Link;
           return (
-          <Card
-            key={s.no}
-            href={L(href)}
-            className={`service-card-link${i < 2 ? " is-featured" : ""}`}
-            aria-label={`${s.title} — ${ctaLabel}`}
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              background: "var(--card)",
-              border: "1px solid var(--line)",
-              borderRadius: 16,
-              padding: "34px 30px",
-              overflow: "hidden",
-              textDecoration: "none",
-              color: "inherit",
-              cursor: "pointer",
-              transition: "transform .3s, box-shadow .3s, border-color .3s",
-            }}
-            onMouseEnter={(e: React.MouseEvent) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.transform = "translateY(-6px)";
-              el.style.boxShadow = "0 30px 60px -34px rgba(27,23,18,.28)";
-              el.style.borderColor = "color-mix(in oklch, var(--acc) 45%, var(--line))";
-            }}
-            onMouseLeave={(e: React.MouseEvent) => {
-              const el = e.currentTarget as HTMLElement;
-              el.style.transform = "";
-              el.style.boxShadow = "";
-              el.style.borderColor = "var(--line)";
-            }}
-          >
-            <div
-              style={{
-                fontFamily: "'JetBrains Mono', var(--font-mono), monospace",
-                fontSize: 13,
-                color: "var(--acc)",
-                marginBottom: 20,
-              }}
-            >
-              {s.no}
+            <div key={s.no} className={`svc-tile${isOpen ? " is-open" : ""}`}>
+              <button
+                type="button"
+                className="svc-tile-trigger"
+                aria-expanded={isOpen}
+                aria-controls={`svc-panel-${i}`}
+                onClick={() => setOpen(isOpen ? null : i)}
+              >
+                <span className="svc-no">{s.no}</span>
+                <span className="svc-title">{s.title}</span>
+                <span className="svc-sym" aria-hidden="true">{isOpen ? "−" : "+"}</span>
+              </button>
+              <div id={`svc-panel-${i}`} className="svc-panel" hidden={!isOpen}>
+                <p className="svc-desc">{s.desc}</p>
+                <p className="svc-fit"><span>{lang === "he" ? "מתאים לכם אם: " : "It fits if: "}</span>{s.fit}</p>
+                <Cta href={L(href)} className="svc-link">{ctaLabel}</Cta>
+              </div>
             </div>
-            <h3
-              style={{
-                margin: "0 0 6px",
-                fontWeight: 800,
-                fontSize: 22,
-                letterSpacing: "-0.01em",
-                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                color: "var(--acc)",
-              }}
-            >
-              {s.title}
-            </h3>
-            {'subtitle' in s && (
-              <div style={{
-                margin: "0 0 14px",
-                fontWeight: 700,
-                fontSize: 17,
-                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                color: "var(--ink)",
-              }}>
-                {(s as any).subtitle}
-              </div>
-            )}
-            <p
-              style={{
-                margin: 0,
-                color: "var(--muted2)",
-                fontSize: 15,
-                lineHeight: 1.65,
-                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                flexGrow: 1,
-              }}
-            >
-              {s.desc}
-            </p>
-            {'fit' in s && (
-              <p
-                style={{
-                  margin: "14px 0 0",
-                  color: "var(--ink)",
-                  fontSize: 15,
-                  lineHeight: 1.6,
-                  fontWeight: 700,
-                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                }}
-              >
-                <span style={{ color: "var(--acc)" }}>{lang === "he" ? "מתאים לכם אם: " : "It fits if: "}</span>
-                {(s as any).fit}
-              </p>
-            )}
-            {'anchor' in s && (
-              <div
-                style={{
-                  display: "inline-block",
-                  marginTop: 18,
-                  marginBottom: 26,
-                  padding: "6px 12px",
-                  borderRadius: 999,
-                  border: "1px solid color-mix(in oklch, var(--acc) 35%, var(--line))",
-                  background: "color-mix(in oklch, var(--acc) 8%, transparent)",
-                  color: "var(--acc)",
-                  fontSize: 13,
-                  fontWeight: 700,
-                  lineHeight: 1.4,
-                  fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                }}
-              >
-                {(s as any).anchor}
-              </div>
-            )}
-            <span
-              className="service-card-cta"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                color: "var(--acc)",
-                fontSize: 14,
-                fontWeight: 700,
-                textDecoration: "none",
-                fontFamily: "'Heebo', var(--font-heebo), sans-serif",
-                borderTop: "1px solid var(--line)",
-                paddingTop: 20,
-                paddingBottom: 12,
-                minHeight: 44,
-                boxSizing: "border-box",
-                width: "100%",
-                marginTop: "auto",
-              }}
-            >
-              {ctaLabel}
-            </span>
-          </Card>
           );
         })}
       </div>
