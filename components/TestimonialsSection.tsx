@@ -26,7 +26,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
   he: {
     kicker: "המלצות",
     title: "מה לקוחות אומרים",
-    sub: "שני עסקים שעברו את התהליך הזה.",
+    sub: "לקוחות שעברו את התהליך הזה.",
     items: [
       {
         name: "הילה איתן",
@@ -49,7 +49,7 @@ const COPY: Record<"he" | "en", { kicker: string; title: string; sub: string; it
   en: {
     kicker: "Reviews",
     title: "What clients say",
-    sub: "Two businesses that went through this exact process.",
+    sub: "Clients who went through this process.",
     items: [
       {
         name: "Hila Eitan",

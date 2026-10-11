@@ -56,13 +56,19 @@ export default function Services() {
         className="services-grid"
         style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
       >
-        {t.services.map((s, i) => (
-          <Link
+        {t.services.map((s, i) => {
+          // /audit is a static page behind a rewrite, so it gets a plain anchor (a Link would prefetch a non-existent RSC payload)
+          const href = ["/websites", "/automations", "/automations#solutions", "/audit", "/audit", "/audit", "/audit"][i];
+          const ctaLabel = href === "/audit" ? t.servicesCtaAudit : t.servicesCta;
+          const Card: any = href === "/audit" ? "a" : Link;
+          return (
+          <Card
             key={s.no}
-            href={["/websites", "/automations", "/automations#solutions"][i]}
+            href={href}
             className="service-card-link"
-            aria-label={`${s.title} — ${t.servicesCta}`}
+            aria-label={`${s.title} — ${ctaLabel}`}
             style={{
+              gridColumn: i === t.services.length - 1 ? "1 / -1" : undefined,
               position: "relative",
               display: "flex",
               flexDirection: "column",
@@ -77,13 +83,13 @@ export default function Services() {
               cursor: "pointer",
               transition: "transform .3s, box-shadow .3s, border-color .3s",
             }}
-            onMouseEnter={(e) => {
+            onMouseEnter={(e: React.MouseEvent) => {
               const el = e.currentTarget as HTMLElement;
               el.style.transform = "translateY(-6px)";
               el.style.boxShadow = "0 30px 60px -34px rgba(27,23,18,.28)";
               el.style.borderColor = "color-mix(in oklch, var(--acc) 45%, var(--line))";
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={(e: React.MouseEvent) => {
               const el = e.currentTarget as HTMLElement;
               el.style.transform = "";
               el.style.boxShadow = "";
@@ -190,10 +196,11 @@ export default function Services() {
                 marginTop: "auto",
               }}
             >
-              {t.servicesCta}
+              {ctaLabel}
             </span>
-          </Link>
-        ))}
+          </Card>
+          );
+        })}
       </div>
     </section>
   );

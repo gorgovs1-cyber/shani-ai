@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "בניית אתרים לעסקים · כמה עולה אתר לעסק | Shani AI Creator",
+  title: "בניית אתרים לעסקים | Shani AI Creator",
   description:
-    "אתרים קולנועיים בקוד קאסטום Next.js: מהירים, עם SEO אמיתי, אנימציות GSAP ובעלות מלאה על הקוד. הצעה אישית אחרי אבחון חינם ושיחה קצרה. בונה אתרים לעסקים בתל אביב, ירושלים, חיפה ואונליין בכל הארץ.",
+    "אתר לעסק שמסביר מה אתם עושים ומקל על לקוחות לפנות אליכם: מהיר, מותאם למובייל, עם קידום בגוגל ובעלות מלאה על הקוד. מתחילים בבדיקת התאמה חינם.",
   alternates: { canonical: "https://shani-ai.com/websites" },
   openGraph: {
     title: "בניית אתרים לעסקים · Shani AI Creator",
-    description: "אתרים קולנועיים בקוד קאסטום עם SEO אמיתי ואוטומציות. הקוד שלך.",
+    description: "אתר שמסביר מה אתם עושים ומקל על לקוחות לפנות אליכם. הקוד נשאר שלכם.",
     url: "https://shani-ai.com/websites",
     type: "website",
     locale: "he_IL",

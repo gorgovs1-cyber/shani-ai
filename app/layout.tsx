@@ -26,12 +26,12 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
-  title: "Shani AI Creator | אתרים ואוטומציות לעסקים",
-  description: "Shani AI Creator בונה לעסקים בישראל את האתר, הוואטסאפ והאוטומציות כמערכת אחת. פחות פניות שמתפספסות ופחות עבודה ידנית. מתחילים בבדיקת התאמה חינם.",
-  keywords: ["AI", "אוטומציה", "אתרים", "GSAP", "Next.js", "ישראל", "Shani AI Creator", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
+  title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
+  description: "Shani AI Creator בונה לעסקים בישראל אתרים, אוטומציות, צ׳אטבוט ושיווק, כך שהכול עובד יחד ואתם מדברים עם איש קשר אחד. מתחילים בבדיקת התאמה חינם.",
+  keywords: ["AI", "אוטומציה", "אתרים", "Next.js", "ישראל", "Shani AI Creator", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
   openGraph: {
-    title: "Shani AI Creator | אתרים ואוטומציות לעסקים",
-    description: "אתרים ומערכות לעסקים בישראל, עם חיבור לוואטסאפ ותהליכים שמפחיתים עבודה ידנית.",
+    title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
+    description: "אתרים, אוטומציות, צ׳אטבוט ושיווק לעסקים בישראל, עם איש קשר אחד.",
     siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shani AI Creator | אתרים ואוטומציות לעסקים",
-    description: "אתר, וואטסאפ ואוטומציות לעסקים בישראל. בדיקת התאמה חינם.",
+    title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
+    description: "אתר, שיווק ואוטומציות לעסקים בישראל. בדיקת התאמה חינם.",
     images: ["/og.jpg"],
   },
   robots: {
@@ -111,7 +111,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               email: "shani.creates.ai@gmail.com",
               image: "https://shani-ai.com/og.jpg",
               logo: "https://shani-ai.com/logo.svg",
-              priceRange: "₪₪₪",
               areaServed: [
                 { "@type": "City", name: "תל אביב" },
                 { "@type": "City", name: "רמת גן" },

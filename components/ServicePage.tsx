@@ -18,7 +18,7 @@ export type ServiceCopy = {
   lead: string;
   primaryCta: string;
   primaryWaMsg: string;
-  secondaryCta: string; // links to /pricing
+  secondaryCta: string; // scrolls to the product list on the same page
   includesTitle: string;
   includes: string[];
   /** המוצרים של השירות הזה, עם ההסבר המלא. המחירון מקשר לכאן. */
@@ -28,7 +28,7 @@ export type ServiceCopy = {
     labels: { fit: string; includes: string; forWho: string; notFor: string; example: string };
     items: {
       name: string;
-      price: string;
+      price?: string;
       fit: string;
       includes: string;
       forWho: string;
@@ -84,9 +84,9 @@ export default function ServicePage({
           <a href="/audit" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "var(--acc)", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO, boxShadow: "0 16px 36px -16px var(--acc)" }}>
             {auditLabel}
           </a>
-          <Link href="/pricing" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
+          <a href="#solutions" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", color: "var(--acc)", border: "1.5px solid var(--acc)", textDecoration: "none", fontWeight: 700, fontSize: 15.5, padding: "15px 30px", borderRadius: 14, fontFamily: HEEBO }}>
             {c.secondaryCta}
-          </Link>
+          </a>
         </div>
         </header>
 
@@ -149,7 +149,7 @@ export default function ServicePage({
                         {p.name}
                       </h3>
                     </span>
-                    <span className="service-product-price" style={{ fontFamily: HEEBO }}>{p.price}</span>
+                    {p.price ? <span className="service-product-price" style={{ fontFamily: HEEBO }}>{p.price}</span> : null}
                     <span className="service-product-symbol" aria-hidden="true">{openProduct === pi ? "−" : "+"}</span>
                   </button>
                   <div id={`service-product-${pi}`} className="service-product-panel" hidden={openProduct !== pi}>

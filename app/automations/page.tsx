@@ -12,12 +12,12 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "אם אתם מעתיקים פרטי לקוחות, שולחים את אותה הודעה או רודפים אחרי תזכורות, אפשר לחבר בין הכלים שלכם ולתת למערכת לעשות חלק מהפעולות האלה בשבילכם.",
     primaryCta: "דברו איתי על אוטומציה",
     primaryWaMsg: "היי שני, אני רוצה אוטומציה לעסק",
-    secondaryCta: "לצפייה במחירים",
+    secondaryCta: "מה אפשר לבנות",
     includesTitle: "מה אפשר להעביר לאוטומציה",
     includes: [
       "מענה אוטומטי בוואטסאפ לכל פנייה",
       "פניות מהטופס נכנסות ישר למערכת",
-      "בוט וואטסאפ חכם בעברית",
+      "בוט וואטסאפ שעונה בעברית",
       "שליחת מיילים ותזכורות אוטומטית",
       "תמחור והצעות מחיר אוטומטיות",
       "חיבור בין כל הכלים שלכם",
@@ -25,7 +25,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "דוחות חודשיים אוטומטיים",
     ],
     liveDemo: {
-      title: "ככה זה נראה כשזה רץ",
+      title: "ככה זה עובד בפועל",
       sub: "כאן אפשר להכיר את התהליך שבניתי לטיפול בפניות אצלי, ולחשוב מה מתוכו יכול לעזור גם בעסק שלכם.",
     },
     products: {
@@ -34,14 +34,12 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       items: [
         {
           name: "דרגה 1 · אוטומציה בודדת",
-          price: "1,400 ₪",
           fit: "פעולה אחת שעושים ידנית כמעט כל יום, וברור בדיוק מה היא.",
           includes: "תהליך אחד מקצה לקצה, מחובר לכלים שיש לכם, וניטור שמתריע על תקלה.",
           forWho: "עסקים שמנהלים תורים או מעתיקים פרטי פניות לגיליון, למשל מרפאות, מספרות וסטודיו.",
         },
         {
           name: "דרגה 2 · בוט וואטסאפ",
-          price: "2,400 ₪",
           fit: "אותן שאלות חוזרות כל יום, ופניות נופלות בערב ובסופ״ש.",
           includes: "מענה בעברית בטון העסק, שעות פעילות, והעברה אליכם כשצריך.",
           forWho: "מסעדות, מרפאות, מספרות, מכוני יופי, ונותני שירות שמקבלים הרבה הודעות.",
@@ -49,16 +47,14 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
         {
           name: "דרגה 3 · סוכן AI שמדבר עברית",
-          price: "4,900 ₪",
           fit: "כל פנייה אצלכם שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
           includes: "הבנת הקשר וזיכרון שיחה, קביעת פגישה, תמחור לפי הכללים שלכם, וסינון פניות.",
           forWho: "יועצים, בעלי תמחור משתנה, ועסקים עם פניות שדורשות בירור לפני שיחה.",
         },
         {
           name: "דרגה 4 · מערכת AI מלאה",
-          price: "7,900 ₪",
           fit: "מתחילים מאפס, או בונים נוכחות דיגיטלית מחדש ורוצים שהכל מחובר.",
-          includes: "אתר שמחובר למענה אוטומטי ולמערכת שמרכזת את הפניות, במחיר נמוך מרכישה בנפרד.",
+          includes: "אתר שמחובר למענה אוטומטי ולמערכת שמרכזת את הפניות, בנויים כמערכת אחת.",
           forWho: "עסקים שרוצים להקים הכל בבת אחת במקום להוסיף חלק כל כמה חודשים.",
         },
       ],
@@ -72,15 +68,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqItems: [
       {
         q: "מה זה אוטומציה לעסק ולמה צריך אותה?",
-        a: "אוטומציה מבצעת פעולה שחוזרת על עצמה באופן אוטומטי, למשל שומרת את הפרטים של מי שמילא טופס ושולחת לו אישור, כדי שלא תצטרכו לעשות את זה בעצמכם בכל פעם.",
+        a: "אוטומציה עושה לבד פעולה שחוזרת על עצמה, למשל שומרת את הפרטים של מי שמילא טופס ושולחת לו אישור, כדי שלא תצטרכו לעשות את זה בעצמכם בכל פעם.",
       },
       {
-        q: "אוטומציה לוואטסאפ לעסק — איך זה עובד?",
+        q: "אוטומציה לוואטסאפ לעסק: איך זה עובד?",
         a: "אנחנו מגדירים באילו מצבים תישלח הודעה, על אילו שאלות המערכת תענה ומתי היא תעביר את השיחה אליכם, בהתאם לשירות שלכם ולדרך שבה אתם מדברים עם לקוחות.",
       },
       {
         q: "כמה עולה אוטומציה לעסק?",
-        a: "המחירים המלאים מופיעים ליד כל דרגה ובעמוד המחירים. עלויות שוטפות של כלים תמיד מפורטות בנפרד ורשומות על שמכם.",
+        a: "זה תלוי במה שמעבירים לאוטומציה ובכלים שמחברים. אחרי בדיקת ההתאמה אני שולחת הצעה מסודרת, ועלויות שוטפות של כלים תמיד מפורטות בנפרד ורשומות על שמכם.",
       },
       {
         q: "איך אני משתמשת באוטומציה בעסק שלי?",
@@ -96,7 +92,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "מה קורה אם האוטומציה נתקעת?",
-        a: "כחלק מהבנייה נגדיר התראות על תקלות ודרך לעקוב אחרי הפניות, ונסכם מי מטפל בתקלות ובתחזוקה בהמשך, עם אפשרות לליווי חודשי דרך Shani Care.",
+        a: "כחלק מהבנייה נגדיר התראות על תקלות ודרך לעקוב אחרי הפניות, ונסכם מי מטפל בתקלות ובתחזוקה בהמשך.",
       },
       {
         q: "האוטומציה תעבוד בעברית?",
@@ -109,7 +105,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "בשיחה קצרה נזהה איפה בורח לכם הכי הרבה זמן ומה אפשר להעביר למערכת, בלי התחייבות.",
     closingCta: "דברו איתי בוואטסאפ",
     closingWaMsg: "היי שני, אני רוצה אוטומציה לעסק",
-    auditLine: "או התחילו באבחון חינם",
+    auditLine: "או התחילו בבדיקת התאמה חינם",
   },
   en: {
     dir: "ltr",
@@ -119,12 +115,12 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "I connect the tools you already have, forms, WhatsApp, email, calendar and your customer records, into one system that handles enquiries and replies on its own. Technology does the grunt work, and you get back to running the business.",
     primaryCta: "Talk to me about automation",
     primaryWaMsg: "Hi Shani, I'd like an automation for my business",
-    secondaryCta: "See pricing",
+    secondaryCta: "What we can build",
     includesTitle: "What can be automated",
     includes: [
       "Automatic WhatsApp replies to every enquiry",
       "Form submissions land straight in the system",
-      "A smart Hebrew WhatsApp bot",
+      "A WhatsApp bot that answers in Hebrew",
       "Automatic emails and reminders",
       "Automatic pricing and proposals",
       "Connecting all your tools together",
@@ -132,7 +128,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Automatic monthly reports",
     ],
     liveDemo: {
-      title: "This is what it looks like running",
+      title: "This is how it works in practice",
       sub: "This is not a mockup; it is exactly what happens on my end when a new enquiry arrives. The same machine gets built for your business.",
     },
     products: {
@@ -141,14 +137,12 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       items: [
         {
           name: "Level 1 · Single automation",
-          price: "₪1,400",
           fit: "One action you do by hand almost every day, and you know exactly what it is.",
           includes: "One end-to-end process, connected to the tools you already use, with monitoring that alerts on failure.",
           forWho: "Clinics, salons, studios — any business managing appointments or typing enquiries into a sheet.",
         },
         {
           name: "Level 2 · WhatsApp bot",
-          price: "₪2,400",
           fit: "The same questions come up every day, and enquiries slip through in the evenings and weekends.",
           includes: "Replies in Hebrew in your business's tone, opening hours, and a handover to you when needed.",
           forWho: "Restaurants, clinics, salons, beauty studios and service providers who get a lot of messages.",
@@ -156,16 +150,14 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         },
         {
           name: "Level 3 · An AI agent that speaks Hebrew",
-          price: "₪4,900",
           fit: "Every enquiry is different and cannot be answered with a prepared reply.",
           includes: "Context and memory, booking into your calendar, pricing by your rules, and filtering enquiries.",
           forWho: "Consultants, variable-pricing professionals, and businesses with enquiries that need qualifying first.",
         },
         {
           name: "Level 4 · Full AI system",
-          price: "₪7,900",
           fit: "Starting from scratch, or rebuilding your digital presence and want everything connected.",
-          includes: "Website, AI agent, automations and every enquiry — connected, for less than buying separately.",
+          includes: "A website, an AI agent, automations and every enquiry, built as one system.",
           forWho: "Businesses that want to set everything up at once instead of adding a piece every few months.",
         },
       ],
@@ -187,7 +179,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "How much does business automation cost?",
-        a: "Full prices appear next to each level and on the pricing page. Any ongoing tool costs are listed separately and registered in your name.",
+        a: "It depends on what you move to automation and which tools you connect. After the fit check I send a clear proposal, and any ongoing tool costs are listed separately and registered in your name.",
       },
       {
         q: "How do you use automation in your own business?",
@@ -203,7 +195,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "What happens if the automation breaks?",
-        a: "I build every automation with a safety net, so if part of the process fails the enquiry still reaches you on WhatsApp and nothing is ever lost. With Shani Care I keep watch over the automations and fix issues before you even notice.",
+        a: "I build every automation with a safety net, so if part of the process fails the enquiry still reaches you on WhatsApp and nothing is ever lost.",
       },
       {
         q: "Will the automation work in Hebrew?",
@@ -216,7 +208,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "In a short call we'll spot where you lose the most time and what can move to automation. No commitment.",
     closingCta: "Chat on WhatsApp",
     closingWaMsg: "Hi Shani, I'd like an automation for my business",
-    auditLine: "Or start with a free audit",
+    auditLine: "Or start with a free fit check",
   },
 };
 

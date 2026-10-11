@@ -3,7 +3,7 @@ import ProjectListing from "@/components/ProjectListing";
 
 export const metadata = {
   title: "עבודות: אתרים, מערכות ואוטומציות | Shani AI Creator",
-  description: "אתרים, מערכות ואוטומציות: דוגמאות לעבודות שמחברות בין הנוכחות הדיגיטלית להתנהלות העסק.",
+  description: "אתרים, מערכות ואוטומציות: דוגמאות לעבודות שמחברות בין הנוכחות הדיגיטלית להתנהלות היומיומית של העסק. כל פרויקט עם הבעיה, הפתרון והתוצאה.",
   alternates: { canonical: "https://shani-ai.com/work" },
 };
 

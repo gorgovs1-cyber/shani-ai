@@ -117,7 +117,6 @@ export default function Nav() {
     { label: t.navAutomations, href: "/automations" },
     { label: t.navAi,          href: "/automations#solutions" },
     { label: t.navWork,        href: "/work" },
-    { label: t.navPricing,     href: "/pricing" },
     { label: t.navGuides,      href: "/guides" },
   ];
 

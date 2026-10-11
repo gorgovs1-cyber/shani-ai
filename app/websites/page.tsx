@@ -8,20 +8,18 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     kicker: "שירות · אתרים",
     title: "אתר שמציג את העסק ומוביל לפנייה",
     lead:
-      "חשוב לי שמי שנכנס לאתר יבין מה אתם עושים, יכיר את העסק וידע איך לפנות אליכם, אז אני בונה את העיצוב, התוכן והחיבורים סביב זה, כשהקוד נשאר בבעלות שלכם.",
+      "אני בונה אתר שמסביר מה אתם עושים ומקל על לקוחות לפנות אליכם, והקוד נשאר בבעלות שלכם.",
     primaryCta: "דברו איתי על אתר",
     primaryWaMsg: "היי שני, אני רוצה לבנות אתר לעסק",
-    secondaryCta: "לצפייה במחירים",
+    secondaryCta: "איזה אתר מתאים לכם",
     includesTitle: "מה נכלל באתר",
     includes: [
-      "קוד שנכתב מאפס (Next.js), לא תבנית",
-      "תנועה ואנימציות חלקות",
+      "אתר ייחודי לעסק שלכם, לא תבנית",
       "בנוי קודם למובייל, ונטען מהר",
       "מבנה מלא לקידום בגוגל (SEO)",
       "טופס פנייה וחיבור לוואטסאפ",
       "מדידה מובנית של פניות ופרסום",
       "בעלות מלאה על הקוד",
-      "מסירה תוך 7 עד 21 יום",
     ],
     products: {
       title: "איזה אתר מתאים לכם?",
@@ -29,33 +27,29 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       items: [
         {
           name: "דף נחיתה",
-          price: "1,500 ₪",
           fit: "שירות אחד ברור להציע, או קמפיין ממומן שצריך יעד אחד.",
-          includes: "עד 3 חלקים בגלילה אחת, בלי תפריט ניווט, כפתור וואטסאפ קבוע. גרסה ראשונה עד 5 ימי עבודה.",
+          includes: "עד 3 חלקים בגלילה אחת, בלי תפריט ניווט, כפתור וואטסאפ קבוע.",
           forWho: "עצמאים, מאמנים, קוסמטיקאיות, ומי שמריץ קמפיין ממומן.",
           notFor: "כמה שירותים שצריך להסביר לעומק? 'אתר' יעבוד טוב יותר.",
         },
         {
           name: "אתר",
-          price: "2,400 ₪",
           fit: "מסבירים שיטה או תהליך, ואנשים שואלים אותן שאלות לפני שסוגרים.",
-          includes: "עמוד בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל. גלריית עבודות משותפת עד 10 פרויקטים, ושני חודשי ליווי כלולים. גרסה ראשונה 8-10 ימי עבודה.",
+          includes: "עמוד בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל, וגלריית עבודות משותפת עד 10 פרויקטים.",
           forWho: "מאמנים, מטפלים, יועצים, ואדריכלים/מעצבים עם תיק עבודות קטן-בינוני.",
           notFor: "מוכרים מוצרים עם עגלת קניות? זו חנות. תיק עבודות גדול? 'אתר פורטפוליו' מתאים יותר.",
         },
         {
           name: "אתר פורטפוליו",
-          price: "3,700 ₪",
           fit: "תיק עבודות גדול (כ-15 פרויקטים ומעלה), וחשוב שכל עבודה תימצא בנפרד בגוגל.",
-          includes: "הכל מ'אתר', ועד 10 פרויקטים עם עמוד נפרד ומדורג לכל אחד. עמוד נוסף: 250 ₪. גרסה ראשונה 13-15 ימי עבודה.",
+          includes: "הכל מ'אתר', ועד 10 פרויקטים עם עמוד נפרד ומדורג לכל אחד.",
           forWho: "אדריכלים, מעצבים, קבלנים וצלמים שרוצים לתת לכל עבודה מקום משלה.",
           notFor: "עד 10 פרויקטים ולא כולם צריכים דירוג נפרד? 'אתר' עושה את העבודה בפחות, ואפשר להוסיף עמוד בודד בהמשך.",
         },
         {
           name: "גרסה בשפה שנייה",
-          price: "600 ₪",
           fit: "יש לכם לקוחות בחו״ל, או שאתם רוצים להופיע גם בחיפושים באנגלית.",
-          includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד. אותו מחיר לכל סוג אתר.",
+          includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
           forWho: "מיתוג אישי, יועצים שעובדים מול חו״ל, תיירות, ומי שמגיש מועמדות בינלאומית.",
         },
       ],
@@ -70,7 +64,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqItems: [
       {
         q: "כמה עולה לבנות אתר לעסק?",
-        a: "המחירים המלאים מופיעים ליד כל חבילה ובעמוד המחירים: מ-1,500 ₪ לדף נחיתה ועד 3,700 ₪ לאתר פורטפוליו. ממלאים אבחון קצר בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
+        a: "המחיר תלוי בסוג האתר ובהיקף שלו. ממלאים בדיקת התאמה קצרה בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
       },
       {
         q: "למה אני בונה אתרים בקוד?",
@@ -78,7 +72,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "כמה זמן לוקח לבנות אתר?",
-        a: "ליד כל חבילה מופיע זמן העבודה שלה. לפני שמתחילים נסכם את לוח הזמנים לפרויקט שלכם ואת החומרים שאצטרך מכם.",
+        a: "זה תלוי בסוג האתר ובחומרים שכבר יש. לפני שמתחילים נסכם את לוח הזמנים לפרויקט שלכם ואת מה שאצטרך מכם.",
       },
       {
         q: "אפשר לחבר את האתר לוואטסאפ ולמערכות של העסק?",
@@ -90,15 +84,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "אני אוכל לערוך את האתר בעצמי אחר כך?",
-        a: "תלוי מה רוצים לערוך. עדכוני תוכן שוטפים אפשר לנהל דרך Shani Care, הליווי החודשי, או שאני בונה ממשק ניהול פשוט לתכנים שמשתנים הרבה. שינויים עיצוביים עמוקים עדיף להשאיר לי, כדי לשמור על האיכות.",
+        a: "תלוי מה רוצים לערוך. עדכוני תוכן שוטפים אפשר לבקש ממני, או שאני בונה ממשק ניהול פשוט לתכנים שמשתנים הרבה. שינויים עיצוביים עמוקים עדיף להשאיר לי, כדי לשמור על האיכות.",
       },
       {
         q: "מה עם דומיין ואחסון?",
-        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, בממוצע כ-60 עד 90 ₪ לשנה תלוי בסיומת ובספק, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית. ב-Shani Care אני שומרת על העדכונים, הגיבויים והניטור, ואתם לא תלויים בי לשום דבר.",
+        a: "הדומיין נרשם על שמכם ובכרטיס שלכם, ואני מלווה אתכם ברכישה ומחברת הכל. האתרים בנויים בקוד ולכן אין להם עלות אחסון חודשית, ואתם לא תלויים בי לשום דבר.",
       },
       {
         q: "האתר יהיה בעברית ובאנגלית?",
-        a: "האתר בנוי מלכתחילה לעברית, מימין לשמאל, על כל המשמעויות של זה בעיצוב ובפריסה. גרסה באנגלית היא תוספת שאפשר להוסיף בהקמה או בהמשך, במחיר אחיד של 600 ₪.",
+        a: "האתר בנוי מלכתחילה לעברית, מימין לשמאל, כולל הפריסה. גרסה באנגלית אפשר להוסיף בהקמה או בהמשך.",
       },
     ],
     bridge: { text: "רוצים לראות דוגמאות אמיתיות לפני שמתחילים?", linkLabel: "לתיק העבודות", href: "/work" },
@@ -107,27 +101,25 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "ספרו לי מה אתם עושים ומה הייתם רוצים באתר, ונבדוק יחד מה מתאים לכם בלי להתחייב לפרויקט.",
     closingCta: "דברו איתי בוואטסאפ",
     closingWaMsg: "היי שני, אני רוצה לבנות אתר לעסק",
-    auditLine: "או התחילו באבחון חינם",
+    auditLine: "או התחילו בבדיקת התאמה חינם",
   },
   en: {
     dir: "ltr",
     kicker: "Service · Websites",
     title: "A website that presents your business and invites enquiries",
     lead:
-      "I build websites in code written from scratch, fast, with smooth motion and a structure Google likes, giving your business the presence of a much bigger company and turning visitors into clients. The code stays yours, fully owned.",
+      "I build a website that explains what you do and makes it easy for customers to contact you. The code stays yours.",
     primaryCta: "Talk to me about a website",
     primaryWaMsg: "Hi Shani, I'd like to build a website for my business",
-    secondaryCta: "See pricing",
+    secondaryCta: "Which site fits you",
     includesTitle: "What's included",
     includes: [
-      "Code written from scratch (Next.js), not a template",
-      "Smooth, cinematic motion",
+      "A site made for your business, not a template",
       "Built for mobile first, and loads fast",
       "Built properly to rank on Google (SEO)",
       "Contact form + WhatsApp",
       "Built-in tracking of enquiries and ads",
       "Full ownership of the code",
-      "Delivery in 7 to 21 days",
     ],
     products: {
       title: "Three sizes, by how much you have to say",
@@ -135,33 +127,29 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       items: [
         {
           name: "Landing page",
-          price: "₪1,500",
           fit: "One clear service to offer, or a paid campaign that needs a single destination.",
-          includes: "Up to 3 parts in one scroll, no navigation menu, fixed WhatsApp button. First version within 5 working days.",
+          includes: "Up to 3 parts in one scroll, no navigation menu, fixed WhatsApp button.",
           forWho: "Solo professionals, trainers, beauticians, and anyone running paid campaigns.",
           notFor: "Several services that need explaining in depth? 'Website' works better.",
         },
         {
           name: "Website",
-          price: "₪2,400",
           fit: "You explain a method or process, and people ask the same questions before they buy.",
-          includes: "Homepage + 2–4 pages, each ranking separately on Google. Shared portfolio gallery up to 10 projects, plus two months of Shani Care included. First version 8–10 working days.",
+          includes: "Homepage + 2–4 pages, each ranking separately on Google, and a shared portfolio gallery of up to 10 projects.",
           forWho: "Coaches, therapists, consultants, and architects/designers with a small-to-mid portfolio.",
           notFor: "Selling products with a cart? That is a shop. Large portfolio? 'Portfolio site' fits better.",
         },
         {
           name: "Portfolio site",
-          price: "₪3,700",
           fit: "A large portfolio (roughly 15 projects and up), where each piece deserves its own visibility on Google.",
-          includes: "Everything in 'Website', plus up to 10 projects, each with its own ranking page. Extra page: ₪250. First version 13–15 working days.",
+          includes: "Everything in 'Website', plus up to 10 projects, each with its own ranking page.",
           forWho: "Architects, design studios, contractors, photographers — every project deserves its own page.",
           notFor: "Up to 10 projects and not all need separate ranking? 'Website' does the job for less, and a single page can always be added later.",
         },
         {
           name: "Second language version",
-          price: "₪600",
           fit: "You have clients abroad, or you want to appear in English searches too.",
-          includes: "Full translation, a mirrored layout, and a language switch at the top of the page. Same price for every site type.",
+          includes: "Full translation, a mirrored layout, and a language switch at the top of the page.",
           forWho: "Personal brands, consultants working with clients abroad, tourism, and anyone applying internationally.",
         },
       ],
@@ -176,7 +164,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqItems: [
       {
         q: "How much does a business website cost?",
-        a: "Full prices appear next to each package and on the pricing page: from ₪1,500 for a landing page to ₪3,700 for a portfolio site. Fill in the short free audit and I will come back within one business day with directions and a proposal.",
+        a: "The price depends on the type of site and its scope. Fill in the short free fit check and I will come back within one business day with directions and a proposal.",
       },
       {
         q: "Why build the site in code?",
@@ -184,7 +172,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "How long does a website take?",
-        a: "The timeline for each package is shown above. Before work begins, we agree on the project schedule and the materials I will need from you.",
+        a: "It depends on the type of site and the materials you already have. Before work begins, we agree on the schedule and what I need from you.",
       },
       {
         q: "Will the site connect to WhatsApp, automations and AI?",
@@ -196,15 +184,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       },
       {
         q: "Can I edit the site myself later?",
-        a: "It depends what you want to edit. Ongoing content updates can run through Shani Care, the monthly plan, or I can build a simple admin for content that changes often. Deeper design changes are best left to me, to keep quality high.",
+        a: "It depends what you want to edit. Ongoing content updates can come to me, or I can build a simple admin for content that changes often. Deeper design changes are best left to me, to keep quality high.",
       },
       {
         q: "What about domain and hosting?",
-        a: "The domain is registered in your name and on your card, on average ₪60 to ₪90 a year depending on the extension and provider, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost. With Shani Care I handle updates, backups and monitoring, and you are never dependent on me.",
+        a: "The domain is registered in your name and on your card, and I guide you through the purchase and wire everything up. The sites are built in code, so they have no monthly hosting cost, and you are never dependent on me.",
       },
       {
         q: "Will the site be in Hebrew and English?",
-        a: "The site is built Hebrew-first with full RTL. An English version is an add-on you can include at build time or add later, priced in the proposal by content scope.",
+        a: "The site is built Hebrew-first with full RTL. An English version is an add-on you can include at build time or add later.",
       },
     ],
     bridge: { text: "Want to see real examples before you start?", linkLabel: "See the portfolio", href: "/work" },
@@ -213,7 +201,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "We'll talk about your business and your goals, and I'll build a site that positions you right and brings enquiries. No commitment on the first call.",
     closingCta: "Chat on WhatsApp",
     closingWaMsg: "Hi Shani, I'd like to build a website for my business",
-    auditLine: "Or start with a free audit",
+    auditLine: "Or start with a free fit check",
   },
 };
 

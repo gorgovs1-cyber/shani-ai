@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>בדיקת התאמה חינם לעסק · Shani AI Creator</title>
-<meta name="description" content="אבחון AI, אוטומציה ושיווק לעסק, חינם. 2–3 דקות שיחסכו לנו שיחה שלמה: איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו.">
+<meta name="description" content="בדיקת התאמה חינם לעסק: אתר, אוטומציה, צ׳אטבוט ושיווק. 2–3 דקות שיחסכו לנו שיחה שלמה: איפה בורח לכם הזמן, איפה יש פוטנציאל ליותר לקוחות, ומה הכי נכון לבנות לכם עכשיו.">
 <link rel="canonical" href="https://shani-ai.com/audit">
 <link rel="icon" href="/icon" type="image/png">
 <link rel="apple-touch-icon" href="/apple-icon">
@@ -209,7 +209,7 @@
 
   <p id="form-status" role="status" aria-live="polite"></p>
   <a id="fallback-link" hidden target="_blank" rel="noopener noreferrer">המשיכו לשליחה בוואטסאפ</a>
-  <button type="button" class="submit" onclick="send()">שלחו את האבחון</button>
+  <button type="button" class="submit" onclick="send()">שלחו את בדיקת ההתאמה</button>
   <p class="note">2–3 דקות שיחסכו לנו שיחה שלמה. אחזור אליכם תוך יום עסקים עם כמה כיוונים ראשוניים, ונקבע שיחה קצרה.</p>
   </form>
   <div id="thanks" style="display:none;text-align:center;padding:50px 14px">
@@ -237,10 +237,10 @@
         </g>
       </svg>
     </div>
-    <h2 style="color:#F2622E;font-size:28px;margin:12px 0">תודה! קיבלתי את האבחון</h2>
+    <h2 style="color:#F2622E;font-size:28px;margin:12px 0">תודה! קיבלתי את בדיקת ההתאמה</h2>
     <p style="color:#a49a90;font-size:16px;line-height:1.7">קיבלתי הכל. אני עוברת על העסק שלכם ואחזור תוך יום עסקים עם שניים-שלושה כיוונים ששווה לבדוק, ושאלה או שתיים. הצעת מחיר מסודרת מגיעה רק אחרי שנדבר, ככה היא באמת מותאמת.<br><br>רוצים לדבר עכשיו? <a href="https://wa.me/972504744815" style="color:#F2622E">וואטסאפ ישיר ←</a></p>
   </div>
-  <div class="foot">© Shani AI Creator · אבחון עסקי חכם</div>
+  <div class="foot">© Shani AI Creator · בדיקת התאמה חינם</div>
   <nav class="foot-links" aria-label="מידע והגדרות">
     <a href="/privacy">מדיניות פרטיות</a>
     <a href="/terms">תקנון</a>
@@ -367,7 +367,7 @@
   }
   function done(){ fireLead(); document.getElementById('f').style.display='none'; document.getElementById('thanks').style.display='block'; window.scrollTo(0,0); }
   function waFallback(d){
-    var L=["היי שני! מילאתי את האבחון",""];
+    var L=["היי שני! מילאתי את בדיקת ההתאמה",""];
     for(var k in d) L.push("• "+k+": "+d[k]);
     var link=document.getElementById("fallback-link");
     link.href="https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n"));
@@ -401,7 +401,7 @@
     var d=collect();
     sending=true;
     var button=document.querySelector(".submit");button.disabled=true;
-    document.getElementById("form-status").textContent="שולחים את האבחון…";
+    document.getElementById("form-status").textContent="שולחים את בדיקת ההתאמה…";
     if(WEBHOOK_URL){
       fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})
         .then(function(r){ if(r.ok){done();} else {waFallback(d);} })

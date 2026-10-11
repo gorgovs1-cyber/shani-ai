@@ -10,6 +10,8 @@ const nextConfig = {
     return [
       // Retired URLs that Google still has indexed: send them on permanently (308).
       { source: '/ai-consulting', destination: '/audit', permanent: true },
+      // the price list page was retired; its traffic goes to the services section
+      { source: '/pricing', destination: '/#build', permanent: true },
       { source: '/blog', destination: '/guides', permanent: true },
       { source: '/blog/:slug*', destination: '/guides', permanent: true },
       // one address per screening page
