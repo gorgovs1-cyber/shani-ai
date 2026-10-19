@@ -279,8 +279,16 @@ h1{text-wrap:balance}
   EN["דקה אחת, ועוד שתיים אם תרצו לספר עוד. אחזור אליכם תוך יום עסקים עם כמה כיוונים ראשוניים, ונקבע שיחה קצרה."]="One minute, plus two more if you want to tell me more. I will get back to you within a business day with a few first directions, and we will set up a short call.";
   EN["→ לאתר הראשי"]="← Back to the site";
   function T(x){return (LANG==='en'&&EN[x])?EN[x]:x;}
-  // ▼▼▼ הדביקי כאן את כתובת ה-Webhook מ-n8n (Production URL). אם ריק, נשלח לוואטסאפ. ▼▼▼
-  var WEBHOOK_URL = "https://shanicreates.app.n8n.cloud/webhook/audit-lead";
+  // אותו דף ל-/audit ול-/en/audit. אם השליחה נכשלת, נשאר הגיבוי לוואטסאפ.
+  var WEBHOOK_URL = "/api/audit-lead";
+  function fallbackUuid(){
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c){
+      var r = Math.random() * 16 | 0;
+      var v = c === "x" ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  var submissionId = (window.crypto && typeof crypto.randomUUID === "function") ? crypto.randomUUID() : fallbackUuid();
   var WA = "972504744815";
 
   // ▼▼▼ מדידה: הדביקי כאן את המזהים. ריק = לא נטען כלום, הדף עובד רגיל. ▼▼▼
@@ -397,7 +405,7 @@ h1{text-wrap:balance}
   function done(){ fireLead(); document.getElementById('f').style.display='none'; document.getElementById('thanks').style.display='block'; window.scrollTo(0,0); }
   function waFallback(d){
     var L=["היי שני! מילאתי את בדיקת ההתאמה",""];
-    for(var k in d) L.push("• "+k+": "+d[k]);
+    for(var k in d) if(k!=="submissionId") L.push("• "+k+": "+d[k]);
     var link=document.getElementById("fallback-link");
     link.href="https://wa.me/"+WA+"?text="+encodeURIComponent(L.join("\n"));
     link.hidden=false;
@@ -431,6 +439,7 @@ h1{text-wrap:balance}
     var consent=document.querySelector('[data-multi="הסכמה"] input');
     if(!consent.checked){document.getElementById("form-status").textContent=T("כדי שאוכל לחזור אליכם, סמנו את אישור החזרה בנוגע לפנייה.");consent.focus();return;}
     var d=collect();
+    d.submissionId = submissionId;
     sending=true;
     var button=document.querySelector(".submit");button.disabled=true;
     document.getElementById("form-status").textContent=T("שולחים את בדיקת ההתאמה…");
