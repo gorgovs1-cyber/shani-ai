@@ -1,3 +1,5 @@
+import { supabaseAdmin } from '@/lib/analytics/supabase';
+
 /**
  * ליד מטופס בדיקת ההתאמה (/audit וגם /en/audit, אותו דף).
  * מחליף את וורקפלואו n8n: שומר את כל התשובות, שולח התראה ותודה.
@@ -167,21 +169,33 @@ export async function sendThankYouEmail(lead: AuditLead): Promise<SendResult> {
   });
 }
 
+const SHEET_URL_KEY = 'leads_sheet_webhook_url';
+const SHEET_SECRET_KEY = 'leads_sheet_webhook_secret';
+const CONFIG_TTL_MS = 5 * 60 * 1000;
+
+type SheetWebhook = { url: string; secret: string };
+
+/** תוצאת הקריאה ל-app_config, לכל מופע של השרת. לא כולל ערכים שבאו מ-env. */
+let configCache: { expiresAt: number; value: SheetWebhook } | null = null;
+
 /**
- * גיליון הלידים דרך אפליקציית Apps Script. כישלון כאן לא מפיל את הליד.
- * הכתובת ב-LEADS_SHEET_WEBHOOK_URL. אם אין — מדלגים.
+ * גיליון הלידים דרך אפליקציית Apps Script. כישלון או חוסר הגדרה לא מפילים את הליד.
+ * כתובת: LEADS_SHEET_WEBHOOK_URL, ואם אין — שורה leads_sheet_webhook_url ב-app_config.
+ * סוד: LEADS_SHEET_WEBHOOK_SECRET, ואם אין — leads_sheet_webhook_secret.
  */
 export async function postLeadSheet(lead: AuditLead): Promise<boolean> {
-  const url = process.env.LEADS_SHEET_WEBHOOK_URL;
-  if (!url) return false;
-  const secret = (process.env.LEADS_SHEET_WEBHOOK_SECRET || '').trim();
-  const payload = {
-    submissionId: lead.submissionId,
-    answers: lead.answers,
-    notes: lead.notes,
-    ...(secret ? { secret } : {}),
-  };
   try {
+    const { url, secret } = await resolveSheetWebhook();
+    if (!url) {
+      console.warn('[audit-lead] sheet webhook skipped: no leads_sheet_webhook_url');
+      return false;
+    }
+    const payload = {
+      submissionId: lead.submissionId,
+      answers: lead.answers,
+      notes: lead.notes,
+      ...(secret ? { secret } : {}),
+    };
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 20000);
     const res = await postFollowingAppsScriptRedirect(url, payload, ctrl.signal);
@@ -203,6 +217,47 @@ export async function postLeadSheet(lead: AuditLead): Promise<boolean> {
     console.error('[audit-lead] sheet webhook', err instanceof Error ? err.message : err);
     return false;
   }
+}
+
+async function resolveSheetWebhook(): Promise<SheetWebhook> {
+  const envUrl = httpsUrl((process.env.LEADS_SHEET_WEBHOOK_URL || '').trim());
+  const envSecret = (process.env.LEADS_SHEET_WEBHOOK_SECRET || '').trim();
+  if (envUrl && envSecret) return { url: envUrl, secret: envSecret };
+
+  let stored: SheetWebhook = { url: '', secret: '' };
+  try {
+    stored = await readSheetConfig();
+  } catch (err) {
+    console.error('[audit-lead] app_config read failed', err instanceof Error ? err.message : err);
+  }
+  return {
+    url: envUrl || httpsUrl(stored.url),
+    secret: envSecret || stored.secret,
+  };
+}
+
+function httpsUrl(url: string): string {
+  return /^https:\/\//i.test(url) ? url : '';
+}
+
+async function readSheetConfig(): Promise<SheetWebhook> {
+  const now = Date.now();
+  if (configCache && configCache.expiresAt > now) return configCache.value;
+
+  const { data, error } = await supabaseAdmin()
+    .from('app_config')
+    .select('key, value')
+    .in('key', [SHEET_URL_KEY, SHEET_SECRET_KEY]);
+  if (error) throw new Error(error.message);
+
+  const rows = (data ?? []) as { key: string; value: string | null }[];
+  const map = new Map(rows.map((row) => [row.key, String(row.value ?? '').trim()]));
+  const value = {
+    url: map.get(SHEET_URL_KEY) || '',
+    secret: map.get(SHEET_SECRET_KEY) || '',
+  };
+  configCache = { expiresAt: now + CONFIG_TTL_MS, value };
+  return value;
 }
 
 async function sendResend(args: {

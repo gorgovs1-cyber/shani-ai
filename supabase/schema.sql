@@ -108,3 +108,19 @@ comment on table public.leads is
 
 alter table public.leads enable row level security;
 revoke all on table public.leads from public, anon, authenticated;
+
+-- Server-only key/value settings. Same statement as
+-- supabase/migrations/20261019140700_create_app_config.sql.
+-- The audit route reads leads_sheet_webhook_url and leads_sheet_webhook_secret
+-- from here when the matching env vars are unset.
+create table if not exists public.app_config (
+  key        text primary key,
+  value      text,
+  updated_at timestamptz not null default now()
+);
+
+comment on table public.app_config is
+  'הגדרות שרת. גישה רק עם מפתח השירות. כתובת גיליון הלידים: leads_sheet_webhook_url.';
+
+alter table public.app_config enable row level security;
+revoke all on table public.app_config from public, anon, authenticated;

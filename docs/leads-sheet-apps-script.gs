@@ -9,12 +9,20 @@
  *    Execute as: Me
  *    Who has access: Anyone
  * 5. מאשרים הרשאות. מעתיקים את כתובת ה-Web app.
- * 6. בוורסל, משתנה LEADS_SHEET_WEBHOOK_URL = הכתובת שהועתקה.
+ * 6. ב-Supabase, SQL Editor, מריצים:
+ *    insert into public.app_config (key, value) values
+ *      ('leads_sheet_webhook_url', 'הכתובת שהועתקה');
+ *    אם המפתח כבר קיים:
+ *    update public.app_config set value = 'הכתובת', updated_at = now()
+ *      where key = 'leads_sheet_webhook_url';
+ *    השרת קורא את זה לבד. אין צורך במשתנה חדש בוורסל.
+ *    LEADS_SHEET_WEBHOOK_URL בוורסל, אם הוא קיים, גובר על הטבלה.
  *
  * אופציונלי, כדי שרק האתר יוכל לכתוב:
  * Project Settings → Script properties → LEADS_WEBHOOK_SECRET
- * ואותו ערך גם ב-LEADS_SHEET_WEBHOOK_SECRET בוורסל.
- * אם המאפיין ריק, הכתובת עצמה היא המפתח. לא לשתף אותה.
+ * ואותו ערך בשורה leads_sheet_webhook_secret בטבלה app_config
+ * (או ב-LEADS_SHEET_WEBHOOK_SECRET בוורסל, אם הוא קיים הוא גובר).
+ * אם אין סיסמה, הכתובת עצמה היא המפתח. לא לשתף אותה.
  *
  * עמודות כמו ב-n8n. מזהה L-001 עולה לפי המספר הגבוה שכבר קיים בגיליון "לידים".
  * נוסחאות "שיחה אחרונה" / "המשימה הבאה" / "תאריך יעד" מניחות שמזהה הליד בעמודה A.
