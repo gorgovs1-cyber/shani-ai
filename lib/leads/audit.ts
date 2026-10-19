@@ -116,7 +116,7 @@ export function alertSubject(name: string): string {
   return `🔥 ליד חדש מהאבחון: ${oneLine(name)}`;
 }
 
-/** גוף ההתראה, מילה במילה כמו במייל של n8n. */
+/** גוף ההתראה כמו במייל של n8n. השורה האחרונה מפנה ל-Grok Bot במקום להצעה האוטומטית. */
 export function alertText(a: Record<string, string>): string {
   return [
     'נכנס ליד חדש מהאבחון!',
@@ -134,7 +134,7 @@ export function alertText(a: Record<string, string>): string {
     `בעיה מרכזית: ${oneLine(a['הבעיה הכי חשובה'])}`,
     `דחיפות: ${oneLine(a['דחיפות'])}`,
     '',
-    'התכנית המלאה תגיע במייל נפרד עוד רגע.',
+    'הליד נשמר ב-Supabase. אפשר לבקש מ-Grok Bot להכין תדריך והצעה.',
   ].join('\n');
 }
 
