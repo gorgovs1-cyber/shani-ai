@@ -54,19 +54,6 @@ export const dict = {
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
     // ההמלצות הפיקטיביות שהיו כאן נמחקו — הן לא רונדרו בשום מקום.
     //   מה שמוצג בפועל הוא components/TestimonialsSection.tsx עם לקוחות אמיתיים.
-    roi: {
-      label: 'כמה זמן אתם מבזבזים?',
-      // היה כאן ערבוב רבים ויחיד באותה שורה ("חשבו... שלך"), עכשיו הכל ברבים.
-      title: 'חשבו כמה שווה הזמן שלכם',
-      hoursLabel: 'שעות עבודה ידנית בשבוע',
-      hoursUnit: 'שעות',
-      rateLabel: 'שווי שעת העבודה שלכם (₪)',
-      resultPre: 'שווי הזמן המושקע היום',
-      perMonth: 'בחודש',
-      perYearTpl: '({v} ₪ בשנה)',
-      cta: 'בואו נחסוך את הזמן הזה',
-      disclaimer: 'החישוב מראה כמה שווה הזמן שאתם משקיעים היום בעבודה הידנית. אוטומציה לא מבטלת את כולו, אבל את רוב החלק החוזר על עצמו כן.'
-    },
     a11yWidget: {
       open: 'פתח תפריט נגישות',
       panel: 'תפריט נגישות',
@@ -132,18 +119,6 @@ export const dict = {
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
     // ההמלצות הפיקטיביות שהיו כאן נמחקו — הן לא רונדרו בשום מקום.
     //   מה שמוצג בפועל הוא components/TestimonialsSection.tsx עם לקוחות אמיתיים.
-    roi: {
-      label: 'How much time are you losing?',
-      title: 'See what your time is worth',
-      hoursLabel: 'Manual work hours per week',
-      hoursUnit: 'hrs',
-      rateLabel: 'What an hour of your time is worth (₪)',
-      resultPre: 'What that time costs today',
-      perMonth: 'per month',
-      perYearTpl: '(₪{v} per year)',
-      cta: "Let's save that time",
-      disclaimer: "This shows what the time you currently spend on manual work is worth. Automation won't remove all of it, but it will remove most of the repetitive part."
-    },
     a11yWidget: {
       open: 'Open accessibility menu',
       panel: 'Accessibility menu',

@@ -12,8 +12,8 @@ const MONO = "'JetBrains Mono', var(--font-mono), monospace";
  * RTL מלא: הזרימה מימין לשמאל בעברית, משמאל לימין באנגלית.
  */
 
-const MESSAGES_HE = ["אפשר מחיר לאירוע בשישי?", "יש תור פנוי השבוע?", "כמה עולה אצלכם?"];
-const MESSAGES_EN = ["Do you have a slot this week?", "How much is an event on Friday?", "What are your prices?"];
+const MESSAGES_HE = ["אפשר לקבוע פגישה בשישי?", "יש תור פנוי השבוע?", "אתם עובדים גם בערב?"];
+const MESSAGES_EN = ["Do you have a slot this week?", "Can I book a meeting on Friday?", "Are you open in the evening?"];
 
 const STEPS_HE = [
   { t: "פנייה נכנסת", d: "וואטסאפ, טופס או טלפון" },
