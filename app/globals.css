@@ -784,8 +784,9 @@ body p, body li, body dd { font-weight:400 !important; }
 .roi-cta { min-height:56px; display:flex !important; align-items:center; justify-content:center; padding-block:0 !important; }
 
 /* Hero copy: one alignment edge on desktop (start side), centered only when stacked on mobile */
-.hero-copy { text-align:start; }
-@media (max-width: 768px) { .hero-copy { text-align:center; } }
+.hero-copy { text-align:center; }
+.hero-copy > p { margin-inline:auto !important; }
+.hero-copy .hero-cta-row, .hero-copy .hero-meta-row { justify-content:center !important; }
 
 /* Services: 4 + 3 on desktop, both rows centered; 2 per row on tablet; one column on phones */
 .svc-tiles { display:flex !important; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:14px !important; }
