@@ -4,9 +4,7 @@ import { Inter, Rubik, Playfair_Display, JetBrains_Mono } from "next/font/google
 import "./globals.css";
 import Nav from "@/components/Nav";
 import LenisProvider from "@/components/LenisProvider";
-import CustomCursor from "@/components/CustomCursor";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import SplashScreen from "@/components/SplashScreen";
 import SkipLink from "@/components/SkipLink";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageTransition from "@/components/PageTransition";
@@ -27,12 +25,12 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 const heMeta: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
-  title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
-  description: "Shani AI Creator בונה לעסקים בישראל אתרים, אוטומציות, צ׳אטבוט ושיווק, כך שהכול עובד יחד, עם שירות 24/7. מתחילים בבדיקת התאמה חינם.",
-  keywords: ["AI", "אוטומציה", "אתרים", "Next.js", "ישראל", "Shani AI Creator", "פיתוח אתרים", "AI ישראל", "בניית אתרים"],
+  title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
+  description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. מתחילים בבדיקת התאמה חינם.",
+  keywords: ["צ׳אטבוט לעסק", "סוכן AI", "CRM", "אוטומציה", "בניית אתרים", "ישראל", "ארה״ב", "Shani AI Creator"],
   openGraph: {
-    title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
-    description: "אתרים, אוטומציות, צ׳אטבוט ושיווק לעסקים בישראל, עם שירות 24/7.",
+    title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
+    description: "צ׳אטבוטים וסוכני AI, CRM מודולרי, אתרים ואוטומציות לעסקים בישראל ובארה״ב.",
     siteName: "Shani AI Creator",
     type: "website",
     locale: "he_IL",
@@ -41,8 +39,8 @@ const heMeta: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shani AI Creator | אתר, שיווק ומערכות לעסק",
-    description: "אתר, שיווק ואוטומציות לעסקים בישראל. בדיקת התאמה חינם.",
+    title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
+    description: "צ׳אטבוטים וסוכני AI, CRM, אתרים ואוטומציות לעסקים בישראל ובארה״ב. בדיקת התאמה חינם.",
     images: ["/og.jpg"],
   },
   robots: {
@@ -56,8 +54,8 @@ const heMeta: Metadata = {
 
 export function generateMetadata(): Metadata {
   return localizedMeta("/", heMeta, {
-    title: "Shani AI Creator | Websites, marketing and AI systems",
-    description: "Websites, automations, a Hebrew chatbot and marketing for businesses in Israel, with 24/7 service. Start with a free fit check.",
+    title: "AI chatbots, agents, CRM and websites | Shani Gorgov",
+    description: "AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US. Start with a free fit check.",
   });
 }
 
@@ -114,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: "Shani AI Creator",
               alternateName: "SHANI AI",
               description:
-                "בניית אתרים, אוטומציות ופתרונות AI לעסקים בישראל, בהתאמה לדרך שבה העסק עובד.",
+                "צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים ואוטומציות לעסקים בישראל ובארה״ב.",
               url: "https://shani-ai.com",
               telephone: "+972-50-4744815",
               email: "shani.creates.ai@gmail.com",
@@ -129,6 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 { "@type": "City", name: "באר שבע" },
                 { "@type": "City", name: "השרון" },
                 { "@type": "Country", name: "ישראל" },
+                { "@type": "Country", name: "United States" },
               ],
               address: {
                 "@type": "PostalAddress",
@@ -148,17 +147,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <LanguageProvider initialLang={lang}>
           <SkipLink />
-          <SplashScreen />
           <ScrollReveal />
-          <div id="cursor-dot" aria-hidden="true" />
-          <div id="cursor-ring" aria-hidden="true" />
           <LenisProvider>
             <Nav />
             <main id="main-content">
               <PageTransition>{children}</PageTransition>
             </main>
           </LenisProvider>
-          <CustomCursor />
           <FloatingWhatsApp />
           {/* Cookie consent banner — gates GA4 + Meta Pixel below */}
           <CookieConsent />

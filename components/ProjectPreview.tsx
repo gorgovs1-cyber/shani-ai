@@ -1,16 +1,26 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-export default function ProjectPreview({image,video,title,he}:{image:string;video:string;title:string;he:boolean}) {
+export default function ProjectPreview({image,video,title,he,playVideo=true}:{image:string;video:string;title:string;he:boolean;playVideo?:boolean}) {
  const [failed,setFailed]=useState(false);
+ const [allowVideo,setAllowVideo]=useState(false);
  const player=useRef<HTMLVideoElement>(null);
  const frame=useRef<HTMLDivElement>(null);
  useEffect(()=>{
-  const node=player.current,box=frame.current;if(!node||!box)return;
+  if(!playVideo) return;
+  const narrow=matchMedia("(max-width: 767px)");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)");
+  const sync=()=>setAllowVideo(!narrow.matches&&!reduce.matches);
+  sync();
+  narrow.addEventListener("change",sync);
+  reduce.addEventListener("change",sync);
+  return()=>{narrow.removeEventListener("change",sync);reduce.removeEventListener("change",sync);};
+ },[playVideo]);
+ useEffect(()=>{
+  const node=player.current,box=frame.current;if(!node||!box||!allowVideo)return;
   node.defaultMuted=true;node.muted=true;
-  const media=matchMedia("(prefers-reduced-motion: reduce)");
   let visible=false;
   const update=()=>{
-   if(visible&&!document.hidden&&!media.matches&&!document.documentElement.classList.contains("a11y-no-anim")) {
+   if(visible&&!document.hidden&&!document.documentElement.classList.contains("a11y-no-anim")) {
     node.play().catch(()=>{});
    } else node.pause();
   };
@@ -18,10 +28,11 @@ export default function ProjectPreview({image,video,title,he}:{image:string;vide
   observer.observe(box);
   const prefs=new MutationObserver(update);prefs.observe(document.documentElement,{attributes:true,attributeFilter:["class"]});
   const resume=()=>update();
-  media.addEventListener("change",update);document.addEventListener("visibilitychange",update);window.addEventListener("pageshow",resume);node.addEventListener("canplay",resume);
-  return()=>{observer.disconnect();prefs.disconnect();media.removeEventListener("change",update);document.removeEventListener("visibilitychange",update);window.removeEventListener("pageshow",resume);node.removeEventListener("canplay",resume);node.pause();};
- },[video]);
+  document.addEventListener("visibilitychange",update);window.addEventListener("pageshow",resume);node.addEventListener("canplay",resume);
+  return()=>{observer.disconnect();prefs.disconnect();document.removeEventListener("visibilitychange",update);window.removeEventListener("pageshow",resume);node.removeEventListener("canplay",resume);node.pause();};
+ },[video,allowVideo]);
+ const poster=<img src={image} alt={he?`צילום אתר ${title}`:`Screenshot of ${title}`} loading="lazy" />;
  return <div className="project-square-image" ref={frame}>
- {failed?<img src={image} alt={he?`צילום אתר ${title}`:`Screenshot of ${title}`} loading="lazy" />:<video ref={player} src={video} poster={image} autoPlay muted playsInline loop preload="metadata" aria-label={he?`תצוגת גלילה באתר ${title}`:`Scrolling preview of ${title}`} onError={()=>setFailed(true)} />}
+ {!allowVideo||failed?poster:<video ref={player} src={video} poster={image} muted playsInline loop preload="none" aria-label={he?`תצוגת גלילה באתר ${title}`:`Scrolling preview of ${title}`} onError={()=>setFailed(true)} />}
  </div>;
 }

@@ -13,6 +13,8 @@ const nextConfig = {
       // the price list page was retired; its traffic goes to the services section
       { source: '/pricing', destination: '/#build', permanent: true },
       { source: '/en/pricing', destination: '/en#build', permanent: true },
+      { source: '/automations', destination: '/chatbots', permanent: true },
+      { source: '/en/automations', destination: '/en/chatbots', permanent: true },
       { source: '/en/ai-consulting', destination: '/en/audit', permanent: true },
       { source: '/blog', destination: '/guides', permanent: true },
       { source: '/blog/:slug*', destination: '/guides', permanent: true },

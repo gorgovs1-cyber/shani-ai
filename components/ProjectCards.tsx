@@ -12,7 +12,7 @@ const previews = [
  {slug:"my-money",capture:"mymoney",he:"אפליקציה לניהול הכנסות והוצאות, שנמצאת עדיין בפיתוח.",en:"An income and expense management app, still in development."},
  {slug:"ai-lead-machine",capture:"audit",he:"השאלון מרכז את פרטי העסק והצרכים שלכם, והאוטומציה מארגנת את המידע כדי שאוכל לעבור עליו ולחזור אליכם.",en:"The questionnaire gathers business needs and the automation organizes the information for my personal follow-up."}
 ];
-export default function ProjectCards({interactive=true,showFilm=false}:{interactive?:boolean;showFilm?:boolean}){
+export default function ProjectCards({interactive=true,showFilm=false,playVideo=true}:{interactive?:boolean;showFilm?:boolean;playVideo?:boolean}){
  const {lang}=useLang(); const L = useLang().href; const he=lang==="he";
  return <div className="project-square-grid" aria-hidden={interactive?undefined:true}>{showFilm&&<article className="project-square-card" key="small-lights" dir={he?"rtl":"ltr"}>
 <a className="project-square-image" href="/work/small-lights" tabIndex={-1} aria-hidden="true"><img src="/small-lights/card.jpg" alt="" loading="lazy" width={800} height={800} /></a>
@@ -21,7 +21,7 @@ export default function ProjectCards({interactive=true,showFilm=false}:{interact
  const project=projects.find(p=>p.slug===item.slug)!;
  const title=he&&item.slug==="lilach-hazan"?"לילך חזן":(!he&&project.titleEn)||project.title;
  return <article className="project-square-card" key={item.slug} dir={he?"rtl":"ltr"}>
- {item.capture==="mymoney"?<div className="project-square-image"><img src="/project-previews/mymoney-site.webp" alt={interactive?(he?"My Money, בעבודה":"My Money, in progress"):""} loading="lazy" /></div>:<ProjectPreview image={`/project-previews/${item.capture}-site.webp`} video={`/project-previews/${item.capture}-scroll.mp4`} title={title} he={he} />}
+ {item.capture==="mymoney"?<div className="project-square-image"><img src="/project-previews/mymoney-site.webp" alt={interactive?(he?"My Money, בעבודה":"My Money, in progress"):""} loading="lazy" /></div>:<ProjectPreview image={`/project-previews/${item.capture}-site.webp`} video={`/project-previews/${item.capture}-scroll.mp4`} title={title} he={he} playVideo={playVideo} />}
 <div className="project-square-copy"><h3>{item.capture==="audit"?(he?"השאלון והאוטומציה":"Questionnaire and automation"):title}</h3>{(item.capture==="mymoney"||item.capture==="beamer")&&<span className="project-progress">{he?"בעבודה":"In progress"}</span>}<p>{he?item.he:item.en}</p><a href={item.capture==="audit"?L("/audit"):project.liveUrl} target={item.capture==="audit"?undefined:"_blank"} rel={item.capture==="audit"?undefined:"noopener noreferrer"} tabIndex={interactive?undefined:-1} className="project-site-button" aria-label={item.capture==="audit"?(he?"למילוי שאלון האבחון":"Open the assessment"):(he?`כניסה לאתר ${title}, בחלון חדש`:`Visit ${title}, opens a new tab`)}>{item.capture==="audit"?(he?"לשאלון":"View questionnaire"):(he?"כניסה לאתר":"Visit website")}</a></div>
  </article>;
  })}</div>;

@@ -176,7 +176,7 @@ export default function SmallLightsPage() {
           <h2>איפה צוות סוכנים כזה יכול לעבוד אצלכם?</h2>
           <p>בבדיקת ההתאמה החינמית אתם מספרים לי בכמה דקות איך העבודה שלכם נראית היום, ואני חוזרת אליכם עם כיוונים.</p>
           <a className="sl-btn sl-btn-primary" href="/audit" data-sl="audit">לבדיקת התאמה חינם</a>
-          <p className="sl-more"><a href="/automations">אוטומציות לעסק</a> <span aria-hidden="true">·</span> <a href="/work">לכל העבודות</a></p>
+          <p className="sl-more"><a href="/chatbots">צ׳אטבוטים וסוכני AI</a> <span aria-hidden="true">·</span> <a href="/work">לכל העבודות</a></p>
         </aside>
       </article>
       <Footer />

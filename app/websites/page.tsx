@@ -56,15 +56,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "ואחרי שהאתר באוויר",
     also: [
-      { label: "אוטומציות", href: "/automations", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
-      { label: "פתרונות AI וסוכנים", href: "/automations#solutions", desc: "כשהאתר כבר מביא פניות, סוכן AI יכול להבין את השיחה ולקדם אותה לצעד הבא." },
+      { label: "אוטומציות", href: "/chatbots", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
+      { label: "צ׳אטבוטים וסוכני AI", href: "/chatbots", desc: "כשהאתר כבר מביא פניות, סוכן AI יכול להבין את השיחה ולקדם אותה לצעד הבא." },
     ],
     sections: [],
     faqTitle: "שאלות על אתרים",
     faqItems: [
       {
-        q: "כמה עולה לבנות אתר לעסק?",
-        a: "המחיר תלוי בסוג האתר ובהיקף שלו. ממלאים בדיקת התאמה קצרה בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
+        q: "איך מתחילים לבנות אתר לעסק?",
+        a: "ממלאים בדיקת התאמה קצרה בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
       },
       {
         q: "למה אני בונה אתרים בקוד?",
@@ -143,7 +143,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
           name: "Portfolio site",
           fit: "A large portfolio (roughly 15 projects and up), where each piece deserves its own visibility on Google.",
           includes: "Everything in 'Website', plus up to 10 projects, each with its own ranking page.",
-          forWho: "Architects, design studios, contractors, photographers — every project deserves its own page.",
+          forWho: "Architects, design studios, contractors, photographers: every project deserves its own page.",
           notFor: "Up to 10 projects and not all need separate ranking? 'Website' does the job for less, and a single page can always be added later.",
         },
         {
@@ -156,15 +156,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "And once the site is live",
     also: [
-      { label: "Automations", href: "/automations", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
-      { label: "AI solutions and agents", href: "/automations#solutions", desc: "Once the site brings enquiries, an AI agent can understand the conversation and move it to the next step." },
+      { label: "Automations", href: "/chatbots", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
+      { label: "AI chatbots and agents", href: "/chatbots", desc: "Once the site brings enquiries, an AI agent can understand the conversation and move it to the next step." },
     ],
     sections: [],
     faqTitle: "Website FAQ",
     faqItems: [
       {
-        q: "How much does a business website cost?",
-        a: "The price depends on the type of site and its scope. Fill in the short free fit check and I will come back within one business day with directions and a proposal.",
+        q: "How do we start building a business website?",
+        a: "Fill in the short free fit check and I will come back within one business day with directions and a proposal.",
       },
       {
         q: "Why build the site in code?",

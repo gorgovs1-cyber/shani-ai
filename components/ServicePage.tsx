@@ -60,7 +60,7 @@ export default function ServicePage({
 }: {
   copyByLang: Record<"he" | "en", ServiceCopy>;
   /** Optional block rendered just above the closing CTA — used for page-specific
-      widgets (e.g. the ROI calculator on /automations) without forking this template. */
+      widgets (e.g. the live demo on /chatbots) without forking this template. */
   beforeClosing?: React.ReactNode;
 }) {
   const { lang } = useLang(); const L = useLang().href;
