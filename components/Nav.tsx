@@ -113,14 +113,11 @@ export default function Nav() {
   const anchor = (hash: string) => (isHome ? hash : L(`/${hash}`));
 
   const navLinks = [
+    { label: t.navChat,        href: anchor("#chat") },
+    { label: t.navCrm,         href: anchor("#crm") },
     { label: t.navWebsites,    href: L("/websites") },
     { label: t.navAutomations, href: L("/automations") },
-    { label: t.navAiShort,     href: L("/automations#solutions") },
-    { label: t.navChat,        href: anchor("#chat") },
     { label: t.navWork,        href: L("/work") },
-    { label: t.navGuides,      href: L("/guides") },
-    { label: t.navAbout,       href: anchor("#about") },
-    { label: t.navContact,     href: anchor("#contact") },
   ];
 
   // Anchor links are not pages, so only route links can be "current".
