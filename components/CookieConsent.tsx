@@ -125,7 +125,7 @@ const COPY = {
     kicker: "עוגיות",
     title: "עוגיות באתר",
     body:
-      "רק באישור שלכם נטען Google Analytics ו-Meta Pixel למדידה ופרסום, עם עוגיות צד שלישי והעברת מידע מחוץ לישראל, ואפשר לדחות ולהשתמש באתר כרגיל.",
+      "רק באישורכם נטענים Google Analytics ו-Meta Pixel למדידה ופרסום (עוגיות צד שלישי, מידע עובר מחוץ לישראל). אפשר לדחות ולהמשיך כרגיל.",
     accept: "אישור",
     reject: "דחייה",
     policy: "מדיניות הפרטיות",
@@ -138,7 +138,7 @@ const COPY = {
     kicker: "Cookies",
     title: "Cookies on this site",
     body:
-      "With your consent, Google Analytics and Meta Pixel use third-party cookies for measurement and advertising and transfer data outside Israel. You can reject them and use the site as usual.",
+      "Only with your consent do Google Analytics and Meta Pixel load for measurement and ads (third-party cookies, data leaves Israel). You can reject and carry on.",
     accept: "Accept",
     reject: "Reject",
     policy: "Privacy Policy",
@@ -192,15 +192,16 @@ export default function CookieConsent() {
     // Both buttons are visually identical on purpose: the regulator's opinion
     // treats a de-emphasised "reject" as a defect in the consent itself.
     flex: "1 1 0",
-    minHeight: 44,
-    padding: "8px 16px",
+    minWidth: 84,
+    minHeight: 40,
+    padding: "6px 14px",
     borderRadius: 8,
     border: "1.5px solid var(--acc)",
     background: "transparent",
     color: "var(--acc)",
     fontFamily: HEEBO,
     fontWeight: 800,
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 1.2,
     cursor: "pointer",
   };
@@ -208,43 +209,35 @@ export default function CookieConsent() {
   return (
     <>
       <style>{`
+        /* A slim bar on the bottom edge. The start side is left free for the
+           floating WhatsApp button (2rem inset + 56px). */
         .cc-wrap{
           position:fixed;
           z-index:99900;
-          inset-inline:16px;
-          /* padding, not inset, so it stays direction-agnostic between the
-             Hebrew RTL default and English LTR. Keeps the card off a landscape
-             notch. */
-          padding-left:env(safe-area-inset-left, 0px);
-          padding-right:env(safe-area-inset-right, 0px);
-          /* clears the floating WhatsApp button and the iOS home-indicator strip */
-          bottom:calc(env(safe-area-inset-bottom, 0px) + 2rem + 70px);
-          display:flex;
-          justify-content:center;
+          inset-inline:0;
+          bottom:0;
           pointer-events:none;
         }
         .cc-card{
           pointer-events:auto;
-          width:100%;
-          max-width:540px;
+          display:flex;
+          flex-wrap:wrap;
+          align-items:center;
+          gap:8px 14px;
           background:var(--dpanel);
           --acc:var(--acc-bright);
-          border:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
-          border-radius:14px;
-          padding:14px 16px;
-          box-shadow:0 18px 50px rgba(0,0,0,.42);
-          /* The Hebrew body text is ~13 lines at 360px. Bottom-anchored, that
-             put the top of the card off-screen on a 360x640 phone, hiding the
-             heading and making the banner look broken. Cap it and scroll. */
-          max-height:calc(100vh - 2rem - 70px - 24px);  /* pre-dvh fallback */
-          max-height:calc(100dvh - 2rem - 70px - 24px);
+          border-top:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
+          padding:10px 14px calc(env(safe-area-inset-bottom, 0px) + 10px);
+          padding-inline-start:calc(env(safe-area-inset-left, 0px) + 2rem + 64px);
+          box-shadow:0 -12px 30px rgba(0,0,0,.32);
+          max-height:45vh;
           overflow-y:auto;
-          overscroll-behavior:contain;
-          -webkit-overflow-scrolling:touch;
         }
-        @media (min-width:900px){
-          .cc-wrap{ bottom:24px; inset-inline:120px; }
-          .cc-card{ max-height:none; overflow-y:visible; }
+        body:has(.cc-wrap) .floating-whatsapp{ z-index:99950 !important; }
+        .cc-text{ flex:1 1 280px; min-width:0; }
+        .cc-actions{ display:flex; gap:8px; flex:0 0 auto; }
+        @media (max-width:560px){
+          .cc-actions{ flex:1 1 100%; }
         }
         .cc-btn:hover{ background:color-mix(in oklch, var(--acc) 16%, transparent); }
         .cc-btn:focus-visible,
@@ -272,42 +265,48 @@ export default function CookieConsent() {
           aria-labelledby="cc-title"
           aria-describedby="cc-body"
         >
-          <h2
-            id="cc-title"
-            style={{
-              margin: "0 0 6px",
-              fontFamily: HEEBO,
-              fontWeight: 900,
-              fontSize: 16,
-              lineHeight: 1.25,
-              letterSpacing: "-0.02em",
-              color: "var(--dtext)",
-            }}
-          >
-            {c.title}
-          </h2>
-
-          <p
-            id="cc-body"
-            style={{
-              margin: "0 0 10px",
-              fontFamily: HEEBO,
-              fontSize: 15,
-              lineHeight: 1.55,
-              color: "var(--dmuted)",
-            }}
-          >
-            {c.body}{" "}
-            <Link
-              className="cc-link"
-              href={L("/privacy")}
-              style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
+          <div className="cc-text">
+            <h2
+              id="cc-title"
+              style={{
+                display: "inline",
+                margin: 0,
+                fontFamily: HEEBO,
+                fontWeight: 800,
+                fontSize: 13.5,
+                color: "var(--dtext)",
+              }}
             >
-              {c.policy}
-            </Link>
-          </p>
+              {c.title}:{" "}
+            </h2>
+            <p
+              id="cc-body"
+              style={{
+                display: "inline",
+                margin: 0,
+                fontFamily: HEEBO,
+                fontSize: 13.5,
+                lineHeight: 1.5,
+                color: "var(--dmuted)",
+              }}
+            >
+              {c.body}{" "}
+              <Link
+                className="cc-link"
+                href={L("/privacy")}
+                style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
+              >
+                {c.policy}
+              </Link>
+            </p>
+            {current && (
+              <p style={{ margin: "4px 0 0", fontFamily: HEEBO, fontSize: 12.5, color: "var(--dmuted)", opacity: 0.85 }}>
+                {current.choice === "granted" ? c.savedGranted : c.savedDenied}
+              </p>
+            )}
+          </div>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+          <div className="cc-actions">
             <button
               ref={acceptRef}
               type="button"
@@ -321,21 +320,6 @@ export default function CookieConsent() {
               {c.reject}
             </button>
           </div>
-
-          {current && (
-            <p
-              style={{
-                margin: "12px 0 0",
-                fontFamily: HEEBO,
-                fontSize: 13,
-                lineHeight: 1.6,
-                color: "var(--dmuted)",
-                opacity: 0.85,
-              }}
-            >
-              {current.choice === "granted" ? c.savedGranted : c.savedDenied}
-            </p>
-          )}
         </div>
       </div>
     </>
