@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_NAME, ogImage } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "הסרה מרשימת התפוצה · Shani AI Creator",
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
     url: "https://shani-ai.com/unsubscribe",
     type: "website",
     locale: "he_IL",
+    siteName: SITE_NAME,
+    images: [ogImage("he")],
   },
 };
 

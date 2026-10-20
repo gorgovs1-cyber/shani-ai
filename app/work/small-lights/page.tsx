@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: DESC,
   alternates: { canonical: URL_ },
   openGraph: {
-    type: "article", url: URL_, title: "SMALL LIGHTS: סרט שנבנה מפרומפט אחד", description: DESC, locale: "he_IL", siteName: "Shani AI Creator",
+    type: "article", url: URL_, title: "SMALL LIGHTS: סרט שנבנה מפרומפט אחד", description: DESC, locale: "he_IL", siteName: "Shani AI",
     images: [{ url: "https://shani-ai.com/small-lights/assets/og.jpg", width: 1200, height: 630, alt: "המגדלור של SMALL LIGHTS על הסלע בשעת דמדומים" }],
   },
   twitter: { card: "summary_large_image", title: "SMALL LIGHTS: סרט שנבנה מפרומפט אחד", description: DESC, images: ["https://shani-ai.com/small-lights/assets/og.jpg"] },
