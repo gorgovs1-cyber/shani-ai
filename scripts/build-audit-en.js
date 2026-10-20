@@ -10,7 +10,7 @@ const out = path.join(__dirname, "..", "public", "audit-en.html");
 const TITLE = "Free business fit check · Shani AI";
 const DESC = "A free fit check for your business: AI chatbots and agents, CRM, websites and automations. About a minute, and I will get back to you within a business day with first directions.";
 const OG_DESC = "AI chatbots and agents, CRM, websites and automations. About a minute, and I will get back to you within a business day.";
-const IMG = "https://shani-ai.com/og-en-v3.jpg";
+const IMG = "https://shani-ai.com/og-en-v4.jpg";
 const ALT = "Shani Gorgov, Shani AI: chatbots, websites and modular CRM systems powered by AI for your business";
 
 const attr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
