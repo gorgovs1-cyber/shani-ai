@@ -296,26 +296,25 @@ function formatFrom(from: string): string {
 }
 
 /**
- * כתובת Apps Script מחזירה הפניה, ו-fetch רגיל הופך אותה ל-GET ומאבד את הגוף.
- * שולחים שוב ב-POST לכתובת ההפניה, עם אותו גוף.
+ * Apps Script עונה 302 לכתובת googleusercontent. ה-POST כבר נקלט;
+ * הכתובת הזאת מקבלת רק GET, ו-POST אליה חוזר 405.
  */
 async function postFollowingAppsScriptRedirect(
   url: string,
   payload: unknown,
   signal: AbortSignal
 ): Promise<Response> {
-  const init: RequestInit = {
+  const first = await fetch(url, {
     method: 'POST',
     redirect: 'manual',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
     signal,
-  };
-  const first = await fetch(url, init);
+  });
   if (first.status < 300 || first.status >= 400) return first;
   const location = first.headers.get('location');
   if (!location) return first;
-  return fetch(location, { ...init, redirect: 'follow' });
+  return fetch(location, { method: 'GET', redirect: 'follow', signal });
 }
 
 function oneLine(value: string | undefined): string {
