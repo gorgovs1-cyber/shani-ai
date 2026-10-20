@@ -5,13 +5,11 @@ import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
-import { waLink } from "@/lib/whatsapp";
-import HeroAgentScene, { useTilt } from "@/components/HeroAgentScene";
+import Link from "next/link";
 export default function Hero() {
   const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
   const portraitRef = useRef<HTMLDivElement>(null);
-  const stageRef = useTilt<HTMLDivElement>();
   /** On touch, mouseenter fires on tap and mouseleave never follows, so the
       inline hover styles below would stick to the last-tapped pill/CTA. */
   const [hoverable, setHoverable] = useState(false);
@@ -172,7 +170,7 @@ export default function Hero() {
                 {lang === "he" ? "בדיקת התאמה חינם" : "Free fit check"}
               </a>
               </Magnetic>
-              <a href={waLink(lang)} target="_blank" rel="noopener noreferrer" className="hero-work-link">{lang === "he" ? "דברו איתי בוואטסאפ" : "Message me on WhatsApp"}</a>
+              <Link href={L("/work")} className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
             </div>
 
             {/* Numbers row: only figures the owner can stand behind */}
@@ -214,11 +212,8 @@ export default function Hero() {
                 pointerEvents: "none",
               }}
             />
-            <div className="hero-3d">
-            <div ref={stageRef} className="hero-3d-stage">
             {/* Card */}
             <div
-              className="hero-3d-card"
               style={{
                 position: "relative",
                 borderRadius: 22,
@@ -244,10 +239,6 @@ export default function Hero() {
                   pointerEvents: "none",
                 }}
               />
-              <div className="hero-3d-sheen" aria-hidden="true" />
-            </div>
-            <HeroAgentScene lang={lang === "en" ? "en" : "he"} />
-            </div>
             </div>
 
           </div>

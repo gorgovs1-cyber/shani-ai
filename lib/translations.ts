@@ -17,10 +17,10 @@ export const dict = {
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
     navAriaSwitchEn:'מעבר לאנגלית', navAriaSwitchHe:'מעבר לעברית',
     footerSeo:'צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. שני גורגוב, לעסקים בישראל ובארה״ב.',
-    heroTitle:'צ׳אטבוטים וסוכני AI שעונים, מסננים וסוגרים פניות בשבילכם',
-    heroSub:'אני שני. אני בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. אנחנו צומחים, בשיתוף עם ai2u.pro של ליאור.',
-    meta1:'צ׳אטבוטים וסוכני AI', meta2:'CRM, אתרים ואוטומציות', meta3:'ישראל וארה״ב',
-    heroStats:[{n:'11+',l:'שנות ניסיון עסקי'},{n:'IL · US',l:'עסקים בישראל ובארה״ב'},{n:'ai2u',l:'בשיתוף עם ליאור'}],
+    heroTitle:'פתרונות AI מתקדמים לעסק שלכם',
+    heroSub:'אני שני, מומחית ב-AI Chatbot, VibeCoding, אוטומציות N8N ואתרים מתקדמים. אני הופכת רעיונות למציאות עם הטכנולוגיות החדשניות ביותר.',
+    meta1:'שירות 24/7', meta2:'אתרים, שיווק ומערכות', meta3:'מותאם לעסק שלכם',
+    heroStats:[{n:'11+',l:'שנים בתחום העסקים'},{n:'7',l:'שירותים במקום אחד'},{n:'24/7',l:'שירות וזמינות'}],
     workKicker:'עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות ללקוחות, מוצרים שבניתי, והדגמות שמראות מה אפשר לבנות.',
     galleryKicker:'מבט מקרוב', scrollArrow:'',
     buildKicker:'מה אני בונה', buildTitle:'ארבעה שירותים, מערכת אחת', buildSub:'מתחילים ממה שהכי בוער, בדרך כלל המענה ללקוחות, ומחברים את השאר.', servicesCta:'לפרטים המלאים', servicesCtaAudit:'לבדיקת התאמה חינם',
@@ -41,7 +41,7 @@ export const dict = {
     ],
     aboutParas:[
       'כבר 11 שנים אני בעולם העסקים, ואני יודעת איפה נשרף הזמן ואיפה פניות נופלות.',
-      'היום אני בונה צ׳אטבוטים, סוכני AI ומערכות לעסקים בישראל ובארה״ב. אנחנו צומחים, ואת הפרויקטים הגדולים אני מובילה בשיתוף עם ai2u.pro של ליאור.'
+      'היום אני בונה צ׳אטבוטים, סוכני AI ומערכות לעסקים בישראל ובארה״ב, ואנחנו ממשיכים לצמוח.'
     ],
     // הבוטים והסוכנים ראשונים: זה השירות החזק ביותר. Services.tsx ממפה לפי אינדקס.
     services:[
@@ -83,10 +83,10 @@ export const dict = {
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'AI chatbots and agents, a modular CRM, websites that bring enquiries, and automations. Shani Gorgov, for businesses in Israel and the US.',
-    heroTitle:'AI chatbots and agents that answer, qualify and close enquiries for you',
-    heroSub:'I’m Shani. I build AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US. We are growing, in partnership with Lior of ai2u.pro.',
-    meta1:'AI chatbots and agents', meta2:'CRM, websites and automations', meta3:'Israel and the US',
-    heroStats:[{n:'11+',l:'years in business'},{n:'IL · US',l:'businesses in Israel and the US'},{n:'ai2u',l:'in partnership with Lior'}],
+    heroTitle:'Advanced AI solutions for your business',
+    heroSub:'I’m Shani, an expert in AI chatbots, VibeCoding, n8n automations and advanced websites. I turn ideas into reality with the latest technology.',
+    meta1:'24/7 service', meta2:'Websites, marketing and systems', meta3:'Built for your business',
+    heroStats:[{n:'11+',l:'years in business'},{n:'7',l:'services in one place'},{n:'24/7',l:'service and availability'}],
     workKicker:'Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
     galleryKicker:'Up close', scrollArrow:'',
     buildKicker:'What I build', buildTitle:'Four services, one system', buildSub:'We start with what is most urgent, usually replying to customers, and connect the rest.', servicesCta:'Full details', servicesCtaAudit:'Free fit check',
@@ -107,7 +107,7 @@ export const dict = {
     ],
     aboutParas:[
       'I have been in business for 11 years, so I know where time burns and where enquiries slip away.',
-      'Today I build chatbots, AI agents and systems for businesses in Israel and the US. We are growing, and I lead the larger projects together with Lior of ai2u.pro.'
+      'Today I build chatbots, AI agents and systems for businesses in Israel and the US, and we keep growing.'
     ],
     services:[
       {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot or AI agent that understands the conversation, replies in your tone and hands you only what needs a person.', fit:'You get asked the same questions again and again, or enquiries slip through in the evening'},

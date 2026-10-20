@@ -26,7 +26,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 const heMeta: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
   title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
-  description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים ואוטומציות, בשיתוף עם ai2u.pro של ליאור. מתחילים בבדיקת התאמה חינם.",
+  description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. מתחילים בבדיקת התאמה חינם.",
   keywords: ["צ׳אטבוט לעסק", "סוכן AI", "CRM", "אוטומציה", "בניית אתרים", "ישראל", "ארה״ב", "Shani AI Creator"],
   openGraph: {
     title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
@@ -55,7 +55,7 @@ const heMeta: Metadata = {
 export function generateMetadata(): Metadata {
   return localizedMeta("/", heMeta, {
     title: "AI chatbots, agents, CRM and websites | Shani Gorgov",
-    description: "AI chatbots and agents, a modular CRM, websites and automations for businesses in Israel and the US, with partner Lior of ai2u.pro. Start with a free fit check.",
+    description: "AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US. Start with a free fit check.",
   });
 }
 
