@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { localizedMeta } from "@/lib/seo";
 
 const heMeta: Metadata = {
-  title: "אוטומציות לעסק · אוטומציה לוואטסאפ ובוט לעסק | Shani AI Creator",
+  title: "אוטומציות ובוט וואטסאפ לעסק | Shani AI Creator",
   description:
     "אוטומציות לעסק: פניות מהטופס נכנסות למערכת, וואטסאפ עונה, מיילים ותזכורות נשלחים לבד. פחות עבודה ידנית. מתחילים בבדיקת התאמה חינם.",
   alternates: { canonical: "https://shani-ai.com/automations" },
