@@ -25,18 +25,18 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 const heMeta: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
-  title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
+  title: "צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם | Shani AI",
   description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. מתחילים בבדיקת התאמה חינם.",
   keywords: ["צ׳אטבוט לעסק", "סוכן AI", "CRM", "אוטומציה", "בניית אתרים", "ישראל", "ארה״ב", "Shani AI Creator"],
   openGraph: {
-    title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
+    title: "צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם | Shani AI",
     description: "צ׳אטבוטים וסוכני AI, CRM מודולרי, אתרים ואוטומציות לעסקים בישראל ובארה״ב.",
     type: "website",
     url: "https://shani-ai.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
+    title: "צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם | Shani AI",
     description: "צ׳אטבוטים וסוכני AI, CRM, אתרים ואוטומציות לעסקים בישראל ובארה״ב. בדיקת התאמה חינם.",
   },
   robots: {
@@ -50,7 +50,7 @@ const heMeta: Metadata = {
 
 export function generateMetadata(): Metadata {
   return localizedMeta("/", heMeta, {
-    title: "AI chatbots, agents, CRM and websites | Shani Gorgov",
+    title: "Chatbots, websites and modular CRM systems powered by AI for your business | Shani AI",
     description: "AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US. Start with a free fit check.",
   });
 }
@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: "https://shani-ai.com",
               telephone: "+972-50-4744815",
               email: "shani.creates.ai@gmail.com",
-              image: "https://shani-ai.com/og-he-v3.jpg",
+              image: "https://shani-ai.com/og-he-v4.jpg",
               logo: "https://shani-ai.com/logo.svg",
               areaServed: [
                 { "@type": "City", name: "תל אביב" },
