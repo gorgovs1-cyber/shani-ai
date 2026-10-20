@@ -247,7 +247,7 @@ html.lenis { height: auto; }
 @media (max-width: 768px) {
   main p:not([class]),
   section p:not([class]) {
-    font-size: max(16.5px, 1rem) !important;
+    font-size: max(16px, 1rem) !important;
   }
 }
 
@@ -704,7 +704,7 @@ body p, body li, body dd { font-weight:400 !important; }
 /* 44px hit areas without changing the look of small pills */
 .lang-hit { position: relative; }
 .lang-hit::after { content: ""; position: absolute; inset: -8px -3px; }
-.nav-cta { min-height: 44px; }
+.nav-cta { min-height: 48px; }
 .floating-whatsapp { min-width: 44px; min-height: 44px; }
 
 .footer-copyright { font-size: 13px; }
@@ -820,7 +820,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .chat-features h3 { margin:0 0 4px; font-size:18px; font-weight:800; }
 .chat-features p { margin:0; color:var(--muted2); font-size:15px; line-height:1.6; }
 .chat-cta { margin-top:30px; }
-.chat-window { position:relative; background:var(--dark); border:1px solid var(--dline); border-radius:24px; padding:22px; color:var(--dtext); box-shadow:0 30px 60px -30px rgba(20,16,9,.55); transition:box-shadow var(--t-base) ease, border-color var(--t-base) ease, transform var(--t-base) ease; animation:chat-breathe 4s ease-in-out infinite; }
+.chat-window { position:relative; background:var(--dark); border:1px solid var(--dline); border-radius:24px; padding:22px; color:var(--dtext); box-shadow:0 30px 60px -30px rgba(20,16,9,.55); transition:box-shadow var(--t-base) ease, border-color var(--t-base) ease, transform var(--t-base) ease; }
 .chat-window:hover { border-color:var(--acc-bright); box-shadow:0 0 0 1px var(--acc-bright), 0 0 48px -6px color-mix(in oklch, var(--acc-bright) 70%, transparent), 0 30px 60px -30px rgba(20,16,9,.55); transform:translateY(-3px); animation-play-state:paused; }
 @keyframes chat-breathe { 0%,100% { box-shadow:0 30px 60px -30px rgba(20,16,9,.55), 0 0 0 0 transparent; } 50% { box-shadow:0 30px 60px -30px rgba(20,16,9,.55), 0 0 32px -10px color-mix(in oklch, var(--acc-bright) 45%, transparent); } }
 .chat-head { display:flex; align-items:center; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--dline); }

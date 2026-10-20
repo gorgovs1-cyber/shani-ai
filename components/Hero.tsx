@@ -100,7 +100,7 @@ export default function Hero() {
           }}
         >
           {/* Left: content */}
-          <div className="hero-copy" style={{ animation: "scl-fadeup 0.8s ease 0.1s both" }}>
+          <div className="hero-copy" style={{ animation: "scl-fadeup var(--t-slow) ease 0.1s both" }}>
             {/* H1 */}
             <h1
               style={{
@@ -199,7 +199,7 @@ export default function Hero() {
           <div
             ref={portraitRef}
             className="portrait"
-            style={{ position: "relative", animation: "scl-fadeup 0.8s ease 0.2s both" }}
+            style={{ position: "relative", animation: "scl-fadeup var(--t-slow) ease 0.2s both" }}
           >
             {/* Glow behind card */}
             <div

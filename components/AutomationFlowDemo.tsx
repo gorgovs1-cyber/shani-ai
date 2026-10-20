@@ -130,7 +130,7 @@ export default function AutomationFlowDemo() {
           fontSize: 15,
           fontFamily: HEEBO,
           marginBottom: 26,
-          animation: animate ? "afd-bubble .4s cubic-bezier(.2,.7,.2,1) both" : undefined,
+          animation: animate ? "afd-bubble .25s cubic-bezier(.2,.7,.2,1) both" : undefined,
         }}
       >
         {messages[msgIdx]}

@@ -195,7 +195,7 @@ export default function CookieConsent() {
     minWidth: 84,
     minHeight: 48,
     padding: "0 18px",
-    borderRadius: 8,
+    borderRadius: 12,
     border: "1.5px solid var(--acc)",
     background: "transparent",
     color: "var(--acc)",

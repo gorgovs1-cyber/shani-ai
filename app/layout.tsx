@@ -54,7 +54,7 @@ const heMeta: Metadata = {
 
 export function generateMetadata(): Metadata {
   return localizedMeta("/", heMeta, {
-    title: "AI chatbots and agents, CRM and websites for businesses | Shani Gorgov",
+    title: "AI chatbots, agents, CRM and websites | Shani Gorgov",
     description: "Shani Gorgov builds AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US, together with Lior of ai2u.pro. Start with a free fit check.",
   });
 }
