@@ -239,6 +239,10 @@ export default function CookieConsent() {
         @media (max-width:560px){
           .cc-actions{ flex:1 1 100%; }
         }
+        /* Under 900px the WhatsApp button is pinned to the physical right in both languages. */
+        @media (max-width:900px){
+          .cc-card{ padding-left:calc(env(safe-area-inset-left, 0px) + 14px); padding-right:calc(env(safe-area-inset-right, 0px) + 84px); }
+        }
         .cc-btn:hover{ background:color-mix(in oklch, var(--acc) 16%, transparent); }
         .cc-btn:focus-visible,
         .cc-link:focus-visible{

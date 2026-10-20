@@ -989,7 +989,7 @@ body p, body li, body dd { font-weight:400 !important; }
 
 .svc-card { position:relative; }
 .svc-card:hover { transform:none; }
-.svc-grid { align-items:start; }
+.svc-grid { align-items:stretch; }
 .svc-no { position:absolute; top:14px; inset-inline-start:16px; font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.14em; color:var(--muted2); }
 .svc-card.is-lead .svc-no { color:var(--acc); }
 .svc-card.is-lead .svc-icon { background:var(--acc); color:#fff; }
