@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE}`,               lastModified: now, changeFrequency: 'weekly',  priority: 1 },
     { url: `${BASE}/websites`,      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${BASE}/automations`,   lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/chatbots`,      lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/audit`,         lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/work`,          lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/work/small-lights`, lastModified: new Date('2026-10-05'), changeFrequency: 'monthly', priority: 0.8 },
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // English versions live under /en (middleware.ts). Each pair lists both languages as alternates.
-  const bilingual = ['', '/websites', '/automations', '/audit', '/work', '/guides', '/accessibility', '/privacy', '/terms', '/cancellation']
+  const bilingual = ['', '/websites', '/chatbots', '/audit', '/work', '/guides', '/accessibility', '/privacy', '/terms', '/cancellation']
   const langs = (p: string) => ({ languages: { 'he-IL': `${BASE}${p}`, en: `${BASE}/en${p}` } })
   for (const page of staticPages) {
     const p = page.url.replace(BASE, '')

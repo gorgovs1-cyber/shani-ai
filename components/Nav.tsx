@@ -113,10 +113,9 @@ export default function Nav() {
   const anchor = (hash: string) => (isHome ? hash : L(`/${hash}`));
 
   const navLinks = [
-    { label: t.navChat,        href: anchor("#chat") },
+    { label: t.navChat,        href: L("/chatbots") },
     { label: t.navCrm,         href: anchor("#crm") },
     { label: t.navWebsites,    href: L("/websites") },
-    { label: t.navAutomations, href: L("/automations") },
     { label: t.navWork,        href: L("/work") },
   ];
 

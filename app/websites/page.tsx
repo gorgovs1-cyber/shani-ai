@@ -56,8 +56,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "ואחרי שהאתר באוויר",
     also: [
-      { label: "אוטומציות", href: "/automations", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
-      { label: "פתרונות AI וסוכנים", href: "/automations#solutions", desc: "כשהאתר כבר מביא פניות, סוכן AI יכול להבין את השיחה ולקדם אותה לצעד הבא." },
+      { label: "אוטומציות", href: "/chatbots", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
+      { label: "צ׳אטבוטים וסוכני AI", href: "/chatbots", desc: "כשהאתר כבר מביא פניות, סוכן AI יכול להבין את השיחה ולקדם אותה לצעד הבא." },
     ],
     sections: [],
     faqTitle: "שאלות על אתרים",
@@ -156,8 +156,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "And once the site is live",
     also: [
-      { label: "Automations", href: "/automations", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
-      { label: "AI solutions and agents", href: "/automations#solutions", desc: "Once the site brings enquiries, an AI agent can understand the conversation and move it to the next step." },
+      { label: "Automations", href: "/chatbots", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
+      { label: "AI chatbots and agents", href: "/chatbots", desc: "Once the site brings enquiries, an AI agent can understand the conversation and move it to the next step." },
     ],
     sections: [],
     faqTitle: "Website FAQ",

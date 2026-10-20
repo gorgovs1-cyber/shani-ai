@@ -21,10 +21,10 @@ export default function Services() {
   const [open, setOpen] = useState<number | null>(null);
   // The CRM has no page of its own yet, so its card leads to the fit check and carries the #crm anchor used by the nav.
   const links = [
-    { href: "/#chat", label: he ? "לראות הדגמה" : "See the demo" },
+    { href: "/chatbots", label: t.servicesCta },
     { href: "/audit", label: t.servicesCtaAudit },
     { href: "/websites", label: t.servicesCta },
-    { href: "/automations", label: t.servicesCta },
+    { href: "/chatbots", label: he ? "אוטומציות כהרחבה לבוט" : "Automations as a bot add-on" },
   ];
   const ids = [undefined, "crm", undefined, undefined];
 
