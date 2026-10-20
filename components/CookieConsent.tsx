@@ -193,15 +193,15 @@ export default function CookieConsent() {
     // treats a de-emphasised "reject" as a defect in the consent itself.
     flex: "1 1 0",
     minWidth: 84,
-    minHeight: 40,
-    padding: "6px 14px",
+    minHeight: 48,
+    padding: "0 18px",
     borderRadius: 8,
     border: "1.5px solid var(--acc)",
     background: "transparent",
     color: "var(--acc)",
     fontFamily: HEEBO,
     fontWeight: 800,
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 1.2,
     cursor: "pointer",
   };
@@ -247,8 +247,8 @@ export default function CookieConsent() {
           border-radius:6px;
         }
         @media (prefers-reduced-motion: no-preference){
-          .cc-card{ animation:cc-in .28s ease-out both; }
-          .cc-btn{ transition:background .18s ease, transform .18s ease; }
+          .cc-card{ animation:cc-in var(--t-base) ease-out both; }
+          .cc-btn{ transition:background var(--t-fast) ease, transform var(--t-fast) ease; }
           .cc-btn:hover{ transform:translateY(-1px); }
         }
         @keyframes cc-in{
@@ -273,7 +273,7 @@ export default function CookieConsent() {
                 margin: 0,
                 fontFamily: HEEBO,
                 fontWeight: 800,
-                fontSize: 13.5,
+                fontSize: 13,
                 color: "var(--dtext)",
               }}
             >
@@ -285,7 +285,7 @@ export default function CookieConsent() {
                 display: "inline",
                 margin: 0,
                 fontFamily: HEEBO,
-                fontSize: 13.5,
+                fontSize: 13,
                 lineHeight: 1.5,
                 color: "var(--dmuted)",
               }}
@@ -300,7 +300,7 @@ export default function CookieConsent() {
               </Link>
             </p>
             {current && (
-              <p style={{ margin: "4px 0 0", fontFamily: HEEBO, fontSize: 12.5, color: "var(--dmuted)", opacity: 0.85 }}>
+              <p style={{ margin: "4px 0 0", fontFamily: HEEBO, fontSize: 13, color: "var(--dmuted)", opacity: 0.85 }}>
                 {current.choice === "granted" ? c.savedGranted : c.savedDenied}
               </p>
             )}

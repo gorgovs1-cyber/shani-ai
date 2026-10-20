@@ -79,7 +79,7 @@ export const dict = {
     navWork:'Work', navGuides:'Guides', navCta:'Free fit check',
     navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents', navAiShort:'AI solutions', navChat:'Chatbots & agents', navCrm:'CRM', navAbout:'About', navContact:'Contact',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
-    navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov — home', navAriaMobileMenu:'Navigation menu',
+    navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov, home', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'AI chatbots and agents, a modular CRM, websites that bring enquiries, and automations. Shani Gorgov, for businesses in Israel and the US.',

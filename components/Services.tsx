@@ -4,6 +4,7 @@ import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
 import WordReveal from "@/components/WordReveal";
 import Link from "next/link";
+import { useState } from "react";
 
 // Simple line icons, one per service, in the order of t.services
 const ICONS = [
@@ -16,9 +17,15 @@ const ICONS = [
 export default function Services() {
   const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
-  // /audit is a static page behind a rewrite and #chat is an in-page anchor, so both get a plain <a>
+  const he = lang === "he";
+  const [open, setOpen] = useState<number | null>(null);
   // The CRM has no page of its own yet, so its card leads to the fit check and carries the #crm anchor used by the nav.
-  const hrefs = ["/#chat", "/audit", "/websites", "/automations"];
+  const links = [
+    { href: "/#chat", label: he ? "לראות הדגמה" : "See the demo" },
+    { href: "/audit", label: t.servicesCtaAudit },
+    { href: "/websites", label: t.servicesCta },
+    { href: "/automations", label: t.servicesCta },
+  ];
   const ids = [undefined, "crm", undefined, undefined];
 
   return (
@@ -33,17 +40,34 @@ export default function Services() {
 
       <div className="svc-grid">
         {t.services.map((s, i) => {
-          const href = hrefs[i];
-          const Card: any = href === "/audit" || href.includes("#chat") ? "a" : Link;
+          const link = links[i];
+          const isOpen = open === i;
+          const panelId = `svc-panel-${i}`;
+          // /audit is a static page behind a rewrite and #chat is an in-page anchor, so both get a plain <a>
+          const Cta: any = link.href === "/audit" || link.href.includes("#") ? "a" : Link;
           return (
-            <Card key={s.no} id={ids[i]} href={L(href)} className={`svc-card${i === 0 ? " is-lead" : ""}`}>
+            <article key={s.no} id={ids[i]} className={`svc-card${i === 0 ? " is-lead" : ""}`}>
               <span className="svc-no" aria-hidden="true">{s.no}</span>
               <span className="svc-icon" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONS[i]}</svg>
               </span>
               <h3>{s.title}</h3>
               <p>{s.short}</p>
-            </Card>
+              <div id={panelId} className="svc-panel" hidden={!isOpen}>
+                <p>{s.desc}</p>
+                <p><strong>{he ? "מתאים לכם אם: " : "Right for you if: "}</strong>{s.fit}</p>
+                <Cta href={L(link.href)} className="svc-link">{link.label}</Cta>
+              </div>
+              <button
+                type="button"
+                className="btn btn-ghost svc-toggle"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => setOpen(isOpen ? null : i)}
+              >
+                {isOpen ? (he ? "סגירה" : "Close") : (he ? "מה כלול" : "What is included")}
+              </button>
+            </article>
           );
         })}
       </div>

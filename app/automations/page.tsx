@@ -138,7 +138,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
           name: "Level 1 · Single automation",
           fit: "One action you do by hand almost every day, and you know exactly what it is.",
           includes: "One end-to-end process, connected to the tools you already use, with monitoring that alerts on failure.",
-          forWho: "Clinics, salons, studios — any business managing appointments or typing enquiries into a sheet.",
+          forWho: "Clinics, salons, studios, any business managing appointments or typing enquiries into a sheet.",
         },
         {
           name: "Level 2 · WhatsApp bot",

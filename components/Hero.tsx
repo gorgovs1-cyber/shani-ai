@@ -229,7 +229,7 @@ export default function Hero() {
             >
               <Image
                 src="/portrait.webp"
-                alt="Shani Gorgov — SHANI AI CREATOR"
+                alt="שני גורגוב, Shani AI Creator"
                 width={1448}
                 height={1086}
                 priority

@@ -4,12 +4,16 @@ import { useEffect, useRef } from "react";
 
 const COPY = {
   he: {
+    demo: "הדגמה",
+    sr: "הדגמה: לקוח שואל אם יש תור פנוי מחר, סוכן AI מציע שתי שעות, והתור נקבע ונשמר ב-CRM.",
     ask: "היי, יש תור פנוי מחר?",
     agent: "סוכן AI",
     reply: "כן! 10:00 או 14:30. לקבוע?",
     done: "נקבע · נשמר ב-CRM",
   },
   en: {
+    demo: "Demo",
+    sr: "Demo: a customer asks for a slot tomorrow, an AI agent offers two times, and the booking is saved to the CRM.",
     ask: "Hi, any slot tomorrow?",
     agent: "AI agent",
     reply: "Yes! 10:00 or 14:30. Shall I book it?",
@@ -66,7 +70,10 @@ export function useTilt<T extends HTMLElement>() {
 export default function HeroAgentScene({ lang }: { lang: "he" | "en" }) {
   const c = COPY[lang];
   return (
+    <>
+    <p className="sr-only">{c.sr}</p>
     <div className="agent-scene" aria-hidden="true">
+      <span className="agent-demo">{c.demo}</span>
       <div className="agent-bubble agent-ask">{c.ask}</div>
       <div className="agent-bubble agent-reply">
         <span className="agent-tag"><span className="agent-dot" />{c.agent}</span>
@@ -77,5 +84,6 @@ export default function HeroAgentScene({ lang }: { lang: "he" | "en" }) {
         {c.done}
       </div>
     </div>
+    </>
   );
 }

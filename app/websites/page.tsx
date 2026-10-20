@@ -143,7 +143,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
           name: "Portfolio site",
           fit: "A large portfolio (roughly 15 projects and up), where each piece deserves its own visibility on Google.",
           includes: "Everything in 'Website', plus up to 10 projects, each with its own ranking page.",
-          forWho: "Architects, design studios, contractors, photographers — every project deserves its own page.",
+          forWho: "Architects, design studios, contractors, photographers: every project deserves its own page.",
           notFor: "Up to 10 projects and not all need separate ranking? 'Website' does the job for less, and a single page can always be added later.",
         },
         {
