@@ -31,17 +31,13 @@ const heMeta: Metadata = {
   openGraph: {
     title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
     description: "צ׳אטבוטים וסוכני AI, CRM מודולרי, אתרים ואוטומציות לעסקים בישראל ובארה״ב.",
-    siteName: "Shani AI Creator",
     type: "website",
-    locale: "he_IL",
     url: "https://shani-ai.com",
-    images: [{ url: "/og.jpg", width: 1080, height: 1080, alt: "Shani AI Creator" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "צ׳אטבוטים וסוכני AI, CRM ואתרים לעסקים | שני גורגוב",
     description: "צ׳אטבוטים וסוכני AI, CRM, אתרים ואוטומציות לעסקים בישראל ובארה״ב. בדיקת התאמה חינם.",
-    images: ["/og.jpg"],
   },
   robots: {
     index: true,
@@ -116,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: "https://shani-ai.com",
               telephone: "+972-50-4744815",
               email: "shani.creates.ai@gmail.com",
-              image: "https://shani-ai.com/og.jpg",
+              image: "https://shani-ai.com/og-he-v2.jpg",
               logo: "https://shani-ai.com/logo.svg",
               areaServed: [
                 { "@type": "City", name: "תל אביב" },
