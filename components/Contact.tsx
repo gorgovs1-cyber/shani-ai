@@ -3,6 +3,7 @@
 import { useLang } from "@/components/LanguageProvider";
 import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
+import { waLink } from "@/lib/whatsapp";
 
 export default function Contact() {
   const { lang } = useLang(); const L = useLang().href;
@@ -143,7 +144,7 @@ export default function Contact() {
             </a>
             </Magnetic>
             <a
-              href="https://wa.me/972504744815"
+              href={waLink(lang)}
               target="_blank"
               rel="noopener noreferrer"
               className="contact-cta"

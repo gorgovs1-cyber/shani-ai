@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLang } from "@/components/LanguageProvider";
+import { waLink } from "@/lib/whatsapp";
 
 export default function FloatingWhatsApp() {
+  const { lang } = useLang();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -13,7 +16,7 @@ export default function FloatingWhatsApp() {
   return (
     <a
       className="floating-whatsapp"
-      href="https://wa.me/972504744815"
+      href={waLink(lang)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp"
