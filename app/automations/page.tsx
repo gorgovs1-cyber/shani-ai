@@ -1,7 +1,6 @@
 "use client";
 
 import ServicePage, { ServiceCopy } from "@/components/ServicePage";
-import ROICalculator from "@/components/ROICalculator";
 
 const copyByLang: Record<"he" | "en", ServiceCopy> = {
   he: {
@@ -19,7 +18,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "פניות מהטופס נכנסות ישר למערכת",
       "בוט וואטסאפ שעונה בעברית",
       "שליחת מיילים ותזכורות אוטומטית",
-      "תמחור והצעות מחיר אוטומטיות",
+      "סיכום כל פנייה נשלח אליכם אוטומטית",
       "חיבור בין כל הכלים שלכם",
       "התראות פנימיות על כל פנייה",
       "דוחות חודשיים אוטומטיים",
@@ -48,8 +47,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         {
           name: "דרגה 3 · סוכן AI שמדבר עברית",
           fit: "כל פנייה אצלכם שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
-          includes: "הבנת הקשר וזיכרון שיחה, קביעת פגישה, תמחור לפי הכללים שלכם, וסינון פניות.",
-          forWho: "יועצים, בעלי תמחור משתנה, ועסקים עם פניות שדורשות בירור לפני שיחה.",
+          includes: "הבנת הקשר וזיכרון שיחה, קביעת פגישה, סינון פניות ועדכון ה-CRM.",
+          forWho: "יועצים, נותני שירות שכל פנייה אצלם שונה, ועסקים עם פניות שדורשות בירור לפני שיחה.",
         },
         {
           name: "דרגה 4 · מערכת AI מלאה",
@@ -75,8 +74,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "אנחנו מגדירים באילו מצבים תישלח הודעה, על אילו שאלות המערכת תענה ומתי היא תעביר את השיחה אליכם, בהתאם לשירות שלכם ולדרך שבה אתם מדברים עם לקוחות.",
       },
       {
-        q: "כמה עולה אוטומציה לעסק?",
-        a: "זה תלוי במה שמעבירים לאוטומציה ובכלים שמחברים. אחרי בדיקת ההתאמה אני שולחת הצעה מסודרת, ועלויות שוטפות של כלים תמיד מפורטות בנפרד ורשומות על שמכם.",
+        q: "איך מחליטים מה לבנות?",
+        a: "מתחילים בבדיקת התאמה חינם ושיחה קצרה, ממפים מה הכי שווה להעביר לאוטומציה קודם, ואז אני שולחת הצעה מסודרת שבנויה סביב העסק שלכם.",
       },
       {
         q: "איך אני משתמשת באוטומציה בעסק שלי?",
@@ -122,7 +121,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "Form submissions land straight in the system",
       "A WhatsApp bot that answers in Hebrew",
       "Automatic emails and reminders",
-      "Automatic pricing and proposals",
+      "An automatic summary of every enquiry sent to you",
       "Connecting all your tools together",
       "Internal alerts on every enquiry",
       "Automatic monthly reports",
@@ -151,8 +150,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         {
           name: "Level 3 · An AI agent that speaks Hebrew",
           fit: "Every enquiry is different and cannot be answered with a prepared reply.",
-          includes: "Context and memory, booking into your calendar, pricing by your rules, and filtering enquiries.",
-          forWho: "Consultants, variable-pricing professionals, and businesses with enquiries that need qualifying first.",
+          includes: "Context and memory, booking into your calendar, filtering enquiries and updating the CRM.",
+          forWho: "Consultants, service providers whose every enquiry is different, and businesses with enquiries that need qualifying first.",
         },
         {
           name: "Level 4 · Full AI system",
@@ -178,8 +177,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         a: "We define when a message should be sent, which questions the system may answer and when it should hand the conversation to you, based on your service and tone of voice.",
       },
       {
-        q: "How much does business automation cost?",
-        a: "It depends on what you move to automation and which tools you connect. After the fit check I send a clear proposal, and any ongoing tool costs are listed separately and registered in your name.",
+        q: "How do we decide what to build?",
+        a: "We start with the free fit check and a short call, map what is worth automating first, and then I send a clear proposal built around your business.",
       },
       {
         q: "How do you use automation in your own business?",
@@ -213,5 +212,5 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
 };
 
 export default function AutomationsPage() {
-  return <ServicePage copyByLang={copyByLang} beforeClosing={<ROICalculator />} />;
+  return <ServicePage copyByLang={copyByLang} />;
 }

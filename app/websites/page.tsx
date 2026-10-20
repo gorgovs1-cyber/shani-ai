@@ -63,8 +63,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqTitle: "שאלות על אתרים",
     faqItems: [
       {
-        q: "כמה עולה לבנות אתר לעסק?",
-        a: "המחיר תלוי בסוג האתר ובהיקף שלו. ממלאים בדיקת התאמה קצרה בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
+        q: "איך מתחילים לבנות אתר לעסק?",
+        a: "ממלאים בדיקת התאמה קצרה בחינם, ותוך יום עסקים אני חוזרת עם כיוונים והצעה מסודרת.",
       },
       {
         q: "למה אני בונה אתרים בקוד?",
@@ -163,8 +163,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     faqTitle: "Website FAQ",
     faqItems: [
       {
-        q: "How much does a business website cost?",
-        a: "The price depends on the type of site and its scope. Fill in the short free fit check and I will come back within one business day with directions and a proposal.",
+        q: "How do we start building a business website?",
+        a: "Fill in the short free fit check and I will come back within one business day with directions and a proposal.",
       },
       {
         q: "Why build the site in code?",
