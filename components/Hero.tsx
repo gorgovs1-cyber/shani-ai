@@ -123,6 +123,7 @@ export default function Hero() {
                 fontSize: "clamp(18px, 1.5vw, 20px)",
                 lineHeight: 1.62,
                 maxWidth: "44ch",
+                textWrap: "balance",
                 fontWeight: 400,
                 fontFamily: "'Heebo', var(--font-heebo), sans-serif",
               }}
