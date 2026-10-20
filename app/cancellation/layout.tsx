@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { localizedMeta } from "@/lib/seo";
 
 const heMeta: Metadata = {
-  title: "מדיניות ביטולים והחזרים · Shani AI Creator",
+  title: "מדיניות ביטולים והחזרים · Shani AI",
   description:
     "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator: איך מבטלים, ביטול לפני ואחרי תחילת העבודה, מועדי החזר, מה אינו ניתן להחזר, וביטול מנוי Shani Care.",
   alternates: { canonical: "https://shani-ai.com/cancellation" },
   openGraph: {
-    title: "מדיניות ביטולים והחזרים · Shani AI Creator",
+    title: "מדיניות ביטולים והחזרים · Shani AI",
     description:
       "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator.",
     url: "https://shani-ai.com/cancellation",
@@ -18,7 +18,7 @@ const heMeta: Metadata = {
 
 export function generateMetadata(): Metadata {
   return localizedMeta("/cancellation", heMeta, {
-    title: "Cancellation and refund policy · Shani AI Creator",
+    title: "Cancellation and refund policy · Shani AI",
     description: "How to cancel, cancelling before and after work starts, when money is refunded and what cannot be refunded, under the Israeli Consumer Protection Law.",
   });
 }
