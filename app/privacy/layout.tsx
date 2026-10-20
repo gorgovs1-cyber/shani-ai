@@ -5,12 +5,12 @@ import { localizedMeta } from "@/lib/seo";
 // This layout supplies it — and, critically, its own canonical: without one it
 // inherits the root canonical and tells Google it *is* the homepage.
 const heMeta: Metadata = {
-  title: "מדיניות פרטיות · Shani AI Creator",
+  title: "מדיניות פרטיות · Shani AI",
   description:
     "איזה מידע נאסף באתר של Shani AI Creator, למה הוא משמש, אילו עוגיות פועלות, מי הספקים שמעבדים אותו, ומה הזכויות שלכם לפי חוק הגנת הפרטיות.",
   alternates: { canonical: "https://shani-ai.com/privacy" },
   openGraph: {
-    title: "מדיניות פרטיות · Shani AI Creator",
+    title: "מדיניות פרטיות · Shani AI",
     description: "מדיניות הפרטיות של Shani AI Creator.",
     url: "https://shani-ai.com/privacy",
     type: "website",
@@ -20,7 +20,7 @@ const heMeta: Metadata = {
 
 export function generateMetadata(): Metadata {
   return localizedMeta("/privacy", heMeta, {
-    title: "Privacy policy · Shani AI Creator",
+    title: "Privacy policy · Shani AI",
     description: "What information this site collects, why, which cookies run, which providers process it, and your rights under Israeli privacy law.",
   });
 }

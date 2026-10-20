@@ -4,7 +4,7 @@ import SmallLightsReel, { SlLinkTracker } from "@/components/SmallLightsReel";
 import { SL_REEL, SL_REEL_LIVE, SL_REEL_POSTER, SL_FILM_NARRATED } from "@/lib/smallLights";
 
 const URL_ = "https://shani-ai.com/work/small-lights";
-const TITLE = "SMALL LIGHTS: סרט אנימציה שנבנה מפרומפט אחד | Shani AI Creator";
+const TITLE = "SMALL LIGHTS: סרט אנימציה שנבנה מפרומפט אחד | Shani AI";
 const DESC = "נתתי ל-Claude Opus 5.5 פרומפט אחד. אחרי 15 דקות היה לו סיפור, אחרי 22 שעות סרט אנימציה של 4:32 דקות, והוא כתב לי בעצמו מה לא טוב בו. איך זה נבנה, עם הסרט המלא.";
 
 export const metadata: Metadata = {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SITE_NAME, ogImage } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "הסרה מרשימת התפוצה · Shani AI Creator",
+  title: "הסרה מרשימת התפוצה · Shani AI",
   description:
     "בקשה להסרה מרשימת הדיוור של Shani AI Creator. ממלאים כתובת אימייל, הבקשה נשלחת לטיפול ידני תוך 24 שעות.",
   alternates: { canonical: "https://shani-ai.com/unsubscribe" },
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   // action reached from a link inside an email, not a landing page.
   robots: { index: false, follow: false },
   openGraph: {
-    title: "הסרה מרשימת התפוצה · Shani AI Creator",
+    title: "הסרה מרשימת התפוצה · Shani AI",
     description: "בקשה להסרה מרשימת הדיוור של Shani AI Creator.",
     url: "https://shani-ai.com/unsubscribe",
     type: "website",
