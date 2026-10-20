@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: "https://shani-ai.com",
               telephone: "+972-50-4744815",
               email: "shani.creates.ai@gmail.com",
-              image: "https://shani-ai.com/og-he-v5.jpg",
+              image: "https://shani-ai.com/og-he-v7.jpg",
               logo: "https://shani-ai.com/logo.svg",
               areaServed: [
                 { "@type": "City", name: "תל אביב" },

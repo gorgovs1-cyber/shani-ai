@@ -14,8 +14,8 @@ const enPath = (path: string) => (path === "/" ? "/en" : `/en${path}`);
 // Share-preview images are 1200x630 (what WhatsApp and Facebook show as a large card).
 // A new file name busts the WhatsApp/Facebook preview caches, so bump it when the artwork changes.
 const OG_IMAGES = {
-  he: { url: `${BASE}/og-he-v5.jpg`, alt: "שני גורגוב, Shani AI: צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם" },
-  en: { url: `${BASE}/og-en-v5.jpg`, alt: "Shani Gorgov, Shani AI: chatbots, websites and modular CRM systems powered by AI for your business" },
+  he: { url: `${BASE}/og-he-v7.jpg`, alt: "שני גורגוב, Shani AI: צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם" },
+  en: { url: `${BASE}/og-en-v7.jpg`, alt: "Shani Gorgov, Shani AI: chatbots, websites and modular CRM systems powered by AI for your business" },
 };
 
 export function ogImage(lang: "he" | "en") {
