@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLang } from "@/components/LanguageProvider";
 import Magnetic from "@/components/Magnetic";
 import { dict } from "@/lib/translations";
-import Link from "next/link";
+import { waLink } from "@/lib/whatsapp";
 export default function Hero() {
   const { lang } = useLang(); const L = useLang().href;
   const t = dict[lang];
@@ -170,7 +170,7 @@ export default function Hero() {
                 {lang === "he" ? "בדיקת התאמה חינם" : "Free fit check"}
               </a>
               </Magnetic>
-              <Link href={L("/work")} className="hero-work-link">{lang === "he" ? "לצפייה בעבודות" : "Explore the work"}</Link>
+              <a href={waLink(lang)} target="_blank" rel="noopener noreferrer" className="hero-work-link">{lang === "he" ? "דברו איתי בוואטסאפ" : "Message me on WhatsApp"}</a>
             </div>
 
             {/* Numbers row: only figures the owner can stand behind */}

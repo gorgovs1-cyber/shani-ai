@@ -6,9 +6,9 @@ import { useLang } from "@/components/LanguageProvider";
 // A scripted demo conversation (clearly labelled as a demo), not a live bot.
 const COPY = {
   he: {
-    kicker: "צ׳אטבוט בעברית",
+    kicker: "צ׳אטבוטים וסוכני AI",
     title: "עונה ללקוחות שלכם, גם כשאתם עסוקים",
-    sub: "צ׳אטבוט שמכיר את העסק שלכם, עונה בעברית באתר ובוואטסאפ, ומעביר אליכם כל פנייה שצריכה אדם.",
+    sub: "צ׳אטבוט או סוכן AI שמכיר את העסק שלכם, עונה באתר ובוואטסאפ, מסנן פניות וקובע פגישות, ומעביר אליכם כל פנייה שצריכה אדם.",
     features: [
       { t: "מדבר עברית טבעית", d: "מבין שאלות כמו שלקוחות באמת כותבים אותן, ועונה בקצרה ולעניין." },
       { t: "מכיר את העסק", d: "עונה מתוך המידע שלכם: שירותים, שעות פעילות ושאלות שחוזרות." },
@@ -29,9 +29,9 @@ const COPY = {
     ],
   },
   en: {
-    kicker: "Hebrew chatbot",
+    kicker: "AI chatbots and agents",
     title: "Answers your customers, even when you are busy",
-    sub: "A chatbot that knows your business, answers in Hebrew on your website and on WhatsApp, and hands you anything that needs a person.",
+    sub: "A chatbot or AI agent that knows your business, answers on your website and on WhatsApp, qualifies enquiries and books meetings, and hands you anything that needs a person.",
     features: [
       { t: "Natural Hebrew", d: "Understands questions the way customers actually write them, and answers briefly." },
       { t: "Knows your business", d: "Answers from your own information: services, opening hours and recurring questions." },

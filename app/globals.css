@@ -860,7 +860,7 @@ body p, body li, body dd { font-weight:400 !important; }
 }
 @media (min-width:1181px) { .site-nav .nav-desktop > a { font-size:15px !important; } }
 
-/* Services: 3 wide cards over 4 compact ones, every card centered: icon, title, one line */
+/* Services: four even cards, the lead (bots) card accented; each card centered: icon, title, one line */
 .svc-section { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:var(--section-gap) 24px 0; }
 .svc-heading { display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:46px; }
 .svc-kicker { font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.2em; color:var(--acc); margin-bottom:16px; }
@@ -874,8 +874,10 @@ body p, body li, body dd { font-weight:400 !important; }
 .svc-card.is-wide h3 { font-size:24px; }
 .svc-card p { margin:0; color:var(--muted2); font-size:15px; line-height:1.6; max-width:36ch; }
 .svc-more { display:flex; justify-content:center; margin-top:32px; }
-@media (max-width:1000px) { .svc-card, .svc-card.is-wide { grid-column:span 6; } .svc-card:last-child { grid-column:4 / span 6; } }
-@media (max-width:600px) { .svc-card, .svc-card.is-wide, .svc-card:last-child { grid-column:1 / -1; min-height:0; } }
+.svc-card.is-lead { border-color:var(--acc); box-shadow:0 20px 40px -30px color-mix(in oklch, var(--acc) 60%, transparent); }
+#crm { scroll-margin-top:120px; }
+@media (max-width:1000px) { .svc-card, .svc-card.is-wide { grid-column:span 6; } }
+@media (max-width:600px) { .svc-card, .svc-card.is-wide { grid-column:1 / -1; min-height:0; } }
 @media (prefers-reduced-motion: reduce) { .svc-card:hover { transform:none; } }
 
 /* Top bar: full-bleed like a classic header; its content lines up with the 1200px page container */
