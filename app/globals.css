@@ -991,3 +991,7 @@ body p, body li, body dd { font-weight:400 !important; }
 @media (max-width: 380px) { .agent-ask { display:none; } }
 [dir="ltr"] .hero-3d-stage { transform:rotateX(var(--rx, 3deg)) rotateY(var(--ry, 5deg)); }
 @media (max-width: 768px) { [dir="ltr"] .hero-3d-stage { transform:none; } }
+.svc-card { position:relative; }
+.svc-no { position:absolute; top:14px; inset-inline-start:16px; font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:12px; letter-spacing:.14em; color:var(--muted2); opacity:.7; }
+.svc-card.is-lead .svc-no { color:var(--acc); opacity:1; }
+.svc-card.is-lead .svc-icon { background:var(--acc); color:#141009; }

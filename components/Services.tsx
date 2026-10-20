@@ -37,6 +37,7 @@ export default function Services() {
           const Card: any = href === "/audit" || href.includes("#chat") ? "a" : Link;
           return (
             <Card key={s.no} id={ids[i]} href={L(href)} className={`svc-card${i === 0 ? " is-lead" : ""}`}>
+              <span className="svc-no" aria-hidden="true">{s.no}</span>
               <span className="svc-icon" aria-hidden="true">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{ICONS[i]}</svg>
               </span>
