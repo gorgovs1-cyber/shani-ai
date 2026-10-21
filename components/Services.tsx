@@ -2,7 +2,6 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
-import WordReveal from "@/components/WordReveal";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -30,13 +29,9 @@ export default function Services() {
 
   return (
     <section id="build" className="svc-section">
-      <div className="section-heading svc-heading">
-        <div className="svc-kicker">{t.buildKicker}</div>
-        <WordReveal
-          text={t.buildTitle}
-          style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.08, letterSpacing: "-0.03em", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}
-        />
-      </div>
+      <header className="section-heading svc-heading">
+        <h2 className="svc-kicker">{t.buildKicker}</h2>
+      </header>
 
       <div className="svc-grid">
         {t.services.map((s, i) => {
