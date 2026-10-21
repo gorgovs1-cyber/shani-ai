@@ -23,7 +23,7 @@ export const dict = {
     heroStats:[{n:'11+',l:'שנים בתחום העסקים'},{n:'24/7',l:'שירות וזמינות'}],
     workKicker:'עבודות', workTitle:'פרויקטים נבחרים', workSub:'עבודות ללקוחות, מוצרים שבניתי, והדגמות שמראות מה אפשר לבנות.',
     galleryKicker:'מבט מקרוב', scrollArrow:'',
-    buildKicker:'מה אני בונה', buildTitle:'ארבעה שירותים, מערכת אחת', buildSub:'מתחילים ממה שהכי בוער, בדרך כלל המענה ללקוחות, ומחברים את השאר.', servicesCta:'לפרטים המלאים', servicesCtaAudit:'לבדיקת התאמה חינם',
+    buildKicker:'מה אני בונה', buildSub:'מתחילים ממה שהכי בוער, בדרך כלל המענה ללקוחות, ומחברים את השאר.', servicesCta:'לפרטים המלאים', servicesCtaAudit:'לבדיקת התאמה חינם',
     aboutKicker:'מי אני', aboutTitle:'נעים להכיר, אני שני', stat1:'שנות ניסיון עסקי', stat2:'זמן תגובה',
     contactTitle:'מה הייתם רוצים שיעבוד טוב יותר?',
     contactSub:'ספרו לי קצת על העסק ומה הייתם רוצים לשפר, גם אם אתם עוד לא יודעים בדיוק מה צריך לבנות, ונעשה בזה סדר יחד בבדיקת ההתאמה החינם.',
@@ -45,10 +45,10 @@ export const dict = {
     ],
     // הבוטים והסוכנים ראשונים: זה השירות החזק ביותר. Services.tsx ממפה לפי אינדקס.
     services:[
-      {no:'01', title:'צ׳אטבוטים וסוכני AI', short:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', desc:'צ׳אטבוט או סוכן AI שמבין את השיחה, עונה בטון של העסק ומעביר אליכם רק את מה שדורש אדם.', fit:'שואלים אתכם אותן שאלות שוב ושוב, או שפניות נופלות בערב'},
-      {no:'02', title:'מערכת CRM מודולרית', short:'כל הלקוחות והפניות במקום אחד, במודולים שמתאימים מעסק קטן ועד ארגון גדול', desc:'CRM שנבנה סביב הדרך שבה העסק עובד, ומתרחב כשהעסק גדל.', fit:'הפניות מפוזרות בין וואטסאפ, מייל ואקסל'},
-      {no:'03', title:'אתר שמביא פניות', short:'אתר מהיר שמסביר מה אתם עושים ומוביל לפנייה', desc:'אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.', fit:'אין לכם אתר, או שלא ברור בו מה אתם מציעים'},
-      {no:'04', title:'אוטומציות', short:'העבודה החוזרת קורית לבד: פרטי פנייה נשמרים, אישורים ותזכורות נשלחים', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית ומחברות בין הכלים שכבר עובדים איתם.', fit:'אתם מעתיקים פרטים ושולחים אותן הודעות ידנית'}
+      {no:'01', title:'צ׳אטבוטים וסוכני AI', short:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', desc:'צ׳אטבוט, סוכן AI או בוט קולי שמבין את השיחה, עונה בטון של העסק ומעביר אליכם רק את מה שדורש אדם.'},
+      {no:'02', title:'מערכת CRM מודולרית', short:'כל הלקוחות והפניות במקום אחד, במודולים שמתאימים מעסק קטן ועד ארגון גדול', desc:'CRM שנבנה סביב הדרך שבה העסק עובד, ומתרחב כשהעסק גדל.'},
+      {no:'03', title:'אתר שמביא פניות', short:'אתר מהיר שמסביר מה אתם עושים ומוביל לפנייה', desc:'אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.'},
+      {no:'04', title:'אוטומציות', short:'העבודה החוזרת קורית לבד: פרטי פנייה נשמרים, אישורים ותזכורות נשלחים', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית ומחברות בין הכלים שכבר עובדים איתם.'}
     ],
     // הפרויקטים עברו ל-lib/projects.ts, שהוא מקור האמת היחיד לתיק העבודות.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.
@@ -89,7 +89,7 @@ export const dict = {
     heroStats:[{n:'11+',l:'years in business'},{n:'24/7',l:'service and availability'}],
     workKicker:'Work', workTitle:'Featured Projects', workSub:'Client work, products I have built, and demos that show what is possible.',
     galleryKicker:'Up close', scrollArrow:'',
-    buildKicker:'What I build', buildTitle:'Four services, one system', buildSub:'We start with what is most urgent, usually replying to customers, and connect the rest.', servicesCta:'Full details', servicesCtaAudit:'Free fit check',
+    buildKicker:'What I build', buildSub:'We start with what is most urgent, usually replying to customers, and connect the rest.', servicesCta:'Full details', servicesCtaAudit:'Free fit check',
     aboutKicker:'Who I am', aboutTitle:'Nice to meet you, I am Shani', stat1:'years in business', stat2:'response time',
     contactTitle:'What would you like to work better?',
     contactSub:'Tell me what is happening in your business and what is getting in the way. The free fit check helps us decide what to improve. No technical knowledge or ready-made solution needed.',
@@ -110,10 +110,10 @@ export const dict = {
       'Today I build chatbots, AI agents and systems for businesses in Israel and the US, and we keep growing.'
     ],
     services:[
-      {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot or AI agent that understands the conversation, replies in your tone and hands you only what needs a person.', fit:'You get asked the same questions again and again, or enquiries slip through in the evening'},
-      {no:'02', title:'A modular CRM', short:'Every customer and enquiry in one place, in modules that fit a small business or a large organisation', desc:'A CRM built around how your business works, that grows with you.', fit:'Enquiries are scattered across WhatsApp, email and spreadsheets'},
-      {no:'03', title:'Websites that bring enquiries', short:'A fast website that explains what you do and leads to an enquiry', desc:'A website that explains your offer and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.', fit:'You have no website, or visitors cannot easily understand your offer'},
-      {no:'04', title:'Automations', short:'Repetitive work happens by itself: enquiry details are saved, confirmations and reminders are sent', desc:'Recurring tasks happen automatically and connect the tools you already use.', fit:'You copy details and send the same messages by hand'}
+      {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot, an AI agent or a voice bot that understands the conversation, replies in your tone and hands you only what needs a person.'},
+      {no:'02', title:'A modular CRM', short:'Every customer and enquiry in one place, in modules that fit a small business or a large organisation', desc:'A CRM built around how your business works, that grows with you.'},
+      {no:'03', title:'Websites that bring enquiries', short:'A fast website that explains what you do and leads to an enquiry', desc:'A website that explains your offer and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.'},
+      {no:'04', title:'Automations', short:'Repetitive work happens by itself: enquiry details are saved, confirmations and reminders are sent', desc:'Recurring tasks happen automatically and connect the tools you already use.'}
     ],
     // Projects live in lib/projects.ts, the single source of truth for the portfolio.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.

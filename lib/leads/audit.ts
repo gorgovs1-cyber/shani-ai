@@ -32,6 +32,7 @@ const LEAD_COLUMN_KEYS = new Set([
   'העסק',
   'אימייל',
   'טלפון',
+  // הטופס כבר לא שואל דחיפות. המפתח נשאר כדי שליד ישן עם הערך עדיין יישב בעמודה, לא בהערות.
   'דחיפות',
   'מטרה',
   'הבעיה הכי חשובה',
@@ -120,6 +121,7 @@ export function alertSubject(name: string): string {
 
 /** גוף ההתראה כמו במייל של n8n. השורה האחרונה מפנה ל-Grok Bot במקום להצעה האוטומטית. */
 export function alertText(a: Record<string, string>): string {
+  const urgency = oneLine(a['דחיפות']);
   return [
     'נכנס ליד חדש מהאבחון!',
     '',
@@ -134,7 +136,7 @@ export function alertText(a: Record<string, string>): string {
     `מצב אתר: ${oneLine(a['אתר'])} ${oneLine(a['קישור לאתר'])}`,
     `חסר: ${oneLine(a['חסר'])}`,
     `בעיה מרכזית: ${oneLine(a['הבעיה הכי חשובה'])}`,
-    `דחיפות: ${oneLine(a['דחיפות'])}`,
+    ...(urgency ? [`דחיפות: ${urgency}`] : []),
     '',
     'הליד נשמר ב-Supabase. אפשר לבקש מ-Grok Bot להכין תדריך והצעה.',
   ].join('\n');
