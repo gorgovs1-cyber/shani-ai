@@ -23,30 +23,26 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "איזה אתר מתאים לכם?",
-      labels: { includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      labels: { includes: "מה כלול", notFor: "מתי זה לא נכון", example: "לדוגמה" },
       items: [
         {
           name: "דף נחיתה",
           includes: "עד 3 חלקים בגלילה אחת, בלי תפריט ניווט, כפתור וואטסאפ קבוע.",
-          forWho: "עצמאים, מאמנים, קוסמטיקאיות, ומי שמריץ קמפיין ממומן.",
           notFor: "כמה שירותים שצריך להסביר לעומק? 'אתר' יעבוד טוב יותר.",
         },
         {
           name: "אתר",
           includes: "עמוד בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל, וגלריית עבודות משותפת עד 10 פרויקטים.",
-          forWho: "מאמנים, מטפלים, יועצים, ואדריכלים/מעצבים עם תיק עבודות קטן-בינוני.",
           notFor: "מוכרים מוצרים עם עגלת קניות? זו חנות. תיק עבודות גדול? 'אתר פורטפוליו' מתאים יותר.",
         },
         {
           name: "אתר פורטפוליו",
           includes: "הכל מ'אתר', ועד 10 פרויקטים עם עמוד נפרד ומדורג לכל אחד.",
-          forWho: "אדריכלים, מעצבים, קבלנים וצלמים שרוצים לתת לכל עבודה מקום משלה.",
           notFor: "עד 10 פרויקטים ולא כולם צריכים דירוג נפרד? 'אתר' עושה את העבודה בפחות, ואפשר להוסיף עמוד בודד בהמשך.",
         },
         {
           name: "גרסה בשפה שנייה",
           includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
-          forWho: "מיתוג אישי, יועצים שעובדים מול חו״ל, תיירות, ומי שמגיש מועמדות בינלאומית.",
         },
       ],
     },
@@ -119,30 +115,26 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "Which site fits you?",
-      labels: { includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      labels: { includes: "What is included", notFor: "When it is not right", example: "Example" },
       items: [
         {
           name: "Landing page",
           includes: "Up to 3 parts in one scroll, no navigation menu, fixed WhatsApp button.",
-          forWho: "Solo professionals, trainers, beauticians, and anyone running paid campaigns.",
           notFor: "Several services that need explaining in depth? 'Website' works better.",
         },
         {
           name: "Website",
           includes: "Homepage + 2–4 pages, each ranking separately on Google, and a shared portfolio gallery of up to 10 projects.",
-          forWho: "Coaches, therapists, consultants, and architects/designers with a small-to-mid portfolio.",
           notFor: "Selling products with a cart? That is a shop. Large portfolio? 'Portfolio site' fits better.",
         },
         {
           name: "Portfolio site",
           includes: "Everything in 'Website', plus up to 10 projects, each with its own ranking page.",
-          forWho: "Architects, design studios, contractors, photographers: every project deserves its own page.",
           notFor: "Up to 10 projects and not all need separate ranking? 'Website' does the job for less, and a single page can always be added later.",
         },
         {
           name: "Second language version",
           includes: "Full translation, a mirrored layout, and a language switch at the top of the page.",
-          forWho: "Personal brands, consultants working with clients abroad, tourism, and anyone applying internationally.",
         },
       ],
     },

@@ -27,27 +27,23 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     products: {
       title: "סוגי בוטים",
-      labels: { includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      labels: { includes: "מה כלול", notFor: "מתי זה לא נכון", example: "לדוגמה" },
       items: [
         {
           name: "בוט וואטסאפ לעסק",
           includes: "מענה בטון העסק, שעות פעילות, תשובות לשאלות נפוצות, והעברה אליכם כשצריך.",
-          forWho: "נותני שירות, מרפאות, סטודיו ועסקים שמקבלים הרבה הודעות.",
         },
         {
           name: "צ׳אטבוט לאתר",
           includes: "חלון שיחה באתר שעונה מתוך המידע של העסק, ומשאיר פרטים כשמישהו רוצה שתחזרו אליו.",
-          forWho: "עסקים שהאתר שלהם מביא תנועה, ורוצים שיותר ממנה יהפוך לפניות.",
         },
         {
           name: "סוכן AI בעברית",
           includes: "הבנת הקשר וזיכרון שיחה, תשובות לפי הכללים שלכם, ופעולות כמו עדכון ה-CRM או שליחת סיכום.",
-          forWho: "יועצים, נותני שירות מקצועי ועסקים שהפניות שלהם דורשות בירור.",
         },
         {
           name: "בוט שמסנן פניות וקובע פגישות",
           includes: "שאלות סינון שאתם מגדירים, הצעת מועדים מהיומן, קביעת פגישה וסיכום הפנייה אליכם.",
-          forWho: "עסקים שעובדים עם שיחות היכרות או פגישות ייעוץ.",
         },
       ],
     },
@@ -120,27 +116,23 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     products: {
       title: "Types of bots",
-      labels: { includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      labels: { includes: "What is included", notFor: "When it is not right", example: "Example" },
       items: [
         {
           name: "WhatsApp bot for your business",
           includes: "Replies in your business's tone, opening hours, answers to common questions, and a handover to you when needed.",
-          forWho: "Service providers, clinics, studios and businesses that get a lot of messages.",
         },
         {
           name: "Website chatbot",
           includes: "A chat window on your site that answers from your business information and takes details when someone wants you to call back.",
-          forWho: "Businesses whose website brings traffic and who want more of it to become enquiries.",
         },
         {
           name: "AI agent in Hebrew",
           includes: "Context and conversation memory, replies by your rules, and actions such as updating the CRM or sending a summary.",
-          forWho: "Consultants, professional service providers and businesses whose enquiries need qualifying.",
         },
         {
           name: "Lead-qualifying and booking bot",
           includes: "Screening questions you define, times offered from your calendar, booking, and a summary of each enquiry sent to you.",
-          forWho: "Businesses that work with intro calls or consultations.",
         },
       ],
     },
