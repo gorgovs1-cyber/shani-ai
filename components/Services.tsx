@@ -50,7 +50,6 @@ export default function Services() {
               <p>{s.short}</p>
               <div id={panelId} className="svc-panel" hidden={!isOpen}>
                 <p>{s.desc}</p>
-                <p><strong>{he ? "מתאים לכם אם: " : "Right for you if: "}</strong>{s.fit}</p>
                 <Cta href={L(link.href)} className="svc-link">{link.label}</Cta>
               </div>
               <button
