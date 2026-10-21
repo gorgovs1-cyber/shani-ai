@@ -60,7 +60,6 @@
   .opt.sel{background:rgba(242,98,46,.14);border-color:var(--orange)}
   .submit{display:block;width:100%;background:var(--orange);color:#141009;font-family:inherit;font-size:18px;font-weight:800;border:none;border-radius:12px;min-height:56px;padding:0 18px;margin-top:32px;cursor:pointer}
   .submit:hover{filter:brightness(1.05)}
-  .note{text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
   .foot{text-align:center;color:var(--muted);font-size:13px;margin-top:40px;letter-spacing:.05em}
   .more{margin-top:30px;border:1px solid var(--border);border-radius:14px;background:var(--card)}
   .more>summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:700;font-size:16px;color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
@@ -133,7 +132,6 @@ h1{text-wrap:balance}
   <p id="form-status" role="status" aria-live="polite"></p>
   <a id="fallback-link" hidden target="_blank" rel="noopener noreferrer">המשיכו לשליחה בוואטסאפ</a>
   <button type="button" class="submit" onclick="send()">שלחו את בדיקת ההתאמה</button>
-  <p class="note">בערך דקה. אחזור אליכם תוך יום עסקים עם כמה כיוונים ראשוניים, ונקבע שיחה קצרה.</p>
   </form>
   <div id="thanks" style="display:none;text-align:center;padding:50px 14px">
     <div style="height:96px;display:flex;justify-content:center;align-items:center">
@@ -188,7 +186,6 @@ h1{text-wrap:balance}
   EN["הלקוחות והמידע מפוזרים בכמה מקומות"]="Customers and information are scattered";
   EN["אין מספיק פניות או שאין אתר טוב"]="Not enough enquiries, or no good website";
   EN["יותר מדי עבודה ידנית שחוזרת על עצמה"]="Too much repetitive manual work";
-  EN["בערך דקה. אחזור אליכם תוך יום עסקים עם כמה כיוונים ראשוניים, ונקבע שיחה קצרה."]="About a minute. I will get back to you within a business day with a few first directions, and we will set up a short call.";
   EN["קיבלתי הכל. אני עוברת על העסק שלכם ואחזור תוך יום עסקים עם שניים-שלושה כיוונים ששווה לבדוק, ושאלה או שתיים."]="I have everything. I will go over your business and get back to you within a business day with two or three directions worth checking, and a question or two.";
   function T(x){return (LANG==='en'&&EN[x])?EN[x]:x;}
   // אותו דף ל-/audit ול-/en/audit. אם השליחה נכשלת, נשאר הגיבוי לוואטסאפ.
