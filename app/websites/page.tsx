@@ -23,34 +23,26 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "איזה אתר מתאים לכם?",
-      labels: { fit: "מתי זה מתאים", includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      labels: { includes: "מה כלול", notFor: "מתי זה לא נכון", example: "לדוגמה" },
       items: [
         {
           name: "דף נחיתה",
-          fit: "שירות אחד ברור להציע, או קמפיין ממומן שצריך יעד אחד.",
           includes: "עד 3 חלקים בגלילה אחת, בלי תפריט ניווט, כפתור וואטסאפ קבוע.",
-          forWho: "עצמאים, מאמנים, קוסמטיקאיות, ומי שמריץ קמפיין ממומן.",
           notFor: "כמה שירותים שצריך להסביר לעומק? 'אתר' יעבוד טוב יותר.",
         },
         {
           name: "אתר",
-          fit: "מסבירים שיטה או תהליך, ואנשים שואלים אותן שאלות לפני שסוגרים.",
           includes: "עמוד בית + 2-4 עמודים, כל אחד מדורג בנפרד בגוגל, וגלריית עבודות משותפת עד 10 פרויקטים.",
-          forWho: "מאמנים, מטפלים, יועצים, ואדריכלים/מעצבים עם תיק עבודות קטן-בינוני.",
           notFor: "מוכרים מוצרים עם עגלת קניות? זו חנות. תיק עבודות גדול? 'אתר פורטפוליו' מתאים יותר.",
         },
         {
           name: "אתר פורטפוליו",
-          fit: "תיק עבודות גדול (כ-15 פרויקטים ומעלה), וחשוב שכל עבודה תימצא בנפרד בגוגל.",
           includes: "הכל מ'אתר', ועד 10 פרויקטים עם עמוד נפרד ומדורג לכל אחד.",
-          forWho: "אדריכלים, מעצבים, קבלנים וצלמים שרוצים לתת לכל עבודה מקום משלה.",
           notFor: "עד 10 פרויקטים ולא כולם צריכים דירוג נפרד? 'אתר' עושה את העבודה בפחות, ואפשר להוסיף עמוד בודד בהמשך.",
         },
         {
           name: "גרסה בשפה שנייה",
-          fit: "יש לכם לקוחות בחו״ל, או שאתם רוצים להופיע גם בחיפושים באנגלית.",
           includes: "תרגום מלא, התאמת הפריסה לכיוון הפוך, ומתג מעבר שפה בראש העמוד.",
-          forWho: "מיתוג אישי, יועצים שעובדים מול חו״ל, תיירות, ומי שמגיש מועמדות בינלאומית.",
         },
       ],
     },
@@ -123,34 +115,26 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "Which site fits you?",
-      labels: { fit: "When it fits", includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      labels: { includes: "What is included", notFor: "When it is not right", example: "Example" },
       items: [
         {
           name: "Landing page",
-          fit: "One clear service to offer, or a paid campaign that needs a single destination.",
           includes: "Up to 3 parts in one scroll, no navigation menu, fixed WhatsApp button.",
-          forWho: "Solo professionals, trainers, beauticians, and anyone running paid campaigns.",
           notFor: "Several services that need explaining in depth? 'Website' works better.",
         },
         {
           name: "Website",
-          fit: "You explain a method or process, and people ask the same questions before they buy.",
           includes: "Homepage + 2–4 pages, each ranking separately on Google, and a shared portfolio gallery of up to 10 projects.",
-          forWho: "Coaches, therapists, consultants, and architects/designers with a small-to-mid portfolio.",
           notFor: "Selling products with a cart? That is a shop. Large portfolio? 'Portfolio site' fits better.",
         },
         {
           name: "Portfolio site",
-          fit: "A large portfolio (roughly 15 projects and up), where each piece deserves its own visibility on Google.",
           includes: "Everything in 'Website', plus up to 10 projects, each with its own ranking page.",
-          forWho: "Architects, design studios, contractors, photographers: every project deserves its own page.",
           notFor: "Up to 10 projects and not all need separate ranking? 'Website' does the job for less, and a single page can always be added later.",
         },
         {
           name: "Second language version",
-          fit: "You have clients abroad, or you want to appear in English searches too.",
           includes: "Full translation, a mirrored layout, and a language switch at the top of the page.",
-          forWho: "Personal brands, consultants working with clients abroad, tourism, and anyone applying internationally.",
         },
       ],
     },

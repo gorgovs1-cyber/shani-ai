@@ -731,7 +731,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .service-product-card { display:flex; flex-direction:column; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); padding:24px 22px; min-width:0; transition:border-color var(--t-base) ease, box-shadow var(--t-base) ease; }
 .service-product-card:hover { border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); box-shadow:0 20px 40px -30px rgba(27,23,18,.35); }
 .service-product-card h3 { margin:0; font-size:20px; font-weight:800; line-height:1.25; color:var(--ink); }
-.service-product-card .spc-fit { margin:0; font-size:15px; line-height:1.6; color:var(--ink); font-weight:600; }
+.service-product-card .spc-intro { margin:0; font-size:15px; line-height:1.6; color:var(--muted2); text-wrap:balance; }
 .service-product-card dl { margin:0; display:flex; flex-direction:column; gap:10px; }
 .service-product-card dt { font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.06em; color:var(--acc); margin-bottom:2px; }
 .service-product-card dd { margin:0; font-size:15px; line-height:1.6; color:var(--muted2); }
@@ -751,7 +751,7 @@ body p, body li, body dd { font-weight:400 !important; }
 
 /* Product cards: name and one line visible, details on demand */
 .service-product-card { gap:10px; }
-.spc-toggle { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; min-height:44px; padding:10px 0 0; border:0; border-top:1px solid var(--line); background:none; color:var(--acc); font-weight:700; font-size:15px; cursor:pointer; text-align:start; }
+.spc-toggle { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; min-height:44px; padding:0; border:0; background:none; color:var(--acc); font-weight:700; font-size:15px; cursor:pointer; text-align:start; }
 .spc-toggle span { font-size:20px; line-height:1; }
 .spc-toggle:focus-visible { outline:3px solid var(--acc); outline-offset:3px; border-radius:6px; }
 .spc-panel { display:flex; flex-direction:column; gap:12px; padding-top:4px; }
@@ -768,8 +768,6 @@ body p, body li, body dd { font-weight:400 !important; }
 .svc-panel { padding:0 20px 18px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; font-family:'Heebo', var(--font-heebo), sans-serif; }
 .svc-panel[hidden] { display:none; }
 .svc-desc { margin:0; font-size:15px; line-height:1.65; color:var(--muted2); }
-.svc-fit { margin:0; font-size:15px; line-height:1.6; color:var(--ink); font-weight:600; }
-.svc-fit span { color:var(--acc); font-weight:700; }
 .svc-link { align-self:center; display:inline-flex; align-items:center; min-height:44px; color:var(--acc); font-weight:700; font-size:15px; text-decoration:none; }
 .svc-link:hover { text-decoration:underline; }
 
@@ -863,8 +861,8 @@ body p, body li, body dd { font-weight:400 !important; }
 
 /* Services: four even cards, the lead (bots) card accented; each card centered: icon, title, one line */
 .svc-section { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:var(--section-gap) 24px 0; }
-.svc-heading { display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:46px; }
-.svc-kicker { font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.2em; color:var(--acc); margin-bottom:16px; }
+.svc-heading { display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:clamp(22px, 2.6vw, 32px); }
+.svc-kicker { margin:0; font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; font-weight:400; letter-spacing:.2em; line-height:1.4; color:var(--acc); }
 .svc-grid { display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); gap:16px; }
 .svc-card { grid-column:span 3; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center; gap:10px; min-height:190px; padding:32px 20px 28px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); color:var(--ink); text-decoration:none; transition:border-color var(--t-base) ease, box-shadow var(--t-base) ease, transform var(--t-base) ease; }
 .svc-card.is-wide { grid-column:span 4; min-height:230px; }
@@ -878,7 +876,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .svc-card.is-lead { border-color:var(--acc); box-shadow:0 20px 40px -30px color-mix(in oklch, var(--acc) 60%, transparent); }
 #crm { scroll-margin-top:120px; }
 @media (max-width:1000px) { .svc-card, .svc-card.is-wide { grid-column:span 6; } }
-@media (max-width:600px) { .svc-card, .svc-card.is-wide { grid-column:1 / -1; min-height:0; } }
+@media (max-width:600px) { .svc-section { padding-inline:18px; } .svc-card, .svc-card.is-wide { grid-column:1 / -1; min-height:0; } }
 @media (prefers-reduced-motion: reduce) { .svc-card:hover { transform:none; } }
 
 /* Top bar: full-bleed like a classic header; its content lines up with the 1200px page container */
@@ -907,7 +905,7 @@ body p, body li, body dd { font-weight:400 !important; }
 /* products: equal cards, content centered, toggle centered at the bottom */
 .sp-products { grid-template-columns:repeat(4, minmax(0,1fr)) !important; align-items:stretch; }
 .sp-products.n3 { grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
-.sp-products .service-product-card { align-items:center; text-align:center; min-height:220px; }
+.sp-products .service-product-card { align-items:center; text-align:center; }
 .sp-products .spc-toggle { justify-content:center; gap:8px; }
 .sp-products .spc-panel { align-items:center; text-align:center; }
 
@@ -931,6 +929,15 @@ body p, body li, body dd { font-weight:400 !important; }
 @media (max-width:1000px) {
   .sp-includes.n4, .sp-includes.n8, .sp-products, .sp-products.n3 { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
   .sp-includes { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+/* Five bot cards: four on the first row, the fifth the same width and centered */
+@media (min-width:1001px) {
+  .sp-products.n5 { display:flex !important; flex-wrap:wrap; justify-content:center; gap:16px; }
+  .sp-products.n5 .service-product-card { flex:0 0 calc((100% - 48px) / 4); width:calc((100% - 48px) / 4); max-width:calc((100% - 48px) / 4); }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  .sp-products.n5 { display:flex !important; flex-wrap:wrap; justify-content:center; gap:16px; }
+  .sp-products.n5 .service-product-card { flex:0 0 calc((100% - 16px) / 2); width:calc((100% - 16px) / 2); max-width:calc((100% - 16px) / 2); }
 }
 @media (max-width:600px) {
   .sp { padding-top:7rem; }
@@ -998,6 +1005,5 @@ body p, body li, body dd { font-weight:400 !important; }
 .svc-card h3, .svc-card p { min-width:0; }
 .svc-panel { display:flex; flex-direction:column; align-items:center; gap:10px; padding-top:6px; border-top:1px solid var(--line); width:100%; }
 .svc-panel[hidden] { display:none; }
-.svc-panel strong { color:var(--ink); }
 .svc-link { display:inline-flex; align-items:center; min-height:44px; color:var(--acc); font-weight:700; font-size:15px; text-decoration:underline; text-underline-offset:3px; }
 .svc-link:focus-visible { outline:3px solid var(--acc); outline-offset:3px; border-radius:6px; }

@@ -23,13 +23,12 @@ export type ServiceCopy = {
   products?: {
     title: string;
     note?: string;
-    labels: { fit: string; includes: string; forWho: string; notFor: string; example: string };
+    labels: { includes: string; notFor: string; example: string };
     items: {
       name: string;
+      intro?: string;
       price?: string;
-      fit: string;
       includes: string;
-      forWho: string;
       notFor?: string;
       exampleLabel?: string;
       exampleUrl?: string;
@@ -124,7 +123,7 @@ export default function ServicePage({
                 return (
                 <article key={p.name} className={`service-product-card${isOpen ? " is-open" : ""}`}>
                   <h3>{p.name}</h3>
-                  <p className="spc-fit">{p.fit}</p>
+                  {p.intro ? <p className="spc-intro">{p.intro}</p> : null}
                   <button
                     type="button"
                     className="spc-toggle"
@@ -132,14 +131,13 @@ export default function ServicePage({
                     aria-controls={`spc-panel-${pi}`}
                     onClick={() => setOpenProduct(isOpen ? null : pi)}
                   >
-                    {isOpen ? (lang === "he" ? "סגירה" : "Close") : (lang === "he" ? "מה כלול ולמי זה מתאים" : "What is included")}
+                    {isOpen ? (lang === "he" ? "סגירה" : "Close") : (lang === "he" ? "מה כלול" : "What is included")}
                     <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
                   </button>
                   <div id={`spc-panel-${pi}`} className="spc-panel" hidden={!isOpen}>
                     <dl>
                       {[
                         [c.products!.labels.includes, p.includes],
-                        [c.products!.labels.forWho, p.forWho],
                         ...(p.notFor ? [[c.products!.labels.notFor, p.notFor]] : []),
                       ].map(([label, value]) => (
                         <div key={label as string}>

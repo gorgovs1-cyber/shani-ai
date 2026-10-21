@@ -25,31 +25,28 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     ],
     products: {
       title: "סוגי בוטים",
-      labels: { fit: "מתי זה מתאים", includes: "מה כלול", forWho: "למי זה מתאים", notFor: "מתי זה לא נכון", example: "לדוגמה" },
+      labels: { includes: "מה כלול", notFor: "מתי זה לא נכון", example: "לדוגמה" },
       items: [
         {
           name: "בוט וואטסאפ לעסק",
-          fit: "רוב הפניות מגיעות בוואטסאפ, ואותן שאלות חוזרות כל יום.",
           includes: "מענה בטון העסק, שעות פעילות, תשובות לשאלות נפוצות, והעברה אליכם כשצריך.",
-          forWho: "נותני שירות, מרפאות, סטודיו ועסקים שמקבלים הרבה הודעות.",
         },
         {
           name: "צ׳אטבוט לאתר",
-          fit: "מבקרים באתר שואלים שאלות לפני שהם פונים, ולא תמיד יש מי שיענה.",
           includes: "חלון שיחה באתר שעונה מתוך המידע של העסק, ומשאיר פרטים כשמישהו רוצה שתחזרו אליו.",
-          forWho: "עסקים שהאתר שלהם מביא תנועה, ורוצים שיותר ממנה יהפוך לפניות.",
         },
         {
           name: "סוכן AI בעברית",
-          fit: "כל פנייה אצלכם שונה, ואי אפשר לענות עליה בתשובה מוכנה מראש.",
           includes: "הבנת הקשר וזיכרון שיחה, תשובות לפי הכללים שלכם, ופעולות כמו עדכון ה-CRM או שליחת סיכום.",
-          forWho: "יועצים, נותני שירות מקצועי ועסקים שהפניות שלהם דורשות בירור.",
         },
         {
           name: "בוט שמסנן פניות וקובע פגישות",
-          fit: "מגיעות הרבה פניות, וחלק גדול מהזמן הולך על בירור מי באמת מתאים.",
           includes: "שאלות סינון שאתם מגדירים, הצעת מועדים מהיומן, קביעת פגישה וסיכום הפנייה אליכם.",
-          forWho: "עסקים שעובדים עם שיחות היכרות או פגישות ייעוץ.",
+        },
+        {
+          name: "בוט קולי לעסק",
+          intro: "בוט שמדבר עם הלקוחות בקול, כמו נציג אמיתי.",
+          includes: "עונה לשיחות טלפון מסביב לשעון, קובע ומזיז תורים, עונה על שאלות נפוצות, ומדבר גם באתר ובוואטסאפ. כשצריך, מעביר אליכם.",
         },
       ],
     },
@@ -122,31 +119,28 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     products: {
       title: "Types of bots",
-      labels: { fit: "When it fits", includes: "What is included", forWho: "Who it is for", notFor: "When it is not right", example: "Example" },
+      labels: { includes: "What is included", notFor: "When it is not right", example: "Example" },
       items: [
         {
           name: "WhatsApp bot for your business",
-          fit: "Most enquiries arrive on WhatsApp, and the same questions come up every day.",
           includes: "Replies in your business's tone, opening hours, answers to common questions, and a handover to you when needed.",
-          forWho: "Service providers, clinics, studios and businesses that get a lot of messages.",
         },
         {
           name: "Website chatbot",
-          fit: "Visitors ask questions before they get in touch, and there is not always someone to answer.",
           includes: "A chat window on your site that answers from your business information and takes details when someone wants you to call back.",
-          forWho: "Businesses whose website brings traffic and who want more of it to become enquiries.",
         },
         {
           name: "AI agent in Hebrew",
-          fit: "Every enquiry is different and cannot be answered with a prepared reply.",
           includes: "Context and conversation memory, replies by your rules, and actions such as updating the CRM or sending a summary.",
-          forWho: "Consultants, professional service providers and businesses whose enquiries need qualifying.",
         },
         {
           name: "Lead-qualifying and booking bot",
-          fit: "Lots of enquiries come in, and much of the time goes on working out who is a real fit.",
           includes: "Screening questions you define, times offered from your calendar, booking, and a summary of each enquiry sent to you.",
-          forWho: "Businesses that work with intro calls or consultations.",
+        },
+        {
+          name: "Voice bot for your business",
+          intro: "A bot that talks with customers by voice, like a real representative.",
+          includes: "Answers phone calls around the clock, books and reschedules appointments, answers common questions, and also speaks on the website and on WhatsApp. When needed, it hands the call over to you.",
         },
       ],
     },

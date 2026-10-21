@@ -2,7 +2,6 @@
 
 import { useLang } from "@/components/LanguageProvider";
 import { dict } from "@/lib/translations";
-import WordReveal from "@/components/WordReveal";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -30,13 +29,9 @@ export default function Services() {
 
   return (
     <section id="build" className="svc-section">
-      <div className="section-heading svc-heading">
-        <div className="svc-kicker">{t.buildKicker}</div>
-        <WordReveal
-          text={t.buildTitle}
-          style={{ margin: 0, fontWeight: 800, fontSize: "clamp(34px,4.4vw,58px)", lineHeight: 1.08, letterSpacing: "-0.03em", fontFamily: "'Heebo', var(--font-heebo), sans-serif" }}
-        />
-      </div>
+      <header className="section-heading svc-heading">
+        <h2 className="svc-kicker">{t.buildKicker}</h2>
+      </header>
 
       <div className="svc-grid">
         {t.services.map((s, i) => {
@@ -55,7 +50,6 @@ export default function Services() {
               <p>{s.short}</p>
               <div id={panelId} className="svc-panel" hidden={!isOpen}>
                 <p>{s.desc}</p>
-                <p><strong>{he ? "מתאים לכם אם: " : "Right for you if: "}</strong>{s.fit}</p>
                 <Cta href={L(link.href)} className="svc-link">{link.label}</Cta>
               </div>
               <button
