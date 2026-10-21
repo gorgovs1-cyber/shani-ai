@@ -45,6 +45,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
           name: "בוט שמסנן פניות וקובע פגישות",
           includes: "שאלות סינון שאתם מגדירים, הצעת מועדים מהיומן, קביעת פגישה וסיכום הפנייה אליכם.",
         },
+        {
+          name: "בוט קולי לעסק",
+          intro: "בוט שמדבר עם הלקוחות בקול, כמו נציג אמיתי.",
+          includes: "עונה לשיחות טלפון מסביב לשעון, קובע ומזיז תורים, עונה על שאלות נפוצות, ומדבר גם באתר ובוואטסאפ. כשצריך, מעביר אליכם.",
+        },
       ],
     },
     alsoTitle: "מה מתחבר לבוט",
@@ -133,6 +138,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         {
           name: "Lead-qualifying and booking bot",
           includes: "Screening questions you define, times offered from your calendar, booking, and a summary of each enquiry sent to you.",
+        },
+        {
+          name: "Voice bot for your business",
+          intro: "A bot that talks with customers by voice, like a real representative.",
+          includes: "Answers phone calls around the clock, books and reschedules appointments, answers common questions, and also speaks on the website and on WhatsApp. When needed, it hands the call over to you.",
         },
       ],
     },

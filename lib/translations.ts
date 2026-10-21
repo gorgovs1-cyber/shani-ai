@@ -45,7 +45,7 @@ export const dict = {
     ],
     // הבוטים והסוכנים ראשונים: זה השירות החזק ביותר. Services.tsx ממפה לפי אינדקס.
     services:[
-      {no:'01', title:'צ׳אטבוטים וסוכני AI', short:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', desc:'צ׳אטבוט או סוכן AI שמבין את השיחה, עונה בטון של העסק ומעביר אליכם רק את מה שדורש אדם.'},
+      {no:'01', title:'צ׳אטבוטים וסוכני AI', short:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', desc:'צ׳אטבוט, סוכן AI או בוט קולי שמבין את השיחה, עונה בטון של העסק ומעביר אליכם רק את מה שדורש אדם.'},
       {no:'02', title:'מערכת CRM מודולרית', short:'כל הלקוחות והפניות במקום אחד, במודולים שמתאימים מעסק קטן ועד ארגון גדול', desc:'CRM שנבנה סביב הדרך שבה העסק עובד, ומתרחב כשהעסק גדל.'},
       {no:'03', title:'אתר שמביא פניות', short:'אתר מהיר שמסביר מה אתם עושים ומוביל לפנייה', desc:'אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.'},
       {no:'04', title:'אוטומציות', short:'העבודה החוזרת קורית לבד: פרטי פנייה נשמרים, אישורים ותזכורות נשלחים', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית ומחברות בין הכלים שכבר עובדים איתם.'}
@@ -110,7 +110,7 @@ export const dict = {
       'Today I build chatbots, AI agents and systems for businesses in Israel and the US, and we keep growing.'
     ],
     services:[
-      {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot or AI agent that understands the conversation, replies in your tone and hands you only what needs a person.'},
+      {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot, an AI agent or a voice bot that understands the conversation, replies in your tone and hands you only what needs a person.'},
       {no:'02', title:'A modular CRM', short:'Every customer and enquiry in one place, in modules that fit a small business or a large organisation', desc:'A CRM built around how your business works, that grows with you.'},
       {no:'03', title:'Websites that bring enquiries', short:'A fast website that explains what you do and leads to an enquiry', desc:'A website that explains your offer and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.'},
       {no:'04', title:'Automations', short:'Repetitive work happens by itself: enquiry details are saved, confirmations and reminders are sent', desc:'Recurring tasks happen automatically and connect the tools you already use.'}

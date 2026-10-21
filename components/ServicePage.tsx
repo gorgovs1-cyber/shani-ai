@@ -26,6 +26,7 @@ export type ServiceCopy = {
     labels: { includes: string; notFor: string; example: string };
     items: {
       name: string;
+      intro?: string;
       price?: string;
       includes: string;
       notFor?: string;
@@ -116,6 +117,7 @@ export default function ServicePage({
                 return (
                 <article key={p.name} className={`service-product-card${isOpen ? " is-open" : ""}`}>
                   <h3>{p.name}</h3>
+                  {p.intro ? <p className="spc-intro">{p.intro}</p> : null}
                   <button
                     type="button"
                     className="spc-toggle"

@@ -731,6 +731,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .service-product-card { display:flex; flex-direction:column; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); padding:24px 22px; min-width:0; transition:border-color var(--t-base) ease, box-shadow var(--t-base) ease; }
 .service-product-card:hover { border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); box-shadow:0 20px 40px -30px rgba(27,23,18,.35); }
 .service-product-card h3 { margin:0; font-size:20px; font-weight:800; line-height:1.25; color:var(--ink); }
+.service-product-card .spc-intro { margin:0; font-size:15px; line-height:1.6; color:var(--muted2); text-wrap:balance; }
 .service-product-card dl { margin:0; display:flex; flex-direction:column; gap:10px; }
 .service-product-card dt { font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.06em; color:var(--acc); margin-bottom:2px; }
 .service-product-card dd { margin:0; font-size:15px; line-height:1.6; color:var(--muted2); }
@@ -928,6 +929,15 @@ body p, body li, body dd { font-weight:400 !important; }
 @media (max-width:1000px) {
   .sp-includes.n4, .sp-includes.n8, .sp-products, .sp-products.n3 { grid-template-columns:repeat(2, minmax(0,1fr)) !important; }
   .sp-includes { grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+/* Five bot cards: four on the first row, the fifth the same width and centered */
+@media (min-width:1001px) {
+  .sp-products.n5 { display:flex !important; flex-wrap:wrap; justify-content:center; gap:16px; }
+  .sp-products.n5 .service-product-card { flex:0 0 calc((100% - 48px) / 4); width:calc((100% - 48px) / 4); max-width:calc((100% - 48px) / 4); }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  .sp-products.n5 { display:flex !important; flex-wrap:wrap; justify-content:center; gap:16px; }
+  .sp-products.n5 .service-product-card { flex:0 0 calc((100% - 16px) / 2); width:calc((100% - 16px) / 2); max-width:calc((100% - 16px) / 2); }
 }
 @media (max-width:600px) {
   .sp { padding-top:7rem; }
