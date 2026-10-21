@@ -57,11 +57,15 @@ export type ServiceCopy = {
 export default function ServicePage({
   copyByLang,
   beforeClosing,
+  afterIncludes,
 }: {
   copyByLang: Record<"he" | "en", ServiceCopy>;
   /** Optional block rendered just above the closing CTA — used for page-specific
       widgets (e.g. the live demo on /chatbots) without forking this template. */
   beforeClosing?: React.ReactNode;
+  /** Optional block rendered immediately after the includes list. The Hebrew
+      chatbots page embeds the salon bot demo here. */
+  afterIncludes?: React.ReactNode;
 }) {
   const { lang } = useLang(); const L = useLang().href;
   const c = copyByLang[lang];
@@ -98,6 +102,8 @@ export default function ServicePage({
             ))}
           </ul>
         </section>
+
+        {afterIncludes}
 
         {/* Live automation demo */}
         {c.liveDemo ? (

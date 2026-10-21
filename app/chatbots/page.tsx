@@ -1,6 +1,8 @@
 "use client";
 
 import ServicePage, { ServiceCopy } from "@/components/ServicePage";
+import SalonBotDemo from "@/components/SalonBotDemo";
+import { useLang } from "@/components/LanguageProvider";
 
 const copyByLang: Record<"he" | "en", ServiceCopy> = {
   he: {
@@ -200,5 +202,11 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
 };
 
 export default function ChatbotsPage() {
-  return <ServicePage copyByLang={copyByLang} />;
+  const { lang } = useLang();
+  return (
+    <ServicePage
+      copyByLang={copyByLang}
+      afterIncludes={lang === "he" ? <SalonBotDemo waMsg={copyByLang.he.closingWaMsg} /> : null}
+    />
+  );
 }
