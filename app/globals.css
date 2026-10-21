@@ -127,7 +127,7 @@ html.a11y-no-anim { scroll-behavior: auto; }
 .marquee-track {
   display: flex;
   gap: 2.5rem;
-  animation: scl-marq 30s linear infinite;
+  animation: scl-marq 60s linear infinite;
   width: max-content;
 }
 
@@ -241,13 +241,16 @@ html.lenis { height: auto; }
 }
 
 /* ─── MOBILE READABILITY ───
-   genjutsu mobile principles: body copy must not drop below 16px on phones.
-   The site uses inline styles, so this needs !important to win specificity.
-   Scoped to unclassed running text only, so mono kickers and pills keep their size. */
+   Phones: running copy at 18px / 1.7. The site uses inline styles, so this needs
+   !important to win specificity. Scoped to unclassed running text and the lead /
+   body-copy classes, so mono kickers, pills and compact card copy keep their size. */
 @media (max-width: 768px) {
+  body { font-size: 18px; line-height: 1.7; }
   main p:not([class]),
-  section p:not([class]) {
-    font-size: max(16px, 1rem) !important;
+  section p:not([class]),
+  .sp-lead, .sp-details p, .chat-sub, .about-story-copy p, .working-content > p, .portfolio-heading p {
+    font-size: 18px !important;
+    line-height: 1.7 !important;
   }
 }
 
@@ -414,7 +417,7 @@ html.lenis { height: auto; }
 
 /* ─── REDUCED MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-track { animation: none !important; transform: none !important; }
   body::after { display: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -506,10 +509,18 @@ body p, body li, body dd { font-weight:400 !important; }
 .assessment-bar { display:none; }
 @media (min-width:901px) { .site-nav { transform:translateY(0) !important; } }
 @media (max-width:900px) {
- body { padding-bottom:calc(80px + env(safe-area-inset-bottom,0px)); }
- html { scroll-padding-bottom:calc(96px + env(safe-area-inset-bottom,0px)); }
- .assessment-bar:not([hidden]) { display:flex; justify-content:center; position:fixed; bottom:0; left:0; right:0; z-index:9900; padding:10px 76px calc(10px + env(safe-area-inset-bottom,0px)); background:#fffaf3f5; border-top:1px solid var(--line); }
- .assessment-bar .portfolio-button { width:100%; min-height:48px; font-size:15px; padding:12px; }
+ /* bar = 10 + 52 + 10px; the extra keeps the last line of content clear of it */
+ body { padding-bottom:calc(88px + env(safe-area-inset-bottom,0px)); }
+ html { scroll-padding-bottom:calc(100px + env(safe-area-inset-bottom,0px)); }
+ /* one bar: fit-check CTA + WhatsApp side by side. Left padding leaves room for the
+    accessibility toggle; direction is pinned so WhatsApp stays on the right in both languages. */
+ .assessment-bar:not([hidden]) { display:flex; align-items:center; gap:10px; direction:ltr; position:fixed; bottom:0; left:0; right:0; z-index:9900; padding:10px max(16px, env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) 76px; background:#fffaf3f5; border-top:1px solid var(--line); box-shadow:0 -8px 24px -18px rgba(27,23,18,.35); }
+ html[dir="rtl"] .assessment-bar .portfolio-button { direction:rtl; }
+ .assessment-bar .portfolio-button { flex:1 1 auto; min-width:0; min-height:52px !important; height:52px; font-size:16px; padding:0 16px; }
+ .assessment-bar-wa { flex:0 0 52px; width:52px; height:52px; display:grid; place-items:center; border-radius:var(--radius-btn); background:#075E54; color:#fff; text-decoration:none; }
+ .assessment-bar-wa:hover { background:#064c44; }
+ .assessment-bar-wa:focus-visible { outline:3px solid var(--ink) !important; outline-offset:3px !important; }
+ body.assessment-bar-visible .floating-whatsapp { display:none !important; }
  .floating-whatsapp {
   display:flex !important;
   bottom:calc(10px + env(safe-area-inset-bottom,0px)) !important;
@@ -531,7 +542,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .project-site-button:focus-visible,.hero-work-link:focus-visible { outline:3px solid var(--acc); outline-offset:4px; }
 .home-projects-cta { display:flex; justify-content:center; margin-top:28px; }
 .project-site-button--primary { min-width:min(100%,250px); padding:13px 28px; background:var(--acc); border-color:var(--acc); color:#fff; box-shadow:0 14px 30px -16px rgba(242,98,46,.7); }
-.project-site-button--primary:hover { background:#dc5122; }
+.project-site-button--primary:hover { background:#a83707; border-color:#a83707; }
 .home-carousel { overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; padding:12px 4px 24px; scroll-behavior:auto; touch-action:pan-x; }
 .home-carousel-strip { display:flex; gap:24px; width:max-content; }
 .home-carousel .project-square-grid { display:flex; gap:24px; width:max-content; max-width:none; margin:0; }
@@ -607,7 +618,9 @@ body p, body li, body dd { font-weight:400 !important; }
 @media(max-width:760px) { .price-care-grid,.pricing-info-panel { grid-template-columns:1fr; } .price-category-grid { gap:10px; } .price-category-card { min-height:116px; padding:16px 10px; } .price-category-card strong { font-size:18px; } }
 .portfolio-cta h2 { font-size:clamp(28px,3vw,40px); }
 .portfolio-cta p { margin:16px 0 24px; line-height:1.7; color:var(--muted2); }
-.portfolio-button { display:inline-flex; min-height:48px; align-items:center; justify-content:center; padding:12px 24px; background:var(--acc); color:#fff; font-weight:700; border-radius:12px; text-decoration:none; }
+.portfolio-button { display:inline-flex; min-height:48px; align-items:center; justify-content:center; padding:12px 24px; background:var(--acc); color:#fff; font-weight:700; border-radius:12px; text-decoration:none; box-shadow:0 6px 16px -8px rgba(192,64,11,.55); transition:background var(--t-fast) ease; }
+.portfolio-button:hover { background:#a83707; }
+.portfolio-button:focus-visible { outline:3px solid var(--ink) !important; outline-offset:3px !important; }
 .site-nav { --dtext:#241e17; --dmuted:#665c4e; --dline:#d9d1c580; background:rgba(255,252,247,.86) !important; border:1px solid #ffffffcc !important; border-radius:22px !important; box-shadow:inset 0 1px 0 #fff,0 8px 32px #38281812 !important; backdrop-filter:blur(24px) saturate(150%) !important; }
 @media (max-width:900px) {
  .site-nav { --dtext:#fff8ee; --dmuted:#d5cbbd; --dline:#ffffff26; background:rgba(30,26,21,.88) !important; border-color:#ffffff26 !important; box-shadow:inset 0 1px 0 #ffffff12,0 8px 28px #20180f24 !important; }
@@ -717,13 +730,16 @@ body p, body li, body dd { font-weight:400 !important; }
 
 /* ── Buttons: one system (primary / ghost / ghost on dark) ── */
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:0 28px; border-radius:var(--radius-btn); font-weight:700; font-size:16px; line-height:1.2; text-decoration:none; cursor:pointer; transition:background var(--t-fast) ease, border-color var(--t-fast) ease, transform var(--t-fast) ease; }
-.btn-primary { background:var(--acc-fill); color:#fff; border:0; }
-.btn-primary:hover { transform:translateY(-1px); }
-.btn-ghost { background:transparent; color:var(--acc); border:1.5px solid var(--acc); }
-.btn-ghost:hover { background:color-mix(in oklch, var(--acc) 9%, transparent); }
+.btn-primary { background:var(--acc-fill); color:#fff; border:0; box-shadow:0 6px 16px -8px rgba(192,64,11,.55); }
+.btn-primary:hover { background:#a83707; transform:translateY(-1px); box-shadow:0 10px 22px -10px rgba(168,55,7,.6); }
+/* secondary: dark ink outline, so only the primary action is orange */
+.btn-ghost { background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
+.btn-ghost:hover { background:var(--ink); color:var(--page); }
 .btn-ghost-dark { background:transparent; color:var(--dtext); border:1.5px solid var(--dline); }
 .btn-ghost-dark:hover { border-color:var(--dtext); }
-.btn:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
+/* focus ring in ink (light surfaces) / cream (dark bands), never the same orange as the fill */
+.btn:focus-visible { outline:3px solid var(--ink) !important; outline-offset:3px !important; }
+.sp-closing .btn:focus-visible, .btn-ghost-dark:focus-visible { outline-color:var(--dtext) !important; }
 @media (prefers-reduced-motion: reduce) { .btn { transition:none; } .btn-primary:hover { transform:none; } }
 
 /* ── Service products: visible cards instead of an accordion ── */
@@ -751,9 +767,15 @@ body p, body li, body dd { font-weight:400 !important; }
 
 /* Product cards: name and one line visible, details on demand */
 .service-product-card { gap:10px; }
-.spc-toggle { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; min-height:44px; padding:0; border:0; background:none; color:var(--acc); font-weight:700; font-size:15px; cursor:pointer; text-align:start; }
-.spc-toggle span { font-size:20px; line-height:1; }
-.spc-toggle:focus-visible { outline:3px solid var(--acc); outline-offset:3px; border-radius:6px; }
+/* "What is included" toggles (product cards + home service cards): a light expandable row
+   with a +/− indicator, not a bordered button */
+.spc-toggle, .btn.svc-toggle { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; min-height:48px; padding:10px 14px; border:0; border-radius:10px; background:color-mix(in oklch, var(--ink) 4%, transparent); color:var(--ink); font-weight:700; font-size:15px; line-height:1.3; cursor:pointer; text-align:start; box-shadow:none; transform:none; transition:background var(--t-fast) ease; }
+.spc-toggle:hover, .btn.svc-toggle:hover { background:color-mix(in oklch, var(--ink) 8%, transparent); color:var(--ink); }
+.spc-toggle span { flex:0 0 24px; width:24px; height:24px; display:grid; place-items:center; border-radius:50%; background:var(--card); color:var(--acc); font-size:18px; line-height:1; }
+/* svc-toggle has no indicator element, so the +/− is drawn in CSS (two bars; the vertical one hides when open) */
+.btn.svc-toggle::after { content:""; flex:0 0 24px; width:24px; height:24px; border-radius:50%; background:linear-gradient(var(--acc),var(--acc)) center/10px 2px no-repeat, linear-gradient(var(--acc),var(--acc)) center/2px 10px no-repeat, var(--card); }
+.btn.svc-toggle[aria-expanded="true"]::after { background:linear-gradient(var(--acc),var(--acc)) center/10px 2px no-repeat, var(--card); }
+.spc-toggle:focus-visible, .btn.svc-toggle:focus-visible { outline:3px solid var(--ink) !important; outline-offset:2px !important; border-radius:10px !important; }
 .spc-panel { display:flex; flex-direction:column; gap:12px; padding-top:4px; }
 .spc-panel[hidden] { display:none; }
 
@@ -906,7 +928,7 @@ body p, body li, body dd { font-weight:400 !important; }
 .sp-products { grid-template-columns:repeat(4, minmax(0,1fr)) !important; align-items:stretch; }
 .sp-products.n3 { grid-template-columns:repeat(3, minmax(0,1fr)) !important; }
 .sp-products .service-product-card { align-items:center; text-align:center; }
-.sp-products .spc-toggle { justify-content:center; gap:8px; }
+.sp-products .spc-toggle { justify-content:space-between; gap:8px; }
 .sp-products .spc-panel { align-items:center; text-align:center; }
 
 /* related services: centered pair (or single) of equal cards */
@@ -986,8 +1008,6 @@ body p, body li, body dd { font-weight:400 !important; }
   }
   .salon-demo-cta .btn { width: auto; max-width: 100%; }
 }
-/* Mobile: when the bottom bar is showing, the WhatsApp button matches the bar's 48px button and sits inside it */
-@media (max-width:900px) { body.assessment-bar-visible .floating-whatsapp { width:48px !important; height:48px !important; bottom:calc(10px + env(safe-area-inset-bottom,0px)) !important; box-shadow:none !important; } body.assessment-bar-visible .floating-whatsapp svg { width:24px; height:24px; } }
 /* Project previews fill their frame (screenshots are wide), no empty bands above and below */
 .project-square-image { aspect-ratio:16 / 11 !important; }
 .project-square-image img, .project-square-image video { object-fit:cover !important; object-position:top center !important; }
@@ -1001,9 +1021,19 @@ body p, body li, body dd { font-weight:400 !important; }
 .svc-no { position:absolute; top:14px; inset-inline-start:16px; font-family:'JetBrains Mono', var(--font-mono), monospace; font-size:13px; letter-spacing:.14em; color:var(--muted2); }
 .svc-card.is-lead .svc-no { color:var(--acc); }
 .svc-card.is-lead .svc-icon { background:var(--acc); color:#fff; }
-.svc-toggle { margin-top:auto; align-self:center; }
+.svc-toggle { margin-top:auto; align-self:stretch; }
 .svc-card h3, .svc-card p { min-width:0; }
 .svc-panel { display:flex; flex-direction:column; align-items:center; gap:10px; padding-top:6px; border-top:1px solid var(--line); width:100%; }
 .svc-panel[hidden] { display:none; }
 .svc-link { display:inline-flex; align-items:center; min-height:44px; color:var(--acc); font-weight:700; font-size:15px; text-decoration:underline; text-underline-offset:3px; }
 .svc-link:focus-visible { outline:3px solid var(--acc); outline-offset:3px; border-radius:6px; }
+
+/* Inline-styled primary CTAs: same hover and focus ring as .btn-primary (inline styles need !important) */
+.nav-cta:hover, .contact-cta-row > div > .contact-cta:hover { background:#a83707 !important; }
+.nav-cta:focus-visible { outline:3px solid var(--ink) !important; outline-offset:3px !important; }
+.hero-cta:focus-visible, .hero-work-link:focus-visible, .contact-cta:focus-visible { outline:3px solid var(--dtext) !important; outline-offset:3px !important; }
+
+/* Phones: headings in the Heebo variable at 800 (overrides the global 500 weight above) */
+@media (max-width: 768px) {
+  body h1, body h2, body h3, body h4, body h5, body h6 { font-family:var(--font-heebo), Arial, sans-serif !important; font-weight:800 !important; }
+}

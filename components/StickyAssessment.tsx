@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
+import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
+import { waLink } from "@/lib/whatsapp";
 
 export default function StickyAssessment() {
  const path = usePathname();
@@ -38,5 +40,6 @@ export default function StickyAssessment() {
    document.body.classList.remove('assessment-bar-visible');
   };
  }, [path]);
- return <div className="assessment-bar" hidden={!visible}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a></div>;
+ // One mobile bar holds both actions; the floating WhatsApp button hides while it shows (globals.css)
+ return <div className="assessment-bar" hidden={!visible}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a><a href={waLink(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="assessment-bar-wa"><WhatsAppIcon size={26} /></a></div>;
 }
