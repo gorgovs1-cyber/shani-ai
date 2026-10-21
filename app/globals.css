@@ -940,6 +940,45 @@ body p, body li, body dd { font-weight:400 !important; }
   .sp-actions .btn { width:100%; }
 }
 @media (prefers-reduced-motion: reduce) { .sp-also-card:hover { transform:none; } }
+
+/* Hebrew /chatbots: interactive salon-bot demo, same cream page, centered phone */
+.salon-demo { text-align: center; }
+.salon-demo .sp-h2 { margin-bottom: 12px; }
+.salon-demo-sub {
+  margin: 0 auto 28px;
+  max-width: 62ch;
+  color: var(--muted2);
+  font-size: 16px;
+  line-height: 1.7;
+  text-wrap: balance;
+}
+.salon-demo-frame {
+  width: 400px;
+  max-width: 100%;
+  height: 760px;
+  margin-inline: auto;
+  border-radius: 28px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 24px 60px rgba(80, 60, 40, 0.16), 0 2px 8px rgba(80, 60, 40, 0.08);
+}
+.salon-demo-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+.salon-demo-cta { margin-top: 28px; }
+@media (max-width: 600px) {
+  .salon-demo-frame {
+    width: 100%;
+    height: min(760px, 78svh);
+    min-height: 560px;
+    border-radius: 22px;
+  }
+  .salon-demo-cta .btn { width: auto; max-width: 100%; }
+}
 /* Mobile: when the bottom bar is showing, the WhatsApp button matches the bar's 48px button and sits inside it */
 @media (max-width:900px) { body.assessment-bar-visible .floating-whatsapp { width:48px !important; height:48px !important; bottom:calc(10px + env(safe-area-inset-bottom,0px)) !important; box-shadow:none !important; } body.assessment-bar-visible .floating-whatsapp svg { width:24px; height:24px; } }
 /* Project previews fill their frame (screenshots are wide), no empty bands above and below */
