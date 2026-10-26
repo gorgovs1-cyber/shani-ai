@@ -39,7 +39,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "טופס קבלת הפרומפטים: כתובת האימייל שמסרתם, לצד סימון ההסכמה לדיוור, נוסח ההסכמה המדויק ומועד הסימון.",
           "פנייה בוואטסאפ מהאתר: הלחיצה מעבירה אתכם לוואטסאפ, וההתכתבות עצמה מתנהלת בוואטסאפ ולא באתר.",
           "חתימה על הצעת מחיר (עמודי /work וחתימה דיגיטלית): שם פרטי, שם העסק, מספר עוסק או ח.פ, כתובת אימייל, החתימה עצמה — מוקלדת ו/או מצוירת ביד כתמונה — נוסח התנאים שנחתמו, מועד החתימה, כתובת ה-IP שממנה נחתמה ההצעה ומזהה הדפדפן (User-Agent). ה-IP וה-User-Agent נאספים כראיה לזהות החותם ולמועד החתימה.",
-          "מדידת שימוש: אם אישרתם עוגיות מדידה, Google Analytics 4 ו-Meta Pixel אוספים מזהה גלישה, עמודים שנצפו, מקור ההגעה, סוג מכשיר ודפדפן וכתובת IP מקוצרת.",
+          "מדידת שימוש (סטטיסטיקה): אם אישרתם עוגיות סטטיסטיקה, Google Analytics 4 אוסף מזהה גלישה, עמודים שנצפו, מקור ההגעה, סוג מכשיר ודפדפן וכתובת IP מקוצרת. שיווק (Meta Pixel): רק אם אישרתם בנפרד עוגיות שיווק, Meta Pixel אוסף מזהה דפדפן, עמודים שנצפו ואירועי פעולה באתר, כגון מילוי טופס או פנייה.",
           "מדידה ללא עוגיות: Vercel Analytics סופר צפיות בעמודים ללא עוגיות וללא יצירת פרופיל אישי. הוא פועל תמיד, גם בלי הסכמה לעוגיות.",
           "הגדרות מקומיות שנשמרות בדפדפן שלכם בלבד: שפת הממשק, הגדרות הנגישות, האם הוצג מסך הפתיחה ומה בחרתם בהודעת העוגיות.",
         ],
@@ -51,7 +51,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "דיוור שיווקי במייל — רק למי שסימן במפורש את תיבת ההסכמה בטופס.",
           "הפקת הצעת מחיר חתומה, שליחתה לשני ולחותם, ושמירת עותק כראיה להסכם.",
           "הבנה אילו עמודים באתר עובדים ושיפור האתר.",
-          "מדידת קמפיינים והתאמת פרסום ברשתות של Meta — רק אם אישרתם עוגיות.",
+          "מדידת קמפיינים והתאמת פרסום ברשתות של Meta — רק אם אישרתם עוגיות שיווק.",
         ],
       },
       {
@@ -63,14 +63,14 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "עוגיות וטכנולוגיות מעקב",
         body:
-          "האתר עושה שימוש בעוגיות — לא \"עשוי\". חלקן נחוצות לתפעול ונשמרות רק בדפדפן שלכם, וחלקן שייכות לצד שלישי ומשמשות למדידה ולפרסום. עוגיות המדידה והפרסום של Google ו-Meta נטענות אך ורק אחרי שאישרתם אותן בהודעת העוגיות; עד אז הן אינן פועלות כלל. אפשר לשנות את הבחירה בכל רגע דרך הקישור \"הגדרות עוגיות\" שבתחתית כל עמוד. הטבלה הבאה מפרטת את כל העוגיות והמפתחות שהאתר מציב:",
+          "האתר עושה שימוש בעוגיות — לא \"עשוי\". חלקן נחוצות לתפעול ונשמרות רק בדפדפן שלכם, וחלקן שייכות לצד שלישי ומשמשות למדידה ולפרסום. בהודעת העוגיות יש שתי בחירות נפרדות, וכל אחת כבויה כברירת מחדל: סטטיסטיקה (Google Analytics בלבד) ושיווק (Meta Pixel בלבד). כל כלי נטען אך ורק אחרי שאישרתם את הקטגוריה שלו; עד אז הוא אינו פועל כלל. אישור סטטיסטיקה אינו מפעיל את Meta Pixel, ואישור שיווק אינו מפעיל את Google Analytics. אפשר לשנות את הבחירה בכל רגע דרך הקישור \"הגדרות עוגיות\" שבתחתית כל עמוד. הטבלה הבאה מפרטת את כל העוגיות והמפתחות שהאתר מציב:",
         table: {
           head: ["שם", "סוג ומטרה", "משך שמירה", "בעלים"],
           rows: [
-            ["_ga", "עוגיית צד שלישי. מבחינה בין גולשים שונים לצורך סטטיסטיקת שימוש ב-Google Analytics 4.", "עד 24 חודשים", "Google"],
+            ["_ga", "עוגיית צד שלישי. מבחינה בין גולשים שונים לצורך סטטיסטיקת שימוש ב-Google Analytics 4. נקבעת רק אם אישרתם עוגיות סטטיסטיקה.", "עד 24 חודשים", "Google"],
             ["_ga_G-35YVB7955E (_ga_*)", "עוגיית צד שלישי. שומרת את מצב הסשן והמדידה של נכס ה-GA4 של האתר.", "עד 24 חודשים", "Google"],
-            ["_fbp", "עוגיית צד שלישי. מזהה את הדפדפן עבור Meta Pixel לצורך מדידת המרות והתאמת פרסום בפייסבוק ובאינסטגרם.", "עד 3 חודשים", "Meta"],
-            ["shani-cookie-consent", "אחסון מקומי (localStorage). שומר את בחירתכם בהודעת העוגיות יחד עם חותמת זמן, כדי לא לשאול שוב וכדי לתעד את ההסכמה.", "עד שתמחקו את נתוני הדפדפן או תשנו את הבחירה", "האתר"],
+            ["_fbp", "עוגיית צד שלישי. מזהה את הדפדפן עבור Meta Pixel לצורך מדידת המרות והתאמת פרסום בפייסבוק ובאינסטגרם. נקבעת רק אם אישרתם עוגיות שיווק.", "עד 3 חודשים", "Meta"],
+            ["shani-cookie-consent", "אחסון מקומי (localStorage). שומר את בחירותיכם בהודעת העוגיות (סטטיסטיקה ושיווק, כל אחת בנפרד) יחד עם חותמת זמן, כדי לא לשאול שוב וכדי לתעד את ההסכמה.", "עד שתמחקו את נתוני הדפדפן או תשנו את הבחירה", "האתר"],
             ["shani-lang", "אחסון מקומי. זוכר אם בחרתם עברית או אנגלית.", "עד מחיקת נתוני הדפדפן", "האתר"],
             ["a11y-settings", "אחסון מקומי. זוכר את הגדרות הנגישות שבחרתם (גודל טקסט, ניגודיות וכדומה).", "עד מחיקת נתוני הדפדפן", "האתר"],
             ["shani-splash-seen", "אחסון סשן (sessionStorage). מונע הצגה חוזרת של מסך הפתיחה באותה גלישה.", "עד סגירת לשונית הדפדפן", "האתר"],
@@ -85,8 +85,8 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           "Vercel Inc. (ארה\"ב) — אחסון האתר והרצתו. חשופה לכל בקשה לאתר, כולל כתובת IP ומזהה דפדפן, וכן מפעילה את Vercel Analytics הסופר צפיות ללא עוגיות.",
           "Vercel Inc. (ארה\"ב), בעמוד SMALL LIGHTS, מארחת את קובץ הווידאו.",
-          "Google (Google Analytics 4) — מקבלת נתוני גלישה ומזהי מדידה, רק אם אישרתם עוגיות.",
-          "Meta Platforms (Meta Pixel) — מקבלת נתוני גלישה ואירועי המרה לצורכי פרסום ומדידה, רק אם אישרתם עוגיות.",
+          "Google (Google Analytics 4) — מקבלת נתוני גלישה ומזהי מדידה, רק אם אישרתם עוגיות סטטיסטיקה.",
+          "Meta Platforms (Meta Pixel) — מקבלת נתוני גלישה ואירועי המרה לצורכי פרסום ומדידה, רק אם אישרתם עוגיות שיווק (בחירה נפרדת מהסטטיסטיקה, כבויה כברירת מחדל).",
           "Formspree Inc. (ארה\"ב) — קולטת את טופס האימייל באתר (הפרומפטים) ואת בקשות ההסרה מדיוור, ומעבירה אליי את כתובת האימייל וסימון ההסכמה.",
           "Supabase Inc. — שומרת את רשומות ההצעות החתומות: שם, שם עסק, מספר עוסק, אימייל, החתימה המוקלדת, נוסח התנאים, מועד החתימה, כתובת IP ו-User-Agent.",
           "Resend — שולחת את מייל ההצעה החתומה, כולל קובץ ה-PDF שבו מוטמעים החתימה המצוירת, מועד החתימה וכתובת ה-IP, לשני ולחותם.",
@@ -105,7 +105,7 @@ const COPY: Record<"he" | "en", Copy> = {
         heading: "מה קורה אם לא מסכימים",
         items: [
           "מסירת המידע אינה חובה חוקית. אתם מוסרים אותו מרצונכם.",
-          "אם לא תאשרו עוגיות מדידה — האתר יעבוד במלואו, בלי שום הגבלה. פשוט לא אדע שביקרתם ולא תיכללו במדידת הקמפיינים.",
+          "אם לא תאשרו עוגיות סטטיסטיקה ושיווק — האתר יעבוד במלואו, בלי שום הגבלה. פשוט לא אדע שביקרתם ולא תיכללו במדידת הקמפיינים.",
           "אם לא תסמנו את ההסכמה לדיוור — לא אוכל לשלוח לכם את הפרומפטים, כי הם נשלחים במייל. המדריכים באתר פתוחים לכולם בלי מסירת אימייל ובלי הרשמה.",
           "אם לא תמסרו את פרטי החתימה בהצעת מחיר — לא ניתן להפיק הצעה חתומה ולהתקשר בהסכם.",
           "בכל מקרה, אפשר תמיד לפנות אליי ישירות בוואטסאפ או במייל בלי למסור דבר באתר.",
@@ -161,7 +161,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "The prompts form: the email address you provide, together with your marketing consent tick, the exact consent wording and the time you ticked it.",
           "WhatsApp contact from the site: the button hands you over to WhatsApp, and the conversation itself takes place there, not on this site.",
           "Signing a proposal (the /work pages and digital signature): first name, business name, VAT/company number, email address, the signature itself — typed and/or hand-drawn as an image — the terms text signed, the time of signing, the IP address the proposal was signed from, and the browser identifier (User-Agent). The IP and User-Agent are collected as evidence of who signed and when.",
-          "Usage measurement: if you accepted measurement cookies, Google Analytics 4 and Meta Pixel collect a browsing identifier, pages viewed, referral source, device and browser type and a truncated IP address.",
+          "Usage measurement (statistics): if you accepted statistics cookies, Google Analytics 4 collects a browsing identifier, pages viewed, referral source, device and browser type and a truncated IP address. Marketing (Meta Pixel): only if you separately accepted marketing cookies, Meta Pixel collects a browser identifier, pages viewed and action events on the site, such as filling in a form or getting in touch.",
           "Cookieless measurement: Vercel Analytics counts page views without cookies and without building a personal profile. It runs at all times, including without cookie consent.",
           "Local settings stored in your browser only: interface language, accessibility settings, whether the intro screen was shown, and your cookie choice.",
         ],
@@ -173,7 +173,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "Marketing email — only to people who explicitly ticked the consent box on the form.",
           "Producing a signed proposal, sending it to Shani and to the signer, and keeping a copy as evidence of the agreement.",
           "Understanding which pages on the site work, and improving the site.",
-          "Campaign measurement and advertising on Meta's networks — only if you accepted cookies.",
+          "Campaign measurement and advertising on Meta's networks — only if you accepted marketing cookies.",
         ],
       },
       {
@@ -185,14 +185,14 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "Cookies and tracking technologies",
         body:
-          "This site uses cookies — not \"may use\". Some are functional and stay in your browser only; others belong to third parties and serve measurement and advertising. Google's and Meta's measurement and advertising cookies load only after you accept them in the cookie banner; until then they do not run at all. You can change your choice at any time via the \"Cookie settings\" link at the bottom of every page. The table below lists every cookie and key this site sets:",
+          "This site uses cookies — not \"may use\". Some are functional and stay in your browser only; others belong to third parties and serve measurement and advertising. The cookie banner has two separate choices, each off by default: statistics (Google Analytics only) and marketing (Meta Pixel only). Each tool loads only after you accept its own category; until then it does not run at all. Accepting statistics does not switch on Meta Pixel, and accepting marketing does not switch on Google Analytics. You can change your choice at any time via the \"Cookie settings\" link at the bottom of every page. The table below lists every cookie and key this site sets:",
         table: {
           head: ["Name", "Type and purpose", "Lifetime", "Owner"],
           rows: [
-            ["_ga", "Third-party cookie. Distinguishes between visitors for Google Analytics 4 usage statistics.", "Up to 24 months", "Google"],
+            ["_ga", "Third-party cookie. Distinguishes between visitors for Google Analytics 4 usage statistics. Set only if you accepted statistics cookies.", "Up to 24 months", "Google"],
             ["_ga_G-35YVB7955E (_ga_*)", "Third-party cookie. Holds the session and measurement state for this site's GA4 property.", "Up to 24 months", "Google"],
-            ["_fbp", "Third-party cookie. Identifies the browser for Meta Pixel, for conversion measurement and advertising on Facebook and Instagram.", "Up to 3 months", "Meta"],
-            ["shani-cookie-consent", "Local storage. Stores your cookie choice with a timestamp, so you are not asked again and so the consent is documented.", "Until you clear browser data or change the choice", "This site"],
+            ["_fbp", "Third-party cookie. Identifies the browser for Meta Pixel, for conversion measurement and advertising on Facebook and Instagram. Set only if you accepted marketing cookies.", "Up to 3 months", "Meta"],
+            ["shani-cookie-consent", "Local storage. Stores your cookie choices (statistics and marketing, each separately) with a timestamp, so you are not asked again and so the consent is documented.", "Until you clear browser data or change the choice", "This site"],
             ["shani-lang", "Local storage. Remembers whether you chose Hebrew or English.", "Until browser data is cleared", "This site"],
             ["a11y-settings", "Local storage. Remembers your accessibility settings (text size, contrast and so on).", "Until browser data is cleared", "This site"],
             ["shani-splash-seen", "Session storage. Prevents the intro screen from replaying during the same visit.", "Until the browser tab is closed", "This site"],
@@ -207,8 +207,8 @@ const COPY: Record<"he" | "en", Copy> = {
         items: [
           "Vercel Inc. (USA) — hosts and runs the site. Sees every request, including IP address and browser identifier, and provides Vercel Analytics, which counts views without cookies.",
           "Vercel Inc. (USA), on the SMALL LIGHTS page, hosts the video file.",
-          "Google (Google Analytics 4) — receives browsing data and measurement identifiers, only if you accepted cookies.",
-          "Meta Platforms (Meta Pixel) — receives browsing data and conversion events for advertising and measurement, only if you accepted cookies.",
+          "Google (Google Analytics 4) — receives browsing data and measurement identifiers, only if you accepted statistics cookies.",
+          "Meta Platforms (Meta Pixel) — receives browsing data and conversion events for advertising and measurement, only if you accepted marketing cookies (a choice separate from statistics, off by default).",
           "Formspree Inc. (USA) — receives the site's email form (prompts) and unsubscribe requests, and forwards your email address and consent tick to me.",
           "Supabase Inc. — stores the signed proposal records: name, business name, VAT number, email, the typed signature, terms text, time of signing, IP address and User-Agent.",
           "Resend — sends the signed proposal email, including the PDF in which the hand-drawn signature, the time of signing and the IP address are embedded, to Shani and to the signer.",
@@ -227,7 +227,7 @@ const COPY: Record<"he" | "en", Copy> = {
         heading: "What happens if you do not consent",
         items: [
           "Providing this data is not a legal obligation. You provide it voluntarily.",
-          "If you do not accept measurement cookies, the site works in full, with no restriction. I simply will not know you visited, and you will not be counted in campaign measurement.",
+          "If you do not accept statistics and marketing cookies, the site works in full, with no restriction. I simply will not know you visited, and you will not be counted in campaign measurement.",
           "If you do not tick the marketing consent box, I cannot send you the prompts, because they are delivered by email. The guides on the site are open to everyone with no email and no signup.",
           "If you do not provide the signing details on a proposal, a signed proposal cannot be produced and the agreement cannot be concluded.",
           "In any case you can always contact me directly by WhatsApp or email without submitting anything on the site.",

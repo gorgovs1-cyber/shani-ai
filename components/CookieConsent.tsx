@@ -18,7 +18,14 @@ import Link from "next/link";
  *   Vercel Analytics is deliberately NOT gated: it is cookieless and does not
  *   build a cross-site profile.
  *
- * Storage: a single localStorage key holding the choice plus a timestamp, so
+ * Two separate choices, both off by default:
+ *   - statistics (`choice`)  → Google Analytics 4 only
+ *   - marketing  (`marketing`) → Meta Pixel only, and the Consent Mode v2
+ *     advertising signals (ad_storage / ad_user_data / ad_personalization)
+ * Records saved before the split have no `marketing` field and are read as
+ * marketing = false, so nobody is carried over into Meta Pixel by an old choice.
+ *
+ * Storage: a single localStorage key holding the choices plus a timestamp, so
  * the choice can be evidenced and re-asked when the version changes.
  *
  * All strings live inside this file on purpose (lib/translations.ts is owned
@@ -30,7 +37,10 @@ export const CONSENT_VERSION = 1;
 
 export type ConsentChoice = "granted" | "denied";
 export type ConsentRecord = {
+  /** Statistics (Google Analytics 4). Name kept for compatibility with older records and scripts. */
   choice: ConsentChoice;
+  /** Marketing (Meta Pixel + Google advertising signals). Missing in older records = false. */
+  marketing: boolean;
   /** ISO-8601, UTC — the moment the visitor made the choice */
   ts: string;
   version: number;
@@ -48,16 +58,22 @@ export function readConsent(): ConsentRecord | null {
     const parsed = JSON.parse(raw) as Partial<ConsentRecord>;
     if (parsed?.choice !== "granted" && parsed?.choice !== "denied") return null;
     if (parsed.version !== CONSENT_VERSION) return null;
-    return { choice: parsed.choice, ts: String(parsed.ts ?? ""), version: CONSENT_VERSION };
+    return {
+      choice: parsed.choice,
+      marketing: parsed.marketing === true,
+      ts: String(parsed.ts ?? ""),
+      version: CONSENT_VERSION,
+    };
   } catch {
     return null;
   }
 }
 
 /** Stores a choice and notifies every listener in the tab. */
-export function writeConsent(choice: ConsentChoice): ConsentRecord {
+export function writeConsent(stats: boolean, marketing: boolean): ConsentRecord {
   const record: ConsentRecord = {
-    choice,
+    choice: stats ? "granted" : "denied",
+    marketing,
     ts: new Date().toISOString(),
     version: CONSENT_VERSION,
   };
@@ -125,26 +141,38 @@ const COPY = {
     kicker: "עוגיות",
     title: "עוגיות באתר",
     body:
-      "רק באישורכם נטענים Google Analytics ו-Meta Pixel למדידה ופרסום (עוגיות צד שלישי, מידע עובר מחוץ לישראל). אפשר לדחות ולהמשיך כרגיל.",
-    accept: "אישור",
-    reject: "דחייה",
+      "רק באישורכם נטענים כלים של צד שלישי (מידע עובר מחוץ לישראל). אפשר לבחור כל אחד בנפרד, ואפשר לדחות הכול ולהמשיך כרגיל.",
+    groupLabel: "בחירת סוגי עוגיות",
+    stats: "סטטיסטיקה: Google Analytics, מדידת שימוש באתר",
+    marketing: "שיווק: Meta Pixel, מדידת פרסום בפייסבוק ובאינסטגרם",
+    acceptAll: "אישור הכול",
+    rejectAll: "דחיית הכול",
+    save: "שמירת הבחירה",
     policy: "מדיניות הפרטיות",
     close: "סגירה",
-    savedGranted: "אישרתם עוגיות מדידה ופרסום.",
-    savedDenied: "דחיתם עוגיות מדידה ופרסום.",
+    yes: "מאושר",
+    no: "לא מאושר",
+    saved: (st: boolean, mk: boolean) =>
+      `הבחירה השמורה: סטטיסטיקה ${st ? "מאושרת" : "לא מאושרת"}, שיווק ${mk ? "מאושר" : "לא מאושר"}.`,
   },
   en: {
     label: "Cookie settings",
     kicker: "Cookies",
     title: "Cookies on this site",
     body:
-      "Only with your consent do Google Analytics and Meta Pixel load for measurement and ads (third-party cookies, data leaves Israel). You can reject and carry on.",
-    accept: "Accept",
-    reject: "Reject",
+      "Third-party tools load only with your consent (data leaves Israel). You can choose each one separately, or reject everything and carry on.",
+    groupLabel: "Choose cookie types",
+    stats: "Statistics: Google Analytics, measuring site usage",
+    marketing: "Marketing: Meta Pixel, measuring ads on Facebook and Instagram",
+    acceptAll: "Accept all",
+    rejectAll: "Reject all",
+    save: "Save my choice",
     policy: "Privacy Policy",
     close: "Close",
-    savedGranted: "You accepted measurement and advertising cookies.",
-    savedDenied: "You rejected measurement and advertising cookies.",
+    yes: "On",
+    no: "Off",
+    saved: (st: boolean, mk: boolean) =>
+      `Saved choice: statistics ${st ? "on" : "off"}, marketing ${mk ? "on" : "off"}.`,
   },
 } as const;
 
@@ -158,6 +186,9 @@ export default function CookieConsent() {
   const [current, setCurrent] = useState<ConsentRecord | null>(null);
   const reopened = useRef(false);
   const acceptRef = useRef<HTMLButtonElement | null>(null);
+  // Both boxes start unticked (no pre-selection); re-opening shows the saved choice.
+  const [statsOn, setStatsOn] = useState(false);
+  const [marketingOn, setMarketingOn] = useState(false);
 
   useEffect(() => {
     const stored = readConsent();
@@ -167,7 +198,10 @@ export default function CookieConsent() {
 
     const onOpen = () => {
       reopened.current = true;
-      setCurrent(readConsent());
+      const stored = readConsent();
+      setCurrent(stored);
+      setStatsOn(stored?.choice === "granted");
+      setMarketingOn(stored?.marketing === true);
       setOpen(true);
     };
     window.addEventListener(OPEN_EVENT, onOpen);
@@ -179,8 +213,10 @@ export default function CookieConsent() {
     if (open && reopened.current) acceptRef.current?.focus();
   }, [open]);
 
-  const choose = useCallback((choice: ConsentChoice) => {
-    const rec = writeConsent(choice);
+  const choose = useCallback((stats: boolean, marketing: boolean) => {
+    const rec = writeConsent(stats, marketing);
+    setStatsOn(stats);
+    setMarketingOn(marketing);
     setCurrent(rec);
     setOpen(false);
     reopened.current = false;
@@ -243,6 +279,10 @@ export default function CookieConsent() {
         @media (max-width:900px){
           .cc-card{ padding-left:calc(env(safe-area-inset-left, 0px) + 14px); padding-right:calc(env(safe-area-inset-right, 0px) + 84px); }
         }
+        .cc-opts{ display:flex; flex-wrap:wrap; gap:0 18px; margin:4px 0 0; padding:0; border:0; min-width:0; }
+        .cc-opt{ display:inline-flex; align-items:center; gap:8px; min-height:44px; cursor:pointer; font-family:${HEEBO}; font-size:13px; line-height:1.4; color:var(--dtext); }
+        .cc-opt input{ width:20px; height:20px; margin:0; flex:0 0 auto; accent-color:var(--acc); cursor:pointer; }
+        .cc-opt input:focus-visible{ outline:3px solid var(--acc); outline-offset:3px; }
         .cc-btn:hover{ background:color-mix(in oklch, var(--acc) 16%, transparent); }
         .cc-btn:focus-visible,
         .cc-link:focus-visible{
@@ -303,9 +343,22 @@ export default function CookieConsent() {
                 {c.policy}
               </Link>
             </p>
+            <fieldset className="cc-opts">
+              <legend style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)", whiteSpace: "nowrap" }}>
+                {c.groupLabel}
+              </legend>
+              <label className="cc-opt">
+                <input type="checkbox" checked={statsOn} onChange={(e) => setStatsOn(e.target.checked)} />
+                <span>{c.stats}</span>
+              </label>
+              <label className="cc-opt">
+                <input type="checkbox" checked={marketingOn} onChange={(e) => setMarketingOn(e.target.checked)} />
+                <span>{c.marketing}</span>
+              </label>
+            </fieldset>
             {current && (
               <p style={{ margin: "4px 0 0", fontFamily: HEEBO, fontSize: 13, color: "var(--dmuted)", opacity: 0.85 }}>
-                {current.choice === "granted" ? c.savedGranted : c.savedDenied}
+                {c.saved(current.choice === "granted", current.marketing === true)}
               </p>
             )}
           </div>
@@ -316,12 +369,15 @@ export default function CookieConsent() {
               type="button"
               className="cc-btn"
               style={btnStyle}
-              onClick={() => choose("granted")}
+              onClick={() => choose(true, true)}
             >
-              {c.accept}
+              {c.acceptAll}
             </button>
-            <button type="button" className="cc-btn" style={btnStyle} onClick={() => choose("denied")}>
-              {c.reject}
+            <button type="button" className="cc-btn" style={btnStyle} onClick={() => choose(false, false)}>
+              {c.rejectAll}
+            </button>
+            <button type="button" className="cc-btn" style={btnStyle} onClick={() => choose(statsOn, marketingOn)}>
+              {c.save}
             </button>
           </div>
         </div>

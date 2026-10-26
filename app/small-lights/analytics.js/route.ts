@@ -1,7 +1,7 @@
 // SMALL LIGHTS screening pages (public/small-lights/*.html) are static HTML outside the app layout, so they cannot use
 // components/AnalyticsScripts. This script gives them the same rules: nothing loads unless the visitor accepted the
 // cookie banner on shani-ai.com (localStorage "shani-cookie-consent", components/CookieConsent.tsx), Consent Mode v2
-// starts denied, and the GA4 ID comes from the same public env var. Video events fire once per milestone per page load.
+// starts denied (advertising signals stay denied unless the visitor also ticked marketing), and the GA4 ID comes from the same public env var. Video events fire once per milestone per page load.
 export const dynamic = "force-static";
 
 const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID ?? "";
@@ -15,7 +15,8 @@ const body = `(() => {
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
   gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
-  gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+  var mk = consent.marketing === true ? 'granted' : 'denied';
+  gtag('consent', 'update', { ad_storage: mk, ad_user_data: mk, ad_personalization: mk, analytics_storage: 'granted' });
   var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID; document.head.appendChild(s);
   gtag('js', new Date()); gtag('config', ID);
   var edition = document.body.getAttribute('data-sl-edition') || 'film';

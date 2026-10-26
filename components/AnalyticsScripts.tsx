@@ -9,12 +9,14 @@ import { readConsent, useConsent } from "@/components/CookieConsent";
  *
  * Nothing here loads until the visitor actively accepts in the cookie banner
  * (components/CookieConsent.tsx). GA4 sets _ga / _ga_* and Meta Pixel sets
- * _fbp; both are third-party trackers used for measurement and advertising,
- * which under the Privacy Protection Authority's opinion on "הסכמה"
- * (25.2.2026, following תיקון 13) require prior opt-in.
+ * _fbp; both are third-party trackers, which under the Privacy Protection
+ * Authority's opinion on "הסכמה" (25.2.2026, following תיקון 13) require prior
+ * opt-in. The visitor makes two SEPARATE choices, both off by default:
+ *   statistics → GA4 only (analytics_storage)
+ *   marketing  → Meta Pixel only (+ ad_storage / ad_user_data / ad_personalization)
  *
  * Google Consent Mode v2 defaults to denied and is only updated to granted
- * after the visitor accepts, so even the Google tag itself starts locked.
+ * per category, so even the Google tag itself starts locked.
  *
  * The old <noscript> Meta tracking pixel was removed: an <img> in <noscript>
  * fires the moment the markup is parsed and cannot be conditioned on consent.
@@ -29,7 +31,7 @@ import { readConsent, useConsent } from "@/components/CookieConsent";
  * To fire a Lead / generate_lead conversion from anywhere on the site, call:
  *   import { trackLead } from "@/components/AnalyticsScripts";
  *   trackLead({ source: "audit-form" });
- * It is a no-op when consent was not given, because neither tag exists.
+ * Each tag only receives the event if its own category was accepted.
  */
 
 // No hardcoded fallbacks. They used to be baked in here, which meant clearing
@@ -41,13 +43,15 @@ const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
 
 // Shared helper — fires the lead event on both GA4 and Meta Pixel if present.
 export function trackLead(params: Record<string, unknown> = {}) {
-  if (typeof window === "undefined" || readConsent()?.choice !== "granted") return;
+  if (typeof window === "undefined") return;
+  const rec = readConsent();
+  if (!rec) return;
   try {
     const w = window as any;
-    if (typeof w.gtag === "function") {
+    if (rec.choice === "granted" && typeof w.gtag === "function") {
       w.gtag("event", "generate_lead", { currency: "ILS", ...params });
     }
-    if (typeof w.fbq === "function") {
+    if (rec.marketing === true && typeof w.fbq === "function") {
       w.fbq("track", "Lead", params);
     }
   } catch {
@@ -57,7 +61,8 @@ export function trackLead(params: Record<string, unknown> = {}) {
 
 export default function AnalyticsScripts() {
   const { record, ready } = useConsent();
-  const granted = ready && record?.choice === "granted";
+  const stats = ready && record?.choice === "granted";
+  const marketing = ready && record?.marketing === true;
 
   // Consent Mode v2: deny everything up front, on every pageview, before any
   // Google tag can run.
@@ -81,35 +86,35 @@ export default function AnalyticsScripts() {
     });
   }, []);
 
-  // Flip Consent Mode to granted the moment the visitor accepts.
+  // Consent Mode v2 follows each choice separately, in both directions.
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || !ready) return;
     const w = window as any;
-    if (typeof w.gtag !== "function") return;
-    if (granted) {
+    if (typeof w.gtag === "function") {
+      const mk = marketing ? "granted" : "denied";
       w.gtag("consent", "update", {
-        ad_storage: "granted",
-        ad_user_data: "granted",
-        ad_personalization: "granted",
-        analytics_storage: "granted",
+        analytics_storage: stats ? "granted" : "denied",
+        ad_storage: mk,
+        ad_user_data: mk,
+        ad_personalization: mk,
       });
     }
-    if (ready && record?.choice === "denied") {
-      w.gtag("consent", "update", {
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        analytics_storage: "denied",
-      });
+    // Withdrawing marketing consent switches an already-loaded pixel off.
+    if (!marketing && typeof w.fbq === "function") {
+      try {
+        w.fbq("consent", "revoke");
+      } catch {
+        /* no-op */
+      }
     }
-  }, [granted, ready, record?.choice]);
+  }, [stats, marketing, ready]);
 
-  if (!granted) return null;
+  if (!stats && !marketing) return null;
 
   return (
     <>
       {/* ─── Google Analytics 4 ─── */}
-      {GA4_ID && (
+      {stats && GA4_ID && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
@@ -127,7 +132,7 @@ export default function AnalyticsScripts() {
       )}
 
       {/* ─── Meta (Facebook) Pixel ─── */}
-      {META_PIXEL_ID && (
+      {marketing && META_PIXEL_ID && (
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
