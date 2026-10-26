@@ -18,7 +18,9 @@ import Link from "next/link";
  *   Vercel Analytics is deliberately NOT gated: it is cookieless and does not
  *   build a cross-site profile.
  *
- * Two separate choices, both off by default:
+ * First layer (banner): one sentence, "accept" and "essential only" — two
+ * identical buttons, no toggles. Detailed layer (dialog, opened from the footer
+ * link): two separate choices, both off by default:
  *   - statistics (`choice`)  → Google Analytics 4 only
  *   - marketing  (`marketing`) → Meta Pixel only, and the Consent Mode v2
  *     advertising signals (ad_storage / ad_user_data / ad_personalization)
@@ -90,7 +92,7 @@ export function writeConsent(stats: boolean, marketing: boolean): ConsentRecord 
   return record;
 }
 
-/** Re-opens the banner. Wired to the "הגדרות עוגיות" link in the footer. */
+/** Opens the cookie settings dialog (two separate toggles). Wired to the "הגדרות עוגיות" link in the footer. */
 export function openCookieSettings() {
   if (typeof window === "undefined") return;
   try {
@@ -133,48 +135,51 @@ export function useConsent(): { record: ConsentRecord | null; ready: boolean } {
 }
 
 const HEEBO = "'Heebo', var(--font-heebo), sans-serif";
-const MONO = "'JetBrains Mono', var(--font-mono), monospace";
 
 const COPY = {
   he: {
     label: "הגדרות עוגיות",
-    kicker: "עוגיות",
-    title: "עוגיות באתר",
-    body:
-      "רק באישורכם נטענים כלים של צד שלישי (מידע עובר מחוץ לישראל). אפשר לבחור כל אחד בנפרד, ואפשר לדחות הכול ולהמשיך כרגיל.",
-    groupLabel: "בחירת סוגי עוגיות",
-    stats: "סטטיסטיקה: Google Analytics, מדידת שימוש באתר",
-    marketing: "שיווק: Meta Pixel, מדידת פרסום בפייסבוק ובאינסטגרם",
-    acceptAll: "אישור הכול",
-    rejectAll: "דחיית הכול",
+    bannerLabel: "הודעת עוגיות",
+    banner: "עוגיות סטטיסטיקה ושיווק של צד שלישי נטענות רק באישורכם.",
+    accept: "אישור",
+    essential: "רק הכרחיות",
+    policy: "מדיניות פרטיות",
+    title: "הגדרות עוגיות",
+    intro:
+      "כלים של צד שלישי נטענים רק באישורכם (מידע עובר מחוץ לישראל). אפשר לבחור כל אחד בנפרד, והאתר פועל במלואו גם בלי אישור.",
+    groupLabel: "סוגי עוגיות",
+    statsTitle: "סטטיסטיקה",
+    statsDesc: "Google Analytics בלבד, מדידת שימוש באתר.",
+    marketingTitle: "שיווק",
+    marketingDesc: "Meta Pixel ואותות פרסום של Google, מדידת פרסום בפייסבוק ובאינסטגרם.",
     save: "שמירת הבחירה",
-    policy: "מדיניות הפרטיות",
     close: "סגירה",
-    yes: "מאושר",
-    no: "לא מאושר",
     saved: (st: boolean, mk: boolean) =>
       `הבחירה השמורה: סטטיסטיקה ${st ? "מאושרת" : "לא מאושרת"}, שיווק ${mk ? "מאושר" : "לא מאושר"}.`,
   },
   en: {
     label: "Cookie settings",
-    kicker: "Cookies",
-    title: "Cookies on this site",
-    body:
-      "Third-party tools load only with your consent (data leaves Israel). You can choose each one separately, or reject everything and carry on.",
-    groupLabel: "Choose cookie types",
-    stats: "Statistics: Google Analytics, measuring site usage",
-    marketing: "Marketing: Meta Pixel, measuring ads on Facebook and Instagram",
-    acceptAll: "Accept all",
-    rejectAll: "Reject all",
-    save: "Save my choice",
+    bannerLabel: "Cookie notice",
+    banner: "Third-party statistics and marketing cookies load only with your consent.",
+    accept: "Accept",
+    essential: "Essential only",
     policy: "Privacy Policy",
+    title: "Cookie settings",
+    intro:
+      "Third-party tools load only with your consent (data leaves Israel). You can choose each one separately, and the site works fully without them.",
+    groupLabel: "Cookie types",
+    statsTitle: "Statistics",
+    statsDesc: "Google Analytics only, measuring site usage.",
+    marketingTitle: "Marketing",
+    marketingDesc: "Meta Pixel and Google advertising signals, measuring ads on Facebook and Instagram.",
+    save: "Save my choice",
     close: "Close",
-    yes: "On",
-    no: "Off",
     saved: (st: boolean, mk: boolean) =>
       `Saved choice: statistics ${st ? "on" : "off"}, marketing ${mk ? "on" : "off"}.`,
   },
 } as const;
+
+const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
 export default function CookieConsent() {
   const { lang } = useLang(); const L = useLang().href;
@@ -182,164 +187,193 @@ export default function CookieConsent() {
   const dir = lang === "en" ? "ltr" : "rtl";
 
   const [ready, setReady] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState<ConsentRecord | null>(null);
-  const reopened = useRef(false);
-  const acceptRef = useRef<HTMLButtonElement | null>(null);
-  // Both boxes start unticked (no pre-selection); re-opening shows the saved choice.
+  const [stored, setStored] = useState<ConsentRecord | null>(null);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  // Both toggles start off (no pre-selection); re-opening shows the saved choice.
   const [statsOn, setStatsOn] = useState(false);
   const [marketingOn, setMarketingOn] = useState(false);
 
-  useEffect(() => {
-    const stored = readConsent();
-    setCurrent(stored);
-    setOpen(stored === null);
-    setReady(true);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const opener = useRef<HTMLElement | null>(null);
 
+  useEffect(() => {
+    setStored(readConsent());
+    setReady(true);
     const onOpen = () => {
-      reopened.current = true;
-      const stored = readConsent();
-      setCurrent(stored);
-      setStatsOn(stored?.choice === "granted");
-      setMarketingOn(stored?.marketing === true);
-      setOpen(true);
+      const rec = readConsent();
+      opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      setStored(rec);
+      setStatsOn(rec?.choice === "granted");
+      setMarketingOn(rec?.marketing === true);
+      setSettingsOpen(true);
     };
     window.addEventListener(OPEN_EVENT, onOpen);
     return () => window.removeEventListener(OPEN_EVENT, onOpen);
   }, []);
 
-  // Only move focus when the visitor asked for the panel from the footer.
+  const showBanner = ready && stored === null && !settingsOpen;
+
+  // Publish the banner height so the floating WhatsApp button can sit above it.
   useEffect(() => {
-    if (open && reopened.current) acceptRef.current?.focus();
-  }, [open]);
+    const root = document.documentElement;
+    const el = cardRef.current;
+    if (!showBanner || !el) {
+      root.style.removeProperty("--cc-h");
+      return;
+    }
+    const set = () => root.style.setProperty("--cc-h", `${Math.ceil(el.getBoundingClientRect().height)}px`);
+    set();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(set) : null;
+    ro?.observe(el);
+    return () => {
+      ro?.disconnect();
+      root.style.removeProperty("--cc-h");
+    };
+  }, [showBanner]);
+
+  const closeSettings = useCallback(() => {
+    setSettingsOpen(false);
+    const el = opener.current;
+    opener.current = null;
+    if (el && document.contains(el)) setTimeout(() => el.focus(), 0);
+  }, []);
+
+  // Modal dialog: move focus in, trap Tab, close on Escape.
+  useEffect(() => {
+    if (!settingsOpen) return;
+    const d = dialogRef.current;
+    d?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeSettings();
+        return;
+      }
+      if (e.key !== "Tab" || !d) return;
+      const items = Array.from(d.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === d)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [settingsOpen, closeSettings]);
 
   const choose = useCallback((stats: boolean, marketing: boolean) => {
     const rec = writeConsent(stats, marketing);
     setStatsOn(stats);
     setMarketingOn(marketing);
-    setCurrent(rec);
-    setOpen(false);
-    reopened.current = false;
+    setStored(rec);
+    setSettingsOpen(false);
+    const el = opener.current;
+    opener.current = null;
+    if (el && document.contains(el)) setTimeout(() => el.focus(), 0);
   }, []);
 
-  if (!ready || !open) return null;
-
-  const btnStyle: React.CSSProperties = {
-    // Both buttons are visually identical on purpose: the regulator's opinion
-    // treats a de-emphasised "reject" as a defect in the consent itself.
-    flex: "1 1 0",
-    minWidth: 84,
-    minHeight: 48,
-    padding: "0 18px",
-    borderRadius: 12,
-    border: "1.5px solid var(--acc)",
-    background: "transparent",
-    color: "var(--acc)",
-    fontFamily: HEEBO,
-    fontWeight: 800,
-    fontSize: 15,
-    lineHeight: 1.2,
-    cursor: "pointer",
-  };
+  if (!ready || (!showBanner && !settingsOpen)) return null;
 
   return (
     <>
       <style>{`
-        /* A slim bar on the bottom edge. The start side is left free for the
-           floating WhatsApp button (2rem inset + 56px). */
         .cc-wrap{
-          position:fixed;
-          z-index:99900;
-          inset-inline:0;
-          bottom:0;
+          position:fixed; z-index:99900;
+          inset-inline:0; bottom:0;
+          padding:0 max(10px, env(safe-area-inset-left,0px)) calc(env(safe-area-inset-bottom,0px) + 10px);
           pointer-events:none;
+          --acc:var(--acc-bright);
+          font-family:${HEEBO};
         }
         .cc-card{
           pointer-events:auto;
-          display:flex;
-          flex-wrap:wrap;
-          align-items:center;
-          gap:8px 14px;
+          max-width:720px; margin:0 auto;
+          display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px;
           background:var(--dpanel);
-          --acc:var(--acc-bright);
-          border-top:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
-          padding:10px 14px calc(env(safe-area-inset-bottom, 0px) + 10px);
-          padding-inline-start:calc(env(safe-area-inset-left, 0px) + 2rem + 64px);
-          box-shadow:0 -12px 30px rgba(0,0,0,.32);
-          max-height:45vh;
-          overflow-y:auto;
+          border:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
+          border-radius:16px;
+          padding:12px 14px;
+          box-shadow:0 10px 30px rgba(0,0,0,.35);
         }
-        body:has(.cc-wrap) .floating-whatsapp{ z-index:99950 !important; }
-        .cc-text{ flex:1 1 280px; min-width:0; }
+        .cc-text{ flex:1 1 280px; min-width:0; margin:0; font-size:13px; line-height:1.5; color:var(--dtext); }
+        .cc-link{ color:var(--acc); text-decoration:underline; font-weight:700; white-space:nowrap; }
         .cc-actions{ display:flex; gap:8px; flex:0 0 auto; }
-        @media (max-width:560px){
-          .cc-actions{ flex:1 1 100%; }
+        @media (max-width:560px){ .cc-actions{ flex:1 1 100%; } }
+        .cc-btn{
+          /* Both choices share one style: a de-emphasised "reject" is a defect in the consent itself. */
+          flex:1 1 0; min-width:96px; min-height:44px; padding:0 16px;
+          border-radius:12px; border:1.5px solid var(--acc); background:transparent; color:var(--acc);
+          font-family:${HEEBO}; font-weight:800; font-size:15px; line-height:1.2; cursor:pointer;
         }
-        /* Under 900px the WhatsApp button is pinned to the physical right in both languages. */
-        @media (max-width:900px){
-          .cc-card{ padding-left:calc(env(safe-area-inset-left, 0px) + 14px); padding-right:calc(env(safe-area-inset-right, 0px) + 84px); }
-        }
-        .cc-opts{ display:flex; flex-wrap:wrap; gap:0 18px; margin:4px 0 0; padding:0; border:0; min-width:0; }
-        .cc-opt{ display:inline-flex; align-items:center; gap:8px; min-height:44px; cursor:pointer; font-family:${HEEBO}; font-size:13px; line-height:1.4; color:var(--dtext); }
-        .cc-opt input{ width:20px; height:20px; margin:0; flex:0 0 auto; accent-color:var(--acc); cursor:pointer; }
-        .cc-opt input:focus-visible{ outline:3px solid var(--acc); outline-offset:3px; }
         .cc-btn:hover{ background:color-mix(in oklch, var(--acc) 16%, transparent); }
-        .cc-btn:focus-visible,
-        .cc-link:focus-visible{
-          outline:3px solid var(--acc);
-          outline-offset:3px;
-          border-radius:6px;
-        }
+        .cc-btn:focus-visible,.cc-link:focus-visible,.cc-opt input:focus-visible,.cc-x:focus-visible{ outline:3px solid var(--acc); outline-offset:3px; border-radius:6px; }
+        /* WhatsApp sits just above the banner while it is shown. */
+        body:has(.cc-wrap.cc-banner) .floating-whatsapp{ bottom:calc(env(safe-area-inset-bottom,0px) + var(--cc-h,0px) + 18px) !important; }
+
+        .cc-overlay{ position:fixed; inset:0; z-index:99950; background:rgba(10,7,4,.62); display:flex; align-items:center; justify-content:center; padding:16px; font-family:${HEEBO}; --acc:var(--acc-bright); }
+        .cc-dialog{ position:relative; width:100%; max-width:440px; max-height:calc(100dvh - 32px); overflow-y:auto; background:var(--dpanel); color:var(--dtext); border:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline)); border-radius:18px; padding:20px 18px 18px; box-shadow:0 20px 60px rgba(0,0,0,.5); outline:none; }
+        .cc-dialog h2{ margin:0 0 6px; font-size:19px; font-weight:800; padding-inline-end:40px; }
+        .cc-dialog p{ margin:0; font-size:14px; line-height:1.55; color:var(--dmuted); }
+        .cc-x{ position:absolute; top:10px; inset-inline-end:10px; width:44px; height:44px; display:grid; place-items:center; border:0; background:transparent; color:var(--dtext); font-size:24px; line-height:1; cursor:pointer; border-radius:10px; }
+        .cc-opts{ margin:14px 0 4px; padding:0; border:0; min-width:0; display:grid; gap:8px; }
+        .cc-opt{ display:flex; align-items:flex-start; gap:12px; padding:12px; border:1px solid var(--dline); border-radius:12px; cursor:pointer; }
+        .cc-opt input{ width:22px; height:22px; margin:2px 0 0; flex:0 0 auto; accent-color:var(--acc); cursor:pointer; }
+        .cc-opt b{ display:block; font-size:15px; font-weight:800; color:var(--dtext); }
+        .cc-opt span span{ display:block; font-size:13px; line-height:1.45; color:var(--dmuted); margin-top:2px; }
+        .cc-saved{ margin-top:10px !important; font-size:13px !important; }
+        .cc-dialog .cc-actions{ margin-top:14px; }
         @media (prefers-reduced-motion: no-preference){
           .cc-card{ animation:cc-in var(--t-base) ease-out both; }
-          .cc-btn{ transition:background var(--t-fast) ease, transform var(--t-fast) ease; }
-          .cc-btn:hover{ transform:translateY(-1px); }
+          .cc-btn{ transition:background var(--t-fast) ease; }
         }
-        @keyframes cc-in{
-          from{ opacity:0; transform:translateY(14px); }
-          to{ opacity:1; transform:none; }
-        }
+        @keyframes cc-in{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
       `}</style>
 
-      <div className="cc-wrap" dir={dir}>
-        <div
-          className="cc-card"
-          role="dialog"
-          aria-modal="false"
-          aria-labelledby="cc-title"
-          aria-describedby="cc-body"
-        >
-          <div className="cc-text">
-            <h2
-              id="cc-title"
-              style={{
-                display: "inline",
-                margin: 0,
-                fontFamily: HEEBO,
-                fontWeight: 800,
-                fontSize: 13,
-                color: "var(--dtext)",
-              }}
-            >
-              {c.title}:{" "}
-            </h2>
-            <p
-              id="cc-body"
-              style={{
-                display: "inline",
-                margin: 0,
-                fontFamily: HEEBO,
-                fontSize: 13,
-                lineHeight: 1.5,
-                color: "var(--dmuted)",
-              }}
-            >
-              {c.body}{" "}
-              <Link
-                className="cc-link"
-                href={L("/privacy")}
-                style={{ color: "var(--acc)", textDecoration: "underline", fontWeight: 700 }}
-              >
+      {showBanner && (
+        <div className="cc-wrap cc-banner" dir={dir}>
+          <div ref={cardRef} className="cc-card" role="dialog" aria-modal="false" aria-label={c.bannerLabel}>
+            <p className="cc-text">
+              {c.banner}{" "}
+              <Link className="cc-link" href={L("/privacy")}>
+                {c.policy}
+              </Link>
+            </p>
+            <div className="cc-actions">
+              <button type="button" className="cc-btn" onClick={() => choose(true, true)}>
+                {c.accept}
+              </button>
+              <button type="button" className="cc-btn" onClick={() => choose(false, false)}>
+                {c.essential}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {settingsOpen && (
+        <div className="cc-overlay" dir={dir} onMouseDown={(e) => { if (e.target === e.currentTarget) closeSettings(); }}>
+          <div
+            ref={dialogRef}
+            className="cc-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cc-title"
+            aria-describedby="cc-intro"
+            tabIndex={-1}
+          >
+            <button type="button" className="cc-x" onClick={closeSettings} aria-label={c.close}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h2 id="cc-title">{c.title}</h2>
+            <p id="cc-intro">
+              {c.intro}{" "}
+              <Link className="cc-link" href={L("/privacy")} onClick={() => setSettingsOpen(false)}>
                 {c.policy}
               </Link>
             </p>
@@ -349,39 +383,28 @@ export default function CookieConsent() {
               </legend>
               <label className="cc-opt">
                 <input type="checkbox" checked={statsOn} onChange={(e) => setStatsOn(e.target.checked)} />
-                <span>{c.stats}</span>
+                <span>
+                  <b>{c.statsTitle}</b>
+                  <span>{c.statsDesc}</span>
+                </span>
               </label>
               <label className="cc-opt">
                 <input type="checkbox" checked={marketingOn} onChange={(e) => setMarketingOn(e.target.checked)} />
-                <span>{c.marketing}</span>
+                <span>
+                  <b>{c.marketingTitle}</b>
+                  <span>{c.marketingDesc}</span>
+                </span>
               </label>
             </fieldset>
-            {current && (
-              <p style={{ margin: "4px 0 0", fontFamily: HEEBO, fontSize: 13, color: "var(--dmuted)", opacity: 0.85 }}>
-                {c.saved(current.choice === "granted", current.marketing === true)}
-              </p>
-            )}
-          </div>
-
-          <div className="cc-actions">
-            <button
-              ref={acceptRef}
-              type="button"
-              className="cc-btn"
-              style={btnStyle}
-              onClick={() => choose(true, true)}
-            >
-              {c.acceptAll}
-            </button>
-            <button type="button" className="cc-btn" style={btnStyle} onClick={() => choose(false, false)}>
-              {c.rejectAll}
-            </button>
-            <button type="button" className="cc-btn" style={btnStyle} onClick={() => choose(statsOn, marketingOn)}>
-              {c.save}
-            </button>
+            {stored && <p className="cc-saved">{c.saved(stored.choice === "granted", stored.marketing === true)}</p>}
+            <div className="cc-actions">
+              <button type="button" className="cc-btn" onClick={() => choose(statsOn, marketingOn)}>
+                {c.save}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

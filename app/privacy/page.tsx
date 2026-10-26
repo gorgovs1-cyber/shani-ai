@@ -63,7 +63,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "עוגיות וטכנולוגיות מעקב",
         body:
-          "האתר עושה שימוש בעוגיות — לא \"עשוי\". חלקן נחוצות לתפעול ונשמרות רק בדפדפן שלכם, וחלקן שייכות לצד שלישי ומשמשות למדידה ולפרסום. בהודעת העוגיות יש שתי בחירות נפרדות, וכל אחת כבויה כברירת מחדל: סטטיסטיקה (Google Analytics בלבד) ושיווק (Meta Pixel בלבד). כל כלי נטען אך ורק אחרי שאישרתם את הקטגוריה שלו; עד אז הוא אינו פועל כלל. אישור סטטיסטיקה אינו מפעיל את Meta Pixel, ואישור שיווק אינו מפעיל את Google Analytics. אפשר לשנות את הבחירה בכל רגע דרך הקישור \"הגדרות עוגיות\" שבתחתית כל עמוד. הטבלה הבאה מפרטת את כל העוגיות והמפתחות שהאתר מציב:",
+          "האתר עושה שימוש בעוגיות — לא \"עשוי\". חלקן נחוצות לתפעול ונשמרות רק בדפדפן שלכם, וחלקן שייכות לצד שלישי ומשמשות למדידה ולפרסום. בהודעת העוגיות אפשר לאשר או לדחות בלחיצה אחת, ובהגדרות העוגיות (קישור בתחתית כל עמוד) יש שתי בחירות נפרדות, וכל אחת כבויה כברירת מחדל: סטטיסטיקה (Google Analytics בלבד) ושיווק (Meta Pixel בלבד). כל כלי נטען אך ורק אחרי שאישרתם את הקטגוריה שלו; עד אז הוא אינו פועל כלל. אישור סטטיסטיקה אינו מפעיל את Meta Pixel, ואישור שיווק אינו מפעיל את Google Analytics. אפשר לשנות את הבחירה בכל רגע דרך הקישור \"הגדרות עוגיות\" שבתחתית כל עמוד. הטבלה הבאה מפרטת את כל העוגיות והמפתחות שהאתר מציב:",
         table: {
           head: ["שם", "סוג ומטרה", "משך שמירה", "בעלים"],
           rows: [
@@ -185,7 +185,7 @@ const COPY: Record<"he" | "en", Copy> = {
       {
         heading: "Cookies and tracking technologies",
         body:
-          "This site uses cookies — not \"may use\". Some are functional and stay in your browser only; others belong to third parties and serve measurement and advertising. The cookie banner has two separate choices, each off by default: statistics (Google Analytics only) and marketing (Meta Pixel only). Each tool loads only after you accept its own category; until then it does not run at all. Accepting statistics does not switch on Meta Pixel, and accepting marketing does not switch on Google Analytics. You can change your choice at any time via the \"Cookie settings\" link at the bottom of every page. The table below lists every cookie and key this site sets:",
+          "This site uses cookies — not \"may use\". Some are functional and stay in your browser only; others belong to third parties and serve measurement and advertising. The cookie notice lets you accept or reject with one click, and the cookie settings (link at the bottom of every page) have two separate choices, each off by default: statistics (Google Analytics only) and marketing (Meta Pixel only). Each tool loads only after you accept its own category; until then it does not run at all. Accepting statistics does not switch on Meta Pixel, and accepting marketing does not switch on Google Analytics. You can change your choice at any time via the \"Cookie settings\" link at the bottom of every page. The table below lists every cookie and key this site sets:",
         table: {
           head: ["Name", "Type and purpose", "Lifetime", "Owner"],
           rows: [

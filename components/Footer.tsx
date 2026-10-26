@@ -11,7 +11,7 @@ export default function Footer(){
  return <footer className="site-footer" dir={t.dir}>
  <div className="footer-brand"><div className="footer-brand-lockup"><Logo height={30}/><strong dir="ltr">Shani AI Creator</strong></div></div>
  <nav className="footer-links" aria-label={he?"עוד באתר":"More on the site"}>{site.map(([label,href])=><a key={href} href={L(href)}>{label}</a>)}</nav>
- <nav className="footer-links footer-legal" aria-label={he?"מידע משפטי והגדרות":"Legal information and settings"}>{legal.map(([label,full,href])=><Link key={href} href={L(href)} aria-label={full}>{label}</Link>)}<button type="button" onClick={openCookieSettings} aria-label={he?"הגדרות עוגיות":"Cookies"}>{he?"עוגיות":"Cookies"}</button></nav>
+ <nav className="footer-links footer-legal" aria-label={he?"מידע משפטי והגדרות":"Legal information and settings"}>{legal.map(([label,full,href])=><Link key={href} href={L(href)} aria-label={full}>{label}</Link>)}<button type="button" onClick={openCookieSettings} >{he?"הגדרות עוגיות":"Cookie settings"}</button></nav>
  <small className="footer-copyright">© {new Date().getFullYear()} · {t.footer}</small>
  </footer>;
 }
