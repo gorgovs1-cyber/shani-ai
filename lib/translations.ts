@@ -113,7 +113,8 @@ export const dict = {
       {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot, an AI agent or a voice bot that understands the conversation, replies in your tone and hands you only what needs a person.'},
       {no:'02', title:'A modular CRM', short:'Every customer and enquiry in one place, in modules that fit a small business or a large organisation', desc:'A CRM built around how your business works, that grows with you.'},
       {no:'03', title:'Websites that bring enquiries', short:'A fast website that explains what you do and leads to an enquiry', desc:'A website that explains your offer and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.'},
-      {no:'04', title:'Automations', short:'Repetitive work happens by itself: enquiry details are saved, confirmations and reminders are sent', desc:'Recurring tasks happen automatically and connect the tools you already use.'}
+      {no:'04', title:'Automations', short:'Repetitive work happens by itself: enquiry details are saved, confirmations and reminders are sent', desc:'Recurring tasks happen automatically and connect the tools you already use.'},
+      {no:'05', title:'AI visual content', short:'Product visualizations, videos and a catalog that updates, with no reshoots', desc:'Show the client the product before it is assembled: visualizations in your brand style, short videos and a catalog for every season.'}
     ],
     // Projects live in lib/projects.ts, the single source of truth for the portfolio.
     // טופס הפרומפטים הוסר — לא הייתה רשימת תפוצה לשלוח אליה.

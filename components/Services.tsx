@@ -11,6 +11,7 @@ const ICONS = [
   <path key="i1" d="M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01" />,
   <path key="i2" d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" />,
   <path key="i3" d="M5 4h5v5H5zM14 15h5v5h-5zM10 6.5h3.5a2 2 0 0 1 2 2V15" />,
+  <path key="i4" d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6M9 9.5h.01" />,
 ];
 
 export default function Services() {
@@ -24,8 +25,9 @@ export default function Services() {
     { href: "/audit", label: t.servicesCtaAudit },
     { href: "/websites", label: t.servicesCta },
     { href: "/chatbots", label: he ? "אוטומציות כהרחבה לבוט" : "Automations as a bot add-on" },
+    { href: "/ai-visual-content", label: t.servicesCta },
   ];
-  const ids = [undefined, "crm", undefined, undefined];
+  const ids = [undefined, "crm", undefined, undefined, undefined];
 
   return (
     <section id="build" className="svc-section">
@@ -33,7 +35,7 @@ export default function Services() {
         <h2 className="svc-kicker">{t.buildKicker}</h2>
       </header>
 
-      <div className="svc-grid">
+      <div className={`svc-grid n${t.services.length}`}>
         {t.services.map((s, i) => {
           const link = links[i];
           const isOpen = open === i;

@@ -28,6 +28,7 @@ const pages: Entry[] = [
   { path: '', lastmod: '2026-10-26', changefreq: 'weekly', priority: 1, bilingual: true, images: [portrait, about, slCard] },
   { path: '/websites', lastmod: '2026-10-21', changefreq: 'monthly', priority: 0.9, bilingual: true },
   { path: '/chatbots', lastmod: '2026-10-21', changefreq: 'monthly', priority: 0.9, bilingual: true },
+  { path: '/ai-visual-content', lastmod: '2026-10-26', changefreq: 'monthly', priority: 0.9, bilingual: true },
   { path: '/audit', lastmod: '2026-10-21', changefreq: 'monthly', priority: 0.9, bilingual: true },
   { path: '/work', lastmod: '2026-10-22', changefreq: 'monthly', priority: 0.8, bilingual: true, images: [slCard, orPreview, myMoney] },
   { path: '/work/small-lights', lastmod: '2026-10-20', changefreq: 'monthly', priority: 0.8, images: [slCard] },

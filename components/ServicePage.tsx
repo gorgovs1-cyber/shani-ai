@@ -5,6 +5,7 @@ import { useLang } from "@/components/LanguageProvider";
 import Footer from "@/components/Footer";
 import AutomationFlowDemo from "@/components/AutomationFlowDemo";
 import Link from "next/link";
+import NeedSolutionFlow, { FlowCopy } from "@/components/NeedSolutionFlow";
 
 const WA = "972504744815";
 const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -19,6 +20,9 @@ export type ServiceCopy = {
   secondaryCta: string; // scrolls to the product list on the same page
   includesTitle: string;
   includes: string[];
+  /** Optional need → solution → how it works → how to start flow, rendered right after the hero.
+      When present, `includes` may be empty and the section is skipped. */
+  flow?: FlowCopy;
   /** המוצרים של השירות הזה, עם ההסבר המלא. המחירון מקשר לכאן. */
   products?: {
     title: string;
@@ -83,12 +87,14 @@ export default function ServicePage({
           <p className="sp-lead">{c.lead}</p>
           <div className="sp-actions">
             <a href={L("/audit")} className="btn btn-primary">{auditLabel}</a>
-            <a href="#solutions" className="btn btn-ghost">{c.secondaryCta}</a>
+            <a href={c.products ? "#solutions" : c.flow ? "#flow-solution" : "#solutions"} className="btn btn-ghost">{c.secondaryCta}</a>
           </div>
         </header>
 
+        {c.flow ? <NeedSolutionFlow copy={c.flow} /> : null}
+
         {/* Includes */}
-        <section className="service-section sp-section">
+        {c.includes.length ? <section className="service-section sp-section">
           <h2 className="sp-h2">{c.includesTitle}</h2>
           <ul className={`sp-includes n${c.includes.length}`}>
             {c.includes.map((f) => (
@@ -100,7 +106,7 @@ export default function ServicePage({
               </li>
             ))}
           </ul>
-        </section>
+        </section> : null}
 
         {afterIncludes}
 
