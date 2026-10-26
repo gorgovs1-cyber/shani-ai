@@ -5,7 +5,7 @@ import PageSchema from "@/components/PageSchema";
 const heMeta: Metadata = {
   title: "תוכן ויזואלי ב-AI: הדמיות, סרטונים וקטלוגים | Shani AI",
   description:
-    "הדמיות מוצר ב-AI בסגנון המותג שלכם, סרטונים קצרים וקטלוג שמתעדכן לכל עונה. בלי צילום חוזר. מתחילים בבדיקת התאמה חינם.",
+    "הדמיות מוצר ב-AI בסגנון המותג שלכם, סרטונים קצרים וקטלוג שמתעדכן לכל עונה. בלי צילום חוזר ובלי יום צילום. מתחילים בבדיקת התאמה חינם.",
   alternates: { canonical: "https://shani-ai.com/ai-visual-content" },
   openGraph: {
     title: "תוכן ויזואלי ב-AI: הדמיות, סרטונים וקטלוגים · Shani AI",
