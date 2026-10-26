@@ -14,6 +14,7 @@ export default function FloatingWhatsApp() {
   }, []);
 
   return (
+    <aside aria-label={lang === "en" ? "Quick contact" : "יצירת קשר מהירה"}>
     <a
       className="floating-whatsapp"
       href={waLink(lang)}
@@ -47,6 +48,7 @@ export default function FloatingWhatsApp() {
     >
       <WhatsAppIcon size={28} />
     </a>
+    </aside>
   );
 }
 

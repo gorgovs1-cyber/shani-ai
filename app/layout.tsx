@@ -25,18 +25,18 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 const heMeta: Metadata = {
   metadataBase: new URL("https://shani-ai.com"),
-  title: "צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם | Shani AI",
+  title: "צ׳אטבוטים, אתרים ו-CRM בשילוב AI לעסק שלכם | Shani AI",
   description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. מתחילים בבדיקת התאמה חינם.",
   keywords: ["צ׳אטבוט לעסק", "סוכן AI", "CRM", "אוטומציה", "בניית אתרים", "ישראל", "ארה״ב", "Shani AI Creator"],
   openGraph: {
-    title: "צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם | Shani AI",
+    title: "צ׳אטבוטים, אתרים ו-CRM בשילוב AI לעסק שלכם | Shani AI",
     description: "צ׳אטבוטים וסוכני AI, CRM מודולרי, אתרים ואוטומציות לעסקים בישראל ובארה״ב.",
     type: "website",
     url: "https://shani-ai.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם | Shani AI",
+    title: "צ׳אטבוטים, אתרים ו-CRM בשילוב AI לעסק שלכם | Shani AI",
     description: "צ׳אטבוטים וסוכני AI, CRM, אתרים ואוטומציות לעסקים בישראל ובארה״ב. בדיקת התאמה חינם.",
   },
   robots: {
@@ -46,11 +46,13 @@ const heMeta: Metadata = {
   alternates: {
     canonical: "https://shani-ai.com",
   },
+  // Full favicon set: /favicon.ico + /icon.svg are linked in <head> below; /icon (png) and /apple-icon come from app/icon.tsx and app/apple-icon.tsx.
+  manifest: "/manifest.webmanifest",
 };
 
 export function generateMetadata(): Metadata {
   return localizedMeta("/", heMeta, {
-    title: "Chatbots, websites and modular CRM systems powered by AI for your business | Shani AI",
+    title: "Chatbots, websites and CRM systems powered by AI | Shani AI",
     description: "AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US. Start with a free fit check.",
   });
 }
@@ -62,6 +64,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  // The page background (cream), so the mobile status bar does not shout in orange above the dark nav.
+  themeColor: "#f4eee4",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -72,6 +76,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       dir={lang === "en" ? "ltr" : "rtl"}
       className={`${inter.variable} ${heebo.variable} ${playfair.variable} ${mono.variable}`}
     >
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+      </head>
       <body>
         {/* Schema.org — ProfessionalService (local SEO) */}
         <script
@@ -112,6 +121,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               url: "https://shani-ai.com",
               telephone: "+972-50-4744815",
               email: "shani.creates.ai@gmail.com",
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "customer service",
+                telephone: "+972-50-4744815",
+                email: "shani.creates.ai@gmail.com",
+                availableLanguage: ["he", "en"],
+              },
               image: "https://shani-ai.com/og-he-v7.jpg",
               logo: "https://shani-ai.com/logo.svg",
               areaServed: [

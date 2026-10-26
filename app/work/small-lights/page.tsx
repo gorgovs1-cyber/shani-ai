@@ -28,7 +28,7 @@ const jsonLd = {
       description: DESC,
       inLanguage: "he-IL",
       mainEntityOfPage: URL_,
-      image: ["https://shani-ai.com/small-lights/assets/og.jpg", "https://shani-ai.com/small-lights/bts/06D_the_first_answer.jpg"],
+      image: ["https://shani-ai.com/small-lights/assets/og.jpg", "https://shani-ai.com/small-lights/bts/small-lights-lighthouse-first-answer.jpg"],
       author: { "@id": "https://shani-ai.com/#shani" },
       publisher: { "@id": "https://shani-ai.com/#business" },
       datePublished: "2026-10-05",
@@ -104,7 +104,7 @@ export default function SmallLightsPage() {
             <p>הלילה האחרון לפני שהמגדלור נכבה לתמיד. שומר זקן כותב כבר <B>40</B> שנה את אותה שורה ביומן: <span dir="ltr">&quot;Nothing to report&quot;</span>. ואז מישהי עונה לאור שלו: Wick, דגת חכאי קטנטנה שחשבה שהמגדלור קורא לה.</p>
             <p>הוא החליט שהסרט יהיה בלי מילים, וכל הבהוב של אור הוא תו במוזיקה.</p>
             <figure className="sl-fig">
-              <img src="/small-lights/bts/06D_the_first_answer.jpg" alt="Wick, דגת החכאי, מול האור של המגדלור" width={1400} height={586} loading="lazy" />
+              <img src="/small-lights/bts/small-lights-lighthouse-first-answer.jpg" alt="Wick, דגת החכאי, מול האור של המגדלור" width={1400} height={586} loading="lazy" />
               <figcaption>התשובה הראשונה. פריים מהסרט.</figcaption>
             </figure>
           </section>
@@ -121,7 +121,7 @@ export default function SmallLightsPage() {
             <p>מכסת השימוש בחשבון נגמרה, וכל הסוכנים שעבדו נעצרו תוך <B>5</B> דקות. המצב נשמר בריפו.</p>
             <p>אחרי <B>4</B> שעות ו-<B>51</B> דקות כתבתי שורה אחת: <span dir="ltr">&quot;Continue from where you left off.&quot;</span> זה הדבר היחיד שכתבתי עד שהסרט היה גמור.</p>
             <figure className="sl-fig">
-              <img src="/small-lights/bts/agents_timeline.jpg" alt="ציר זמן: מי מהסוכנים עבד מתי, והעצירה כשנגמרה המכסה" width={1400} height={560} loading="lazy" />
+              <img src="/small-lights/bts/small-lights-agents-timeline.jpg" alt="ציר זמן: מי מהסוכנים עבד מתי, והעצירה כשנגמרה המכסה" width={1400} height={560} loading="lazy" />
               <figcaption>מי עבד מתי, לפי היומנים של ההפקה. הפס האדום הוא העצירה.</figcaption>
             </figure>
           </section>
@@ -131,8 +131,8 @@ export default function SmallLightsPage() {
             <p>בדיקה אוטומטית מצאה דיסק לבן שהופיע לפריים אחד בחמישה שוטים, מתוך <B>6,528</B> פריימים. הסיבה: מספר שגוי אחד בפיקסל, <span dir="ltr">≈ −65504</span>.</p>
             <p>הוא כתב כלי שמחפש פריימים כאלה, ורינדר מחדש רק <B>7</B> מתוך <B>87</B> חלקים. בדרך, סוכן אחד מצא באג בקוד של סוכן אחר. ואת המוזיקה, שהוא לא יכול לשמוע, הוא בדק במדידות.</p>
             <div className="sl-pair">
-              <figure className="sl-fig"><img src="/small-lights/bts/whitedisc_06D_frame3812_before.jpg" alt="הפריים עם הדיסק הלבן, לפני התיקון" width={1400} height={586} loading="lazy" /><figcaption>לפני</figcaption></figure>
-              <figure className="sl-fig"><img src="/small-lights/bts/whitedisc_06D_frame3812_after.jpg" alt="אותו פריים אחרי התיקון" width={1400} height={586} loading="lazy" /><figcaption>אחרי</figcaption></figure>
+              <figure className="sl-fig"><img src="/small-lights/bts/small-lights-white-disc-before.jpg" alt="הפריים עם הדיסק הלבן, לפני התיקון" width={1400} height={586} loading="lazy" /><figcaption>לפני</figcaption></figure>
+              <figure className="sl-fig"><img src="/small-lights/bts/small-lights-white-disc-after.jpg" alt="אותו פריים אחרי התיקון" width={1400} height={586} loading="lazy" /><figcaption>אחרי</figcaption></figure>
             </div>
           </section>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { localizedMeta } from "@/lib/seo";
+import PageSchema from "@/components/PageSchema";
 
 const heMeta: Metadata = {
   title: "צ׳אטבוטים וסוכני AI לעסק | Shani AI",
@@ -23,5 +24,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function ChatbotsLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageSchema path="/chatbots" he={{ name: "צ׳אטבוטים וסוכני AI לעסק", description: "בוט וואטסאפ, צ׳אטבוט לאתר, סוכן AI בעברית, בוט שקובע פגישות ובוט קולי." }} en={{ name: "AI chatbots and agents for business", description: "A WhatsApp bot, a website chatbot, an AI agent in Hebrew, a bot that books meetings, and a voice bot." }} service={{ he: "צ׳אטבוטים וסוכני AI לעסק", en: "AI chatbots and agents for business" }} />
+      {children}
+    </>
+  );
 }

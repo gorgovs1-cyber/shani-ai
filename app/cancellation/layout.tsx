@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { localizedMeta } from "@/lib/seo";
+import PageSchema from "@/components/PageSchema";
 
 const heMeta: Metadata = {
   title: "מדיניות ביטולים והחזרים · Shani AI",
@@ -24,5 +25,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function CancellationLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageSchema path="/cancellation" he={{ name: "מדיניות ביטולים והחזרים", description: "מדיניות ביטול עסקה והחזר כספי של Shani AI Creator." }} en={{ name: "Cancellation and refund policy", description: "How to cancel, when money is refunded and what cannot be refunded." }} dateModified="2026-10" />
+      {children}
+    </>
+  );
 }

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { localizedMeta } from "@/lib/seo";
+import PageSchema from "@/components/PageSchema";
 
 const heMeta: Metadata = {
-  title: "תנאי שימוש · Shani AI",
+  title: "תקנון ותנאי שימוש באתר · Shani AI",
   description:
     "תנאי השימוש באתר ובשירותים של Shani AI Creator: פתרונות AI, אוטומציות ובניית אתרים לעסקים. הצעות מחיר, קניין רוחני, סודיות והגבלת אחריות.",
   alternates: { canonical: "https://shani-ai.com/terms" },
   openGraph: {
-    title: "תנאי שימוש · Shani AI",
+    title: "תקנון ותנאי שימוש באתר · Shani AI",
     description:
       "תנאי השימוש באתר ובשירותים של Shani AI Creator.",
     url: "https://shani-ai.com/terms",
@@ -24,5 +25,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function TermsLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageSchema path="/terms" he={{ name: "תקנון ותנאי שימוש באתר", description: "תנאי השימוש באתר ובשירותים של Shani AI Creator." }} en={{ name: "Terms of use", description: "Terms of use for the Shani AI Creator website and services." }} dateModified="2026-10" />
+      {children}
+    </>
+  );
 }

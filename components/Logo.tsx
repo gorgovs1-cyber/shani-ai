@@ -4,7 +4,7 @@ export default function Logo({ height = 34 }: { height?: number }) {
     <svg
       viewBox="0 0 100 100"
       fill="none"
-      aria-label="Shani Gorgov logo"
+      aria-hidden="true" focusable="false"
       style={{
         width: height,
         height,

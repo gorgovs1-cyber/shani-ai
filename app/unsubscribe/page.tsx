@@ -167,7 +167,7 @@ function UnsubscribeForm() {
     )}`;
 
   return (
-    <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 860, margin: "0 auto" }}>
+    <div dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 860, margin: "0 auto" }}>
       {/* Keyboard focus ring — visible, high contrast, never removed. */}
       <style>{`
         .unsub-input:focus-visible,
@@ -347,7 +347,7 @@ function UnsubscribeForm() {
       </section>
 
       <div style={{ height: 80 }} />
-    </main>
+    </div>
   );
 }
 

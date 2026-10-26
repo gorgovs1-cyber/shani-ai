@@ -10,9 +10,24 @@
 <meta property="og:url" content="https://shani-ai.com/guides/n8n-claude-automations.html">
 <meta property="og:title" content="לבנות אוטומציות n8n מפרומפט אחד עם Claude">
 <meta property="og:description" content="איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש, בלי קוד, מתיאור בשפה רגילה. כולל ההוראות המדויקות ודוגמאות.">
-<meta property="og:image" content="https://shani-ai.com/og.jpg">
+<meta property="og:image" content="https://shani-ai.com/og-he-v7.jpg">
+<meta property="og:image:secure_url" content="https://shani-ai.com/og-he-v7.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="שני גורגוב, Shani AI: צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם">
+<meta property="og:site_name" content="Shani AI">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="לבנות אוטומציות n8n מפרומפט אחד עם Claude">
+<meta name="twitter:description" content="איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש, בלי קוד, מתיאור בשפה רגילה. כולל ההוראות המדויקות ודוגמאות.">
+<meta name="twitter:image" content="https://shani-ai.com/og-he-v7.jpg">
+<meta name="twitter:image:alt" content="שני גורגוב, Shani AI: צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם">
+<meta name="theme-color" content="#f4eee4">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<style>.skip-link{position:fixed;top:-100px;inset-inline-start:0;z-index:99999;background:#c0400b;color:#fff;padding:8px 16px;min-height:44px;display:inline-flex;align-items:center;font:700 16px/1.2 Heebo,Arial,sans-serif;text-decoration:none;transition:top .15s}.skip-link:focus{top:0;outline:3px solid #1b1712;outline-offset:2px}</style>
 <style>.sai-back{position:fixed;bottom:16px;inset-inline-start:14px;z-index:9999;font:600 14px/1 Heebo,sans-serif;color:#1b1712;background:rgba(255,253,248,.92);border:1px solid rgba(27,23,18,.14);border-radius:999px;padding:9px 14px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.12)}.sai-back:hover,.sai-back:focus-visible{border-color:#f2622e}@media print{.sai-back{display:none!important}}</style>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -92,10 +107,13 @@
 @media print{.sai-nav,.sai-cta-block,.sai-foot{display:none!important}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "לבנות אוטומציות n8n מפרומפט אחד עם Claude", "description": "איך מקימים פרויקט Claude שמייצר אוטומציות n8n מוכנות לשימוש, בלי קוד, מתיאור בשפה רגילה. כולל ההוראות המדויקות ודוגמאות.", "inLanguage": "he", "url": "https://shani-ai.com/guides/n8n-claude-automations.html", "mainEntityOfPage": "https://shani-ai.com/guides/n8n-claude-automations.html", "image": "https://shani-ai.com/og.jpg", "author": {"@type": "Person", "name": "שני גורגוב", "url": "https://shani-ai.com"}, "publisher": {"@type": "Organization", "name": "Shani AI Creator", "logo": {"@type": "ImageObject", "url": "https://shani-ai.com/logo.svg"}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "דף הבית", "item": "https://shani-ai.com"}, {"@type": "ListItem", "position": 2, "name": "מדריכים", "item": "https://shani-ai.com/guides"}, {"@type": "ListItem", "position": 3, "name": "לבנות אוטומציות n8n מפרומפט אחד עם Claude", "item": "https://shani-ai.com/guides/n8n-claude-automations.html"}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">דלג לתוכן</a>
 <header class="sai-nav"><a class="sai-brand" href="/">SHANI AI CREATOR</a><nav class="sai-links" aria-label="ניווט ראשי"><a href="/">בית</a><a href="/work">עבודות</a><a href="/guides">מדריכים</a><a class="sai-cta" href="/audit">בדיקת התאמה חינם</a></nav></header>
 
+<main id="main-content">
 <a class="sai-back" href="/guides">→ מדריכים</a>
 
   <!-- COVER -->
@@ -115,7 +133,7 @@
     <p class="text">n8n הוא כלי לבניית אוטומציות שמחבר בין האפליקציות שלכם — טפסים, מיילים, גיליונות, CRM — כך שהם עובדים לבד. הבעיה: בנייה ידנית של תהליך לוקחת זמן ודורשת ידע טכני.</p>
     <p class="text">הפתרון שתלמדו כאן: מקימים <strong>פרויקט ב-Claude</strong> שמכיר את המבנה הפנימי של n8n, ומאותו רגע פשוט מתארים בעברית מה אתם רוצים שיקרה — ו-Claude מחזיר לכם קובץ אוטומציה מוכן, שמדביקים ישר ל-n8n ומריצים.</p>
     <div class="callout">
-      <h4>הסוד שגורם לזה לעבוד</h4>
+      <h4 role="heading" aria-level="3">הסוד שגורם לזה לעבוד</h4>
       <p>צריך להאכיל את Claude בהקשר הנכון מראש (דוגמאות אמיתיות של אוטומציות), אחרת הוא ימציא רכיבים שלא קיימים. ההקמה החד-פעמית הזו היא כל ההבדל בין "כיף לראות" ל"באמת עובד".</p>
     </div>
   </div>
@@ -162,7 +180,7 @@
     <div class="section-tag">דוגמה מהריל</div>
     <h2 class="headline">אוטומציית לידים — משפט אחד, מערכת שלמה</h2>
     <p class="text">רוצים שכל ליד חדש מהאתר יישמר לבד ותקבלו התראה מיד? זה כל מה שכותבים ל-Claude:</p>
-    <div class="callout"><h4>הפרומפט</h4><p>"כל ליד חדש שנכנס מטופס האתר — הוסף אותו לגיליון Google עם שם, מייל וטלפון, ושלח לי התראה בוואטסאפ."</p></div>
+    <div class="callout"><h4 role="heading" aria-level="3">הפרומפט</h4><p>"כל ליד חדש שנכנס מטופס האתר — הוסף אותו לגיליון Google עם שם, מייל וטלפון, ושלח לי התראה בוואטסאפ."</p></div>
     <p class="text">Claude מחזיר אוטומציה מוכנה עם שלושה שלבים שרצים לבד:</p>
     <ul class="steps">
       <li><span class="n">1</span><span class="body"><strong>Webhook</strong> — קולט את הפרטים מטופס האתר (שם, מייל, טלפון).</span></li>
@@ -185,7 +203,7 @@
       <li>"קלוט פניות מהאתר, הוסף אותן ל-CRM וצור משימת מעקב."</li>
     </ul>
     <div class="callout">
-      <h4>איך לבנות אוטומציה אמינה</h4>
+      <h4 role="heading" aria-level="3">איך לבנות אוטומציה אמינה</h4>
       <p>אחרי הייבוא: פתחו כל רכיב פעם אחת כדי ש-n8n יטען את ההגדרות. אם רכיב לא מזוהה — בדקו את הסוג מול תבנית עדכנית. הריצו פעם אחת לבדיקה לפני שסומכים על זה, והצמידו נתוני דוגמה לטריגר כדי לא להפעיל פעולות אמיתיות תוך כדי בדיקה.</p>
     </div>
   </div>
@@ -197,7 +215,7 @@
     <p class="text">האוטומציות יוצאות מוכנות-ללקוח, אז אפשר לארוז אותן כשירות. בנו אוטומציה שפותרת בעיה אחת ספציפית לנישה — למשל קליטת לידים למרפאות שיניים, או בקשות ביקורת למסעדות. הקליטו הדגמה קצרה, וגבו דמי הקמה + תחזוקה חודשית קטנה.</p>
     <p class="text">הבנייה לוקחת דקות — אז הזמן האמיתי שלכם הולך ל<strong>מציאת הלקוח</strong>, לא לחיווט הרכיבים.</p>
     <div class="callout">
-      <h4>טיפ שמצטבר</h4>
+      <h4 role="heading" aria-level="3">טיפ שמצטבר</h4>
       <p>כל אוטומציה שעבדה — שמרו אותה בחזרה לפרויקט כדוגמה חדשה. ככל שיש ל-Claude יותר דוגמאות אמיתיות ללמוד מהן, כך הבנייה הבאה תהיה מדויקת יותר.</p>
     </div>
 
@@ -210,6 +228,7 @@
 
   <div class="foot">© 2026 · Shani AI Creator · נבנה באהבה בישראל</div>
 
+</main>
 <aside class="sai-cta-block" aria-label="קריאה לפעולה"><p>אתר, שיווק ומערכות לעסק שלכם, במקום אחד</p><a href="/audit">בדיקת התאמה חינם</a></aside>
 <footer class="sai-foot"><nav aria-label="מידע"><a href="/privacy">מדיניות פרטיות</a><a href="/terms">תקנון</a><a href="/accessibility">הצהרת נגישות</a><a href="/guides">כל המדריכים</a></nav><p>© Shani AI Creator</p></footer>
 </body>

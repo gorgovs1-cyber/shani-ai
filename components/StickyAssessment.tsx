@@ -41,5 +41,5 @@ export default function StickyAssessment() {
   };
  }, [path]);
  // One mobile bar holds both actions; the floating WhatsApp button hides while it shows (globals.css)
- return <div className="assessment-bar" hidden={!visible}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a><a href={waLink(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="assessment-bar-wa"><WhatsAppIcon size={26} /></a></div>;
+ return <aside className="assessment-bar" hidden={!visible} aria-label={lang === 'he' ? 'קישורים מהירים' : 'Quick links'}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a><a href={waLink(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="assessment-bar-wa"><WhatsAppIcon size={26} /></a></aside>;
 }

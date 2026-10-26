@@ -17,13 +17,14 @@ type Copy = {
   contactHeading: string;
   contactBody: string;
   emailLabel: string;
+  coordinator: string;
 };
 
 const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "נגישות",
     title: "הצהרת נגישות",
-    updated: "עודכן לאחרונה: 11/10/2026",
+    updated: "עודכן לאחרונה: 26/10/2026",
     intro:
       "שני גורגוב רואה חשיבות רבה במתן שירות שוויוני לכלל הגולשים, ופועלת כדי שהאתר יהיה נגיש לאנשים עם מוגבלות. אנו משקיעים מאמצים ומשאבים כדי להנגיש את האתר ולשפר אותו באופן מתמיד, מתוך אמונה שלכל אדם מגיעה הזכות לחיות בשוויון, כבוד, נוחות ועצמאות.",
     sections: [
@@ -41,7 +42,6 @@ const COPY: Record<"he" | "en", Copy> = {
           "שימוש ב-HTML סמנטי ובמבנה כותרות תקין לתמיכה בקוראי מסך.",
           "תמיכה בהעדפת ״הפחתת תנועה״ (prefers-reduced-motion) למשתמשים הרגישים לאנימציות.",
           "ניגודיות צבעים תקינה בין טקסט לרקע.",
-          "תפריט נגישות המאפשר הגדלת טקסט, ניגודיות גבוהה, גווני אפור, הדגשת קישורים, עצירת אנימציות ושינוי הסמן.",
           "תמיכה בשתי שפות (עברית ואנגלית) עם כיווניות נכונה (RTL / LTR).",
         ],
       },
@@ -55,11 +55,12 @@ const COPY: Record<"he" | "en", Copy> = {
     contactBody:
       "אם נתקלתם בבעיית נגישות באתר, או שיש לכם הצעה לשיפור, נשמח שתפנו אלינו. נעשה כל מאמץ להגיב ולטפל בפנייה בהקדם האפשרי.",
     emailLabel: "שליחת דוא״ל",
+    coordinator: "רכזת הנגישות באתר: שני גורגוב, בוואטסאפ או בטלפון 050-474-4815, או בדוא״ל shani@shani-ai.com",
   },
   en: {
     kicker: "Accessibility",
     title: "Accessibility Statement",
-    updated: "Last updated: 11/10/2026",
+    updated: "Last updated: 26/10/2026",
     intro:
       "Shani Gorgov is committed to providing an equal and inclusive experience for every visitor, and works to keep this website accessible to people with disabilities. We continually invest effort and resources to improve accessibility, in the belief that everyone deserves to browse with equality, dignity, comfort and independence.",
     sections: [
@@ -77,7 +78,6 @@ const COPY: Record<"he" | "en", Copy> = {
           "Semantic HTML and a correct heading structure to support screen readers.",
           "Support for the “reduced motion” preference (prefers-reduced-motion) for users sensitive to animation.",
           "Sufficient color contrast between text and background.",
-          "An accessibility menu offering larger text, high contrast, grayscale, link highlighting, animation pausing and cursor adjustment.",
           "Bilingual support (Hebrew and English) with correct text direction (RTL / LTR).",
         ],
       },
@@ -91,6 +91,7 @@ const COPY: Record<"he" | "en", Copy> = {
     contactBody:
       "If you encounter an accessibility problem on the site, or have a suggestion for improvement, please get in touch. We will make every effort to respond and address your request as soon as possible.",
     emailLabel: "Send an email",
+    coordinator: "Accessibility coordinator for this site: Shani Gorgov, by WhatsApp or phone at 050-474-4815, or by email at shani@shani-ai.com",
   },
 };
 
@@ -103,7 +104,7 @@ export default function AccessibilityPage() {
 
   return (
     <>
-      <main
+      <div
         dir={dir}
         style={{
           position: "relative",
@@ -261,6 +262,18 @@ export default function AccessibilityPage() {
           >
             {c.contactBody}
           </p>
+          <p
+            style={{
+              margin: "14px 0 0",
+              color: "var(--ink)",
+              fontSize: "clamp(16px,1.5vw,19px)",
+              lineHeight: 1.7,
+              fontWeight: 700,
+              fontFamily: HEEBO,
+            }}
+          >
+            {c.coordinator}
+          </p>
           <a
             href={`mailto:${EMAIL}`}
             style={{
@@ -284,7 +297,7 @@ export default function AccessibilityPage() {
             </span>
           </a>
         </section>
-      </main>
+      </div>
 
       <Footer />
     </>

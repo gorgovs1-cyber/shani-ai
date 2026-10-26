@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-export default function ProjectPreview({image,video,title,he,playVideo=true}:{image:string;video:string;title:string;he:boolean;playVideo?:boolean}) {
+export default function ProjectPreview({image,video,title,he,playVideo=true,alt}:{image:string;video:string;title:string;he:boolean;playVideo?:boolean;alt?:string}) {
  const [failed,setFailed]=useState(false);
  const [allowVideo,setAllowVideo]=useState(false);
  const player=useRef<HTMLVideoElement>(null);
@@ -31,7 +31,7 @@ export default function ProjectPreview({image,video,title,he,playVideo=true}:{im
   document.addEventListener("visibilitychange",update);window.addEventListener("pageshow",resume);node.addEventListener("canplay",resume);
   return()=>{observer.disconnect();prefs.disconnect();document.removeEventListener("visibilitychange",update);window.removeEventListener("pageshow",resume);node.removeEventListener("canplay",resume);node.pause();};
  },[video,allowVideo]);
- const poster=<img src={image} alt={he?`צילום אתר ${title}`:`Screenshot of ${title}`} loading="lazy" />;
+ const poster=<img src={image} alt={alt||(he?`צילום אתר ${title}`:`Screenshot of ${title}`)} width={1280} height={800} loading="lazy" decoding="async" />;
  return <div className="project-square-image" ref={frame}>
  {!allowVideo||failed?poster:<video ref={player} src={video} poster={image} muted playsInline loop preload="none" aria-label={he?`תצוגת גלילה באתר ${title}`:`Scrolling preview of ${title}`} onError={()=>setFailed(true)} />}
  </div>;

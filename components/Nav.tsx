@@ -262,8 +262,8 @@ export default function Nav() {
                     className="lang-hit"
                     onClick={() => setLang(l)}
                     aria-pressed={active}
-                    // "EN" / "עב" is not a usable name on its own — spell out the action.
-                    aria-label={l === "en" ? t.navAriaSwitchEn : t.navAriaSwitchHe}
+                    // The accessible name starts with the visible text ("EN" / "עב") and then spells out the action.
+                    aria-label={`${l === "en" ? "EN" : "עב"}, ${l === "en" ? t.navAriaSwitchEn : t.navAriaSwitchHe}`}
                     style={{
                       border: "none",
                       cursor: "pointer",
@@ -429,7 +429,7 @@ export default function Nav() {
                     className="lang-hit"
                     onClick={() => setLang(l)}
                     aria-pressed={active}
-                    aria-label={l === "en" ? t.navAriaSwitchEn : t.navAriaSwitchHe}
+                    aria-label={`${l === "en" ? "EN" : "עב"}, ${l === "en" ? t.navAriaSwitchEn : t.navAriaSwitchHe}`}
                     style={{
                       border: "none",
                       cursor: "pointer",

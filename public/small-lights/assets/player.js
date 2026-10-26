@@ -209,7 +209,7 @@
       layoutFs();
       items.forEach((b) => b.setAttribute('aria-checked', String((b.dataset.mode === 'he') === on)));
       ccBtn.classList.toggle('on', on);
-      ccBtn.setAttribute('aria-label', on ? 'Subtitles: Hebrew' : 'Subtitles: off');
+      ccBtn.setAttribute('aria-label', on ? 'CC, subtitles: Hebrew' : 'CC, subtitles: off');
       applyMode();
       if (announce) note(on ? 'כתוביות: עברית' : 'ללא כתוביות', 1600);
     };

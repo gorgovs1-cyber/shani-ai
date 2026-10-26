@@ -10,8 +10,16 @@ const out = path.join(__dirname, "..", "public", "audit-en.html");
 const TITLE = "Free business fit check · Shani AI";
 const DESC = "A free fit check for your business: AI chatbots and agents, CRM, websites and automations. I will get back to you within a business day with first directions.";
 const OG_DESC = "AI chatbots and agents, CRM, websites and automations. I will get back to you within a business day.";
-const IMG = "https://shani-ai.com/og-en-v5.jpg";
+const IMG = "https://shani-ai.com/og-en-v7.jpg";
 const ALT = "Shani Gorgov, Shani AI: chatbots, websites and modular CRM systems powered by AI for your business";
+
+const LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebPage", "@id": "https://shani-ai.com/en/audit#webpage", url: "https://shani-ai.com/en/audit", name: "Free business fit check", description: "A free fit check for your business: AI chatbots and agents, CRM, websites and automations.", inLanguage: "en", isPartOf: { "@id": "https://shani-ai.com/#website" }, about: { "@id": "https://shani-ai.com/#business" }, breadcrumb: { "@id": "https://shani-ai.com/en/audit#breadcrumb" } },
+    { "@type": "BreadcrumbList", "@id": "https://shani-ai.com/en/audit#breadcrumb", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://shani-ai.com/en" }, { "@type": "ListItem", position: 2, name: "Free business fit check", item: "https://shani-ai.com/en/audit" }] },
+  ],
+};
 
 const attr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const swaps = [
@@ -30,6 +38,9 @@ const swaps = [
   [/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${attr(TITLE)}">`],
   [/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${attr(OG_DESC)}">`],
   [/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${IMG}">`],
+  // page-level JSON-LD (WebPage + BreadcrumbList) in English
+  [/<script type="application\/ld\+json">[^<]*<\/script>/, () => `<script type="application/ld+json">${JSON.stringify(LD)}</script>`],
+  [/<a class="skip-link" href="#main-content">[^<]*<\/a>/, '<a class="skip-link" href="#main-content">Skip to main content</a>'],
 ];
 
 let html = fs.readFileSync(src, "utf8");

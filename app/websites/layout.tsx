@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { localizedMeta } from "@/lib/seo";
+import PageSchema from "@/components/PageSchema";
 
 const heMeta: Metadata = {
   title: "בניית אתרים לעסקים | Shani AI",
@@ -23,5 +24,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function WebsitesLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageSchema path="/websites" he={{ name: "בניית אתרים לעסקים", description: "אתר לעסק שמסביר מה אתם עושים ומקל על לקוחות לפנות אליכם." }} en={{ name: "Business websites", description: "A website that explains what you do and makes it easy for customers to contact you." }} service={{ he: "בניית אתרים לעסקים", en: "Business website development" }} />
+      {children}
+    </>
+  );
 }

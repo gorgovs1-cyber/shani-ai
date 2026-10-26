@@ -13,7 +13,7 @@ export const dict = {
     navWork:'פרויקטים', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
     navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים', navAiShort:'פתרונות AI', navChat:'צ׳אטבוטים וסוכנים', navCrm:'CRM', navAbout:'אודות', navContact:'צור קשר',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
-    navAriaMain:'ניווט ראשי', navAriaHome:'שני גורגוב, לדף הבית', navAriaMobileMenu:'תפריט ניווט',
+    navAriaMain:'ניווט ראשי', navAriaHome:'Shani AI, לדף הבית של שני גורגוב', navAriaMobileMenu:'תפריט ניווט',
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
     navAriaSwitchEn:'מעבר לאנגלית', navAriaSwitchHe:'מעבר לעברית',
     footerSeo:'צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. שני גורגוב, לעסקים בישראל ובארה״ב.',
@@ -79,7 +79,7 @@ export const dict = {
     navWork:'Work', navGuides:'Guides', navCta:'Free fit check',
     navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents', navAiShort:'AI solutions', navChat:'Chatbots & agents', navCrm:'CRM', navAbout:'About', navContact:'Contact',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
-    navAriaMain:'Main navigation', navAriaHome:'Shani Gorgov, home', navAriaMobileMenu:'Navigation menu',
+    navAriaMain:'Main navigation', navAriaHome:'Shani AI, Shani Gorgov home page', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
     footerSeo:'AI chatbots and agents, a modular CRM, websites that bring enquiries, and automations. Shani Gorgov, for businesses in Israel and the US.',

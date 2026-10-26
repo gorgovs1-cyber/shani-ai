@@ -23,7 +23,7 @@ const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "מדיניות",
     title: "מדיניות פרטיות",
-    updated: "עודכן: אוקטובר 2026",
+    updated: "עודכן לאחרונה: 26 באוקטובר 2026",
     cookieBtn: "פתיחת הגדרות העוגיות",
     intro:
       "המסמך הזה מפרט בדיוק איזה מידע נאסף באתר shani-ai.com, מי מעבד אותו, לאן הוא עובר ומה אפשר לעשות בנוגע אליו. הוא כתוב כדי שתדעו בדיוק על מה אתם מסכימים לפני שאתם מסכימים.",
@@ -84,6 +84,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "איני מוכרת מידע אישי ואיני מעבירה אותו למפרסמים. אלה כל הגורמים שמעבדים מידע מהאתר, ומה כל אחד מהם מקבל:",
         items: [
           "Vercel Inc. (ארה\"ב) — אחסון האתר והרצתו. חשופה לכל בקשה לאתר, כולל כתובת IP ומזהה דפדפן, וכן מפעילה את Vercel Analytics הסופר צפיות ללא עוגיות.",
+          "Vercel Inc. (ארה\"ב), בעמוד SMALL LIGHTS, מארחת את קובץ הווידאו.",
           "Google (Google Analytics 4) — מקבלת נתוני גלישה ומזהי מדידה, רק אם אישרתם עוגיות.",
           "Meta Platforms (Meta Pixel) — מקבלת נתוני גלישה ואירועי המרה לצורכי פרסום ומדידה, רק אם אישרתם עוגיות.",
           "Formspree Inc. (ארה\"ב) — קולטת את טופס האימייל באתר (הפרומפטים) ואת בקשות ההסרה מדיוור, ומעבירה אליי את כתובת האימייל וסימון ההסכמה.",
@@ -144,7 +145,7 @@ const COPY: Record<"he" | "en", Copy> = {
   en: {
     kicker: "Policy",
     title: "Privacy Policy",
-    updated: "Updated: October 2026",
+    updated: "Last updated: 26 October 2026",
     cookieBtn: "Open cookie settings",
     intro:
       "This page sets out exactly what data shani-ai.com collects, who processes it, where it goes and what you can do about it. It is written so you know what you are agreeing to before you agree.",
@@ -205,6 +206,7 @@ const COPY: Record<"he" | "en", Copy> = {
           "I do not sell personal information and do not pass it to advertisers. These are all the parties that process data from this site, and what each one receives:",
         items: [
           "Vercel Inc. (USA) — hosts and runs the site. Sees every request, including IP address and browser identifier, and provides Vercel Analytics, which counts views without cookies.",
+          "Vercel Inc. (USA), on the SMALL LIGHTS page, hosts the video file.",
           "Google (Google Analytics 4) — receives browsing data and measurement identifiers, only if you accepted cookies.",
           "Meta Platforms (Meta Pixel) — receives browsing data and conversion events for advertising and measurement, only if you accepted cookies.",
           "Formspree Inc. (USA) — receives the site's email form (prompts) and unsubscribe requests, and forwards your email address and consent tick to me.",
@@ -281,7 +283,7 @@ export default function PrivacyPage() {
 
   return (
     <>
-      <main dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 860, margin: "0 auto" }}>
+      <div dir={dir} style={{ padding: "9rem clamp(20px,5vw,40px) 0", maxWidth: 860, margin: "0 auto" }}>
         <div style={{ fontFamily: MONO, fontSize: 13, letterSpacing: ".2em", color: "var(--acc)", marginBottom: 16 }}>{c.kicker}</div>
         <h1 style={{ margin: "0 auto", textAlign: "center", fontWeight: 800, fontSize: "clamp(34px,5vw,56px)", lineHeight: 1.04, letterSpacing: "-0.03em", color: "var(--ink)", fontFamily: HEEBO }}>{c.title}</h1>
         <p className="page-meta" style={{ margin: "12px 0 0", fontFamily: MONO, fontSize: 13, color: "var(--muted2)" }}>{c.updated}</p>
@@ -320,7 +322,7 @@ export default function PrivacyPage() {
               </a>
             )}
             {s.table && (
-              <div style={{ margin: "20px 0 0", overflowX: "auto", border: "1px solid var(--line)", borderRadius: 14, background: "var(--card)" }}>
+              <div tabIndex={0} style={{ margin: "20px 0 0", overflowX: "auto", border: "1px solid var(--line)", borderRadius: 14, background: "var(--card)" }}>
                 <table style={{ width: "100%", minWidth: 560, borderCollapse: "collapse" }}>
                   <thead>
                     <tr>
@@ -392,7 +394,7 @@ export default function PrivacyPage() {
         ))}
 
         <div style={{ height: 80 }} />
-      </main>
+      </div>
       <Footer />
     </>
   );

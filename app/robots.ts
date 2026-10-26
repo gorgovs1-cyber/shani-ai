@@ -5,9 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/dashboard.html'],
+      disallow: ['/api/'],
     },
     sitemap: 'https://shani-ai.com/sitemap.xml',
-    host: 'https://shani-ai.com',
   }
 }
