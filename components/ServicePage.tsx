@@ -87,7 +87,7 @@ export default function ServicePage({
           <p className="sp-lead">{c.lead}</p>
           <div className="sp-actions">
             <a href={L("/audit")} className="btn btn-primary">{auditLabel}</a>
-            <a href={c.products ? "#solutions" : c.flow ? "#flow-solution" : "#solutions"} className="btn btn-ghost">{c.secondaryCta}</a>
+            <a href={c.products ? "#solutions" : c.flow ? "#flow-how" : "#solutions"} className="btn btn-ghost">{c.secondaryCta}</a>
           </div>
         </header>
 

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
 /**
- * Reusable "need → solution → how it works → how to start" section for service pages.
+ * Reusable "need → solution → how it works → how to start" section (stages are structural only: no visible stage labels or numbers; only the real step list is numbered) for service pages.
  * Rendered by ServicePage when a service's copy has a `flow` block, so /websites and /chatbots
  * can adopt the same structure later by adding copy only. Stages stack vertically and stay centered
  * on every screen size; the arrows between stages point down, so they read the same in RTL and LTR.
@@ -11,21 +11,17 @@ export type FlowIcon = "image" | "video" | "catalog" | "palette" | "refresh" | "
 export type FlowItem = { title: string; text: string; icon?: FlowIcon };
 
 export type FlowCopy = {
-  needLabel: string;
   needTitle: string;
   needText: string;
   needPoints: FlowItem[];
   needGoal?: string;
-  solutionLabel: string;
   solutionTitle: string;
   solutionText?: string;
   solutionItems: FlowItem[];
   solutionHighlights?: FlowItem[];
-  howLabel: string;
   howTitle: string;
   steps: FlowItem[];
   howNote?: string;
-  startLabel: string;
   startTitle: string;
   startText?: string;
   startItems: FlowItem[];
@@ -72,10 +68,10 @@ function Cards({ items, variant, numbered }: { items: FlowItem[]; variant?: stri
 
 export default function NeedSolutionFlow({ copy, solutionId = "flow-solution" }: { copy: FlowCopy; solutionId?: string }) {
   const stages = [
-    { id: "flow-need", label: copy.needLabel, title: copy.needTitle },
-    { id: solutionId, label: copy.solutionLabel, title: copy.solutionTitle },
-    { id: "flow-how", label: copy.howLabel, title: copy.howTitle },
-    { id: "flow-start", label: copy.startLabel, title: copy.startTitle },
+    { id: "flow-need", title: copy.needTitle },
+    { id: solutionId, title: copy.solutionTitle },
+    { id: "flow-how", title: copy.howTitle },
+    { id: "flow-start", title: copy.startTitle },
   ];
   return (
     <div className="nsf">
@@ -83,7 +79,6 @@ export default function NeedSolutionFlow({ copy, solutionId = "flow-solution" }:
         <Fragment key={s.id}>
           {i > 0 ? <Connector /> : null}
           <section id={s.id} className="nsf-stage sp-section" aria-labelledby={`${s.id}-h`}>
-            <p className="nsf-badge"><b aria-hidden="true">{i + 1}</b><span>{s.label}</span></p>
             <h2 id={`${s.id}-h`} className="sp-h2">{s.title}</h2>
             {i === 0 ? (
               <>

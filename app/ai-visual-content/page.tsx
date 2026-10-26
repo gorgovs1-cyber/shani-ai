@@ -11,11 +11,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "אני יוצרת הדמיות מוצר ריאליסטיות בסגנון המותג שלכם, ומהן סרטונים קצרים וקטלוג שמתעדכן לכל עונה. משנים מוצר, צבע או לוגו ומקבלים הדמיה מעודכנת, בלי צילום חוזר.",
     primaryCta: "דברו איתי על תוכן ויזואלי",
     primaryWaMsg: "היי שני, אני רוצה הדמיות ותוכן ויזואלי ב-AI לעסק",
-    secondaryCta: "מהצורך לפתרון",
+    secondaryCta: "איך זה עובד",
     includesTitle: "",
     includes: [],
     flow: {
-      needLabel: "הצורך",
       needTitle: "ויזואליה חדשה לכל לקוח, חג ואירוע",
       needText:
         "כשמציגים מוצרים או מארזים ללקוחות שונים, כל אירוע וכל עונה דורשים תמונות חדשות. צילום מקצועי בכל פעם הוא איטי, יקר וקשה לתזמון.",
@@ -26,7 +25,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       ],
       needGoal:
         "המטרה: להראות ללקוח את המוצר עוד לפני שהורכב, ולהשתמש באותה ויזואליה בסרטון, במצגת ובקטלוג.",
-      solutionLabel: "הפתרון",
       solutionTitle: "הדמיות, סרטונים וקטלוג באותה שפה ויזואלית",
       solutionText: "אני בונה לכם סדרה אחת של תוצרים, מההדמיה ועד הסרטון והקטלוג, בלי לצלם מחדש.",
       solutionItems: [
@@ -39,7 +37,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         { icon: "palette", title: "שפה ויזואלית קבועה", text: "מגדירים פעם אחת סגנון, תאורה, רקעים וצבעים (Brand Style), וכל הדמיה נראית חלק מאותה סדרה." },
         { icon: "repeat", title: "תהליך שחוזר על עצמו", text: "תבניות ותהליך עבודה קבועים לכל מוצר או לקוח חדש: מהיר, צפוי ובאיכות אחידה." },
       ],
-      howLabel: "איך זה עובד",
       howTitle: "ארבעה צעדים עד התוצרים",
       steps: [
         { title: "שיחת התנעה", text: "מכירים את המוצרים, את הסגנון שאתם רוצים ואת האירוע הקרוב." },
@@ -49,7 +46,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       ],
       howNote:
         "מתחילים בפיילוט עם מוצר אחד, בודקים בשטח ורק אחר כך מרחיבים. המטרה היא תוצר עובד תוך ימים ולא חודשים, ועבודה בבנק שעות גמיש, בלי הפתעות.",
-      startLabel: "להתחיל",
       startTitle: "מה אצטרך מכם לשיחת ההתנעה",
       startItems: [
         { title: "אירוע או לקוח קרוב", text: "אירוע, חג או לקוח שאפשר להציג לו את התוצרים הראשונים." },
@@ -101,11 +97,10 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       "I create realistic product visualizations in your brand style, and turn them into short videos and a catalog that updates each season. Change a product, a color or a logo and get an updated visualization, with no reshoot.",
     primaryCta: "Talk to me about visual content",
     primaryWaMsg: "Hi Shani, I'd like AI product visualizations and visual content for my business",
-    secondaryCta: "From need to solution",
+    secondaryCta: "How it works",
     includesTitle: "",
     includes: [],
     flow: {
-      needLabel: "The need",
       needTitle: "New visuals for every client, holiday and event",
       needText:
         "When you present products or gift sets to different clients, every event and every season calls for new images. Professional photography each time is slow, expensive and hard to schedule.",
@@ -116,7 +111,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       ],
       needGoal:
         "The goal: show the client the product before it is assembled, and use the same visuals in a video, a presentation and a catalog.",
-      solutionLabel: "The solution",
       solutionTitle: "Visualizations, videos and a catalog in one visual language",
       solutionText: "I build one series of deliverables for you, from the visualization to the video and the catalog, without reshooting.",
       solutionItems: [
@@ -129,7 +123,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         { icon: "palette", title: "A fixed visual language", text: "Define the style, lighting, backgrounds and colors once (Brand Style), and every visualization looks like part of the same series." },
         { icon: "repeat", title: "A repeatable process", text: "Fixed templates and workflow for every new product or client: fast, predictable and consistent in quality." },
       ],
-      howLabel: "How it works",
       howTitle: "Four steps to the deliverables",
       steps: [
         { title: "Kickoff call", text: "We get to know the products, the style you want and the upcoming event." },
@@ -139,7 +132,6 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
       ],
       howNote:
         "We start with a pilot on one product, test it in the field and only then expand. The aim is a working result within days, not months, and work in a flexible hours bank, with no surprises.",
-      startLabel: "Getting started",
       startTitle: "What I will need from you for the kickoff call",
       startItems: [
         { title: "An upcoming event or client", text: "An event, a holiday or a client you can show the first deliverables to." },

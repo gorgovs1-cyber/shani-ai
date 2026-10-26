@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
-import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
-import { waLink } from "@/lib/whatsapp";
 
 export default function StickyAssessment() {
  const path = usePathname();
@@ -19,9 +17,13 @@ export default function StickyAssessment() {
     const blocked = !!document.querySelector('.cc-wrap, [role="dialog"], .nav-hamburger[aria-expanded="true"]');
     const hero = document.querySelector('.hero-grid');
     const pastIntro = hero ? hero.getBoundingClientRect().bottom < 80 : window.scrollY > 240;
-    const show = innerWidth <= 900 && !path.startsWith('/audit') && pastIntro && !typing && !blocked;
+    // Hide while a closing card, the contact form or the footer is on screen: they already carry the same actions
+    const atEnd = Array.from(document.querySelectorAll('.sp-closing, #contact, .site-footer')).some((el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+    const mobile = innerWidth <= 900 && !path.startsWith('/audit');
+    const show = mobile && pastIntro && !typing && !blocked && !atEnd;
     setVisible(show);
     document.body.classList.toggle('assessment-bar-visible', show);
+    document.body.classList.toggle('assessment-bar-end', mobile && pastIntro && atEnd);
    });
   };
   const observer = new MutationObserver(update);
@@ -37,9 +39,9 @@ export default function StickyAssessment() {
    window.removeEventListener('scroll', update); window.removeEventListener('resize', update);
    document.removeEventListener('focusin', update); document.removeEventListener('focusout', update);
    window.visualViewport?.removeEventListener('resize', update);
-   document.body.classList.remove('assessment-bar-visible');
+   document.body.classList.remove('assessment-bar-visible', 'assessment-bar-end');
   };
  }, [path]);
- // One mobile bar holds both actions; the floating WhatsApp button hides while it shows (globals.css)
- return <aside className="assessment-bar" hidden={!visible} aria-label={lang === 'he' ? 'קישורים מהירים' : 'Quick links'}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a><a href={waLink(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="assessment-bar-wa"><WhatsAppIcon size={26} /></a></aside>;
+ // One mobile bar with the single main action; WhatsApp stays in the closing card and contact section (floating button hides while the bar shows or at the page end, globals.css)
+ return <aside className="assessment-bar" hidden={!visible} aria-label={lang === 'he' ? 'קישורים מהירים' : 'Quick links'}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a></aside>;
 }
