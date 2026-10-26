@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLang } from "@/components/LanguageProvider";
+import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
+import { waLink } from "@/lib/whatsapp";
 
 export default function StickyAssessment() {
  const path = usePathname();
@@ -42,6 +44,6 @@ export default function StickyAssessment() {
    document.body.classList.remove('assessment-bar-visible', 'assessment-bar-end');
   };
  }, [path]);
- // One mobile bar with the single main action; WhatsApp stays in the closing card and contact section (floating button hides while the bar shows or at the page end, globals.css)
- return <aside className="assessment-bar" hidden={!visible} aria-label={lang === 'he' ? 'קישורים מהירים' : 'Quick links'}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a></aside>;
+ // One mobile bar: main action + compact WhatsApp. Floating WhatsApp hides while the bar shows (and at the page end, where the closing card/form carry it), globals.css
+ return <aside className="assessment-bar" hidden={!visible} aria-label={lang === 'he' ? 'קישורים מהירים' : 'Quick links'}><a href={L("/audit")} className="portfolio-button">{lang === 'he' ? 'בדיקת התאמה חינם' : 'Free fit check'}</a><a href={waLink(lang)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="assessment-bar-wa"><WhatsAppIcon size={26} /></a></aside>;
 }
