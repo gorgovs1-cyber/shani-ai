@@ -13,12 +13,12 @@ const COPY: Record<"he" | "en", Copy> = {
   he: {
     kicker: "תקנון",
     title: "תנאי שימוש",
-    updated: "עודכן: אוקטובר 2026",
+    updated: "עודכן: 26 באוקטובר 2026",
     intro:
       "ברוכים הבאים. השימוש באתר ובשירותים של Shani AI Creator (שני גורגוב) כפוף לתנאים שלהלן. השימוש באתר מהווה הסכמה לתנאים אלה.",
     sections: [
       { heading: "השירותים", body:
-        "אני מציעה בניית אתרים, אוטומציות, פתרונות AI וסוכנים, צ׳אטבוט בעברית, שיווק ממומן, שירותי IT ותשתיות ענן וליווי עסקי. חלק מהשירותים ניתנים בשיתוף פעולה עם שותף עבודה. בדיקת ההתאמה והמיפוי הם חלק מתהליך הגדרת הפרויקט. תיאורי השירותים באתר הם כלליים; ההיקף, המחיר ולוחות הזמנים המדויקים נקבעים בהצעת מחיר או בהסכם פרטני מול כל לקוח." },
+        "אני מציעה בניית אתרים, אוטומציות, פתרונות AI וסוכנים, צ׳אטבוט בעברית, תוכן ויזואלי ב-AI (הדמיות מוצר, סרטונים קצרים וקטלוגים), שיווק ממומן, שירותי IT ותשתיות ענן וליווי עסקי. חלק מהשירותים ניתנים בשיתוף פעולה עם שותף עבודה. בדיקת ההתאמה והמיפוי הם חלק מתהליך הגדרת הפרויקט. תיאורי השירותים באתר הם כלליים; ההיקף, המחיר ולוחות הזמנים המדויקים נקבעים בהצעת מחיר או בהסכם פרטני מול כל לקוח." },
       { heading: "אין הבטחת תוצאה", body:
         "אני פועלת במקצועיות ובמיטב היכולת, אך תוצאות עסקיות תלויות בגורמים רבים שאינם בשליטתי. אין במידע באתר או בשירותים משום התחייבות לתוצאה עסקית, הכנסה או ביצועים מסוימים." },
       { heading: "הצעות מחיר ותשלום", body:
@@ -44,12 +44,12 @@ const COPY: Record<"he" | "en", Copy> = {
   en: {
     kicker: "Terms",
     title: "Terms of Use",
-    updated: "Updated: October 2026",
+    updated: "Updated: October 26, 2026",
     intro:
       "Welcome. Use of the Shani AI Creator (Shani Gorgov) website and services is subject to the terms below. Using the site constitutes acceptance of these terms.",
     sections: [
       { heading: "Services", body:
-        "I offer websites, automations, AI solutions and agents, a Hebrew chatbot, paid marketing, IT and cloud infrastructure services, and close business support. Some services are delivered together with a working partner. The fit check and mapping are part of defining each project. Service descriptions on the site are general; exact scope, price and timelines are set in a proposal or individual agreement with each client." },
+        "I offer websites, automations, AI solutions and agents, a Hebrew chatbot, AI visual content (product visualizations, short videos and catalogs), paid marketing, IT and cloud infrastructure services, and close business support. Some services are delivered together with a working partner. The fit check and mapping are part of defining each project. Service descriptions on the site are general; exact scope, price and timelines are set in a proposal or individual agreement with each client." },
       { heading: "No guaranteed results", body:
         "I work professionally and to the best of my ability, but business results depend on many factors outside my control. Nothing on the site or in the services is a commitment to a specific business result, revenue or performance." },
       { heading: "Quotes & payment", body:

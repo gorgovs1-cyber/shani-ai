@@ -116,6 +116,7 @@ export default function Nav() {
     { label: t.navChat,        href: L("/chatbots") },
     { label: t.navCrm,         href: anchor("#crm") },
     { label: t.navWebsites,    href: L("/websites") },
+    { label: t.navVisual,      href: L("/ai-visual-content") },
     { label: t.navWork,        href: L("/work") },
   ];
 

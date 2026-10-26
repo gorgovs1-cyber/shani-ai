@@ -6,7 +6,7 @@ import Logo from "@/components/Logo";
 import Link from "next/link";
 export default function Footer(){
  const {lang}=useLang(); const L = useLang().href;const t=dict[lang],he=lang==="he";
- const site=[[t.navGuides,"/guides"],[t.navAbout,"/#about"],[t.navContact,"/#contact"]];
+ const site=[[t.navVisual,"/ai-visual-content"],[t.navGuides,"/guides"],[t.navAbout,"/#about"],[t.navContact,"/#contact"]];
  const legal=[[he?"הצהרת נגישות":"Accessibility","/accessibility"],[he?"מדיניות פרטיות":"Privacy","/privacy"],[he?"תקנון":"Terms","/terms"],[he?"מדיניות ביטולים":"Cancellation","/cancellation"]];
  return <footer className="site-footer" dir={t.dir}>
  <div className="footer-brand"><div className="footer-brand-lockup"><Logo height={30}/><strong dir="ltr">Shani AI Creator</strong></div></div>

@@ -37,14 +37,18 @@ const pages: Entry[] = [
   { path: '/guides', lastmod: '2026-10-20', changefreq: 'weekly', priority: 0.7, bilingual: true },
   { path: '/accessibility', lastmod: '2026-10-26', changefreq: 'yearly', priority: 0.3, bilingual: true },
   { path: '/privacy', lastmod: '2026-10-26', changefreq: 'yearly', priority: 0.3, bilingual: true },
-  { path: '/terms', lastmod: '2026-10-20', changefreq: 'yearly', priority: 0.3, bilingual: true },
-  { path: '/cancellation', lastmod: '2026-10-20', changefreq: 'yearly', priority: 0.3, bilingual: true },
+  { path: '/terms', lastmod: '2026-10-26', changefreq: 'yearly', priority: 0.3, bilingual: true },
+  { path: '/cancellation', lastmod: '2026-10-26', changefreq: 'yearly', priority: 0.3, bilingual: true },
 ]
 
 // Open guide pages (static HTML in public/guides). The 2025 content calendar is noindexed, so it stays out.
 // A guide's lastmod is its publication date in lib/guides.ts unless it was edited later (listed here).
 const guideEdited: Record<string, string> = {
   'claude-opus-film.html': '2026-10-20',
+  'chatgpt-in-excel.html': '2026-10-26',
+  'claude-canva-designs.html': '2026-10-26',
+  'claude-to-income.html': '2026-10-26',
+  'lead-magnet-5-prompts.html': '2026-10-26',
 }
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')

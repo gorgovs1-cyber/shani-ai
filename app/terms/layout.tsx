@@ -27,7 +27,7 @@ export function generateMetadata(): Metadata {
 export default function TermsLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <PageSchema path="/terms" he={{ name: "תקנון ותנאי שימוש באתר", description: "תנאי השימוש באתר ובשירותים של Shani AI Creator." }} en={{ name: "Terms of use", description: "Terms of use for the Shani AI Creator website and services." }} dateModified="2026-10" />
+      <PageSchema path="/terms" he={{ name: "תקנון ותנאי שימוש באתר", description: "תנאי השימוש באתר ובשירותים של Shani AI Creator." }} en={{ name: "Terms of use", description: "Terms of use for the Shani AI Creator website and services." }} dateModified="2026-10-26" />
       {children}
     </>
   );
