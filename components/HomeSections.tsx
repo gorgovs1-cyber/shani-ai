@@ -12,7 +12,7 @@ export function HomeAbout() {
   return (
     <section className="home-about depth-rise" aria-labelledby="home-about-title">
       <h2 id="home-about-title" className="home-kicker">{t.homeAboutTitle}</h2>
-      <p className="home-about-text">{t.homeAboutText.includes('{partner}') ? (<>{t.homeAboutText.split('{partner}')[0]}<a href="https://ai2u.co.il" target="_blank" rel="noopener">ai2u</a>{t.homeAboutText.split('{partner}')[1]}</>) : t.homeAboutText}</p>
+      <p className="home-about-text">{t.homeAboutText.includes('{partner}') ? (<>{t.homeAboutText.split('{partner}')[0]}<a className="home-about-link" href="https://ai2u.co.il" target="_blank" rel="noopener">ai2u</a>{t.homeAboutText.split('{partner}')[1]}</>) : t.homeAboutText}</p>
     </section>
   );
 }

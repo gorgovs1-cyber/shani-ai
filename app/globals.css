@@ -1185,3 +1185,6 @@ body p, body li, body dd { font-weight:400 !important; }
   .footer-links a, .footer-links button { transition:none; translate:none !important; }
   .home-service, .home-service:hover, .home-service:focus-visible, .home-service-arrow, .home-service:hover .home-service-arrow, .home-service:focus-visible .home-service-arrow { transform:none !important; transition:none; }
 }
+
+.home-about-link { color:var(--acc); text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; font-weight:700; }
+.home-about-link:hover, .home-about-link:focus-visible { color:var(--acc-fill); text-decoration-thickness:3px; }
