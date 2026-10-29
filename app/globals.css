@@ -1119,29 +1119,23 @@ body p, body li, body dd { font-weight:400 !important; }
 #top::before { inset-block:26px; }
 #contact::before { inset-block:var(--section-gap); border-radius:32px; }
 
-/* Services: flat linked cards, title + one line. 6-column grid: three on the first row, two centred on the second, every row the same height */
-.home-services { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:16px; }
+/* Services: five identical flat linked cards stacked one under the other, title + one line.
+   Every card spans the full content width; grid-auto-rows:1fr gives all five the same height.
+   From 760px the title and line sit side by side in two fixed columns so every card aligns */
+.home-services { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; grid-auto-rows:1fr; gap:16px; }
 .home-services > li { display:flex; min-width:0; }
-.home-service { flex:1; display:flex; flex-direction:column; gap:10px; padding:24px 24px 26px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); color:var(--ink); text-decoration:none; }
-.home-service-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-.home-service h3 { margin:0; font-size:21px; font-weight:800; line-height:1.3; }
-.home-service-arrow { font-size:18px; font-weight:700; color:var(--acc); transition:translate var(--t-base) var(--depth-ease); }
+.home-service { flex:1; display:flex; flex-direction:column; justify-content:center; gap:8px; padding:22px 24px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); color:var(--ink); text-decoration:none; }
+.home-service h3 { margin:0; font-size:20px; font-weight:800; line-height:1.3; }
 .home-service p { margin:0; font-size:15.5px; line-height:1.65; color:var(--muted2); }
 .home-service:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
 @media (hover:hover) and (pointer:fine) {
   .home-service:hover, .home-start-card:hover, #testimonials figure:hover { transform:perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.01); box-shadow:var(--depth-shadow-up); border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); }
-  [dir="rtl"] .home-service:hover .home-service-arrow { translate:-4px 0; }
-  [dir="ltr"] .home-service:hover .home-service-arrow { translate:4px 0; }
 }
-@media (min-width:640px) {
-  .home-services { grid-template-columns:repeat(4, minmax(0,1fr)); grid-auto-rows:1fr; gap:18px; }
-  .home-services > li { grid-column:span 2; }
-  .home-services > li:last-child { grid-column:2 / span 2; }
-}
-@media (min-width:1000px) {
-  .home-services { grid-template-columns:repeat(6, minmax(0,1fr)); gap:20px; }
-  .home-services > li:last-child { grid-column:auto / span 2; }
-  .home-services > li:nth-child(4) { grid-column:2 / span 2; }
+@media (min-width:760px) {
+  .home-services { gap:18px; }
+  .home-service { display:grid; grid-template-columns:220px minmax(0,1fr); align-items:center; column-gap:32px; padding:28px 36px; }
+  .home-service h3 { font-size:22px; }
+  .home-service p { font-size:16px; }
 }
 
 /* How to start: three cards side by side, same depth, with a flow line through them; stacked on mobile */
@@ -1167,5 +1161,5 @@ body p, body li, body dd { font-weight:400 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .depth-card, .depth-card:hover, .home-service:hover, .home-start-card:hover, #testimonials figure:hover { transform:none !important; transition:none; }
-  .home-service-arrow, .footer-links a, .footer-links button { transition:none; translate:none !important; }
+  .footer-links a, .footer-links button { transition:none; translate:none !important; }
 }

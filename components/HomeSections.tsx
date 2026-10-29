@@ -18,8 +18,7 @@ export function HomeAbout() {
 }
 
 export function HomeServices() {
-  const { t, lang, href: L } = useLang();
-  const arrow = lang === "he" ? "←" : "→";
+  const { t, href: L } = useLang();
   return (
     <section id="build" className="home-section" aria-labelledby="home-services-title">
       <h2 id="home-services-title" className="sr-only">{t.homeServicesTitle}</h2>
@@ -27,10 +26,7 @@ export function HomeServices() {
         {t.homeServices.map((s) => (
           <li key={s.key} id={s.key === "crm" ? "crm" : undefined} className="depth-rise">
             <Link href={L(s.href)} className="home-service depth-card">
-              <span className="home-service-head">
-                <h3>{s.title}</h3>
-                <span className="home-service-arrow" aria-hidden="true">{arrow}</span>
-              </span>
+              <h3>{s.title}</h3>
               <p>{s.text}</p>
             </Link>
           </li>
