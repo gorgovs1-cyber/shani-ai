@@ -1154,7 +1154,7 @@ body p, body li, body dd { font-weight:400 !important; }
   .home-service-body { display:contents; }
   .home-service-icon { grid-area:icon; width:40px; height:40px; }
   .home-service-icon svg { width:19px; height:19px; }
-  .home-service h3 { grid-area:title; font-size:18px; }
+  .home-service h3 { grid-area:title; font-size:18px; text-align:center; }
   .home-service p { grid-area:text; font-size:15px; }
   .home-service-arrow { grid-area:arrow; width:34px; height:34px; }
 }
