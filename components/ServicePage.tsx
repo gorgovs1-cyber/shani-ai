@@ -94,7 +94,7 @@ export default function ServicePage({
         {c.flow ? <NeedSolutionFlow copy={c.flow} /> : null}
 
         {/* Includes */}
-        {c.includes.length ? <section className="service-section sp-section">
+        {c.includes.length ? <section id={c.products ? undefined : "solutions"} className="service-section sp-section">
           <h2 className="sp-h2">{c.includesTitle}</h2>
           <ul className={`sp-includes n${c.includes.length}`}>
             {c.includes.map((f) => (
@@ -195,7 +195,7 @@ export default function ServicePage({
         </section> : null}
 
         {/* FAQ */}
-        <section className="sp-section">
+        {c.faqItems.length ? <section className="sp-section">
           <h2 className="sp-h2">{c.faqTitle}</h2>
           <div className="service-faq">
             {c.faqItems.map((item, i) => (
@@ -217,7 +217,7 @@ export default function ServicePage({
               </div>
             ))}
           </div>
-        </section>
+        </section> : null}
 
         {beforeClosing}
 
@@ -235,7 +235,7 @@ export default function ServicePage({
         <div style={{ height: 90 }} />
 
         {/* FAQPage schema */}
-        <script
+        {c.faqItems.length ? <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -248,7 +248,7 @@ export default function ServicePage({
               })),
             }),
           }}
-        />
+        /> : null}
       </div>
       <Footer />
     </>

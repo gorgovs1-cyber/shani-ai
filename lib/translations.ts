@@ -16,7 +16,7 @@ export const dict = {
     navAriaMain:'ניווט ראשי', navAriaHome:'Shani AI, לדף הבית של שני גורגוב', navAriaMobileMenu:'תפריט ניווט',
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
     navAriaSwitchEn:'מעבר לאנגלית', navAriaSwitchHe:'מעבר לעברית',
-    footerSeo:'צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות. שני גורגוב, לעסקים בישראל ובארה״ב.',
+    footerSeo:'צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים ואוטומציות. שני גורגוב, לעסקים בישראל ובארה״ב.',
     heroTitle:'פתרונות AI מתקדמים לעסק שלכם',
     heroSub:'אני שני, מומחית ב-AI Chatbot, VibeCoding, אוטומציות N8N ואתרים מתקדמים. אני הופכת רעיונות למציאות עם הטכנולוגיות החדשניות ביותר.',
     meta1:'שירות 24/7', meta2:'אתרים, שיווק ומערכות', meta3:'מותאם לעסק שלכם',
@@ -31,7 +31,25 @@ export const dict = {
     // "נבנה באהבה בישראל" הוא תרגום ישיר של made with love, לא ניסוח עברי.
     footer:'נבנה בישראל',
     // "עברית טבעית" ו"מבוססת בישראל" היו מפרט פנימי ותרגום של based in Israel.
-    marqueeItems:['צ׳אטבוטים','סוכני AI','CRM מודולרי','אתרים שמביאים פניות','אוטומציות','ישראל · ארה״ב'],
+    marqueeItems:['צ׳אטבוטים','סוכני AI','CRM מודולרי','אתרים','אוטומציות','ישראל · ארה״ב'],
+    // דף הבית: מי אנחנו → שירותים → איך מתחילים. נוסח מאושר (29.10), לא לשכתב.
+    homeAboutTitle:'מי אנחנו',
+    homeAboutText:'אנחנו צוות שנותן מעטפת שירותים טכנולוגית מלאה לניהול העסק: אתרים, בוטים, סוכנים, ויז׳ואל, אוטומציות ומערכות משולבות AI.',
+    homeServicesTitle:'השירותים שלנו',
+    homeServices:[
+      {key:'websites', title:'אתרים', text:'אתרים שנבנים בקוד, מהירים ומותאמים למובייל, עם מבנה שמותאם לקידום בגוגל ובמנועי AI וחיבור לוואטסאפ ולמערכות.', href:'/websites'},
+      {key:'bots', title:'בוטים וסוכנים', text:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', href:'/chatbots'},
+      {key:'visual', title:'ויזואל', text:'ויזואל וסרטונים ב-AI: מוצרים, קטלוגים ותוכן שמתעדכן, בלי לצלם כל פעם מחדש.', href:'/ai-visual-content'},
+      {key:'automations', title:'אוטומציות', text:'אוטומציות שחוסכות זמן: הפנייה נשמרת, נשלחים אישורים ותזכורות, בלי העתקות ידניות.', href:'/automations'},
+      {key:'crm', title:'מערכות משולבות AI', text:'מערכת CRM מודולרית: כל הפניות והשיחות במקום אחד, עם אפשרות להתחבר גם ל-CRM או לממשק אחר שלכם.', href:'/crm'},
+    ],
+    homeServicesMore:'לפרטים',
+    homeStartTitle:'איך מתחילים',
+    homeStartSteps:[
+      {title:'אפיון', text:'שיחה קצרה על העסק ומה צריך לעבוד טוב יותר'},
+      {title:'בנייה', text:'אתר, בוט, ויזואל, אוטומציה או מערכת, לפי מה שצריך'},
+      {title:'עלייה לאוויר', text:'חיבור לוואטסאפ ולמערכות שלכם'},
+    ],
     processTitle: 'איך מתחילים ומתקדמים',
     processIntro: 'אתם לא צריכים לדעת מראש איזו מערכת לבקש, בשביל זה אני כאן.',
     processSteps: [
@@ -47,7 +65,7 @@ export const dict = {
     services:[
       {no:'01', title:'צ׳אטבוטים וסוכני AI', short:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', desc:'צ׳אטבוט, סוכן AI או בוט קולי שמבין את השיחה, עונה בטון של העסק ומעביר אליכם רק את מה שדורש אדם.'},
       {no:'02', title:'מערכת CRM מודולרית', short:'כל הלקוחות והפניות במקום אחד, במודולים שמתאימים מעסק קטן ועד ארגון גדול', desc:'CRM שנבנה סביב הדרך שבה העסק עובד, ומתרחב כשהעסק גדל.'},
-      {no:'03', title:'אתר שמביא פניות', short:'אתר מהיר שמסביר מה אתם עושים ומוביל לפנייה', desc:'אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.'},
+      {no:'03', title:'אתרים', short:'אתר מהיר שמסביר מה אתם עושים ומוביל לפנייה', desc:'אתר שמסביר מה אתם עושים ונותן לאנשים דרך פשוטה לפנות אליכם, עם התאמה למובייל ובסיס לקידום בגוגל.'},
       {no:'04', title:'אוטומציות', short:'העבודה החוזרת קורית לבד: פרטי פנייה נשמרים, אישורים ותזכורות נשלחים', desc:'פעולות שחוזרות על עצמן מתבצעות אוטומטית ומחברות בין הכלים שכבר עובדים איתם.'},
       {no:'05', title:'תוכן ויזואלי ב-AI', short:'הדמיות מוצר, סרטונים וקטלוג שמתעדכן, בלי צילום חוזר', desc:'מציגים ללקוח את המוצר עוד לפני שהורכב: הדמיות בסגנון המותג שלכם, סרטונים קצרים וקטלוג לכל עונה.'}
     ],
@@ -83,7 +101,7 @@ export const dict = {
     navAriaMain:'Main navigation', navAriaHome:'Shani AI, Shani Gorgov home page', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',
     navAriaSwitchEn:'Switch to English', navAriaSwitchHe:'Switch to Hebrew',
-    footerSeo:'AI chatbots and agents, a modular CRM, websites that bring enquiries, and automations. Shani Gorgov, for businesses in Israel and the US.',
+    footerSeo:'AI chatbots and agents, a modular CRM, websites and automations. Shani Gorgov, for businesses in Israel and the US.',
     heroTitle:'Advanced AI solutions for your business',
     heroSub:'I’m Shani, an expert in AI chatbots, VibeCoding, n8n automations and advanced websites. I turn ideas into reality with the latest technology.',
     meta1:'24/7 service', meta2:'Websites, marketing and systems', meta3:'Built for your business',
@@ -98,7 +116,24 @@ export const dict = {
     // the site's main lead funnel — vanished entirely in English.
     contactCta1:'Free fit check', contactCta2:'Message me on WhatsApp',
     footer:'Built in Israel',
-    marqueeItems:['Chatbots','AI agents','Modular CRM','Websites that bring enquiries','Automations','Israel · US'],
+    marqueeItems:['Chatbots','AI agents','Modular CRM','Websites','Automations','Israel · US'],
+    homeAboutTitle:'Who we are',
+    homeAboutText:'We are a team that provides a complete technology service package for running your business: websites, bots, agents, visuals, automations and AI-integrated systems.',
+    homeServicesTitle:'Our services',
+    homeServices:[
+      {key:'websites', title:'Websites', text:'Websites built in code, fast and mobile-ready, structured for Google and AI search, and connected to WhatsApp and your systems.', href:'/websites'},
+      {key:'bots', title:'Bots and agents', text:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', href:'/chatbots'},
+      {key:'visual', title:'Visuals', text:'AI visuals and videos: products, catalogs and content that updates, without a new shoot every time.', href:'/ai-visual-content'},
+      {key:'automations', title:'Automations', text:'Automations that save time: the enquiry is saved, confirmations and reminders go out, with no manual copying.', href:'/automations'},
+      {key:'crm', title:'AI-integrated systems', text:'A modular CRM: every enquiry and conversation in one place, with the option to connect to your own CRM or another interface.', href:'/crm'},
+    ],
+    homeServicesMore:'Details',
+    homeStartTitle:'How to start',
+    homeStartSteps:[
+      {title:'Specification', text:'A short conversation about the business and what should work better'},
+      {title:'Build', text:'A website, bot, visual, automation or system, based on what you need'},
+      {title:'Launch', text:'Connecting to WhatsApp and your systems'},
+    ],
     processTitle: 'How we get started and move forward',
     processIntro: 'A clear process. You do not need to know which website, system or tool to ask for.',
     processSteps: [
@@ -113,7 +148,7 @@ export const dict = {
     services:[
       {no:'01', title:'AI chatbots and agents', short:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', desc:'A chatbot, an AI agent or a voice bot that understands the conversation, replies in your tone and hands you only what needs a person.'},
       {no:'02', title:'A modular CRM', short:'Every customer and enquiry in one place, in modules that fit a small business or a large organisation', desc:'A CRM built around how your business works, that grows with you.'},
-      {no:'03', title:'Websites that bring enquiries', short:'A fast website that explains what you do and leads to an enquiry', desc:'A website that explains your offer and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.'},
+      {no:'03', title:'Websites', short:'A fast website that explains what you do and leads to an enquiry', desc:'A website that explains your offer and makes getting in touch easy. Mobile-friendly, with the foundations for Google search.'},
       {no:'04', title:'Automations', short:'Repetitive work happens by itself: enquiry details are saved, confirmations and reminders are sent', desc:'Recurring tasks happen automatically and connect the tools you already use.'},
       {no:'05', title:'AI visual content', short:'Product visualizations, videos and a catalog that updates, with no reshoots', desc:'Show the client the product before it is assembled: visualizations in your brand style, short videos and a catalog for every season.'}
     ],

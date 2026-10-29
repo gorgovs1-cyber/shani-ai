@@ -1,13 +1,8 @@
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Services from "@/components/Services";
-import ChatShowcase from "@/components/ChatShowcase";
+import { HomeAbout, HomeServices, HomeStart } from "@/components/HomeSections";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import WorkGrid from "@/components/WorkGrid";
-import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import WorkingTogether from "@/components/WorkingTogether";
 import PageSchema from "@/components/PageSchema";
 
 export default function Home() {
@@ -15,8 +10,8 @@ export default function Home() {
     <>
       <PageSchema
         path="/"
-        he={{ name: "צ׳אטבוטים, אתרים ו-CRM בשילוב AI לעסק שלכם", description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים שמביאים פניות ואוטומציות." }}
-        en={{ name: "Chatbots, websites and CRM systems powered by AI", description: "AI chatbots and agents, a modular CRM, websites that bring enquiries and automations for businesses in Israel and the US." }}
+        he={{ name: "צ׳אטבוטים, אתרים ו-CRM בשילוב AI לעסק שלכם", description: "שני גורגוב בונה לעסקים בישראל ובארה״ב צ׳אטבוטים וסוכני AI, מערכת CRM מודולרית, אתרים ואוטומציות." }}
+        en={{ name: "Chatbots, websites and CRM systems powered by AI", description: "AI chatbots and agents, a modular CRM, websites and automations for businesses in Israel and the US." }}
         extra={[
           {
             "@type": "ImageObject",
@@ -33,12 +28,9 @@ export default function Home() {
         ]}
       />
       <Hero />
-      <Marquee />
-      <Services />
-      <ChatShowcase />
-      <WorkGrid />
-      <About />
-      <WorkingTogether />
+      <HomeAbout />
+      <HomeServices />
+      <HomeStart />
       <TestimonialsSection />
       <Contact />
       <Footer />
