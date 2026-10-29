@@ -17,7 +17,7 @@ export function HomeAbout() {
   );
 }
 
-// One small line glyph per service, drawn in the tinted circle on the start side of each pill.
+// One small line glyph per service, drawn in the orange ring on the start side of each row.
 const SERVICE_GLYPHS: Record<string, React.ReactNode> = {
   websites: <><rect x="3" y="4.5" width="18" height="15" rx="3" /><path d="M3 9h18" /><path d="M6.5 6.8h.01M9 6.8h.01" /></>,
   bots: <><path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7l-4.5 3.5V16.5H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" /><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" /></>,
@@ -26,7 +26,7 @@ const SERVICE_GLYPHS: Record<string, React.ReactNode> = {
   crm: <><rect x="3.5" y="3.5" width="7" height="7" rx="2" /><rect x="13.5" y="3.5" width="7" height="7" rx="2" /><rect x="3.5" y="13.5" width="7" height="7" rx="2" /><rect x="13.5" y="13.5" width="7" height="7" rx="2" /></>,
 };
 
-// Magnetic pull: the pill drifts up to 6px toward the cursor. Fine pointers only, off under reduced motion.
+// Magnetic pull: the row drifts up to 6px toward the cursor. Fine pointers only, off under reduced motion.
 const MAGNET = 6;
 function magnetMove(e: React.PointerEvent<HTMLAnchorElement>) {
   if (e.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -45,12 +45,12 @@ function magnetReset(e: React.PointerEvent<HTMLAnchorElement>) {
 export function HomeServices() {
   const { t, href: L } = useLang();
   return (
-    <section id="build" className="home-section home-svc" aria-labelledby="home-services-title">
+    <section id="build" className="home-section" aria-labelledby="home-services-title">
       <h2 id="home-services-title" className="sr-only">{t.homeServicesTitle}</h2>
       <ul className="home-services">
         {t.homeServices.map((s) => (
           <li key={s.key} id={s.key === "crm" ? "crm" : undefined} className="depth-rise">
-            <Link href={L(s.href)} className={`home-service is-${s.key}`} onPointerMove={magnetMove} onPointerLeave={magnetReset}>
+            <Link href={L(s.href)} className="home-service" onPointerMove={magnetMove} onPointerLeave={magnetReset}>
               <span className="home-service-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                   {SERVICE_GLYPHS[s.key]}
