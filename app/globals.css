@@ -1119,15 +1119,14 @@ body p, body li, body dd { font-weight:400 !important; }
 #top::before { inset-block:26px; }
 #contact::before { inset-block:var(--section-gap); border-radius:32px; }
 
-/* Services: five identical simple boxes stacked one under the other, title + one line.
+/* Services: five identical small square cards, centered, one under the other. Title on top, one line under it.
    One clean surface each: card background, hairline border, small soft shadow. No tilt, no plate, no edge bar.
-   On hover the box comes forward a little and the title takes the accent. Every box spans the full
-   content width; grid-auto-rows:1fr gives all five the same height. From 760px title and line sit in two fixed columns */
-.home-services { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; grid-auto-rows:1fr; gap:14px; }
-.home-services > li { display:flex; min-width:0; }
-.home-service { flex:1; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:22px 24px; background:var(--card); border:1px solid color-mix(in oklch, var(--ink) 8%, transparent); border-radius:18px; color:var(--ink); text-decoration:none; box-shadow:0 1px 2px rgba(27,23,18,.04), 0 8px 20px -14px rgba(27,23,18,.22); transition:transform var(--t-base) var(--depth-ease), box-shadow var(--t-base) var(--depth-ease), border-color var(--t-base) ease; }
-.home-service h3 { margin:0; font-size:20px; font-weight:800; line-height:1.3; transition:color var(--t-fast) ease; }
-.home-service p { margin:0; font-size:15.5px; line-height:1.65; color:var(--muted2); }
+   Every card has the same width and aspect-ratio:1, so all five are the same square. On hover it lifts a little */
+.home-services { list-style:none; margin:0 auto; padding:0; display:flex; flex-direction:column; align-items:center; gap:18px; }
+.home-services > li { display:flex; width:min(100%, 300px); }
+.home-service { flex:1; aspect-ratio:1 / 1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:28px 26px; text-align:center; background:var(--card); border:1px solid color-mix(in oklch, var(--ink) 8%, transparent); border-radius:20px; color:var(--ink); text-decoration:none; box-shadow:0 1px 2px rgba(27,23,18,.04), 0 10px 24px -16px rgba(27,23,18,.24); transition:transform var(--t-base) var(--depth-ease), box-shadow var(--t-base) var(--depth-ease), border-color var(--t-base) ease; }
+.home-service h3 { margin:0; font-size:21px; font-weight:800; line-height:1.3; text-wrap:balance; transition:color var(--t-fast) ease; }
+.home-service p { margin:0; font-size:15px; line-height:1.65; color:var(--muted2); text-wrap:pretty; }
 .home-service:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
 @media (hover:hover) and (pointer:fine) {
   .home-service:hover { transform:translateY(-3px); border-color:color-mix(in oklch, var(--acc) 30%, transparent); box-shadow:0 2px 4px rgba(27,23,18,.05), 0 16px 30px -16px rgba(27,23,18,.28); }
@@ -1135,10 +1134,8 @@ body p, body li, body dd { font-weight:400 !important; }
   .home-start-card:hover, #testimonials figure:hover { transform:perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.01); box-shadow:var(--depth-shadow-up); border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); }
 }
 @media (min-width:760px) {
-  .home-services { gap:16px; }
-  .home-service { display:grid; grid-template-columns:200px minmax(0,1fr); align-items:center; column-gap:32px; padding:26px 34px; }
-  .home-service h3 { font-size:22px; }
-  .home-service p { font-size:16px; }
+  .home-services { gap:22px; }
+  .home-services > li { width:320px; }
 }
 
 /* How to start: three cards side by side, same depth, with a flow line through them; stacked on mobile */
