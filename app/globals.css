@@ -938,6 +938,9 @@ body p, body li, body dd { font-weight:400 !important; }
 .sp-products .service-product-card { align-items:center; text-align:center; }
 .sp-products .spc-toggle { justify-content:space-between; gap:8px; }
 .sp-products .spc-panel { align-items:center; text-align:center; }
+/* While one card is open, the closed ones keep their own height instead of stretching to the open
+   card's row height (stretching pushed their toggles down and made every card look open) */
+.sp-products:has(.service-product-card.is-open) .service-product-card:not(.is-open) { align-self:flex-start; }
 
 /* related services: centered pair (or single) of equal cards */
 .sp-also { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; }
