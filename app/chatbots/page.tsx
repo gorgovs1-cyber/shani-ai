@@ -53,7 +53,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     alsoTitle: "מה מתחבר לבוט",
     also: [
       { label: "מערכת CRM מודולרית", href: "/crm", desc: "כל השיחות והפניות שהבוט מטפל בהן נכנסות למקום אחד." },
-      { label: "אתרים", href: "/websites", desc: "האתר מביא את הפניות, והבוט עונה להן." },
+      { label: "אתרים", href: "/websites", desc: "הבוט עונה לפניות שמגיעות מהאתר." },
     ],
     sections: [
       {
@@ -147,7 +147,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     alsoTitle: "What connects to the bot",
     also: [
       { label: "A modular CRM", href: "/crm", desc: "Every conversation and enquiry the bot handles lands in one place." },
-      { label: "Websites", href: "/websites", desc: "The website brings the enquiries, and the bot answers them." },
+      { label: "Websites", href: "/websites", desc: "The bot answers the enquiries that come in from the website." },
     ],
     sections: [
       {

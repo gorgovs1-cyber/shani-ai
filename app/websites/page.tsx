@@ -48,8 +48,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "ואחרי שהאתר באוויר",
     also: [
-      { label: "אוטומציות", href: "/automations", desc: "האתר מביא פניות, והשאלה הבאה היא כמה מהר עונים עליהן. מערכת עושה את זה גם בשתיים בלילה." },
-      { label: "צ׳אטבוטים וסוכני AI", href: "/chatbots", desc: "כשהאתר כבר מביא פניות, סוכן AI יכול להבין את השיחה ולקדם אותה לצעד הבא." },
+      { label: "אוטומציות", href: "/automations", desc: "הפנייה מהאתר נשמרת, נשלחים אישורים ותזכורות, בלי העתקות ידניות." },
+      { label: "צ׳אטבוטים וסוכני AI", href: "/chatbots", desc: "עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים" },
     ],
     sections: [],
     faqTitle: "שאלות על אתרים",
@@ -140,8 +140,8 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     },
     alsoTitle: "And once the site is live",
     also: [
-      { label: "Automations", href: "/automations", desc: "The site brings enquiries in, and the next question is how fast they get answered. A system does that at 2am too." },
-      { label: "AI chatbots and agents", href: "/chatbots", desc: "Once the site brings enquiries, an AI agent can understand the conversation and move it to the next step." },
+      { label: "Automations", href: "/automations", desc: "The enquiry from the site is saved, confirmations and reminders go out, with no manual copying." },
+      { label: "AI chatbots and agents", href: "/chatbots", desc: "Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy" },
     ],
     sections: [],
     faqTitle: "Website FAQ",
@@ -182,7 +182,7 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
     bridge: { text: "Want to see real examples before you start?", linkLabel: "See the portfolio", href: "/work" },
     closingTitle: "Ready for a site that actually works?",
     closingSub:
-      "We'll talk about your business and your goals, and I'll build a site that positions you right and brings enquiries. No commitment on the first call.",
+      "We'll talk about your business and your goals, and I'll build a site that positions you right. No commitment on the first call.",
     closingCta: "Chat on WhatsApp",
     closingWaMsg: "Hi Shani, I'd like to build a website for my business",
     auditLine: "Or start with a free fit check",

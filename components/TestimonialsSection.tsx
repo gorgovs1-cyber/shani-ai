@@ -112,7 +112,7 @@ export default function TestimonialsSection() {
       {/* Cards */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
         {c.items.map((it, i) => (
-          <figure key={i} style={{ margin: 0, background: "var(--card)", border: "1px solid var(--line)", borderRadius: 22, padding: "30px 28px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+          <figure key={i} className="depth-card depth-rise" style={{ margin: 0, background: "var(--card)", border: "1px solid var(--line)", borderRadius: 22, padding: "30px 28px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
             {/* Result metric */}
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "center", background: "rgba(242,98,46,0.08)", color: "var(--acc)", fontWeight: 700, fontSize: 15, padding: "7px 14px", borderRadius: 999, fontFamily: HEEBO, marginBottom: 20 }}>
               ★ {it.result}

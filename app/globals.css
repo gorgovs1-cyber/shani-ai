@@ -1096,31 +1096,58 @@ body p, body li, body dd { font-weight:400 !important; }
 .home-about-text { margin:0 auto; max-width:30ch; font-size:clamp(20px,2.6vw,32px); font-weight:700; line-height:1.5; color:var(--ink); text-wrap:balance; }
 .home-h2 { margin:0 0 clamp(24px,3vw,36px); text-align:center; font-size:clamp(26px,3vw,38px); font-weight:800; line-height:1.25; color:var(--ink); text-wrap:balance; }
 
-/* Services: 6-column grid, three cards on the first row and two centred on the second; every row the same height */
-.home-services { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:14px; }
+/* ─── Shared depth language (whole home) ───
+   .depth-card: a soft layered shadow and a slight backward tilt; on hover it comes forward.
+   .depth-rise: lifts in once as it scrolls into view (CSS scroll timeline, no JS).
+   Only transform, translate and opacity animate. All motion is off under prefers-reduced-motion. */
+:root {
+  --depth-tilt:perspective(1000px) rotateX(2.5deg);
+  --depth-shadow:0 1px 0 rgba(255,255,255,.9) inset, 0 2px 4px rgba(27,23,18,.04), 0 12px 24px -14px rgba(27,23,18,.18), 0 30px 44px -34px rgba(27,23,18,.32);
+  --depth-shadow-up:0 1px 0 rgba(255,255,255,.9) inset, 0 4px 8px rgba(27,23,18,.05), 0 20px 34px -16px rgba(27,23,18,.22), 0 42px 60px -38px rgba(27,23,18,.38);
+  --depth-ease:cubic-bezier(.2,.7,.2,1);
+}
+.depth-card { box-shadow:var(--depth-shadow); transform:var(--depth-tilt); transform-origin:center bottom; transition:transform var(--t-base) var(--depth-ease), box-shadow var(--t-base) var(--depth-ease), border-color var(--t-base) ease; }
+@keyframes depth-rise { from { opacity:.35; translate:0 28px; } to { opacity:1; translate:0 0; } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .depth-rise { animation:depth-rise linear both; animation-timeline:view(); animation-range:entry 0% entry 55%; }
+  }
+}
+
+/* Dark panels (hero, contact): a second sheet sits behind each panel so it reads as raised, text untouched */
+#top::before, #contact::before { content:""; position:absolute; z-index:-1; inset-inline:max(24px, calc((100% - 1200px) / 2)); border-radius:30px; background:color-mix(in oklch, var(--dark) 22%, transparent); box-shadow:0 30px 60px -40px rgba(20,16,9,.45); transform:translateY(14px) scale(.965); pointer-events:none; }
+#top::before { inset-block:26px; }
+#contact::before { inset-block:var(--section-gap); border-radius:32px; }
+
+/* Services: flat linked cards, title + one line. 6-column grid: three on the first row, two centred on the second, every row the same height */
+.home-services { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:16px; }
 .home-services > li { display:flex; min-width:0; }
-.home-service { flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:10px; padding:24px 22px 20px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); color:var(--ink); text-decoration:none; transition:border-color var(--t-base) ease, box-shadow var(--t-base) ease, transform var(--t-base) ease; }
-.home-service:hover { border-color:color-mix(in oklch, var(--acc) 45%, var(--line)); box-shadow:0 18px 36px -26px rgba(27,23,18,.35); transform:translateY(-2px); }
-.home-service:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
-.home-service-icon { width:44px; height:44px; display:grid; place-items:center; border-radius:12px; background:var(--dark); color:var(--acc-bright); }
-.home-service h3 { margin:4px 0 0; font-size:20px; font-weight:800; line-height:1.3; }
+.home-service { flex:1; display:flex; flex-direction:column; gap:10px; padding:24px 24px 26px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-card); color:var(--ink); text-decoration:none; }
+.home-service-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+.home-service h3 { margin:0; font-size:21px; font-weight:800; line-height:1.3; }
+.home-service-arrow { font-size:18px; font-weight:700; color:var(--acc); transition:translate var(--t-base) var(--depth-ease); }
 .home-service p { margin:0; font-size:15.5px; line-height:1.65; color:var(--muted2); }
-.home-service-more { margin-top:auto; padding-top:6px; font-size:15px; font-weight:700; color:var(--acc); }
+.home-service:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
+@media (hover:hover) and (pointer:fine) {
+  .home-service:hover, .home-start-card:hover, #testimonials figure:hover { transform:perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.01); box-shadow:var(--depth-shadow-up); border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); }
+  [dir="rtl"] .home-service:hover .home-service-arrow { translate:-4px 0; }
+  [dir="ltr"] .home-service:hover .home-service-arrow { translate:4px 0; }
+}
 @media (min-width:640px) {
-  .home-services { grid-template-columns:repeat(4, minmax(0,1fr)); grid-auto-rows:1fr; gap:16px; }
+  .home-services { grid-template-columns:repeat(4, minmax(0,1fr)); grid-auto-rows:1fr; gap:18px; }
   .home-services > li { grid-column:span 2; }
   .home-services > li:last-child { grid-column:2 / span 2; }
 }
 @media (min-width:1000px) {
-  .home-services { grid-template-columns:repeat(6, minmax(0,1fr)); gap:18px; }
+  .home-services { grid-template-columns:repeat(6, minmax(0,1fr)); gap:20px; }
   .home-services > li:last-child { grid-column:auto / span 2; }
   .home-services > li:nth-child(4) { grid-column:2 / span 2; }
 }
 
-/* How to start: three cards side by side with a soft layered depth and a flow line through them */
+/* How to start: three cards side by side, same depth, with a flow line through them; stacked on mobile */
 .home-start { --node:14px; position:relative; list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:22px; }
 .home-start::before { content:""; position:absolute; z-index:0; inset-block:24px; inset-inline-start:calc(22px + var(--node) / 2 - 1px); width:2px; background:repeating-linear-gradient(to bottom, var(--acc) 0 6px, transparent 6px 12px); opacity:.7; }
-.home-start-card { position:relative; z-index:1; display:flex; flex-direction:column; gap:8px; padding:22px 22px 22px calc(22px + var(--node) + 16px); background:linear-gradient(180deg, var(--card), color-mix(in oklch, var(--card) 97%, var(--ink))); border:1px solid var(--line); border-radius:var(--radius-card); box-shadow:0 1px 0 rgba(255,255,255,.9) inset, 0 9px 0 -4px var(--card), 0 9px 0 -3px var(--line), 0 2px 4px rgba(27,23,18,.04), 0 12px 24px -12px rgba(27,23,18,.18), 0 28px 40px -30px rgba(27,23,18,.3); transform:perspective(900px) rotateX(3deg); transform-origin:center bottom; }
+.home-start-card { position:relative; z-index:1; display:flex; flex-direction:column; gap:8px; padding:22px 22px 22px calc(22px + var(--node) + 16px); background:linear-gradient(180deg, var(--card), color-mix(in oklch, var(--card) 97%, var(--ink))); border:1px solid var(--line); border-radius:var(--radius-card); }
 [dir="rtl"] .home-start-card { padding:22px calc(22px + var(--node) + 16px) 22px 22px; }
 .home-start-node { position:absolute; top:28px; inset-inline-start:22px; width:var(--node); height:var(--node); border-radius:50%; background:var(--acc); box-shadow:0 0 0 5px color-mix(in oklch, var(--acc) 18%, transparent); }
 .home-start-card h3 { margin:0; font-size:20px; font-weight:800; line-height:1.3; color:var(--ink); }
@@ -1131,4 +1158,14 @@ body p, body li, body dd { font-weight:400 !important; }
   .home-start-card, [dir="rtl"] .home-start-card { align-items:center; text-align:center; padding:56px 24px 28px; }
   .home-start-node { top:30px; inset-inline-start:calc(50% - var(--node) / 2); }
 }
-@media (prefers-reduced-motion: reduce) { .home-service:hover { transform:none; } }
+
+/* Footer: same depth, kept light — a soft raised surface instead of a bare rule */
+.site-footer { border-top:0; position:relative; }
+.site-footer::before { content:""; position:absolute; inset-inline:28px; top:0; height:1px; background:linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent); box-shadow:0 -10px 24px -8px rgba(27,23,18,.12); }
+.footer-links a, .footer-links button { transition:translate var(--t-fast) ease, color var(--t-fast) ease; }
+@media (hover:hover) and (pointer:fine) { .footer-links a:hover, .footer-links button:hover { translate:0 -2px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-card, .depth-card:hover, .home-service:hover, .home-start-card:hover, #testimonials figure:hover { transform:none !important; transition:none; }
+  .home-service-arrow, .footer-links a, .footer-links button { transition:none; translate:none !important; }
+}

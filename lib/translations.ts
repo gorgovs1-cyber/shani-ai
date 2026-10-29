@@ -35,7 +35,8 @@ export const dict = {
     // דף הבית: מי אנחנו → שירותים → איך מתחילים. נוסח מאושר (29.10), לא לשכתב.
     homeAboutTitle:'מי אנחנו',
     homeAboutText:'אנחנו צוות שנותן מעטפת שירותים טכנולוגית מלאה לניהול העסק: אתרים, בוטים, סוכנים, ויז׳ואל, אוטומציות ומערכות משולבות AI.',
-    homeServicesTitle:'השירותים שלנו',
+    // כותרת נסתרת לקוראי מסך בלבד: אין כותרת "השירותים שלנו" גלויה בבית.
+    homeServicesTitle:'שירותים',
     homeServices:[
       {key:'websites', title:'אתרים', text:'אתרים שנבנים בקוד, מהירים ומותאמים למובייל, עם מבנה שמותאם לקידום בגוגל ובמנועי AI וחיבור לוואטסאפ ולמערכות.', href:'/websites'},
       {key:'bots', title:'בוטים וסוכנים', text:'עונים ללקוחות באתר ובוואטסאפ, מסננים פניות וקובעים פגישות, גם כשאתם עסוקים', href:'/chatbots'},
@@ -43,7 +44,6 @@ export const dict = {
       {key:'automations', title:'אוטומציות', text:'אוטומציות שחוסכות זמן: הפנייה נשמרת, נשלחים אישורים ותזכורות, בלי העתקות ידניות.', href:'/automations'},
       {key:'crm', title:'מערכות משולבות AI', text:'מערכת CRM מודולרית: כל הפניות והשיחות במקום אחד, עם אפשרות להתחבר גם ל-CRM או לממשק אחר שלכם.', href:'/crm'},
     ],
-    homeServicesMore:'לפרטים',
     homeStartTitle:'איך מתחילים',
     homeStartSteps:[
       {title:'אפיון', text:'שיחה קצרה על העסק ומה צריך לעבוד טוב יותר'},
@@ -119,7 +119,7 @@ export const dict = {
     marqueeItems:['Chatbots','AI agents','Modular CRM','Websites','Automations','Israel · US'],
     homeAboutTitle:'Who we are',
     homeAboutText:'We are a team that provides a complete technology service package for running your business: websites, bots, agents, visuals, automations and AI-integrated systems.',
-    homeServicesTitle:'Our services',
+    homeServicesTitle:'Services',
     homeServices:[
       {key:'websites', title:'Websites', text:'Websites built in code, fast and mobile-ready, structured for Google and AI search, and connected to WhatsApp and your systems.', href:'/websites'},
       {key:'bots', title:'Bots and agents', text:'Answer customers on your site and WhatsApp, qualify enquiries and book meetings, even when you are busy', href:'/chatbots'},
@@ -127,7 +127,6 @@ export const dict = {
       {key:'automations', title:'Automations', text:'Automations that save time: the enquiry is saved, confirmations and reminders go out, with no manual copying.', href:'/automations'},
       {key:'crm', title:'AI-integrated systems', text:'A modular CRM: every enquiry and conversation in one place, with the option to connect to your own CRM or another interface.', href:'/crm'},
     ],
-    homeServicesMore:'Details',
     homeStartTitle:'How to start',
     homeStartSteps:[
       {title:'Specification', text:'A short conversation about the business and what should work better'},
