@@ -25,7 +25,7 @@ export function HomeServices() {
       <ul className="home-services">
         {t.homeServices.map((s) => (
           <li key={s.key} id={s.key === "crm" ? "crm" : undefined} className="depth-rise">
-            <Link href={L(s.href)} className="home-service depth-card">
+            <Link href={L(s.href)} className="home-service">
               <h3>{s.title}</h3>
               <p>{s.text}</p>
             </Link>
