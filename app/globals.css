@@ -1150,13 +1150,13 @@ body p, body li, body dd { font-weight:400 !important; }
 /* Phones: icon, title and arrow share the top row; the line runs full width under them so pills stay short */
 @media (max-width:600px) {
   .home-services { gap:14px; }
-  .home-service { display:grid; grid-template-columns:auto minmax(0,1fr) auto; grid-template-areas:"icon title arrow" "text text text"; align-items:center; align-content:center; column-gap:12px; row-gap:10px; padding:16px 18px 18px; border-radius:28px; }
+  .home-service { display:grid; grid-template-columns:40px minmax(0,1fr) 40px; grid-template-areas:"icon title arrow" "text text text"; align-items:center; align-content:center; column-gap:12px; row-gap:10px; padding:16px 18px 18px; border-radius:28px; }
   .home-service-body { display:contents; }
   .home-service-icon { grid-area:icon; width:40px; height:40px; }
   .home-service-icon svg { width:19px; height:19px; }
   .home-service h3 { grid-area:title; font-size:18px; text-align:center; }
   .home-service p { grid-area:text; font-size:15px; }
-  .home-service-arrow { grid-area:arrow; width:34px; height:34px; }
+  .home-service-arrow { grid-area:arrow; width:34px; height:34px; justify-self:end; }
 }
 
 /* How to start: three cards side by side, same depth, with a flow line through them; stacked on mobile */
