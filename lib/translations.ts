@@ -11,7 +11,7 @@ export const dict = {
   he: {
     dir: 'rtl' as const,
     navWork:'פרויקטים', navVisual:'תוכן ויזואלי ב-AI', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
-    navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים', navAiShort:'פתרונות AI', navChat:'צ׳אטבוטים וסוכנים', navCrm:'CRM', navAbout:'אודות', navContact:'צור קשר',
+    navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים', navAiShort:'פתרונות AI', navChat:'צ׳אטבוטים וסוכנים', navAbout:'אודות', navContact:'צור קשר',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
     navAriaMain:'ניווט ראשי', navAriaHome:'Shani AI, לדף הבית של שני גורגוב', navAriaMobileMenu:'תפריט ניווט',
     navAriaMenuOpen:'פתיחת תפריט', navAriaMenuClose:'סגירת תפריט',
@@ -78,7 +78,7 @@ export const dict = {
   en: {
     dir: 'ltr' as const,
     navWork:'Work', navVisual:'AI Visual Content', navGuides:'Guides', navCta:'Free fit check',
-    navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents', navAiShort:'AI solutions', navChat:'Chatbots & agents', navCrm:'CRM', navAbout:'About', navContact:'Contact',
+    navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents', navAiShort:'AI solutions', navChat:'Chatbots & agents', navAbout:'About', navContact:'Contact',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
     navAriaMain:'Main navigation', navAriaHome:'Shani AI, Shani Gorgov home page', navAriaMobileMenu:'Navigation menu',
     navAriaMenuOpen:'Open menu', navAriaMenuClose:'Close menu',

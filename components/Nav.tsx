@@ -106,15 +106,11 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
-  // On the homepage use in-page anchors (smooth scroll); on any other page
-  // link back to the homepage section so nav works everywhere (e.g. /guides).
   const pathname = usePathname();
   const isHome = pathname === "/" || pathname === "/en";
-  const anchor = (hash: string) => (isHome ? hash : L(`/${hash}`));
 
   const navLinks = [
     { label: t.navChat,        href: L("/chatbots") },
-    { label: t.navCrm,         href: anchor("#crm") },
     { label: t.navWebsites,    href: L("/websites") },
     { label: t.navVisual,      href: L("/ai-visual-content") },
     { label: t.navWork,        href: L("/work") },
