@@ -1119,30 +1119,26 @@ body p, body li, body dd { font-weight:400 !important; }
 #top::before { inset-block:26px; }
 #contact::before { inset-block:var(--section-gap); border-radius:32px; }
 
-/* Services: five identical linked cards stacked one under the other, title + one line.
-   Each card is a raised tile on its own base plate (li::before), so it reads as a physical layer:
-   a warm top-lit surface, a slight backward tilt, an orange edge, and a soft long shadow.
-   On hover the tile comes forward off its plate. Every card spans the full content width;
-   grid-auto-rows:1fr gives all five the same height. From 760px title and line sit in two fixed columns */
-.home-services { list-style:none; margin:0; padding:0 0 10px; display:grid; grid-template-columns:1fr; grid-auto-rows:1fr; gap:26px; }
-.home-services > li { position:relative; display:flex; min-width:0; isolation:isolate; }
-.home-services > li::before { content:""; position:absolute; z-index:-1; inset:10px 10px -9px; border-radius:22px; background:linear-gradient(180deg, #e9dfcf, #ddd0bb); box-shadow:0 18px 30px -18px rgba(27,23,18,.35); pointer-events:none; }
-.home-service { --edge:4px; position:relative; flex:1; display:flex; flex-direction:column; justify-content:center; gap:8px; padding:24px 26px; padding-inline-start:calc(26px + var(--edge) + 6px); background:linear-gradient(165deg, #fffefb 0%, var(--card) 45%, color-mix(in oklch, var(--card) 94%, var(--ink)) 100%); border:1px solid color-mix(in oklch, var(--ink) 9%, transparent); border-radius:22px; color:var(--ink); text-decoration:none; box-shadow:0 1px 0 #fff inset, 0 -1px 0 rgba(27,23,18,.05) inset, 0 2px 3px rgba(27,23,18,.05), 0 14px 26px -14px rgba(27,23,18,.26), 0 34px 50px -34px rgba(27,23,18,.4); transform:perspective(900px) rotateX(4deg); transform-origin:center bottom; transition:transform var(--t-base) var(--depth-ease), box-shadow var(--t-base) var(--depth-ease), border-color var(--t-base) ease; }
-.home-service::before { content:""; position:absolute; inset-block:22px; inset-inline-start:18px; width:var(--edge); border-radius:4px; background:linear-gradient(180deg, var(--acc-bright), color-mix(in oklch, var(--acc-bright) 45%, transparent)); transition:inset-block var(--t-base) var(--depth-ease); }
-.home-service h3 { margin:0; font-size:21px; font-weight:800; line-height:1.3; letter-spacing:-.005em; }
+/* Services: five identical simple boxes stacked one under the other, title + one line.
+   One clean surface each: card background, hairline border, small soft shadow. No tilt, no plate, no edge bar.
+   On hover the box comes forward a little and the title takes the accent. Every box spans the full
+   content width; grid-auto-rows:1fr gives all five the same height. From 760px title and line sit in two fixed columns */
+.home-services { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; grid-auto-rows:1fr; gap:14px; }
+.home-services > li { display:flex; min-width:0; }
+.home-service { flex:1; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:22px 24px; background:var(--card); border:1px solid color-mix(in oklch, var(--ink) 8%, transparent); border-radius:18px; color:var(--ink); text-decoration:none; box-shadow:0 1px 2px rgba(27,23,18,.04), 0 8px 20px -14px rgba(27,23,18,.22); transition:transform var(--t-base) var(--depth-ease), box-shadow var(--t-base) var(--depth-ease), border-color var(--t-base) ease; }
+.home-service h3 { margin:0; font-size:20px; font-weight:800; line-height:1.3; transition:color var(--t-fast) ease; }
 .home-service p { margin:0; font-size:15.5px; line-height:1.65; color:var(--muted2); }
-.home-service:focus-visible { outline:3px solid var(--acc); outline-offset:4px; }
+.home-service:focus-visible { outline:3px solid var(--acc); outline-offset:3px; }
 @media (hover:hover) and (pointer:fine) {
-  .home-service:hover { transform:perspective(900px) rotateX(0deg) translateY(-8px); border-color:color-mix(in oklch, var(--acc) 35%, transparent); box-shadow:0 1px 0 #fff inset, 0 -1px 0 rgba(27,23,18,.05) inset, 0 4px 8px rgba(27,23,18,.06), 0 24px 40px -18px rgba(27,23,18,.3), 0 50px 70px -40px rgba(27,23,18,.45); }
-  .home-service:hover::before { inset-block:14px; }
+  .home-service:hover { transform:translateY(-3px); border-color:color-mix(in oklch, var(--acc) 30%, transparent); box-shadow:0 2px 4px rgba(27,23,18,.05), 0 16px 30px -16px rgba(27,23,18,.28); }
+  .home-service:hover h3 { color:var(--acc); }
   .home-start-card:hover, #testimonials figure:hover { transform:perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.01); box-shadow:var(--depth-shadow-up); border-color:color-mix(in oklch, var(--acc) 40%, var(--line)); }
 }
 @media (min-width:760px) {
-  .home-services { gap:30px; }
-  .home-service { display:grid; grid-template-columns:220px minmax(0,1fr); align-items:center; column-gap:36px; padding:30px 40px; padding-inline-start:calc(40px + var(--edge) + 8px); }
-  .home-service::before { inset-inline-start:26px; }
-  .home-service h3 { font-size:24px; }
-  .home-service p { font-size:16.5px; }
+  .home-services { gap:16px; }
+  .home-service { display:grid; grid-template-columns:200px minmax(0,1fr); align-items:center; column-gap:32px; padding:26px 34px; }
+  .home-service h3 { font-size:22px; }
+  .home-service p { font-size:16px; }
 }
 
 /* How to start: three cards side by side, same depth, with a flow line through them; stacked on mobile */
@@ -1169,7 +1165,5 @@ body p, body li, body dd { font-weight:400 !important; }
 @media (prefers-reduced-motion: reduce) {
   .depth-card, .depth-card:hover, .home-start-card:hover, #testimonials figure:hover { transform:none !important; transition:none; }
   .footer-links a, .footer-links button { transition:none; translate:none !important; }
-  /* static tilt is not motion, so it stays; only the hover movement is removed */
-  .home-service, .home-service:hover { transform:perspective(900px) rotateX(4deg) !important; transition:none; }
-  .home-service::before { transition:none; }
+  .home-service, .home-service:hover { transform:none !important; transition:none; }
 }
