@@ -122,17 +122,17 @@ export const guides: Guide[] = [
     tagEn: "Prompts",
   },
   {
-    slug: "content-calendar",
-    file: "content-calendar-month1.html",
-    date: "2026-06-28",
-    title: "קלנדר תוכן לחודש הראשון",
-    titleEn: "First-month content calendar",
+    slug: "claude-opus-film",
+    file: "claude-opus-film.html",
+    date: "2026-10-20",
+    title: "איך יוצרים סרט עם Claude Opus 5.5",
+    titleEn: "How to make a film with Claude Opus 5.5",
     description:
-      "תכנון תוכן מוכן לחודש שלם, רעיונות לפוסטים, רילים וסטוריז לעסק שמתחיל עם AI.",
+      "השיטה שבה נבנה SMALL LIGHTS: בריף, Story Bible, פירוק לשוטים, סוכני משנה, בנייה בקוד, סאונד, בדיקות ושמירת מצב.",
     descriptionEn:
-      "A ready-made content plan for a full month, ideas for posts, reels and stories for a business starting with AI.",
-    tag: "תכנון",
-    tagEn: "Planning",
+      "The method behind SMALL LIGHTS: a brief, a Story Bible, a shot breakdown, sub-agents, building in code, sound, checks and saving state.",
+    tag: "מדריך",
+    tagEn: "Guide",
   },
 ];
 

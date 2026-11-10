@@ -58,7 +58,7 @@
   p.text strong{ color:var(--dark); font-weight:700; }
 
   .callout{ background:var(--orange-light); border-right:4px solid var(--orange); padding:22px 26px; margin:28px 0; border-radius:6px; }
-  .callout h4{ color:var(--orange); font-size:14px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:12px; }
+  .callout h3{ color:var(--orange); font-size:14px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:12px; }
   .callout p{ font-size:15px; color:var(--text); line-height:1.7; }
 
   .steps{ list-style:none; display:flex; flex-direction:column; gap:18px; margin:28px 0; }
@@ -133,7 +133,7 @@
     <p class="text">n8n הוא כלי לבניית אוטומציות שמחבר בין האפליקציות שלכם — טפסים, מיילים, גיליונות, CRM — כך שהם עובדים לבד. הבעיה: בנייה ידנית של תהליך לוקחת זמן ודורשת ידע טכני.</p>
     <p class="text">הפתרון שתלמדו כאן: מקימים <strong>פרויקט ב-Claude</strong> שמכיר את המבנה הפנימי של n8n, ומאותו רגע פשוט מתארים בעברית מה אתם רוצים שיקרה — ו-Claude מחזיר לכם קובץ אוטומציה מוכן, שמדביקים ישר ל-n8n ומריצים.</p>
     <div class="callout">
-      <h4 role="heading" aria-level="3">הסוד שגורם לזה לעבוד</h4>
+      <h3>הסוד שגורם לזה לעבוד</h3>
       <p>צריך להאכיל את Claude בהקשר הנכון מראש (דוגמאות אמיתיות של אוטומציות), אחרת הוא ימציא רכיבים שלא קיימים. ההקמה החד-פעמית הזו היא כל ההבדל בין "כיף לראות" ל"באמת עובד".</p>
     </div>
   </div>
@@ -180,14 +180,14 @@
     <div class="section-tag">דוגמה מהריל</div>
     <h2 class="headline">אוטומציית לידים — משפט אחד, מערכת שלמה</h2>
     <p class="text">רוצים שכל ליד חדש מהאתר יישמר לבד ותקבלו התראה מיד? זה כל מה שכותבים ל-Claude:</p>
-    <div class="callout"><h4 role="heading" aria-level="3">הפרומפט</h4><p>"כל ליד חדש שנכנס מטופס האתר — הוסף אותו לגיליון Google עם שם, מייל וטלפון, ושלח לי התראה בוואטסאפ."</p></div>
+    <div class="callout"><h3>הפרומפט</h3><p>"כל ליד חדש שנכנס מטופס האתר — הוסף אותו לגיליון Google עם שם, מייל וטלפון, ושלח לי התראה בוואטסאפ."</p></div>
     <p class="text">Claude מחזיר אוטומציה מוכנה עם שלושה שלבים שרצים לבד:</p>
     <ul class="steps">
       <li><span class="n">1</span><span class="body"><strong>Webhook</strong> — קולט את הפרטים מטופס האתר (שם, מייל, טלפון).</span></li>
       <li><span class="n">2</span><span class="body"><strong>Google Sheets</strong> — מוסיף שורה חדשה לגיליון הלידים, אוטומטית.</span></li>
       <li><span class="n">3</span><span class="body"><strong>WhatsApp</strong> — שולח לכם התראה על הליד החדש, מיד.</span></li>
     </ul>
-    <div class="callout"><h4>התוצאה</h4><p>לקוח משאיר פרטים ← נשמר אצלכם בגיליון ← ומגיעה אליכם הודעה בוואטסאפ. בלי להקליד כלום, 24/7.</p></div>
+    <div class="callout"><h3>התוצאה</h3><p>לקוח משאיר פרטים ← נשמר אצלכם בגיליון ← ומגיעה אליכם הודעה בוואטסאפ. בלי להקליד כלום, 24/7.</p></div>
   </div>
 
   <!-- EXAMPLES -->
@@ -203,7 +203,7 @@
       <li>"קלוט פניות מהאתר, הוסף אותן ל-CRM וצור משימת מעקב."</li>
     </ul>
     <div class="callout">
-      <h4 role="heading" aria-level="3">איך לבנות אוטומציה אמינה</h4>
+      <h3>איך לבנות אוטומציה אמינה</h3>
       <p>אחרי הייבוא: פתחו כל רכיב פעם אחת כדי ש-n8n יטען את ההגדרות. אם רכיב לא מזוהה — בדקו את הסוג מול תבנית עדכנית. הריצו פעם אחת לבדיקה לפני שסומכים על זה, והצמידו נתוני דוגמה לטריגר כדי לא להפעיל פעולות אמיתיות תוך כדי בדיקה.</p>
     </div>
   </div>
@@ -215,7 +215,7 @@
     <p class="text">האוטומציות יוצאות מוכנות-ללקוח, אז אפשר לארוז אותן כשירות. בנו אוטומציה שפותרת בעיה אחת ספציפית לנישה — למשל קליטת לידים למרפאות שיניים, או בקשות ביקורת למסעדות. הקליטו הדגמה קצרה, וגבו דמי הקמה + תחזוקה חודשית קטנה.</p>
     <p class="text">הבנייה לוקחת דקות — אז הזמן האמיתי שלכם הולך ל<strong>מציאת הלקוח</strong>, לא לחיווט הרכיבים.</p>
     <div class="callout">
-      <h4 role="heading" aria-level="3">טיפ שמצטבר</h4>
+      <h3>טיפ שמצטבר</h3>
       <p>כל אוטומציה שעבדה — שמרו אותה בחזרה לפרויקט כדוגמה חדשה. ככל שיש ל-Claude יותר דוגמאות אמיתיות ללמוד מהן, כך הבנייה הבאה תהיה מדויקת יותר.</p>
     </div>
 

@@ -1,34 +1,55 @@
 import type { Metadata } from "next";
+import { localizedMeta, requestLang } from "@/lib/seo";
 import Footer from "@/components/Footer";
 import SmallLightsReel, { SlLinkTracker } from "@/components/SmallLightsReel";
 import { SL_REEL, SL_REEL_LIVE, SL_REEL_POSTER, SL_FILM_NARRATED } from "@/lib/smallLights";
 
-const URL_ = "https://shani-ai.com/work/small-lights";
+const URL_HE = "https://shani-ai.com/work/small-lights";
+const URL_EN = "https://shani-ai.com/en/work/small-lights";
+const OG_IMG = "https://shani-ai.com/small-lights/assets/og.jpg";
 const TITLE = "SMALL LIGHTS: סרט אנימציה שנבנה מפרומפט אחד | Shani AI";
 const DESC = "נתתי ל-Claude Opus 5.5 פרומפט אחד. אחרי 15 דקות היה לו סיפור, אחרי 22 שעות סרט אנימציה של 4:32 דקות, והוא כתב לי בעצמו מה לא טוב בו. איך זה נבנה, עם הסרט המלא.";
+const TITLE_EN = "SMALL LIGHTS: an animated film built from one prompt | Shani AI";
+const DESC_EN = "I gave Claude Opus 5.5 one prompt. After 15 minutes it had a story, after 22 hours a 4:32 animated film, and it wrote to me on its own what was not good in it. How it was built, with the full film.";
 
-export const metadata: Metadata = {
+const heMeta: Metadata = {
   title: TITLE,
   description: DESC,
-  alternates: { canonical: URL_ },
-  openGraph: {
-    type: "article", url: URL_, title: "SMALL LIGHTS: סרט שנבנה מפרומפט אחד", description: DESC, locale: "he_IL", siteName: "Shani AI",
-    images: [{ url: "https://shani-ai.com/small-lights/assets/og.jpg", width: 1200, height: 630, alt: "המגדלור של SMALL LIGHTS על הסלע בשעת דמדומים" }],
-  },
-  twitter: { card: "summary_large_image", title: "SMALL LIGHTS: סרט שנבנה מפרומפט אחד", description: DESC, images: ["https://shani-ai.com/small-lights/assets/og.jpg"] },
+  alternates: { canonical: URL_HE },
+  openGraph: { type: "article", url: URL_HE, title: "SMALL LIGHTS: סרט שנבנה מפרומפט אחד", description: DESC, locale: "he_IL" },
 };
 
-const jsonLd = {
+export function generateMetadata(): Metadata {
+  const lang = requestLang();
+  const meta = localizedMeta("/work/small-lights", heMeta, {
+    title: TITLE_EN,
+    description: DESC_EN,
+    ogTitle: "SMALL LIGHTS: a film built from one prompt",
+  });
+  // The case study keeps its own share image (the film's lighthouse), not the site-wide one.
+  const alt = lang === "en" ? "The SMALL LIGHTS lighthouse on its rock at dusk" : "המגדלור של SMALL LIGHTS על הסלע בשעת דמדומים";
+  const images = [{ url: OG_IMG, width: 1200, height: 630, alt }];
+  return {
+    ...meta,
+    openGraph: { ...meta.openGraph, type: "article", images },
+    twitter: { ...meta.twitter, card: "summary_large_image", images: [OG_IMG] },
+  };
+}
+
+function buildJsonLd(lang: "he" | "en") {
+  const en = lang === "en";
+  const URL_ = en ? URL_EN : URL_HE;
+  return {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Article",
       "@id": `${URL_}#article`,
-      headline: "אחרי 15 דקות היה לו סיפור. אחרי 22 שעות הוא כתב לי בעצמו מה לא טוב בסרט.",
-      description: DESC,
-      inLanguage: "he-IL",
+      headline: en ? "After 15 minutes it had a story. After 22 hours it wrote to me on its own what was not good in the film." : "אחרי 15 דקות היה לו סיפור. אחרי 22 שעות הוא כתב לי בעצמו מה לא טוב בסרט.",
+      description: en ? DESC_EN : DESC,
+      inLanguage: en ? "en" : "he-IL",
       mainEntityOfPage: URL_,
-      image: ["https://shani-ai.com/small-lights/assets/og.jpg", "https://shani-ai.com/small-lights/bts/small-lights-lighthouse-first-answer.jpg"],
+      image: [OG_IMG, "https://shani-ai.com/small-lights/bts/small-lights-lighthouse-first-answer.jpg"],
       author: { "@id": "https://shani-ai.com/#shani" },
       publisher: { "@id": "https://shani-ai.com/#business" },
       datePublished: "2026-10-05",
@@ -38,8 +59,8 @@ const jsonLd = {
     ...(SL_REEL_LIVE ? [{
       "@type": "VideoObject",
       "@id": `${URL_}#reel`,
-      name: "SMALL LIGHTS: הסיפור בדקה (ריל)",
-      description: "ריל של דקה על איך נוצר SMALL LIGHTS, בקול של שני. זה לא הסרט עצמו: הסרט המלא נמצא בעמוד ההקרנה.",
+      name: en ? "SMALL LIGHTS: the story in one minute (reel)" : "SMALL LIGHTS: הסיפור בדקה (ריל)",
+      description: en ? "A one-minute reel on how SMALL LIGHTS was made, in Shani's voice (Hebrew). This is not the film itself: the full film is on the screening page." : "ריל של דקה על איך נוצר SMALL LIGHTS, בקול של שני. זה לא הסרט עצמו: הסרט המלא נמצא בעמוד ההקרנה.",
       thumbnailUrl: "https://shani-ai.com/small-lights/reel-poster.jpg",
       uploadDate: "2026-10-05",
       duration: "PT1M2S",
@@ -49,21 +70,19 @@ const jsonLd = {
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "דף הבית", item: "https://shani-ai.com" },
-        { "@type": "ListItem", position: 2, name: "עבודות", item: "https://shani-ai.com/work" },
+        { "@type": "ListItem", position: 1, name: en ? "Home" : "דף הבית", item: en ? "https://shani-ai.com/en" : "https://shani-ai.com" },
+        { "@type": "ListItem", position: 2, name: en ? "Work" : "עבודות", item: en ? "https://shani-ai.com/en/work" : "https://shani-ai.com/work" },
         { "@type": "ListItem", position: 3, name: "SMALL LIGHTS", item: URL_ },
       ],
     },
   ],
 };
+}
 
 const B = ({ children }: { children: React.ReactNode }) => <strong className="sl-num">{children}</strong>;
 
-export default function SmallLightsPage() {
+function HeArticle() {
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <SlLinkTracker />
       <article className="sl-case" dir="rtl" lang="he">
         <header className="sl-hero">
           <nav className="sl-crumbs" aria-label="פירורי לחם"><a href="/work">עבודות</a> <span aria-hidden="true">/</span> <span aria-current="page">SMALL LIGHTS</span></nav>
@@ -179,6 +198,136 @@ export default function SmallLightsPage() {
           <p className="sl-more"><a href="/chatbots">צ׳אטבוטים וסוכני AI</a> <span aria-hidden="true">·</span> <a href="/work">לכל העבודות</a></p>
         </aside>
       </article>
+  );
+}
+
+function EnArticle() {
+  return (
+      <article className="sl-case" dir="ltr" lang="en">
+        <header className="sl-hero">
+          <nav className="sl-crumbs" aria-label="Breadcrumbs"><a href="/en/work">Work</a> <span aria-hidden="true">/</span> <span aria-current="page">SMALL LIGHTS</span></nav>
+          <div className="sl-hero-grid">
+            <div className="sl-hero-copy">
+              <p className="sl-kicker">SMALL LIGHTS · An animated short film</p>
+              <h1>After 15 minutes it had a story. After 22 hours it wrote to me on its own what was not good in the film.</h1>
+              <p className="sl-lead">I gave Claude one prompt and did not approve a single step along the way. That is how SMALL LIGHTS was born, a 4:32 animated short film.</p>
+              <div className="sl-actions">
+                <a className="sl-btn sl-btn-primary" href="/small-lights" data-sl="watch-film">Watch the full film</a>
+                <a className="sl-btn sl-btn-ghost" href="/small-lights/original" data-sl="watch-original">The original version, without narration</a>
+              </div>
+              <ul className="sl-stats" aria-label="In numbers">
+                <li><b>One prompt</b></li><li><b>6</b> agents</li><li><b>43</b> shots</li><li><b>22</b> hours <b>36</b> minutes</li>
+              </ul>
+            </div>
+            <figure className="sl-reel-wrap">
+              {SL_REEL_LIVE ? (
+                <SmallLightsReel src={SL_REEL} poster={SL_REEL_POSTER} label="Reel: the story of SMALL LIGHTS in one minute" />
+              ) : (
+                <a href="/small-lights" data-sl="watch-film" className="sl-reel-fallback"><img src={SL_REEL_POSTER} alt="The SMALL LIGHTS lighthouse on a starry night" width={720} height={1280} /></a>
+              )}
+              <figcaption>The story in one minute, in my voice (in Hebrew). The film itself is on the screening page.</figcaption>
+            </figure>
+          </div>
+        </header>
+
+        <div className="sl-body">
+          <section>
+            <h2>I gave it one brief and told it not to wait for my approval</h2>
+            <p>The brief was <B>5,692</B> characters long, and it ended with &quot;Surprise me.&quot;</p>
+            <p>I worked with Claude Opus 5.5 inside Claude Code. It never even saw the reference project I sent, because the links were blocked.</p>
+          </section>
+
+          <section>
+            <h2>Within a quarter of an hour it had a story</h2>
+            <p>Within <B>10</B> minutes it chose a name: SMALL LIGHTS. Within <B>15</B> minutes it had a complete story.</p>
+            <p>The last night before the lighthouse goes dark forever. An old keeper has been writing the same line in his logbook for <B>40</B> years: &quot;Nothing to report&quot;. Then someone answers his light: Wick, a tiny anglerfish who thought the lighthouse was calling her.</p>
+            <p>It decided the film would have no words, and every flash of light would be a note in the music.</p>
+            <figure className="sl-fig">
+              <img src="/small-lights/bts/small-lights-lighthouse-first-answer.jpg" alt="Wick the anglerfish facing the lighthouse beam" width={1400} height={586} loading="lazy" />
+              <figcaption>The first answer. A frame from the film.</figcaption>
+            </figure>
+          </section>
+
+          <section>
+            <h2>It set up a team of 6 agents for itself, and kept the decisions</h2>
+            <p>The story was written before there was a team. Then it split the work between six sub-agents: the sound, Wick and the predator fish, the keeper, the world above the water, the lighthouse room and the world under the water.</p>
+            <p>Of the <B>43</B> shots, the agents built <B>40</B> and it built <B>3</B> itself, including the hardest shot.</p>
+            <p>It also did not approve everything that came back. It called the first version of the keeper&apos;s face &quot;creepy&quot;, and the beard &quot;whipped cream&quot;. Both went back to be fixed.</p>
+          </section>
+
+          <section>
+            <h2>Halfway through the quota ran out, and nothing was lost</h2>
+            <p>The account&apos;s usage quota ran out, and all the working agents stopped within <B>5</B> minutes. The state was saved in the repo.</p>
+            <p>After <B>4</B> hours and <B>51</B> minutes I wrote one line: &quot;Continue from where you left off.&quot; That is the only thing I wrote until the film was finished.</p>
+            <figure className="sl-fig">
+              <img src="/small-lights/bts/small-lights-agents-timeline.jpg" alt="Timeline: which agent worked when, and the stop when the quota ran out" width={1400} height={560} loading="lazy" />
+              <figcaption>Who worked when, according to the production logs. The red bar is the stop.</figcaption>
+            </figure>
+          </section>
+
+          <section>
+            <h2>It found the mistakes on its own</h2>
+            <p>An automated check found a white disc that appeared for one frame in five shots, out of <B>6,528</B> frames. The cause: one wrong number in a pixel, <span dir="ltr">≈ −65504</span>.</p>
+            <p>It wrote a tool that searches for frames like that, and re-rendered only <B>7</B> of <B>87</B> chunks. Along the way, one agent found a bug in another agent&apos;s code. And the music, which it cannot hear, it checked with measurements.</p>
+            <div className="sl-pair">
+              <figure className="sl-fig"><img src="/small-lights/bts/small-lights-white-disc-before.jpg" alt="The frame with the white disc, before the fix" width={1400} height={586} loading="lazy" /><figcaption>Before</figcaption></figure>
+              <figure className="sl-fig"><img src="/small-lights/bts/small-lights-white-disc-after.jpg" alt="The same frame after the fix" width={1400} height={586} loading="lazy" /><figcaption>After</figcaption></figure>
+            </div>
+          </section>
+
+          <section>
+            <h2>The film came out, and it also told me where it is weak</h2>
+            <p>After <B>22</B> hours and <B>36</B> minutes, including the stop, there was a <B>4:32</B> film.</p>
+            <p>At handoff it wrote on its own what did not work: the beard looks like sculpted plastic in some of the close-ups, and one shot is hard to read. It also wrote &quot;not true Pixar-level fidelity&quot;. That is its quote, not my claim.</p>
+            <a className="sl-film" href="/small-lights" data-sl="watch-film">
+              <img src="/small-lights/assets/poster.jpg" alt="The SMALL LIGHTS lighthouse at dusk" width={1920} height={804} loading="lazy" />
+              <span className="sl-film-cta"><span className="sl-play" aria-hidden="true">▶</span> Watch the full film · 4:32</span>
+            </a>
+            <p className="sl-note">The screening page has Hebrew subtitles, and also the original version without narration.</p>
+          </section>
+
+          <section>
+            <h2>Then came the narration and the studio</h2>
+            <p>A day later I asked for a narrated version. It wrote a narration in English, auditioned synthetic voices, and I chose the voice. It flagged two lines it was not sure about, and I cut exactly those.</p>
+            <p>Not everything was accurate: while checking the subtitles it reported a fault that did not exist, and found the mistake when I asked it to fix it.</p>
+            <p>In the end I asked it to turn everything we had learned into a working method. That is how SHANI AI VIDEO STUDIO was born, and the reel at the top of this page was produced with it too.</p>
+          </section>
+
+          <aside className="sl-guide">
+            <h2>Want to build a process like this yourself?</h2>
+            <p>I wrote a practical guide (in Hebrew): from the brief, through the agents and the checks, to a finished film.</p>
+            <a className="sl-btn sl-btn-primary" href="/guides/claude-opus-film.html" data-sl="guide">Read the full guide</a>
+          </aside>
+
+          <details className="sl-details">
+            <summary>More production details</summary>
+            <ul>
+              <li>Everything in the film is code: the characters, the sea, the lighthouse and the depths were built and animated in Three.js, and the music and sound were generated from the same cue list that drives the picture. No image, video or music generation models were used in the film.</li>
+              <li>The production ran on a CPU, with no graphics card: <span dir="ltr">6,528</span> frames in 87 chunks.</li>
+              <li>The most expensive thing to render was the rock. When it was hidden, a frame went down from 15.6 seconds to 3.5.</li>
+              <li>The narration in the narrated version is in English, in a synthetic voice from an open-source model running locally.</li>
+              <li>The reel at the top of the page was edited with my own voice, not a synthetic one.</li>
+            </ul>
+          </details>
+        </div>
+
+        <aside className="sl-cta">
+          <h2>Where could a team of agents like this work for you?</h2>
+          <p>In the free fit check you tell me in a few minutes what your work looks like today, and I get back to you with directions.</p>
+          <a className="sl-btn sl-btn-primary" href="/en/audit" data-sl="audit">Take the free fit check</a>
+          <p className="sl-more"><a href="/en/chatbots">Chatbots and AI agents</a> <span aria-hidden="true">·</span> <a href="/en/work">All work</a></p>
+        </aside>
+      </article>
+  );
+}
+
+export default function SmallLightsPage() {
+  const lang = requestLang();
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }} />
+      <SlLinkTracker />
+      {lang === "en" ? <EnArticle /> : <HeArticle />}
       <Footer />
     </>
   );

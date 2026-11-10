@@ -29,9 +29,11 @@ const pages: Entry[] = [
   { path: '/websites', lastmod: '2026-10-21', changefreq: 'monthly', priority: 0.9, bilingual: true },
   { path: '/chatbots', lastmod: '2026-10-21', changefreq: 'monthly', priority: 0.9, bilingual: true },
   { path: '/ai-visual-content', lastmod: '2026-10-26', changefreq: 'monthly', priority: 0.9, bilingual: true },
+  { path: '/crm', lastmod: '2026-11-10', changefreq: 'monthly', priority: 0.9, bilingual: true },
+  { path: '/automations', lastmod: '2026-11-10', changefreq: 'monthly', priority: 0.8, bilingual: true },
   { path: '/audit', lastmod: '2026-10-21', changefreq: 'monthly', priority: 0.9, bilingual: true },
   { path: '/work', lastmod: '2026-10-22', changefreq: 'monthly', priority: 0.8, bilingual: true, images: [slCard, orPreview, myMoney] },
-  { path: '/work/small-lights', lastmod: '2026-10-20', changefreq: 'monthly', priority: 0.8, images: [slCard] },
+  { path: '/work/small-lights', lastmod: '2026-11-10', changefreq: 'monthly', priority: 0.8, bilingual: true, images: [slCard] },
   { path: '/small-lights', lastmod: '2026-10-11', changefreq: 'yearly', priority: 0.7 },
   { path: '/small-lights/original', lastmod: '2026-10-11', changefreq: 'yearly', priority: 0.5 },
   { path: '/guides', lastmod: '2026-10-20', changefreq: 'weekly', priority: 0.7, bilingual: true },
@@ -70,12 +72,9 @@ export function GET(): Response {
   const entries: string[] = []
   for (const p of pages) entries.push(url(p, 'he'))
   for (const p of pages) if (p.bilingual) entries.push(url(p, 'en'))
-  const extra: Entry[] = [
-    ...guides
-      .filter((g) => g.file !== 'content-calendar-month1.html')
-      .map((g) => ({ path: `/guides/${g.file}`, lastmod: guideEdited[g.file] || g.date, changefreq: 'yearly' as const, priority: 0.6 })),
-    { path: '/guides/claude-opus-film.html', lastmod: guideEdited['claude-opus-film.html'], changefreq: 'yearly', priority: 0.6 },
-  ]
+  const extra: Entry[] = guides
+    .filter((g) => g.file !== 'content-calendar-month1.html')
+    .map((g) => ({ path: `/guides/${g.file}`, lastmod: guideEdited[g.file] || g.date, changefreq: 'yearly' as const, priority: 0.6 }))
   for (const g of extra) entries.push(url(g, 'he'))
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${entries.join('\n')}\n</urlset>\n`
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': 'public, max-age=0, s-maxage=3600' } })

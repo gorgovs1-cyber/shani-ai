@@ -214,6 +214,8 @@ function UnsubscribeForm() {
               className="unsub-input"
               type="email"
               name="email"
+              required
+              aria-required="true"
               autoComplete="email"
               inputMode="email"
               dir="ltr"

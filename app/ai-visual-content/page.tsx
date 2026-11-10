@@ -53,6 +53,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         { title: "מוצר לפיילוט", text: "מוצר או מארז אחד, קיים או מתוכנן: רשימת מרכיבים, אריזה ותמונות טלפון פשוטות." },
       ],
     },
+    gallery: {
+      title: "מהעבודות שלנו",
+      items: [
+        { src: "/small-lights/bts/01A_dusk_Farwatch_Rock.jpg", width: 1400, height: 586, alt: "מגדלור על סלע קטן באמצע הים, בשמי דמדומים סגולים וורודים", caption: "SMALL LIGHTS: פריים מסרט האנימציה שנבנה עם Claude" },
+        { src: "/small-lights/bts/small-lights-lighthouse-first-answer.jpg", width: 1400, height: 586, alt: "Wick, דגת החכאי, מול האור של המגדלור", caption: "SMALL LIGHTS: התשובה הראשונה, פריים מהסרט" },
+        { src: "/project-previews/solis-site.webp", width: 1280, height: 800, alt: "דף הבית של אתר מיצים: תפוז עם עלה מרחף באלומת אור על רקע שחור", caption: "אתר הדגמה למותג מיצים, עם תמונות מוצר" },
+        { src: "/project-previews/beamer-site.webp", width: 1280, height: 800, alt: "דף הבית של אתר נרות: יד מדליקה נר בצנצנת זכוכית ליד שמיכה סרוגה", caption: "אתר למותג נרות עם קטלוג ניחוחות" },
+      ],
+    },
     alsoTitle: "הכול מתחבר",
     also: [
       { label: "צ׳אטבוטים וסוכני AI", href: "/chatbots", desc: "התוכן הוויזואלי יכול להשתלב בהמשך בבוט הוואטסאפ, כדי ששולחים ללקוח את הקטלוג המתאים." },
@@ -137,6 +146,15 @@ const copyByLang: Record<"he" | "en", ServiceCopy> = {
         { title: "An upcoming event or client", text: "An event, a holiday or a client you can show the first deliverables to." },
         { title: "Inspiration and style", text: "A logo, colors and examples of a style you like. If you have none, I will suggest a direction." },
         { title: "A pilot product", text: "One product or gift set, existing or planned: a list of items, the packaging and simple phone photos." },
+      ],
+    },
+    gallery: {
+      title: "From our work",
+      items: [
+        { src: "/small-lights/bts/01A_dusk_Farwatch_Rock.jpg", width: 1400, height: 586, alt: "A lighthouse on a small rock in the middle of the sea under a purple and pink dusk sky", caption: "SMALL LIGHTS: a frame from the animated film built with Claude" },
+        { src: "/small-lights/bts/small-lights-lighthouse-first-answer.jpg", width: 1400, height: 586, alt: "Wick the anglerfish facing the lighthouse beam", caption: "SMALL LIGHTS: the first answer, a frame from the film" },
+        { src: "/project-previews/solis-site.webp", width: 1280, height: 800, alt: "Home page of a juice website: an orange with a leaf floating in a beam of light on a black background", caption: "A demo website for a juice brand, with product imagery" },
+        { src: "/project-previews/beamer-site.webp", width: 1280, height: 800, alt: "Home page of a candle website: a hand lighting a candle in a glass jar next to a knitted blanket", caption: "A website for a candle brand with a fragrance catalog" },
       ],
     },
     alsoTitle: "Everything connects",

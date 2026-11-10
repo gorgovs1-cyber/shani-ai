@@ -39,6 +39,8 @@ export type ServiceCopy = {
       cta?: { label: string; href: string };
     }[];
   };
+  /** גלריה של עבודות אמיתיות מהריפו (לא תמונות סטוק) */
+  gallery?: { title: string; items: { src: string; alt: string; caption: string; width: number; height: number }[] };
   /** קישורים לשני השירותים האחרים */
   alsoTitle?: string;
   also?: { label: string; href: string; desc: string }[];
@@ -164,6 +166,21 @@ export default function ServicePage({
                 </article>
                 );
               })}
+            </div>
+          </section>
+        ) : null}
+
+        {/* Gallery of real work */}
+        {c.gallery && c.gallery.items.length ? (
+          <section className="sp-section">
+            <h2 className="sp-h2">{c.gallery.title}</h2>
+            <div className="sp-gallery">
+              {c.gallery.items.map((g) => (
+                <figure key={g.src} className="sp-gallery-item">
+                  <img src={g.src} alt={g.alt} width={g.width} height={g.height} loading="lazy" decoding="async" />
+                  <figcaption>{g.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </section>
         ) : null}

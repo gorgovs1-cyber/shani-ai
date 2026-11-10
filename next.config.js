@@ -31,11 +31,11 @@ const nextConfig = {
       // the price list page was retired; its traffic goes to the services section
       { source: '/pricing', destination: '/#build', permanent: true },
       { source: '/en/pricing', destination: '/en#build', permanent: true },
-      { source: '/automations', destination: '/chatbots', permanent: true },
-      { source: '/en/automations', destination: '/en/chatbots', permanent: true },
       { source: '/en/ai-consulting', destination: '/en/audit', permanent: true },
       { source: '/blog', destination: '/guides', permanent: true },
       { source: '/blog/:slug*', destination: '/guides', permanent: true },
+      { source: '/en/blog', destination: '/en/guides', permanent: true },
+      { source: '/en/blog/:slug*', destination: '/en/guides', permanent: true },
       // one address per screening page
       { source: '/small-lights/index.html', destination: '/small-lights', permanent: true },
       { source: '/small-lights/original/index.html', destination: '/small-lights/original', permanent: true },

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { SITE_NAME, ogImage } from "@/lib/seo";
+import { localizedMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+const heMeta: Metadata = {
   title: "הסרה מרשימת התפוצה · Shani AI",
   description:
     "בקשה להסרה מרשימת הדיוור של Shani AI Creator. ממלאים כתובת אימייל, הבקשה נשלחת לטיפול ידני תוך 24 שעות.",
@@ -15,10 +15,17 @@ export const metadata: Metadata = {
     url: "https://shani-ai.com/unsubscribe",
     type: "website",
     locale: "he_IL",
-    siteName: SITE_NAME,
-    images: [ogImage("he")],
   },
 };
+
+export function generateMetadata(): Metadata {
+  return localizedMeta("/unsubscribe", heMeta, {
+    title: "Unsubscribe from the mailing list · Shani AI",
+    description:
+      "A request to be removed from the Shani AI Creator mailing list. Enter your email address and the request is handled manually within 24 hours.",
+    ogDescription: "A request to be removed from the Shani AI Creator mailing list.",
+  });
+}
 
 export default function UnsubscribeLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

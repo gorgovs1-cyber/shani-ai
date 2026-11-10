@@ -10,7 +10,7 @@ export const dirOf = (l: Lang): "rtl" | "ltr" => (l === "he" ? "rtl" : "ltr");
 export const dict = {
   he: {
     dir: 'rtl' as const,
-    navWork:'פרויקטים', navVisual:'תוכן ויזואלי ב-AI', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
+    navCrm:'מערכת CRM', navWork:'פרויקטים', navVisual:'תוכן ויזואלי ב-AI', navGuides:'מדריכים', navCta:'בדיקת התאמה חינם',
     navConsulting:'ייעוץ ותכנון', navWebsites:'אתרים', navAutomations:'אוטומציות', navAi:'פתרונות AI וסוכנים', navAiShort:'פתרונות AI', navChat:'צ׳אטבוטים וסוכנים', navAbout:'אודות', navContact:'צור קשר',
     // תוויות נגישות לניווט — נקראות ע"י קוראי מסך, ולכן חייבות להיות בשפת הממשק
     navAriaMain:'ניווט ראשי', navAriaHome:'Shani AI, לדף הבית של שני גורגוב', navAriaMobileMenu:'תפריט ניווט',
@@ -34,7 +34,7 @@ export const dict = {
     marqueeItems:['צ׳אטבוטים','סוכני AI','CRM מודולרי','אתרים','אוטומציות','ישראל · ארה״ב'],
     // דף הבית: מי אנחנו → שירותים → איך מתחילים. נוסח מאושר (29.10), לא לשכתב.
     homeAboutTitle:'מי אנחנו',
-    homeAboutText:'אנחנו צוות שנותן מעטפת שירותים טכנולוגית מלאה לניהול העסק, בשיתוף פעולה עם {partner}, כולל אתרים, בוטים, סוכנים, ויז׳ואל, אוטומציות ומערכות משולבות AI.',
+    homeAboutText:'אנחנו צוות שנותן מעטפת שירותים טכנולוגית מלאה לניהול העסק, כולל אתרים, בוטים, סוכנים, ויז׳ואל, אוטומציות ומערכות משולבות AI.',
     // כותרת נסתרת לקוראי מסך בלבד: אין כותרת "השירותים שלנו" גלויה בבית.
     homeServicesTitle:'שירותים',
     homeServices:[
@@ -95,7 +95,7 @@ export const dict = {
   },
   en: {
     dir: 'ltr' as const,
-    navWork:'Work', navVisual:'AI Visual Content', navGuides:'Guides', navCta:'Free fit check',
+    navCrm:'CRM', navWork:'Work', navVisual:'AI Visual Content', navGuides:'Guides', navCta:'Free fit check',
     navConsulting:'Consulting & planning', navWebsites:'Websites', navAutomations:'Automations', navAi:'AI solutions & agents', navAiShort:'AI solutions', navChat:'Chatbots & agents', navAbout:'About', navContact:'Contact',
     // Accessible names for the nav — announced by screen readers, so they follow the UI language
     navAriaMain:'Main navigation', navAriaHome:'Shani AI, Shani Gorgov home page', navAriaMobileMenu:'Navigation menu',
