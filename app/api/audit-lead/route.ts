@@ -94,10 +94,14 @@ export async function POST(req: Request): Promise<Response> {
       .eq('id', row.id);
     if (patchError) console.error('[audit-lead] status update failed', patchError.message);
 
+    // The lead is already stored. A failed notification email must not make the
+    // client think the submission failed (it would skip the thank-you screen and
+    // the generate_lead event). The failure is logged above and kept in email_error.
     if (!alertId) {
-      return NextResponse.json({ ok: false, error: 'email' }, { status: 502 });
+      console.error('[audit-lead] lead saved but alert email not sent', row.id);
+      return NextResponse.json({ ok: true, emailSent: false });
     }
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, emailSent: true });
   } catch (err) {
     console.error('[audit-lead] store failed', err instanceof Error ? err.message : err);
     return NextResponse.json({ ok: false, error: 'store' }, { status: 500 });

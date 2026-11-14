@@ -289,9 +289,24 @@ h1{text-wrap:balance}
   // ירי אירוע ליד ל-GA4 + Meta (פעם אחת, בסיום הטופס)
   function fireLead(){
     if (leadFired) return; leadFired = true;
-    try { if (typeof gtag === 'function') gtag('event','generate_lead',{currency:'ILS',source:'audit-form'}); } catch(e){}
+    try { if (typeof gtag === 'function') gtag('event','generate_lead',{form_name:'ai_diagnosis',page_location:location.href}); } catch(e){}
     try { if (typeof fbq === 'function') fbq('track','Lead',{source:'audit-form'}); } catch(e){}
   }
+
+  // קליקים על וואטסאפ / טלפון (whatsapp_click / phone_click). מאזין אחד לכל הדף, רק אחרי אישור עוגיות.
+  document.addEventListener('click', function(e){
+    try {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.href || '';
+      var name = /^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href) ? 'whatsapp_click' : (/^tel:/i.test(href) ? 'phone_click' : null);
+      if (!name) return;
+      var c = readConsent();
+      if (!c || c.choice !== 'granted' || typeof gtag !== 'function') return;
+      var pos = a.id === 'thanks-wa' ? 'audit_thanks' : (a.id === 'fallback-link' ? 'audit_fallback' : 'audit');
+      gtag('event', name, { link_url: href, page_location: location.href, link_position: pos });
+    } catch(err){}
+  }, true);
 
   document.querySelectorAll('.opt').forEach(function(o){
     var inp=o.querySelector('input');
