@@ -49,11 +49,63 @@ export function trackLead(params: Record<string, unknown> = {}) {
   try {
     const w = window as any;
     if (rec.choice === "granted" && typeof w.gtag === "function") {
-      w.gtag("event", "generate_lead", { currency: "ILS", ...params });
+      w.gtag("event", "generate_lead", {
+        form_name: "ai_diagnosis",
+        page_location: window.location.href,
+        ...params,
+      });
     }
     if (rec.marketing === true && typeof w.fbq === "function") {
       w.fbq("track", "Lead", params);
     }
+  } catch {
+    /* no-op */
+  }
+}
+
+// Contact-link clicks (whatsapp_click / phone_click). One delegated listener
+// catches every wa.me / api.whatsapp.com / tel: link on the site, so links
+// don't need individual handlers. link_position comes from an explicit
+// data-link-position attribute if present, otherwise from where the link sits.
+const WA_RE = /^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i;
+const POSITIONS: [string, string][] = [
+  [".floating-whatsapp", "floating"],
+  [".assessment-bar", "sticky_bar"],
+  [".contact-cta", "contact"],
+  [".salon-demo-cta", "salon_demo"],
+  [".sp-closing", "service_closing"],
+  ["header", "header"],
+  ["footer", "footer"],
+  ["nav", "nav"],
+];
+
+function linkPosition(a: Element): string {
+  const explicit = a.closest("[data-link-position]")?.getAttribute("data-link-position");
+  if (explicit) return explicit;
+  for (const [sel, name] of POSITIONS) if (a.closest(sel)) return name;
+  return "body";
+}
+
+function onContactClick(e: MouseEvent) {
+  try {
+    const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+    if (!a) return;
+    const href = a.href || "";
+    const name = WA_RE.test(href)
+      ? "whatsapp_click"
+      : /^tel:/i.test(href)
+        ? "phone_click"
+        : null;
+    if (!name) return;
+    const rec = readConsent();
+    if (!rec || rec.choice !== "granted") return;
+    const w = window as any;
+    if (typeof w.gtag !== "function") return;
+    w.gtag("event", name, {
+      link_url: href,
+      page_location: window.location.href,
+      link_position: linkPosition(a),
+    });
   } catch {
     /* no-op */
   }
@@ -108,6 +160,13 @@ export default function AnalyticsScripts() {
       }
     }
   }, [stats, marketing, ready]);
+
+  // Contact-link click tracking, only while statistics consent is granted.
+  useEffect(() => {
+    if (typeof window === "undefined" || !stats || !GA4_ID) return;
+    document.addEventListener("click", onContactClick, true);
+    return () => document.removeEventListener("click", onContactClick, true);
+  }, [stats]);
 
   if (!stats && !marketing) return null;
 
