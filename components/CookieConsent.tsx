@@ -140,9 +140,9 @@ const COPY = {
   he: {
     label: "הגדרות עוגיות",
     bannerLabel: "הודעת עוגיות",
-    banner: "עוגיות סטטיסטיקה ושיווק של צד שלישי נטענות רק באישורכם.",
+    banner: "האתר משתמש בעוגיות למדידה, רק באישורכם.",
     accept: "אישור",
-    essential: "רק הכרחיות",
+    essential: "סירוב",
     policy: "מדיניות פרטיות",
     title: "הגדרות עוגיות",
     intro:
@@ -160,9 +160,9 @@ const COPY = {
   en: {
     label: "Cookie settings",
     bannerLabel: "Cookie notice",
-    banner: "Third-party statistics and marketing cookies load only with your consent.",
+    banner: "We use measurement cookies, only with your consent.",
     accept: "Accept",
-    essential: "Essential only",
+    essential: "Decline",
     policy: "Privacy Policy",
     title: "Cookie settings",
     intro:
@@ -293,23 +293,23 @@ export default function CookieConsent() {
         }
         .cc-card{
           pointer-events:auto;
-          max-width:720px; margin:0 auto;
-          display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px;
+          max-width:560px; margin:0 auto;
+          display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px;
           background:var(--dpanel);
           border:1px solid color-mix(in oklch, var(--acc) 34%, var(--dline));
           border-radius:16px;
-          padding:12px 14px;
+          padding:10px 12px;
           box-shadow:0 10px 30px rgba(0,0,0,.35);
         }
-        .cc-text{ flex:1 1 280px; min-width:0; margin:0; font-size:13px; line-height:1.5; color:var(--dtext); }
+        .cc-text{ flex:1 1 160px; min-width:0; margin:0; font-size:13px; line-height:1.5; color:var(--dtext); }
         .cc-link{ color:var(--acc); text-decoration:underline; font-weight:700; white-space:nowrap; }
         .cc-actions{ display:flex; gap:8px; flex:0 0 auto; }
-        @media (max-width:560px){ .cc-actions{ flex:1 1 100%; } }
+        @media (max-width:560px){ .cc-text{ font-size:12.5px; line-height:1.45; } }
         .cc-btn{
           /* Both choices share one style: a de-emphasised "reject" is a defect in the consent itself. */
-          flex:1 1 0; min-width:96px; min-height:44px; padding:0 16px;
+          flex:1 1 0; min-width:72px; min-height:44px; padding:0 12px;
           border-radius:12px; border:1.5px solid var(--acc); background:transparent; color:var(--acc);
-          font-family:${HEEBO}; font-weight:800; font-size:15px; line-height:1.2; cursor:pointer;
+          font-family:${HEEBO}; font-weight:800; font-size:14px; line-height:1.2; cursor:pointer;
         }
         .cc-btn:hover{ background:color-mix(in oklch, var(--acc) 16%, transparent); }
         .cc-btn:focus-visible,.cc-link:focus-visible,.cc-opt input:focus-visible,.cc-x:focus-visible{ outline:3px solid var(--acc); outline-offset:3px; border-radius:6px; }
