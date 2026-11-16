@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>איך מחברים את Claude למודעות במטא | Shani AI</title>
+<link rel="canonical" href="https://shani-ai.com/guides/claude-meta-ads.html">
+<meta name="description" content="מדריך קצר בעברית: ארבעה צעדים לחבר את Claude לחשבון המודעות שלכם במטא, להתחיל בקריאה בלבד ולשלוט במה שהוא רשאי לעשות בחשבון.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shani-ai.com/guides/claude-meta-ads.html">
+<meta property="og:title" content="איך מחברים את Claude למודעות במטא">
+<meta property="og:description" content="מדריך קצר בעברית: ארבעה צעדים לחבר את Claude לחשבון המודעות שלכם במטא, להתחיל בקריאה בלבד ולשלוט במה שהוא רשאי לעשות בחשבון.">
+<meta property="og:image" content="https://shani-ai.com/og-he-v7.jpg">
+<meta property="og:image:secure_url" content="https://shani-ai.com/og-he-v7.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="שני גורגוב, Shani AI: צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם">
+<meta property="og:site_name" content="Shani AI">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="איך מחברים את Claude למודעות במטא">
+<meta name="twitter:description" content="מדריך קצר בעברית: ארבעה צעדים לחבר את Claude לחשבון המודעות שלכם במטא, להתחיל בקריאה בלבד ולשלוט במה שהוא רשאי לעשות בחשבון.">
+<meta name="twitter:image" content="https://shani-ai.com/og-he-v7.jpg">
+<meta name="twitter:image:alt" content="שני גורגוב, Shani AI: צ׳אטבוטים, אתרים ומערכות CRM מודולריות בשילוב AI לעסק שלכם">
+<meta name="theme-color" content="#f4eee4">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-icon">
+<link rel="preload" href="/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format('woff2')}@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/heebo-hebrew.woff2) format('woff2');unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/heebo-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>.skip-link{position:fixed;top:-100px;inset-inline-start:0;z-index:99999;background:#c0400b;color:#fff;padding:8px 16px;min-height:44px;display:inline-flex;align-items:center;font:700 16px/1.2 Heebo,Arial,sans-serif;text-decoration:none;transition:top .15s}.skip-link:focus{top:0;outline:3px solid #1b1712;outline-offset:2px}</style>
+<style>.sai-back{position:fixed;bottom:16px;inset-inline-start:14px;z-index:9999;font:600 14px/1 Heebo,sans-serif;color:#1b1712;background:rgba(255,253,248,.92);border:1px solid rgba(27,23,18,.14);border-radius:999px;padding:9px 14px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.12)}.sai-back:hover,.sai-back:focus-visible{border-color:#c0400b}@media print{.sai-back{display:none!important}}</style>
+<style>
+  :root{
+    --acc:#c0400b;
+    --page:#f4eee4; --card:#fffdf8; --ink:#1b1712; --muted:#6e6353;
+    --line:rgba(27,23,18,.12); --tint:rgba(192,64,11,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--page);color:var(--ink);font-family:'Heebo',Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65;padding:0 0 80px;overflow-x:hidden}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  a{color:var(--acc)}
+  :focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:6px}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 0 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.02em;font-size:18px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--acc)}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+  .hero{padding:44px 0 28px;border-bottom:1px solid var(--line)}
+  .kicker{font-family:'JetBrains Mono','Heebo',monospace;font-size:14px;color:var(--acc);letter-spacing:.1em;margin-bottom:16px}
+  h1{font-size:clamp(30px,6vw,48px);font-weight:900;line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+  .lede{font-size:18px;color:var(--muted);margin-top:18px;max-width:60ch}
+  .dl-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;margin-top:26px;border-radius:999px;background:var(--acc);color:#fff;font-weight:800;font-size:17px;text-decoration:none;box-shadow:0 6px 18px rgba(192,64,11,.25);transition:transform .15s,box-shadow .15s}
+  .dl-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(192,64,11,.32)}
+  .dl-btn svg{flex:none}
+  .dl-note{display:block;margin-top:8px;font-size:14px;color:var(--muted)}
+
+  section{padding:36px 0 4px}
+  h2{font-size:26px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+  .sec-intro{color:var(--muted);margin-top:8px;font-size:16px}
+
+  ul.list{list-style:none;margin-top:14px;display:grid;gap:10px}
+  ul.list li{position:relative;padding-inline-start:22px;font-size:16px}
+  ul.list li::before{content:'';position:absolute;inset-inline-start:4px;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--acc)}
+
+  .callout{background:var(--tint);border:1px solid rgba(192,64,11,.28);border-radius:14px;padding:16px 18px;margin-top:16px;font-size:16px}
+  .callout b{color:var(--ink)}
+
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;margin-top:16px;break-inside:avoid}
+  .step-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .num{flex:none;width:34px;height:34px;border-radius:50%;background:var(--acc);color:#fff;font-weight:900;display:grid;place-items:center;font-size:15px}
+  .step h3{font-size:19px;font-weight:800;text-wrap:balance}
+  .step p{color:var(--ink);font-size:16px;margin-top:8px}
+  .step p.muted{color:var(--muted)}
+  .step ul.list li{font-size:16px}
+  .ui{font-family:'JetBrains Mono',monospace;font-size:14px;background:#f0e8db;border:1px solid var(--line);border-radius:6px;padding:1px 7px;white-space:nowrap;direction:ltr;unicode-bidi:isolate;display:inline-block}
+  .path{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+  .path .arr{color:var(--muted)}
+  .path .seg{white-space:nowrap}
+  code.url{font-family:'JetBrains Mono',monospace;font-size:14px;direction:ltr;unicode-bidi:isolate;background:#f0e8db;padding:1px 6px;border-radius:6px;word-break:break-all}
+
+  .tbl-wrap{margin-top:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  table{width:100%;border-collapse:collapse;font-size:15.5px}
+  th,td{text-align:start;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+  th{background:#efe6d8;font-weight:800;font-size:16px}
+  th:first-child,td:first-child{border-inline-end:1px solid var(--line)}
+  tr:last-child td{border-bottom:0}
+  td.mgmt{color:var(--ink)}
+
+  .cta{margin-top:40px;padding:28px 22px;border-radius:18px;background:var(--card);border:1px solid var(--line);text-align:center}
+  .cta h2{font-size:24px}
+  .cta-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 30px;margin-top:16px;border-radius:999px;background:var(--acc);color:#fff;font-weight:800;font-size:17px;text-decoration:none}
+  .disclaimer{margin-top:28px;padding:14px 16px;border-inline-start:3px solid var(--line);color:var(--muted);font-size:14.5px}
+
+  .sai-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding:6px 16px;border-bottom:1px solid rgba(27,23,18,.14);background:#fffdf8;font-size:15px}
+  .sai-nav a{color:#1b1712;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-weight:600}
+  .sai-nav a:hover{text-decoration:underline}
+  .sai-nav .sai-brand{font-weight:800;letter-spacing:.04em}
+  .sai-nav .sai-links{display:flex;flex-wrap:wrap;gap:0 4px}
+  .sai-nav .sai-cta{background:#c0400b;color:#fff;border-radius:999px;padding:0 16px}
+  .sai-foot{background:#fffdf8;margin:40px 0 0;padding:20px 16px 28px;border-top:1px solid rgba(27,23,18,.14);font-size:14px;color:#5a4f47;text-align:center}
+  .sai-foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:0 6px}
+  .sai-foot a,.sai-foot button{color:#1b1712;text-decoration:underline;display:inline-flex;align-items:center;min-height:44px;padding:0 10px;background:none;border:0;font:inherit;cursor:pointer}
+
+  .cc-wrap{position:fixed;z-index:99900;inset-inline:0;bottom:0;pointer-events:none}
+  .cc-card{pointer-events:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--card);border-top:1px solid rgba(192,64,11,.4);padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 10px);box-shadow:0 -12px 30px rgba(0,0,0,.18);max-height:45vh;overflow-y:auto}
+  .cc-card h2{display:inline;font-size:14px;font-weight:800;margin:0}
+  .cc-card p{display:inline;font-size:14px;line-height:1.5;color:var(--muted);margin:0}
+  .cc-link{color:var(--acc);font-weight:700;text-decoration:underline}
+  .cc-actions{display:flex;gap:8px;flex:0 0 auto}
+  .cc-btn{flex:1 1 0;min-width:84px;min-height:48px;padding:0 18px;border-radius:12px;border:1.5px solid var(--acc);background:transparent;color:var(--acc);font-family:inherit;font-weight:800;font-size:14px;cursor:pointer}
+  .cc-btn:hover{background:var(--tint)}
+
+  @media(max-width:640px){
+    .sai-back{display:none!important}
+    .step{padding:18px 16px}
+    th,td{padding:10px 10px;font-size:15px}
+    .cc-actions{flex:1 1 100%}
+    .dl-btn{width:100%}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+
+  /* ── Print / PDF: clean A4 ── */
+  @page{size:A4;margin:16mm 15mm 16mm}
+  @media print{
+    html,body{background:#fff!important}
+    body{padding:0;font-size:11.5pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sai-nav,.sai-foot,.sai-back,.skip-link,.dl-btn,.dl-note,.cc-wrap,.cta-btn{display:none!important}
+    .wrap{max-width:none;padding:0}
+    .topbar{padding:0 0 8px;border-bottom:2px solid var(--acc)}
+    .hero{padding:18px 0 14px}
+    h1{font-size:26pt}
+    .lede{font-size:12.5pt}
+    section{padding:16px 0 0}
+    h2{font-size:16pt;break-after:avoid}
+    .step{padding:12px 14px;margin-top:10px;break-inside:avoid}
+    .step h3{font-size:13pt}
+    .step p,ul.list li,.callout{font-size:11.5pt}
+    .tbl-wrap{break-inside:avoid}
+    table{font-size:11pt}
+    th,td{padding:8px 10px}
+    .cta{margin-top:18px;padding:14px;break-inside:avoid}
+    .cta h2{font-size:14pt}
+    .print-only{display:block!important}
+    .disclaimer{break-inside:avoid}
+    a{text-decoration:none}
+  }
+  .print-only{display:none}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"איך מחברים את Claude למודעות במטא","description":"מדריך קצר בעברית: ארבעה צעדים לחבר את Claude לחשבון המודעות שלכם במטא, להתחיל בקריאה בלבד ולשלוט במה שהוא רשאי לעשות בחשבון.","inLanguage":"he-IL","datePublished":"2026-11-16","dateModified":"2026-11-16","url":"https://shani-ai.com/guides/claude-meta-ads.html","mainEntityOfPage":"https://shani-ai.com/guides/claude-meta-ads.html","image":"https://shani-ai.com/og-he-v7.jpg","author":{"@type":"Person","name":"שני גורגוב","url":"https://shani-ai.com"},"publisher":{"@type":"Organization","name":"Shani AI Creator","logo":{"@type":"ImageObject","url":"https://shani-ai.com/logo.svg"}}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">דלג לתוכן</a>
+<header class="sai-nav"><a class="sai-brand" href="/">SHANI AI CREATOR</a><nav class="sai-links" aria-label="ניווט ראשי"><a href="/">בית</a><a href="/work">עבודות</a><a href="/guides">מדריכים</a><a class="sai-cta" href="/audit">בדיקת התאמה חינם</a></nav></header>
+
+<main id="main-content">
+<a class="sai-back" href="/guides">→ מדריכים</a>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>Shani AI <span style="color:var(--muted);font-weight:500">Creator</span></div>
+    <div class="tag">shani-ai.com</div>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">מדריך · Claude ומטא</div>
+    <h1>איך מחברים את Claude למודעות במטא</h1>
+    <p class="lede">Claude יכול לקרוא את חשבון המודעות שלכם ולסכם אותו בעברית רגילה: כמה הוצאתם, איזה קמפיין יקר לשיחה, ומה השתנה השבוע. כך מחברים אותו, צעד אחרי צעד, ובלי לתת לו יותר ממה שצריך.</p>
+    <a class="dl-btn" id="guide-download" href="/guides/claude-meta-ads.pdf" download>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+      להורדת המדריך
+    </a>
+    <span class="dl-note">קובץ PDF להדפסה ולשמירה</span>
+  </header>
+
+  <section aria-labelledby="h-before">
+    <h2 id="h-before">לפני שמתחילים</h2>
+    <ul class="list">
+      <li>חשבון מודעות פעיל במטא, ואתם מנהלים בו (או מי שמנהל אותו מאשר לכם).</li>
+      <li>אפליקציית Claude: אתר או דסקטופ.</li>
+    </ul>
+    <div class="callout"><b>חשוב:</b> מה ש-Claude יכול לעשות תלוי בהרשאות שתיתנו. בהרשאת קריאה הוא רק קורא. בהרשאת ניהול הוא גם יוצר מודעות ויכול להפעיל אותן, וההפעלה היא התחלת הוצאה של כסף. מתחילים בקריאה בלבד.</div>
+  </section>
+
+  <section aria-labelledby="h-steps">
+    <h2 id="h-steps">4 צעדים</h2>
+
+    <div class="step">
+      <div class="step-head"><span class="num">1</span><h3>בוחרים מחבר שמתחיל בקריאה בלבד</h3></div>
+      <p>יש שני כיוונים:</p>
+      <ul class="list">
+        <li><b>מחבר של חברה חיצונית שכתיבה כבויה בו כברירת מחדל.</b> Supermetrics מצהיר שהכתיבה כבויה עד שבעל החשבון מפעיל אותה, לכל חשבון מודעות בנפרד. זו נקודת ההתחלה הכי בטוחה.</li>
+        <li><b>השרת הרשמי של מטא</b> (בטא), בכתובת <code class="url">https://mcp.facebook.com/ads</code>. הוא דורש בחירת הרשאות בעצמכם. בחיבור דרך Claude Code הוא דורש גם אפליקציית מפתחים של מטא.</li>
+      </ul>
+      <p class="muted">מחברים אחרים (Adspirer, Lena) יכולים ליצור קמפיינים, ולכן לא מתחילים בהם.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="num">2</span><h3>מוסיפים אותו ל-Claude</h3></div>
+      <p>באפליקציית Claude:</p>
+      <div class="path" aria-label="הגדרות, Connectors, Add custom connector, מדביקים את כתובת השרת של המחבר, Add">
+        <span class="seg">הגדרות <span class="ui">Settings</span></span>
+        <span class="seg"><span class="arr" aria-hidden="true">←</span> <span class="ui">Connectors</span></span>
+        <span class="seg"><span class="arr" aria-hidden="true">←</span> <span class="ui">Add custom connector</span></span>
+        <span class="seg"><span class="arr" aria-hidden="true">←</span> מדביקים את כתובת השרת של המחבר</span>
+        <span class="seg"><span class="arr" aria-hidden="true">←</span> <span class="ui">Add</span></span>
+      </div>
+      <p class="muted">זה עובד בכל התוכניות, ובתוכנית החינמית עד מחבר מותאם אחד.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="num">3</span><h3>מתחברים עם חשבון הפייסבוק שלכם</h3></div>
+      <p>נפתח חלון התחברות של מטא. שם רואים בדיוק אילו הרשאות המחבר מבקש. קראו אותן לפני שאתם מאשרים. אל תתנו הרשאת ניהול אם אתם צריכים רק דוחות.</p>
+      <p class="muted">את החיבור עושים אתם, עם הסיסמה שלכם. אף אחד אחר לא צריך אותה.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><span class="num">4</span><h3>מבקשים דבר קטן וקורא</h3></div>
+      <p>למשל:</p>
+      <ul class="list">
+        <li>«תסכם לי הוצאה, תדירות ו-CTR לכל קמפיין, ומה הכי יקר לשיחה»</li>
+        <li>«מה השתנה אצלי השבוע»</li>
+        <li>«תציע שלוש זוויות למודעה הבאה». ההצעות הן הצעות. אתם מאשרים ואתם מפעילים</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-perms">
+    <h2 id="h-perms">מה Claude יכול לראות ולעשות</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th scope="col">בהרשאת קריאה</th><th scope="col">רק בהרשאת ניהול</th></tr></thead>
+        <tbody>
+          <tr><td>חשבונות, קמפיינים ומדדים (הוצאה, חשיפות, CTR, CPC, CPM, המרות)</td><td class="mgmt">יצירת קמפיין או מודעה (נוצרים מושהים)</td></tr>
+          <tr><td>חריגות ומגמות</td><td class="mgmt">הפעלה, שמתחילה להוציא תקציב</td></tr>
+          <tr><td>השוואה לעסקים דומים וספריית המודעות</td><td class="mgmt">קידום פוסט וניהול קהלים</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-control">
+    <h2 id="h-control">שליטה בצד שלכם</h2>
+    <ul class="list">
+      <li>אצל מטא אפשר להגדיר «חוקי שרת MCP» שחוסמים פעולות של סוכן, כמו העלאת תקציב או שינוי סטטוס. הזמינות מוגבלת ולא לכל עסק.</li>
+      <li>תמיד אפשר להסיר את ההרשאה מהגדרות החשבון בפייסבוק, ולהסיר את המחבר מהגדרות Claude.</li>
+    </ul>
+  </section>
+
+  <div class="cta">
+    <h2>רוצים שנעשה את זה בשבילכם?</h2>
+    <a class="cta-btn" href="https://wa.me/972504744815" target="_blank" rel="noopener">דברו איתי</a>
+    <p class="print-only" style="margin-top:8px;color:var(--muted)">shani-ai.com · WhatsApp ‎+972-50-474-4815</p>
+  </div>
+
+  <p class="disclaimer">המדריך הוא מידע כללי, לא ייעוץ משפטי או פרסומי. מטא ו-Anthropic משנות את המוצרים מעת לעת. הכתובת והצעדים נכונים ל-16.11.2026.</p>
+
+</div>
+</main>
+<footer class="sai-foot"><nav aria-label="מידע והגדרות"><a href="/privacy">מדיניות פרטיות</a><a href="/terms">תקנון</a><a href="/accessibility">הצהרת נגישות</a><a href="/guides">כל המדריכים</a><button type="button" id="cc-open">הגדרות עוגיות</button></nav><p>© Shani AI Creator</p></footer>
+
+<script>
+(function(){
+  // מדידה: אותם מזהים ואותו מנגנון הסכמה כמו public/audit.html ו-components/CookieConsent.tsx
+  var GA4_ID = "G-35YVB7955E";
+  var META_PIXEL_ID = "1506427107624542";
+  var CONSENT_KEY = "shani-cookie-consent", CONSENT_VERSION = 1;
+  var trackersLoaded = false;
+
+  function readConsent(){
+    try {
+      var r = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null");
+      if (r && (r.choice === "granted" || r.choice === "denied") && r.version === CONSENT_VERSION) return r;
+    } catch(e){}
+    return null;
+  }
+  function writeConsent(choice){
+    var r = { choice: choice, marketing: choice === "granted", ts: new Date().toISOString(), version: CONSENT_VERSION };
+    try { localStorage.setItem(CONSENT_KEY, JSON.stringify(r)); } catch(e){}
+    return r;
+  }
+  // GA4 (+ Meta Pixel רק עם הסכמה שיווקית) נטענים רק אחרי אישור פעיל
+  function loadTrackers(c){
+    if (trackersLoaded) return; trackersLoaded = true;
+    if (GA4_ID) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('consent','update',{ad_storage:c.marketing?'granted':'denied',ad_user_data:c.marketing?'granted':'denied',ad_personalization:c.marketing?'granted':'denied',analytics_storage:'granted'});
+      var s = document.createElement('script'); s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+      document.head.appendChild(s);
+      gtag('js', new Date()); gtag('config', GA4_ID);
+    }
+    if (META_PIXEL_ID && c.marketing) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('consent','grant');
+      fbq('init', META_PIXEL_ID); fbq('track', 'PageView');
+    }
+  }
+  function showBanner(saved){
+    var old = document.getElementById('cc-root'); if (old) old.remove();
+    var root = document.createElement('div'); root.id = 'cc-root'; root.className = 'cc-wrap';
+    root.innerHTML =
+      '<div class="cc-card" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-body">' +
+      '<div class="cc-text" style="flex:1 1 280px;min-width:0"><h2 id="cc-title">עוגיות באתר: </h2>' +
+      '<p id="cc-body">רק באישורכם נטענים Google Analytics ו-Meta Pixel למדידה ופרסום (עוגיות צד שלישי, מידע עובר מחוץ לישראל). אפשר לדחות ולהמשיך כרגיל. <a class="cc-link" href="/privacy">מדיניות הפרטיות</a></p></div>' +
+      '<div class="cc-actions"><button type="button" class="cc-btn" id="cc-accept">אישור</button><button type="button" class="cc-btn" id="cc-reject">דחייה</button></div>' +
+      (saved ? '<p style="margin:12px 0 0;font-size:13px;display:block;flex:1 1 100%">' + (saved.choice === "granted" ? "אישרתם עוגיות מדידה ופרסום." : "דחיתם עוגיות מדידה ופרסום.") + '</p>' : '') +
+      '</div>';
+    document.body.appendChild(root);
+    document.getElementById('cc-accept').addEventListener('click', function(){ var c = writeConsent('granted'); root.remove(); loadTrackers(c); });
+    document.getElementById('cc-reject').addEventListener('click', function(){
+      writeConsent('denied'); root.remove();
+      if (window.gtag) gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+      if (window.fbq) fbq('consent','revoke');
+    });
+  }
+  var c0 = readConsent();
+  if (c0 === null) showBanner(null);
+  else if (c0.choice === 'granted') loadTrackers(c0);
+  document.getElementById('cc-open').addEventListener('click', function(){
+    showBanner(readConsent());
+    var a = document.getElementById('cc-accept'); if (a) a.focus();
+  });
+
+  function granted(){ var c = readConsent(); return !!(c && c.choice === 'granted' && typeof gtag === 'function'); }
+
+  // whatsapp_click / phone_click, כמו בשאר האתר. רק אחרי אישור עוגיות.
+  document.addEventListener('click', function(e){
+    try {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.href || '';
+      var name = /^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href) ? 'whatsapp_click' : (/^tel:/i.test(href) ? 'phone_click' : null);
+      if (!name || !granted()) return;
+      gtag('event', name, { link_url: href, page_location: location.href, link_position: 'guide_claude_meta_ads' });
+    } catch(err){}
+  }, true);
+
+  // guide_download, רק אחרי אישור עוגיות
+  document.getElementById('guide-download').addEventListener('click', function(){
+    try { if (granted()) gtag('event', 'guide_download', { guide_name: 'claude-meta-ads', file_type: 'pdf' }); } catch(err){}
+  });
+})();
+</script>
+</body>
+</html>
