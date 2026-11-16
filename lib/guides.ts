@@ -18,6 +18,19 @@ export type Guide = {
 
 export const guides: Guide[] = [
   {
+    slug: "claude-meta-ads",
+    file: "claude-meta-ads.html",
+    date: "2026-11-16",
+    title: "איך מחברים את Claude למודעות במטא",
+    titleEn: "How to connect Claude to your Meta ads",
+    description:
+      "מדריך קצר בעברית: ארבעה צעדים לחבר את Claude לחשבון המודעות שלכם במטא, להתחיל בקריאה בלבד ולשלוט במה שהוא רשאי לעשות בחשבון.",
+    descriptionEn:
+      "A short guide: four steps to connect Claude to your Meta ad account, start with read-only access and stay in control of what it is allowed to do in the account.",
+    tag: "מדריך",
+    tagEn: "Guide",
+  },
+  {
     slug: "claude-canva-designs",
     file: "claude-canva-designs.html",
     date: "2026-07-10",
