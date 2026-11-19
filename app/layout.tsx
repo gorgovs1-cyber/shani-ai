@@ -82,6 +82,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
       </head>
       <body>
+        {/* מקור הביקור: נשמר פעם אחת בכניסה הראשונה בביקור (sessionStorage, בלי עוגיות), ונשלח עם טופס בדיקת ההתאמה */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(!sessionStorage.getItem("sa_src")){var u=new URL(location.href),q=u.searchParams,r=document.referrer||"",h="";try{h=r?new URL(r).hostname:""}catch(e){}if(h===location.hostname)h="";sessionStorage.setItem("sa_src",JSON.stringify({utm_source:q.get("utm_source")||"",utm_medium:q.get("utm_medium")||"",utm_campaign:q.get("utm_campaign")||"",ref:h,landing:u.pathname}))}}catch(e){}`,
+          }}
+        />
         {/* Schema.org — ProfessionalService (local SEO) */}
         <script
           type="application/ld+json"

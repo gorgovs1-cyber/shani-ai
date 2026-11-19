@@ -137,8 +137,9 @@ export function alertText(a: Record<string, string>): string {
     `חסר: ${oneLine(a['חסר'])}`,
     `בעיה מרכזית: ${oneLine(a['הבעיה הכי חשובה'])}`,
     ...(urgency ? [`דחיפות: ${urgency}`] : []),
+    `מקור: ${oneLine(a['מקור']) || 'לא ידוע'}`,
     '',
-    'הליד נשמר ב-Supabase. אפשר לבקש מ-Grok Bot להכין תדריך והצעה.',
+    'הליד נשמר ב-Supabase ובגיליון הלידים.',
   ].join('\n');
 }
 
